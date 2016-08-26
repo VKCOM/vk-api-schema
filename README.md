@@ -35,10 +35,6 @@ Repository contains four .json files.
           "maxItems": 1000
         },
         {
-          "name": "user_id",
-          "type": "integer"
-        },
-        {
           "name": "domains",
           "type": "array",
           "items": {
