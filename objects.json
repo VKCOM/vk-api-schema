@@ -2614,8 +2614,11 @@
         {
           "properties": {
             "lists": {
-              "type": "string",
+              "type": "array",
+              "items": {
+              "type": "integer",
               "description": "IDs of friend lists with user"
+               }
             }
           }
         }
