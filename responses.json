@@ -250,7 +250,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects/definitions/ads_link_status"
+          "$ref": "objects.json#/definitions/ads_link_status"
         }
       },
       "additionalProperties": false
@@ -3225,7 +3225,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects/definitions/groups_group_link"
+          "$ref": "objects.json#/definitions/groups_group_link"
         }
       },
       "additionalProperties": false
@@ -4272,7 +4272,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json/definitions/messages_last_activity"
+          "$ref": "objects.json#/definitions/messages_last_activity"
         }
       },
       "additionalProperties": false
@@ -6793,7 +6793,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "objects/definitions/video_video_tag"
+            "$ref": "objects.json#/definitions/video_video_tag"
           }
         }
       },
