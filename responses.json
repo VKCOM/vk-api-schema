@@ -4272,7 +4272,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json/defintions/messages_last_activity"
+          "$ref": "objects.json/definitions/messages_last_activity"
         }
       },
       "additionalProperties": false
