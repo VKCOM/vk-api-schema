@@ -182,7 +182,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -493,7 +501,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -1794,7 +1810,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -2286,7 +2310,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -2336,7 +2368,15 @@
           "name": "name_case",
           "description": "Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
           "type": "string",
-          "default": 0
+          "default": 0,
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -2376,7 +2416,15 @@
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
           "type": "string",
-          "default": 0
+          "default": 0,
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         },
         {
           "name": "offset",
@@ -6144,7 +6192,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname. Possible values:; *'nom' — nominative (default);; *'gen' — genitive;; *'dat' — dative;; *'acc' — accusative; ; *'ins' — instrumental;; *'abl' — prepositional.",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -10722,7 +10778,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -10824,7 +10888,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive; 'dat' — dative; 'acc' — accusative; 'ins' — instrumental; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -11251,7 +11323,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
@@ -11948,7 +12028,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname: ; 'nom' — nominative (default) ; 'gen' — genitive ; 'dat' — dative ; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "errors": [
@@ -12875,7 +12963,15 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default);; 'gen' — genitive;; 'dat' — dative;; 'acc' — accusative;; 'ins' — instrumental;; 'abl' — prepositional.; ; (only if 'return_friends' = '1')",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ]
         }
       ],
       "responses": {
