@@ -7063,7 +7063,7 @@
     },
     {
       "name": "groups.setCallbackSettings",
-      "description": "Allow to set notifications settings for .",
+      "description": "Allow to set notifications settings for group.",
       "parameters": [
         {
           "name": "group_id",
@@ -7074,82 +7074,92 @@
         },
         {
           "name": "message_new",
-          "description": "New messages notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_allow",
+          "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_deny",
+          "description": "Denied messages notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_new",
-          "description": "New photos notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New photos notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "audio_new",
-          "description": "New audios notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New audios notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "video_new",
-          "description": "New videos notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New videos notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_new",
-          "description": "New wall replies notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New wall replies notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_edit",
-          "description": "Wall replies edited notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "Wall replies edited notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_post_new",
-          "description": "New wall posts notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_new",
-          "description": "New board posts notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New board posts notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_edit",
-          "description": "Board posts edited notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "Board posts edited notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_restore",
-          "description": "Board posts restored notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "Board posts restored notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_delete",
-          "description": "Board posts deleted notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "Board posts deleted notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_new",
-          "description": "New comment to photo notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New comment to photo notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_new",
-          "description": "New comment to video notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New comment to video notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_new",
-          "description": "New comment to market item notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "New comment to market item notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "group_join",
-          "description": "Joined community notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "Joined community notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
           "name": "group_leave",
-          "description": "Left community notificaitions ('0' — disabled, '1' — enabled).",
+          "description": "Left community notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         }
       ],
@@ -7173,7 +7183,7 @@
         },
         {
           "name": "topic_ids",
-          "description": "IDs of topics to be returned (100 maximum). By default, all topics are returned.; ; If this parameter is set, the 'order', 'offset', and 'count' parameters are ignored.",
+          "description": "IDs of topics to be returned (100 maximum). By default, all topics are returned.; If this parameter is set, the 'order', 'offset', and 'count' parameters are ignored.",
           "type": "array",
           "items": {
             "type": "integer"

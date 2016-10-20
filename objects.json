@@ -3058,6 +3058,10 @@
               "type": "integer",
               "description": "Information whether current user can send a message to community"
             },
+            "is_messages_allowed": {
+              "description": "Information whether current user can send a message to community",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "start_date": {
               "type": "integer",
               "description": "Start date of event in Unixtime"

@@ -2594,6 +2594,14 @@
               "description": "Whether notifications about new message enabled",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "message_allow": {
+              "description": "Whether notifications about allowed messages enabled",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "message_deny": {
+              "description": "Whether notifications about denied messages enabled",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "photo_new": {
               "description": "Whether notifications about new photos enabled",
               "$ref": "objects.json#/definitions/base_bool_int"
