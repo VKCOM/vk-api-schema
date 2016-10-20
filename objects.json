@@ -1492,33 +1492,29 @@
           "type": "string",
           "description": "Application description"
         },
-        "icon_100": {
+        "icon_278": {
           "type": "string",
-          "description": "URL of the app icon with 100 px in width"
+          "description": "URL of the app icon with 279 px in width"
         },
-        "icon_200": {
+        "icon_150": {
           "type": "string",
-          "description": "URL of the app icon with 200 px in width"
+          "description": "URL of the app icon with 150 px in width"
+        },
+        "icon_139": {
+          "type": "string",
+          "description": "URL of the app icon with 139 px in width"
         },
         "icon_75": {
           "type": "string",
           "description": "URL of the app icon with 75 px in width"
         },
-        "icon_50": {
+        "banner_560": {
           "type": "string",
-          "description": "URL of the app icon with 50 px in width"
+          "description": "URL of the app banner with 560 px in width"
         },
-        "icon_16": {
+        "banner_1120": {
           "type": "string",
-          "description": "URL of the app icon with 16 px in width"
-        },
-        "banner_186": {
-          "type": "string",
-          "description": "URL of the app banner with 186 px in width"
-        },
-        "banner_896": {
-          "type": "string",
-          "description": "URL of the app banner with 896 px in width"
+          "description": "URL of the app banner with 1120 px in width"
         },
         "type": {
           "type": "string",
