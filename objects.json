@@ -4555,7 +4555,7 @@
         "price",
         "category",
         "date",
-        "thumb",
+        "thumb_photo",
         "availability"
       ],
       "additionalProperties": false
