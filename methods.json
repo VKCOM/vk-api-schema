@@ -11101,6 +11101,67 @@
       }
     },
     {
+      "name": "messages.denyMessagesFromCommunity",
+      "description": "Denies sending message from community to the current user.",
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_denyMessagesFromCommunity_response"
+        }
+      }
+    },
+    {
+      "name": "messages.allowMessagesFromCommunity",
+      "description": "Allows sending messages from community to the current user.",
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_allowMessagesFromCommunity_response"
+        }
+      }
+    },
+    {
+      "name": "messages.isMessagesFromGroupAllowed",
+      "description": "Returns information whether sending messages from the community to current user is allowed.",
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_isMessagesFromGroupAllowed_response"
+        }
+      }
+    },
+    {
       "name": "newsfeed.get",
       "description": "Returns data required to show newsfeed for the current user.",
       "parameters": [

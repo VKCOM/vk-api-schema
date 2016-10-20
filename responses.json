@@ -4321,6 +4321,38 @@
       },
       "additionalProperties": false
     },
+    "messages_denyMessagesFromCommunity_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_ok_response"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_allowMessagesFromCommunity_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_ok_response"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_isMessagesFromGroupAllowed_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "is_allowed": {
+              "$ref": "objects.json#/definitions/base_bool_int"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "newsfeed_get_response": {
       "type": "object",
       "properties": {
