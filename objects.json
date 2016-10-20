@@ -3055,8 +3055,8 @@
               ]
             },
             "can_message": {
-              "type": "integer",
-              "description": "Information whether current user can send a message to community"
+              "description": "Information whether current user can send a message to community",
+              "$ref": "objects.json#/definitions/base_bool_int"
             },
             "is_messages_allowed": {
               "description": "Information whether current user can send a message to community",
@@ -3529,44 +3529,44 @@
           "description": "ID of the user's main photo"
         },
         "has_photo": {
-          "type": "integer",
-          "description": "Information whether the user has main photo"
+          "description": "Information whether the user has main photo",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "has_mobile": {
-          "type": "integer",
-          "description": "Information whether the user specified his phone number"
+          "description": "Information whether the user specified his phone number",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "is_friend": {
-          "type": "integer",
-          "description": "Information whether the user is a friend of current user"
+          "description": "Information whether the user is a friend of current user",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "friend_status": {
           "type": "integer",
           "description": "Friend status for current user"
         },
         "wall_comments": {
-          "type": "integer",
-          "description": "Information whether current user can comment wall posts"
+          "description": "Information whether current user can comment wall posts",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "can_post": {
-          "type": "integer",
-          "description": "Information whether current user can post on the user's wall"
+          "description": "Information whether current user can post on the user's wall",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "can_see_all_posts": {
-          "type": "integer",
-          "description": "Information whether current user can see other users' audio on the wall"
+          "description": "Information whether current user can see other users' audio on the wall",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "can_see_audio": {
-          "type": "integer",
-          "description": "Information whether current user can see the user's audio"
+          "description": "Information whether current user can see the user's audio",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "can_write_private_message": {
-          "type": "integer",
-          "description": "Information whether current user can write private message"
+          "description": "Information whether current user can write private message",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "can_send_friend_request": {
-          "type": "integer",
-          "description": "Information whether current user can send a friend request"
+          "description": "Information whether current user can send a friend request",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "mobile_phone": {
           "type": "string",
@@ -3823,28 +3823,28 @@
           }
         },
         "verified": {
-          "type": "integer",
-          "description": "Information whether the user is verified"
+          "description": "Information whether the user is verified",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "followers_count": {
           "type": "integer",
           "description": "Number of user's followers"
         },
         "blacklisted": {
-          "type": "integer",
-          "description": "Information whether current user is in the requested user's blacklist."
+          "description": "Information whether current user is in the requested user's blacklist.",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "blacklisted_by_me": {
-          "type": "integer",
-          "description": "Information whether the requested user is in current user's blacklist"
+          "description": "Information whether the requested user is in current user's blacklist",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "is_favorite": {
-          "type": "integer",
-          "description": "Information whether the requested user is in faves of current user"
+          "description": "Information whether the requested user is in faves of current user",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "is_hidden_from_feed": {
-          "type": "integer",
-          "description": "Information whether the requested user is hidden from current user's newsfeed"
+          "description": "Information whether the requested user is hidden from current user's newsfeed",
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "common_count": {
           "type": "integer",
