@@ -1548,6 +1548,21 @@
         {
           "name": "hash",
           "type": "string"
+        },
+        {
+          "name": "latitude",
+          "description": "Geographical latitude, in degrees (from '-90' to '90').",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "Geographical longitude, in degrees (from '-180' to '180').",
+          "type": "number"
+        },
+        {
+          "name": "caption",
+          "description": "Text describing the photo. 2048 digits max.",
+          "type": "string"
         }
       ],
       "errors": [
