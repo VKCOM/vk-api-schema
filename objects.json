@@ -463,6 +463,10 @@
         "lang": {
           "type": "integer",
           "description": "Language ID"
+        },
+        "2fa_required": {
+          "description": "Two factor authentication is enabled",
+          "$ref": "#/definitions/base_bool_int"
         }
       },
       "additionalProperties": false
@@ -1898,6 +1902,145 @@
         "count": {
           "type": "integer",
           "description": "Likes number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Link URL"
+        },
+        "title": {
+          "type": "string",
+          "description": "Link title"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Link caption"
+        },
+        "description": {
+          "type": "string",
+          "description": "Link description"
+        },
+        "photo": {
+          "$ref": "#/definitions/photos_photo"
+        },
+        "is_external": {
+          "description": "Information whether the link is external",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "preview_url": {
+          "type": "string",
+          "description": "URL of the page with article preview"
+        },
+        "preview_page": {
+          "type": "string",
+          "description": "String ID of the page with article preview"
+        },
+        "button": {
+          "$ref": "#/definitions/base_link_button"
+        },
+        "product": {
+          "$ref": "#/definitions/base_link_product"
+        },
+        "rating": {
+          "$ref": "#/definitions/base_link_rating"
+        },
+        "application": {
+          "$ref": "#/definitions/base_link_application"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "base_link_button": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Button title"
+        },
+        "action": {
+          "$ref": "#/definitions/base_link_button_action",
+          "description": "Button action"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_button_action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/base_link_button_action_type"
+        },
+        "url": {
+          "type": "string",
+          "description": "Action URL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_button_action_type": {
+      "type": "string",
+      "description": "Action type",
+      "enum": [
+        "open_url"
+      ],
+      "enumNames": [
+        "open_url"
+      ]
+    },
+    "base_link_product": {
+      "type": "object",
+      "properties": {
+        "price": {
+          "$ref": "#/definitions/market_price"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_application": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "number",
+          "description": "Application Id"
+        },
+        "store": {
+          "$ref": "#/definitions/base_link_application_store"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_application_store": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Store Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Store name"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_rating": {
+      "type": "object",
+      "properties": {
+        "stars": {
+          "type": "number",
+          "description": "Count of stars"
+        },
+        "reviews_count": {
+          "type": "integer",
+          "description": "Count of reviews"
         }
       },
       "additionalProperties": false
@@ -4655,7 +4798,7 @@
           "$ref": "#/definitions/docs_doc"
         },
         "link": {
-          "$ref": "#/definitions/messages_message_link"
+          "$ref": "#/definitions/base_link"
         }
       },
       "required": [
@@ -4678,7 +4821,7 @@
           "$ref": "#/definitions/docs_doc"
         },
         "link": {
-          "$ref": "#/definitions/messages_message_link"
+          "$ref": "#/definitions/base_link"
         },
         "market": {
           "$ref": "#/definitions/market_market_item"
@@ -4862,28 +5005,7 @@
         "online",
         "time"
       ],
-      "additional Propertis": false
-    },
-    "messages_message_link": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "Link URL"
-        },
-        "title": {
-          "type": "string",
-          "description": "Link title"
-        },
-        "description": {
-          "type": "string",
-          "description": "Link description"
-        },
-        "image_src": {
-          "type": "string",
-          "description": "URL of the preview image"
-        }
-      }
+      "additionalProperties": false
     },
     "messages_longpoll_params": {
       "type": "object",
@@ -5086,11 +5208,11 @@
               }
             }
           }
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID"
         }
-      },
-      "post_id": {
-        "type": "integer",
-        "description": "Post ID"
       }
     },
     "newsfeed_item_friend": {
@@ -5185,14 +5307,17 @@
       "type": "object",
       "properties": {
         "photo_tags": {
-          "count": {
-            "type": "integer",
-            "description": "Tags number"
-          },
-          "items": {
-            "type": "array",
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Tags number"
+            },
             "items": {
-              "$ref": "#/definitions/newsfeed_newsfeed_photo"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/newsfeed_newsfeed_photo"
+              }
             }
           }
         },
@@ -5662,11 +5787,11 @@
                 "description": "Amount description"
               }
             }
-          },
-          "currency": {
-            "type": "string",
-            "description": "Currency name"
           }
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency name"
         }
       }
     },
@@ -7047,11 +7172,11 @@
               "rate"
             ],
             "additionalProperties": false
-          },
-          "anonymous": {
-            "description": "Information whether the pole is anonymous",
-            "$ref": "#/definitions/base_bool_int"
           }
+        },
+        "anonymous": {
+          "description": "Information whether the pole is anonymous",
+          "$ref": "#/definitions/base_bool_int"
         }
       },
       "required": [
@@ -8923,11 +9048,11 @@
               "description": "Total likes number"
             }
           },
-          "requred": [
+          "required": [
             "user_likes",
             "count"
           ],
-          "adiitionalProperties": false
+          "additionalProperties": false
         },
         "repeat": {
           "description": "Information whether the video is repeated",
@@ -9020,7 +9145,7 @@
           "$ref": "#/definitions/docs_doc"
         },
         "link": {
-          "$ref": "#/definitions/wall_wall_link"
+          "$ref": "#/definitions/base_link"
         },
         "note": {
           "$ref": "#/definitions/wall_attached_note"
@@ -9079,43 +9204,6 @@
           "description": "URL of the preview image with 586 px in width"
         }
       }
-    },
-    "wall_link_button": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "Button URL"
-        },
-        "title": {
-          "type": "string",
-          "description": "Button title"
-        }
-      },
-      "additionalProperties": false
-    },
-    "wall_link_product": {
-      "type": "object",
-      "properties": {
-        "price": {
-          "$ref": "#/definitions/market_price"
-        }
-      },
-      "additionalProperties": false
-    },
-    "wall_link_rating": {
-      "type": "object",
-      "properties": {
-        "stars": {
-          "type": "number",
-          "description": "Count of stars"
-        },
-        "reviews_count": {
-          "type": "integer",
-          "description": "Count of reviews"
-        }
-      },
-      "additionalProperties": false
     },
     "wall_post_source": {
       "type": "object",
@@ -9225,55 +9313,6 @@
         "from_id",
         "date",
         "text"
-      ],
-      "additionalProperties": false
-    },
-    "wall_wall_link": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "Link URL"
-        },
-        "title": {
-          "type": "string",
-          "description": "Link title"
-        },
-        "caption": {
-          "type": "string",
-          "description": "Link caption"
-        },
-        "description": {
-          "type": "string",
-          "description": "Link description"
-        },
-        "photo": {
-          "$ref": "#/definitions/photos_photo"
-        },
-        "is_external": {
-          "description": "Information whether the link is external",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "preview_url": {
-          "type": "string",
-          "description": "URL of the page with article preview"
-        },
-        "preview_page": {
-          "type": "string",
-          "description": "String ID of the page with article preview"
-        },
-        "button": {
-          "$ref": "#/definitions/wall_link_button"
-        },
-        "product": {
-          "$ref": "#/definitions/wall_link_product"
-        },
-        "rating": {
-          "$ref": "#/definitions/wall_link_rating"
-        }
-      },
-      "required": [
-        "url"
       ],
       "additionalProperties": false
     },
@@ -9409,7 +9448,7 @@
           "$ref": "#/definitions/docs_doc"
         },
         "link": {
-          "$ref": "#/definitions/wall_wall_link"
+          "$ref": "#/definitions/base_link"
         },
         "graffiti": {
           "$ref": "#/definitions/wall_graffiti"
@@ -9749,7 +9788,7 @@
         },
         "url": {
           "type": "string",
-          "description": "Page abcolute URL"
+          "description": "Page absolute URL"
         },
         "likes": {
           "type": "object",

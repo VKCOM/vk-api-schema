@@ -3970,6 +3970,14 @@
               "items": {
                 "$ref": "objects.json#/definitions/messages_message"
               }
+            },
+            "in_read": {
+              "type": "integer",
+              "description": "Id of last read inbound message"
+            },
+            "out_read": {
+              "type": "integer",
+              "description": "Id of last read outbound message"
             }
           },
           "required": [
