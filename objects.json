@@ -162,6 +162,38 @@
       },
       "additionalProperties": false
     },
+    "account_push_conversations": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Items count"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/account_push_conversations_item"
+          }
+        }
+      }
+    },
+    "account_push_conversations_item": {
+      "type": "object",
+      "properties": {
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID"
+        },
+        "sound": {
+          "description": "Information whether the sound are enabled",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "disabled_until": {
+          "type": "integer",
+          "description": "Time until that notifications are disabled in seconds"
+        }
+      }
+    },
     "account_push_params": {
       "type": "object",
       "properties": {
@@ -343,7 +375,7 @@
           "description": "Time until that notifications are disabled in Unixtime"
         },
         "conversations": {
-          "type": "object"
+          "$ref": "#/definitions/account_push_conversations"
         },
         "settings": {
           "$ref": "#/definitions/account_push_params"
@@ -2074,6 +2106,15 @@
       ],
       "additionalProperties": false
     },
+    "base_object_count": {
+        "type": "object",
+        "properties": {
+                "count": {
+                  "type": "integer",
+                  "description": "Items count"
+              }
+          }
+    },
     "base_ok_response": {
       "type": "integer",
       "description": "Returns 1 if request has been processed successfully",
@@ -2484,51 +2525,7 @@
           "description": "Document type"
         },
         "preview": {
-          "type": "object",
-          "properties": {
-            "photo": {
-              "type": "object",
-              "properties": {
-                "sizes": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/photos_photo_sizes"
-                  }
-                }
-              }
-            },
-            "video": {
-              "type": "object",
-              "properties": {
-                "src": {
-                  "type": "string",
-                  "description": "Video URL"
-                },
-                "width": {
-                  "type": "integer",
-                  "description": "Video's width in pixels",
-                  "minimum": 0
-                },
-                "height": {
-                  "type": "integer",
-                  "description": "Video's height in pixels",
-                  "minimum": 0
-                },
-                "filesize": {
-                  "type": "integer",
-                  "description": "Video file size in bites",
-                  "minimum": 0
-                }
-              },
-              "required": [
-                "src",
-                "width",
-                "height",
-                "filesize"
-              ],
-              "additionalProperties": false
-            }
-          }
+          "$ref": "#/definitions/docs_doc_preview"
         },
         "access_key": {
           "type": "string",
@@ -2571,6 +2568,59 @@
           "description": "Uploaded file data"
         }
       }
+    },
+    "docs_doc_preview": {
+          "type": "object",
+          "properties": {
+            "photo": {
+              "$ref": "#/definitions/docs_doc_preview_photo"
+            },
+            "video": {
+              "$ref": "#/definitions/docs_doc_preview_video"
+            }
+          }
+    },
+    "docs_doc_preview_photo": {
+              "type": "object",
+              "properties": {
+                "sizes": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/photos_photo_sizes"
+                  }
+                }
+              }
+    },
+    "docs_doc_preview_video": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string",
+                  "description": "Video URL"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "Video's width in pixels",
+                  "minimum": 0
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "Video's height in pixels",
+                  "minimum": 0
+                },
+                "filesize": {
+                  "type": "integer",
+                  "description": "Video file size in bites",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "src",
+                "width",
+                "height",
+                "filesize"
+              ],
+              "additionalProperties": false
     },
     "fave_faves_link": {
       "type": "object",
@@ -2636,6 +2686,12 @@
           "description": "ID of the user by whom friend has been suggested"
         },
         "mutual": {
+          "$ref": "#/definitions/friends_requests_mutual"
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_requests_mutual": {
           "type": "object",
           "properties": {
             "count": {
@@ -2652,9 +2708,6 @@
             }
           },
           "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
     },
     "friends_requests_xtr_message": {
       "type": "object",
@@ -2669,22 +2722,7 @@
           "description": "ID of the user by whom friend has been suggested"
         },
         "mutual": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total mutual friends number"
-            },
-            "users": {
-              "type": "array",
-              "items": {
-                "type": "integer",
-                "description": "User ID",
-                "minimum": 1
-              }
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/friends_requests_mutual"
         },
         "message": {
           "type": "string",
@@ -2832,6 +2870,49 @@
           "description": "Hash"
         }
       }
+    },
+    "groups_ban_info": {
+          "type": "object",
+          "properties": {
+            "admin_id": {
+              "type": "integer",
+              "description": "Administrator ID",
+              "minimum": 1
+            },
+            "date": {
+              "type": "integer",
+              "description": "Date when user has been added to blacklist in Unixtime",
+              "minimum": 0
+            },
+            "reason": {
+              "type": "integer",
+              "description": "Ban reason",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "enumNames": [
+                "other",
+                "spam",
+                "verbal abuse",
+                "strong language",
+                "flood"
+              ]
+            },
+            "comment": {
+              "type": "string",
+              "description": "Comment for a ban"
+            },
+            "end_date": {
+              "type": "integer",
+              "description": "Date when user will be removed from blacklist in Unixtime",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
     },
     "groups_groups_array": {
       "type": "object",
@@ -3721,18 +3802,7 @@
           "$ref": "#/definitions/users_last_seen"
         },
         "exports": {
-          "type": "object",
-          "properties": {
-            "twitter": {
-              "type": "integer"
-            },
-            "facebook": {
-              "type": "integer"
-            },
-            "livejournal": {
-              "type": "integer"
-            }
-          }
+         "$ref": "#/definitions/users_exports"
         },
         "crop_photo": {
           "$ref": "#/definitions/users_crop_photo"
@@ -3877,47 +3947,7 @@
           "description": "Favorite quotes"
         },
         "ban_info": {
-          "type": "object",
-          "properties": {
-            "admin_id": {
-              "type": "integer",
-              "description": "Administrator ID",
-              "minimum": 1
-            },
-            "date": {
-              "type": "integer",
-              "description": "Date when user has been added to blacklist in Unixtime",
-              "minimum": 0
-            },
-            "reason": {
-              "type": "integer",
-              "description": "Ban reason",
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4
-              ],
-              "enumNames": [
-                "other",
-                "spam",
-                "verbal abuse",
-                "strong language",
-                "flood"
-              ]
-            },
-            "comment": {
-              "type": "string",
-              "description": "Comment for a ban"
-            },
-            "end_date": {
-              "type": "integer",
-              "description": "Date when user will be removed from blacklist in Unixtime",
-              "minimum": 0
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/groups_ban_info"
         }
       },
       "required": [
@@ -3979,6 +4009,11 @@
           "description": "Completed offers number"
         },
         "days": {
+          "$ref": "#/definitions/leads_lead_days"
+        }
+      }
+    },
+    "leads_lead_days": {
           "type": "object",
           "properties": {
             "impressions": {
@@ -3998,8 +4033,6 @@
               "description": "Amount of spent votes"
             }
           }
-        }
-      }
     },
     "leads_start": {
       "type": "object",
@@ -4750,6 +4783,15 @@
       "type": "object",
       "properties": {
         "audio": {
+          "$ref": "#/definitions/newsfeed_item_audio_audio"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID"
+        }
+      }
+    },
+    "newsfeed_item_audio_audio": {
           "type": "object",
           "properties": {
             "count": {
@@ -4763,12 +4805,6 @@
               }
             }
           }
-        },
-        "post_id": {
-          "type": "integer",
-          "description": "Post ID"
-        }
-      }
     },
     "newsfeed_item_friend": {
       "type": "object",
@@ -4794,6 +4830,11 @@
       "type": "object",
       "properties": {
         "notes": {
+          "$ref": "#/definitions/newsfeed_item_note_notes"
+        }
+      }
+    },
+    "newsfeed_item_note_notes": {
           "type": "object",
           "properties": {
             "count": {
@@ -4807,13 +4848,20 @@
               }
             }
           }
-        }
-      }
     },
     "newsfeed_item_photo": {
       "type": "object",
       "properties": {
         "photos": {
+          "$ref": "#/definitions/newsfeed_item_photo_photos"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID"
+        }
+      }
+    },
+    "newsfeed_item_photo_photos": {
           "type": "object",
           "properties": {
             "count": {
@@ -4827,6 +4875,12 @@
               }
             }
           }
+    },
+    "newsfeed_item_photo_tag": {
+      "type": "object",
+      "properties": {
+        "photo_tags": {
+          "$ref": "#/definitions/newsfeed_item_photo_tag_photo_tags"
         },
         "post_id": {
           "type": "integer",
@@ -4834,10 +4888,7 @@
         }
       }
     },
-    "newsfeed_item_photo_tag": {
-      "type": "object",
-      "properties": {
-        "photo_tags": {
+    "newsfeed_item_photo_tag_photo_tags": {
           "type": "object",
           "properties": {
             "count": {
@@ -4851,12 +4902,6 @@
               }
             }
           }
-        },
-        "post_id": {
-          "type": "integer",
-          "description": "Post ID"
-        }
-      }
     },
     "newsfeed_item_topic": {
       "type": "object",
@@ -4886,6 +4931,11 @@
       "type": "object",
       "properties": {
         "video": {
+          "$ref": "#/definitions/newsfeed_item_video_video"
+        }
+      }
+    },
+    "newsfeed_item_video_video": {
           "type": "object",
           "properties": {
             "count": {
@@ -4899,8 +4949,6 @@
               }
             }
           }
-        }
-      }
     },
     "newsfeed_item_wallpost": {
       "type": "object",
@@ -5012,13 +5060,7 @@
               "$ref": "#/definitions/base_likes"
             },
             "comments": {
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer",
-                  "description": "Comments count"
-                }
-              }
+              "$ref": "#/definitions/base_object_count"
             },
             "can_comment": {
               "description": "Information whether current user can comment the photo",
@@ -5977,38 +6019,17 @@
           "$ref": "#/definitions/base_likes"
         },
         "reposts": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Reposts number"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/base_object_count"
         },
         "comments": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Comments number"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/base_object_count"
         },
         "can_comment": {
           "description": "Information whether current user can comment the photo",
           "$ref": "#/definitions/base_bool_int"
         },
         "tags": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Tags number"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/base_object_count"
         }
       },
       "required": [
@@ -6106,38 +6127,16 @@
           "$ref": "#/definitions/base_likes"
         },
         "reposts": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Reposts number"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/base_object_count"
         },
         "comments": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Comments number"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/base_object_count"
         },
         "can_comment": {
-          "description": "Information whether current user can comment the photo",
           "$ref": "#/definitions/base_bool_int"
         },
         "tags": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Tags number"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/base_object_count"
         },
         "hidden": {
           "description": "Returns if the photo is hidden above the wall",
@@ -6757,6 +6756,11 @@
           "description": "Answer ID"
         },
         "users": {
+          "$ref": "#/definitions/polls_voters_users"
+        }
+      }
+    },
+    "polls_voters_users": {
           "type": "object",
           "properties": {
             "count": {
@@ -6771,8 +6775,6 @@
               }
             }
           }
-        }
-      }
     },
     "search_hint": {
       "type": "object",
@@ -7480,18 +7482,7 @@
               "$ref": "#/definitions/users_last_seen"
             },
             "exports": {
-              "type": "object",
-              "properties": {
-                "twitter": {
-                  "type": "integer"
-                },
-                "facebook": {
-                  "type": "integer"
-                },
-                "livejournal": {
-                  "type": "integer"
-                }
-              }
+              "$ref": "#/definitions/users_exports"
             },
             "crop_photo": {
               "$ref": "#/definitions/users_crop_photo"
@@ -7672,6 +7663,20 @@
       },
       "additionalProperties": false
     },
+    "users_exports": {
+          "type": "object",
+          "properties": {
+            "twitter": {
+              "type": "integer"
+            },
+            "facebook": {
+              "type": "integer"
+            },
+            "livejournal": {
+              "type": "integer"
+            }
+          }
+    },
     "users_military": {
       "type": "object",
       "properties": {
@@ -7850,28 +7855,14 @@
           "$ref": "#/definitions/photos_photo"
         },
         "crop": {
-          "type": "object",
-          "properties": {
-            "x": {
-              "type": "number",
-              "description": "Coordinate X of the left upper corner"
-            },
-            "y": {
-              "type": "number",
-              "description": "Coordinate Y of the left upper corner"
-            },
-            "x2": {
-              "type": "number",
-              "description": "Coordinate X of the right lower corner"
-            },
-            "y2": {
-              "type": "number",
-              "description": "Coordinate Y of the right lower corner"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/definitions/users_crop_photo_crop"
         },
         "rect": {
+          "$ref": "#/definitions/users_crop_photo_rect"
+        }
+      }
+    },
+    "users_crop_photo_crop": {
           "type": "object",
           "properties": {
             "x": {
@@ -7892,8 +7883,28 @@
             }
           },
           "additionalProperties": false
-        }
-      }
+    },
+    "users_crop_photo_rect": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number",
+              "description": "Coordinate X of the left upper corner"
+            },
+            "y": {
+              "type": "number",
+              "description": "Coordinate Y of the left upper corner"
+            },
+            "x2": {
+              "type": "number",
+              "description": "Coordinate X of the right lower corner"
+            },
+            "y2": {
+              "type": "number",
+              "description": "Coordinate Y of the right lower corner"
+            }
+          },
+          "additionalProperties": false
     },
     "users_occupation": {
       "type": "object",
@@ -8339,6 +8350,12 @@
           "$ref": "#/definitions/base_property_exists"
         },
         "files": {
+          "$ref": "#/definitions/video_video_files"
+        }
+      },
+      "additionalProperties": false
+    },
+    "video_video_files": {
           "type": "object",
           "properties": {
             "mp_240": {
@@ -8364,9 +8381,6 @@
           },
           "minProperties": 1,
           "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
     },
     "video_video_tag_info": {
       "type": "object",
@@ -8444,31 +8458,7 @@
           "$ref": "#/definitions/base_property_exists"
         },
         "files": {
-          "type": "object",
-          "properties": {
-            "mp_240": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 240p quality"
-            },
-            "mp_360": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 360p quality"
-            },
-            "mp_480": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 480p quality"
-            },
-            "mp_720": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 720p quality"
-            },
-            "external": {
-              "type": "string",
-              "description": "URL of the external player"
-            }
-          },
-          "minProperties": 1,
-          "additionalProperties": false
+          "$ref": "#/definitions/video_video_files"
         },
         "placer_id": {
           "type": "integer",
@@ -8561,31 +8551,7 @@
           "$ref": "#/definitions/base_property_exists"
         },
         "files": {
-          "type": "object",
-          "properties": {
-            "mp_240": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 240p quality"
-            },
-            "mp_360": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 360p quality"
-            },
-            "mp_480": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 480p quality"
-            },
-            "mp_720": {
-              "type": "string",
-              "description": "URL of the mpeg4 file with 720p quality"
-            },
-            "external": {
-              "type": "string",
-              "description": "URL of the external player"
-            }
-          },
-          "minProperties": 1,
-          "additionalProperties": false
+          "$ref": "#/definitions/video_video_files"
         },
         "privacy_view": {
           "type": "array",
@@ -8610,22 +8576,7 @@
           "$ref": "#/definitions/base_bool_int"
         },
         "likes": {
-          "type": "object",
-          "properties": {
-            "user_likes": {
-              "description": "Information whether current user likes the video",
-              "$ref": "#/definitions/base_bool_int"
-            },
-            "count": {
-              "type": "integer",
-              "description": "Total likes number"
-            }
-          },
-          "required": [
-            "user_likes",
-            "count"
-          ],
-          "additionalProperties": false
+          "$ref": "#/definitions/base_likes"
         },
         "repeat": {
           "description": "Information whether the video is repeated",
@@ -9364,22 +9315,10 @@
           "description": "Page absolute URL"
         },
         "likes": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Likes number"
-            }
-          }
+          "$ref": "#/definitions/base_object_count"
         },
         "comments": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Comments number"
-            }
-          }
+         "$ref": "#/definitions/base_object_count"
         },
         "date": {
           "type": "integer",
