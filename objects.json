@@ -58,13 +58,13 @@
         "found": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/account_user_xtr_contacts"
+            "$ref": "#/definitions/account_user_xtr_contact"
           }
         },
         "other": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/account_other_contacts"
+            "$ref": "#/definitions/account_other_contact"
           }
         }
       },
@@ -148,17 +148,17 @@
         "off"
       ]
     },
-    "account_other_contacts": {
+    "account_other_contact": {
       "type": "object",
       "properties": {
-              "contact": {
-                "type": "string",
-                "description": "Contact"
-              },
-              "common_count": {
-                "type": "integer",
-                "description": "Mutual friends count"
-              }
+        "contact": {
+          "type": "string",
+          "description": "Contact"
+        },
+        "common_count": {
+          "type": "integer",
+          "description": "Mutual friends count"
+        }
       },
       "additionalProperties": false
     },
@@ -421,7 +421,7 @@
         }
       }
     },
-    "account_user_xtr_contacts": {
+    "account_user_xtr_contact": {
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -2196,13 +2196,13 @@
       ],
       "additionalProperties": false
     },
-    "base_userid": {
+    "base_user_id": {
       "type": "object",
-                "properties": {
-                  "user_id": {
-                    "type": "integer",
-                    "description": "User ID"
-                  }
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID"
+        }
       }
     },
     "board_default_order": {
@@ -2259,7 +2259,7 @@
         "answers": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/polls_answers"
+            "$ref": "#/definitions/polls_answer"
           }
         }
       },
@@ -2747,9 +2747,9 @@
             "lists": {
               "type": "array",
               "items": {
-              "type": "integer",
-              "description": "IDs of friend lists with user"
-               }
+                "type": "integer",
+                "description": "IDs of friend lists with user"
+              }
             }
           }
         }
@@ -3707,7 +3707,7 @@
           "description": "User's website"
         },
         "status_audio": {
-              "$ref": "#/definitions/audio_audio_full"
+          "$ref": "#/definitions/audio_audio_full"
         },
         "status": {
           "type": "string",
@@ -3718,8 +3718,8 @@
           "description": "User's status"
         },
         "last_seen": {
-              "$ref": "#/definitions/users_last_seen"
-            },
+          "$ref": "#/definitions/users_last_seen"
+        },
         "exports": {
           "type": "object",
           "properties": {
@@ -3735,7 +3735,7 @@
           }
         },
         "crop_photo": {
-              "$ref": "#/definitions/users_crop_photo"
+          "$ref": "#/definitions/users_crop_photo"
         },
         "verified": {
           "description": "Information whether the user is verified",
@@ -3766,19 +3766,19 @@
           "description": "Number of common friends with current user"
         },
         "occupation": {
-              "$ref": "#/definitions/users_occupation"
+          "$ref": "#/definitions/users_occupation"
         },
         "career": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/users_career"
-              }
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/users_career"
+          }
         },
         "military": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/users_military"
-              }
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/users_military"
+          }
         },
         "university": {
           "type": "integer",
@@ -3817,10 +3817,10 @@
           "description": "User relationship status"
         },
         "relation_partner": {
-              "$ref": "#/definitions/users_user_min"
+          "$ref": "#/definitions/users_user_min"
         },
         "personal": {
-              "$ref": "#/definitions/users_personal"
+          "$ref": "#/definitions/users_personal"
         },
         "interests": {
           "type": "string",
@@ -3851,26 +3851,26 @@
           "description": "User's favorite games"
         },
         "universities": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/users_university"
-              }
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/users_university"
+          }
         },
         "schools": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/users_school"
-              }
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/users_school"
+          }
         },
         "about": {
           "type": "string",
           "description": "About me field"
         },
         "relatives": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/users_relative"
-              }
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/users_relative"
+          }
         },
         "quotes": {
           "type": "string",
@@ -4566,18 +4566,18 @@
     },
     "messages_longpoll_messages": {
       "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer",
-                  "description": "Total number"
-                },
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/messages_message"
-                  }
-                }
-              }
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Total number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/messages_message"
+          }
+        }
+      }
     },
     "messages_message": {
       "type": "object",
@@ -4783,7 +4783,7 @@
             "items": {
               "type": "array",
               "items": {
-               "$ref": "#/definitions/base_userid"
+                "$ref": "#/definitions/base_user_id"
               }
             }
           }
@@ -4803,7 +4803,7 @@
             "items": {
               "type": "array",
               "items": {
-               "$ref": "#/definitions/newsfeed_newsfeed_note"
+                "$ref": "#/definitions/newsfeed_newsfeed_note"
               }
             }
           }
@@ -4982,24 +4982,24 @@
     },
     "newsfeed_newsfeed_note": {
       "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "description": "Note ID"
-                  },
-                  "owner_id": {
-                    "type": "integer",
-                    "description": "integer"
-                  },
-                  "title": {
-                    "type": "string",
-                    "description": "Note title"
-                  },
-                  "comments": {
-                    "type": "integer",
-                    "description": "Comments Number"
-                  }
-                }
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Note ID"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "integer"
+        },
+        "title": {
+          "type": "string",
+          "description": "Note title"
+        },
+        "comments": {
+          "type": "integer",
+          "description": "Comments Number"
+        }
+      }
     },
     "newsfeed_newsfeed_photo": {
       "allOf": [
@@ -5336,18 +5336,18 @@
     "orders_amount_item": {
       "type": "object",
       "properties": {
-              "votes": {
-                "type": "string",
-                "description": "Votes number"
-              },
-              "amount": {
-                "type": "integer",
-                "description": "Votes amount in user's currency"
-              },
-              "description": {
-                "type": "string",
-                "description": "Amount description"
-              }
+        "votes": {
+          "type": "string",
+          "description": "Votes number"
+        },
+        "amount": {
+          "type": "integer",
+          "description": "Votes amount in user's currency"
+        },
+        "description": {
+          "type": "string",
+          "description": "Amount description"
+        }
       }
     },
     "pages_privacy_settings": {
@@ -6664,36 +6664,36 @@
         }
       }
     },
-    "polls_answers": {
+    "polls_answer": {
       "type": "object",
       "properties": {
-              "id": {
-                "type": "integer",
-                "description": "Answer ID",
-                "minimum": 0
-              },
-              "text": {
-                "type": "string",
-                "description": "Answer text"
-              },
-              "votes": {
-                "type": "integer",
-                "description": "Votes number",
-                "minimum": 0
-              },
-              "rate": {
-                "type": "number",
-                "description": "Answer rate in percents",
-                "minimum": 0
-              }
-            },
-            "required": [
-              "id",
-              "text",
-              "votes",
-              "rate"
-            ],
-            "additionalProperties": false
+        "id": {
+          "type": "integer",
+          "description": "Answer ID",
+          "minimum": 0
+        },
+        "text": {
+          "type": "string",
+          "description": "Answer text"
+        },
+        "votes": {
+          "type": "integer",
+          "description": "Votes number",
+          "minimum": 0
+        },
+        "rate": {
+          "type": "number",
+          "description": "Answer rate in percents",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "votes",
+        "rate"
+      ],
+      "additionalProperties": false
     },
     "polls_poll": {
       "type": "object",
@@ -6729,7 +6729,7 @@
         "answers": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/polls_answers"
+            "$ref": "#/definitions/polls_answer"
           }
         },
         "anonymous": {
@@ -6937,7 +6937,7 @@
         "sex": {
           "type": "array",
           "items": {
-           "$ref": "#/definitions/stats_sex"
+            "$ref": "#/definitions/stats_sex"
           }
         },
         "age": {
@@ -6955,101 +6955,101 @@
         "cities": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/stats_cities"
+            "$ref": "#/definitions/stats_city"
           }
         },
         "countries": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/stats_countries"
+            "$ref": "#/definitions/stats_country"
           }
         }
       }
     },
     "stats_age": {
       "type": "object",
-            "properties": {
-              "visitors": {
-                "type": "integer",
-                "description": "Visitors number"
-              },
-              "value": {
-                "type": "string",
-                "description": "Age interval"
-              }
-            }
+      "properties": {
+        "visitors": {
+          "type": "integer",
+          "description": "Visitors number"
+        },
+        "value": {
+          "type": "string",
+          "description": "Age interval"
+        }
+      }
     },
-    "stats_countries": {
-       "type": "object",
-            "properties": {
-              "visitors": {
-                "type": "integer",
-                "description": "Visitors number"
-              },
-              "value": {
-                "type": "integer",
-                "description": "CountryID"
-              },
-              "code": {
-                "type": "string",
-                "description": "Country code"
-              },
-              "name": {
-                "type": "string",
-                "description": "Country name"
-              }
-            }
-    },
-    "stats_cities": {
+    "stats_country": {
       "type": "object",
-            "properties": {
-              "visitors": {
-                "type": "integer",
-                "description": "Visitors number"
-              },
-              "value": {
-                "type": "integer",
-                "description": "City ID"
-              },
-              "name": {
-                "type": "string",
-                "description": "City name"
-              }
-            }
+      "properties": {
+        "visitors": {
+          "type": "integer",
+          "description": "Visitors number"
+        },
+        "value": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "code": {
+          "type": "string",
+          "description": "Country code"
+        },
+        "name": {
+          "type": "string",
+          "description": "Country name"
+        }
+      }
+    },
+    "stats_city": {
+      "type": "object",
+      "properties": {
+        "visitors": {
+          "type": "integer",
+          "description": "Visitors number"
+        },
+        "value": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "City name"
+        }
+      }
     },
     "stats_sex": {
       "type": "object",
       "properties": {
-              "visitors": {
-                "type": "integer",
-                "description": "Visitors number"
-              },
-              "value": {
-                "type": "string",
-                "description": "Sex",
-                "enum": [
-                  "f",
-                  "m"
-                ],
-                "enumNames": [
-                  "female",
-                  "male"
-                ]
-              }
+        "visitors": {
+          "type": "integer",
+          "description": "Visitors number"
+        },
+        "value": {
+          "type": "string",
+          "description": "Sex",
+          "enum": [
+            "f",
+            "m"
+          ],
+          "enumNames": [
+            "female",
+            "male"
+          ]
+        }
       }
     },
     "stats_sex_age": {
       "type": "object",
-            "properties": {
-              "visitors": {
-                "type": "integer",
-                "description": "Visitors number"
-              },
-              "value": {
-                "type": "string",
-                "description": "Sex and age interval"
-              }
-            }
+      "properties": {
+        "visitors": {
+          "type": "integer",
+          "description": "Visitors number"
+        },
+        "value": {
+          "type": "string",
+          "description": "Sex and age interval"
+        }
+      }
     },
     "stats_wallpost_stat": {
       "type": "object",
