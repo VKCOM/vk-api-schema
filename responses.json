@@ -4666,7 +4666,8 @@
       "properties": {
         "response": {
           "type": "object",
-          "count": {
+          "properties": {
+            "count": {
             "type": "integer",
             "description": "Total number"
           },
@@ -4682,6 +4683,7 @@
                 }
               ]
             }
+          }
           }
         }
       },
