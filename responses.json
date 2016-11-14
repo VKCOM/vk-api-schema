@@ -4096,19 +4096,7 @@
               }
             },
             "messages": {
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer",
-                  "description": "Total number"
-                },
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "objects.json#/definitions/messages_message"
-                  }
-                }
-              }
+              "$ref": "objects.json#/definitions/messages_longpoll_messages"
             }
           }
         }

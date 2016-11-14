@@ -4564,6 +4564,21 @@
         }
       }
     },
+    "messages_longpoll_messages": {
+      "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "description": "Total number"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/messages_message"
+                  }
+                }
+              }
+    },
     "messages_message": {
       "type": "object",
       "properties": {
