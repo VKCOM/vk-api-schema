@@ -4668,22 +4668,22 @@
           "type": "object",
           "properties": {
             "count": {
-            "type": "integer",
-            "description": "Total number"
-          },
-          "items": {
-            "type": "array",
+              "type": "integer",
+              "description": "Total number"
+            },
             "items": {
-              "allOf": [
-                {
-                  "$ref": "objects.json#/definitions/groups_group_full"
-                },
-                {
-                  "$ref": "objects.json#/definitions/base_user_xtr_type"
-                }
-              ]
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "objects.json#/definitions/groups_group_full"
+                  },
+                  {
+                    "$ref": "objects.json#/definitions/base_user_xtr_type"
+                  }
+                ]
+              }
             }
-          }
           }
         }
       },
