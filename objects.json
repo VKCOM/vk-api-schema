@@ -4448,6 +4448,10 @@
           "type": "string",
           "description": "Chat type"
         },
+        "title": {
+          "type": "string",
+          "description": "Chat title"
+        },
         "admin_id": {
           "type": "integer",
           "description": "Chat creator ID"
@@ -4473,6 +4477,14 @@
         "photo_200": {
           "type": "string",
           "description": "URL of the preview image with 200 px in width"
+        },
+        "left": {
+          "description": "Shows that user has been left the chat",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "kicked": {
+          "description": "Shows that user has been kicked from the chat",
+          "$ref": "#/definitions/base_bool_int"
         }
       },
       "required": [
@@ -4493,6 +4505,10 @@
         "type": {
           "type": "string",
           "description": "Chat type"
+        },
+        "title": {
+          "type": "string",
+          "description": "Chat title"
         },
         "admin_id": {
           "type": "integer",
@@ -4518,6 +4534,14 @@
         "photo_200": {
           "type": "string",
           "description": "URL of the preview image with 200 px in width"
+        },
+        "left": {
+          "description": "Shows that user has been left the chat",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "kicked": {
+          "description": "Shows that user has been kicked from the chat",
+          "$ref": "#/definitions/base_bool_int"
         }
       },
       "required": [
