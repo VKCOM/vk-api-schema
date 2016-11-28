@@ -5750,7 +5750,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/base_place"
+            "$ref": "objects.json#/definitions/places_place_min"
           }
         }
       },

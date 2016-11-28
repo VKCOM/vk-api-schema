@@ -2161,12 +2161,12 @@
           "description": "Place type"
         },
         "country": {
-          "type": "integer",
-          "description": "Country ID"
+          "type": "string",
+          "description": "Country name"
         },
         "city": {
-          "type": "integer",
-          "description": "City ID"
+          "type": "string",
+          "description": "City name"
         },
         "address": {
           "type": "string",
@@ -3539,7 +3539,7 @@
           "description": "Community's page domain"
         },
         "place": {
-          "$ref": "#/definitions/base_place"
+          "$ref": "#/definitions/places_place_min"
         },
         "wall": {
           "type": "integer",
@@ -4660,12 +4660,12 @@
           "description": "ID used for sending messages. It returned only for outgoing messages"
         },
         "important": {
-          "type": "boolean",
-          "description": "Is it an important message"
+          "description": "Is it an important message",
+          "$ref": "#/definitions/base_bool_int"
         },
         "deleted": {
-          "type": "boolean",
-          "description": "Is it an deleted message"
+          "description": "Is it an deleted message",
+          "$ref": "#/definitions/base_bool_int"
         },
         "fwd_messages": {
           "type": "array",
@@ -6608,6 +6608,55 @@
         "date"
       ],
       "additionalProperties": false
+    },
+    "places_place_int": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Place ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Place title"
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Place latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Place longitude"
+        },
+        "created": {
+          "type": "integer",
+          "description": "Date of the place creation in Unixtime"
+        },
+        "icon": {
+          "type": "string",
+          "description": "URL of the place's icon"
+        },
+        "checkins": {
+          "type": "integer",
+          "description": "Checkins number"
+        },
+        "type": {
+          "type": "string",
+          "description": "Place type"
+        },
+        "country": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "city": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "address": {
+          "type": "string",
+          "description": "Place address"
+        }
+      }
     },
     "places_place_full": {
       "type": "object",
