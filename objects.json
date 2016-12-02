@@ -6609,7 +6609,7 @@
       ],
       "additionalProperties": false
     },
-    "places_place_int": {
+    "places_place_min": {
       "type": "object",
       "properties": {
         "id": {
