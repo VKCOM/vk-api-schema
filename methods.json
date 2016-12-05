@@ -191,6 +191,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -212,7 +220,15 @@
         {
           "name": "sort",
           "description": "Sort order:; '1' — by date registered; '0' — by rating",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ],
+          "enumNames": [
+            "by rating",
+            "by date registered"
+          ]
         },
         {
           "name": "offset",
@@ -288,13 +304,43 @@
           "description": "'1' — female; '2' — male; '0' — any (default)",
           "type": "integer",
           "minimum": 0,
-          "default": 0
+          "default": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "any",
+            "female",
+            "male"
+          ]
         },
         {
           "name": "status",
           "description": "Relationship status:; '1' — Not married; '2' — In a relationship; '3' — Engaged; '4' — Married; '5' — It's complicated; '6' — Actively searching; '7' — In love",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "enumNames": [
+            "not specified",
+            "not married",
+            "relationship",
+            "engaged",
+            "married",
+            "complicated",
+            "actively searching",
+            "in love"
+          ]
         },
         {
           "name": "age_from",
@@ -511,6 +557,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -535,7 +589,13 @@
           "name": "type",
           "description": "Type of complaint:; 'porn' – pornography; 'spam' – spamming; 'insult' – abusive behavior; 'advertisment' – disruptive advertisements",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "porn",
+            "spam",
+            "insult",
+            "advertisment"
+          ]
         },
         {
           "name": "comment",
@@ -587,7 +647,21 @@
           "description": "search zone radius type (1 to 4); :* 1 – 300 m;; :* 2 – 2400 m;; :* 3 – 18 km;; :* 4 – 150 km.",
           "type": "integer",
           "minimum": 0,
-          "default": 1
+          "default": 1,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "any",
+            "300 m",
+            "2400 m",
+            "18 km",
+            "150 km."
+          ]
         },
         {
           "name": "fields",
@@ -600,7 +674,23 @@
         {
           "name": "name_case",
           "description": "Case for declension of user name and surname: ; nom –nominative (default) ; gen – genitive ; dat – dative ; acc – accusative ; ins – instrumental ; abl – prepositional",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
         }
       ],
       "responses": {
@@ -711,7 +801,17 @@
           "name": "sex",
           "description": "'1' — female; '2' — male",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "undefined",
+            "female",
+            "male"
+          ]
         },
         {
           "name": "sid",
@@ -1152,7 +1252,12 @@
         {
           "name": "album_id",
           "description": "Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "profile",
+            "wall",
+            "saved"
+          ]
         },
         {
           "name": "photo_ids",
@@ -1696,7 +1801,25 @@
           "name": "reason",
           "description": "Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence; '4' – drug propaganda; '5' – adult material; '6' – insult; abuse",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
         }
       ],
       "responses": {
@@ -1726,7 +1849,25 @@
           "name": "reason",
           "description": "Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence; '4' – drug propaganda; '5' – adult material; '6' – insult; abuse",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
         }
       ],
       "responses": {
@@ -1818,7 +1959,11 @@
         {
           "name": "order",
           "description": "Sort order: ; 'name' — by name (enabled only if the 'fields' parameter is used); 'hints' — by rating, similar to how friends are sorted in My friends section; ; This parameter is available only for .",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "name",
+            "hints"
+          ]
         },
         {
           "name": "list_id",
@@ -1857,6 +2002,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -2022,7 +2175,15 @@
           "name": "sort",
           "description": "Sort order:; '1' — by number of mutual friends; '0' — by date",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1
+          ],
+          "enumNames": [
+            "date",
+            "mutual"
+          ]
         },
         {
           "name": "suggested",
@@ -2325,7 +2486,12 @@
           "description": "Types of potential friends to return:; 'mutual' — users with many mutual friends ; 'contacts' — users found with the  method; 'mutual_contacts' — users who imported the same contacts as the current user with the  method",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "mutual",
+              "contacts",
+              "mutual_contacts"
+            ]
           }
         },
         {
@@ -2361,6 +2527,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -2419,6 +2593,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -2467,6 +2649,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         },
         {
@@ -2926,7 +3116,12 @@
           "name": "action",
           "description": "action to be done with the order. ; ; Available actions:; *cancel — to cancel unconfirmed order.; *charge — to confirm unconfirmed order. Applies only if processing of  notification failed.; *refund — to cancel confirmed order.;",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "cancel",
+            "charge",
+            "refund"
+          ]
         },
         {
           "name": "app_order_id",
@@ -3522,7 +3717,15 @@
         {
           "name": "sort",
           "description": "Sort order:; 'asc' — old first; 'desc' — new first",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "old first",
+            "new first"
+          ]
         },
         {
           "name": "access_key",
@@ -4330,7 +4533,15 @@
         {
           "name": "sort",
           "description": "Sort order:; 'asc' — chronological; 'desc' — reverse chronological",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "chronological",
+            "reverse chronological"
+          ]
         },
         {
           "name": "preview_length",
@@ -4540,7 +4751,25 @@
           "name": "reason",
           "description": "Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence; '4' – drug propaganda; '5' – adult material; '6' – insult; abuse",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
         }
       ],
       "responses": {
@@ -4570,7 +4799,25 @@
           "name": "reason",
           "description": "Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence; '4' – drug propaganda; '5' – adult material; '6' – insult; abuse",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
         }
       ],
       "responses": {
@@ -4752,6 +4999,11 @@
             0,
             1,
             2
+          ],
+          "enumNames": [
+            "date added",
+            "duration",
+            "popularity"
           ]
         },
         {
@@ -5199,7 +5451,12 @@
           "name": "filter",
           "description": "Types of objects to return:; 'friends' — only friends; 'groups' — only communities; 'all' — both friends and communities (default)",
           "type": "string",
-          "default": "all"
+          "default": "all",
+          "enum": [
+            "friends",
+            "groups",
+            "all"
+          ]
         },
         {
           "name": "active",
@@ -5456,7 +5713,21 @@
           "name": "status",
           "description": "Action type. Possible values:; *'0' — start;; *'1' — finish;; *'2' — blocking users;; *'3' — start in a test mode;; *'4' — finish in a test mode.;",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "start",
+            "finish",
+            "blocking users",
+            "start in test mode",
+            "finish in test mode"
+          ]
         },
         {
           "name": "reverse",
@@ -5658,12 +5929,32 @@
         {
           "name": "view",
           "description": "Who can view the wiki page:; '1' — only community members; '2' — all users can view the page; '0' — only community managers",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "managers",
+            "members",
+            "all"
+          ]
         },
         {
           "name": "edit",
           "description": "Who can edit the wiki page:; '1' — only community members; '2' — all users can edit the page; '0' — only community managers",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "managers",
+            "members",
+            "all"
+          ]
         }
       ],
       "errors": [
@@ -5926,7 +6217,15 @@
           "description": "Types of communities to return:; 'admin' — to return communities administered by the user ; 'editor' — to return communities where the user is an administrator or editor; 'moder' — to return communities where the user is an administrator, editor, or moderator; 'groups' — to return only groups; 'publics' — to return only public pages; 'events' — to return only events",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "admin",
+              "editor",
+              "moder",
+              "groups",
+              "publics",
+              "events"
+            ]
           }
         },
         {
@@ -5981,7 +6280,13 @@
           "name": "sort",
           "description": "Sort order. Available values: 'id_asc', 'id_desc', 'time_asc', 'time_desc'.; 'time_asc' and 'time_desc' are availavle only if the method is called by the group's 'moderator'.",
           "type": "string",
-          "default": 0
+          "default": "id_asc",
+          "enum": [
+            "id_asc",
+            "id_desc",
+            "time_asc",
+            "time_desc"
+          ]
         },
         {
           "name": "offset",
@@ -6002,13 +6307,51 @@
           "description": "List of additional fields to be returned. ; Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "sex",
+              "bdate",
+              "city",
+              "country",
+              "photo_50",
+              "photo_100",
+              "photo_200_orig",
+              "photo_200",
+              "photo_400_orig",
+              "photo_max",
+              "photo_max_orig",
+              "online",
+              "online_mobile",
+              "lists",
+              "domain",
+              "has_mobile",
+              "contacts",
+              "connections",
+              "site",
+              "education",
+              "universities",
+              "schools",
+              "can_post",
+              "can_see_all_posts",
+              "can_see_audio",
+              "can_write_private_message",
+              "status",
+              "last_seen",
+              "common_count",
+              "relation",
+              "relatives",
+              "counters"
+            ]
           }
         },
         {
           "name": "filter",
           "description": "*'friends' – only friends in this community will be returned;; *'unsure' – only those who pressed 'I may attend' will be returned (if it's an event).",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "friends",
+            "unsure"
+          ]
         }
       ],
       "errors": [
@@ -6090,7 +6433,12 @@
         {
           "name": "type",
           "description": "Community type. Possible values: 'group, page, event.'",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "group",
+            "page",
+            "event"
+          ]
         },
         {
           "name": "country_id",
@@ -6117,7 +6465,23 @@
         {
           "name": "sort",
           "description": "Sort order. Possible values:; *'0' — default sorting (similar the full version of the site);; *'1' — by growth speed;; *'2'— by the \"day attendance/members number\" ratio;; *'3' — by the \"Likes number/members number\" ratio;; *'4' — by the \"comments number/members number\" ratio;; *'5' — by the \"boards entries number/members number\" ratio.; ;",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "enumNames": [
+            "default",
+            "growth",
+            "attendance",
+            "likes",
+            "comments",
+            "entries"
+          ]
         },
         {
           "name": "offset",
@@ -6179,7 +6543,18 @@
     {
       "name": "groups.getCatalogInfo",
       "description": "Returns categories list for communities catalog",
-      "parameters": [],
+      "parameters": [
+        {
+          "name": "extended",
+          "description": "1 – to return communities count and three communities for preview.; By default: 0.",
+          "type": "boolean"
+        },
+        {
+          "name": "subcategories",
+          "description": "1 – to return subcategories info.; By default: 0.",
+          "type": "boolean"
+        }
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/groups_getCatalogInfo_response"
@@ -6250,7 +6625,41 @@
           "description": "List of additional fields to be returned. ; Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "sex",
+              "bdate",
+              "city",
+              "country",
+              "photo_50",
+              "photo_100",
+              "photo_200_orig",
+              "photo_200",
+              "photo_400_orig",
+              "photo_max",
+              "photo_max_orig",
+              "online",
+              "online_mobile",
+              "lists",
+              "domain",
+              "has_mobile",
+              "contacts",
+              "connections",
+              "site",
+              "education",
+              "universities",
+              "schools",
+              "can_post",
+              "can_see_all_posts",
+              "can_see_audio",
+              "can_write_private_message",
+              "status",
+              "last_seen",
+              "common_count",
+              "relation",
+              "relatives",
+              "counters"
+            ]
           }
         },
         {
@@ -6264,6 +6673,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -6301,7 +6718,22 @@
           "name": "reason",
           "description": "Reason for ban:; '1' — spam; '2' — verbal abuse; '3' — strong language; '4' — irrelevant messages; '0' — other (default)",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "other",
+            "spam",
+            "verbal abuse",
+            "strong language",
+            "irrelevant messages"
+          ]
         },
         {
           "name": "comment",
@@ -6432,7 +6864,19 @@
           "name": "subtype",
           "description": "Public page subtype. Possible values:; *'1' – place or small business;; *'2' – company, organization or website;; *'3' – famous person or group of people;; *'4' – product or work of art.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "place or business",
+            "company or website",
+            "person or group",
+            "product or art"
+          ]
         }
       ],
       "errors": [
@@ -6478,7 +6922,17 @@
           "name": "access",
           "description": "Community type. Possible values:; *'0' – open;; *'1' – closed;; *'2' – private.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "open",
+            "closed",
+            "private"
+          ]
         },
         {
           "name": "website",
@@ -6488,7 +6942,95 @@
         {
           "name": "subject",
           "description": "Community subject. Possible values: ; *'1' – auto/moto;; *'2' –  activity holidays;; *'3' – business;; *'4' – pets;; *'5' – health;; *'6' – dating and communication; ; *'7' – games;; *'8' – IT (computers and software);; *'9' – cinema;; *'10' – beauty and fashion;; *'11' – cooking;; *'12' – art and culture;; *'13' – literature;; *'14' – mobile services and internet;; *'15' – music;; *'16' – science and technology;; *'17' – real estate;; *'18' – news and media;; *'19' – security;; *'20' – education;; *'21' – home and renovations;; *'22' – politics;; *'23' – food;; *'24' – industry;; *'25' – travel;; *'26' – work;; *'27' – entertainment;; *'28' – religion;; *'29' – family;; *'30' – sports;; *'31' – insurance;; *'32' – television;; *'33' – goods and services;; *'34' – hobbies;; *'35' – finance;; *'36' – photo;; *'37' – esoterics;; *'38' – electronics and appliances;; *'39' – erotic;; *'40' – humor;; *'41' – society, humanities;; *'42' – design and graphics.",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "enumName": [
+            "auto",
+            "activity holidays",
+            "business",
+            "pets",
+            "health",
+            "dating and communication",
+            "games",
+            "it",
+            "cinema",
+            "beauty and fashion",
+            "cooking",
+            "art and culture",
+            "literature",
+            "mobile services and internet",
+            "music",
+            "science and technology",
+            "real estate",
+            "news and media",
+            "security",
+            "education",
+            "home and renovations",
+            "politics",
+            "food",
+            "industry",
+            "travel",
+            "work",
+            "entertainment",
+            "religion",
+            "family",
+            "sports",
+            "insurance",
+            "television",
+            "goods and services",
+            "hobbies",
+            "finance",
+            "photo",
+            "esoterics",
+            "electronics and appliances",
+            "erotic",
+            "humor",
+            "society, humanities",
+            "design and graphics"
+          ]
         },
         {
           "name": "email",
@@ -6544,31 +7086,83 @@
           "name": "wall",
           "description": "Wall settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (groups and events only);; *'3' – closed (groups and events only).;",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited",
+            "closed"
+          ]
         },
         {
           "name": "topics",
           "description": "Board topics settings. Possbile values: ; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and events only).;",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited"
+          ]
         },
         {
           "name": "photos",
           "description": "Photos settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and events only).;",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited"
+          ]
         },
         {
           "name": "video",
           "description": "Video settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and events only).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited"
+          ]
         },
         {
           "name": "audio",
           "description": "Audio settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and events only).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited"
+          ]
         },
         {
           "name": "links",
@@ -6594,13 +7188,33 @@
           "name": "docs",
           "description": "Documents settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and events only).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited"
+          ]
         },
         {
           "name": "wiki",
           "description": "Wiki pages settings. Possible values:; *'0' – disabled;; *'1' – open;; *'2' – limited (for groups and events only).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "disabled",
+            "open",
+            "limited"
+          ]
         },
         {
           "name": "messages",
@@ -6617,6 +7231,11 @@
             1,
             2,
             3
+          ],
+          "enumNames": [
+            "unlimited",
+            "16 plus",
+            "18 plus"
           ]
         },
         {
@@ -6653,7 +7272,21 @@
           "name": "market_currency",
           "description": "Market currency settings. Possbile values: ; *'643' – Russian rubles;; *'980' – Ukrainian hryvnia;; *'398' – Kazakh tenge;; *'978' – Euro;; *'840' – US dollars",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            643,
+            980,
+            398,
+            978,
+            840
+          ],
+          "enumNames": [
+            "russian rubles",
+            "ukrainian hryvnia",
+            "kazakh tenge",
+            "euro",
+            "us dollars"
+          ]
         },
         {
           "name": "market_contact",
@@ -6835,7 +7468,12 @@
         {
           "name": "role",
           "description": "Manager role. Possible values:; *'moderator';; *'editor';; *'administrator'.",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "moderator",
+            "editor",
+            "administrator"
+          ]
         },
         {
           "name": "is_contact",
@@ -7317,7 +7955,22 @@
         {
           "name": "order",
           "description": "Sort order:; '1' — by date updated in reverse chronological order.; '2' — by date created in reverse chronological order.; '-1' — by date updated in chronological order.; '-2' — by date created in chronological order.; ; If no sort order is specified, topics are returned in the order specified by the group administrator. Pinned topics are returned first, regardless of the sorting.",
-          "type": "integer"
+          "type": "integer",
+          "default": 0,
+          "enum": [
+            1,
+            2,
+            -1,
+            -2,
+            0
+          ],
+          "enumNames": [
+            "updated desc",
+            "created desc",
+            "updated asc",
+            "created asc",
+            "as by administrator"
+          ]
         },
         {
           "name": "offset",
@@ -7341,7 +7994,18 @@
         {
           "name": "preview",
           "description": "'1' — to return the first comment in each topic;; '2' — to return the last comment in each topic;; '0' — to return no comments.; ; By default: '0'.",
-          "type": "integer"
+          "type": "integer",
+          "default": 0,
+          "enum": [
+            1,
+            2,
+            0
+          ],
+          "enumNames": [
+            "first",
+            "last",
+            "none"
+          ]
         },
         {
           "name": "preview_length",
@@ -7410,7 +8074,15 @@
         {
           "name": "sort",
           "description": "Sort order:; 'asc' — by creation date in chronological order; 'desc' — by creation date in reverse chronological order;",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "chronological",
+            "reverse chronological"
+          ]
         }
       ],
       "responses": {
@@ -8091,7 +8763,17 @@
         {
           "name": "sort",
           "description": "Sort order:; '1' — by duration; '2' — by relevance; '0' — by date added",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            0
+          ],
+          "enumNames": [
+            "duration",
+            "relevance",
+            "date added"
+          ]
         },
         {
           "name": "hd",
@@ -8108,7 +8790,13 @@
           "description": "Filters to apply:; 'youtube' — return YouTube videos only; 'vimeo' — return Vimeo videos only; 'short' — return short videos only; 'long' — return long videos only",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "youtube",
+              "vimeo",
+              "short",
+              "long"
+            ]
           }
         },
         {
@@ -8278,7 +8966,19 @@
           "description": "new access permissions for the album.; Possible values: ; *'0' – all users;; *'1' – friends only;; *'2' – friends and friends of friends;; *'3' – \"only me\".",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3"
+            ],
+            "enumNames": [
+              "all",
+              "friends",
+              "friends of friends",
+              "only me"
+            ]
           }
         }
       ],
@@ -8328,7 +9028,19 @@
           "description": "new access permissions for the album.; Possible values: ; *'0' – all users;; *'1' – friends only;; *'2' – friends and friends of friends;; *'3' – \"only me\".",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3"
+            ],
+            "enumNames": [
+              "all",
+              "friends",
+              "friends of friends",
+              "only me"
+            ]
           }
         }
       ],
@@ -8948,7 +9660,25 @@
           "name": "reason",
           "description": "Reason for the complaint:; '0' – spam; '1' – child pornography; '2' – extremism; '3' – violence; '4' – drug propaganda; '5' – adult material; '6' – insult; abuse",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
         },
         {
           "name": "comment",
@@ -8988,7 +9718,25 @@
           "name": "reason",
           "description": "Reason for the complaint: ; 0 – spam ; 1 – child pornography ; 2 – extremism ; 3 – violence ; 4 – drug propaganda ; 5 – adult material ; 6 – insult; abuse",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
         }
       ],
       "responses": {
@@ -9595,7 +10343,20 @@
           "name": "radius",
           "description": "Radius of the search zone:; '1' — 100 m. (default); '2' — 800 m.; '3' — 6 km.; '4' — 50 km.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 0,
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "100 m",
+            "800 m",
+            "6 km",
+            "50 km"
+          ]
         },
         {
           "name": "offset",
@@ -9766,7 +10527,18 @@
           "description": "Counters to be returned (friends, messages, photos, videos, notes, gifts, events, groups, sdk).",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "friends",
+              "messages",
+              "photos",
+              "videos",
+              "notes",
+              "gifts",
+              "events",
+              "groups",
+              "sdk"
+            ]
           }
         }
       ],
@@ -9848,7 +10620,16 @@
           "name": "service",
           "description": "String identifier of a service which contacts are used for searching. Possible values: ; * email; * phone; * twitter; * facebook; * odnoklassniki; * instagram; * google",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "email",
+            "phone",
+            "twitter",
+            "facebook",
+            "odnoklassniki",
+            "instagram",
+            "google"
+          ]
         },
         {
           "name": "mycontact",
@@ -9865,7 +10646,30 @@
           "description": "Profile fields to return. Possible values: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "nickname",
+              "domain",
+              "sex",
+              "bdate",
+              "city",
+              "country",
+              "timezone",
+              "photo_50",
+              "photo_100",
+              "photo_200_orig",
+              "has_mobile",
+              "contacts",
+              "education",
+              "online",
+              "relation",
+              "last_seen",
+              "status",
+              "can_write_private_message",
+              "can_see_all_posts",
+              "can_post",
+              "universities"
+            ]
           }
         }
       ],
@@ -10123,7 +10927,15 @@
           "description": "Fields to return. Possible values:; *'country' — user country;; *'https_required' — is \"HTTPS only\" option enabled;; *'own_posts_default' — is \"Show my posts only\" option is enabled;; *'no_wall_replies' — are wall replies disabled or not;; *'intro' — is intro passed by user or not;; *'lang' — user language.; ; By default: all.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "country",
+              "https_required",
+              "own_posts_default",
+              "no_wall_replies",
+              "intro",
+              "lang"
+            ]
           }
         }
       ],
@@ -10230,13 +11042,43 @@
           "name": "sex",
           "description": "User sex. Possible values: ; * '1' – female;; * '2' – male.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "undefined",
+            "female",
+            "male"
+          ]
         },
         {
           "name": "relation",
           "description": "User relationship status. Possible values: ; * '1' – single;; * '2' – in a relationship;; * '3' – engaged;; * '4' – married;; * '5' – it's complicated;; * '6' – actively searching;; * '7' – in love;; * '0' – not specified.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            0
+          ],
+          "enumNames": [
+            "single",
+            "relationship",
+            "engaged",
+            "married",
+            "complicated",
+            "actively searching",
+            "in love",
+            "not specified"
+          ]
         },
         {
           "name": "relation_partner_id",
@@ -10253,7 +11095,17 @@
           "name": "bdate_visibility",
           "description": "Birth date visibility. Returned values: ; * '1' – show birth date;; * '2' – show only month and day;; * '0' – hide birth date.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            0
+          ],
+          "enumNames": [
+            "show",
+            "hide year",
+            "hide"
+          ]
         },
         {
           "name": "home_town",
@@ -10471,7 +11323,15 @@
         {
           "name": "rev",
           "description": "Sort order:; '1' — return messages in chronological order.; '0' — return messages in reverse chronological order.",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            1,
+            0
+          ],
+          "enumNames": [
+            "chronological",
+            "reverse chronological"
+          ]
         }
       ],
       "responses": {
@@ -10895,6 +11755,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -11005,6 +11873,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -11269,7 +12145,15 @@
           "description": "Filters to apply:; 'post' — new wall posts; 'photo' — new photos; 'photo_tag' — new photo tags; 'wall_photo' — new wall photos; 'friend' — new friends; 'note' — new notes",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "post",
+              "photo",
+              "photo_tag",
+              "wall_photo",
+              "friend",
+              "note"
+            ]
           }
         },
         {
@@ -11395,7 +12279,14 @@
           "description": "Filters to apply:; 'post' — new comments on wall posts; 'photo' — new comments on photos; 'video' — new comments on videos; 'topic' — new comments on discussions; 'note' — new comments on notes;",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "post",
+              "photo",
+              "video",
+              "topic",
+              "note"
+            ]
           }
         },
         {
@@ -11505,6 +12396,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -11621,7 +12520,14 @@
           "name": "type",
           "description": "Item type. Possible values:; *'wall' – post on the wall;; *'tag' – tag on a photo;; *'profilephoto' – profile photo;; *'video' – video;; *'audio' – audio.",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "wall",
+            "tag",
+            "profilephoto",
+            "video",
+            "audio"
+          ]
         },
         {
           "name": "owner_id",
@@ -11801,7 +12707,14 @@
           "name": "type",
           "description": "Type of object from which to unsubscribe:; 'note' — note; 'photo' — photo; 'post' — post on user wall or community wall; 'topic' — topic; 'video' — video",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "note",
+            "photo",
+            "post",
+            "topic",
+            "video"
+          ]
         },
         {
           "name": "owner_id",
@@ -11869,7 +12782,19 @@
           "name": "type",
           "description": "; Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the  is installed",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "post",
+            "comment",
+            "photo",
+            "audio",
+            "video",
+            "note",
+            "photo_comment",
+            "video_comment",
+            "topic_comment",
+            "sitepage"
+          ]
         },
         {
           "name": "owner_id",
@@ -11890,7 +12815,11 @@
           "name": "filter",
           "description": "Filters to apply:; 'likes' — returns information about all users who liked the object (default); 'copies' — returns information only about users who told their friends about the object",
           "type": "string",
-          "default": "likes"
+          "default": "likes",
+          "enum": [
+            "likes",
+            "copies"
+          ]
         },
         {
           "name": "friends_only",
@@ -11937,7 +12866,19 @@
           "name": "type",
           "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the  is installed",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "post",
+            "comment",
+            "photo",
+            "audio",
+            "video",
+            "note",
+            "photo_comment",
+            "video_comment",
+            "topic_comment",
+            "sitepage"
+          ]
         },
         {
           "name": "owner_id",
@@ -11971,7 +12912,19 @@
           "name": "type",
           "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the  is installed",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "post",
+            "comment",
+            "photo",
+            "audio",
+            "video",
+            "note",
+            "photo_comment",
+            "video_comment",
+            "topic_comment",
+            "sitepage"
+          ]
         },
         {
           "name": "owner_id",
@@ -12006,7 +12959,18 @@
           "name": "type",
           "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "post",
+            "comment",
+            "photo",
+            "audio",
+            "video",
+            "note",
+            "photo_comment",
+            "video_comment",
+            "topic_comment"
+          ]
         },
         {
           "name": "owner_id",
@@ -12231,6 +13195,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -12905,7 +13877,16 @@
           "description": "Type of notifications to return:; 'wall' — wall posts; 'mentions' — mentions in wall posts, comments, or topics; 'comments' — comments to wall posts, photos, and videos; 'likes'  — likes; 'reposted' — wall posts that are copied from the current user's wall; 'followers' — new followers; 'friends' — accepted friend requests",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "wall",
+              "mentions",
+              "comments",
+              "likes",
+              "reposted",
+              "followers",
+              "friends"
+            ]
           }
         },
         {
@@ -13053,7 +14034,15 @@
         {
           "name": "sort",
           "description": "Sort order:; 'popular_today' — popular for one day (default); 'visitors' — by visitors number ; 'create_date' — by creation date; 'growth_rate' — by growth rate; 'popular_week' — popular for one week",
-          "type": "string"
+          "type": "string",
+          "default": "popular_today",
+          "enum": [
+            "popular_today",
+            "visitors",
+            "create_date",
+            "growth_rate",
+            "popular_week"
+          ]
         },
         {
           "name": "offset",
@@ -13166,6 +14155,14 @@
             "acc",
             "ins",
             "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
           ]
         }
       ],
@@ -13283,7 +14280,12 @@
           "name": "type",
           "description": "Leaderboard type. Possible values:; *'level' — by level;; *'points' — by mission points;; *'score' — by score ().",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "level",
+            "points",
+            "score"
+          ]
         },
         {
           "name": "global",
@@ -14325,7 +15327,14 @@
           "name": "link_type",
           "description": "Object type:; *'community' — community;; *'post' — community post;; *'application' — VK application;; *'video' — video;; *'site' — external site.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "community",
+            "post",
+            "application",
+            "video",
+            "site"
+          ]
         },
         {
           "name": "link_url",
@@ -14359,7 +15368,13 @@
           "name": "ids_type",
           "description": "Type of requested objects listed in 'ids' parameter:; *ad — ads;; *campaign — campaigns;; *client — clients;; *office — account.;",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "ad",
+            "campaign",
+            "client",
+            "office"
+          ]
         },
         {
           "name": "ids",
@@ -14372,7 +15387,12 @@
           "name": "period",
           "description": "Data grouping by dates:; *day — statistics by days;; *month — statistics by months;; *overall — overall statistics.; 'date_from' and 'date_to' parameters set temporary limits.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "day",
+            "month",
+            "overall"
+          ]
         },
         {
           "name": "date_from",
@@ -14414,7 +15434,11 @@
           "name": "ids_type",
           "description": "Type of requested objects listed in 'ids' parameter:; *ad — ads;; *campaign — campaigns.;",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "ad",
+            "campaign"
+          ]
         },
         {
           "name": "ids",
@@ -14427,7 +15451,12 @@
           "name": "period",
           "description": "Data grouping by dates:; *day — statistics by days;; *month — statistics by months;; *overall — overall statistics.; 'date_from' and 'date_to' parameters set temporary limits.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "day",
+            "month",
+            "overall"
+          ]
         },
         {
           "name": "date_from",
@@ -14621,7 +15650,27 @@
         {
           "name": "ad_format",
           "description": "Ad format. Possible values:; *'1' — image and text;; *'2' — big image;; *'3' — exclusive format;; *'4' — community, square image;; *'7' — special app format;; *'8' — special community format;; *'9' — post in community;; *'10' — app board.",
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10
+          ],
+          "enumNames": [
+            "image and text",
+            "big image",
+            "exclusive format",
+            "community square image",
+            "special app format",
+            "special community format",
+            "post in community",
+            "app board"
+          ]
         },
         {
           "name": "ad_platform",
@@ -14661,7 +15710,21 @@
           "name": "section",
           "description": "Section, suggestions are retrieved in. Available values:; *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown.; *regions — requested list of regions.  'country' parameter is required.; *cities — requested list of cities. 'country' parameter is required.; *districts — requested list of districts.  'cities' parameter is required.; *stations — requested list of subway stations.  'cities' parameter is required.; *streets — requested list of streets. 'cities' parameter is required.; *schools — requested list of educational organizations.  'cities' parameter is required.; *interests — requested list of interests.; *positions — requested list of positions (professions).; *group_types — requested list of group types.; *religions — requested list of religious commitments.; *browsers — requested list of browsers and mobile devices.;",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "countries",
+            "regions",
+            "cities",
+            "districts",
+            "stations",
+            "streets",
+            "schools",
+            "interests",
+            "positions",
+            "group_types",
+            "religions",
+            "browsers"
+          ]
         },
         {
           "name": "ids",
@@ -14686,7 +15749,17 @@
         {
           "name": "lang",
           "description": "Language of the returned string values. Supported languages:; *ru — Russian;; *ua — Ukrainian;; *en — English.;",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "ru",
+            "ua",
+            "en"
+          ],
+          "enumNames": [
+            "russian",
+            "ukrainian",
+            "english"
+          ]
         }
       ],
       "responses": {
@@ -14728,7 +15801,21 @@
           "name": "ad_format",
           "description": "Ad format:; *1 — image and text;; *2 — big image;; *3 — exclusive format;; *4 — community, square image;; *7 — special app format.",
           "required": true,
-          "type": "integer"
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            7
+          ],
+          "enumNames": [
+            "image and text",
+            "big image",
+            "exclusive format",
+            "community, square image",
+            "special app format"
+          ]
         }
       ],
       "responses": {
@@ -15136,6 +16223,10 @@
           "enum": [
             0,
             1
+          ],
+          "enumNames": [
+            "normal",
+            "reverse"
           ]
         },
         {
@@ -15329,6 +16420,10 @@
           "enum": [
             "asc",
             "desc"
+          ],
+          "enumNames": [
+            "old to new",
+            "new to old"
           ]
         },
         {
@@ -15475,6 +16570,15 @@
             5,
             6
           ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ],
           "required": true
         }
       ],
@@ -15539,6 +16643,15 @@
             4,
             5,
             6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
           ],
           "required": true
         }
