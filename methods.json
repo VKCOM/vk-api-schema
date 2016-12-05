@@ -183,6 +183,7 @@
           "name": "name_case",
           "description": "Case for declension of user name and surname:; 'nom' — nominative (default); 'gen' — genitive ; 'dat' — dative; 'acc' — accusative ; 'ins' — instrumental ; 'abl' — prepositional",
           "type": "string",
+          "default": "nom",
           "enum": [
             "nom",
             "gen",
@@ -286,7 +287,8 @@
           "name": "sex",
           "description": "'1' — female; '2' — male; '0' — any (default)",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 0
         },
         {
           "name": "status",
@@ -555,13 +557,17 @@
           "name": "latitude",
           "description": "geographic latitude of the place a user is located, in degrees (from -90 to 90)",
           "type": "number",
-          "required": true
+          "required": true,
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "geographic longitude of the place a user is located, in degrees (from -180 to 180)",
           "type": "number",
-          "required": true
+          "required": true,
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "accuracy",
@@ -638,7 +644,7 @@
         {
           "name": "API_ERROR_AUTH_DELAY",
           "code": 1112,
-          "description": "Processing.. Try later"
+          "description": "Processing. Try later"
         },
         {
           "name": "API_ERROR_PARAM_PHONE",
@@ -722,7 +728,7 @@
         {
           "name": "API_ERROR_AUTH_DELAY",
           "code": 1112,
-          "description": "Processing.. Try later"
+          "description": "Processing. Try later"
         },
         {
           "name": "API_ERROR_PARAM_PHONE",
@@ -843,7 +849,8 @@
           "name": "count",
           "description": "Number of posts to return (maximum 100).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 100
         },
         {
           "name": "filter",
@@ -1177,7 +1184,7 @@
         },
         {
           "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a",
+          "description": "'1' — to return photo sizes in a  ",
           "type": "boolean"
         },
         {
@@ -1560,17 +1567,22 @@
         {
           "name": "latitude",
           "description": "Geographical latitude, in degrees (from '-90' to '90').",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude, in degrees (from '-180' to '180').",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "caption",
           "description": "Text describing the photo. 2048 digits max.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 2048
         }
       ],
       "errors": [
@@ -1736,12 +1748,16 @@
         {
           "name": "lat",
           "description": "Geographical latitude, in degrees (from '-90' to '90').",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "long",
           "description": "Geographical longitude, in degrees (from '-180' to '180').;",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "start_time",
@@ -1983,7 +1999,9 @@
           "name": "count",
           "description": "Number of friend requests to return (default 100, maximum 1000).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 1000,
+          "default": 100
         },
         {
           "name": "extended",
@@ -2038,7 +2056,8 @@
         {
           "name": "text",
           "description": "Text of the message (up to 500 characters) for the friend request, if any.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 500
         },
         {
           "name": "follow",
@@ -2270,7 +2289,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "maxItems": 1000
         },
         {
           "name": "fields",
@@ -3002,17 +3022,22 @@
         {
           "name": "latitude",
           "description": "Geographical latitude, in degrees (from '-90' to '90').",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude, in degrees (from '-180' to '180').",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "caption",
           "description": "Text describing the photo. 2048 digits max.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 2048
         }
       ],
       "errors": [
@@ -3090,11 +3115,15 @@
         },
         {
           "name": "latitude",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "place_str",
@@ -3324,7 +3353,7 @@
         },
         {
           "name": "count",
-          "description": "Number of photos to return. Maximum value is 100.",
+          "description": "Number of photos to return. Maximum value is 1000.",
           "type": "integer",
           "minimum": 0,
           "default": 20,
@@ -3550,7 +3579,9 @@
           "name": "count",
           "description": "Number of comments to return. By default, '20'. Maximum value, '100'.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 20,
+          "maximum": 100
         }
       ],
       "errors": [
@@ -3924,12 +3955,16 @@
         {
           "name": "lat",
           "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "long",
           "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "place_id",
@@ -4116,12 +4151,16 @@
         {
           "name": "lat",
           "description": "Geographical latitude of the check-in, in degrees (from -90 to 90).",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "long",
           "description": "Geographical longitude of the check-in, in degrees (from -180 to 180).",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "place_id",
@@ -4285,7 +4324,8 @@
           "name": "count",
           "description": "Number of comments to return (maximum 100).",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 100
         },
         {
           "name": "sort",
@@ -4296,7 +4336,8 @@
           "name": "preview_length",
           "description": "Number of characters at which to truncate comments when previewed. By default, '90'. Specify '0' if you do not want to truncate comments.;",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 90
         },
         {
           "name": "extended",
@@ -5158,7 +5199,7 @@
           "name": "filter",
           "description": "Types of objects to return:; 'friends' — only friends; 'groups' — only communities; 'all' — both friends and communities (default)",
           "type": "string",
-          "default": 0
+          "default": "all"
         },
         {
           "name": "active",
@@ -6374,7 +6415,7 @@
           "name": "type",
           "description": "Community type. Possible values:; *'group' – group;; *'event' – event;; *'public' – public page",
           "type": "string",
-          "default": 0,
+          "default": "group",
           "enum": [
             "group",
             "public",
@@ -6389,7 +6430,7 @@
         },
         {
           "name": "subtype",
-          "description": "Public page subtype. Possible values:; *'1' – place or small business;; *'2' – company, organizaton or website;; *'3' – famous person or group of people;; *'4' – product or work of art.",
+          "description": "Public page subtype. Possible values:; *'1' – place or small business;; *'2' – company, organization or website;; *'3' – famous person or group of people;; *'4' – product or work of art.",
           "type": "integer",
           "minimum": 0
         }
@@ -6694,12 +6735,16 @@
         {
           "name": "latitude",
           "description": "Geographical latitude.",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude.",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         }
       ],
       "responses": {
@@ -6881,7 +6926,7 @@
         },
         {
           "name": "link",
-          "description": "LInk URL.",
+          "description": "Link URL.",
           "type": "string",
           "required": true
         },
@@ -6910,7 +6955,7 @@
         },
         {
           "name": "link_id",
-          "description": "LInk ID.",
+          "description": "Link ID.",
           "type": "integer",
           "minimum": 0,
           "required": true
@@ -7264,6 +7309,7 @@
           "name": "topic_ids",
           "description": "IDs of topics to be returned (100 maximum). By default, all topics are returned.; If this parameter is set, the 'order', 'offset', and 'count' parameters are ignored.",
           "type": "array",
+          "maxItems": 100,
           "items": {
             "type": "integer"
           }
@@ -8194,7 +8240,7 @@
         },
         {
           "name": "album_id",
-          "description": "album ID.",
+          "description": "Album ID.",
           "type": "integer",
           "required": true
         }
@@ -8603,7 +8649,15 @@
         {
           "name": "sort",
           "description": "Sort order:; 'asc' — oldest comment first; 'desc' — newest comment first",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "oldest comment first",
+            "newest comment first"
+          ]
         },
         {
           "name": "extended",
@@ -9449,13 +9503,17 @@
           "name": "latitude",
           "description": "Geographical latitude, in degrees (from '-90' to '90').",
           "type": "number",
-          "required": true
+          "required": true,
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude, in degrees (from '-180' to '180').",
           "type": "number",
-          "required": true
+          "required": true,
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "country",
@@ -9521,13 +9579,17 @@
           "name": "latitude",
           "description": "Geographical latitude of the initial search point, in degrees (from '-90' to '90').",
           "type": "number",
-          "required": true
+          "required": true,
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude of the initial search point, in degrees (from '-180' to '180').",
           "type": "number",
-          "required": true
+          "required": true,
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "radius",
@@ -9569,17 +9631,22 @@
         {
           "name": "text",
           "description": "Text of the comment on the check-in (255 characters maximum; line breaks not supported).",
-          "type": "string"
+          "type": "string",
+          "maxLength": 255
         },
         {
           "name": "latitude",
           "description": "Geographical latitude of the check-in, in degrees (from '-90' to '90').",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude of the check-in, in degrees (from '-180' to '180').",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "friends_only",
@@ -9615,12 +9682,16 @@
         {
           "name": "latitude",
           "description": "Geographical latitude of the initial search point, in degrees (from '-90' to '90').",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude of the initial search point, in degrees (from '-180' to '180').",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "place",
@@ -9719,7 +9790,8 @@
         {
           "name": "name",
           "description": "Application screen name.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 17
         }
       ],
       "errors": [
@@ -10150,7 +10222,7 @@
         },
         {
           "name": "cancel_request_id",
-          "description": "ID of the name change request to be canceled. If this paremeter is sent, all the others are ignored.",
+          "description": "ID of the name change request to be canceled. If this parameter is sent, all the others are ignored.",
           "type": "integer",
           "minimum": 0
         },
@@ -10179,7 +10251,7 @@
         },
         {
           "name": "bdate_visibility",
-          "description": "Birth date visibility. Returned values: ; * '1' – show birth date;; * '2' – show only month and date;; * '0' – hide birth date.",
+          "description": "Birth date visibility. Returned values: ; * '1' – show birth date;; * '2' – show only month and day;; * '0' – hide birth date.",
           "type": "integer",
           "minimum": 0
         },
@@ -10420,7 +10492,7 @@
         },
         {
           "name": "media_type",
-          "description": "Type of media files to return:; *'photo';; *'video';; *'audio';; *'doc';; *'link'.;",
+          "description": "Type of media files to return:; *'photo';; *'video';; *'audio';; *'doc';; *'link'.;;*'market'.;;*'wall'.;;*'share'",
           "type": "string",
           "enum": [
             "photo",
@@ -10513,12 +10585,16 @@
         {
           "name": "lat",
           "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "long",
           "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "attachment",
@@ -11217,7 +11293,8 @@
           "name": "max_photos",
           "description": "Maximum number of photos to return. By default, '5'.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 5
         },
         {
           "name": "source_ids",
@@ -11233,7 +11310,9 @@
           "name": "count",
           "description": "Number of news items to return (default 50; maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 100,
+          "default": 50
         },
         {
           "name": "fields",
@@ -11270,7 +11349,8 @@
           "name": "max_photos",
           "description": "Maximum number of photos to return. By default, '5'.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 5
         },
         {
           "name": "start_from",
@@ -11337,7 +11417,7 @@
         },
         {
           "name": "start_from",
-          "description": "Identificator needed to return the next oage with results. Value for this parameter returns in 'next_from' field.",
+          "description": "Identificator needed to return the next page with results. Value for this parameter returns in 'next_from' field.",
           "type": "string"
         },
         {
@@ -11497,7 +11577,21 @@
           "name": "type",
           "description": "Item type. Possible values:; *'wall' – post on the wall;; *'tag' – tag on a photo;; *'profilephoto' – profile photo;; *'video' – video;; *'audio' – audio.",
           "type": "string",
-          "required": true
+          "required": true,
+          "enum": [
+            "wall",
+            "tag",
+            "profilephoto",
+            "video",
+            "audio"
+          ],
+          "enumNames": [
+            "post on the wall",
+            "tag on a photo",
+            "profile photo",
+            "video",
+            "audio"
+          ]
         },
         {
           "name": "owner_id",
@@ -11575,12 +11669,16 @@
         {
           "name": "latitude",
           "description": "Geographical latitude point (in degrees, -90 to 90) within which to search.;",
-          "type": "number"
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
         },
         {
           "name": "longitude",
           "description": "Geographical longitude point (in degrees, -180 to 180) within which to search.;",
-          "type": "number"
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
         },
         {
           "name": "start_time",
@@ -11791,7 +11889,8 @@
         {
           "name": "filter",
           "description": "Filters to apply:; 'likes' — returns information about all users who liked the object (default); 'copies' — returns information only about users who told their friends about the object",
-          "type": "string"
+          "type": "string",
+          "default": "likes"
         },
         {
           "name": "friends_only",
@@ -11813,7 +11912,8 @@
           "name": "count",
           "description": "Number of user IDs to return (maximum '1000').; Default is '100' if 'friends_only' is set to  '0'; otherwise, the default is '10' if 'friends_only' is set to '1'.;",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 1000
         },
         {
           "name": "skip_own",
@@ -12109,7 +12209,8 @@
           "name": "count",
           "description": "Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000'; otherwise '10').; '100' — (default)",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "default": 100
         },
         {
           "name": "fields",
@@ -13038,7 +13139,7 @@
           "name": "platform",
           "description": "platform. Possible values:; *'ios' — iOS;; *'android' — Android;; *'winphone' — Windows Phone;; *'web' — приложения на vk.com.; By default: 'web'.",
           "type": "string",
-          "default": 0,
+          "default": "web",
           "enum": [
             "web",
             "ios",
@@ -13153,7 +13254,7 @@
           "name": "type",
           "description": "List type. Possible values:; * 'invite' — available for invites (don't play the game);; * 'request' — available for request (play the game).; ; By default: 'invite'.",
           "type": "string",
-          "default": 0,
+          "default": "invite",
           "enum": [
             "request",
             "invite"
@@ -14063,7 +14164,7 @@
     },
     {
       "name": "ads.getAdsTargeting",
-      "description": "Retuns ad targeting parameters.",
+      "description": "Returns ad targeting parameters.",
       "parameters": [
         {
           "name": "account_id",
@@ -14264,7 +14365,8 @@
           "name": "ids",
           "description": "IDs requested ads, campaigns, clients or account, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "maxItems": 2000
         },
         {
           "name": "period",
@@ -14318,7 +14420,8 @@
           "name": "ids",
           "description": "IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "maxItems": 2000
         },
         {
           "name": "period",
@@ -14556,7 +14659,7 @@
       "parameters": [
         {
           "name": "section",
-          "description": "Section, suggestions are retrieved in. Available values:; *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown.; *regions — requested list of regions.  'country' parameter is required.; *cities — requested list of cities. 'country' parameter is required.; *districts — requested list of districts.  'cities' parameter is required.; *stations — requested list of subway stations.  'cities' parameter is required.; *streets — requested list of cities. 'cities' parameter is required.; *schools — requested list of educational organizations.  'cities' parameter is required.; *interests — requested list of interests.; *positions — requested list of positions (professions).; *group_types — requested list of group types.; *religions — requested list of religious commitments.; *browsers — requested list of browsers and mobile devices.;",
+          "description": "Section, suggestions are retrieved in. Available values:; *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown.; *regions — requested list of regions.  'country' parameter is required.; *cities — requested list of cities. 'country' parameter is required.; *districts — requested list of districts.  'cities' parameter is required.; *stations — requested list of subway stations.  'cities' parameter is required.; *streets — requested list of streets. 'cities' parameter is required.; *schools — requested list of educational organizations.  'cities' parameter is required.; *interests — requested list of interests.; *positions — requested list of positions (professions).; *group_types — requested list of group types.; *religions — requested list of religious commitments.; *browsers — requested list of browsers and mobile devices.;",
           "required": true,
           "type": "string"
         },
@@ -14709,7 +14812,8 @@
           "name": "name",
           "description": "Name of the target group — a string up to 64 characters long.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "maxLength": 64
         },
         {
           "name": "domain",
@@ -14761,7 +14865,8 @@
           "name": "name",
           "description": "New name of the target group — a string up to 64 characters long.",
           "required": true,
-          "type": "string"
+          "type": "string",
+          "maxLength": 64
         },
         {
           "name": "domain",
@@ -14900,7 +15005,7 @@
     },
     {
       "name": "secure.checkToken",
-      "description": "Checks the user authentification in 'IFrame' and 'Flash' apps using the 'access_token' parameter.",
+      "description": "Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.",
       "parameters": [
         {
           "name": "token",
@@ -15321,7 +15426,8 @@
         {
           "name": "message",
           "description": "New comment text (required if 'attachments' are not specified); ; 2048 symbols maximum.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 2048
         },
         {
           "name": "attachments",
