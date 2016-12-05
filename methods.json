@@ -6987,7 +6987,7 @@
             41,
             42
           ],
-          "enumName": [
+          "enumNames": [
             "auto",
             "activity holidays",
             "business",
@@ -15380,8 +15380,7 @@
           "name": "ids",
           "description": "IDs requested ads, campaigns, clients or account, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.",
           "required": true,
-          "type": "string",
-          "maxItems": 2000
+          "type": "string"
         },
         {
           "name": "period",
@@ -15444,8 +15443,7 @@
           "name": "ids",
           "description": "IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.",
           "required": true,
-          "type": "string",
-          "maxItems": 2000
+          "type": "string"
         },
         {
           "name": "period",
