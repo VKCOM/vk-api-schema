@@ -778,13 +778,13 @@
         },
         {
           "name": "phone",
-          "description": "User's phone number. Can be pre-checked with the  method.",
+          "description": "User's phone number. Can be pre-checked with the [vk.com/dev/auth.checkPhone|auth.checkPhone] method.",
           "type": "string",
           "required": true
         },
         {
           "name": "password",
-          "description": "User's password (minimum of 6 characters). Can be specified later with the  method.",
+          "description": "User's password (minimum of 6 characters). Can be specified later with the [vk.com/dev/auth.confirm|auth.confirm] method.",
           "type": "string"
         },
         {
@@ -844,7 +844,7 @@
     },
     {
       "name": "auth.confirm",
-      "description": "Completes a user's registration (begun with the  method) using an authorization code.",
+      "description": "Completes a user's registration (begun with the [vk.com/dev/auth.signup|auth.signup] method) using an authorization code.",
       "open": true,
       "parameters": [
         {
@@ -901,7 +901,7 @@
     },
     {
       "name": "auth.restore",
-      "description": "Allows to restore account access using a code received via SMS.; ; \" This method is only available for apps with  access. \"",
+      "description": "Allows to restore account access using a code received via SMS.; ; \" This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. \"",
       "open": true,
       "parameters": [
         {
@@ -1284,12 +1284,12 @@
         },
         {
           "name": "feed",
-          "description": "unixtime, that can be obtained with  method in date field to get all photos uploaded by the user on a specific day, or photos the user has been tagged on. Also, 'uid' parameter of the user the event happened with shall be specified.",
+          "description": "unixtime, that can be obtained with [vk.com/dev/newsfeed.get|newsfeed.get] method in date field to get all photos uploaded by the user on a specific day, or photos the user has been tagged on. Also, 'uid' parameter of the user the event happened with shall be specified.",
           "type": "integer"
         },
         {
           "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a  ",
+          "description": "'1' — to return photo sizes in a [vk.com/dev/photo_sizes|special format]",
           "type": "boolean"
         },
         {
@@ -1512,30 +1512,30 @@
         },
         {
           "name": "photo",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string",
           "required": true
         },
         {
           "name": "server",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "integer",
           "required": true
         },
         {
           "name": "hash",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string",
           "required": true
         },
         {
           "name": "crop_data",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string"
         },
         {
           "name": "crop_hash",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string"
         }
       ],
@@ -1570,20 +1570,20 @@
         },
         {
           "name": "photo",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string",
           "required": true
         },
         {
           "name": "server",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "integer",
           "minimum": 0,
           "required": true
         },
         {
           "name": "hash",
-          "description": "Parameter returned when photos are .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string",
           "required": true
         }
@@ -1608,21 +1608,21 @@
     },
     {
       "name": "photos.saveOwnerPhoto",
-      "description": "Saves  a profile or community photo.",
+      "description": "Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.",
       "parameters": [
         {
           "name": "server",
-          "description": "parameter returned after .",
+          "description": "parameter returned after [vk.com/dev/upload_files|photo upload].",
           "type": "string"
         },
         {
           "name": "hash",
-          "description": "parameter returned after .",
+          "description": "parameter returned after [vk.com/dev/upload_files|photo upload].",
           "type": "string"
         },
         {
           "name": "photo",
-          "description": "parameter returned after .",
+          "description": "parameter returned after [vk.com/dev/upload_files|photo upload].",
           "type": "string"
         }
       ],
@@ -1657,7 +1657,7 @@
         },
         {
           "name": "photo",
-          "description": "Parameter returned when the .",
+          "description": "Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].",
           "type": "string",
           "required": true
         },
@@ -1740,11 +1740,11 @@
     },
     {
       "name": "photos.saveMessagesPhoto",
-      "description": "Saves a photo after being successfully uploaded. URL obtained with  method.",
+      "description": "Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.",
       "parameters": [
         {
           "name": "photo",
-          "description": "Parameter returned when .",
+          "description": "Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].",
           "type": "string",
           "required": true
         },
@@ -1958,7 +1958,7 @@
         },
         {
           "name": "order",
-          "description": "Sort order: ; 'name' — by name (enabled only if the 'fields' parameter is used); 'hints' — by rating, similar to how friends are sorted in My friends section; ; This parameter is available only for .",
+          "description": "Sort order: ; 'name' — by name (enabled only if the 'fields' parameter is used); 'hints' — by rating, similar to how friends are sorted in My friends section; ; This parameter is available only for [vk.com/dev/standalone|desktop applications].",
           "type": "string",
           "enum": [
             "name",
@@ -1967,7 +1967,7 @@
         },
         {
           "name": "list_id",
-          "description": "ID of the friend list returned by the  method to be used as the source. This parameter is taken into account only when the uid parameter is set to the current user ID.; ; This parameter is available only for .;",
+          "description": "ID of the friend list returned by the [vk.com/dev/friends.getLists|friends.getLists] method to be used as the source. This parameter is taken into account only when the uid parameter is set to the current user ID.; ; This parameter is available only for [vk.com/dev/standalone|desktop applications].",
           "type": "integer",
           "minimum": 0
         },
@@ -2483,7 +2483,7 @@
       "parameters": [
         {
           "name": "filter",
-          "description": "Types of potential friends to return:; 'mutual' — users with many mutual friends ; 'contacts' — users found with the  method; 'mutual_contacts' — users who imported the same contacts as the current user with the  method",
+          "description": "Types of potential friends to return:; 'mutual' — users with many mutual friends ; 'contacts' — users found with the [vk.com/dev/account.importContacts|account.importContacts] method ; 'mutual_contacts' — users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method",
           "type": "array",
           "items": {
             "type": "string",
@@ -2682,7 +2682,7 @@
     },
     {
       "name": "widgets.getComments",
-      "description": "Gets a list of comments for the page added through the .",
+      "description": "Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].",
       "open": true,
       "parameters": [
         {
@@ -2725,7 +2725,7 @@
     },
     {
       "name": "widgets.getPages",
-      "description": "Gets a list of application/site pages where the  or  is installed.",
+      "description": "Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.",
       "open": true,
       "parameters": [
         {
@@ -2776,7 +2776,7 @@
     },
     {
       "name": "secure.getSMSHistory",
-      "description": "Shows a list of SMS notifications sent by the application using  method.",
+      "description": "Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.",
       "parameters": [
         {
           "name": "user_id",
@@ -3114,7 +3114,7 @@
         },
         {
           "name": "action",
-          "description": "action to be done with the order. ; ; Available actions:; *cancel — to cancel unconfirmed order.; *charge — to confirm unconfirmed order. Applies only if processing of  notification failed.; *refund — to cancel confirmed order.;",
+          "description": "action to be done with the order. ; ; Available actions:; *cancel — to cancel unconfirmed order.; *charge — to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed.; *refund — to cancel confirmed order.;",
           "type": "string",
           "required": true,
           "enum": [
@@ -3201,17 +3201,17 @@
         },
         {
           "name": "server",
-          "description": "Parameter returned when .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "integer"
         },
         {
           "name": "photos_list",
-          "description": "Parameter returned when .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string"
         },
         {
           "name": "hash",
-          "description": "Parameter returned when .",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "string"
         },
         {
@@ -3495,7 +3495,7 @@
         },
         {
           "name": "photo_sizes",
-          "description": "'1' – to return image sizes in .",
+          "description": "'1' – to return image sizes in [vk.com/dev/photo_sizes|special format].",
           "type": "boolean"
         },
         {
@@ -4072,7 +4072,7 @@
       "parameters": [
         {
           "name": "posts",
-          "description": "User or community IDs and post IDs, separated by underscores.  Use a negative value to designate a community ID.  Example:; \"93388_21539,93388_20904,2943_4276,-1_1\"",
+          "description": "User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example:; \"93388_21539,93388_20904,2943_4276,-1_1\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -4510,7 +4510,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return the 'likes' field; '0'  — not to return the 'likes' field (default)",
+          "description": "'1' — to return the 'likes' field; '0' — not to return the 'likes' field (default)",
           "type": "boolean"
         },
         {
@@ -4956,7 +4956,7 @@
       "parameters": [
         {
           "name": "lyrics_id",
-          "description": "Lyrics ID (could be obtained with , , or  methods).",
+          "description": "Lyrics ID (could be obtained with [vk.com/dev/audio.get|audio.get], [vk.com/dev/audio.getById|audio.getById], or [vk.com/dev/audio.search|audio.search] methods).",
           "type": "integer",
           "required": true
         }
@@ -5034,7 +5034,7 @@
     },
     {
       "name": "audio.getUploadServer",
-      "description": "Returns the server address to [https://vk.com/dev/upload_files_2?f=8.%20Uploading%20Audio%20Files|upload audio files].",
+      "description": "Returns the server address to [vk.com/dev/upload_files_2|upload audio files].",
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/audio_getUploadServer_response"
@@ -5043,23 +5043,23 @@
     },
     {
       "name": "audio.save",
-      "description": "Saves audio files after successful [https://vk.com/dev/upload_files_2?f=8.%20Uploading%20Audio%20Files|uploading].",
+      "description": "Saves audio files after successful [vk.com/dev/upload_files_2|uploading].",
       "parameters": [
         {
           "name": "server",
-          "description": "This parameter is returned when the audio file is [https://vk.com/dev/upload_files_2?f=8.%20Uploading%20Audio%20Files|uploaded to the server].",
+          "description": "This parameter is returned when the audio file is [vk.com/dev/upload_files_2|uploaded to the server].",
           "type": "integer",
           "required": true
         },
         {
           "name": "audio",
-          "description": "This parameter is returned when the audio file is [https://vk.com/dev/upload_files_2?f=8.%20Uploading%20Audio%20Files|uploaded to the server].",
+          "description": "This parameter is returned when the audio file is [vk.com/dev/upload_files_2|uploaded to the server].",
           "type": "string",
           "required": true
         },
         {
           "name": "hash",
-          "description": "This parameter is returned when the audio file is [https://vk.com/dev/upload_files_2?f=8.%20Uploading%20Audio%20Files|uploaded to the server].",
+          "description": "This parameter is returned when the audio file is [vk.com/dev/upload_files_2|uploaded to the server].",
           "type": "string"
         },
         {
@@ -5199,7 +5199,7 @@
         },
         {
           "name": "genre_id",
-          "description": "Genre of the audio file. See the list of .",
+          "description": "Genre of the audio file. See the list of [vk.com/dev/audio_genres|audio genres].",
           "type": "integer",
           "minimum": 0
         },
@@ -5250,7 +5250,7 @@
     },
     {
       "name": "audio.restore",
-      "description": "Restores a  audio file.",
+      "description": "Restores a [vk.com/dev/audio.delete|deleted] audio file.",
       "parameters": [
         {
           "name": "audio_id",
@@ -5529,7 +5529,7 @@
         },
         {
           "name": "genre_id",
-          "description": "Genre ID. See .",
+          "description": "Genre ID. See the list of [vk.com/dev/audio_genres|audio genres].",
           "type": "integer",
           "minimum": 0
         },
@@ -6454,7 +6454,7 @@
         },
         {
           "name": "future",
-          "description": "'1' —  to return only upcoming events. Works with the 'type' = 'event' only.",
+          "description": "'1' — to return only upcoming events. Works with the 'type' = 'event' only.",
           "type": "boolean"
         },
         {
@@ -6510,13 +6510,13 @@
       "parameters": [
         {
           "name": "category_id",
-          "description": "Category id received from .",
+          "description": "Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].",
           "type": "integer",
           "minimum": 0
         },
         {
           "name": "subcategory_id",
-          "description": "Subcategory id received from .",
+          "description": "Subcategory id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].",
           "type": "integer",
           "minimum": 0,
           "maximum": 99
@@ -6583,7 +6583,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional  for communities..",
+          "description": "'1' — to return additional [vk.com/dev/fields_groups|fields] for communities..",
           "type": "boolean"
         }
       ],
@@ -6941,7 +6941,7 @@
         },
         {
           "name": "subject",
-          "description": "Community subject. Possible values: ; *'1' – auto/moto;; *'2' –  activity holidays;; *'3' – business;; *'4' – pets;; *'5' – health;; *'6' – dating and communication; ; *'7' – games;; *'8' – IT (computers and software);; *'9' – cinema;; *'10' – beauty and fashion;; *'11' – cooking;; *'12' – art and culture;; *'13' – literature;; *'14' – mobile services and internet;; *'15' – music;; *'16' – science and technology;; *'17' – real estate;; *'18' – news and media;; *'19' – security;; *'20' – education;; *'21' – home and renovations;; *'22' – politics;; *'23' – food;; *'24' – industry;; *'25' – travel;; *'26' – work;; *'27' – entertainment;; *'28' – religion;; *'29' – family;; *'30' – sports;; *'31' – insurance;; *'32' – television;; *'33' – goods and services;; *'34' – hobbies;; *'35' – finance;; *'36' – photo;; *'37' – esoterics;; *'38' – electronics and appliances;; *'39' – erotic;; *'40' – humor;; *'41' – society, humanities;; *'42' – design and graphics.",
+          "description": "Community subject. Possible values: ; *'1' – auto/moto;; *'2' – activity holidays;; *'3' – business;; *'4' – pets;; *'5' – health;; *'6' – dating and communication; ; *'7' – games;; *'8' – IT (computers and software);; *'9' – cinema;; *'10' – beauty and fashion;; *'11' – cooking;; *'12' – art and culture;; *'13' – literature;; *'14' – mobile services and internet;; *'15' – music;; *'16' – science and technology;; *'17' – real estate;; *'18' – news and media;; *'19' – security;; *'20' – education;; *'21' – home and renovations;; *'22' – politics;; *'23' – food;; *'24' – industry;; *'25' – travel;; *'26' – work;; *'27' – entertainment;; *'28' – religion;; *'29' – family;; *'30' – sports;; *'31' – insurance;; *'32' – television;; *'33' – goods and services;; *'34' – hobbies;; *'35' – finance;; *'36' – photo;; *'37' – esoterics;; *'38' – electronics and appliances;; *'39' – erotic;; *'40' – humor;; *'41' – society, humanities;; *'42' – design and graphics.",
           "type": "string",
           "enum": [
             1,
@@ -7449,7 +7449,7 @@
     },
     {
       "name": "groups.editManager",
-      "description": "Allows to add, remove or edit the community manager .",
+      "description": "Allows to add, remove or edit the community manager.",
       "parameters": [
         {
           "name": "group_id",
@@ -7743,7 +7743,7 @@
     },
     {
       "name": "groups.getCallbackServerSettings",
-      "description": "Returns  server settings for the community.",
+      "description": "Returns [vk.com/dev/callback_api|Callback API] server settings for the community.",
       "parameters": [
         {
           "name": "group_id",
@@ -7761,7 +7761,7 @@
     },
     {
       "name": "groups.getCallbackSettings",
-      "description": "Returns  notifications settings.",
+      "description": "Returns [vk.com/dev/callback_api|Callback API] notifications settings.",
       "parameters": [
         {
           "name": "group_id",
@@ -7779,7 +7779,7 @@
     },
     {
       "name": "groups.setCallbackServer",
-      "description": "Allow to set  server URL for the community. ; ;",
+      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server URL for the community. ; ;",
       "parameters": [
         {
           "name": "group_id",
@@ -7802,7 +7802,7 @@
     },
     {
       "name": "groups.setCallbackServerSettings",
-      "description": "Allow to set  server settings.",
+      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server settings.",
       "parameters": [
         {
           "name": "group_id",
@@ -8045,7 +8045,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return the 'likes' field; '0'  — not to return the 'likes' field (default)",
+          "description": "'1' — to return the 'likes' field; '0' — not to return the 'likes' field (default)",
           "type": "boolean"
         },
         {
@@ -8540,7 +8540,7 @@
         },
         {
           "name": "privacy_view",
-          "description": "Privacy settings in a .; Privacy setting is available for videos uploaded to own profile by user.",
+          "description": "Privacy settings in a [vk.com/dev/privacy_setting|special format].; Privacy setting is available for videos uploaded to own profile by user.",
           "type": "array",
           "items": {
             "type": "string"
@@ -8548,7 +8548,7 @@
         },
         {
           "name": "privacy_comment",
-          "description": "Privacy settings for comments in a .",
+          "description": "Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].",
           "type": "array",
           "items": {
             "type": "string"
@@ -10237,7 +10237,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "ID of the location's type (e.g., '1' — Home, '2' — Work). To get location type IDs, use the   method.",
+          "description": "ID of the location's type (e.g., '1' — Home, '2' — Work). To get location type IDs, use the [vk.com/dev/places.getTypes|places.getTypes] method.",
           "type": "integer",
           "minimum": 0
         },
@@ -10265,13 +10265,13 @@
         },
         {
           "name": "country",
-          "description": "ID of the location's country. To get country IDs, use the  method.",
+          "description": "ID of the location's country. To get country IDs, use the [vk.com/dev/database.getCountries|database.getCountries] method.",
           "type": "integer",
           "minimum": 0
         },
         {
           "name": "city",
-          "description": "ID of the location's city. To get city IDs, use the  method.",
+          "description": "ID of the location's city. To get city IDs, use the [vk.com/dev/database.getCities|database.getCities] method.",
           "type": "integer",
           "minimum": 0
         },
@@ -10712,7 +10712,7 @@
         },
         {
           "name": "settings",
-          "description": "Push settings in a .",
+          "description": "Push settings in a [vk.com/dev/push_settings|special format].",
           "type": "string"
         }
       ],
@@ -10797,7 +10797,7 @@
         },
         {
           "name": "settings",
-          "description": "Push settings in a .",
+          "description": "Push settings in a [vk.com/dev/push_settings|special format].",
           "type": "string"
         },
         {
@@ -10807,7 +10807,7 @@
         },
         {
           "name": "value",
-          "description": "New value for the key in a .",
+          "description": "New value for the key in a [vk.com/dev/push_settings|special format].",
           "type": "array",
           "items": {
             "type": "string"
@@ -10968,11 +10968,11 @@
     },
     {
       "name": "account.changePassword",
-      "description": "Changes a user password after access is successfully restored with the  method.",
+      "description": "Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.",
       "parameters": [
         {
           "name": "restore_sid",
-          "description": "Session id received after the  method is executed.; (If the password is changed right after the access was restored)",
+          "description": "Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed.; (If the password is changed right after the access was restored)",
           "type": "string"
         },
         {
@@ -10987,7 +10987,7 @@
         },
         {
           "name": "new_password",
-          "description": "New password that  will be set as a current",
+          "description": "New password that will be set as a current",
           "type": "string",
           "minLength": 6,
           "required": true
@@ -11386,7 +11386,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional  to return.",
+          "description": "Additional profile [vk.com/dev/fields|fields] to return. ",
           "type": "array",
           "items": {
             "type": "string"
@@ -11646,7 +11646,7 @@
         },
         {
           "name": "need_pts",
-          "description": "'1' — to return the 'pts' field, needed for the  method.",
+          "description": "'1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
           "type": "boolean"
         }
       ],
@@ -11662,13 +11662,13 @@
       "parameters": [
         {
           "name": "ts",
-          "description": "Last value of the 'ts' parameter returned from the Long Poll server or by using  method.",
+          "description": "Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
           "type": "integer",
           "minimum": 0
         },
         {
           "name": "pts",
-          "description": "Lsat value of 'pts' parameter returned from the Long Poll server or by using  method.",
+          "description": "Lsat value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
           "type": "integer",
           "minimum": 0
         },
@@ -11685,7 +11685,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional  to return.",
+          "description": "Additional profile [vk.com/dev/fields|fields] to return.",
           "type": "array",
           "items": {
             "type": "string"
@@ -11694,7 +11694,7 @@
         },
         {
           "name": "events_limit",
-          "description": "Maximum nimber of events to return.",
+          "description": "Maximum number of events to return.",
           "type": "integer",
           "minimum": 1000,
           "default": 1000
@@ -12034,7 +12034,7 @@
       "parameters": [
         {
           "name": "file",
-          "description": "Upload URL from the 'response' field returned by the  method upon successfully uploading an image.",
+          "description": "Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.",
           "type": "string",
           "required": true
         }
@@ -12182,7 +12182,7 @@
         },
         {
           "name": "source_ids",
-          "description": "Sources to obtain news from, separated by commas.; ; User IDs can be specified in formats '' or 'u' ; where '' is the user's friend ID.; ; Community IDs can be specified in formats '-' or 'g' ; where '' is the community ID.; ; If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the   method.;",
+          "description": "Sources to obtain news from, separated by commas.; ; User IDs can be specified in formats '' or 'u' ; where '' is the user's friend ID.; ; Community IDs can be specified in formats '-' or 'g' ; where '' is the community ID.; ; If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.;",
           "type": "string"
         },
         {
@@ -12200,7 +12200,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional fields of  and  to return.",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
             "type": "string"
@@ -12249,7 +12249,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional fields of  and  to return.",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
             "type": "string"
@@ -12313,7 +12313,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional fields of  and  to return.",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
             "type": "string"
@@ -12604,7 +12604,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional fields of  and  to return.",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
             "type": "string"
@@ -12760,7 +12760,7 @@
         },
         {
           "name": "fields",
-          "description": "list of extra fields to be returned. See  and .",
+          "description": "list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].",
           "type": "array",
           "items": {
             "type": "string"
@@ -12780,7 +12780,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "; Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the  is installed",
+          "description": "; Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
           "enum": [
@@ -12803,12 +12803,12 @@
         },
         {
           "name": "item_id",
-          "description": "Object ID. If 'type' is set as 'sitepage', 'item_id' can include the 'page_id' parameter value used during initialization of the .",
+          "description": "Object ID. If 'type' is set as 'sitepage', 'item_id' can include the 'page_id' parameter value used during initialization of the [vk.com/dev/Like|Like widget].",
           "type": "integer"
         },
         {
           "name": "page_url",
-          "description": "URL of the page where the  is installed. Used instead of the 'item_id' parameter.",
+          "description": "URL of the page where the [vk.com/dev/Like|Like widget] is installed. Used instead of the 'item_id' parameter.",
           "type": "string"
         },
         {
@@ -12839,7 +12839,7 @@
         },
         {
           "name": "count",
-          "description": "Number of user IDs to return (maximum '1000').; Default is '100' if 'friends_only' is set to  '0'; otherwise, the default is '10' if 'friends_only' is set to '1'.;",
+          "description": "Number of user IDs to return (maximum '1000').; Default is '100' if 'friends_only' is set to '0'; otherwise, the default is '10' if 'friends_only' is set to '1'.;",
           "type": "integer",
           "minimum": 0,
           "maximum": 1000
@@ -12864,7 +12864,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the  is installed",
+          "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
           "enum": [
@@ -12910,7 +12910,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the  is installed",
+          "description": "Object type:; 'post' — post on user or community wall; 'comment' — comment on a wall post; 'photo' — photo; 'audio' — audio; 'video' — video; 'note' — note; 'photo_comment' — comment on the photo; 'video_comment' — comment on the video; 'topic_comment' — comment in the discussion; 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
           "enum": [
@@ -13032,7 +13032,7 @@
       "parameters": [
         {
           "name": "owner_id",
-          "description": "ID of the user or community that owns the poll.  Use a negative value to designate a community ID.",
+          "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
           "type": "integer"
         },
         {
@@ -13134,7 +13134,7 @@
       "parameters": [
         {
           "name": "owner_id",
-          "description": "ID of the user or community that owns the poll.  Use a negative value to designate a community ID.",
+          "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
           "type": "integer"
         },
         {
@@ -13388,11 +13388,11 @@
     },
     {
       "name": "docs.save",
-      "description": "Saves a document after [https://vk.com/dev/upload_files_2?f=10.%2BUploading%2BDocuments|uploading it to a server].",
+      "description": "Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].",
       "parameters": [
         {
           "name": "file",
-          "description": "This parameter is returned when the file is [https://vk.com/dev/upload_files_2?f=10.%2BUploading%2BDocuments|uploaded to the server].",
+          "description": "This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].",
           "type": "string",
           "required": true
         },
@@ -13630,7 +13630,7 @@
         },
         {
           "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a .",
+          "description": "'1' — to return photo sizes in a [vk.com/dev/photo_sizes|special format].",
           "type": "boolean"
         }
       ],
@@ -13735,7 +13735,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' – to return additional fields  'likes, can_comment, can_repost, photos'. By default: '0'.",
+          "description": "'1' – to return additional fields 'likes, can_comment, can_repost, photos'. By default: '0'.",
           "type": "boolean"
         }
       ],
@@ -13845,7 +13845,7 @@
       "parameters": [
         {
           "name": "link_id",
-          "description": "Link ID (can be obtained by  method).",
+          "description": "Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).",
           "type": "string",
           "required": true
         }
@@ -13874,7 +13874,7 @@
         },
         {
           "name": "filters",
-          "description": "Type of notifications to return:; 'wall' — wall posts; 'mentions' — mentions in wall posts, comments, or topics; 'comments' — comments to wall posts, photos, and videos; 'likes'  — likes; 'reposted' — wall posts that are copied from the current user's wall; 'followers' — new followers; 'friends' — accepted friend requests",
+          "description": "Type of notifications to return:; 'wall' — wall posts; 'mentions' — mentions in wall posts, comments, or topics; 'comments' — comments to wall posts, photos, and videos; 'likes' — likes; 'reposted' — wall posts that are copied from the current user's wall; 'followers' — new followers; 'friends' — accepted friend requests",
           "type": "array",
           "items": {
             "type": "string",
@@ -14138,7 +14138,7 @@
         },
         {
           "name": "fields",
-          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities';  (only if return_friends - 1)",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities'; (only if return_friends - 1)",
           "type": "array",
           "items": {
             "type": "string"
@@ -14259,7 +14259,7 @@
         },
         {
           "name": "fields",
-          "description": "Additional profile fields, see .",
+          "description": "Additional profile fields, see [vk.com/dev/fields|description].",
           "type": "array",
           "items": {
             "type": "string"
@@ -14289,7 +14289,7 @@
         },
         {
           "name": "global",
-          "description": "Rating type.  Possible values:; *'1' — global rating among all players;; *'0' — rating among user friends.",
+          "description": "Rating type. Possible values:; *'1' — global rating among all players;; *'0' — rating among user friends.",
           "type": "boolean",
           "default": 1
         }
@@ -14417,7 +14417,7 @@
         },
         {
           "name": "code",
-          "description": "Country codes in  standard.",
+          "description": "Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.",
           "type": "string"
         },
         {
@@ -14448,7 +14448,7 @@
       "parameters": [
         {
           "name": "country_id",
-          "description": "Country ID, received in  method.",
+          "description": "Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.",
           "type": "integer",
           "minimum": 0,
           "required": true
@@ -15706,7 +15706,7 @@
       "parameters": [
         {
           "name": "section",
-          "description": "Section, suggestions are retrieved in. Available values:; *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown.; *regions — requested list of regions.  'country' parameter is required.; *cities — requested list of cities. 'country' parameter is required.; *districts — requested list of districts.  'cities' parameter is required.; *stations — requested list of subway stations.  'cities' parameter is required.; *streets — requested list of streets. 'cities' parameter is required.; *schools — requested list of educational organizations.  'cities' parameter is required.; *interests — requested list of interests.; *positions — requested list of positions (professions).; *group_types — requested list of group types.; *religions — requested list of religious commitments.; *browsers — requested list of browsers and mobile devices.;",
+          "description": "Section, suggestions are retrieved in. Available values:; *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown.; *regions — requested list of regions. 'country' parameter is required.; *cities — requested list of cities. 'country' parameter is required.; *districts — requested list of districts. 'cities' parameter is required.; *stations — requested list of subway stations. 'cities' parameter is required.; *streets — requested list of streets. 'cities' parameter is required.; *schools — requested list of educational organizations. 'cities' parameter is required.; *interests — requested list of interests.; *positions — requested list of positions (professions).; *group_types — requested list of group types.; *religions — requested list of religious commitments.; *browsers — requested list of browsers and mobile devices.;",
           "required": true,
           "type": "string",
           "enum": [
@@ -15781,7 +15781,7 @@
       "parameters": [
         {
           "name": "lang",
-          "description": "Language. The full list of supported languages is .",
+          "description": "Language. The full list of supported languages is [vk.com/dev/api_requests|here].",
           "type": "string"
         }
       ],
@@ -17186,7 +17186,7 @@
         },
         {
           "name": "album_ids",
-          "description": "Collections IDs to add  item to.",
+          "description": "Collections IDs to add item to.",
           "type": "array",
           "items": {
             "type": "integer",
