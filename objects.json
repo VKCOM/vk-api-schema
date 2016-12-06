@@ -259,7 +259,7 @@
             ]
           }
         },
-        "mention ": {
+        "mention": {
           "type": "array",
           "items": {
             "type": "string",
@@ -295,37 +295,37 @@
             ]
           }
         },
-        "wall_post ": {
+        "wall_post": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "wall_publish ": {
+        "wall_publish": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "group_invite ": {
+        "group_invite": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "group_accepted ": {
+        "group_accepted": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "event_soon ": {
+        "event_soon": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "photos_tag  ": {
+        "photos_tag": {
           "type": "array",
           "items": {
             "type": "string",
@@ -337,25 +337,25 @@
             ]
           }
         },
-        "app_request ": {
+        "app_request": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "sdk_open ": {
+        "sdk_open": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "new_post ": {
+        "new_post": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
           }
         },
-        "birthday ": {
+        "birthday": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/account_onoff_options"
@@ -696,7 +696,7 @@
           "type": "integer",
           "description": "Campaign ID"
         },
-        "ad_format ": {
+        "ad_format": {
           "type": "integer",
           "description": "Ad format"
         },
@@ -720,11 +720,11 @@
           "type": "string",
           "description": "Ad title"
         },
-        "description ": {
+        "description": {
           "type": "string",
           "description": "Ad description"
         },
-        "link_url ": {
+        "link_url": {
           "type": "string",
           "description": "URL of advertised object"
         },
@@ -732,7 +732,7 @@
           "type": "string",
           "description": "Domain of advertised object"
         },
-        "preview_link ": {
+        "preview_link": {
           "type": [
             "integer",
             "string"
@@ -1200,19 +1200,19 @@
           "type": "integer",
           "description": "Spent funds"
         },
-        "impressions ": {
+        "impressions": {
           "type": "integer",
           "description": "Impressions number"
         },
-        "clicks ": {
+        "clicks": {
           "type": "integer",
           "description": "Clicks number"
         },
-        "reach ": {
+        "reach": {
           "type": "integer",
           "description": "Reach "
         },
-        "video_views ": {
+        "video_views": {
           "type": "integer",
           "description": "Video views number"
         },
@@ -1325,7 +1325,7 @@
           "type": "number",
           "description": "Recommended CPC value"
         },
-        "recommended_cpm ": {
+        "recommended_cpm": {
           "type": "number",
           "description": "Recommended CPM value"
         }
@@ -7139,11 +7139,11 @@
         },
         "links": {
           "type": "integer",
-          "description": "LInk clickthrough"
+          "description": "Link clickthrough"
         },
         "to_group": {
           "type": "integer",
-          "description": "Clickthrough  to  community  "
+          "description": "Clickthrough to community"
         },
         "join_group": {
           "type": "integer",
