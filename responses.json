@@ -5839,10 +5839,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/polls_poll"
-          }
+          "$ref": "objects.json#/definitions/polls_poll"
         }
       },
       "additionalProperties": false
