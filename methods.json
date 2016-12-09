@@ -8827,6 +8827,11 @@
           "minimum": 0,
           "default": 20,
           "maximum": 200
+        },
+        {
+          "name": "extended",
+          "description": "",
+          "type": "boolean"
         }
       ],
       "responses": {
