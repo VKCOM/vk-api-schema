@@ -2065,8 +2065,8 @@
         "response": {
           "$ref": "responses.json#/definitions/friends_getOnline_response"
         },
-        "mobileResponse": {
-          "$ref": "responses.json#/definitions/friends_getOnline_mobile_response"
+        "onlineMobileResponse": {
+          "$ref": "responses.json#/definitions/friends_getOnline_online_mobile_response"
         }
       }
     },
