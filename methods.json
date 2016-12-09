@@ -8866,6 +8866,11 @@
           "minimum": 0,
           "default": 20,
           "maximum": 100
+        },
+        {
+          "name": "extended",
+          "description": "",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -9306,6 +9311,11 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "extended",
+          "description": "",
+          "type": "boolean"
         }
       ],
       "errors": [
@@ -9784,6 +9794,11 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "extended",
+          "description": "1 – return additional infor about users and communities in profiles and groups fields.",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -9819,6 +9834,11 @@
           "minimum": 0,
           "default": 10,
           "maximum": 16
+        },
+        {
+          "name": "extended",
+          "description": "1 – return additional infor about users and communities in profiles and groups fields.",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -14297,6 +14317,11 @@
           "description": "Rating type. Possible values:; *'1' — global rating among all players;; *'0' — rating among user friends.",
           "type": "boolean",
           "default": 1
+        },
+        {
+          "name": "extended",
+          "description": "1 — to return additional info about users",
+          "type": "boolean"
         }
       ],
       "responses": {
