@@ -2016,7 +2016,7 @@
       },
       "additionalProperties": false
     },
-    "friends_getOnline_mobile_response": {
+    "friends_getOnline_online_mobile_response": {
       "type": "object",
       "properties": {
         "response": {
