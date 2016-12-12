@@ -4655,6 +4655,10 @@
           "type": "integer",
           "description": "Message author's ID"
         },
+        "from_id": {
+          "type": "integer",
+          "description": "Message author's ID"
+        },
         "random_id": {
           "type": "integer",
           "description": "ID used for sending messages. It returned only for outgoing messages"
