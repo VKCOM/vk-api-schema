@@ -4618,6 +4618,10 @@
         "ts": {
           "type": "integer",
           "description": "Timestamp"
+        },
+        "pts": {
+          "type": "integer",
+          "description": "Persistent timestamp"
         }
       }
     },
