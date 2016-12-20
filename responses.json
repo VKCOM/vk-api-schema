@@ -4115,7 +4115,7 @@
               "description": "Persistence timestamp"
             },
             "more": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/base_bool_int",
               "description": "Has more"
             }
           }
