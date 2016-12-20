@@ -402,7 +402,7 @@
           "description": "Domain name of the user's page"
         },
         "sex": {
-          "type": "integer",
+          "$ref": "#/definitions/base_sex",
           "description": "User sex"
         },
         "relation": {
@@ -2246,6 +2246,19 @@
         }
       }
     },
+    "base_sex": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "unknown",
+        "female",
+        "male"
+      ]
+    },
     "board_default_order": {
       "type": "integer",
       "description": "Sort type",
@@ -3642,7 +3655,7 @@
           "description": "Returns if a profile is hidden."
         },
         "sex": {
-          "type": "integer",
+          "$ref": "#/definitions/base_sex",
           "description": "User sex"
         },
         "screen_name": {
@@ -7311,7 +7324,7 @@
         {
           "properties": {
             "sex": {
-              "type": "integer",
+              "$ref": "#/definitions/base_sex",
               "description": "User sex"
             },
             "screen_name": {

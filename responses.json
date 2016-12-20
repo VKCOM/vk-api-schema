@@ -4097,6 +4097,26 @@
             },
             "messages": {
               "$ref": "objects.json#/definitions/messages_longpoll_messages"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "chats": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_chat"
+              }
+            },
+            "new_pts": {
+              "type": "integer",
+              "description": "Persistence timestamp"
+            },
+            "more": {
+              "$ref": "objects.json#/definitions/base_bool_int",
+              "description": "Has more"
             }
           }
         }
