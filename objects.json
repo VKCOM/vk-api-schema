@@ -3070,7 +3070,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "integer",
           "description": "Community ID"
         },
         "name": {
@@ -3105,7 +3105,6 @@
           ]
         },
         "is_admin": {
-          "type": "integer",
           "description": "Information whether current user is administrator",
           "$ref": "#/definitions/base_bool_int"
         },
