@@ -4337,7 +4337,7 @@
       },
       "additionalProperties": false
     },
-    "messages_denyMessagesFromCommunity_response": {
+    "messages_denyMessagesFromGroup_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -4346,7 +4346,7 @@
       },
       "additionalProperties": false
     },
-    "messages_allowMessagesFromCommunity_response": {
+    "messages_allowMessagesFromGroup_response": {
       "type": "object",
       "properties": {
         "response": {

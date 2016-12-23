@@ -12101,7 +12101,7 @@
       }
     },
     {
-      "name": "messages.denyMessagesFromCommunity",
+      "name": "messages.denyMessagesFromGroup",
       "description": "Denies sending message from community to the current user.",
       "parameters": [
         {
@@ -12114,12 +12114,12 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/messages_denyMessagesFromCommunity_response"
+          "$ref": "responses.json#/definitions/messages_denyMessagesFromGroup_response"
         }
       }
     },
     {
-      "name": "messages.allowMessagesFromCommunity",
+      "name": "messages.allowMessagesFromGroup",
       "description": "Allows sending messages from community to the current user.",
       "parameters": [
         {
@@ -12132,7 +12132,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/messages_allowMessagesFromCommunity_response"
+          "$ref": "responses.json#/definitions/messages_allowMessagesFromGroup_response"
         }
       }
     },
