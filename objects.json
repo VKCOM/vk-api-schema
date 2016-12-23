@@ -5932,6 +5932,10 @@
           "type": "string",
           "description": "URL of image with 1280 px width"
         },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
+        },
         "post_id": {
           "type": "integer",
           "description": "Post ID",
@@ -6023,6 +6027,10 @@
         "photo_1280": {
           "type": "string",
           "description": "URL of image with 1280 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -6131,6 +6139,10 @@
         "photo_1280": {
           "type": "string",
           "description": "URL of image with 1280 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -6247,6 +6259,10 @@
           "type": "string",
           "description": "URL of image with 1280 px width"
         },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
+        },
         "post_id": {
           "type": "integer",
           "description": "Post ID",
@@ -6346,6 +6362,10 @@
         "photo_1280": {
           "type": "string",
           "description": "URL of image with 1280 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
