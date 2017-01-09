@@ -3673,6 +3673,14 @@
           "type": "integer",
           "description": "Information whether the user is online"
         },
+        "online_mobile": {
+          "type": "integer",
+          "description": "Information whether the user is online in mobile site or application"
+        },
+        "online_app": {
+          "type": "integer",
+          "description": "Application ID"
+        },
         "nickname": {
           "type": "string",
           "description": "User nickname"
@@ -7361,6 +7369,14 @@
             "online": {
               "type": "integer",
               "description": "Information whether the user is online"
+            },
+            "online_mobile": {
+              "type": "integer",
+              "description": "Information whether the user is online in mobile site or application"
+            },
+            "online_app": {
+              "type": "integer",
+              "description": "Application ID"
             }
           }
         }
@@ -8486,6 +8502,10 @@
         "mp_720": {
           "type": "string",
           "description": "URL of the mpeg4 file with 720p quality"
+        },
+        "mp_1080": {
+          "type": "string",
+          "description": "URL of the mpeg4 file with 1080p quality"
         },
         "external": {
           "type": "string",
