@@ -3670,8 +3670,16 @@
           "description": "URL of square photo of the user with 100 pixels in width"
         },
         "online": {
+          "description": "Information whether the user is online",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "online_mobile": {
+          "description": "Information whether the user is online in mobile site or application",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "online_app": {
           "type": "integer",
-          "description": "Information whether the user is online"
+          "description": "Application ID"
         },
         "nickname": {
           "type": "string",
@@ -4601,7 +4609,6 @@
       "type": "object",
       "properties": {
         "online": {
-          "type": "integer",
           "description": "Information whether user is online",
           "$ref": "#/definitions/base_bool_int"
         },
@@ -7359,8 +7366,16 @@
               "description": "URL of square photo of the user with 100 pixels in width"
             },
             "online": {
+              "description": "Information whether the user is online",
+              "$ref": "#/definitions/base_bool_int"
+            },
+            "online_mobile": {
+              "description": "Information whether the user is online in mobile site or application",
+              "$ref": "#/definitions/base_bool_int"
+            },
+            "online_app": {
               "type": "integer",
-              "description": "Information whether the user is online"
+              "description": "Application ID"
             }
           }
         }
@@ -8486,6 +8501,10 @@
         "mp_720": {
           "type": "string",
           "description": "URL of the mpeg4 file with 720p quality"
+        },
+        "mp_1080": {
+          "type": "string",
+          "description": "URL of the mpeg4 file with 1080p quality"
         },
         "external": {
           "type": "string",
