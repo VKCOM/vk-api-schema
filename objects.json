@@ -3670,12 +3670,12 @@
           "description": "URL of square photo of the user with 100 pixels in width"
         },
         "online": {
-          "type": "integer",
-          "description": "Information whether the user is online"
+          "description": "Information whether the user is online",
+          "$ref": "#/definitions/base_bool_int"
         },
         "online_mobile": {
-          "type": "integer",
-          "description": "Information whether the user is online in mobile site or application"
+          "description": "Information whether the user is online in mobile site or application",
+          "$ref": "#/definitions/base_bool_int"
         },
         "online_app": {
           "type": "integer",
@@ -4609,7 +4609,6 @@
       "type": "object",
       "properties": {
         "online": {
-          "type": "integer",
           "description": "Information whether user is online",
           "$ref": "#/definitions/base_bool_int"
         },
@@ -7367,12 +7366,12 @@
               "description": "URL of square photo of the user with 100 pixels in width"
             },
             "online": {
-              "type": "integer",
-              "description": "Information whether the user is online"
+              "description": "Information whether the user is online",
+              "$ref": "#/definitions/base_bool_int"
             },
             "online_mobile": {
-              "type": "integer",
-              "description": "Information whether the user is online in mobile site or application"
+              "description": "Information whether the user is online in mobile site or application",
+              "$ref": "#/definitions/base_bool_int"
             },
             "online_app": {
               "type": "integer",
