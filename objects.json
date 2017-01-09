@@ -402,7 +402,7 @@
           "description": "Domain name of the user's page"
         },
         "sex": {
-          "type": "integer",
+          "$ref": "#/definitions/base_sex",
           "description": "User sex"
         },
         "relation": {
@@ -2246,6 +2246,19 @@
         }
       }
     },
+    "base_sex": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "unknown",
+        "female",
+        "male"
+      ]
+    },
     "board_default_order": {
       "type": "integer",
       "description": "Sort type",
@@ -3057,7 +3070,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "type": "integer",
           "description": "Community ID"
         },
         "name": {
@@ -3092,7 +3105,6 @@
           ]
         },
         "is_admin": {
-          "type": "integer",
           "description": "Information whether current user is administrator",
           "$ref": "#/definitions/base_bool_int"
         },
@@ -3642,7 +3654,7 @@
           "description": "Returns if a profile is hidden."
         },
         "sex": {
-          "type": "integer",
+          "$ref": "#/definitions/base_sex",
           "description": "User sex"
         },
         "screen_name": {
@@ -3658,8 +3670,16 @@
           "description": "URL of square photo of the user with 100 pixels in width"
         },
         "online": {
+          "description": "Information whether the user is online",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "online_mobile": {
+          "description": "Information whether the user is online in mobile site or application",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "online_app": {
           "type": "integer",
-          "description": "Information whether the user is online"
+          "description": "Application ID"
         },
         "nickname": {
           "type": "string",
@@ -4589,7 +4609,6 @@
       "type": "object",
       "properties": {
         "online": {
-          "type": "integer",
           "description": "Information whether user is online",
           "$ref": "#/definitions/base_bool_int"
         },
@@ -4618,6 +4637,10 @@
         "ts": {
           "type": "integer",
           "description": "Timestamp"
+        },
+        "pts": {
+          "type": "integer",
+          "description": "Persistent timestamp"
         }
       }
     },
@@ -4652,6 +4675,10 @@
           "$ref": "#/definitions/base_bool_int"
         },
         "user_id": {
+          "type": "integer",
+          "description": "Message author's ID"
+        },
+        "from_id": {
           "type": "integer",
           "description": "Message author's ID"
         },
@@ -5911,6 +5938,10 @@
           "type": "string",
           "description": "URL of image with 1280 px width"
         },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
+        },
         "post_id": {
           "type": "integer",
           "description": "Post ID",
@@ -6002,6 +6033,10 @@
         "photo_1280": {
           "type": "string",
           "description": "URL of image with 1280 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -6110,6 +6145,10 @@
         "photo_1280": {
           "type": "string",
           "description": "URL of image with 1280 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -6226,6 +6265,10 @@
           "type": "string",
           "description": "URL of image with 1280 px width"
         },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
+        },
         "post_id": {
           "type": "integer",
           "description": "Post ID",
@@ -6325,6 +6368,10 @@
         "photo_1280": {
           "type": "string",
           "description": "URL of image with 1280 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -7303,7 +7350,7 @@
         {
           "properties": {
             "sex": {
-              "type": "integer",
+              "$ref": "#/definitions/base_sex",
               "description": "User sex"
             },
             "screen_name": {
@@ -7319,8 +7366,16 @@
               "description": "URL of square photo of the user with 100 pixels in width"
             },
             "online": {
+              "description": "Information whether the user is online",
+              "$ref": "#/definitions/base_bool_int"
+            },
+            "online_mobile": {
+              "description": "Information whether the user is online in mobile site or application",
+              "$ref": "#/definitions/base_bool_int"
+            },
+            "online_app": {
               "type": "integer",
-              "description": "Information whether the user is online"
+              "description": "Application ID"
             }
           }
         }
@@ -8446,6 +8501,10 @@
         "mp_720": {
           "type": "string",
           "description": "URL of the mpeg4 file with 720p quality"
+        },
+        "mp_1080": {
+          "type": "string",
+          "description": "URL of the mpeg4 file with 1080p quality"
         },
         "external": {
           "type": "string",
