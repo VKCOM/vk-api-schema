@@ -4378,7 +4378,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/newsfeed_newsfeed_item"
+                "$ref": "objects.json#/definitions/newsfeed_newsfeed_item"
               }
             },
             "profiles": {
