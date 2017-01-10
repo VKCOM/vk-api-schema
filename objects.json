@@ -47,7 +47,12 @@
         },
         "app_requests": {
           "type": "integer",
-          "description": "New app_requests number",
+          "description": "New app requests number",
+          "minimum": 1
+        },
+        "friends_suggestions": {
+          "type": "integer",
+          "description": "New friends suggestions number",
           "minimum": 1
         }
       }
@@ -3066,6 +3071,48 @@
         }
       }
     },
+    "groups_cover_image": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image url"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Image width"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Image height"
+        }
+      },
+      "required": [
+        "url",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
+    "groups_cover": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Information whether cover is enabled",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/groups_cover_image"
+          }
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
     "groups_group": {
       "type": "object",
       "properties": {
@@ -3202,6 +3249,9 @@
             },
             "counters": {
               "$ref": "#/definitions/groups_counters_group"
+            },
+            "cover": {
+              "$ref": "#/definitions/groups_cover"
             },
             "can_post": {
               "description": "Information whether current user can post on community's wall",

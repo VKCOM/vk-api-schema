@@ -4,7 +4,7 @@ This repository contains JSON Schema documents explaining all the VK.COM API obj
 
 JSON Schema standard specifications and the most common usage scenarios could be found here: http://json-schema.org/ 
 
-These schemes are compatible with JSON Schema version draft-04 and VK API [version](https://vk.com/dev/versions) 5.60.
+These schemes are compatible with JSON Schema version draft-04 and VK API [version](https://vk.com/dev/versions) 5.62.
 
 
 ##Structure
