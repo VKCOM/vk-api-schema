@@ -2415,6 +2415,29 @@
       ],
       "additionalProperties": false
     },
+    "base_image": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image url"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Image width"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Image height"
+        }
+      },
+      "required": [
+        "url",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
     "database_city": {
       "allOf": [
         {
@@ -3071,29 +3094,6 @@
         }
       }
     },
-    "groups_cover_image": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "Image url"
-        },
-        "width": {
-          "type": "integer",
-          "description": "Image width"
-        },
-        "height": {
-          "type": "integer",
-          "description": "Image height"
-        }
-      },
-      "required": [
-        "url",
-        "width",
-        "height"
-      ],
-      "additionalProperties": false
-    },
     "groups_cover": {
       "type": "object",
       "properties": {
@@ -3104,7 +3104,7 @@
         "images": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/groups_cover_image"
+            "$ref": "#/definitions/base_image"
           }
         }
       },
