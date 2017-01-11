@@ -4408,7 +4408,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/newsfeed_newsfeed_item"
+                "$ref": "objects.json#/definitions/newsfeed_newsfeed_item"
               }
             },
             "profiles": {
@@ -4446,7 +4446,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/newsfeed_newsfeed_item"
+                "$ref": "objects.json#/definitions/newsfeed_newsfeed_item"
               }
             },
             "profiles": {
@@ -4592,7 +4592,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/wall_wallpost_full"
+                "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             }
           }
@@ -4608,7 +4608,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/wall_wallpost_full"
+                "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             },
             "profiles": {
