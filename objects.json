@@ -783,7 +783,7 @@
           ]
         },
         "name": {
-          "type": "integer",
+          "type": "string",
           "description": "Campaign title"
         },
         "status": {
