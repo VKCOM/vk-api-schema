@@ -4263,7 +4263,7 @@
                 "$ref": "objects.json#/definitions/messages_chat"
               },
               {
-                "$ref": "objects.json#/definitions/base_user_xtr_type"
+                "$ref": "objects.json#/definitions/users_user_xtr_type"
               },
               {
                 "$ref": "objects.json#/definitions/groups_group_full"
@@ -4699,7 +4699,7 @@
                     "$ref": "objects.json#/definitions/groups_group_full"
                   },
                   {
-                    "$ref": "objects.json#/definitions/base_user_xtr_type"
+                    "$ref": "objects.json#/definitions/users_user_xtr_type"
                   }
                 ]
               }
@@ -6193,7 +6193,7 @@
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "objects.json#/definitions/base_user_xtr_type"
+                    "$ref": "objects.json#/definitions/users_user_xtr_type"
                   },
                   {
                     "$ref": "objects.json#/definitions/groups_group_full"
