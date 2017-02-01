@@ -7818,6 +7818,10 @@
           "type": "integer",
           "description": "Community ID"
         },
+        "company": {
+          "type": "string",
+          "description": "Company name"
+        },
         "country_id": {
           "type": "integer",
           "description": "Country ID"
