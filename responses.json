@@ -1686,7 +1686,10 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/docs_doc"
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/docs_doc"
+          }
         }
       },
       "additionalProperties": false
