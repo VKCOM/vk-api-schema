@@ -1686,7 +1686,10 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/docs_doc"
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/docs_doc"
+          }
         }
       },
       "additionalProperties": false
@@ -4263,7 +4266,7 @@
                 "$ref": "objects.json#/definitions/messages_chat"
               },
               {
-                "$ref": "objects.json#/definitions/base_user_xtr_type"
+                "$ref": "objects.json#/definitions/users_user_xtr_type"
               },
               {
                 "$ref": "objects.json#/definitions/groups_group_full"
@@ -4408,7 +4411,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/newsfeed_newsfeed_item"
+                "$ref": "objects.json#/definitions/newsfeed_newsfeed_item"
               }
             },
             "profiles": {
@@ -4446,7 +4449,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/newsfeed_newsfeed_item"
+                "$ref": "objects.json#/definitions/newsfeed_newsfeed_item"
               }
             },
             "profiles": {
@@ -4592,7 +4595,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/wall_wallpost_full"
+                "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             }
           }
@@ -4608,7 +4611,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definition/wall_wallpost_full"
+                "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             },
             "profiles": {
@@ -4699,7 +4702,7 @@
                     "$ref": "objects.json#/definitions/groups_group_full"
                   },
                   {
-                    "$ref": "objects.json#/definitions/base_user_xtr_type"
+                    "$ref": "objects.json#/definitions/users_user_xtr_type"
                   }
                 ]
               }
@@ -6193,7 +6196,7 @@
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "objects.json#/definitions/base_user_xtr_type"
+                    "$ref": "objects.json#/definitions/users_user_xtr_type"
                   },
                   {
                     "$ref": "objects.json#/definitions/groups_group_full"

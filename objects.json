@@ -783,7 +783,7 @@
           ]
         },
         "name": {
-          "type": "integer",
+          "type": "string",
           "description": "Campaign title"
         },
         "status": {
@@ -7817,6 +7817,10 @@
         "group_id": {
           "type": "integer",
           "description": "Community ID"
+        },
+        "company": {
+          "type": "string",
+          "description": "Company name"
         },
         "country_id": {
           "type": "integer",
