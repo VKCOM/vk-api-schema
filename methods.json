@@ -1033,6 +1033,12 @@
           "maximum": 100
         },
         {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of posts.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "extended",
           "description": "show extended post info.",
           "type": "boolean"
