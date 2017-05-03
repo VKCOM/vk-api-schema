@@ -1,4 +1,4 @@
-#VK API JSON Schema
+# VK API JSON Schema
 
 This repository contains JSON Schema documents explaining all the VK.COM API objects and methods mentioned [here](https://vk.com/dev).
 
@@ -7,7 +7,7 @@ JSON Schema standard specifications and the most common usage scenarios could be
 These schemes are compatible with JSON Schema version draft-04 and VK API [version](https://vk.com/dev/versions) 5.62.
 
 
-##Structure
+## Structure
 
 Repository contains four .json files. 
 * "methods.json" describes all of VK API methods (could be found at [this page](https://vk.com/dev/methods)).
@@ -15,9 +15,9 @@ Repository contains four .json files.
 * "responses.json" describes methods responses structure.
 * "schema.json" describes additional keywords used in our implementation, such as "method", "error", "parameter" and others so to extend the canonical specification for our needs. 
 
-##Samples
+## Samples
 
-###users.get method description:
+### users.get method description
 
 ```JSON
 {
@@ -63,7 +63,7 @@ Repository contains four .json files.
     }
 ```
 
-###audio_lyrics object description:
+### audio_lyrics object description
 
 ```JSON
 "audio_lyrics": {
@@ -85,5 +85,3 @@ Repository contains four .json files.
       "additionalParameters": false
     }
 ```
-
-
