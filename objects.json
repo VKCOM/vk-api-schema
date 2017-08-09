@@ -1800,7 +1800,7 @@
           "description": "Comments number"
         },
         "can_post": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can comment the post"
         }
       }
@@ -1883,11 +1883,11 @@
           "description": "Information whether current uer has liked the post"
         },
         "can_like": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can like the post"
         },
         "can_publish": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can repost"
         }
       },
@@ -8612,15 +8612,15 @@
           "description": "Comments number"
         },
         "can_add": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can add the video"
         },
         "can_edit": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can edit the video"
         },
         "is_private": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether the video is private"
         },
         "count": {
@@ -9375,7 +9375,7 @@
           "description": "Post text"
         },
         "can_delete": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can delete the post"
         },
         "signer_id": {
@@ -9576,7 +9576,7 @@
               }
             },
             "can_edit": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int"
               "description": "Information whether current user can edit the post"
             },
             "created_by": {
@@ -9584,11 +9584,11 @@
               "description": "Post creator ID (if post still can be edited)"
             },
             "can_delete": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int"
               "description": "Information whether current user can delete the post"
             },
             "can_pin": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int"
               "description": "Information whether current user can pin the post"
             },
             "is_pinned": {
@@ -9639,7 +9639,7 @@
           "description": "Comment text"
         },
         "can_delete": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can delete the comment"
         },
         "media": {
@@ -9708,7 +9708,7 @@
           "description": "Comments number"
         },
         "can_post": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int"
           "description": "Information whether current user can comment the post"
         },
         "replies": {
