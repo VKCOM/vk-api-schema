@@ -7917,6 +7917,16 @@
           "name": "group_leave",
           "description": "Left community notifications ('0' — disabled, '1' — enabled).",
           "type": "boolean"
+        },
+        {
+          "name": "user_block",
+          "description": "User added to community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "user_unblock",
+          "description": "User removed from community blacklist",
+          "type": "boolean"
         }
       ],
       "responses": {
