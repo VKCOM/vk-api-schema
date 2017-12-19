@@ -3344,6 +3344,10 @@
                 "market"
               ]
             },
+            "trending": {
+              "type": "integer",
+              "description": "Information whether the community has a \"fire\" pictogram.",
+            },
             "can_message": {
               "description": "Information whether current user can send a message to community",
               "$ref": "#/definitions/base_bool_int"
@@ -7840,6 +7844,10 @@
             "has_photo": {
               "type": "integer",
               "description": "Information whether the user has main photo"
+            },
+            "trending": {
+              "type": "integer",
+              "description": "Information whether the community has a \"fire\" pictogram.",
             },
             "has_mobile": {
               "description": "Information whether the user specified his phone number",
