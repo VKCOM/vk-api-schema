@@ -7669,6 +7669,12 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -7745,6 +7751,12 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "message_new",
