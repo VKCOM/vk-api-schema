@@ -1826,6 +1826,10 @@
         "can_post": {
           "type": "integer",
           "description": "Information whether current user can comment the post"
+        },
+        "groups_can_post": {
+          "type": "integer",
+          "description": "Information whether groups can comment the post"
         }
       }
     },
