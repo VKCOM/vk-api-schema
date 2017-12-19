@@ -11801,6 +11801,16 @@
           "name": "API_ERROR_MESSAGES_PRIVACY",
           "code": 902,
           "description": "Can't send messages to this user due to their privacy settings"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_AMOUNT_EXCEEDED",
+          "code": 913,
+          "description": "Too many forwarded messages"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_ERROR",
+          "code": 921,
+          "description": "Can't forward these messages"
         }
       ],
       "responses": {
