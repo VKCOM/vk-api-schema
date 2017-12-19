@@ -1,13 +1,13 @@
-#VK API JSON Schema
+# VK API JSON Schema
 
 This repository contains JSON Schema documents explaining all the VK.COM API objects and methods mentioned [here](https://vk.com/dev).
 
 JSON Schema standard specifications and the most common usage scenarios could be found here: http://json-schema.org/ 
 
-These schemes are compatible with JSON Schema version draft-04 and VK API [version](https://vk.com/dev/versions) 5.62.
+These schemes are compatible with JSON Schema version draft-04 and VK API [version](https://vk.com/dev/versions) 5.69.
 
 
-##Structure
+## Structure
 
 Repository contains four .json files. 
 * "methods.json" describes all of VK API methods (could be found at [this page](https://vk.com/dev/methods)).
@@ -15,9 +15,9 @@ Repository contains four .json files.
 * "responses.json" describes methods responses structure.
 * "schema.json" describes additional keywords used in our implementation, such as "method", "error", "parameter" and others so to extend the canonical specification for our needs. 
 
-##Samples
+## Samples
 
-###users.get method description:
+### users.get method description:
 
 ```JSON
 {
@@ -63,26 +63,47 @@ Repository contains four .json files.
     }
 ```
 
-###audio_lyrics object description:
+### market_market_album object description:
 
 ```JSON
-"audio_lyrics": {
+"market_market_album": {
       "type": "object",
       "properties": {
-        "lyrics_id": {
+        "id": {
           "type": "integer",
-          "description": "Lyrics ID"
+          "description": "Market album ID",
+          "minimum": 1
         },
-        "text": {
+        "owner_id": {
+          "type": "integer",
+          "description": "Market album owner's ID"
+        },
+        "title": {
           "type": "string",
-          "description": "Lyrics text"
+          "description": "Market album title"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Items number",
+          "minimum": 0
+        },
+        "updated_time": {
+          "type": "integer",
+          "description": "Date when album has been updated last time in Unixtime",
+          "minimum": 0
+        },
+        "photo": {
+          "$ref": "#/definitions/photos_photo"
         }
       },
       "required": [
-        "lyrics_id",
-        "text"
+        "id",
+        "owner_id",
+        "title",
+        "count",
+        "updated_time"
       ],
-      "additionalParameters": false
+      "additionalProperties": false
     }
 ```
 
