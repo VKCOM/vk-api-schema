@@ -3321,6 +3321,12 @@
                 }
               }
             },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/groups_group"
+              }
+            },
             "messages": {
               "$ref": "objects.json#/definitions/messages_longpoll_messages"
             },
