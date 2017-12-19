@@ -4859,7 +4859,9 @@
             "chat_create",
             "chat_title_update",
             "chat_invite_user",
-            "chat_kick_user"
+            "chat_kick_user",
+            "chat_pin_message",
+            "chat_unpin_message"
           ]
         },
         "action_mid": {
