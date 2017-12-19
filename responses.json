@@ -2093,6 +2093,10 @@
                 "description": "User ID",
                 "minimum": 1
               }
+            },
+            "count_unread": {
+              "type": "integer",
+              "description": "Total unread requests number"
             }
           },
           "additionalProperties": false
