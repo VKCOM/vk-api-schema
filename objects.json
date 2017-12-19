@@ -4788,36 +4788,6 @@
             "description": "User ID"
           }
         },
-        "push_settings": {
-          "description": "Push settings for the chat",
-          "$ref": "#/definitions/messages_chat_push_settings"
-        },
-        "action": {
-          "type": "string",
-          "description": "Action type",
-          "enum": [
-            "chat_photo_update",
-            "chat_photo_remove",
-            "chat_create",
-            "chat_title_update",
-            "chat_invite_user",
-            "chat_kick_user",
-            "chat_pin_message",
-            "chat_unpin_message"
-          ]
-        },
-        "action_mid": {
-          "type": "integer",
-          "description": "User or email ID has been invited to the chat or kicked from the chat"
-        },
-        "action_email": {
-          "type": "string",
-          "description": "Email has been invited or kicked"
-        },
-        "action_text": {
-          "type": "string",
-          "description": "Action text"
-        },
         "users_count": {
           "type": "integer",
           "description": "Chat users number"
