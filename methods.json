@@ -14611,6 +14611,13 @@
           "type": "string"
         },
         {
+          "name": "offset",
+          "description": "Offset for querying specific result subset",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
           "name": "limit",
           "description": "Maximum number of results to return.",
           "type": "integer",
