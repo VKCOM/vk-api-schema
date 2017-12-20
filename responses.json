@@ -4552,7 +4552,7 @@
             "suggested_queries": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/search_hint"
+                "type": "string"
               }
             }
           }
@@ -5889,7 +5889,7 @@
             "suggested_queries": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/search_hint"
+                "type": "string"
               }
             }
           }
