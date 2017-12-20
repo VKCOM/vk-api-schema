@@ -6862,7 +6862,7 @@
           "description": "Place type ID"
         },
         "title": {
-          "type": "integer",
+          "type": "string",
           "description": "Place type title"
         },
         "icon": {
