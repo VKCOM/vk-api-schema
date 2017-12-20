@@ -3327,7 +3327,7 @@
             },
             "trending": {
               "type": "integer",
-              "description": "Information whether the community has a \"fire\" pictogram.",
+              "description": "Information whether the community has a \"fire\" pictogram."
             },
             "can_message": {
               "description": "Information whether current user can send a message to community",
@@ -7613,7 +7613,7 @@
             },
             "trending": {
               "type": "integer",
-              "description": "Information whether the community has a \"fire\" pictogram.",
+              "description": "Information whether the community has a \"fire\" pictogram."
             },
             "has_mobile": {
               "description": "Information whether the user specified his phone number",
@@ -9367,6 +9367,10 @@
             },
             "reposts": {
               "$ref": "#/definitions/base_reposts_info"
+            },
+            "marked_as_ads": {
+              "type": "integer",
+              "description": "Information whether the post is marked as ads"
             }
           }
         }
