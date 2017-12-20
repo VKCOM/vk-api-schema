@@ -7748,24 +7748,6 @@
       }
     },
     {
-      "name": "groups.getCallbackServerSettings",
-      "description": "Returns [vk.com/dev/callback_api|Callback API] server settings for the community.",
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_getCallbackServerSettings_response"
-        }
-      }
-    },
-    {
       "name": "groups.getCallbackSettings",
       "description": "Returns [vk.com/dev/callback_api|Callback API] notifications settings.",
       "parameters": [
@@ -7786,52 +7768,6 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/groups_getCallbackSettings_response"
-        }
-      }
-    },
-    {
-      "name": "groups.setCallbackServer",
-      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server URL for the community. ; ;",
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        {
-          "name": "server_url",
-          "description": "Server URL.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_setCallbackServer_response"
-        }
-      }
-    },
-    {
-      "name": "groups.setCallbackServerSettings",
-      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server settings.",
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        {
-          "name": "secret_key",
-          "description": "Callback API secret key.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_setCallbackServerSettings_response"
         }
       }
     },
