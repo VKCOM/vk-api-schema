@@ -1805,40 +1805,6 @@
         }
       }
     },
-    "newsfeed_search_response_object": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/wall_wallpost_full"
-          }
-        },
-        "suggested_queries": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "search_getHints_response_object": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/search_hint"
-          }
-        },
-        "suggested_queries": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "base_bool_int": {
       "type": "integer",
       "enum": [
