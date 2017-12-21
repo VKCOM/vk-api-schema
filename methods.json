@@ -2444,8 +2444,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -2489,8 +2488,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -10521,8 +10519,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -10571,7 +10568,7 @@
           "description": "User ID.",
           "type": "integer",
           "minimum": 0,
-          "required": true,
+          "required": true
         },
         {
           "name": "name",
@@ -10605,8 +10602,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -11026,8 +11022,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -13951,8 +13946,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -14000,8 +13994,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -14293,8 +14286,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -14869,8 +14861,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {
@@ -16176,8 +16167,7 @@
         {
           "name": "token",
           "description": "client 'access_token'",
-          "type": "string",
-          "required": true
+          "type": "string"
         },
         {
           "name": "ip",
