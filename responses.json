@@ -4541,21 +4541,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/wall_wallpost_full"
-              }
-            },
-            "suggested_queries": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "objects.json#/definitions/newsfeed_search_response_object"
         }
       }
     },
@@ -5878,21 +5864,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/search_hint"
-              }
-            },
-            "suggested_queries": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
+          "$ref": "objects.json#/definitions/search_getHints_response_object"
         }
       },
       "additionalProperties": false
