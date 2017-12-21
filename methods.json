@@ -7748,24 +7748,6 @@
       }
     },
     {
-      "name": "groups.getCallbackServerSettings",
-      "description": "Returns [vk.com/dev/callback_api|Callback API] server settings for the community.",
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_getCallbackServerSettings_response"
-        }
-      }
-    },
-    {
       "name": "groups.getCallbackSettings",
       "description": "Returns [vk.com/dev/callback_api|Callback API] notifications settings.",
       "parameters": [
@@ -7775,57 +7757,17 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/groups_getCallbackSettings_response"
-        }
-      }
-    },
-    {
-      "name": "groups.setCallbackServer",
-      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server URL for the community. ; ;",
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        {
-          "name": "server_url",
-          "description": "Server URL.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_setCallbackServer_response"
-        }
-      }
-    },
-    {
-      "name": "groups.setCallbackServerSettings",
-      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server settings.",
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        {
-          "name": "secret_key",
-          "description": "Callback API secret key.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_setCallbackServerSettings_response"
         }
       }
     },
@@ -7839,6 +7781,12 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "message_new",
@@ -7928,6 +7876,16 @@
         {
           "name": "group_leave",
           "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "user_block",
+          "description": "User added to community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "user_unblock",
+          "description": "User removed from community blacklist",
           "type": "boolean"
         }
       ],
@@ -11525,6 +11483,16 @@
           "name": "API_ERROR_MESSAGES_PRIVACY",
           "code": 902,
           "description": "Can't send messages to this user due to their privacy settings"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_AMOUNT_EXCEEDED",
+          "code": 913,
+          "description": "Too many forwarded messages"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_ERROR",
+          "code": 921,
+          "description": "Can't forward these messages"
         }
       ],
       "responses": {
@@ -14028,6 +13996,13 @@
           "name": "q",
           "description": "Search query string.",
           "type": "string"
+        },
+        {
+          "name": "offset",
+          "description": "Offset for querying specific result subset",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
         },
         {
           "name": "limit",

@@ -2093,6 +2093,10 @@
                 "description": "User ID",
                 "minimum": 1
               }
+            },
+            "count_unread": {
+              "type": "integer",
+              "description": "Total unread requests number"
             }
           },
           "additionalProperties": false
@@ -2568,25 +2572,6 @@
       },
       "additionalProperties": false
     },
-    "groups_getCallbackServerSettings_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "server_url": {
-              "type": "string",
-              "description": "Server URL"
-            },
-            "secret_key": {
-              "type": "string",
-              "description": "Callback API secret key"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
     "groups_getCallbackSettings_response": {
       "type": "object",
       "properties": {
@@ -2666,46 +2651,6 @@
               "$ref": "objects.json#/definitions/base_bool_int"
             }
           }
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_setCallbackServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "state_code": {
-              "type": "integer",
-              "description": "State code",
-              "enum": [
-                1,
-                2,
-                3,
-                4
-              ],
-              "enumNames": [
-                "ok",
-                "wait",
-                "incorrect",
-                "failed"
-              ]
-            },
-            "state": {
-              "type": "string",
-              "description": "State"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_setCallbackServerSettings_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "$ref": "objects.json#/definitions/base_ok_response"
         }
       },
       "additionalProperties": false
@@ -4098,6 +4043,12 @@
                 }
               }
             },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/groups_group"
+              }
+            },
             "messages": {
               "$ref": "objects.json#/definitions/messages_longpoll_messages"
             },
@@ -4596,6 +4547,12 @@
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/wall_wallpost_full"
+              }
+            },
+            "suggested_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
             }
           }
@@ -5921,9 +5878,20 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/search_hint"
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/search_hint"
+              }
+            },
+            "suggested_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         }
       },
