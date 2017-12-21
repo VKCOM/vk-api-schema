@@ -2440,13 +2440,6 @@
     {
       "name": "friends.getAppUsers",
       "description": "Returns a list of IDs of the current user's friends who installed the application.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/friends_getAppUsers_response"
@@ -2484,13 +2477,6 @@
     {
       "name": "friends.deleteAllRequests",
       "description": "Marks all incoming friend requests as viewed.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/friends_deleteAllRequests_response"
@@ -10515,13 +10501,6 @@
     {
       "name": "places.getTypes",
       "description": "Returns a list of all types of locations.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/places_getTypes_response"
@@ -10598,11 +10577,6 @@
           "name": "voip",
           "description": "'1' if videocalls are available for current device.",
           "type": "boolean"
-        },
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
         }
       ],
       "responses": {
@@ -11018,13 +10992,6 @@
     {
       "name": "account.getProfileInfo",
       "description": "Returns the current account info.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/account_getProfileInfo_response"
@@ -13942,13 +13909,6 @@
     {
       "name": "notifications.markAsViewed",
       "description": "Resets the counter of new notifications about other users' feedback to the current user's wall posts.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/notifications_markAsViewed_response"
@@ -13990,13 +13950,7 @@
     },
     {
       "name": "stats.trackVisitor",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
+      "parameters": [],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/stats_trackVisitor_response"
@@ -14282,13 +14236,6 @@
     {
       "name": "apps.deleteAppRequests",
       "description": "Deletes all request notifications from the current app.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/apps_deleteAppRequests_response"
@@ -14857,13 +14804,6 @@
     {
       "name": "ads.getAccounts",
       "description": "Returns a list of advertising accounts.",
-      "parameters": [
-        {
-          "name": "token",
-          "description": "client 'access_token'",
-          "type": "string"
-        }
-      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ads_getAccounts_response"
