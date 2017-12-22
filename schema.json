@@ -159,10 +159,19 @@
           "type": "string",
           "description": "Method description"
         },
-        "open": {
-          "type": "boolean",
-          "default": false,
-          "description": "Is it open method"
+        "access_token_type": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "open",
+              "user",
+              "group",
+              "service"
+            ],
+            "description": "Access token type"
+          },
+          "description": "Input parameters for method"
         },
         "parameters": {
           "type": "array",

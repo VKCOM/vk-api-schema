@@ -1660,30 +1660,6 @@
         "user_id"
       ]
     },
-    "audio_audio_album": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Album ID",
-          "minimum": 1
-        },
-        "owner_id": {
-          "type": "integer",
-          "description": "Album owner's ID"
-        },
-        "title": {
-          "type": "string",
-          "description": "Album title"
-        }
-      },
-      "required": [
-        "id",
-        "owner_id",
-        "title"
-      ],
-      "additionalProperties": false
-    },
     "audio_audio": {
       "type": "object",
       "properties": {
@@ -1961,10 +1937,6 @@
         },
         "photo": {
           "$ref": "#/definitions/photos_photo"
-        },
-        "is_external": {
-          "description": "Information whether the link is external",
-          "$ref": "#/definitions/base_bool_int"
         },
         "preview_url": {
           "type": "string",
@@ -2776,6 +2748,28 @@
       },
       "additionalProperties": false
     },
+    "friends_mutual_friend": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User ID"
+        },
+        "common_count": {
+          "type": "integer",
+          "description": "Total mutual friends number"
+        },
+        "common_friends": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "friends_friend_status": {
       "type": "object",
       "properties": {
@@ -3117,6 +3111,23 @@
       ],
       "additionalProperties": false
     },
+    "groups_group_ban_info": {
+      "type": "object",
+      "properties": {
+        "end_date": {
+          "type": "integer",
+          "description": "End date of ban in Unixtime"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Ban comment"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
     "groups_group": {
       "type": "object",
       "properties": {
@@ -3131,6 +3142,10 @@
         "screen_name": {
           "type": "string",
           "description": "Domain of the community page"
+        },
+        "deactivated": {
+          "type": "string",
+          "description": "Information whether community is banned"
         },
         "is_closed": {
           "type": "integer",
@@ -3281,6 +3296,10 @@
               "description": "Information whether current user can upload video",
               "$ref": "#/definitions/base_bool_int"
             },
+            "has_photo": {
+              "description": "Information whether community has photo",
+              "$ref": "#/definitions/base_bool_int"
+            },
             "status": {
               "type": "string",
               "description": "Community status"
@@ -3345,10 +3364,6 @@
               "type": "integer",
               "description": "Finish date of event in Unixtime"
             },
-            "deactivated": {
-              "type": "string",
-              "description": "Information whether community is banned"
-            },
             "age_limits": {
               "type": "integer",
               "enum": [
@@ -3362,6 +3377,10 @@
                 "over 18"
               ],
               "description": "Information whether age limit"
+            },
+            "ban_info": {
+              "$ref": "#/definitions/groups_group_ban_info",
+              "description": "User ban info"
             }
           }
         }
@@ -3475,11 +3494,11 @@
           "description": "Link URL"
         },
         "edit_title": {
-          "type": "integer",
-          "description": "Information whether the link title can be edited"
+          "description": "Information whether the link title can be edited",
+          "$ref": "#/definitions/base_bool_int"
         },
         "name": {
-          "type": "integer",
+          "type": "string",
           "description": "Link title"
         },
         "desc": {
@@ -4422,7 +4441,22 @@
       ],
       "additionalProperties": false
     },
-    "messages_attachments_history": {
+    "messages_history_attachment": {
+      "type": "object",
+      "properties": {
+        "message_id": {
+          "type": "integer",
+          "description": "Message ID"
+        },
+        "attachment": {
+          "$ref": "#/definitions/messages_history_message_attachment"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "messages_history_message_attachment": {
       "type": "object",
       "properties": {
         "type": {
@@ -4433,7 +4467,10 @@
             "video",
             "audio",
             "doc",
-            "link"
+            "link",
+            "market",
+            "wall",
+            "share"
           ]
         },
         "photo": {
@@ -4449,6 +4486,15 @@
           "$ref": "#/definitions/docs_doc"
         },
         "link": {
+          "$ref": "#/definitions/base_link"
+        },
+        "market": {
+          "$ref": "#/definitions/base_link"
+        },
+        "wall": {
+          "$ref": "#/definitions/base_link"
+        },
+        "share": {
           "$ref": "#/definitions/base_link"
         }
       },
@@ -4660,6 +4706,14 @@
         "out_read": {
           "type": "integer",
           "description": "ID of the last message read by the others"
+        },
+        "important": {
+          "description": "Is it an important dialog",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "unanswered": {
+          "description": "Is it an unanswered dialog",
+          "$ref": "#/definitions/base_bool_int"
         }
       }
     },
@@ -4750,6 +4804,10 @@
         },
         "deleted": {
           "description": "Is it an deleted message",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "emoji": {
+          "description": "Whether the message contains smiles",
           "$ref": "#/definitions/base_bool_int"
         },
         "fwd_messages": {
@@ -5148,17 +5206,6 @@
         "title": {
           "type": "string",
           "description": "List title"
-        },
-        "no_reposts": {
-          "description": "Information whether reposts hiding is enabled",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "source_ids": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "description": "Users and communities IDs"
-          }
         }
       },
       "required": [
@@ -5166,6 +5213,28 @@
         "title"
       ],
       "additionalProperties": false
+    },
+    "newsfeed_list_full": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/newsfeed_list"
+        },
+        {
+          "properties": {
+            "no_reposts": {
+              "description": "Information whether reposts hiding is enabled",
+              "$ref": "#/definitions/base_bool_int"
+            },
+            "source_ids": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "description": "Users and communities IDs"
+              }
+            }
+          }
+        }
+      ]
     },
     "newsfeed_newsfeed_note": {
       "type": "object",
@@ -7310,6 +7379,173 @@
         }
       }
     },
+    "utils_short_link": {
+      "type": "object",
+      "properties": {
+        "short_url": {
+          "type": "string",
+          "description": "Short link URL"
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for private stats"
+        },
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "url": {
+          "type": "string",
+          "description": "Full URL"
+        }
+      }
+    },
+    "utils_last_shortened_link": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Creation time in Unixtime"
+        },
+        "url": {
+          "type": "string",
+          "description": "Full URL"
+        },
+        "short_url": {
+          "type": "string",
+          "description": "Short link URL"
+        },
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Total views number"
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for private stats"
+        }
+      }
+    },
+    "utils_link_stats": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/utils_stats"
+          }
+        }
+      }
+    },
+    "utils_link_stats_extended": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/utils_stats_extended"
+          }
+        }
+      }
+    },
+    "utils_stats": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Start time"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Total views number"
+        }
+      }
+    },
+    "utils_stats_extended": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Start time"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Total views number"
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/utils_stats_sex_age"
+          }
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/utils_stats_country"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/utils_stats_city"
+          }
+        }
+      }
+    },
+    "utils_stats_sex_age": {
+      "type": "object",
+      "properties": {
+        "age_range": {
+          "type": "string",
+          "description": "Age denotation"
+        },
+        "female": {
+          "type": "integer",
+          "description": " Views by female users"
+        },
+        "male": {
+          "type": "integer",
+          "description": " Views by male users"
+        }
+      }
+    },
+    "utils_stats_country": {
+      "type": "object",
+      "properties": {
+        "country_id": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Views number"
+        }
+      }
+    },
+    "utils_stats_city": {
+      "type": "object",
+      "properties": {
+        "city_id": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Views number"
+        }
+      }
+    },
     "utils_domain_resolved": {
       "type": "object",
       "properties": {
@@ -9068,6 +9304,16 @@
       ],
       "additionalProperties": false
     },
+    "wall_views": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Count"
+        }
+      },
+      "additionalProperties": false
+    },
     "wall_wallpost": {
       "type": "object",
       "properties": {
@@ -9086,6 +9332,10 @@
         "date": {
           "type": "integer",
           "description": "Date of publishing in Unixtime"
+        },
+        "views": {
+          "description": "Count of views",
+          "$ref": "#/definitions/wall_views"
         },
         "post_type": {
           "$ref": "#/definitions/wall_post_type"
