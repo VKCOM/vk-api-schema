@@ -8316,7 +8316,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/board_deleteComment_response"
+          "$ref": "responses.json#/definitions/ok_response"
         }
       }
     },
