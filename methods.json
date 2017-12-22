@@ -2680,6 +2680,9 @@
     {
       "name": "friends.getAppUsers",
       "description": "Returns a list of IDs of the current user's friends who installed the application.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/friends_getAppUsers_response"
@@ -2720,6 +2723,9 @@
     {
       "name": "friends.deleteAllRequests",
       "description": "Marks all incoming friend requests as viewed.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
@@ -10642,6 +10648,9 @@
     {
       "name": "places.getTypes",
       "description": "Returns a list of all types of locations.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/places_getTypes_response"
@@ -10738,6 +10747,9 @@
     {
       "name": "account.setOffline",
       "description": "Marks a current user as offline.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
@@ -11184,6 +11196,9 @@
     {
       "name": "account.getProfileInfo",
       "description": "Returns the current account info.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/account_getProfileInfo_response"
@@ -14447,6 +14462,9 @@
     {
       "name": "notifications.markAsViewed",
       "description": "Resets the counter of new notifications about other users' feedback to the current user's wall posts.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/notifications_markAsViewed_response"
@@ -14491,6 +14509,9 @@
     },
     {
       "name": "stats.trackVisitor",
+      "access_token_type": [
+        "user"
+      ],
       "parameters": [],
       "responses": {
         "response": {
@@ -14794,6 +14815,9 @@
     {
       "name": "apps.deleteAppRequests",
       "description": "Deletes all request notifications from the current app.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
@@ -15576,6 +15600,9 @@
     {
       "name": "ads.getAccounts",
       "description": "Returns a list of advertising accounts.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ads_getAccounts_response"
