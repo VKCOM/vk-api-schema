@@ -2680,6 +2680,9 @@
     {
       "name": "friends.getAppUsers",
       "description": "Returns a list of IDs of the current user's friends who installed the application.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/friends_getAppUsers_response"
@@ -2720,6 +2723,9 @@
     {
       "name": "friends.deleteAllRequests",
       "description": "Marks all incoming friend requests as viewed.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
@@ -7634,28 +7640,6 @@
       }
     },
     {
-      "name": "groups.getCallbackServerSettings",
-      "description": "Returns [vk.com/dev/callback_api|Callback API] server settings for the community.",
-      "access_token_type": [
-        "user",
-        "group"
-      ],
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_getCallbackServerSettings_response"
-        }
-      }
-    },
-    {
       "name": "groups.getCallbackSettings",
       "description": "Returns [vk.com/dev/callback_api|Callback API] notifications settings.",
       "access_token_type": [
@@ -7669,65 +7653,17 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/groups_getCallbackSettings_response"
-        }
-      }
-    },
-    {
-      "name": "groups.setCallbackServer",
-      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server URL for the community.",
-      "access_token_type": [
-        "user",
-        "group"
-      ],
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        {
-          "name": "server_url",
-          "description": "Server URL.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/groups_setCallbackServer_response"
-        }
-      }
-    },
-    {
-      "name": "groups.setCallbackServerSettings",
-      "description": "Allow to set [vk.com/dev/callback_api|Callback API] server settings.",
-      "access_token_type": [
-        "user",
-        "group"
-      ],
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        {
-          "name": "secret_key",
-          "description": "Callback API secret key.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/ok_response"
         }
       }
     },
@@ -7745,6 +7681,12 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "message_new",
@@ -7904,6 +7846,16 @@
         {
           "name": "group_leave",
           "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "user_block",
+          "description": "User added to community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "user_unblock",
+          "description": "User removed from community blacklist",
           "type": "boolean"
         }
       ],
@@ -8364,7 +8316,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/board_deleteComment_response"
+          "$ref": "responses.json#/definitions/ok_response"
         }
       }
     },
@@ -10696,6 +10648,9 @@
     {
       "name": "places.getTypes",
       "description": "Returns a list of all types of locations.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/places_getTypes_response"
@@ -10792,6 +10747,9 @@
     {
       "name": "account.setOffline",
       "description": "Marks a current user as offline.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
@@ -11238,6 +11196,9 @@
     {
       "name": "account.getProfileInfo",
       "description": "Returns the current account info.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/account_getProfileInfo_response"
@@ -11789,6 +11750,16 @@
           "name": "API_ERROR_MESSAGES_PRIVACY",
           "code": 902,
           "description": "Can't send messages to this user due to their privacy settings"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_AMOUNT_EXCEEDED",
+          "code": 913,
+          "description": "Too many forwarded messages"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_ERROR",
+          "code": 921,
+          "description": "Can't forward these messages"
         }
       ],
       "responses": {
@@ -14491,6 +14462,9 @@
     {
       "name": "notifications.markAsViewed",
       "description": "Resets the counter of new notifications about other users' feedback to the current user's wall posts.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/notifications_markAsViewed_response"
@@ -14535,6 +14509,9 @@
     },
     {
       "name": "stats.trackVisitor",
+      "access_token_type": [
+        "user"
+      ],
       "parameters": [],
       "responses": {
         "response": {
@@ -14587,6 +14564,13 @@
           "name": "q",
           "description": "Search query string.",
           "type": "string"
+        },
+        {
+          "name": "offset",
+          "description": "Offset for querying specific result subset",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
         },
         {
           "name": "limit",
@@ -14831,6 +14815,9 @@
     {
       "name": "apps.deleteAppRequests",
       "description": "Deletes all request notifications from the current app.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
@@ -15613,6 +15600,9 @@
     {
       "name": "ads.getAccounts",
       "description": "Returns a list of advertising accounts.",
+      "access_token_type": [
+        "user"
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ads_getAccounts_response"
