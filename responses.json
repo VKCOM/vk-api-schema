@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json-schema.org/draft-06/schema",
   "title": "responses",
   "definitions": {
     "ok_response": {
@@ -2130,15 +2131,6 @@
               "$ref": "objects.json#/definitions/base_bool_int"
             }
           }
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_setCallbackSettings_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "$ref": "objects.json#/definitions/base_ok_response"
         }
       },
       "additionalProperties": false
@@ -4888,18 +4880,16 @@
       "properties": {
         "response": {
           "type": "object",
-          "properties": {
+          "items": {
+            "type": "array",
             "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/search_hint"
-              }
-            },
-            "suggested_queries": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
+              "$ref": "objects.json#/definitions/search_hint"
+            }
+          },
+          "suggested_queries": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         }
