@@ -11412,12 +11412,12 @@
       "parameters": [
         {
           "name": "offset",
-          "description": "Offset needed to return a specific subset of messages.",
+          "description": "Offset needed to return a specific subset of conversations.",
           "type": "integer"
         },
         {
           "name": "count",
-          "description": "Number of messages to return.",
+          "description": "Number of conversations to return.",
           "type": "integer",
           "minimum": 0,
           "default": 20,
@@ -11437,17 +11437,17 @@
         },
         {
           "name": "unread",
-          "description": "'1' — return dialogs with unread messages only.",
+          "description": "'1' — return conversations with unread messages only.",
           "type": "boolean"
         },
         {
           "name": "important",
-          "description": "'1' — return important dialogs only.",
+          "description": "'1' — return important conversations only.",
           "type": "boolean"
         },
         {
           "name": "unanswered",
-          "description": "'1' — return unanswered dialogs only.",
+          "description": "'1' — return unanswered conversations only.",
           "type": "boolean"
         }
       ],
@@ -11912,8 +11912,7 @@
         {
           "name": "important",
           "description": "'1' — to add a star (mark as important), '0' — to remove the star",
-          "type": "integer",
-          "minimum": 0
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -11941,8 +11940,7 @@
         {
           "name": "important",
           "description": "'1' — to add a star (mark as important), '0' — to remove the star",
-          "type": "integer",
-          "minimum": 0
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -11970,8 +11968,7 @@
         {
           "name": "important",
           "description": "'1' — to add a star (mark as important), '0' — to remove the star",
-          "type": "integer",
-          "minimum": 0
+          "type": "boolean"
         }
       ],
       "responses": {

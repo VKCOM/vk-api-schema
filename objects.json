@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "objects",
   "definitions": {
     "account_account_counters": {
@@ -1734,7 +1734,7 @@
               "$ref": "#/definitions/base_bool_int"
             },
             "is_hq": {
-            "$ref": "#/definitions/base_bool_int"
+              "$ref": "#/definitions/base_bool_int"
             }
           },
           "required": [
@@ -1803,11 +1803,11 @@
           "description": "Comments number"
         },
         "can_post": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can comment the post"
         },
         "groups_can_post": {
-          "type": "integer",
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether groups can comment the post"
         }
       }
@@ -1890,11 +1890,11 @@
           "description": "Information whether current uer has liked the post"
         },
         "can_like": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can like the post"
         },
         "can_publish": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can repost"
         }
       },
@@ -3348,7 +3348,7 @@
               ]
             },
             "trending": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether the community has a \"fire\" pictogram."
             },
             "can_message": {
@@ -4842,6 +4842,9 @@
           "type": "integer",
           "description": "Chat ID"
         },
+        "geo": {
+          "$ref": "#/definitions/base_geo"
+        },
         "chat_active": {
           "type": "array",
           "items": {
@@ -4898,9 +4901,6 @@
         "photo_200": {
           "type": "string",
           "description": "URL of the preview image with 200px in width"
-        },
-        "geo": {
-          "$ref": "#/definitions/base_geo"
         }
       }
     },
@@ -7847,11 +7847,11 @@
               "description": "ID of the user's main photo"
             },
             "has_photo": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether the user has main photo"
             },
             "trending": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether the community has a \"fire\" pictogram."
             },
             "has_mobile": {
@@ -8629,15 +8629,15 @@
           "description": "Comments number"
         },
         "can_add": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can add the video"
         },
         "can_edit": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can edit the video"
         },
         "is_private": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether the video is private"
         },
         "count": {
@@ -9392,7 +9392,7 @@
           "description": "Post text"
         },
         "can_delete": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can delete the post"
         },
         "signer_id": {
@@ -9593,7 +9593,7 @@
               }
             },
             "can_edit": {
-              "$ref": "#/definitions/base_bool_int"
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether current user can edit the post"
             },
             "created_by": {
@@ -9601,11 +9601,11 @@
               "description": "Post creator ID (if post still can be edited)"
             },
             "can_delete": {
-              "$ref": "#/definitions/base_bool_int"
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether current user can delete the post"
             },
             "can_pin": {
-              "$ref": "#/definitions/base_bool_int"
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether current user can pin the post"
             },
             "is_pinned": {
@@ -9622,7 +9622,7 @@
               "$ref": "#/definitions/base_reposts_info"
             },
             "marked_as_ads": {
-              "type": "integer",
+              "$ref": "#/definitions/base_bool_int",
               "description": "Information whether the post is marked as ads"
             }
           }
@@ -9660,7 +9660,7 @@
           "description": "Comment text"
         },
         "can_delete": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can delete the comment"
         },
         "media": {
@@ -9729,7 +9729,7 @@
           "description": "Comments number"
         },
         "can_post": {
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can comment the post"
         },
         "replies": {

@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "API",
   "description": "API declaration",
   "type": "object",
@@ -64,6 +64,19 @@
             },
             "minimum": {
               "type": "number"
+            },
+            "enum": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "enumNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "uniqueItems": true
             }
           },
           "required": [
@@ -88,6 +101,14 @@
         },
         "enum": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "enumNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "minItems": 1,
           "uniqueItems": true
         },
