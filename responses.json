@@ -3278,7 +3278,7 @@
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/groups_group"
+                "$ref": "objects.json#/definitions/groups_group"
               }
             },
             "messages": {

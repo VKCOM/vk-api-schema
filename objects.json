@@ -459,6 +459,7 @@
       }
     },
     "account_user_xtr_contact": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -1493,6 +1494,7 @@
       "additionalProperties": false
     },
     "ads_post_stats": {
+      "type": "object",
       "allOf": [
         {
           "properties": {
@@ -1698,6 +1700,7 @@
       "additionalProperties": false
     },
     "audio_audio_full": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/audio_audio"
@@ -2216,9 +2219,6 @@
           "description": "Hieght in px"
         }
       },
-      "required": [
-        "id"
-      ],
       "additionalProperties": false
     },
     "base_user_id": {
@@ -2302,14 +2302,13 @@
         }
       },
       "required": [
-        "id",
+        "poll_id",
         "owner_id",
         "created",
         "question",
         "votes",
         "answer_id",
-        "answers",
-        "anonymous"
+        "answers"
       ],
       "additionalProperties": false
     },
@@ -2418,6 +2417,7 @@
       "additionalProperties": false
     },
     "database_city": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/base_object"
@@ -2818,6 +2818,7 @@
       "additionalProperties": false
     },
     "friends_user_xtr_lists": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -2836,6 +2837,7 @@
       ]
     },
     "friends_user_xtr_phone": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -3126,9 +3128,6 @@
           "description": "Ban comment"
         }
       },
-      "required": [
-        "enabled"
-      ],
       "additionalProperties": false
     },
     "groups_group": {
@@ -3210,6 +3209,7 @@
       }
     },
     "groups_group_full": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/groups_group"
@@ -4068,6 +4068,7 @@
       ]
     },
     "groups_user_xtr_role": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -4456,7 +4457,7 @@
         }
       },
       "required": [
-        "type"
+        "attachment"
       ]
     },
     "messages_history_message_attachment": {
@@ -4905,6 +4906,7 @@
       }
     },
     "messages_user_xtr_invited_by": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_xtr_type"
@@ -5006,23 +5008,26 @@
         }
       }
     },
+    "newsfeed_item_friend_friends": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Number of friends has been added"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/base_user_id"
+          }
+        }
+      }
+    },
     "newsfeed_item_friend": {
       "type": "object",
       "properties": {
         "friends": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Number of friends has been added"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/base_user_id"
-              }
-            }
-          }
+          "$ref": "#/definitions/newsfeed_item_friend_friends"
         }
       }
     },
@@ -5218,6 +5223,7 @@
       "additionalProperties": false
     },
     "newsfeed_list_full": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/newsfeed_list"
@@ -5261,6 +5267,7 @@
       }
     },
     "newsfeed_newsfeed_photo": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/photos_photo"
@@ -5375,7 +5382,6 @@
         "id",
         "owner_id",
         "comments",
-        "read_comments",
         "date",
         "title",
         "view_url"
@@ -5417,6 +5423,26 @@
         }
       }
     },
+    "notifications_notification_parent": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/wall_wallpost_to_id"
+        },
+        {
+          "$ref": "#/definitions/photos_photo"
+        },
+        {
+          "$ref": "#/definitions/board_topic"
+        },
+        {
+          "$ref": "#/definitions/video_video"
+        },
+        {
+          "$ref": "#/definitions/notifications_notifications_comment"
+        }
+      ]
+    },
     "notifications_notification": {
       "type": "object",
       "properties": {
@@ -5429,23 +5455,7 @@
           "description": "Date when the event has been occured"
         },
         "parent": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/wall_wallpost_to_id"
-            },
-            {
-              "$ref": "#/definitions/photos_photo"
-            },
-            {
-              "$ref": "#/definitions/board_topic"
-            },
-            {
-              "$ref": "#/definitions/video_video"
-            },
-            {
-              "$ref": "#/definitions/notifications_notifications_comment"
-            }
-          ]
+          "$ref": "#/definitions/notifications_notification_parent"
         },
         "feedback": {
           "$ref": "#/definitions/notifications_feedback"
@@ -7670,6 +7680,7 @@
       }
     },
     "users_user": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_min"
@@ -7709,6 +7720,7 @@
       ]
     },
     "users_user_full_xtr_type": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -7727,6 +7739,7 @@
       ]
     },
     "users_user_xtr_type": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user"
@@ -7776,6 +7789,7 @@
       "additionalProperties": false
     },
     "users_user_broadcast": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_min"
@@ -7790,6 +7804,7 @@
       ]
     },
     "users_user_full": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user"
@@ -8430,6 +8445,7 @@
       "additionalProperties": false
     },
     "users_user_xtr_counters": {
+      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/users_user_full"
@@ -8716,10 +8732,6 @@
         "tagged_name",
         "placer_id",
         "date",
-        "x",
-        "y",
-        "x2",
-        "y2",
         "viewed"
       ],
       "additionalProperties": false
