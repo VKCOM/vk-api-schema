@@ -75,6 +75,17 @@
       },
       "additionalProperties": false
     },
+    "account_name_request_status": {
+      "type": "string",
+      "description": "Request status",
+      "enum": [
+        "success",
+        "processing",
+        "declined",
+        "was_accepted",
+        "was_declined"
+      ]
+    },
     "account_name_request": {
       "type": "object",
       "properties": {
@@ -83,15 +94,7 @@
           "description": "Request ID needed to cancel the request"
         },
         "status": {
-          "type": "string",
-          "description": "Request status",
-          "enum": [
-            "success",
-            "processing",
-            "declined",
-            "was_accepted",
-            "was_declined"
-          ]
+          "$ref": "#/definitions/account_name_request_status"
         },
         "first_name": {
           "type": "string",
@@ -199,33 +202,38 @@
         }
       }
     },
+    "account_push_params_mode": {
+      "type": "string",
+      "description": "Settings parameters",
+      "enum": [
+        "on",
+        "off",
+        "no_sound",
+        "no_text"
+      ]
+    },
+    "account_push_params_settings": {
+      "type": "string",
+      "description": "Settings parameters",
+      "enum": [
+        "on",
+        "off",
+        "fr_of_fr"
+      ]
+    },
     "account_push_params": {
       "type": "object",
       "properties": {
         "msg": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "no_sound",
-              "no_text"
-            ]
+            "$ref": "#/definitions/account_push_params_mode"
           }
         },
         "chat": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "no_sound",
-              "no_text"
-            ]
+            "$ref": "#/definitions/account_push_params_mode"
           }
         },
         "friend": {
@@ -255,49 +263,25 @@
         "comment": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "fr_of_fr "
-            ]
+            "$ref": "#/definitions/account_push_params_settings"
           }
         },
         "mention": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "fr_of_fr "
-            ]
+            "$ref": "#/definitions/account_push_params_settings"
           }
         },
         "like": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "fr_of_fr "
-            ]
+            "$ref": "#/definitions/account_push_params_settings"
           }
         },
         "repost": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "fr_of_fr "
-            ]
+            "$ref": "#/definitions/account_push_params_settings"
           }
         },
         "wall_post": {
@@ -333,13 +317,7 @@
         "photos_tag": {
           "type": "array",
           "items": {
-            "type": "string",
-            "description": "Settings parameters",
-            "enum": [
-              "on",
-              "off",
-              "fr_of_fr "
-            ]
+            "$ref": "#/definitions/account_push_params_settings"
           }
         },
         "app_request": {
@@ -499,7 +477,7 @@
           "$ref": "#/definitions/base_bool_int"
         },
         "intro": {
-          "description": "Information whether user has been processed intro ",
+          "description": "Information whether user has been processed intro",
           "$ref": "#/definitions/base_bool_int"
         },
         "lang": {
@@ -534,6 +512,14 @@
         }
       }
     },
+    "ads_account_type": {
+      "type": "string",
+      "description": "Account type",
+      "enum": [
+        "general",
+        "agency"
+      ]
+    },
     "ads_account": {
       "type": "object",
       "properties": {
@@ -542,12 +528,7 @@
           "description": "Account ID"
         },
         "account_type": {
-          "type": "string",
-          "description": "Account type",
-          "enum": [
-            "general",
-            "agency"
-          ]
+          "$ref": "#/definitions/ads_account_type"
         },
         "account_status": {
           "description": "Information whether account is active",
@@ -565,6 +546,48 @@
       ],
       "additionalProperties": false
     },
+    "ads_ad_cost_type": {
+      "type": "integer",
+      "description": "Cost type",
+      "enum": [
+        0,
+        1
+      ],
+      "enumNames": [
+        "per clicks",
+        "per impressions"
+      ]
+    },
+    "ads_ad_status": {
+      "type": "integer",
+      "description": "Ad atatus",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "stopped",
+        "started",
+        "deleted"
+      ]
+    },
+    "ads_ad_approved": {
+      "type": "integer",
+      "description": "Review status",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "not moderated",
+        "pending moderation",
+        "approved",
+        "rejected"
+      ]
+    },
     "ads_ad": {
       "type": "object",
       "properties": {
@@ -581,16 +604,7 @@
           "description": "Ad format"
         },
         "cost_type": {
-          "type": "integer",
-          "description": "Cost type",
-          "enum": [
-            0,
-            1
-          ],
-          "enumNames": [
-            "per clicks",
-            "per impressions"
-          ]
+          "$ref": "#/definitions/ads_ad_cost_type"
         },
         "cpc": {
           "type": "integer",
@@ -605,9 +619,8 @@
           "description": "Impressions limit"
         },
         "impressions_limited": {
-          "type": "integer",
-          "description": "Information whether impressions are limited",
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether impressions are limited"
         },
         "ad_platform": {
           "type": [
@@ -629,38 +642,14 @@
           "description": "Additional category ID"
         },
         "status": {
-          "type": "integer",
-          "description": "Ad atatus",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "stopped",
-            "started",
-            "deleted"
-          ]
+          "$ref": "#/definitions/ads_ad_status"
         },
         "name": {
           "type": "string",
           "description": "Ad title"
         },
         "approved": {
-          "type": "integer",
-          "description": "Review status",
-          "enum": [
-            0,
-            1,
-            2,
-            3
-          ],
-          "enumNames": [
-            "not moderated",
-            "pending moderation",
-            "approved",
-            "rejected"
-          ]
+          "$ref": "#/definitions/ads_ad_approved"
         },
         "video": {
           "description": "Information whether the ad is a video",
@@ -691,6 +680,18 @@
       ],
       "additionalProperties": false
     },
+    "ads_ad_layout_cost_type": {
+      "type": "integer",
+      "description": "Cost type",
+      "enum": [
+        0,
+        1
+      ],
+      "enumNames": [
+        "per clicks",
+        "per impressions"
+      ]
+    },
     "ads_ad_layout": {
       "type": "object",
       "properties": {
@@ -707,16 +708,7 @@
           "description": "Ad format"
         },
         "cost_type": {
-          "type": "integer",
-          "description": "Cost type",
-          "enum": [
-            0,
-            1
-          ],
-          "enumNames": [
-            "per clicks",
-            "per impressions"
-          ]
+          "$ref": "#/definitions/ads_ad_layout_cost_type"
         },
         "video": {
           "description": "Information whether the ad is a video",
@@ -766,6 +758,30 @@
       ],
       "additionalProperties": false
     },
+    "ads_campaign_type": {
+      "type": "string",
+      "description": "Campaign type",
+      "enum": [
+        "normal",
+        "vk_apps_managed",
+        "mobile_apps",
+        "promoted_posts"
+      ]
+    },
+    "ads_campaign_status": {
+      "type": "integer",
+      "description": "Campaign status",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "stopped",
+        "started",
+        "deleted"
+      ]
+    },
     "ads_campaign": {
       "type": "object",
       "properties": {
@@ -774,32 +790,14 @@
           "description": "Campaign ID"
         },
         "type": {
-          "type": "string",
-          "description": "Campaign type",
-          "enum": [
-            "normal",
-            "vk_apps_managed",
-            "mobile_apps",
-            "promoted_posts"
-          ]
+          "$ref": "#/definitions/ads_campaign_type"
         },
         "name": {
           "type": "string",
           "description": "Campaign title"
         },
         "status": {
-          "type": "integer",
-          "description": "Campaign status",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "stopped",
-            "started",
-            "deleted"
-          ]
+          "$ref": "#/definitions/ads_campaign_status"
         },
         "day_limit": {
           "type": "string",
@@ -883,22 +881,25 @@
       ],
       "additionalProperties": false
     },
+    "ads_criteria_sex": {
+      "type": "integer",
+      "description": "Sex",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "any",
+        "male",
+        "female"
+      ]
+    },
     "ads_criteria": {
       "type": "object",
       "properties": {
         "sex": {
-          "type": "integer",
-          "description": "Sex",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "any",
-            "male",
-            "female"
-          ]
+          "$ref": "#/definitions/ads_criteria_sex"
         },
         "age_from": {
           "type": "integer",
@@ -1278,6 +1279,18 @@
         }
       }
     },
+    "ads_stats_sex_value": {
+      "type": "string",
+      "description": "Sex",
+      "enum": [
+        "f",
+        "m"
+      ],
+      "enumNames": [
+        "female",
+        "male"
+      ]
+    },
     "ads_stats_sex": {
       "type": "object",
       "properties": {
@@ -1290,16 +1303,7 @@
           "description": "Clicks rate"
         },
         "value": {
-          "type": "string",
-          "description": "Sex",
-          "enum": [
-            "f",
-            "m"
-          ],
-          "enumNames": [
-            "female",
-            "male"
-          ]
+          "$ref": "#/definitions/ads_stats_sex_value"
         }
       }
     },
@@ -1391,6 +1395,16 @@
       },
       "additionalProperties": false
     },
+    "ads_targ_suggestions_schools_type": {
+      "type": "string",
+      "description": "School type",
+      "enum": [
+        "school",
+        "university",
+        "faculty",
+        "chair"
+      ]
+    },
     "ads_targ_suggestions_schools": {
       "type": "object",
       "properties": {
@@ -1407,14 +1421,7 @@
           "description": "Full school title"
         },
         "type": {
-          "type": "string",
-          "description": "School type",
-          "enum": [
-            "school",
-            "university",
-            "faculty",
-            "chair"
-          ]
+          "$ref": "#/definitions/ads_targ_suggestions_schools_type"
         },
         "parent": {
           "type": "string",
@@ -1509,6 +1516,30 @@
         }
       ]
     },
+    "apps_app_type": {
+      "type": "string",
+      "description": "Application type",
+      "enum": [
+        "app",
+        "game",
+        "site",
+        "standalone"
+      ]
+    },
+    "apps_app_leaderboard_type": {
+      "type": "integer",
+      "description": "Leaderboard type",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "not supported",
+        "levels",
+        "points"
+      ]
+    },
     "apps_app": {
       "type": "object",
       "properties": {
@@ -1553,14 +1584,7 @@
           "description": "URL of the app banner with 1120 px in width"
         },
         "type": {
-          "type": "string",
-          "description": "Application type",
-          "enum": [
-            "app",
-            "game",
-            "site",
-            "standalone"
-          ]
+          "$ref": "#/definitions/apps_app_type"
         },
         "section": {
           "type": "string",
@@ -1601,18 +1625,7 @@
           "description": "Information whether the application is multilanguage"
         },
         "leaderboard_type": {
-          "type": "integer",
-          "description": "Leaderboard type",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "not supported",
-            "levels",
-            "points"
-          ]
+          "$ref": "#/definitions/apps_app_leaderboard_type"
         },
         "genre_id": {
           "type": "integer",
@@ -2773,6 +2786,22 @@
       },
       "additionalProperties": false
     },
+    "friends_friend_status_status": {
+      "type": "integer",
+      "description": "Friend status with the user",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "not a friend",
+        "outcoming request",
+        "incoming request",
+        "is friend"
+      ]
+    },
     "friends_friend_status": {
       "type": "object",
       "properties": {
@@ -2782,29 +2811,15 @@
           "minimum": 1
         },
         "friend_status": {
-          "type": "integer",
-          "description": "Friend status with the user",
-          "enum": [
-            0,
-            1,
-            2,
-            3
-          ],
-          "enumNames": [
-            "not a friend",
-            "outcoming request",
-            "incoming request",
-            "is friend"
-          ]
+          "$ref": "#/definitions/friends_friend_status_status"
         },
         "request_message": {
           "type": "string",
           "description": "Message sent with request"
         },
         "read_state": {
-          "type": "integer",
-          "description": "Information whether request is unviewed",
-          "$ref": "#/definitions/base_bool_int"
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether request is unviewed"
         },
         "sign": {
           "type": "string",
@@ -2873,6 +2888,20 @@
         }
       }
     },
+    "gifts_gift_privacy": {
+      "type": "integer",
+      "description": "Gift privacy",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "name and message for all",
+        "name for all",
+        "name and message for recipient only"
+      ]
+    },
     "gifts_gift": {
       "type": "object",
       "properties": {
@@ -2896,24 +2925,31 @@
           "$ref": "#/definitions/gifts_layout"
         },
         "privacy": {
-          "type": "integer",
-          "description": "Gift privacy",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "name and message for all",
-            "name for all",
-            "name and message for recipient only"
-          ]
+          "$ref": "#/definitions/gifts_gift_privacy"
         },
         "gift_hash": {
           "type": "string",
           "description": "Hash"
         }
       }
+    },
+    "groups_ban_info_reason": {
+      "type": "integer",
+      "description": "Ban reason",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "enumNames": [
+        "other",
+        "spam",
+        "verbal abuse",
+        "strong language",
+        "flood"
+      ]
     },
     "groups_ban_info": {
       "type": "object",
@@ -2929,22 +2965,7 @@
           "minimum": 0
         },
         "reason": {
-          "type": "integer",
-          "description": "Ban reason",
-          "enum": [
-            0,
-            1,
-            2,
-            3,
-            4
-          ],
-          "enumNames": [
-            "other",
-            "spam",
-            "verbal abuse",
-            "strong language",
-            "flood"
-          ]
+          "$ref": "#/definitions/groups_ban_info_reason"
         },
         "comment": {
           "type": "string",
@@ -3130,6 +3151,43 @@
       },
       "additionalProperties": false
     },
+    "groups_group_is_closed": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "open",
+        "closed",
+        "private"
+      ],
+      "description": "Information whether community is closed"
+    },
+    "groups_group_type": {
+      "type": "string",
+      "description": "Community type",
+      "enum": [
+        "group",
+        "page",
+        "event"
+      ]
+    },
+    "groups_group_admin_level": {
+      "type": "integer",
+      "description": "Level of current user's credentials as manager",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "moderator",
+        "editor",
+        "administrator"
+      ]
+    },
     "groups_group": {
       "type": "object",
       "properties": {
@@ -3150,45 +3208,17 @@
           "description": "Information whether community is banned"
         },
         "is_closed": {
-          "type": "integer",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "open",
-            "closed",
-            "private"
-          ],
-          "description": "Information whether community is closed"
+          "$ref": "#/definitions/groups_group_is_closed"
         },
         "type": {
-          "type": "string",
-          "description": "Community type",
-          "enum": [
-            "group",
-            "page",
-            "event"
-          ]
+          "$ref": "#/definitions/groups_group_type"
         },
         "is_admin": {
           "description": "Information whether current user is administrator",
           "$ref": "#/definitions/base_bool_int"
         },
         "admin_level": {
-          "type": "integer",
-          "description": "Level of current user's credentials as manager",
-          "enum": [
-            1,
-            2,
-            3
-          ],
-          "enumNames": [
-            "moderator",
-            "editor",
-            "administrator"
-          ]
+          "$ref": "#/definitions/groups_group_admin_level"
         },
         "is_member": {
           "description": "Information whether current user is member",
@@ -3208,6 +3238,58 @@
         }
       }
     },
+    "groups_group_full_member_status": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "enumNames": [
+        "not a member",
+        "member",
+        "not sure",
+        "declined",
+        "has sent a request",
+        "invited"
+      ]
+    },
+    "groups_group_full_main_section": {
+      "type": "integer",
+      "description": "Main section of community",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "enumNames": [
+        "absent",
+        "photos",
+        "topics",
+        "audio",
+        "video",
+        "market"
+      ]
+    },
+    "groups_group_full_age_limits": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "no",
+        "over 16",
+        "over 18"
+      ]
+    },
     "groups_group_full": {
       "type": "object",
       "allOf": [
@@ -3220,24 +3302,8 @@
               "$ref": "#/definitions/groups_market_info"
             },
             "member_status": {
-              "type": "integer",
-              "description": "Current user's member status",
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5
-              ],
-              "enumNames": [
-                "not a member",
-                "member",
-                "not sure",
-                "declined",
-                "has sent a request",
-                "invited"
-              ]
+              "$ref": "#/definitions/groups_group_full_member_status",
+              "description": "Current user's member status"
             },
             "is_favorite": {
               "description": "Information whether community is in faves",
@@ -3328,24 +3394,7 @@
               "description": "Community's website"
             },
             "main_section": {
-              "type": "integer",
-              "description": "Main section of community",
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5
-              ],
-              "enumNames": [
-                "absent",
-                "photos",
-                "topics",
-                "audio",
-                "video",
-                "market"
-              ]
+              "$ref": "#/definitions/groups_group_full_main_section"
             },
             "trending": {
               "$ref": "#/definitions/base_bool_int",
@@ -3368,17 +3417,7 @@
               "description": "Finish date of event in Unixtime"
             },
             "age_limits": {
-              "type": "integer",
-              "enum": [
-                1,
-                2,
-                3
-              ],
-              "enumNames": [
-                "no",
-                "over 16",
-                "over 18"
-              ],
+              "$ref": "#/definitions/groups_group_full_age_limits",
               "description": "Information whether age limit"
             },
             "ban_info": {
@@ -3387,6 +3426,29 @@
             }
           }
         }
+      ]
+    },
+    "groups_group_xtr_invited_by_type": {
+      "type": "string",
+      "description": "Community type",
+      "enum": [
+        "group",
+        "page",
+        "event"
+      ]
+    },
+    "groups_group_xtr_invited_by_admin_level": {
+      "type": "integer",
+      "description": "Level of current user's credentials as manager",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "moderator",
+        "editor",
+        "administrator"
       ]
     },
     "groups_group_xtr_invited_by": {
@@ -3409,31 +3471,14 @@
           "$ref": "#/definitions/base_bool_int"
         },
         "type": {
-          "type": "string",
-          "description": "Community type",
-          "enum": [
-            "group",
-            "page",
-            "event"
-          ]
+          "$ref": "#/definitions/groups_group_xtr_invited_by_type"
         },
         "is_admin": {
           "description": "Information whether current user is manager",
           "$ref": "#/definitions/base_bool_int"
         },
         "admin_level": {
-          "type": "integer",
-          "description": "Level of current user's credentials as manager",
-          "enum": [
-            1,
-            2,
-            3
-          ],
-          "enumNames": [
-            "moderator",
-            "editor",
-            "administrator"
-          ]
+          "$ref": "#/definitions/groups_group_xtr_invited_by_admin_level"
         },
         "is_member": {
           "description": "Information whether current user is member",
@@ -3550,6 +3595,16 @@
         }
       }
     },
+    "groups_member_role_status": {
+      "type": "string",
+      "description": "User's credentials as community admin",
+      "enum": [
+        "moderator",
+        "editor",
+        "administrator",
+        "creator"
+      ]
+    },
     "groups_member_role": {
       "type": "object",
       "properties": {
@@ -3558,14 +3613,7 @@
           "description": "User ID"
         },
         "role": {
-          "type": "string",
-          "description": "User's credentials as community admin",
-          "enum": [
-            "moderator",
-            "editor",
-            "administrator",
-            "creator"
-          ]
+          "$ref": "#/definitions/groups_member_role_status"
         }
       }
     },
@@ -3614,6 +3662,34 @@
         "user_id"
       ],
       "additionalProperties": false
+    },
+    "groups_group_category_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "groups_group_public_category_list": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subtypes_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/groups_group_category_type"
+          }
+        }
+      }
     },
     "groups_group_settings": {
       "type": "object",
@@ -3665,6 +3741,20 @@
           "description": "Information whether the obscene filter is enabled",
           "$ref": "#/definitions/base_bool_int"
         },
+        "public_category": {
+          "type": "integer",
+          "description": "Information about the group category"
+        },
+        "public_subcategory": {
+          "type": "integer",
+          "description": "Information about the group subcategory"
+        },
+        "public_category_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/groups_group_public_category_list"
+          }
+        },
         "obscene_stopwords": {
           "description": "Information whether the stopwords filter is enabled",
           "$ref": "#/definitions/base_bool_int"
@@ -3707,6 +3797,25 @@
         "name": {
           "type": "string",
           "description": "Subject title"
+        }
+      }
+    },
+    "groups_owner_xtr_ban_info": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "group": {
+          "$ref": "#/definitions/groups_group",
+          "description": "Information about group if type = group"
+        },
+        "profile": {
+          "$ref": "#/definitions/users_user",
+          "description": "Information about group if type = profile"
+        },
+        "ban_info": {
+          "$ref": "#/definitions/groups_ban_info"
         }
       }
     },
@@ -4082,6 +4191,41 @@
         }
       ]
     },
+    "groups_token_permission_setting": {
+      "type": "object",
+      "properties": {
+        "setting": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "setting",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "groups_token_permissions": {
+      "type": "object",
+      "properties": {
+        "mask": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/groups_token_permission_setting"
+          }
+        }
+      },
+      "required": [
+        "mask"
+      ]
+    },
     "leads_lead": {
       "type": "object",
       "properties": {
@@ -4148,16 +4292,19 @@
         }
       }
     },
+    "leads_checked_result": {
+      "type": "string",
+      "description": "Information whether user can start the lead",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
     "leads_checked": {
       "type": "object",
       "properties": {
         "result": {
-          "type": "string",
-          "description": "Information whether user can start the lead",
-          "enum": [
-            "true",
-            "false"
-          ]
+          "$ref": "#/definitions/leads_checked_result"
         },
         "reason": {
           "type": "string",
@@ -4314,6 +4461,20 @@
       ],
       "additionalProperties": false
     },
+    "market_market_item_availability": {
+      "type": "integer",
+      "description": "Information whether the item is available",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "available",
+        "removed",
+        "unavailable"
+      ]
+    },
     "market_market_item": {
       "type": "object",
       "properties": {
@@ -4350,18 +4511,7 @@
           "description": "URL of the preview image"
         },
         "availability": {
-          "type": "integer",
-          "description": "Information whether the item is available",
-          "enum": [
-            0,
-            1,
-            2
-          ],
-          "enumNames": [
-            "available",
-            "removed",
-            "unavailable"
-          ]
+          "$ref": "#/definitions/market_market_item_availability"
         }
       },
       "required": [
@@ -4460,22 +4610,25 @@
         "attachment"
       ]
     },
+    "messages_history_message_attachment_type": {
+      "type": "string",
+      "description": "Attachments type",
+      "enum": [
+        "photo",
+        "video",
+        "audio",
+        "doc",
+        "link",
+        "market",
+        "wall",
+        "share"
+      ]
+    },
     "messages_history_message_attachment": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
-          "description": "Attachments type",
-          "enum": [
-            "photo",
-            "video",
-            "audio",
-            "doc",
-            "link",
-            "market",
-            "wall",
-            "share"
-          ]
+          "$ref": "#/definitions/messages_history_message_attachment_type"
         },
         "photo": {
           "$ref": "#/definitions/photos_photo"
@@ -4504,6 +4657,23 @@
       },
       "required": [
         "type"
+      ]
+    },
+    "messages_message_attachment_type": {
+      "type": "string",
+      "description": "Attachment type",
+      "enum": [
+        "photo",
+        "audio",
+        "video",
+        "doc",
+        "link",
+        "market",
+        "market_market_album",
+        "gift",
+        "sticker",
+        "wall",
+        "wall_reply"
       ]
     },
     "messages_message_attachment": {
@@ -4543,21 +4713,7 @@
           "$ref": "#/definitions/wall_wall_comment"
         },
         "type": {
-          "type": "string",
-          "description": "Attachment type",
-          "enum": [
-            "photo",
-            "audio",
-            "video",
-            "doc",
-            "link",
-            "market",
-            "market_market_album",
-            "gift",
-            "sticker",
-            "wall",
-            "wall_reply"
-          ]
+          "$ref": "messages_message_attachment_type"
         }
       },
       "required": [
@@ -4775,6 +4931,21 @@
         }
       }
     },
+    "messages_message_action_status": {
+      "type": "string",
+      "description": "Action status",
+      "enum": [
+        "chat_photo_update",
+        "chat_photo_remove",
+        "chat_create",
+        "chat_title_update",
+        "chat_invite_user",
+        "chat_kick_user",
+        "chat_pin_message",
+        "chat_unpin_message",
+        "chat_invite_user_by_link"
+      ]
+    },
     "messages_message": {
       "type": "object",
       "properties": {
@@ -4798,6 +4969,10 @@
           "type": "integer",
           "description": "Message author's ID"
         },
+        "update_time": {
+          "type": "integer",
+          "description": "Date when the message has been updated in Unixtime"
+        },
         "random_id": {
           "type": "integer",
           "description": "ID used for sending messages. It returned only for outgoing messages"
@@ -4818,7 +4993,7 @@
           "type": "array",
           "description": "Forwarded messages",
           "items": {
-            "$ref": "#/definitions/messages_message"
+            "$ref": "#/definitions/messages_fwd_message"
           }
         },
         "read_state": {
@@ -4858,18 +5033,7 @@
           "$ref": "#/definitions/messages_chat_push_settings"
         },
         "action": {
-          "type": "string",
-          "description": "Action type",
-          "enum": [
-            "chat_photo_update",
-            "chat_photo_remove",
-            "chat_create",
-            "chat_title_update",
-            "chat_invite_user",
-            "chat_kick_user",
-            "chat_pin_message",
-            "chat_unpin_message"
-          ]
+          "$ref": "#/definitions/messages_message_action_status"
         },
         "action_mid": {
           "type": "integer",
@@ -4903,7 +5067,23 @@
           "type": "string",
           "description": "URL of the preview image with 200px in width"
         }
-      }
+      },
+      "required": [
+        "date",
+        "from_id",
+        "id",
+        "out",
+        "peer_id",
+        "text"
+      ]
+    },
+    "messages_chat_settings_state": {
+      "type": "string",
+      "enum": [
+        "in",
+        "kicked",
+        "left"
+      ]
     },
     "messages_user_xtr_invited_by": {
       "type": "object",
@@ -4919,6 +5099,21 @@
             }
           }
         }
+      ]
+    },
+    "newsfeed_newsfeed_item_type": {
+      "type": "string",
+      "description": "Item type",
+      "enum": [
+        "post",
+        "photo",
+        "photo_tag",
+        "wall_photo",
+        "friend",
+        "note",
+        "audio",
+        "video",
+        "topic"
       ]
     },
     "newsfeed_newsfeed_item": {
@@ -4955,19 +5150,7 @@
         {
           "properties": {
             "type": {
-              "type": "string",
-              "description": "Item type",
-              "enum": [
-                "post",
-                "photo",
-                "photo_tag",
-                "wall_photo",
-                "friend",
-                "note",
-                "audio",
-                "video",
-                "topic"
-              ]
+              "$ref": "#/definitions/newsfeed_newsfeed_item_type"
             },
             "source_id": {
               "type": "integer",
@@ -5155,6 +5338,15 @@
         }
       }
     },
+    "newsfeed_item_wallpost_type": {
+      "type": "string",
+      "description": "Post type",
+      "enum": [
+        "post",
+        "copy",
+        "reply"
+      ]
+    },
     "newsfeed_item_wallpost": {
       "type": "object",
       "properties": {
@@ -5163,13 +5355,7 @@
           "description": "Post ID"
         },
         "post_type": {
-          "type": "string",
-          "description": "Post type",
-          "enum": [
-            "post",
-            "copy",
-            "reply"
-          ]
+          "$ref": "#/definitions/newsfeed_item_wallpost_type"
         },
         "text": {
           "type": "string",
@@ -6061,6 +6247,42 @@
         }
       }
     },
+    "photos_image_type": {
+      "type": "string",
+      "description": "Photo's type.",
+      "enum": [
+        "s",
+        "m",
+        "x",
+        "o",
+        "p",
+        "q",
+        "r",
+        "y",
+        "z",
+        "w"
+      ]
+    },
+    "photos_image": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/photos_image_type"
+        },
+        "url": {
+          "type": "string",
+          "description": "Photo URL."
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width of the photo in px."
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height of the photo in px."
+        }
+      }
+    },
     "photos_photo": {
       "type": "object",
       "properties": {
@@ -6082,35 +6304,11 @@
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1
         },
-        "sizes": {
+        "images": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/photos_photo_sizes"
+            "$ref": "#/definitions/photos_image"
           }
-        },
-        "photo_75": {
-          "type": "string",
-          "description": "URL of image with 75 px width"
-        },
-        "photo_130": {
-          "type": "string",
-          "description": "URL of image with 130 px width"
-        },
-        "photo_604": {
-          "type": "string",
-          "description": "URL of image with 604 px width"
-        },
-        "photo_807": {
-          "type": "string",
-          "description": "URL of image with 807 px width"
-        },
-        "photo_1280": {
-          "type": "string",
-          "description": "URL of image with 1280 px width"
-        },
-        "photo_2560": {
-          "type": "string",
-          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -6178,35 +6376,11 @@
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1
         },
-        "sizes": {
+        "images": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/photos_photo_sizes"
+            "$ref": "#/definitions/photos_image"
           }
-        },
-        "photo_75": {
-          "type": "string",
-          "description": "URL of image with 75 px width"
-        },
-        "photo_130": {
-          "type": "string",
-          "description": "URL of image with 130 px width"
-        },
-        "photo_604": {
-          "type": "string",
-          "description": "URL of image with 604 px width"
-        },
-        "photo_807": {
-          "type": "string",
-          "description": "URL of image with 807 px width"
-        },
-        "photo_1280": {
-          "type": "string",
-          "description": "URL of image with 1280 px width"
-        },
-        "photo_2560": {
-          "type": "string",
-          "description": "URL of image with 2560 px width"
         },
         "post_id": {
           "type": "integer",
@@ -6601,6 +6775,22 @@
       ],
       "additionalProperties": false
     },
+    "photos_photo_sizes_type": {
+      "type": "string",
+      "description": "Size type",
+      "enum": [
+        "s",
+        "m",
+        "x",
+        "o",
+        "p",
+        "q",
+        "r",
+        "y",
+        "z",
+        "w"
+      ]
+    },
     "photos_photo_sizes": {
       "type": "object",
       "properties": {
@@ -6619,20 +6809,7 @@
           "minimum": 0
         },
         "type": {
-          "type": "string",
-          "description": "Size type",
-          "enum": [
-            "s",
-            "m",
-            "x",
-            "o",
-            "p",
-            "q",
-            "r",
-            "y",
-            "z",
-            "w"
-          ]
+          "$ref": "#/definitions/photos_photo_sizes_type"
         }
       },
       "required": [
@@ -7066,29 +7243,35 @@
         }
       }
     },
+    "search_hint_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "group",
+        "profile"
+      ]
+    },
+    "search_hint_section": {
+      "type": "string",
+      "description": "Section title",
+      "enum": [
+        "groups",
+        "events",
+        "publics",
+        "correspondents",
+        "people",
+        "friends",
+        "mutual_friends"
+      ]
+    },
     "search_hint": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
-          "description": "Object type",
-          "enum": [
-            "group",
-            "profile"
-          ]
+          "$ref": "#/definitions/search_hint_type"
         },
         "section": {
-          "type": "string",
-          "description": "Section title",
-          "enum": [
-            "groups",
-            "events",
-            "publics",
-            "correspondents",
-            "people",
-            "friends",
-            "mutual_friends"
-          ]
+          "$ref": "#/definitions/search_hint_section"
         },
         "description": {
           "type": "string",
@@ -7309,6 +7492,18 @@
         }
       }
     },
+    "stats_sex_value": {
+      "type": "string",
+      "description": "Sex",
+      "enum": [
+        "f",
+        "m"
+      ],
+      "enumNames": [
+        "female",
+        "male"
+      ]
+    },
     "stats_sex": {
       "type": "object",
       "properties": {
@@ -7317,16 +7512,7 @@
           "description": "Visitors number"
         },
         "value": {
-          "type": "string",
-          "description": "Sex",
-          "enum": [
-            "f",
-            "m"
-          ],
-          "enumNames": [
-            "female",
-            "male"
-          ]
+          "$ref": "#/definitions/stats_sex_value"
         }
       }
     },
@@ -7559,18 +7745,21 @@
         }
       }
     },
+    "utils_domain_resolved_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "user",
+        "group",
+        "application",
+        "page"
+      ]
+    },
     "utils_domain_resolved": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
-          "description": "Object type",
-          "enum": [
-            "user",
-            "group",
-            "application",
-            "page"
-          ]
+          "$ref": "#/definitions/utils_domain_resolved_type"
         },
         "object_id": {
           "type": "integer",
@@ -7578,17 +7767,20 @@
         }
       }
     },
+    "utils_link_checked_status": {
+      "type": "string",
+      "description": "Link status",
+      "enum": [
+        "not_banned",
+        "banned",
+        "processing"
+      ]
+    },
     "utils_link_checked": {
       "type": "object",
       "properties": {
         "status": {
-          "type": "string",
-          "description": "Link status",
-          "enum": [
-            "not_banned",
-            "banned",
-            "processing"
-          ]
+          "$ref": "#/definitions/utils_link_checked_status"
         },
         "link": {
           "type": "string",
@@ -7719,6 +7911,13 @@
         }
       ]
     },
+    "users_user_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "profile"
+      ]
+    },
     "users_user_full_xtr_type": {
       "type": "object",
       "allOf": [
@@ -7728,11 +7927,7 @@
         {
           "properties": {
             "type": {
-              "type": "string",
-              "description": "Object type",
-              "enum": [
-                "profile"
-              ]
+              "$ref": "#/definitions/users_user_type"
             }
           }
         }
@@ -7747,11 +7942,7 @@
         {
           "properties": {
             "type": {
-              "type": "string",
-              "description": "Object type",
-              "enum": [
-                "profile"
-              ]
+              "$ref": "#/definitions/users_user_type"
             }
           }
         }
@@ -8528,6 +8719,16 @@
       ],
       "additionalProperties": false
     },
+    "video_cat_block_view": {
+      "type": "string",
+      "description": "Type of view",
+      "enum": [
+        "horizontal",
+        "horizontal_compact",
+        "vertical",
+        "vertical_compact"
+      ]
+    },
     "video_cat_block": {
       "type": "object",
       "properties": {
@@ -8550,26 +8751,14 @@
           "description": "Block ID"
         },
         "view": {
-          "type": "string",
-          "description": "Type of view",
-          "enum": [
-            "horizontal",
-            "horizontal_compact",
-            "vertical",
-            "vertical_compact"
-          ]
+          "$ref": "#/definitions/video_cat_block_view"
         },
         "can_hide": {
           "description": "Information whether the block can be hidden",
           "$ref": "#/definitions/base_bool_int"
         },
         "type": {
-          "type": "string",
-          "description": "Block type",
-          "enum": [
-            "channel",
-            "category"
-          ]
+          "$ref": "#/definitions/video_cat_block_view"
         }
       },
       "required": [
@@ -8579,6 +8768,14 @@
         "id",
         "view",
         "can_hide"
+      ]
+    },
+    "video_cat_element_type": {
+      "type": "string",
+      "description": "Element type",
+      "enum": [
+        "video",
+        "album"
       ]
     },
     "video_cat_element": {
@@ -8597,12 +8794,7 @@
           "description": "Element title"
         },
         "type": {
-          "type": "string",
-          "description": "Element type",
-          "enum": [
-            "video",
-            "album"
-          ]
+          "$ref": "#/definitions/video_cat_element_type"
         },
         "description": {
           "type": "string",
@@ -9132,6 +9324,22 @@
       ],
       "additionalProperties": false
     },
+    "wall_comment_attachment_type": {
+      "type": "string",
+      "description": "Attachment type",
+      "enum": [
+        "photo",
+        "audio",
+        "video",
+        "doc",
+        "link",
+        "note",
+        "page",
+        "market_market_album",
+        "market",
+        "sticker"
+      ]
+    },
     "wall_comment_attachment": {
       "type": "object",
       "properties": {
@@ -9166,20 +9374,7 @@
           "$ref": "#/definitions/base_sticker"
         },
         "type": {
-          "type": "string",
-          "description": "Attachment type",
-          "enum": [
-            "photo",
-            "audio",
-            "video",
-            "doc",
-            "link",
-            "note",
-            "page",
-            "market_market_album",
-            "market",
-            "sticker"
-          ]
+          "$ref": "#/definitions/wall_comment_attachment_type"
         }
       },
       "required": [
@@ -9208,19 +9403,22 @@
         }
       }
     },
+    "wall_post_source_type": {
+      "type": "string",
+      "description": "Type of post source",
+      "enum": [
+        "vk",
+        "widget",
+        "api",
+        "rss",
+        "sms"
+      ]
+    },
     "wall_post_source": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
-          "description": "Type of post source",
-          "enum": [
-            "vk",
-            "widget",
-            "api",
-            "rss",
-            "sms"
-          ]
+          "$ref": "#/definitions/wall_post_source_type"
         },
         "platform": {
           "type": "string",
@@ -9352,6 +9550,10 @@
           "description": "Count of views",
           "$ref": "#/definitions/wall_views"
         },
+        "access_key": {
+          "type": "string",
+          "description": "Access key to private object"
+        },
         "post_type": {
           "$ref": "#/definitions/wall_post_type"
         },
@@ -9446,6 +9648,27 @@
         }
       }
     },
+    "wall_wallpost_attachment_type": {
+      "type": "string",
+      "description": "Attachment type",
+      "enum": [
+        "photo",
+        "posted_photo",
+        "audio",
+        "video",
+        "doc",
+        "link",
+        "graffiti",
+        "note",
+        "app",
+        "poll",
+        "page",
+        "album",
+        "photos_list",
+        "market_market_album",
+        "market"
+      ]
+    },
     "wall_wallpost_attachment": {
       "type": "object",
       "properties": {
@@ -9499,25 +9722,7 @@
           "$ref": "#/definitions/market_market_item"
         },
         "type": {
-          "type": "string",
-          "description": "Attachment type",
-          "enum": [
-            "photo",
-            "posted_photo",
-            "audio",
-            "video",
-            "doc",
-            "link",
-            "graffiti",
-            "note",
-            "app",
-            "poll",
-            "page",
-            "album",
-            "photos_list",
-            "market_market_album",
-            "market"
-          ]
+          "$ref": "#/definitions/wall_wallpost_attachment_type"
         }
       },
       "required": [
@@ -9707,17 +9912,20 @@
       ],
       "additionalProperties": false
     },
+    "widgets_comment_media_type": {
+      "type": "string",
+      "description": "Media type",
+      "enum": [
+        "audio",
+        "photo",
+        "video"
+      ]
+    },
     "widgets_comment_media": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
-          "description": "Media type",
-          "enum": [
-            "audio",
-            "photo",
-            "video"
-          ]
+          "$ref": "#/definitions/widgets_comment_media_type"
         },
         "owner_id": {
           "type": "integer",

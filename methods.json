@@ -4616,6 +4616,11 @@
           "name": "API_ERROR_WALL_LINKS_FORBIDDEN",
           "code": 222,
           "description": "Hyperlinks are forbidden"
+        },
+        {
+          "name": "API_ERROR_WALL_ADS_POST_LIMIT_REACHED",
+          "code": 224,
+          "description": "Too many ads posts"
         }
       ],
       "responses": {
@@ -4664,6 +4669,11 @@
           "name": "API_ERROR_WALL_ADD_POST",
           "code": 214,
           "description": "Access to adding post denied"
+        },
+        {
+          "name": "API_ERROR_WALL_ADS_POST_LIMIT_REACHED",
+          "code": 224,
+          "description": "Too many ads posts"
         }
       ],
       "responses": {
@@ -4789,6 +4799,13 @@
         {
           "name": "mark_as_ads",
           "type": "boolean"
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_WALL_ADS_POST_LIMIT_REACHED",
+          "code": 224,
+          "description": "Too many ads posts"
         }
       ],
       "responses": {
@@ -14020,6 +14037,10 @@
           "type": "string",
           "required": true,
           "maxLength": 512
+        },
+        {
+          "name": "search_own",
+          "type": "boolean"
         },
         {
           "name": "count",
