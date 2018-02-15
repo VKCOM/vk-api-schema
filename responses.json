@@ -2018,6 +2018,10 @@
               "description": "Whether notifications about new message enabled",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "message_edit": {
+              "description": "Whether notifications about edited message enabled",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "message_reply": {
               "description": "Whether notifications about new message enabled",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -2479,7 +2483,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_user_xtr_ban_info"
+                "$ref": "objects.json#/definitions/groups_owner_xtr_ban_info"
               }
             }
           },
