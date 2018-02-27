@@ -3800,11 +3800,19 @@
         }
       }
     },
+    "groups_owner_xtr_ban_info_type": {
+      "type": "string",
+      "description": "Owner type",
+      "enum": [
+        "group",
+        "profile"
+      ]
+    },
     "groups_owner_xtr_ban_info": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/groups_owner_xtr_ban_info_type"
         },
         "group": {
           "$ref": "#/definitions/groups_group",
@@ -3818,353 +3826,6 @@
           "$ref": "#/definitions/groups_ban_info"
         }
       }
-    },
-    "groups_user_xtr_ban_info": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "User ID"
-        },
-        "first_name": {
-          "type": "string",
-          "description": "User first name"
-        },
-        "last_name": {
-          "type": "string",
-          "description": "User last name"
-        },
-        "deactivated": {
-          "type": "string",
-          "description": "Returns if a profile is deleted or blocked"
-        },
-        "hidden": {
-          "type": "integer",
-          "description": "Returns if a profile is hidden."
-        },
-        "sex": {
-          "$ref": "#/definitions/base_sex",
-          "description": "User sex"
-        },
-        "screen_name": {
-          "type": "string",
-          "description": "Domain name of the user's page"
-        },
-        "photo_50": {
-          "type": "string",
-          "description": "URL of square photo of the user with 50 pixels in width"
-        },
-        "photo_100": {
-          "type": "string",
-          "description": "URL of square photo of the user with 100 pixels in width"
-        },
-        "online": {
-          "description": "Information whether the user is online",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "online_mobile": {
-          "description": "Information whether the user is online in mobile site or application",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "online_app": {
-          "type": "integer",
-          "description": "Application ID"
-        },
-        "nickname": {
-          "type": "string",
-          "description": "User nickname"
-        },
-        "maiden_name": {
-          "type": "string",
-          "description": "User maiden name"
-        },
-        "domain": {
-          "type": "string",
-          "description": "Domain name of the user's page"
-        },
-        "bdate": {
-          "type": "string",
-          "description": "User's date of birth"
-        },
-        "city": {
-          "$ref": "#/definitions/base_object"
-        },
-        "country": {
-          "$ref": "#/definitions/base_object"
-        },
-        "timezone": {
-          "type": "integer",
-          "description": "User's timezone"
-        },
-        "photo_200": {
-          "type": "string",
-          "description": "URL of square photo of the user with 200 pixels in width"
-        },
-        "photo_max": {
-          "type": "string",
-          "description": "URL of square photo of the user with maximum width"
-        },
-        "photo_200_orig": {
-          "type": "string",
-          "description": "URL of user's photo with 200 pixels in width"
-        },
-        "photo_400_orig": {
-          "type": "string",
-          "description": "URL of user's photo with 400 pixels in width"
-        },
-        "photo_max_orig": {
-          "type": "string",
-          "description": "URL of user's photo of maximum size"
-        },
-        "photo_id": {
-          "type": "string",
-          "description": "ID of the user's main photo"
-        },
-        "has_photo": {
-          "description": "Information whether the user has main photo",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "has_mobile": {
-          "description": "Information whether the user specified his phone number",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "is_friend": {
-          "description": "Information whether the user is a friend of current user",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "friend_status": {
-          "type": "integer",
-          "description": "Friend status for current user"
-        },
-        "wall_comments": {
-          "description": "Information whether current user can comment wall posts",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "can_post": {
-          "description": "Information whether current user can post on the user's wall",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "can_see_all_posts": {
-          "description": "Information whether current user can see other users' audio on the wall",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "can_see_audio": {
-          "description": "Information whether current user can see the user's audio",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "can_write_private_message": {
-          "description": "Information whether current user can write private message",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "can_send_friend_request": {
-          "description": "Information whether current user can send a friend request",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "mobile_phone": {
-          "type": "string",
-          "description": "Information whether current user can see"
-        },
-        "home_phone": {
-          "type": "string",
-          "description": "User's mobile phone number"
-        },
-        "skype": {
-          "type": "string",
-          "description": "User's Skype nickname"
-        },
-        "facebook": {
-          "type": "string",
-          "description": "User's Facebook account"
-        },
-        "facebook_name": {
-          "type": "string",
-          "description": "User's Facebook name"
-        },
-        "twitter": {
-          "type": "string",
-          "description": "User's Twitter account"
-        },
-        "livejournal": {
-          "type": "string",
-          "description": "User's Livejournal account"
-        },
-        "instagram": {
-          "type": "string",
-          "description": "User's Instagram account"
-        },
-        "site": {
-          "type": "string",
-          "description": "User's website"
-        },
-        "status_audio": {
-          "$ref": "#/definitions/audio_audio_full"
-        },
-        "status": {
-          "type": "string",
-          "description": "User's status"
-        },
-        "activity": {
-          "type": "string",
-          "description": "User's status"
-        },
-        "last_seen": {
-          "$ref": "#/definitions/users_last_seen"
-        },
-        "exports": {
-          "$ref": "#/definitions/users_exports"
-        },
-        "crop_photo": {
-          "$ref": "#/definitions/users_crop_photo"
-        },
-        "verified": {
-          "description": "Information whether the user is verified",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "followers_count": {
-          "type": "integer",
-          "description": "Number of user's followers"
-        },
-        "blacklisted": {
-          "description": "Information whether current user is in the requested user's blacklist.",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "blacklisted_by_me": {
-          "description": "Information whether the requested user is in current user's blacklist",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "is_favorite": {
-          "description": "Information whether the requested user is in faves of current user",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "is_hidden_from_feed": {
-          "description": "Information whether the requested user is hidden from current user's newsfeed",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "common_count": {
-          "type": "integer",
-          "description": "Number of common friends with current user"
-        },
-        "occupation": {
-          "$ref": "#/definitions/users_occupation"
-        },
-        "career": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/users_career"
-          }
-        },
-        "military": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/users_military"
-          }
-        },
-        "university": {
-          "type": "integer",
-          "description": "University ID"
-        },
-        "university_name": {
-          "type": "string",
-          "description": "University name"
-        },
-        "faculty": {
-          "type": "integer",
-          "description": "Faculty ID"
-        },
-        "faculty_name": {
-          "type": "string",
-          "description": "Faculty name"
-        },
-        "graduation": {
-          "type": "integer",
-          "description": "Graduation year"
-        },
-        "education_form": {
-          "type": "string",
-          "description": "Education form"
-        },
-        "education_status": {
-          "type": "string",
-          "description": "User's education status"
-        },
-        "home_town": {
-          "type": "string",
-          "description": "User hometown"
-        },
-        "relation": {
-          "type": "integer",
-          "description": "User relationship status"
-        },
-        "relation_partner": {
-          "$ref": "#/definitions/users_user_min"
-        },
-        "personal": {
-          "$ref": "#/definitions/users_personal"
-        },
-        "interests": {
-          "type": "string",
-          "description": "User's interests"
-        },
-        "music": {
-          "type": "string",
-          "description": "User's favorite music"
-        },
-        "activities": {
-          "type": "string",
-          "description": "User's activities"
-        },
-        "movies": {
-          "type": "string",
-          "description": "User's favorite movies"
-        },
-        "tv": {
-          "type": "string",
-          "description": "User's favorite tv shows"
-        },
-        "books": {
-          "type": "string",
-          "description": "User's favorite books"
-        },
-        "games": {
-          "type": "string",
-          "description": "User's favorite games"
-        },
-        "universities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/users_university"
-          }
-        },
-        "schools": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/users_school"
-          }
-        },
-        "about": {
-          "type": "string",
-          "description": "About me field"
-        },
-        "relatives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/users_relative"
-          }
-        },
-        "quotes": {
-          "type": "string",
-          "description": "Favorite quotes"
-        },
-        "ban_info": {
-          "$ref": "#/definitions/groups_ban_info"
-        }
-      },
-      "required": [
-        "id",
-        "first_name",
-        "last_name"
-      ],
-      "additionalProperties": false
     },
     "groups_role_options": {
       "type": "string",
@@ -4224,6 +3885,204 @@
       },
       "required": [
         "mask"
+      ]
+    },
+    "groups_longPoll_server": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Long Poll key"
+        },
+        "server": {
+          "type": "string",
+          "description": "LongPoll server address"
+        },
+        "ts": {
+          "type": "integer",
+          "description": "Number of the last event"
+        }
+      },
+      "required": [
+        "key",
+        "server",
+        "ts"
+      ],
+      "additionalProperties": false
+    },
+    "groups_longPoll_settings": {
+      "type": "object",
+      "properties": {
+        "is_enabled": {
+          "type": "boolean",
+          "description": "Shows whether Long Poll is enabled"
+        },
+        "events": {
+          "$ref": "#/definitions/groups_longPoll_events"
+        }
+      },
+      "required": [
+        "is_enabled",
+        "events"
+      ]
+    },
+    "groups_longPoll_events": {
+      "type": "object",
+      "properties": {
+        "message_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "message_reply": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "photo_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "audio_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "video_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "wall_reply_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "wall_reply_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "wall_reply_delete": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "wall_reply_restore": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "wall_post_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "board_post_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "board_post_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "board_post_restore": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "board_post_delete": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "photo_comment_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "photo_comment_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "photo_comment_delete": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "photo_comment_restore": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "video_comment_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "video_comment_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "video_comment_delete": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "video_comment_restore": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "market_comment_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "market_comment_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "market_comment_delete": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "market_comment_restore": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "poll_vote_new": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "group_join": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "group_leave": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "group_change_settings": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "group_change_photo": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "group_officers_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "message_allow": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "message_deny": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "wall_repost": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "user_block": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "user_unblock": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "messages_edit": {
+          "$ref": "#/definitions/base_bool_int"
+        }
+      },
+      "required": [
+        "message_new",
+        "message_reply",
+        "photo_new",
+        "audio_new",
+        "video_new",
+        "wall_reply_new",
+        "wall_reply_edit",
+        "wall_reply_delete",
+        "wall_reply_restore",
+        "wall_post_new",
+        "board_post_new",
+        "board_post_edit",
+        "board_post_restore",
+        "board_post_delete",
+        "photo_comment_new",
+        "photo_comment_edit",
+        "photo_comment_delete",
+        "photo_comment_restore",
+        "video_comment_new",
+        "video_comment_edit",
+        "video_comment_delete",
+        "video_comment_restore",
+        "market_comment_new",
+        "market_comment_edit",
+        "market_comment_delete",
+        "market_comment_restore",
+        "poll_vote_new",
+        "group_join",
+        "group_leave",
+        "group_change_settings",
+        "group_change_photo",
+        "group_officers_edit",
+        "message_allow",
+        "message_deny",
+        "wall_repost",
+        "user_block",
+        "user_unblock",
+        "messages_edit"
       ]
     },
     "leads_lead": {
@@ -7385,40 +7244,32 @@
           "type": "string",
           "description": "Day (YYYY-MM-DD)"
         },
-        "views": {
-          "type": "integer",
-          "description": "Views number"
-        },
         "visitors": {
           "type": "integer",
           "description": "Visitors number"
         },
+        "views": {
+          "type": "integer",
+          "description": "Views number"
+        },
         "reach": {
           "type": "integer",
-          "description": "Total reach"
+          "description": "Reach count"
         },
         "reach_subscribers": {
           "type": "integer",
-          "description": "Subscribers reach"
-        },
-        "subscribed": {
-          "type": "integer",
-          "description": "Number of users subscribed"
-        },
-        "unsubscribed": {
-          "type": "integer",
-          "description": "Number of users unsubscribed"
+          "description": "Reach subscribers count"
         },
         "sex": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/stats_sex"
+            "$ref": "#/definitions/stats_sex_age"
           }
         },
         "age": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/stats_age"
+            "$ref": "#/definitions/stats_sex_age"
           }
         },
         "sex_age": {
@@ -7427,10 +7278,55 @@
             "$ref": "#/definitions/stats_sex_age"
           }
         },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_country"
+          }
+        },
         "cities": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/stats_city"
+          }
+        }
+      }
+    },
+    "stats_views": {
+      "type": "object",
+      "description": "Views stats",
+      "properties": {
+        "views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Views number"
+        },
+        "visitors": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Visitors number"
+        },
+        "mobile_views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of views from mobile devices"
+        },
+        "sex": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_sex_age"
+          }
+        },
+        "age": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_sex_age"
+          }
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_sex_age"
           }
         },
         "countries": {
@@ -7438,19 +7334,113 @@
           "items": {
             "$ref": "#/definitions/stats_country"
           }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_city"
+          }
         }
       }
     },
-    "stats_age": {
+    "stats_reach": {
+      "type": "object",
+      "description": "Reach stats",
+      "properties": {
+        "reach": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reach count"
+        },
+        "reach_subscribers": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Subscribers reach count"
+        },
+        "mobile_views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reach count from mobile devices"
+        },
+        "sex": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_sex_age"
+          }
+        },
+        "age": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_sex_age"
+          }
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_sex_age"
+          }
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_country"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stats_city"
+          }
+        }
+      }
+    },
+    "stats_activity": {
+      "type": "object",
+      "description": "Activity stats",
+      "properties": {
+        "likes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Likes number"
+        },
+        "comments": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Comments number"
+        },
+        "copies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reposts number"
+        },
+        "subscribed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "New subscribers count"
+        },
+        "unsubscribed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unsubscribed count"
+        },
+        "hidden": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Hidden from news count"
+        }
+      }
+    },
+    "stats_sex_age": {
       "type": "object",
       "properties": {
         "visitors": {
           "type": "integer",
+          "minimum": 0,
           "description": "Visitors number"
         },
         "value": {
           "type": "string",
-          "description": "Age interval"
+          "description": "Sex/age value"
         }
       }
     },
@@ -7459,6 +7449,7 @@
       "properties": {
         "visitors": {
           "type": "integer",
+          "minimum": 0,
           "description": "Visitors number"
         },
         "value": {
@@ -7489,43 +7480,6 @@
         "name": {
           "type": "string",
           "description": "City name"
-        }
-      }
-    },
-    "stats_sex_value": {
-      "type": "string",
-      "description": "Sex",
-      "enum": [
-        "f",
-        "m"
-      ],
-      "enumNames": [
-        "female",
-        "male"
-      ]
-    },
-    "stats_sex": {
-      "type": "object",
-      "properties": {
-        "visitors": {
-          "type": "integer",
-          "description": "Visitors number"
-        },
-        "value": {
-          "$ref": "#/definitions/stats_sex_value"
-        }
-      }
-    },
-    "stats_sex_age": {
-      "type": "object",
-      "properties": {
-        "visitors": {
-          "type": "integer",
-          "description": "Visitors number"
-        },
-        "value": {
-          "type": "string",
-          "description": "Sex and age interval"
         }
       }
     },
@@ -7577,6 +7531,224 @@
           "$ref": "#/definitions/audio_audio_full"
         }
       }
+    },
+    "stories_story_stats_state": {
+      "type": "string",
+      "description": "Statistic state",
+      "enum": [
+        "on",
+        "off",
+        "hidden"
+      ]
+    },
+    "stories_story_stats_stat": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/stories_story_stats_state"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Stat value",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "state"
+      ]
+    },
+    "stories_story_stats": {
+      "type": "object",
+      "properties": {
+        "views": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        },
+        "replies": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        },
+        "answer": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        },
+        "shares": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        },
+        "subscribers": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        },
+        "bans": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        },
+        "open_link": {
+          "$ref": "#/definitions/stories_story_stats_stat"
+        }
+      },
+      "required": [
+        "views",
+        "replies",
+        "answer",
+        "shares",
+        "subscribers",
+        "bans",
+        "open_link"
+      ]
+    },
+    "stories_story_video": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/video_video"
+        },
+        {
+          "properties": {
+            "first_frame_800": {
+              "type": "string",
+              "description": "URL of the first frame for the corresponding width."
+            },
+            "first_frame_320": {
+              "type": "string",
+              "description": "URL of the first frame for the corresponding width."
+            },
+            "first_frame_160": {
+              "type": "string",
+              "description": "URL of the first frame for the corresponding width."
+            },
+            "first_frame_130": {
+              "type": "string",
+              "description": "URL of the first frame for the corresponding width."
+            },
+            "is_private": {
+              "$ref": "#/definitions/base_bool_int",
+              "description": "Information whether story is private (0 - no, 1 - yes)."
+            }
+          }
+        }
+      ]
+    },
+    "stories_story_type": {
+      "type": "string",
+      "description": "Story type.",
+      "enum": [
+        "photo",
+        "video"
+      ]
+    },
+    "stories_story_link": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Link text"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link URL"
+        }
+      },
+      "required": [
+        "text",
+        "url"
+      ]
+    },
+    "stories_story": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Story ID."
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Story owner's ID."
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Date when story has been added in Unixtime."
+        },
+        "seen": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user has seen the story or not (0 - no, 1 - yes)."
+        },
+        "type": {
+          "$ref": "#/definitions/stories_story_type"
+        },
+        "photo": {
+          "$ref": "#/definitions/photos_photo"
+        },
+        "video": {
+          "$ref": "#/definitions/stories_story_video"
+        },
+        "views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Views number."
+        },
+        "can_see": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user can see the story (0 - no, 1 - yes)."
+        },
+        "can_reply": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user can reply to the story (0 - no, 1 - yes)."
+        },
+        "can_share": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user can share the story (0 - no, 1 - yes)."
+        },
+        "can_comment": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user can comment the story (0 - no, 1 - yes)."
+        },
+        "is_deleted": {
+          "type": "boolean",
+          "description": "Information whether the story is deleted (false - no, true - yes)."
+        },
+        "is_expired": {
+          "type": "boolean",
+          "description": "Information whether the story is expired (false - no, true - yes)."
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for private object."
+        },
+        "parent_story_owner_id": {
+          "type": "integer",
+          "description": "Parent story owner's ID."
+        },
+        "parent_story_id": {
+          "type": "integer",
+          "description": "Parent story ID."
+        },
+        "parent_story_access_key": {
+          "type": "string",
+          "description": "Access key for private object."
+        },
+        "parent_story": {
+          "$ref": "#/definitions/stories_story"
+        },
+        "owner_name": {
+          "type": "string",
+          "description": "Story owner name (for promo stories)."
+        },
+        "url": {
+          "type": "string",
+          "description": "Owner URL (for promo stories)."
+        },
+        "link": {
+          "$ref": "#/definitions/stories_story_link"
+        },
+        "replies": {
+          "type": "array",
+          "description": "Replies to current story.",
+          "items": {
+            "$ref": "#/definitions/stories_replies"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "owner_id"
+      ]
     },
     "utils_short_link": {
       "type": "object",
