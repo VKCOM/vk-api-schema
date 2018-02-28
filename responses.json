@@ -6544,7 +6544,10 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/stories_story"
+                "type": "array",
+                "items": {
+                  "$ref": "objects.json#/definitions/stories_story"
+                }
               }
             }
           },
@@ -6568,7 +6571,10 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/stories_story"
+                "type": "array",
+                "items": {
+                  "$ref": "objects.json#/definitions/stories_story"
+                }
               }
             },
             "profiles": {
