@@ -351,6 +351,7 @@
       "type": "object",
       "properties": {
         "response": {
+          "type": "object",
           "properties": {
             "v1": {
               "type": "array",
@@ -2135,6 +2136,24 @@
               "$ref": "objects.json#/definitions/base_bool_int"
             }
           }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getLongPollServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/groups_longPoll_server"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getLongPollSettings_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/groups_longPoll_settings"
         }
       },
       "additionalProperties": false
@@ -4884,16 +4903,18 @@
       "properties": {
         "response": {
           "type": "object",
-          "items": {
-            "type": "array",
+          "properties": {
             "items": {
-              "$ref": "objects.json#/definitions/search_hint"
-            }
-          },
-          "suggested_queries": {
-            "type": "array",
-            "items": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/search_hint"
+              }
+            },
+            "suggested_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         }
@@ -6283,12 +6304,376 @@
           },
           "required": [
             "count",
-            "posts"
+            "pages"
           ],
           "additionalProperties": false
         }
       },
       "additionalProperties": false
+    }
+  },
+  "stories_get_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/stories_story"
+              }
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items"
+        ]
+      }
+    }
+  },
+  "stories_get_extended_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/stories_story"
+              }
+            }
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/users_user"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/groups_group"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items",
+          "profiles",
+          "groups"
+        ]
+      }
+    }
+  },
+  "stories_getBanned_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "description": "Owner ID"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items"
+        ]
+      }
+    }
+  },
+  "stories_getBanned_extended_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "description": "Owner ID"
+            }
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/users_user_full"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/groups_group_full"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items",
+          "profiles",
+          "groups"
+        ]
+      }
+    }
+  },
+  "stories_getById_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items"
+        ]
+      }
+    }
+  },
+  "stories_getById_extended_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/users_user_full"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/groups_group_full"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items",
+          "profiles",
+          "groups"
+        ]
+      }
+    }
+  },
+  "stories_getPhotoUploadServer_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "upload_url": {
+            "type": "string",
+            "description": "Upload URL"
+          },
+          "user_ids": {
+            "type": "array",
+            "description": "Users ID who can to see story.",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "required": [
+          "upload_url",
+          "user_ids"
+        ]
+      }
+    }
+  },
+  "stories_getReplies_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items"
+        ]
+      }
+    }
+  },
+  "stories_getReplies_extended_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Stories count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/users_user_full"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/groups_group_full"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items",
+          "profiles",
+          "groups"
+        ]
+      }
+    }
+  },
+  "stories_getStats_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "$ref": "objects.json#/definitions/stories_story_stats"
+      }
+    }
+  },
+  "stories_getVideoUploadServer_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "upload_url": {
+            "type": "string",
+            "description": "Upload URL"
+          },
+          "user_ids": {
+            "type": "array",
+            "description": "Users ID who can to see story.",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "required": [
+          "upload_url",
+          "user_ids"
+        ]
+      }
+    }
+  },
+  "stories_getViewers_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Viewers count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items"
+        ]
+      }
+    }
+  },
+  "stories_getViewers_extended_response": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Viewers count"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "objects.json#/definitions/users_user_full"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "items"
+        ]
+      }
     }
   }
 }

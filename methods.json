@@ -3032,6 +3032,526 @@
       }
     },
     {
+      "name": "stories.banOwner",
+      "description": "Allows to hide stories from chosen sources from current user's feed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owners_ids",
+          "description": "List of sources IDs",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.delete",
+      "description": "Allows to delete story.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner's ID. Current user id is used by default.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.get",
+      "description": "Returns stories available for current user.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Owner ID.",
+          "type": "integer"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_get_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/stories_get_extended_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getBanned",
+      "description": "Returns list of sources hidden from current user's feed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "fields",
+          "description": "Additional fields to return",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getBanned_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/stories_getBanned_extended_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getById",
+      "description": "Returns story by its ID.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "stories",
+          "description": "Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields to return",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_STORY_EXPIRED",
+          "code": 1600,
+          "description": "Story has already expired"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getById_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/stories_getById_extended_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getPhotoUploadServer",
+      "description": "Returns URL for uploading a story with photo.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "add_to_news",
+          "description": "1 — to add the story to friend's feed.",
+          "type": "boolean"
+        },
+        {
+          "name": "user_ids",
+          "description": "List of users IDs who can see the story.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "reply_to_story",
+          "description": "ID of the story to reply with the current.",
+          "type": "string"
+        },
+        {
+          "name": "link_text",
+          "description": "Link text (for community's stories only).",
+          "type": "string",
+          "enum": [
+            "to_store",
+            "vote",
+            "more",
+            "book",
+            "order",
+            "enroll",
+            "fill",
+            "signup",
+            "buy",
+            "ticket",
+            "write",
+            "open",
+            "learn_more",
+            "view",
+            "go_to",
+            "contact",
+            "watch",
+            "play",
+            "install",
+            "read"
+          ]
+        },
+        {
+          "name": "link_url",
+          "description": "Link URL. Internal links on https://vk.com only.",
+          "type": "string"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community to upload the story (should be verified or with the \"fire\" icon).",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_BLOCKED",
+          "code": 19,
+          "description": "Content blocked"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_USER_BLOCKED",
+          "code": 900,
+          "description": "Can't send messages for users from blacklist"
+        },
+        {
+          "name": "API_ERROR_INCORRECT_REPLY_PRIVACY",
+          "code": 1602,
+          "description": "Incorrect reply privacy"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getPhotoUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getReplies",
+      "description": "Returns replies to the story.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "access_key",
+          "description": "Access key for the private object.",
+          "type": "string"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields to return",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getReplies_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/stories_getReplies_extended_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getStats",
+      "description": "Returns stories available for current user.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner ID. ",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getStats_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getVideoUploadServer",
+      "description": "Allows to receive URL for uploading story with video.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "add_to_news",
+          "description": "1 — to add the story to friend's feed.",
+          "type": "boolean"
+        },
+        {
+          "name": "user_ids",
+          "description": "List of users IDs who can see the story.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "reply_to_story",
+          "description": "ID of the story to reply with the current.",
+          "type": "string"
+        },
+        {
+          "name": "link_text",
+          "description": "Link text (for community's stories only).",
+          "type": "string"
+        },
+        {
+          "name": "link_url",
+          "description": "Link URL. Internal links on https://vk.com only.",
+          "type": "string"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community to upload the story (should be verified or with the \"fire\" icon).",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_BLOCKED",
+          "code": 19,
+          "description": "Content blocked"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_USER_BLOCKED",
+          "code": 900,
+          "description": "Can't send messages for users from blacklist"
+        },
+        {
+          "name": "API_ERROR_INCORRECT_REPLY_PRIVACY",
+          "code": 1602,
+          "description": "Incorrect reply privacy"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getVideoUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getViewers",
+      "description": "Returns a list of story viewers.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "count",
+          "description": "Maximum number of results.",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return detailed information about photos",
+          "type": "boolean"
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_STORY_EXPIRED",
+          "code": 1600,
+          "description": "Story has already expired"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/stories_getViewers_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/stories_getViewers_extended_response"
+        }
+      }
+    },
+    {
+      "name": "stories.hideAllReplies",
+      "description": "Hides all replies in the last 24 hours from the user to current user's stories.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user whose replies should be hidden.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.hideReply",
+      "description": "Hides the reply to the current user's story.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user whose replies should be hidden.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "access_key",
+          "description": "Access key for the private object.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.unbanOwner",
+      "description": "Allows to show stories from hidden sources in current user's feed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owners_ids",
+          "description": "List of hidden sources to show stories from.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
       "name": "secure.getAppBalance",
       "description": "Returns payment balance of the application in hundredth of a vote.",
       "access_token_type": [
@@ -7713,6 +8233,247 @@
         {
           "name": "message_reply",
           "description": "A new outcoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_allow",
+          "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_deny",
+          "description": "Denied messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_new",
+          "description": "New photos notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "audio_new",
+          "description": "New audios notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_new",
+          "description": "New videos notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_new",
+          "description": "New wall replies notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_edit",
+          "description": "Wall replies edited notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_delete",
+          "description": "A wall comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_restore",
+          "description": "A wall comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_post_new",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_repost",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_new",
+          "description": "New board posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_edit",
+          "description": "Board posts edited notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_restore",
+          "description": "Board posts restored notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_delete",
+          "description": "Board posts deleted notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_new",
+          "description": "New comment to photo notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_edit",
+          "description": "A photo comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_delete",
+          "description": "A photo comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_restore",
+          "description": "A photo comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_new",
+          "description": "New comment to video notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_edit",
+          "description": "A video comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_delete",
+          "description": "A video comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_restore",
+          "description": "A video comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_new",
+          "description": "New comment to market item notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_edit",
+          "description": "A market comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_delete",
+          "description": "A market comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_restore",
+          "description": "A market comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "poll_vote_new",
+          "description": "A vote in a public poll has been added ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_join",
+          "description": "Joined community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_leave",
+          "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "user_block",
+          "description": "User added to community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "user_unblock",
+          "description": "User removed from community blacklist",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getLongPollServer",
+      "description": "Returns the data needed to query a Long Poll server for events",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/groups_getLongPollServer_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getLongPollSettings",
+      "description": "Returns Long Poll notification settings",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/groups_getLongPollSettings_response"
+        }
+      }
+    },
+    {
+      "name": "groups.setLongPollSettings",
+      "description": "Sets Long Poll notification settings",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "message_new",
+          "description": "A new incoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_reply",
+          "description": "A new outcoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_edit",
+          "description": "A message has been edited ('0' — disabled, '1' — enabled).",
           "type": "boolean"
         },
         {
