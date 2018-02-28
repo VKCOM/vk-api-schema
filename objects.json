@@ -3896,7 +3896,7 @@
         },
         "server": {
           "type": "string",
-          "description": "LongPoll server address"
+          "description": "Long Poll server address"
         },
         "ts": {
           "type": "integer",
@@ -4849,10 +4849,10 @@
           "$ref": "#/definitions/base_bool_int"
         },
         "fwd_messages": {
-          "type": "array",
           "description": "Forwarded messages",
+          "type": "array",
           "items": {
-            "$ref": "#/definitions/messages_fwd_message"
+            "$ref": "#/definitions/messages_message"
           }
         },
         "read_state": {
@@ -7748,6 +7748,23 @@
       "required": [
         "id",
         "owner_id"
+      ]
+    },
+    "stories_replies": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Replies number.",
+          "minimum": 0
+        },
+        "new": {
+          "type": "integer",
+          "description": "New replies number."
+        }
+      },
+      "required": [
+        "count"
       ]
     },
     "utils_short_link": {

@@ -4903,16 +4903,18 @@
       "properties": {
         "response": {
           "type": "object",
-          "items": {
-            "type": "array",
+          "properties": {
             "items": {
-              "$ref": "objects.json#/definitions/search_hint"
-            }
-          },
-          "suggested_queries": {
-            "type": "array",
-            "items": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/search_hint"
+              }
+            },
+            "suggested_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         }
@@ -6423,7 +6425,7 @@
           "profiles": {
             "type": "array",
             "items": {
-              "$ref": "objects.json#/definitions/users_user"
+              "$ref": "objects.json#/definitions/users_user_full"
             }
           },
           "groups": {
@@ -6485,7 +6487,7 @@
           "profiles": {
             "type": "array",
             "items": {
-              "$ref": "objects.json#/definitions/users_user"
+              "$ref": "objects.json#/definitions/users_user_full"
             }
           },
           "groups": {
@@ -6573,7 +6575,7 @@
           "profiles": {
             "type": "array",
             "items": {
-              "$ref": "objects.json#/definitions/users_user"
+              "$ref": "objects.json#/definitions/users_user_full"
             }
           },
           "groups": {
@@ -6663,7 +6665,7 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "objects.json#/definitions/users_user"
+              "$ref": "objects.json#/definitions/users_user_full"
             }
           }
         },
