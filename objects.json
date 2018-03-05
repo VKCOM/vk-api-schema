@@ -4572,7 +4572,7 @@
           "$ref": "#/definitions/wall_wall_comment"
         },
         "type": {
-          "$ref": "messages_message_attachment_type"
+          "$ref": "#/definitions/messages_message_attachment_type"
         }
       },
       "required": [
