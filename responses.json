@@ -11,6 +11,15 @@
       },
       "additionalProperties": false
     },
+    "base_getUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_upload_server"
+        }
+      },
+      "additionalProperties": false
+    },
     "account_changePassword_response": {
       "type": "object",
       "properties": {
@@ -1185,36 +1194,6 @@
       },
       "additionalProperties": false
     },
-    "docs_getUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "Upload URL"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "docs_getWallUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "Upload URL"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
     "docs_save_response": {
       "type": "object",
       "properties": {
@@ -1279,7 +1258,12 @@
                 "$ref": "objects.json#/definitions/docs_doc"
               }
             }
-          }
+          },
+          "required": [
+            "count",
+            "items"
+          ],
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -4225,25 +4209,6 @@
       },
       "additionalProperties": false
     },
-    "photos_getOwnerCoverPhotoUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "URL to upload the photo"
-            }
-          },
-          "required": [
-            "upload_url"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
     "photos_saveOwnerCoverPhoto_response": {
       "type": "object",
       "properties": {
@@ -4252,82 +4217,6 @@
           "items": {
             "$ref": "objects.json#/definitions/base_image"
           }
-        }
-      },
-      "additionalProperties": false
-    },
-    "photos_getOwnerPhotoUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "URL to upload the photo"
-            }
-          },
-          "required": [
-            "upload_url"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "photos_getChatUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "URL to upload the photo"
-            }
-          },
-          "required": [
-            "upload_url"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "photos_getMarketUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "URL to upload the photo"
-            }
-          },
-          "required": [
-            "upload_url"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "photos_getMarketAlbumUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "upload_url": {
-              "type": "string",
-              "description": "URL to upload the photo"
-            }
-          },
-          "required": [
-            "upload_url"
-          ],
-          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -6673,12 +6562,12 @@
                 "$ref": "objects.json#/definitions/users_user_full"
               }
             }
-          }
-        },
-        "required": [
-          "count",
-          "items"
-        ]
+          },
+          "required": [
+            "count",
+            "items"
+          ]
+        }
       }
     }
   }

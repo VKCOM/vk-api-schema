@@ -1811,6 +1811,19 @@
         "yes"
       ]
     },
+    "base_upload_server": {
+      "type": "object",
+      "properties": {
+        "upload_url": {
+          "type": "string",
+          "description": "Upload URL"
+        }
+      },
+      "required": [
+        "upload_url"
+      ],
+      "additionalProperties": false
+    },
     "base_comments_info": {
       "type": "object",
       "properties": {
@@ -2199,7 +2212,7 @@
     "base_sticker": {
       "type": "object",
       "properties": {
-        "id": {
+        "sticker_id": {
           "type": "integer",
           "description": "Sticker ID"
         },
@@ -2207,29 +2220,17 @@
           "type": "integer",
           "description": "Collection ID"
         },
-        "photo_64": {
-          "type": "string",
-          "description": "URL of the preview image with 64 px in height"
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/base_image"
+          }
         },
-        "photo_128": {
-          "type": "string",
-          "description": "URL of the preview image with 128 px in height"
-        },
-        "photo_256": {
-          "type": "string",
-          "description": "URL of the preview image with 256 px in height"
-        },
-        "photo_352": {
-          "type": "string",
-          "description": "URL of the preview image with 352 px in height"
-        },
-        "width": {
-          "type": "integer",
-          "description": "Width in px"
-        },
-        "height": {
-          "type": "integer",
-          "description": "Hieght in px"
+        "images_with_background": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/base_image"
+          }
         }
       },
       "additionalProperties": false
@@ -7725,14 +7726,6 @@
         },
         "parent_story": {
           "$ref": "#/definitions/stories_story"
-        },
-        "owner_name": {
-          "type": "string",
-          "description": "Story owner name (for promo stories)."
-        },
-        "url": {
-          "type": "string",
-          "description": "Owner URL (for promo stories)."
         },
         "link": {
           "$ref": "#/definitions/stories_story_link"
