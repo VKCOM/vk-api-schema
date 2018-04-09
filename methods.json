@@ -154,6 +154,11 @@
       "name": "API_ERROR_USER_DELETED",
       "code": 18,
       "description": "User was deleted or banned"
+    },
+    {
+      "name": "API_ERROR_RATE_LIMIT",
+      "code": 29,
+      "description": "Rate limit reached"
     }
   ],
   "methods": [
@@ -1513,7 +1518,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/photos_getOwnerCoverPhotoUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
@@ -1532,7 +1537,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/photos_getOwnerPhotoUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
@@ -1571,7 +1576,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/photos_getChatUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
@@ -1615,7 +1620,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/photos_getMarketUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
@@ -1636,7 +1641,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/photos_getMarketAlbumUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
@@ -1923,6 +1928,13 @@
       "access_token_type": [
         "user",
         "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        }
       ],
       "responses": {
         "response": {
@@ -14636,7 +14648,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/docs_getUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
@@ -14657,7 +14669,36 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/docs_getWallUploadServer_response"
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "docs.getMessagesUploadServer",
+      "description": "Returns the server address for document upload.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Document type.",
+          "type": "string",
+          "enum": [
+            "doc",
+            "audio_message"
+          ]
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
         }
       }
     },
