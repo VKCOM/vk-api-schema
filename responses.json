@@ -1997,129 +1997,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "properties": {
-            "message_new": {
-              "description": "Whether notifications about new message enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "message_edit": {
-              "description": "Whether notifications about edited message enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "message_reply": {
-              "description": "Whether notifications about new message enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "message_allow": {
-              "description": "Whether notifications about allowed messages enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "message_deny": {
-              "description": "Whether notifications about denied messages enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "photo_new": {
-              "description": "Whether notifications about new photos enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "audio_new": {
-              "description": "Whether notifications about new audios enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "video_new": {
-              "description": "Whether notifications about new videos enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "wall_reply_new": {
-              "description": "Whether notifications about new wall replies enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "wall_reply_edit": {
-              "description": "Comment on wall has been edited",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "wall_reply_delete": {
-              "description": "Comment on wall has been deleted",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "wall_post_restore": {
-              "description": "Comment on wall has been restored",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "board_post_new": {
-              "description": "Whether notifications about new board posts enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "board_post_edit": {
-              "description": "Whether notifications about board posts edits enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "board_post_restore": {
-              "description": "Whether notifications about board posts restores enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "board_post_delete": {
-              "description": "Whether notifications about board posts deleted enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "photo_comment_new": {
-              "description": "Whether notifications about new photo comments enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "photo_comment_edit": {
-              "description": "Comment on photo has been edited",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "photo_comment_delete": {
-              "description": "Comment on photo has been deleted",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "photo_comment_restore": {
-              "description": "Comment on photo has been restored",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "video_comment_new": {
-              "description": "Whether notifications about new video comments enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "video_comment_edit": {
-              "description": "Comment on video has been edited",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "video_comment_delete": {
-              "description": "Comment on video has been deleted",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "video_comment_restore": {
-              "description": "Comment on video has been restored",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "market_comment_new": {
-              "description": "Whether notifications about new market comments enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "market_comment_edit": {
-              "description": "Comment on market item has been edited",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "market_comment_delete": {
-              "description": "Comment on market item has been deleted",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "market_comment_restore": {
-              "description": "Comment on market item has been restored",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "group_join": {
-              "description": "Whether notifications about anyone joined the community enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "group_leave": {
-              "description": "Whether notifications about anyone left the community enabled",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            }
-          }
+          "$ref": "objects.json#/definitions/groups_callback_settings"
         }
       },
       "additionalProperties": false
@@ -2128,7 +2006,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/groups_longPoll_server"
+          "$ref": "objects.json#/definitions/groups_long_poll_server"
         }
       },
       "additionalProperties": false
@@ -2137,7 +2015,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/groups_longPoll_settings"
+          "$ref": "objects.json#/definitions/groups_long_poll_settings"
         }
       },
       "additionalProperties": false
@@ -3053,6 +2931,123 @@
       },
       "additionalProperties": false
     },
+    "messages_getConversations_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "unread_count": {
+              "type": "integer",
+              "description": "Unread dialogs number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_conversation_with_message"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
+            },
+            "emails": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_email"
+              }
+            }
+          },
+          "required": [
+            "count",
+            "items"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversationsById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_conversation_with_message"
+              }
+            }
+          },
+          "required": [
+            "count",
+            "items"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getImportantMessages_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "messages": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_message"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
+              }
+            },
+            "emails": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/messages_email"
+              }
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/messages_conversation"
+              }
+            }
+          },
+          "required": [
+            "messages"
+          ]
+        }
+      }
+    },
     "messages_get_response": {
       "type": "object",
       "properties": {
@@ -3092,7 +3087,7 @@
         }
       }
     },
-    "messages_getDialogs_response": {
+    "messages_getByConversationMessageId_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -3102,14 +3097,10 @@
               "type": "integer",
               "description": "Total number"
             },
-            "unread_dialogs": {
-              "type": "integer",
-              "description": "Unread dialogs number"
-            },
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/messages_dialog"
+                "$ref": "objects.json#/definitions/messages_message"
               }
             }
           },
@@ -3184,23 +3175,23 @@
               "type": "integer",
               "description": "Total number"
             },
-            "unread": {
-              "type": "integer",
-              "description": "Unread dialogs number"
-            },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/messages_message"
               }
             },
-            "in_read": {
-              "type": "integer",
-              "description": "Id of last read inbound message"
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
             },
-            "out_read": {
-              "type": "integer",
-              "description": "Id of last read outbound message"
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
             }
           },
           "required": [
@@ -3243,6 +3234,15 @@
         }
       },
       "additionalProperties": false
+    },
+    "messages_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        }
+      }
     },
     "messages_markAsImportant_response": {
       "type": "object",
@@ -3385,74 +3385,6 @@
           "items": {
             "type": "integer",
             "description": "User ID"
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "messages_getChatUsers_fields_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/messages_user_xtr_invited_by"
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "messages_getChatUsers_chat_ids_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "patternProperties": {
-            "^[0-9]+$": {
-              "type": "array",
-              "items": {
-                "type": "integer",
-                "description": "User ID"
-              }
-            }
-          }
-        }
-      }
-    },
-    "messages_getChatUsers_chat_ids_fields_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "patternProperties": {
-            "^[0-9]+$": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/messages_user_xtr_invited_by"
-              }
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "messages_searchDialogs_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "objects.json#/definitions/messages_chat"
-              },
-              {
-                "$ref": "objects.json#/definitions/users_user_xtr_type"
-              },
-              {
-                "$ref": "objects.json#/definitions/groups_group_full"
-              }
-            ]
           }
         }
       },

@@ -1148,7 +1148,8 @@
         {
           "name": "group_id",
           "description": "ID of the community in which the album will be created.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "description",
@@ -1407,7 +1408,8 @@
         {
           "name": "group_id",
           "description": "Community ID.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -1469,7 +1471,8 @@
         {
           "name": "group_id",
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -1489,7 +1492,8 @@
         {
           "name": "group_id",
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "crop_x",
@@ -6208,12 +6212,14 @@
         {
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "user_id",
-          "description": "",
-          "type": "integer"
+          "description": "User ID",
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "title",
@@ -6260,12 +6266,14 @@
         {
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "view",
@@ -6332,12 +6340,14 @@
         {
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "errors": [
@@ -6368,7 +6378,8 @@
         {
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "errors": [
@@ -6400,12 +6411,14 @@
         {
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "",
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "need_html",
@@ -8406,6 +8419,11 @@
         {
           "name": "user_unblock",
           "description": "User removed from community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "lead_forms_new",
+          "description": "New form in lead forms",
           "type": "boolean"
         }
       ],
@@ -12140,72 +12158,19 @@
       }
     },
     {
-      "name": "messages.get",
-      "description": "Returns a list of the current user's incoming or outgoing private messages.",
-      "access_token_type": [
-        "user",
-        "group"
-      ],
-      "parameters": [
-        {
-          "name": "out",
-          "description": "'1' — to return outgoing messages, '0' — to return incoming messages (default)",
-          "type": "boolean"
-        },
-        {
-          "name": "offset",
-          "description": "Offset needed to return a specific subset of messages.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "count",
-          "description": "Number of messages to return.",
-          "type": "integer",
-          "minimum": 0,
-          "default": 20,
-          "maximum": 200
-        },
-        {
-          "name": "filter",
-          "description": "8 - important messages",
-          "type": "integer",
-          "minimum": 0,
-          "default": 0
-        },
-        {
-          "name": "time_offset",
-          "description": "Maximum time since a message was sent, in seconds. To return messages without a time limitation, set as '0'.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "preview_length",
-          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "last_message_id",
-          "description": "ID of the message received before the message that will be returned last (provided that no more than 'count' messages were received before it, otherwise 'offset' parameter shall be used).",
-          "type": "integer",
-          "minimum": 0
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/messages_get_response"
-        }
-      }
-    },
-    {
-      "name": "messages.getDialogs",
+      "name": "messages.getConversations",
       "description": "Returns a list of the current user's conversations.",
       "access_token_type": [
         "user",
         "group"
       ],
       "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
+        },
         {
           "name": "offset",
           "description": "Offset needed to return a specific subset of conversations.",
@@ -12220,36 +12185,84 @@
           "maximum": 200
         },
         {
+          "name": "filter",
+          "description": "Filter to apply: 'all' — all conversations, 'unread' — conversations with unread messages, 'important' — conversations, marked as important (only for community messages), 'unanswered' — conversations, marked as unanswered (only for community messages)",
+          "type": "string",
+          "default": "all",
+          "enum": [
+            "all",
+            "unread",
+            "important",
+            "unanswered"
+          ]
+        },
+        {
+          "name": "extended",
+          "description": "'1' — return extra information about users and communities",
+          "type": "boolean"
+        },
+        {
           "name": "start_message_id",
           "description": "ID of the message from what to return dialogs.",
           "type": "integer",
           "minimum": 0
         },
         {
-          "name": "preview_length",
-          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "unread",
-          "description": "'1' — return conversations with unread messages only.",
-          "type": "boolean"
-        },
-        {
-          "name": "important",
-          "description": "'1' — return important conversations only.",
-          "type": "boolean"
-        },
-        {
-          "name": "unanswered",
-          "description": "'1' — return unanswered conversations only.",
-          "type": "boolean"
+          "name": "fields",
+          "description": "Profile and communities fields to return.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/messages_getDialogs_response"
+          "$ref": "responses.json#/definitions/messages_getConversations_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getConversationsById",
+      "description": "Returns conversations by their IDs",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_ids",
+          "description": "Destination IDs. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "required": true,
+          "maxItems": 100
+        },
+        {
+          "name": "extended",
+          "description": "Return extended properties",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile and communities fields to return.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_getConversationsById_response"
         }
       }
     },
@@ -12271,11 +12284,86 @@
           },
           "required": true,
           "maxItems": 100
+        },
+        {
+          "name": "preview_length",
+          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_getById_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getByConversationMessageId",
+      "description": "Returns messages by their IDs within the conversation.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "conversation_message_ids",
+          "description": "Conversation message IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "required": true,
+          "maxItems": 100
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_getByConversationMessageId_response"
         }
       }
     },
@@ -12322,6 +12410,12 @@
           "minimum": 0,
           "default": 20,
           "maximum": 100
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12364,6 +12458,25 @@
           "name": "start_message_id",
           "description": "Starting message ID from which to return history.",
           "type": "integer"
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "rev",
@@ -12440,6 +12553,12 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12512,7 +12631,10 @@
         {
           "name": "attachment",
           "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         {
           "name": "forward_messages",
@@ -12529,6 +12651,12 @@
           "name": "notification",
           "description": "'1' if the message is a notification (for community messages).",
           "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "errors": [
@@ -12548,9 +12676,29 @@
           "description": "Can't send messages to this user due to their privacy settings"
         },
         {
+          "name": "API_ERROR_MESSAGES_KEYBOARD_INVALID",
+          "code": 911,
+          "description": "Keyboard format is invalid"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_BOT_FEATURE",
+          "code": 912,
+          "description": "This is a chat bot feature, change this status in settings"
+        },
+        {
           "name": "API_ERROR_MESSAGES_FORWARD_AMOUNT_EXCEEDED",
           "code": 913,
           "description": "Too many forwarded messages"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_TOO_LONG_MESSAGE",
+          "code": 914,
+          "description": "Message is too long"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_USER_NO_ACCESS",
+          "code": 917,
+          "description": "You don't have access to this chat"
         },
         {
           "name": "API_ERROR_MESSAGES_FORWARD_ERROR",
@@ -12561,6 +12709,107 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_send_response"
+        }
+      }
+    },
+    {
+      "name": "messages.edit",
+      "description": "Edits the message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the message.",
+          "type": "string"
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "attachment",
+          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "keep_forward_messages",
+          "description": "'1' — to keep forwarded, messages.",
+          "type": "boolean"
+        },
+        {
+          "name": "keep_snippets",
+          "description": "'1' — to keep attached snippets.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_MESSAGES_DENY_SEND",
+          "code": 901,
+          "description": "Can't send messages for users without dialogs"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_PRIVACY",
+          "code": 909,
+          "description": "Can't send messages to this user due to their privacy settings"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_TOO_BIG",
+          "code": 910,
+          "description": "Can't sent this message, because it's too big"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_KEYBOARD_INVALID",
+          "code": 911,
+          "description": "Keyboard format is invalid"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_TOO_LONG_MESSAGE",
+          "code": 914,
+          "description": "Message is too long"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_USER_NO_ACCESS",
+          "code": 917,
+          "description": "You don't have access to this chat"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_EDIT_KIND_DISALLOWED",
+          "code": 920,
+          "description": "Can't edit this kind of message"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_edit_response"
         }
       }
     },
@@ -12585,6 +12834,17 @@
           "name": "spam",
           "description": "'1' — to mark message as spam.",
           "type": "boolean"
+        },
+        {
+          "name": "delete_for_all",
+          "description": "'1' — delete message for for all.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12594,7 +12854,7 @@
       }
     },
     {
-      "name": "messages.deleteDialog",
+      "name": "messages.deleteConversation",
       "description": "Deletes all private messages in a conversation.",
       "access_token_type": [
         "user",
@@ -12607,19 +12867,25 @@
           "type": "string"
         },
         {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer"
         },
         {
           "name": "offset",
-          "description": "Offset needed to return a specific subset of messages.",
+          "description": "Offset needed to delete a specific subset of conversations.",
           "type": "integer",
           "minimum": 0
         },
         {
           "name": "count",
-          "description": "Number of messages to delete. \"NOTE: If the number of messages exceeds the maximum, the method shall be called several times.\"",
+          "description": "Number of conversations to delete. \"NOTE: If the number of messages exceeds the maximum, the method shall be called several times.\"",
           "type": "integer",
           "minimum": 0,
           "maximum": 10000
@@ -12645,6 +12911,12 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12673,11 +12945,17 @@
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
-          "type": "string"
+          "type": "integer"
         },
         {
           "name": "start_message_id",
           "description": "Message ID to start from.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "minimum": 0
         }
@@ -12718,25 +12996,30 @@
       }
     },
     {
-      "name": "messages.markAsImportantDialog",
-      "description": "Marks and unmarks dialogs as important.",
+      "name": "messages.markAsImportantConversation",
+      "description": "Marks and unmarks conversations as important.",
       "access_token_type": [
+        "user",
         "group"
       ],
       "parameters": [
         {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "peer_id",
-          "description": "IDs of messages to mark as important.",
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "minimum": 0
-          }
+          "description": "ID of conversation to mark as important.",
+          "type": "integer",
+          "required": true
         },
         {
           "name": "important",
           "description": "'1' — to add a star (mark as important), '0' — to remove the star",
-          "type": "boolean"
+          "type": "boolean",
+          "default": 1
         }
       ],
       "responses": {
@@ -12746,25 +13029,30 @@
       }
     },
     {
-      "name": "messages.markAsUnansweredDialog",
-      "description": "Marks and unmarks dialogs as unanswered.",
+      "name": "messages.markAsAnsweredConversation",
+      "description": "Marks and unmarks conversations as unanswered.",
       "access_token_type": [
+        "user",
         "group"
       ],
       "parameters": [
         {
-          "name": "peer_id",
-          "description": "IDs of messages to mark as important.",
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "minimum": 0
-          }
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         },
         {
-          "name": "important",
-          "description": "'1' — to add a star (mark as important), '0' — to remove the star",
-          "type": "boolean"
+          "name": "peer_id",
+          "description": "ID of conversation to mark as important.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "answered",
+          "description": "'1' — to mark as answered, '0' — to remove the mark",
+          "type": "boolean",
+          "default": 1
         }
       ],
       "responses": {
@@ -12790,6 +13078,12 @@
           "name": "need_pts",
           "description": "'1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
           "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12857,76 +13151,17 @@
           "description": "Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4) are taken into account.",
           "type": "integer",
           "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_getLongPollHistory_response"
-        }
-      }
-    },
-    {
-      "name": "messages.getChat",
-      "description": "Returns information about a chat.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "chat_id",
-          "description": "Chat ID.",
-          "type": "integer"
-        },
-        {
-          "name": "chat_ids",
-          "description": "Chat IDs.",
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
-        {
-          "name": "fields",
-          "description": "Profile fields to return.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "name_case",
-          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
-          "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/messages_getChat_response"
-        },
-        "fieldsResponse": {
-          "$ref": "responses.json#/definitions/messages_getChat_fields_response"
-        },
-        "chatIdsResponse": {
-          "$ref": "responses.json#/definitions/messages_getChat_chat_ids_response"
-        },
-        "chatIdsFieldsResponse": {
-          "$ref": "responses.json#/definitions/messages_getChat_chat_ids_fields_response"
         }
       }
     },
@@ -12993,24 +13228,23 @@
       }
     },
     {
-      "name": "messages.getChatUsers",
+      "name": "messages.getConversationMembers",
       "description": "Returns a list of IDs of users participating in a chat.",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
-          "name": "chat_id",
-          "description": "Chat ID.",
-          "type": "integer"
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         },
         {
-          "name": "chat_ids",
-          "description": "Chat IDs.",
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
+          "name": "peer_id",
+          "description": "Peer ID.",
+          "type": "integer"
         },
         {
           "name": "fields",
@@ -13044,16 +13278,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/messages_getChatUsers_response"
-        },
-        "fieldsResponse": {
-          "$ref": "responses.json#/definitions/messages_getChatUsers_fields_response"
-        },
-        "chatIdsResponse": {
-          "$ref": "responses.json#/definitions/messages_getChatUsers_chat_ids_response"
-        },
-        "chatIdsFieldsResponse": {
-          "$ref": "responses.json#/definitions/messages_getChatUsers_chat_ids_fields_response"
+          "$ref": "responses.json#/definitions/messages_getConversationMembers_response"
         }
       }
     },
@@ -13078,6 +13303,12 @@
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -13087,7 +13318,7 @@
       }
     },
     {
-      "name": "messages.searchDialogs",
+      "name": "messages.searchConversations",
       "description": "Returns a list of the current user's conversations that match search criteria.",
       "access_token_type": [
         "user",
@@ -13100,11 +13331,16 @@
           "type": "string"
         },
         {
-          "name": "limit",
+          "name": "count",
           "description": "Maximum number of results.",
           "type": "integer",
           "minimum": 0,
           "default": 20
+        },
+        {
+          "name": "extended",
+          "description": "'1' — return extra information about users and communities",
+          "type": "boolean"
         },
         {
           "name": "fields",
@@ -13113,11 +13349,17 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/messages_searchDialogs_response"
+          "$ref": "responses.json#/definitions/messages_searchConversations_response"
         }
       }
     },
@@ -17671,7 +17913,8 @@
           "name": "target_group_id",
           "description": "Group ID.",
           "required": true,
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "name",
@@ -17727,7 +17970,8 @@
           "name": "target_group_id",
           "description": "Group ID.",
           "required": true,
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "errors": [
@@ -17802,7 +18046,8 @@
           "name": "target_group_id",
           "description": "Target group ID.",
           "required": true,
-          "type": "integer"
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "contacts",
