@@ -12614,6 +12614,12 @@
           "name": "notification",
           "description": "'1' if the message is a notification (for community messages).",
           "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "errors": [
@@ -12699,6 +12705,12 @@
           "name": "keep_snippets",
           "description": "'1' — to keep attached snippets.",
           "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
