@@ -1,0 +1,23 @@
+{
+  "name": "@vkontakte/api-schema",
+  "version": "5.80.1",
+  "description": "VK API JSON Schema",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VKCOM/vk-api-schema.git"
+  },
+  "keywords": [
+    "vk",
+    "vkontakte",
+    "vkapi",
+    "vk-api",
+    "vkontakte-api",
+    "vk-api-schema"
+  ],
+  "author": "https://vk.com/dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VKCOM/vk-api-schema/issues"
+  },
+  "homepage": "https://github.com/VKCOM/vk-api-schema#readme"
+}
