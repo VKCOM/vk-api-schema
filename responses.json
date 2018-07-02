@@ -5925,6 +5925,25 @@
       },
       "additionalProperties": false
     },
+    "wall_postAdsStealth_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "Created post ID"
+            }
+          },
+          "required": [
+            "post_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "wall_repost_response": {
       "type": "object",
       "properties": {

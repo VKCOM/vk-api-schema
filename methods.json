@@ -5167,6 +5167,112 @@
       }
     },
     {
+      "name": "wall.postAdsStealth",
+      "description": "Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type \"Community post\".",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "User ID or community ID. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the post.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "signed",
+          "description": "Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "place_id",
+          "description": "ID of the location where the user was tagged.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "post_id",
+          "description": "Post ID. Used for publishing of scheduled and suggested posts.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "guid",
+          "description": "Unique identifier to avoid duplication the same post.",
+          "type": "string"
+        },
+        {
+          "name": "link_button",
+          "description": "Link button ID",
+          "type": "string"
+        },
+        {
+          "name": "link_title",
+          "description": "Link title",
+          "type": "string"
+        },
+        {
+          "name": "link_image",
+          "description": "Link image url",
+          "type": "string"
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_WALL_ADS_PUBLISHED",
+          "code": 219,
+          "description": "Advertisement post was recently added"
+        },
+        {
+          "name": "API_ERROR_WALL_ADD_POST",
+          "code": 214,
+          "description": "Access to adding post denied"
+        },
+        {
+          "name": "API_ERROR_WALL_TOO_MANY_RECIPIENTS",
+          "code": 220,
+          "description": "Too many recipients"
+        },
+        {
+          "name": "API_ERROR_WALL_LINKS_FORBIDDEN",
+          "code": 222,
+          "description": "Hyperlinks are forbidden"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/wall_postAdsStealth_response"
+        }
+      }
+    },
+    {
       "name": "wall.repost",
       "description": "Reposts (copies) an object to a user wall or community wall.",
       "access_token_type": [
@@ -5336,6 +5442,97 @@
         {
           "name": "mark_as_ads",
           "type": "boolean"
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_WALL_ADS_POST_LIMIT_REACHED",
+          "code": 224,
+          "description": "Too many ads posts"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "wall.editAdsStealth",
+      "description": "Allows to edit hidden post.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "User ID or community ID. Use a negative value to designate a community ID.",
+          "type": "integer"
+        },
+        {
+          "name": "post_id",
+          "description": "Post ID",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the post.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "signed",
+          "description": "Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "place_id",
+          "description": "ID of the location where the user was tagged.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "post_id",
+          "description": "Post ID. Used for publishing of scheduled and suggested posts.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "link_button",
+          "description": "Link button ID",
+          "type": "string"
+        },
+        {
+          "name": "link_title",
+          "description": "Link title",
+          "type": "string"
+        },
+        {
+          "name": "link_image",
+          "description": "Link image url",
+          "type": "string"
         }
       ],
       "errors": [
