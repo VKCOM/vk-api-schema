@@ -2006,7 +2006,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/groups_longPoll_server"
+          "$ref": "objects.json#/definitions/groups_long_poll_server"
         }
       },
       "additionalProperties": false
@@ -2015,7 +2015,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/groups_longPoll_settings"
+          "$ref": "objects.json#/definitions/groups_long_poll_settings"
         }
       },
       "additionalProperties": false

@@ -3920,7 +3920,7 @@
         "mask"
       ]
     },
-    "groups_longPoll_server": {
+    "groups_long_poll_server": {
       "type": "object",
       "properties": {
         "key": {
@@ -3943,7 +3943,7 @@
       ],
       "additionalProperties": false
     },
-    "groups_longPoll_settings": {
+    "groups_long_poll_settings": {
       "type": "object",
       "properties": {
         "is_enabled": {
@@ -3960,7 +3960,6 @@
       },
       "required": [
         "is_enabled",
-        "api_version",
         "events"
       ]
     },
