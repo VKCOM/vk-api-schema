@@ -1641,7 +1641,7 @@
         },
         "is_in_catalog": {
           "type": "integer",
-          "description": "Information whther application is in mobile catalog"
+          "description": "Information whether application is in mobile catalog"
         }
       },
       "required": [
@@ -1846,13 +1846,37 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Country ID"
+          "description": "Country ID",
+          "minimum": 1
         },
         "title": {
           "type": "string",
           "description": "Country title"
         }
       },
+      "required": [
+        "id",
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "base_city": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "City ID",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "description": "City title"
+        }
+      },
+      "required": [
+        "id",
+        "title"
+      ],
       "additionalProperties": false
     },
     "base_error": {
@@ -1895,8 +1919,7 @@
           "description": "Place type"
         },
         "coordinates": {
-          "type": "string",
-          "description": "String with coordinates"
+          "$ref": "#/definitions/base_geo_coordinates"
         },
         "place": {
           "$ref": "#/definitions/base_place"
@@ -1906,6 +1929,22 @@
           "description": "Information whether a map is showed"
         }
       }
+    },
+    "base_geo_coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "additionalProperties": false
     },
     "base_likes_info": {
       "type": "object",
@@ -2257,6 +2296,31 @@
         "male"
       ]
     },
+    "base_image": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image url"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Image width",
+          "minimum": 0
+        },
+        "height": {
+          "type": "integer",
+          "description": "Image height",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "url",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
     "board_default_order": {
       "type": "integer",
       "description": "Sort type",
@@ -2407,29 +2471,6 @@
       ],
       "additionalProperties": false
     },
-    "base_image": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string",
-          "description": "Image url"
-        },
-        "width": {
-          "type": "integer",
-          "description": "Image width"
-        },
-        "height": {
-          "type": "integer",
-          "description": "Image height"
-        }
-      },
-      "required": [
-        "url",
-        "width",
-        "height"
-      ],
-      "additionalProperties": false
-    },
     "database_city": {
       "type": "object",
       "allOf": [
@@ -2491,19 +2532,6 @@
         "title": {
           "type": "string",
           "description": "School title"
-        }
-      }
-    },
-    "database_street": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Street ID"
-        },
-        "title": {
-          "type": "string",
-          "description": "Street title"
         }
       }
     },
@@ -3405,9 +3433,13 @@
               "description": "Information whether current user can send a message to community",
               "$ref": "#/definitions/base_bool_int"
             },
-            "is_messages_allowed": {
-              "description": "Information whether current user can send a message to community",
+            "is_messages_blocked": {
+              "description": "Information whether community can send a message to current user",
               "$ref": "#/definitions/base_bool_int"
+            },
+            "online_status": {
+              "$ref": "#/definitions/groups_online_status",
+              "description": "Status of replies in community messages"
             },
             "start_date": {
               "type": "integer",
@@ -3918,16 +3950,33 @@
           "type": "boolean",
           "description": "Shows whether Long Poll is enabled"
         },
+        "api_version": {
+          "type": "string",
+          "description": "API version used for the events"
+        },
         "events": {
-          "$ref": "#/definitions/groups_longPoll_events"
+          "$ref": "#/definitions/groups_long_poll_events"
         }
       },
       "required": [
         "is_enabled",
+        "api_version",
         "events"
       ]
     },
-    "groups_longPoll_events": {
+    "groups_callback_settings": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "API version used for the events"
+        },
+        "events": {
+          "$ref": "#/definitions/groups_long_poll_events"
+        }
+      }
+    },
+    "groups_long_poll_events": {
       "type": "object",
       "properties": {
         "message_new": {
@@ -4043,6 +4092,12 @@
         },
         "messages_edit": {
           "$ref": "#/definitions/base_bool_int"
+        },
+        "message_typing_state": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "lead_forms_new": {
+          "$ref": "#/definitions/base_bool_int"
         }
       },
       "required": [
@@ -4083,8 +4138,35 @@
         "wall_repost",
         "user_block",
         "user_unblock",
-        "messages_edit"
+        "messages_edit",
+        "message_typing_state"
       ]
+    },
+    "groups_online_status_type": {
+      "type": "string",
+      "description": "Type of online status of group",
+      "enum": [
+        "none",
+        "online",
+        "answer_mark"
+      ]
+    },
+    "groups_online_status": {
+      "type": "object",
+      "description": "Online status of group",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/groups_online_status_type"
+        },
+        "minutes": {
+          "type": "integer",
+          "description": "Estimated time of answer (for status = answer_mark)"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
     },
     "leads_lead": {
       "type": "object",
@@ -4791,6 +4873,80 @@
         }
       }
     },
+    "messages_keyboard_button_action": {
+      "description": "Description of the action, that should be performed on button click",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Button type",
+          "enum": [
+            "text",
+            "start"
+          ]
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for button"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string",
+          "enum": [
+            "default",
+            "positive",
+            "negative",
+            "primary"
+          ],
+          "description": "Button color"
+        },
+        "action": {
+          "$ref": "#/definitions/messages_keyboard_button_action"
+        }
+      },
+      "required": [
+        "color",
+        "action"
+      ]
+    },
+    "messages_keyboard": {
+      "type": "object",
+      "properties": {
+        "one_time": {
+          "type": "boolean",
+          "description": "Should this keyboard disappear on first use"
+        },
+        "author_id": {
+          "type": "integer",
+          "description": "Community or bot, which set this keyboard"
+        },
+        "buttons": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/messages_keyboard_button"
+            }
+          }
+        }
+      },
+      "required": [
+        "one_time",
+        "buttons"
+      ]
+    },
     "messages_message_action_status": {
       "type": "string",
       "description": "Action status",
@@ -4813,17 +4969,17 @@
           "type": "integer",
           "description": "Message ID"
         },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Unique auto-incremented number for all messages with this peer"
+        },
         "date": {
           "type": "integer",
           "description": "Date when the message has been sent in Unixtime"
         },
-        "out": {
-          "description": "Information whether the message is outcoming",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "user_id": {
+        "peer_id": {
           "type": "integer",
-          "description": "Message author's ID"
+          "description": "Peer ID"
         },
         "from_id": {
           "type": "integer",
@@ -4838,33 +4994,20 @@
           "description": "ID used for sending messages. It returned only for outgoing messages"
         },
         "important": {
-          "description": "Is it an important message",
-          "$ref": "#/definitions/base_bool_int"
+          "type": "boolean",
+          "description": "Is it an important message"
         },
-        "deleted": {
-          "description": "Is it an deleted message",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "emoji": {
-          "description": "Whether the message contains smiles",
-          "$ref": "#/definitions/base_bool_int"
+        "payload": {
+          "type": "string"
         },
         "fwd_messages": {
           "description": "Forwarded messages",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/messages_message"
+            "$ref": "#/definitions/messages_fwd_message"
           }
         },
-        "read_state": {
-          "description": "Information whether the messages is read",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "title": {
-          "type": "string",
-          "description": "Message title or chat title"
-        },
-        "body": {
+        "text": {
           "type": "string",
           "description": "Message text"
         },
@@ -4874,47 +5017,124 @@
             "$ref": "#/definitions/messages_message_attachment"
           }
         },
-        "chat_id": {
-          "type": "integer",
-          "description": "Chat ID"
-        },
         "geo": {
           "$ref": "#/definitions/base_geo"
         },
-        "chat_active": {
+        "action": {
+          "$ref": "#/definitions/messages_message_action"
+        },
+        "keyboard": {
+          "$ref": "#/definitions/messages_keyboard"
+        }
+      },
+      "required": [
+        "date",
+        "from_id",
+        "id",
+        "peer_id",
+        "text"
+      ]
+    },
+    "messages_pinned_message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Message ID"
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Unique auto-incremented number for all messages with this peer"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the message has been sent in Unixtime"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID"
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Message author's ID"
+        },
+        "fwd_messages": {
+          "description": "Forwarded messages",
           "type": "array",
           "items": {
-            "type": "integer",
-            "description": "User ID"
+            "$ref": "#/definitions/messages_fwd_message"
           }
         },
-        "push_settings": {
-          "description": "Push settings for the chat",
-          "$ref": "#/definitions/messages_chat_push_settings"
+        "text": {
+          "type": "string",
+          "description": "Message text"
         },
-        "action": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/messages_message_attachment"
+          }
+        },
+        "geo": {
+          "$ref": "#/definitions/base_geo"
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "from_id",
+        "peer_id",
+        "text"
+      ]
+    },
+    "messages_message_action": {
+      "type": "object",
+      "properties": {
+        "type": {
           "$ref": "#/definitions/messages_message_action_status"
         },
-        "action_mid": {
+        "member_id": {
           "type": "integer",
-          "description": "User or email ID has been invited to the chat or kicked from the chat"
+          "description": "User or email peer ID"
         },
-        "action_email": {
+        "message": {
           "type": "string",
-          "description": "Email has been invited or kicked"
+          "description": "Message body of related message"
         },
-        "action_text": {
+        "text": {
           "type": "string",
-          "description": "Action text"
+          "description": "New chat title for chat_create and chat_title_update actions"
         },
-        "users_count": {
+        "conversation_message_id": {
           "type": "integer",
-          "description": "Chat users number"
+          "description": "Message ID"
         },
-        "admin_id": {
-          "type": "integer",
-          "description": "Chat administrator ID"
+        "email": {
+          "type": "string",
+          "description": "Email address for chat_invite_user or chat_kick_user actions"
         },
+        "photo": {
+          "$ref": "#/definitions/messages_message_action_photo"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "messages_conversation_with_message": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "#/definitions/messages_conversation"
+        },
+        "last_message": {
+          "$ref": "#/definitions/messages_message"
+        }
+      }
+    },
+    "messages_chat_settings_photo": {
+      "type": "object",
+      "properties": {
         "photo_50": {
           "type": "string",
           "description": "URL of the preview image with 50px in width"
@@ -4927,15 +5147,7 @@
           "type": "string",
           "description": "URL of the preview image with 200px in width"
         }
-      },
-      "required": [
-        "date",
-        "from_id",
-        "id",
-        "out",
-        "peer_id",
-        "text"
-      ]
+      }
     },
     "messages_chat_settings_state": {
       "type": "string",
@@ -7241,55 +7453,22 @@
     "stats_period": {
       "type": "object",
       "properties": {
-        "day": {
+        "period_from": {
+          "type": "string",
+          "description": "Day (YYYY-MM-DD)"
+        },
+        "period_to": {
           "type": "string",
           "description": "Day (YYYY-MM-DD)"
         },
         "visitors": {
-          "type": "integer",
-          "description": "Visitors number"
-        },
-        "views": {
-          "type": "integer",
-          "description": "Views number"
+          "$ref": "#/definitions/stats_views"
         },
         "reach": {
-          "type": "integer",
-          "description": "Reach count"
+          "$ref": "#/definitions/stats_reach"
         },
-        "reach_subscribers": {
-          "type": "integer",
-          "description": "Reach subscribers count"
-        },
-        "sex": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/stats_sex_age"
-          }
-        },
-        "age": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/stats_sex_age"
-          }
-        },
-        "sex_age": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/stats_sex_age"
-          }
-        },
-        "countries": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/stats_country"
-          }
-        },
-        "cities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/stats_city"
-          }
+        "activity": {
+          "$ref": "#/definitions/stats_activity"
         }
       }
     },
@@ -7358,7 +7537,7 @@
           "minimum": 0,
           "description": "Subscribers reach count"
         },
-        "mobile_views": {
+        "mobile_reach": {
           "type": "integer",
           "minimum": 0,
           "description": "Reach count from mobile devices"
@@ -7434,7 +7613,7 @@
     "stats_sex_age": {
       "type": "object",
       "properties": {
-        "visitors": {
+        "count": {
           "type": "integer",
           "minimum": 0,
           "description": "Visitors number"
@@ -7448,7 +7627,7 @@
     "stats_country": {
       "type": "object",
       "properties": {
-        "visitors": {
+        "count": {
           "type": "integer",
           "minimum": 0,
           "description": "Visitors number"
@@ -7470,7 +7649,7 @@
     "stats_city": {
       "type": "object",
       "properties": {
-        "visitors": {
+        "count": {
           "type": "integer",
           "description": "Visitors number"
         },
