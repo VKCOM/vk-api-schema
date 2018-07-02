@@ -12647,6 +12647,65 @@
       }
     },
     {
+      "name": "messages.edit",
+      "description": "Edits the message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the message.",
+          "type": "string"
+        },
+        {
+          "name": "message_id",
+          "description": "Message ID.",
+          "type": "integer"
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "attachment",
+          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
+          "type": "string"
+        },
+        {
+          "name": "keep_forward_messages",
+          "description": "'1' — to keep forwarded, messages.",
+          "type": "boolean"
+        },
+        {
+          "name": "keep_snippets",
+          "description": "'1' — to keep attached snippets.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_edit_response"
+        }
+      }
+    },
+    {
       "name": "messages.delete",
       "description": "Deletes one or more messages.",
       "access_token_type": [

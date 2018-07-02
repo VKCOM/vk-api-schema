@@ -3235,6 +3235,15 @@
       },
       "additionalProperties": false
     },
+    "messages_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        }
+      }
+    },
     "messages_markAsImportant_response": {
       "type": "object",
       "properties": {
