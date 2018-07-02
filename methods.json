@@ -12255,7 +12255,7 @@
         },
         {
           "name": "group_id",
-          "description": "Group ID",
+          "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "minimum": 0
         }
@@ -12284,6 +12284,31 @@
           },
           "required": true,
           "maxItems": 100
+        },
+        {
+          "name": "preview_length",
+          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12331,7 +12356,7 @@
         },
         {
           "name": "group_id",
-          "description": "Group ID",
+          "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "minimum": 0
         }
@@ -12385,6 +12410,12 @@
           "minimum": 0,
           "default": 20,
           "maximum": 100
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12443,7 +12474,7 @@
         },
         {
           "name": "group_id",
-          "description": "Group ID",
+          "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "minimum": 0
         },
@@ -12522,6 +12553,12 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12617,7 +12654,7 @@
         },
         {
           "name": "group_id",
-          "description": "Group ID (for group messages with user access token)",
+          "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "minimum": 0
         }
@@ -12639,9 +12676,29 @@
           "description": "Can't send messages to this user due to their privacy settings"
         },
         {
+          "name": "API_ERROR_MESSAGES_KEYBOARD_INVALID",
+          "code": 911,
+          "description": "Keyboard format is invalid"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_BOT_FEATURE",
+          "code": 912,
+          "description": "This is a chat bot feature, change this status in settings"
+        },
+        {
           "name": "API_ERROR_MESSAGES_FORWARD_AMOUNT_EXCEEDED",
           "code": 913,
           "description": "Too many forwarded messages"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_TOO_LONG_MESSAGE",
+          "code": 914,
+          "description": "Message is too long"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_USER_NO_ACCESS",
+          "code": 917,
+          "description": "You don't have access to this chat"
         },
         {
           "name": "API_ERROR_MESSAGES_FORWARD_ERROR",
@@ -12713,6 +12770,43 @@
           "minimum": 0
         }
       ],
+      "errors": [
+        {
+          "name": "API_ERROR_MESSAGES_DENY_SEND",
+          "code": 901,
+          "description": "Can't send messages for users without dialogs"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_PRIVACY",
+          "code": 909,
+          "description": "Can't send messages to this user due to their privacy settings"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_TOO_BIG",
+          "code": 910,
+          "description": "Can't sent this message, because it's too big"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_KEYBOARD_INVALID",
+          "code": 911,
+          "description": "Keyboard format is invalid"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_TOO_LONG_MESSAGE",
+          "code": 914,
+          "description": "Message is too long"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_USER_NO_ACCESS",
+          "code": 917,
+          "description": "You don't have access to this chat"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_EDIT_KIND_DISALLOWED",
+          "code": 920,
+          "description": "Can't edit this kind of message"
+        }
+      ],
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_edit_response"
@@ -12740,6 +12834,17 @@
           "name": "spam",
           "description": "'1' — to mark message as spam.",
           "type": "boolean"
+        },
+        {
+          "name": "delete_for_all",
+          "description": "'1' — delete message for for all.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12806,6 +12911,12 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12839,6 +12950,12 @@
         {
           "name": "start_message_id",
           "description": "Message ID to start from.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "minimum": 0
         }
@@ -12961,6 +13078,12 @@
           "name": "need_pts",
           "description": "'1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
           "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -13026,6 +13149,12 @@
         {
           "name": "max_msg_id",
           "description": "Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4) are taken into account.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "minimum": 0
         }
@@ -13174,6 +13303,12 @@
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
