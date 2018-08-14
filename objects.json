@@ -1750,7 +1750,8 @@
               "$ref": "#/definitions/base_bool_int"
             },
             "is_hq": {
-              "$ref": "#/definitions/base_bool_int"
+              "type": "boolean",
+              "description": "Information whether the audio is high quality"
             }
           },
           "required": [
