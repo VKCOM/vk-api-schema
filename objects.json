@@ -2471,6 +2471,134 @@
       ],
       "additionalProperties": false
     },
+    "messages_conversation": {
+      "type": "object",
+      "properties": {
+        "peer": {
+          "$ref": "#/definitions/messages_conversation_peer"
+        },
+        "in_read": {
+          "type": "integer",
+          "description": "ID of the last read incoming message"
+        },
+        "out_read": {
+          "type": "integer",
+          "description": "ID of the last read outcoming message"
+        },
+        "unread_count": {
+          "type": "integer",
+          "description": "Number of unread messages"
+        },
+        "important": {
+          "type": "boolean",
+          "description": "True, if the conversation marked as important (only for community messages)"
+        },
+        "unanswered": {
+          "type": "boolean",
+          "description": "True, if the conversation marked as unanswered (only for community messages)"
+        },
+        "push_settings": {
+          "$ref": "#/definitions/messages_conversation_push_settings"
+        },
+        "can_write": {
+          "$ref": "#/definitions/messages_conversation_can_write"
+        },
+        "chat_settings": {
+          "$ref": "#/definitions/messages_conversation_chat_settings"
+        }
+      }
+    },
+    "messages_conversation_can_write": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "boolean",
+          "description": "True, if the user can send message to the conversation"
+        },
+        "reason": {
+          "type": "integer",
+          "description": "Error code for allowed = false",
+          "enum": [
+            18,
+            203,
+            900,
+            901,
+            902,
+            915,
+            916,
+            917,
+            918
+          ],
+          "enumNames": [
+            "the user is deleted or blocked",
+            "no access to the community",
+            "can't send message to user from blacklist",
+            "the user has denied messages from the community",
+            "the user has closed messages using privacy settings",
+            "messages are disabled in the community",
+            "messages are blocked in the community",
+            "no access to conversation",
+            "no access to e-mail"
+          ]
+        }
+      }
+    },
+    "messages_conversation_chat_settings": {
+      "type": "object",
+      "properties": {
+        "members_count": {
+          "type": "integer",
+          "description": "Conversation members number"
+        },
+        "title": {
+          "type": "string",
+          "description": "Conversation title"
+        },
+        "pinned_message": {
+          "$ref": "#/definitions/messages_pinned_message"
+        },
+        "state": {
+          "$ref": "#/definitions/messages_chat_settings_state"
+        },
+        "photo": {
+          "$ref": "#/definitions/messages_chat_settings_photo"
+        }
+      }
+    },
+    "messages_conversation_peer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Destination ID"
+        },
+        "type": {
+          "type": "string",
+          "description": "Conversation type. possible values: user, chat, group, email"
+        },
+        "local_id": {
+          "type": "integer",
+          "description": "Local destination ID. For conversations — id - 2000000000, for community — -id, for e-mail — -(id+2000000000)"
+        }
+      }
+    },
+    "messages_conversation_push_settings": {
+      "type": "object",
+      "properties": {
+        "disabled_until": {
+          "type": "integer",
+          "description": "Timestamp, to which notification are disables"
+        },
+        "disabled_forever": {
+          "type": "boolean",
+          "description": "True, if notifications are disabled totally"
+        },
+        "no_sound": {
+          "type": "boolean",
+          "description": "True, if notification alert sound is disabled"
+        }
+      }
+    },
     "database_city": {
       "type": "object",
       "allOf": [
