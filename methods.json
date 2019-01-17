@@ -76,6 +76,11 @@
       "description": "Validation required"
     },
     {
+      "name": "API_ERROR_USER_DELETED",
+      "code": 18,
+      "description": "User was deleted or banned"
+    },
+    {
       "name": "API_ERROR_METHOD_PERMISSION",
       "code": 20,
       "description": "Permission to perform this action is denied for non-standalone applications"
@@ -96,9 +101,54 @@
       "description": "Confirmation required"
     },
     {
-      "name": "API_ERROR_VOTES_PERMISSION",
-      "code": 500,
-      "description": "Permission denied. You must enable votes processing in application settings"
+      "name": "API_ERROR_NEED_TOKEN_CONFIRMATION",
+      "code": 25,
+      "description": "Token confirmation required"
+    },
+    {
+      "name": "API_ERROR_GROUP_AUTH",
+      "code": 27,
+      "description": "Group authorization failed"
+    },
+    {
+      "name": "API_ERROR_APP_AUTH",
+      "code": 28,
+      "description": "Application authorization failed"
+    },
+    {
+      "name": "API_ERROR_RATE_LIMIT",
+      "code": 29,
+      "description": "Rate limit reached"
+    },
+    {
+      "name": "API_ERROR_PRIVATE_PROFILE",
+      "code": 30,
+      "description": "This profile is private"
+    },
+    {
+      "name": "API_ERROR_PARAM",
+      "code": 100,
+      "description": "One of the parameters specified was missing or invalid"
+    },
+    {
+      "name": "API_ERROR_PARAM_API_ID",
+      "code": 101,
+      "description": "Invalid application API ID"
+    },
+    {
+      "name": "API_ERROR_PARAM_USER_ID",
+      "code": 113,
+      "description": "Invalid user id"
+    },
+    {
+      "name": "API_ERROR_PARAM_TIMESTAMP",
+      "code": 150,
+      "description": "Invalid timestamp"
+    },
+    {
+      "name": "API_ERROR_ACCESS_ALBUM",
+      "code": 200,
+      "description": "Access denied"
     },
     {
       "name": "API_ERROR_ACCESS_AUDIO",
@@ -111,29 +161,14 @@
       "description": "Access to group denied"
     },
     {
-      "name": "API_ERROR_PARAM_USER_ID",
-      "code": 113,
-      "description": "Invalid user id"
-    },
-    {
-      "name": "API_ERROR_PARAM",
-      "code": 100,
-      "description": "One of the parameters specified was missing or invalid"
-    },
-    {
       "name": "API_ERROR_ALBUM_FULL",
       "code": 300,
       "description": "This album is full"
     },
     {
-      "name": "API_ERROR_ACCESS_ALBUM",
-      "code": 200,
-      "description": "Access denied"
-    },
-    {
-      "name": "API_ERROR_ADS_SPECIFIC",
-      "code": 603,
-      "description": "Some ads error occured"
+      "name": "API_ERROR_VOTES_PERMISSION",
+      "code": 500,
+      "description": "Permission denied. You must enable votes processing in application settings"
     },
     {
       "name": "API_ERROR_ADS_PERMISSION",
@@ -141,24 +176,9 @@
       "description": "Permission denied. You have no access to operations specified with given object(s)"
     },
     {
-      "name": "API_ERROR_PARAM_TIMESTAMP",
-      "code": 150,
-      "description": "Invalid timestamp"
-    },
-    {
-      "name": "API_ERROR_PARAM_API_ID",
-      "code": 101,
-      "description": "Invalid application API ID"
-    },
-    {
-      "name": "API_ERROR_USER_DELETED",
-      "code": 18,
-      "description": "User was deleted or banned"
-    },
-    {
-      "name": "API_ERROR_RATE_LIMIT",
-      "code": 29,
-      "description": "Rate limit reached"
+      "name": "API_ERROR_ADS_SPECIFIC",
+      "code": 603,
+      "description": "Some ads error occured"
     }
   ],
   "methods": [
@@ -185,7 +205,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities',",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -261,7 +281,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online',",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -519,7 +539,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -566,7 +586,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -697,7 +717,7 @@
           "description": "list of additional fields to return. Available values: sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters, screen_name, maiden_name, timezone, occupation",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -875,6 +895,11 @@
           "name": "API_ERROR_PARAM_PHONE",
           "code": 1000,
           "description": "Invalid phone number"
+        },
+        {
+          "name": "API_ERROR_AUTH_PARAM_PASSWORD",
+          "code": 1111,
+          "description": "Invalid password"
         }
       ],
       "responses": {
@@ -1030,7 +1055,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -1106,7 +1131,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -1333,11 +1358,7 @@
           "name": "album_id",
           "description": "Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.",
           "type": "string",
-          "enum": [
-            "profile",
-            "wall",
-            "saved"
-          ]
+          "$ref": "objects.json#/definitions/photos_photo_album_id"
         },
         {
           "name": "photo_ids",
@@ -1541,7 +1562,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/base_getUploadServer_response"
+          "$ref": "responses.json#/definitions/photos_getOwnerPhotoUploadServer_response"
         }
       }
     },
@@ -1580,7 +1601,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/base_getUploadServer_response"
+          "$ref": "responses.json#/definitions/photos_getUploadServer_response"
         }
       }
     },
@@ -1624,7 +1645,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/base_getUploadServer_response"
+          "$ref": "responses.json#/definitions/photos_getMarketUploadServer_response"
         }
       }
     },
@@ -2214,7 +2235,7 @@
           "description": "Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -2726,7 +2747,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online, counters'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -2787,7 +2808,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -2858,7 +2879,7 @@
           "description": "Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -2917,7 +2938,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online',",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -2993,7 +3014,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -3139,7 +3160,7 @@
           "description": "Additional fields to return",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         },
         {
@@ -3183,7 +3204,7 @@
           "description": "Additional fields to return",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -3329,7 +3350,7 @@
           "description": "Additional fields to return",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -4647,7 +4668,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -5033,7 +5054,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -6764,7 +6785,7 @@
           "description": "Group fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/groups_fields"
           }
         }
       ],
@@ -6797,15 +6818,7 @@
           "description": "Types of communities to return: 'admin' — to return communities administered by the user , 'editor' — to return communities where the user is an administrator or editor, 'moder' — to return communities where the user is an administrator, editor, or moderator, 'groups' — to return only groups, 'publics' — to return only public pages, 'events' — to return only events",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "admin",
-              "editor",
-              "moder",
-              "groups",
-              "publics",
-              "events"
-            ]
+            "$ref": "objects.json#/definitions/groups_filter"
           }
         },
         {
@@ -6813,7 +6826,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/groups_fields"
           }
         },
         {
@@ -6852,7 +6865,6 @@
       "access_token_type": [
         "user",
         "group",
-        "open",
         "service"
       ],
       "parameters": [
@@ -6892,41 +6904,7 @@
           "description": "List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "sex",
-              "bdate",
-              "city",
-              "country",
-              "photo_50",
-              "photo_100",
-              "photo_200_orig",
-              "photo_200",
-              "photo_400_orig",
-              "photo_max",
-              "photo_max_orig",
-              "online",
-              "online_mobile",
-              "lists",
-              "domain",
-              "has_mobile",
-              "contacts",
-              "connections",
-              "site",
-              "education",
-              "universities",
-              "schools",
-              "can_post",
-              "can_see_all_posts",
-              "can_see_audio",
-              "can_write_private_message",
-              "status",
-              "last_seen",
-              "common_count",
-              "relation",
-              "relatives",
-              "counters"
-            ]
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -7231,41 +7209,7 @@
           "description": "List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "sex",
-              "bdate",
-              "city",
-              "country",
-              "photo_50",
-              "photo_100",
-              "photo_200_orig",
-              "photo_200",
-              "photo_400_orig",
-              "photo_max",
-              "photo_max_orig",
-              "online",
-              "online_mobile",
-              "lists",
-              "domain",
-              "has_mobile",
-              "contacts",
-              "connections",
-              "site",
-              "education",
-              "universities",
-              "schools",
-              "can_post",
-              "can_see_all_posts",
-              "can_see_audio",
-              "can_write_private_message",
-              "status",
-              "last_seen",
-              "common_count",
-              "relation",
-              "relatives",
-              "counters"
-            ]
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -7421,7 +7365,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         },
         {
@@ -7495,6 +7439,18 @@
             "person or group",
             "product or art"
           ]
+        },
+        {
+          "name": "event_start_date",
+          "description": "Event start date in Unixtime format.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "event_finish_date",
+          "description": "Event finish date in Unixtime format.",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "errors": [
@@ -8064,7 +8020,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -8144,6 +8100,16 @@
           "name": "API_ERROR_GROUP_TOO_MANY_OFFICERS",
           "code": 702,
           "description": "Too many officers in club"
+        },
+        {
+          "name": "API_ERROR_GROUP_NEED_2FA",
+          "code": 703,
+          "description": "You need to enable 2FA for this action"
+        },
+        {
+          "name": "API_ERROR_GROUP_HOST_NEED_2FA",
+          "code": 704,
+          "description": "User needs to enable 2FA for this action"
         }
       ],
       "responses": {
@@ -8873,6 +8839,67 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getAddresses",
+      "description": "Returns a list of community addresses.",
+      "access_token_type": [
+        "user",
+        "open"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": "string"
+        },
+        {
+          "name": "latitude",
+          "description": "Latitude of  the user geo position.",
+          "type": "string"
+        },
+        {
+          "name": "longitude",
+          "description": "Longitude of the user geo position.",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "description": "Address fields",
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/addresses_fields"
+          }
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of community addresses.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of community addresses to return.",
+          "type": "integer",
+          "minimum": 0,
+          "default": 10
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_PARAM_GROUP_ID",
+          "code": 125,
+          "description": "Invalid group id"
+        }
+      ],
+      "responses": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/groups_address"
+          }
         }
       }
     },
@@ -10238,6 +10265,9 @@
     },
     {
       "name": "video.addToAlbum",
+      "access_token_type": [
+        "user"
+      ],
       "parameters": [
         {
           "name": "target_id",
@@ -10286,6 +10316,9 @@
     },
     {
       "name": "video.removeFromAlbum",
+      "access_token_type": [
+        "user"
+      ],
       "parameters": [
         {
           "name": "target_id",
@@ -10329,6 +10362,9 @@
     },
     {
       "name": "video.getAlbumsByVideo",
+      "access_token_type": [
+        "user"
+      ],
       "parameters": [
         {
           "name": "target_id",
@@ -10827,124 +10863,6 @@
       }
     },
     {
-      "name": "video.getCatalog",
-      "description": "Returns video catalog",
-      "access_token_type": [
-        "user",
-        "open",
-        "service"
-      ],
-      "parameters": [
-        {
-          "name": "count",
-          "description": "number of catalog blocks to return.",
-          "type": "integer",
-          "minimum": 0,
-          "default": 10,
-          "maximum": 16
-        },
-        {
-          "name": "items_count",
-          "description": "number of videos in each block.",
-          "type": "integer",
-          "minimum": 0,
-          "default": 10,
-          "maximum": 16
-        },
-        {
-          "name": "from",
-          "description": "parameter for requesting the next results page. Value for transmitting here is returned in the 'next' field in a reply.",
-          "type": "string"
-        },
-        {
-          "name": "filters",
-          "description": "list of requested catalog sections",
-          "default": 0,
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "extended",
-          "description": "1 – return additional infor about users and communities in profiles and groups fields.",
-          "type": "boolean"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/video_getCatalog_response"
-        },
-        "extendedResponse": {
-          "$ref": "responses.json#/definitions/video_getCatalog_extended_response"
-        }
-      }
-    },
-    {
-      "name": "video.getCatalogSection",
-      "description": "Returns a separate catalog section",
-      "access_token_type": [
-        "user",
-        "open",
-        "service"
-      ],
-      "parameters": [
-        {
-          "name": "section_id",
-          "description": "'id' value returned with a block by the '' method.",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "from",
-          "description": "'next' value returned with a block by the '' method.",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "count",
-          "description": "number of blocks to return.",
-          "type": "integer",
-          "minimum": 0,
-          "default": 10,
-          "maximum": 16
-        },
-        {
-          "name": "extended",
-          "description": "1 – return additional infor about users and communities in profiles and groups fields.",
-          "type": "boolean"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/video_getCatalogSection_response"
-        },
-        "extendedResponse": {
-          "$ref": "responses.json#/definitions/video_getCatalogSection_extended_response"
-        }
-      }
-    },
-    {
-      "name": "video.hideCatalogSection",
-      "description": "Hides a video catalog section from a user.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "section_id",
-          "description": "'id' value returned with a block to hide by the '' method.",
-          "required": true,
-          "type": "integer"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/ok_response"
-        }
-      }
-    },
-    {
       "name": "notes.get",
       "description": "Returns a list of notes created by a user.",
       "access_token_type": [
@@ -11364,311 +11282,6 @@
       }
     },
     {
-      "name": "places.add",
-      "description": "Adds a new location to the location database.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "type",
-          "description": "ID of the location's type (e.g., '1' — Home, '2' — Work). To get location type IDs, use the [vk.com/dev/places.getTypes|places.getTypes] method.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "title",
-          "description": "Title of the location.",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "latitude",
-          "description": "Geographical latitude, in degrees (from '-90' to '90').",
-          "type": "number",
-          "required": true,
-          "minimum": -90,
-          "maximum": 90
-        },
-        {
-          "name": "longitude",
-          "description": "Geographical longitude, in degrees (from '-180' to '180').",
-          "type": "number",
-          "required": true,
-          "minimum": -180,
-          "maximum": 180
-        },
-        {
-          "name": "country",
-          "description": "ID of the location's country. To get country IDs, use the [vk.com/dev/database.getCountries|database.getCountries] method.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "city",
-          "description": "ID of the location's city. To get city IDs, use the [vk.com/dev/database.getCities|database.getCities] method.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "address",
-          "description": "Street address of the location (e.g., '125 Elm Street').",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/places_add_response"
-        }
-      }
-    },
-    {
-      "name": "places.getById",
-      "description": "Returns information about locations by their IDs.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "places",
-          "description": "Location IDs.",
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "required": true
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/places_getById_response"
-        }
-      }
-    },
-    {
-      "name": "places.search",
-      "description": "Returns a list of locations that match the search criteria.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "q",
-          "description": "Search query string.",
-          "type": "string"
-        },
-        {
-          "name": "city",
-          "description": "City ID.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "latitude",
-          "description": "Geographical latitude of the initial search point, in degrees (from '-90' to '90').",
-          "type": "number",
-          "required": true,
-          "minimum": -90,
-          "maximum": 90
-        },
-        {
-          "name": "longitude",
-          "description": "Geographical longitude of the initial search point, in degrees (from '-180' to '180').",
-          "type": "number",
-          "required": true,
-          "minimum": -180,
-          "maximum": 180
-        },
-        {
-          "name": "radius",
-          "description": "Radius of the search zone: '1' — 100 m. (default), '2' — 800 m. '3' — 6 km. '4' — 50 km.",
-          "type": "integer",
-          "minimum": 0,
-          "default": 0,
-          "enum": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "enumNames": [
-            "100 m",
-            "800 m",
-            "6 km",
-            "50 km"
-          ]
-        },
-        {
-          "name": "offset",
-          "description": "Offset needed to return a specific subset of locations.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "count",
-          "description": "Number of locations to return.",
-          "type": "integer",
-          "minimum": 0,
-          "default": 30,
-          "maximum": 1000
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/places_search_response"
-        }
-      }
-    },
-    {
-      "name": "places.checkin",
-      "description": "Checks a user in at the specified location.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "place_id",
-          "description": "Location ID.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "text",
-          "description": "Text of the comment on the check-in (255 characters maximum, line breaks not supported).",
-          "type": "string",
-          "maxLength": 255
-        },
-        {
-          "name": "latitude",
-          "description": "Geographical latitude of the check-in, in degrees (from '-90' to '90').",
-          "type": "number",
-          "minimum": -90,
-          "maximum": 90
-        },
-        {
-          "name": "longitude",
-          "description": "Geographical longitude of the check-in, in degrees (from '-180' to '180').",
-          "type": "number",
-          "minimum": -180,
-          "maximum": 180
-        },
-        {
-          "name": "friends_only",
-          "description": "'1' — Check-in will be available only for friends. '0' — Check-in will be available for all users (default).",
-          "type": "boolean"
-        },
-        {
-          "name": "services",
-          "description": "List of services or websites (e.g., 'twitter', 'facebook') to which the check-in will be exported, if the user has set up the respective option.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      ],
-      "errors": [
-        {
-          "name": "API_ERROR_SAME_CHECKIN",
-          "code": 190,
-          "description": "You have sent same checkin in last 10 minutes"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/places_checkin_response"
-        }
-      }
-    },
-    {
-      "name": "places.getCheckins",
-      "description": "Returns a list of user check-ins at locations according to the set parameters.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "latitude",
-          "description": "Geographical latitude of the initial search point, in degrees (from '-90' to '90').",
-          "type": "number",
-          "minimum": -90,
-          "maximum": 90
-        },
-        {
-          "name": "longitude",
-          "description": "Geographical longitude of the initial search point, in degrees (from '-180' to '180').",
-          "type": "number",
-          "minimum": -180,
-          "maximum": 180
-        },
-        {
-          "name": "place",
-          "description": "Location ID of check-ins to return. (Ignored if 'latitude' and 'longitude' are specified.)",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "user_id",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "offset",
-          "description": "Offset needed to return a specific subset of check-ins. (Ignored if 'timestamp' is not null.)",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "count",
-          "description": "Number of check-ins to return. (Ignored if 'timestamp' is not null.)",
-          "type": "integer",
-          "minimum": 0,
-          "default": 20,
-          "maximum": 100
-        },
-        {
-          "name": "timestamp",
-          "description": "Specifies that only those check-ins created after the specified timestamp will be returned.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "friends_only",
-          "description": "'1' — to return only check-ins with set geographical coordinates. (Ignored if 'latitude' and 'longitude' are not set.)",
-          "type": "boolean"
-        },
-        {
-          "name": "need_places",
-          "description": "'1' — to return location information with the check-ins. (Ignored if 'place' is not set.),",
-          "type": "boolean"
-        }
-      ],
-      "errors": [
-        {
-          "name": "API_ERROR_ACCESS_CHECKIN",
-          "code": 191,
-          "description": "Access to checkins denied"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/places_getCheckins_response"
-        }
-      }
-    },
-    {
-      "name": "places.getTypes",
-      "description": "Returns a list of all types of locations.",
-      "access_token_type": [
-        "user"
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/places_getTypes_response"
-        }
-      }
-    },
-    {
       "name": "account.getCounters",
       "description": "Returns non-null values of user counters.",
       "access_token_type": [
@@ -11812,30 +11425,7 @@
           "description": "Profile fields to return. Possible values: 'nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities'.",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "nickname",
-              "domain",
-              "sex",
-              "bdate",
-              "city",
-              "country",
-              "timezone",
-              "photo_50",
-              "photo_100",
-              "photo_200_orig",
-              "has_mobile",
-              "contacts",
-              "education",
-              "online",
-              "relation",
-              "last_seen",
-              "status",
-              "can_write_private_message",
-              "can_see_all_posts",
-              "can_post",
-              "universities"
-            ]
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -12355,6 +11945,79 @@
       }
     },
     {
+      "name": "messages.joinChatByInviteLink",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "link",
+          "description": "Invitation link.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_LIMITS",
+          "code": 103,
+          "description": "Out of limits"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_USER_NO_ACCESS",
+          "code": 917,
+          "description": "You don't have access to this chat"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_joinChatByInviteLink_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getInviteLink",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "reset",
+          "description": "1 — to generate new link (revoke previous), 0 — to return previous link.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_MESSAGES_CANT_SEE_INVITE_LINK",
+          "code": 919,
+          "description": "You can't see invite link for this chat"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CANT_CHANGE_INVITE_LINK",
+          "code": 931,
+          "description": "You can't change invite link for this chat"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_getInviteLink_response"
+        }
+      }
+    },
+    {
       "name": "messages.getConversations",
       "description": "Returns a list of the current user's conversations.",
       "access_token_type": [
@@ -12409,7 +12072,7 @@
           "description": "Profile and communities fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -12447,7 +12110,7 @@
           "description": "Profile and communities fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         },
         {
@@ -12498,7 +12161,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -12548,7 +12211,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -12666,7 +12329,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -12748,7 +12411,7 @@
           "description": "Additional profile [vk.com/dev/fields|fields] to return. ",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -12969,24 +12632,34 @@
       ],
       "errors": [
         {
+          "name": "API_ERROR_MESSAGES_USER_BLOCKED",
+          "code": 900,
+          "description": "Can't send messages for users from blacklist"
+        },
+        {
           "name": "API_ERROR_MESSAGES_DENY_SEND",
           "code": 901,
           "description": "Can't send messages for users without dialogs"
         },
         {
           "name": "API_ERROR_MESSAGES_PRIVACY",
-          "code": 909,
+          "code": 902,
           "description": "Can't send messages to this user due to their privacy settings"
-        },
-        {
-          "name": "API_ERROR_MESSAGES_TOO_BIG",
-          "code": 910,
-          "description": "Can't sent this message, because it's too big"
         },
         {
           "name": "API_ERROR_MESSAGES_KEYBOARD_INVALID",
           "code": 911,
           "description": "Keyboard format is invalid"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_BOT_FEATURE",
+          "code": 912,
+          "description": "This is a chat bot feature, change this status in settings"
+        },
+        {
+          "name": "API_ERROR_MESSAGES_FORWARD_AMOUNT_EXCEEDED",
+          "code": 913,
+          "description": "Too many forwarded messages"
         },
         {
           "name": "API_ERROR_MESSAGES_TOO_LONG_MESSAGE",
@@ -12999,9 +12672,9 @@
           "description": "You don't have access to this chat"
         },
         {
-          "name": "API_ERROR_MESSAGES_EDIT_KIND_DISALLOWED",
-          "code": 920,
-          "description": "Can't edit this kind of message"
+          "name": "API_ERROR_MESSAGES_FORWARD_ERROR",
+          "code": 921,
+          "description": "Can't forward these messages"
         }
       ],
       "responses": {
@@ -13090,7 +12763,50 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/ok_response"
+          "$ref": "responses.json#/definitions/messages_deleteConversation_response"
+        }
+      }
+    },
+    {
+      "name": "messages.pin",
+      "description": "Pin a message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "conversation_message_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_NOT_ADMIN",
+          "code": 925,
+          "description": "You are not admin of this chat"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_pin_response"
         }
       }
     },
@@ -13325,7 +13041,7 @@
           "description": "Additional profile [vk.com/dev/fields|fields] to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           },
           "default": 0
         },
@@ -13359,6 +13075,40 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_getLongPollHistory_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getChatPreview",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "link",
+          "description": "Invitation link.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "errors": [
+        {
+          "name": "API_ERROR_MESSAGES_CHAT_USER_NO_ACCESS",
+          "code": 917,
+          "description": "You don't have access to this chat"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_getChatPreview_response"
         }
       }
     },
@@ -13448,7 +13198,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -13544,7 +13294,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -13777,15 +13527,7 @@
           "description": "Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends, 'note' — new notes",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "post",
-              "photo",
-              "photo_tag",
-              "wall_photo",
-              "friend",
-              "note"
-            ]
+            "$ref": "objects.json#/definitions/newsfeed_filters"
           }
         },
         {
@@ -13838,7 +13580,7 @@
           "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -13890,7 +13632,7 @@
           "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -13920,14 +13662,7 @@
           "description": "Filters to apply: 'post' — new comments on wall posts, 'photo' — new comments on photos, 'video' — new comments on videos, 'topic' — new comments on discussions, 'note' — new comments on notes,",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "post",
-              "photo",
-              "video",
-              "topic",
-              "note"
-            ]
+            "$ref": "objects.json#/definitions/newsfeed_commentsFilters"
           }
         },
         {
@@ -13957,7 +13692,7 @@
           "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -14029,7 +13764,7 @@
           "description": "Profile fields to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -14269,7 +14004,7 @@
           "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -14361,6 +14096,9 @@
     },
     {
       "name": "newsfeed.deleteList",
+      "access_token_type": [
+        "user"
+      ],
       "parameters": [
         {
           "name": "list_id",
@@ -14445,7 +14183,7 @@
           "description": "list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/base_user_group_fields"
           }
         }
       ],
@@ -14469,18 +14207,7 @@
           "description": ", Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
-          "enum": [
-            "post",
-            "comment",
-            "photo",
-            "audio",
-            "video",
-            "note",
-            "photo_comment",
-            "video_comment",
-            "topic_comment",
-            "sitepage"
-          ]
+          "$ref": "objects.json#/definitions/likes_type"
         },
         {
           "name": "owner_id",
@@ -14888,7 +14615,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -15087,7 +14814,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/base_getUploadServer_response"
+          "$ref": "responses.json#/definitions/docs_getUploadServer"
         }
       }
     },
@@ -15365,6 +15092,48 @@
           "$ref": "responses.json#/definitions/ok_response"
         }
       }
+    },
+    {
+      "name": "fave.get",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "extended",
+          "description": "'1' — to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.",
+          "type": "boolean"
+        },
+        {
+          "name": "item_type",
+          "type": "string"
+        },
+        {
+          "name": "tag_id",
+          "description": "Tag ID.",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of users to return.",
+          "type": "integer",
+          "minimum": 0,
+          "default": 100
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/users_fields"
+          }
+        }
+      ]
     },
     {
       "name": "fave.getUsers",
@@ -15919,7 +15688,7 @@
           "name": "fields",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -15989,7 +15758,7 @@
           "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', (only if return_friends - 1)",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         },
         {
@@ -16119,7 +15888,7 @@
           "description": "Additional profile fields, see [vk.com/dev/fields|description].",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -16227,6 +15996,55 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/apps_getScore_response"
+        }
+      }
+    },
+    {
+      "name": "apps.getStickerAchievements",
+      "description": "Returns apps sticker achievement for user",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "default": "all",
+          "enum": [
+            "all",
+            "open",
+            "closed"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/apps_getStickerAchievements_response"
+        }
+      }
+    },
+    {
+      "name": "apps.getStickerAchievementsLevel",
+      "description": "Returns level of apps sticker achievement for user",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "objects.json#/definitions/apps_sticker_achievement_level"
+        }
+      }
+    },
+    {
+      "name": "apps.getScopes",
+      "description": "Returns scopes for auth",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/apps_getScopes_response"
         }
       }
     },
@@ -18636,7 +18454,7 @@
           "description": "List of additional profile fields to return. See the [vk.com/dev/fields|details]",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "objects.json#/definitions/users_fields"
           }
         }
       ],
@@ -18943,6 +18761,13 @@
             "minimum": 0
           },
           "maxItems": 4
+        },
+        {
+          "name": "url",
+          "description": "Url for button in market item.",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 120
         }
       ],
       "errors": [
@@ -19033,6 +18858,13 @@
             "minimum": 0
           },
           "maxItems": 4
+        },
+        {
+          "name": "url",
+          "description": "Url for button in market item.",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 120
         }
       ],
       "errors": [

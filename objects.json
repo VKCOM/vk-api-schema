@@ -1523,8 +1523,29 @@
         "app",
         "game",
         "site",
-        "standalone"
+        "standalone",
+        "vk_app",
+        "community_app",
+        "html5_game"
       ]
+    },
+    "apps_scope": {
+      "type": "object",
+      "description": "Scope description",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Scope name"
+        },
+        "title": {
+          "type": "string",
+          "description": "Scope title"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
     },
     "apps_app_leaderboard_type": {
       "type": "integer",
@@ -3144,6 +3165,10 @@
         "market": {
           "type": "integer",
           "description": "Market items number"
+        },
+        "addresses": {
+          "type": "integer",
+          "description": "Addresses number"
         }
       }
     },
@@ -3165,6 +3190,18 @@
         "enabled"
       ],
       "additionalProperties": false
+    },
+    "groups_filter": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "editor",
+        "moder",
+        "groups",
+        "publics",
+        "events",
+        "has_addresses"
+      ]
     },
     "groups_group_ban_info": {
       "type": "object",
@@ -3200,6 +3237,15 @@
       "enum": [
         "group",
         "page",
+        "event"
+      ]
+    },
+    "groups_group_class": {
+      "type": "string",
+      "description": "Group class",
+      "enum": [
+        "group",
+        "public",
         "event"
       ]
     },
@@ -3253,6 +3299,10 @@
           "description": "Information whether current user is member",
           "$ref": "#/definitions/base_bool_int"
         },
+        "is_advertiser": {
+          "description": "Information whether current user is advertiser",
+          "$ref": "#/definitions/base_bool_int"
+        },
         "photo_50": {
           "type": "string",
           "description": "URL of square photo of the community with 50 pixels in width"
@@ -3264,6 +3314,14 @@
         "photo_200": {
           "type": "string",
           "description": "URL of square photo of the community with 200 pixels in width"
+        },
+        "start_date": {
+          "description": "Start date in Unixtime format",
+          "type": "integer"
+        },
+        "finish_date": {
+          "description": "Finish date in Unixtime format",
+          "type": "integer"
         }
       }
     },
@@ -3456,6 +3514,22 @@
             "ban_info": {
               "$ref": "#/definitions/groups_group_ban_info",
               "description": "User ban info"
+            },
+            "addresses": {
+              "$ref": "#/definitions/groups_addresses_info",
+              "description": "Info about addresses in groups"
+            },
+            "is_subscribed_podcasts": {
+              "description": "Information whether current user is subscribed to podcasts",
+              "type": "boolean"
+            },
+            "can_subscribe_podcasts": {
+              "description": "Owner in whitelist or not",
+              "type": "boolean"
+            },
+            "live_covers": {
+              "description": "Live covers state",
+              "$ref": "#/definitions/groups_live_covers"
             }
           }
         }
@@ -3739,9 +3813,6 @@
           "type": "string",
           "description": "Community's page domain"
         },
-        "place": {
-          "$ref": "#/definitions/places_place_min"
-        },
         "wall": {
           "type": "integer",
           "description": "Wall settings"
@@ -3817,6 +3888,10 @@
         "website": {
           "type": "string",
           "description": "Community website"
+        },
+        "action_button": {
+          "$ref": "#/definitions/groups_action_button",
+          "description": "Call to action button"
         }
       }
     },
@@ -4138,7 +4213,8 @@
         "user_block",
         "user_unblock",
         "messages_edit",
-        "message_typing_state"
+        "message_typing_state",
+        "message_read"
       ]
     },
     "groups_online_status_type": {
@@ -4166,6 +4242,184 @@
         "status"
       ],
       "additionalProperties": false
+    },
+    "groups_live_covers": {
+      "type": "object",
+      "properties": {
+        "is_enabled": {
+          "description": "Information whether live covers is enabled",
+          "type": "boolean"
+        },
+        "is_scalable": {
+          "description": "Information whether live covers photo scaling is enabled",
+          "type": "boolean"
+        },
+        "story_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "is_enabled"
+      ],
+      "additionalProperties": false
+    },
+    "groups_addresses_info": {
+      "type": "object",
+      "properties": {
+        "is_enabled": {
+          "description": "Information whether addresses is enabled",
+          "type": "boolean"
+        },
+        "main_address_id": {
+          "type": "integer",
+          "description": "Main address id for group"
+        }
+      },
+      "required": [
+        "is_enabled"
+      ],
+      "additionalProperties": false
+    },
+    "groups_address": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Address id"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the place (Zinger, etc)"
+        },
+        "address": {
+          "type": "string",
+          "description": "String address to the place (Nevsky, 28)"
+        },
+        "additional_address": {
+          "type": "string",
+          "description": "Additional address to the place (6 floor, left door)"
+        },
+        "country_id": {
+          "type": "integer",
+          "description": "Country id of address",
+          "minimum": 0
+        },
+        "city_id": {
+          "type": "integer",
+          "description": "City id of address",
+          "minimum": 0
+        },
+        "metro_station_id": {
+          "type": "integer",
+          "description": "Metro id of address",
+          "minimum": 0
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Address latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Address longitude"
+        },
+        "distance": {
+          "type": "integer",
+          "description": "Distance from the point"
+        },
+        "work_info_status": {
+          "description": "Status of information about timetable",
+          "$ref": "#/definitions/groups_address_work_info_status"
+        },
+        "timetable": {
+          "description": "Week timetable for the address",
+          "$ref": "#/definitions/groups_address_timetable"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Address phone"
+        },
+        "time_offset": {
+          "type": "integer",
+          "description": "Time offset int minutes from utc time"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "groups_address_work_info_status": {
+      "type": "string",
+      "description": "Status of information about timetable",
+      "enum": [
+        "no_information",
+        "temporarily_closed",
+        "always_opened",
+        "timetable",
+        "forever_closed"
+      ]
+    },
+    "groups_address_timetable": {
+      "type": "object",
+      "description": "Timetable for a week",
+      "properties": {
+        "mon": {
+          "description": "Timetable for monday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        },
+        "tue": {
+          "description": "Timetable for tuesday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        },
+        "wed": {
+          "description": "Timetable for wednesday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        },
+        "thu": {
+          "description": "Timetable for thursday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        },
+        "fri": {
+          "description": "Timetable for friday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        },
+        "sat": {
+          "description": "Timetable for saturday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        },
+        "sun": {
+          "description": "Timetable for sunday",
+          "$ref": "#/definitions/groups_address_timetable_day"
+        }
+      }
+    },
+    "groups_address_timetable_day": {
+      "type": "object",
+      "description": "Timetable for one day",
+      "properties": {
+        "open_time": {
+          "type": "integer",
+          "description": "Open time in minutes"
+        },
+        "close_time": {
+          "type": "integer",
+          "description": "Close time in minutes"
+        },
+        "break_open_time": {
+          "type": "integer",
+          "description": "Start time of the break in minutes"
+        },
+        "break_close_time": {
+          "type": "integer",
+          "description": "Close time of the break in minutes"
+        }
+      },
+      "required": [
+        "open_time",
+        "close_time"
+      ]
     },
     "leads_lead": {
       "type": "object",
@@ -4562,7 +4816,9 @@
         "link",
         "market",
         "wall",
-        "share"
+        "share",
+        "graffiti",
+        "audio_message"
       ]
     },
     "messages_history_message_attachment": {
@@ -4594,6 +4850,12 @@
         },
         "share": {
           "$ref": "#/definitions/base_link"
+        },
+        "graffiti": {
+          "$ref": "#/definitions/messages_graffiti"
+        },
+        "audio_message": {
+          "$ref": "#/definitions/messages_audio_message"
         }
       },
       "required": [
@@ -4614,7 +4876,9 @@
         "gift",
         "sticker",
         "wall",
-        "wall_reply"
+        "wall_reply",
+        "graffiti",
+        "audio_message"
       ]
     },
     "messages_message_attachment": {
@@ -4655,6 +4919,12 @@
         },
         "type": {
           "$ref": "#/definitions/messages_message_attachment_type"
+        },
+        "graffiti": {
+          "$ref": "#/definitions/messages_graffiti"
+        },
+        "audio_message": {
+          "$ref": "#/definitions/messages_audio_message"
         }
       },
       "required": [
@@ -4872,6 +5142,152 @@
         }
       }
     },
+    "messages_conversation": {
+      "type": "object",
+      "properties": {
+        "peer": {
+          "$ref": "#/definitions/messages_conversation_peer"
+        },
+        "in_read": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Last message user have read"
+        },
+        "out_read": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Last outcoming message have been read by the opponent"
+        },
+        "unread_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unread messages number"
+        },
+        "last_message_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "ID of the last message in conversation"
+        },
+        "important": {
+          "type": "boolean"
+        },
+        "unanswered": {
+          "type": "boolean"
+        },
+        "current_keyboard": {
+          "$ref": "#/definitions/messages_keyboard"
+        },
+        "mentions": {
+          "type": "array",
+          "description": "Ids of messages with mentions",
+          "items": {
+            "type": "integer",
+            "description": "Message id of message with mention"
+          }
+        },
+        "message_request": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "rejected"
+          ]
+        }
+      },
+      "required": [
+        "peer",
+        "in_read",
+        "out_read",
+        "last_message_id"
+      ]
+    },
+    "messages_graffiti": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Graffiti ID",
+          "minimum": 0
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Graffiti owner ID"
+        },
+        "url": {
+          "type": "string",
+          "description": "Graffiti URL"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Graffiti width",
+          "minimum": 0
+        },
+        "height": {
+          "type": "integer",
+          "description": "Graffiti height",
+          "minimum": 0
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for graffiti"
+        }
+      },
+      "required": [
+        "id",
+        "owner_id",
+        "url",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
+    "messages_audio_message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Audio message ID",
+          "minimum": 0
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Audio message owner ID"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Audio message duration in seconds",
+          "minimum": 0
+        },
+        "waveform": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Sound visualisation",
+            "minimum": 0
+          }
+        },
+        "link_ogg": {
+          "type": "string",
+          "description": "OGG file URL"
+        },
+        "link_mp3": {
+          "type": "string",
+          "description": "MP3 file URL"
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for audio message"
+        }
+      },
+      "required": [
+        "id",
+        "owner_id",
+        "duration",
+        "waveform",
+        "link_ogg",
+        "link_mp3"
+      ],
+      "additionalProperties": false
+    },
     "messages_keyboard_button_action": {
       "description": "Description of the action, that should be performed on button click",
       "type": "object",
@@ -4946,6 +5362,62 @@
         "buttons"
       ]
     },
+    "messages_foreign_message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Message ID"
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Conversation message ID"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID"
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Message author's ID"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the message was created"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message text"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/messages_message_attachment"
+          }
+        },
+        "fwd_messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/messages_foreign_message"
+          }
+        },
+        "reply_message": {
+          "$ref": "#/definitions/messages_foreign_message"
+        },
+        "geo": {
+          "$ref": "#/definitions/base_geo"
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Date when the message has been updated in Unixtime"
+        }
+      },
+      "required": [
+        "date",
+        "from_id",
+        "text"
+      ]
+    },
     "messages_message_action_status": {
       "type": "string",
       "description": "Action status",
@@ -4992,9 +5464,22 @@
           "type": "integer",
           "description": "ID used for sending messages. It returned only for outgoing messages"
         },
+        "ref": {
+          "type": "string"
+        },
+        "ref_source": {
+          "type": "string"
+        },
         "important": {
           "type": "boolean",
           "description": "Is it an important message"
+        },
+        "deleted": {
+          "description": "Is it an deleted message",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "is_hidden": {
+          "type": "boolean"
         },
         "payload": {
           "type": "string"
@@ -5003,8 +5488,11 @@
           "description": "Forwarded messages",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/messages_fwd_message"
+            "$ref": "#/definitions/messages_foreign_message"
           }
+        },
+        "reply_message": {
+          "$ref": "#/definitions/messages_foreign_message"
         },
         "text": {
           "type": "string",
@@ -5022,6 +5510,17 @@
         "action": {
           "$ref": "#/definitions/messages_message_action"
         },
+        "members_count": {
+          "type": "integer",
+          "description": "Members number"
+        },
+        "message_tag": {
+          "type": "string"
+        },
+        "admin_author_id": {
+          "type": "integer",
+          "description": "Only for messages from community. Contains user ID of community admin, who sent this message."
+        },
         "keyboard": {
           "$ref": "#/definitions/messages_keyboard"
         }
@@ -5030,6 +5529,7 @@
         "date",
         "from_id",
         "id",
+        "out",
         "peer_id",
         "text"
       ]
@@ -5061,8 +5561,11 @@
           "description": "Forwarded messages",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/messages_fwd_message"
+            "$ref": "#/definitions/messages_foreign_message"
           }
+        },
+        "reply_message": {
+          "$ref": "#/definitions/messages_foreign_message"
         },
         "text": {
           "type": "string",
@@ -5120,6 +5623,28 @@
         "type"
       ]
     },
+    "messages_message_action_photo": {
+      "type": "object",
+      "properties": {
+        "photo_50": {
+          "type": "string",
+          "description": "URL of the preview image with 50px in width"
+        },
+        "photo_100": {
+          "type": "string",
+          "description": "URL of the preview image with 100px in width"
+        },
+        "photo_200": {
+          "type": "string",
+          "description": "URL of the preview image with 200px in width"
+        }
+      },
+      "required": [
+        "photo_50",
+        "photo_100",
+        "photo_200"
+      ]
+    },
     "messages_conversation_with_message": {
       "type": "object",
       "properties": {
@@ -5148,12 +5673,120 @@
         }
       }
     },
+    "messages_templates_sort": {
+      "type": "string",
+      "default": "create_time",
+      "enum": [
+        "create_time",
+        "usages"
+      ]
+    },
+    "messages_template": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "creator_id": {
+          "type": "integer"
+        },
+        "creation_time": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "usages_all_time": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "usages_week": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "creator_id",
+        "creation_time",
+        "name",
+        "text",
+        "usages_all_time",
+        "usages_week"
+      ]
+    },
     "messages_chat_settings_state": {
       "type": "string",
       "enum": [
         "in",
         "kicked",
         "left"
+      ]
+    },
+    "messages_chat_restrictions": {
+      "type": "object",
+      "properties": {
+        "only_admins_invite": {
+          "type": "boolean",
+          "description": "Only admins can invite users to this chat"
+        },
+        "only_admins_kick": {
+          "type": "boolean",
+          "description": "Only admins can kick users from this chat"
+        },
+        "only_admins_edit_info": {
+          "type": "boolean",
+          "description": "Only admins can change chat info"
+        },
+        "only_admins_edit_pin": {
+          "type": "boolean",
+          "description": "Only admins can edit pinned message"
+        },
+        "admins_promote_users": {
+          "type": "boolean",
+          "description": "Only admins can promote users to admins"
+        }
+      }
+    },
+    "messages_chat_settings_acl": {
+      "type": "object",
+      "properties": {
+        "can_invite": {
+          "type": "boolean",
+          "description": "Can you invite other peers in chat"
+        },
+        "can_change_info": {
+          "type": "boolean",
+          "description": "Can you change photo, description and name"
+        },
+        "can_change_pin": {
+          "type": "boolean",
+          "description": "Can you pin/unpin message for this chat"
+        },
+        "can_promote_users": {
+          "type": "boolean",
+          "description": "Can you promote simple users to chat admins"
+        },
+        "can_see_invite_link": {
+          "type": "boolean",
+          "description": "Can you see invite link for this chat"
+        },
+        "can_change_invite_link": {
+          "type": "boolean",
+          "description": "Can you change invite link for this chat"
+        }
+      },
+      "required": [
+        "can_invite",
+        "can_change_info",
+        "can_change_pin",
+        "can_promote_users",
+        "can_see_invite_link",
+        "can_change_invite_link"
       ]
     },
     "messages_user_xtr_invited_by": {
@@ -5170,6 +5803,27 @@
             }
           }
         }
+      ]
+    },
+    "newsfeed_filters": {
+      "type": "string",
+      "enum": [
+        "post",
+        "photo",
+        "photo_tag",
+        "wall_photo",
+        "friend",
+        "note"
+      ]
+    },
+    "newsfeed_commentsFilters": {
+      "type": "string",
+      "enum": [
+        "post",
+        "photo",
+        "video",
+        "topic",
+        "note"
       ]
     },
     "newsfeed_newsfeed_item_type": {
@@ -5385,6 +6039,23 @@
         "text"
       ],
       "additionalProperties": false
+    },
+    "likes_type": {
+      "type": "string",
+      "enum": [
+        "post",
+        "comment",
+        "photo",
+        "audio",
+        "video",
+        "note",
+        "market",
+        "photo_comment",
+        "video_comment",
+        "topic_comment",
+        "market_comment",
+        "sitepage"
+      ]
     },
     "newsfeed_item_video": {
       "type": "object",
@@ -6090,6 +6761,15 @@
         "size"
       ],
       "additionalProperties": false
+    },
+    "photos_photo_album_id": {
+      "type": "string",
+      "description": "Photo album id",
+      "enum": [
+        "profile",
+        "wall",
+        "saved"
+      ]
     },
     "photos_photo_album_full": {
       "type": "object",
@@ -7011,196 +7691,6 @@
         }
       }
     },
-    "places_checkin": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Checkin ID"
-        },
-        "user_id": {
-          "type": "integer",
-          "description": "User ID"
-        },
-        "date": {
-          "type": "integer",
-          "description": "Date when the checkin has been added in Unixtime"
-        },
-        "latitude": {
-          "type": "number",
-          "description": "Place latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "description": "Place longitude"
-        },
-        "place_id": {
-          "type": "integer",
-          "description": "Place ID"
-        },
-        "text": {
-          "type": "string",
-          "description": "Comment text"
-        },
-        "distance": {
-          "type": "integer",
-          "description": "Distance to the place"
-        },
-        "place_title": {
-          "type": "string",
-          "description": "Place title"
-        },
-        "place_country": {
-          "type": "integer",
-          "description": "Country ID"
-        },
-        "place_city": {
-          "type": "integer",
-          "description": "City ID"
-        },
-        "place_type": {
-          "type": "string",
-          "description": "Place type"
-        },
-        "place_icon": {
-          "type": "string",
-          "description": "URL of the place's icon"
-        }
-      },
-      "required": [
-        "id",
-        "user_id",
-        "date"
-      ],
-      "additionalProperties": false
-    },
-    "places_place_min": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Place ID"
-        },
-        "title": {
-          "type": "string",
-          "description": "Place title"
-        },
-        "latitude": {
-          "type": "number",
-          "description": "Place latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "description": "Place longitude"
-        },
-        "created": {
-          "type": "integer",
-          "description": "Date of the place creation in Unixtime"
-        },
-        "icon": {
-          "type": "string",
-          "description": "URL of the place's icon"
-        },
-        "checkins": {
-          "type": "integer",
-          "description": "Checkins number"
-        },
-        "type": {
-          "type": "string",
-          "description": "Place type"
-        },
-        "country": {
-          "type": "integer",
-          "description": "Country ID"
-        },
-        "city": {
-          "type": "integer",
-          "description": "City ID"
-        },
-        "address": {
-          "type": "string",
-          "description": "Place address"
-        }
-      }
-    },
-    "places_place_full": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Place ID"
-        },
-        "title": {
-          "type": "string",
-          "description": "Place title"
-        },
-        "latitude": {
-          "type": "number",
-          "description": "Place latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "description": "Place longitude"
-        },
-        "created": {
-          "type": "integer",
-          "description": "Date of the place creation in Unixtime"
-        },
-        "icon": {
-          "type": "string",
-          "description": "URL of the place's icon"
-        },
-        "checkins": {
-          "type": "integer",
-          "description": "Checkins number"
-        },
-        "type": {
-          "type": "string",
-          "description": "Place type"
-        },
-        "country": {
-          "type": "integer",
-          "description": "Country ID"
-        },
-        "city": {
-          "type": "integer",
-          "description": "City ID"
-        },
-        "address": {
-          "type": "string",
-          "description": "Place address"
-        },
-        "distance": {
-          "type": "integer",
-          "description": "Distance to the place"
-        },
-        "group_id": {
-          "type": "integer",
-          "description": "Community ID"
-        },
-        "group_photo": {
-          "type": "string",
-          "description": "URL of the community's photo"
-        }
-      }
-    },
-    "places_types": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Place type ID"
-        },
-        "title": {
-          "type": "string",
-          "description": "Place type title"
-        },
-        "icon": {
-          "type": "string",
-          "description": "URL of the place's icon"
-        }
-      }
-    },
     "polls_answer": {
       "type": "object",
       "properties": {
@@ -7453,12 +7943,12 @@
       "type": "object",
       "properties": {
         "period_from": {
-          "type": "string",
-          "description": "Day (YYYY-MM-DD)"
+          "type": "integer",
+          "description": "Unix timestamp"
         },
         "period_to": {
-          "type": "string",
-          "description": "Day (YYYY-MM-DD)"
+          "type": "integer",
+          "description": "Unix timestamp"
         },
         "visitors": {
           "$ref": "#/definitions/stats_views"
@@ -7699,6 +8189,34 @@
         }
       }
     },
+    "message_chat_preview": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "members_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "title": {
+          "type": "string"
+        },
+        "local_id": {
+          "type": "integer"
+        },
+        "joined": {
+          "type": "boolean"
+        }
+      }
+    },
     "status_status": {
       "type": "object",
       "properties": {
@@ -7936,6 +8454,132 @@
       },
       "required": [
         "count"
+      ]
+    },
+    "stories_clickable_stickers": {
+      "type": "object",
+      "properties": {
+        "original_width": {
+          "type": "integer"
+        },
+        "original_height": {
+          "type": "integer"
+        },
+        "clickable_stickers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stories_clickable_sticker"
+          }
+        }
+      },
+      "required": [
+        "original_height",
+        "original_width",
+        "clickable_stickers"
+      ]
+    },
+    "stories_clickable_sticker": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "hashtag": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        },
+        "clickable_area": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/stories_clickable_area"
+          }
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "stories_clickable_area": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        }
+      },
+      "requried": [
+        "x",
+        "y"
+      ]
+    },
+    "stories_top_hashtags": {
+      "type": "object",
+      "properties": {
+        "hashtags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "requried": [
+        "hashtags"
+      ]
+    },
+    "narratives_narrative": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Narrative ID."
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Narrative owner's ID."
+        },
+        "title": {
+          "type": "string",
+          "description": "Narrative title"
+        },
+        "views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Views number."
+        },
+        "can_see": {
+          "type": "boolean",
+          "description": "Information whether current user can see the narrative (false - no, true - yes)."
+        },
+        "is_deleted": {
+          "type": "boolean",
+          "description": "Information whether the narrative is deleted (false - no, true - yes)."
+        },
+        "can_delete": {
+          "type": "boolean",
+          "description": "Information whether current user can delete the narrative (false - no, true - yes)."
+        },
+        "cover_story": {
+          "$ref": "#/definitions/stories_story"
+        },
+        "stories": {
+          "type": "array",
+          "description": "Slides from narrative.",
+          "items": {
+            "$ref": "#/definitions/stories_story"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "owner_id",
+        "title",
+        "views",
+        "can_see",
+        "is_deleted"
       ]
     },
     "utils_short_link": {
@@ -8652,6 +9296,14 @@
             "quotes": {
               "type": "string",
               "description": "Favorite quotes"
+            },
+            "is_subscribed_podcasts": {
+              "description": "Information whether current user is subscribed to podcasts",
+              "type": "boolean"
+            },
+            "can_subscribe_podcasts": {
+              "description": "Owner in whitelist or not",
+              "type": "boolean"
             }
           },
           "additionalProperties": false
@@ -8661,6 +9313,10 @@
     "users_career": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Career ID"
+        },
         "group_id": {
           "type": "integer",
           "description": "Community ID"
@@ -8709,6 +9365,10 @@
     "users_military": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Military ID"
+        },
         "unit": {
           "type": "string",
           "description": "Unit name"
@@ -8730,6 +9390,11 @@
           "description": "Till year"
         }
       },
+      "required": [
+        "unit",
+        "unit_id",
+        "country_id"
+      ],
       "additionalProperties": false
     },
     "users_relative": {
@@ -8739,11 +9404,29 @@
           "type": "integer",
           "description": "Relative ID"
         },
+        "birth_date": {
+          "type": "string",
+          "description": "Date of child birthday (format dd.mm.yyyy)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of relative"
+        },
         "type": {
           "type": "string",
-          "description": "Relative type"
+          "description": "Relative type",
+          "enum": [
+            "parent",
+            "child",
+            "grandparent",
+            "grandchild",
+            "sibling"
+          ]
         }
       },
+      "required": [
+        "type"
+      ],
       "additionalProperties": false
     },
     "users_user_lim": {
@@ -9068,6 +9751,9 @@
         "is_system": {
           "type": "integer",
           "description": "Information whether album is system"
+        },
+        "privacy": {
+          "type": "object"
         }
       },
       "required": [
@@ -9078,151 +9764,6 @@
         "count"
       ],
       "additionalProperties": false
-    },
-    "video_cat_block_view": {
-      "type": "string",
-      "description": "Type of view",
-      "enum": [
-        "horizontal",
-        "horizontal_compact",
-        "vertical",
-        "vertical_compact"
-      ]
-    },
-    "video_cat_block": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/video_cat_element"
-          }
-        },
-        "next": {
-          "type": "string",
-          "description": "New value for _from_ parameter"
-        },
-        "name": {
-          "type": "string",
-          "description": "Block name"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Block ID"
-        },
-        "view": {
-          "$ref": "#/definitions/video_cat_block_view"
-        },
-        "can_hide": {
-          "description": "Information whether the block can be hidden",
-          "$ref": "#/definitions/base_bool_int"
-        },
-        "type": {
-          "$ref": "#/definitions/video_cat_block_view"
-        }
-      },
-      "required": [
-        "items",
-        "next",
-        "name",
-        "id",
-        "view",
-        "can_hide"
-      ]
-    },
-    "video_cat_element_type": {
-      "type": "string",
-      "description": "Element type",
-      "enum": [
-        "video",
-        "album"
-      ]
-    },
-    "video_cat_element": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Element ID"
-        },
-        "owner_id": {
-          "type": "integer",
-          "description": "Element owner's ID"
-        },
-        "title": {
-          "type": "string",
-          "description": "Element title"
-        },
-        "type": {
-          "$ref": "#/definitions/video_cat_element_type"
-        },
-        "description": {
-          "type": "string",
-          "description": "Element description"
-        },
-        "duration": {
-          "type": "integer",
-          "description": "Duration in seconds"
-        },
-        "photo_130": {
-          "type": "string",
-          "description": "URL of the preview image with 130 px in width"
-        },
-        "photo_160": {
-          "type": "string",
-          "description": "URL of the preview image with 160 px in width"
-        },
-        "photo_320": {
-          "type": "string",
-          "description": "URL of the preview image with 320 px in width"
-        },
-        "photo_640": {
-          "type": "string",
-          "description": "URL of the preview image with 640 px in width"
-        },
-        "photo_800": {
-          "type": "string",
-          "description": "URL of the preview image with 800 px in width"
-        },
-        "date": {
-          "type": "integer",
-          "description": "Date when the element has been created"
-        },
-        "views": {
-          "type": "integer",
-          "description": "Views number"
-        },
-        "comments": {
-          "type": "integer",
-          "description": "Comments number"
-        },
-        "can_add": {
-          "$ref": "#/definitions/base_bool_int",
-          "description": "Information whether current user can add the video"
-        },
-        "can_edit": {
-          "$ref": "#/definitions/base_bool_int",
-          "description": "Information whether current user can edit the video"
-        },
-        "is_private": {
-          "$ref": "#/definitions/base_bool_int",
-          "description": "Information whether the video is private"
-        },
-        "count": {
-          "type": "integer",
-          "description": "Videos number (for album)"
-        },
-        "updated_time": {
-          "type": "integer",
-          "description": "Date of last update (for album) in Unixtime"
-        }
-      },
-      "required": [
-        "id",
-        "owner_id",
-        "title",
-        "type"
-      ]
     },
     "video_save_result": {
       "type": "object",
@@ -9364,6 +9905,18 @@
           "description": "Information whether current user can edit the video",
           "$ref": "#/definitions/base_bool_int"
         },
+        "can_like": {
+          "description": "Information whether current user can like the video",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "can_comment": {
+          "description": "Information whether current user can comment the video",
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "can_repost": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user can repost this video"
+        },
         "can_add": {
           "description": "Information whether current user can add the video",
           "$ref": "#/definitions/base_bool_int"
@@ -9373,7 +9926,7 @@
           "$ref": "#/definitions/base_property_exists"
         },
         "live": {
-          "description": "Returns if the video is live translation",
+          "description": "Returns if the video is a live stream",
           "$ref": "#/definitions/base_property_exists"
         },
         "files": {
@@ -9867,6 +10420,10 @@
         "real_offset": {
           "type": "integer",
           "description": "Real position of the comment"
+        },
+        "thread": {
+          "type": "object",
+          "$ref": "#/definitions/wall_comment_thread"
         }
       },
       "required": [
@@ -10394,6 +10951,270 @@
           "description": "page_id parameter value"
         }
       }
+    },
+    "users_name_case": {
+      "type": "string",
+      "enum": [
+        "nom",
+        "gen",
+        "dat",
+        "acc",
+        "ins",
+        "abl"
+      ],
+      "enumNames": [
+        "nominative",
+        "genitive",
+        "dative",
+        "accusative",
+        "instrumental",
+        "prepositional"
+      ]
+    },
+    "users_fields": {
+      "type": "string",
+      "enum": [
+        "photo_id",
+        "verified",
+        "sex",
+        "bdate",
+        "city",
+        "country",
+        "home_town",
+        "has_photo",
+        "photo_50",
+        "photo_100",
+        "photo_200_orig",
+        "photo_200",
+        "photo_400_orig",
+        "photo_max",
+        "photo_max_orig",
+        "online",
+        "lists",
+        "domain",
+        "has_mobile",
+        "contacts",
+        "site",
+        "education",
+        "universities",
+        "schools",
+        "status",
+        "last_seen",
+        "followers_count",
+        "counters",
+        "common_count",
+        "occupation",
+        "nickname",
+        "relatives",
+        "relation",
+        "personal",
+        "connections",
+        "exports",
+        "wall_comments",
+        "activities",
+        "interests",
+        "music",
+        "movies",
+        "tv",
+        "books",
+        "games",
+        "about",
+        "quotes",
+        "can_post",
+        "can_see_all_posts",
+        "can_see_audio",
+        "can_write_private_message",
+        "can_send_friend_request",
+        "is_favorite",
+        "is_hidden_from_feed",
+        "timezone",
+        "screen_name",
+        "maiden_name",
+        "crop_photo",
+        "is_friend",
+        "friend_status",
+        "career",
+        "military",
+        "blacklisted",
+        "blacklisted_by_me"
+      ]
+    },
+    "groups_fields": {
+      "type": "string",
+      "enum": [
+        "market",
+        "member_status",
+        "is_favorite",
+        "is_subscribed",
+        "city",
+        "country",
+        "verified",
+        "description",
+        "wiki_page",
+        "members_count",
+        "counters",
+        "cover",
+        "can_post",
+        "can_see_all_posts",
+        "activity",
+        "fixed_post",
+        "can_create_topic",
+        "can_upload_video",
+        "has_photo",
+        "status",
+        "main_album_id",
+        "links",
+        "contacts",
+        "site",
+        "main_section",
+        "trending",
+        "can_message",
+        "is_messages_blocked",
+        "online_status",
+        "start_date",
+        "finish_date",
+        "age_limits",
+        "ban_info",
+        "action_button",
+        "author_id",
+        "phone",
+        "has_market_app",
+        "addresses",
+        "live_covers",
+        "is_adult"
+      ]
+    },
+    "base_user_group_fields": {
+      "type": "string",
+      "enum": [
+        "about",
+        "action_button",
+        "activities",
+        "activity",
+        "addresses",
+        "admin_level",
+        "age_limits",
+        "author_id",
+        "ban_info",
+        "bdate",
+        "blacklisted",
+        "blacklisted_by_me",
+        "books",
+        "can_create_topic",
+        "can_message",
+        "can_post",
+        "can_see_all_posts",
+        "can_see_audio",
+        "can_send_friend_request",
+        "can_upload_video",
+        "can_write_private_message",
+        "career",
+        "city",
+        "common_count",
+        "connections",
+        "contacts",
+        "counters",
+        "country",
+        "cover",
+        "crop_photo",
+        "deactivated",
+        "description",
+        "domain",
+        "education",
+        "exports",
+        "finish_date",
+        "fixed_post",
+        "followers_count",
+        "friend_status",
+        "games",
+        "has_market_app",
+        "has_mobile",
+        "has_photo",
+        "home_town",
+        "id",
+        "interests",
+        "is_admin",
+        "is_closed",
+        "is_favorite",
+        "is_friend",
+        "is_hidden_from_feed",
+        "is_member",
+        "is_messages_blocked",
+        "is_subscribed",
+        "last_seen",
+        "links",
+        "lists",
+        "maiden_name",
+        "main_album_id",
+        "main_section",
+        "market",
+        "member_status",
+        "members_count",
+        "military",
+        "movies",
+        "music",
+        "name",
+        "nickname",
+        "occupation",
+        "online",
+        "online_status",
+        "personal",
+        "phone",
+        "photo_100",
+        "photo_200",
+        "photo_200_orig",
+        "photo_400_orig",
+        "photo_50",
+        "photo_id",
+        "photo_max",
+        "photo_max_orig",
+        "quotes",
+        "relation",
+        "relatives",
+        "schools",
+        "screen_name",
+        "sex",
+        "site",
+        "start_date",
+        "status",
+        "timezone",
+        "trending",
+        "tv",
+        "type",
+        "universities",
+        "verified",
+        "wall_comments",
+        "wiki_page"
+      ]
+    },
+    "addresses_fields": {
+      "type": "string",
+      "enum": [
+        "id",
+        "title",
+        "address",
+        "additional_address",
+        "country_id",
+        "city_id",
+        "metro_station_id",
+        "latitude",
+        "longitude",
+        "distance",
+        "work_info_status",
+        "timetable",
+        "phone",
+        "time_offset"
+      ]
+    },
+    "discover_gateway_type": {
+      "type": "string",
+      "enum": [
+        "podcasts",
+        "lives",
+        "music",
+        "articles",
+        "services"
+      ]
     }
   }
 }

@@ -49,6 +49,10 @@
           "type": "string",
           "description": "Parameter name"
         },
+        "nodoc": {
+          "type": "boolean",
+          "default": false
+        },
         "type": {
           "$ref": "#/definitions/parameterTypes",
           "description": "Parameter type"
@@ -56,6 +60,10 @@
         "items": {
           "type": "object",
           "properties": {
+            "$ref": {
+              "type": "string",
+              "format": "uri-reference"
+            },
             "type": {
               "$ref": "#/definitions/itemTypes"
             },
@@ -79,8 +87,17 @@
               "uniqueItems": true
             }
           },
-          "required": [
-            "type"
+          "oneOf": [
+            {
+              "required": [
+                "type"
+              ]
+            },
+            {
+              "required": [
+                "$ref"
+              ]
+            }
           ],
           "additionalProperties": false
         },
@@ -98,6 +115,10 @@
         },
         "minimum": {
           "type": "number"
+        },
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
         },
         "enum": {
           "type": "array",
@@ -153,6 +174,16 @@
         "description": {
           "type": "string",
           "description": "Error description"
+        },
+        "nodoc": {
+          "type": "boolean",
+          "default": false
+        },
+        "deprecated_from_version": {
+          "type": "string"
+        },
+        "from_version": {
+          "type": "string"
         }
       },
       "required": [
@@ -179,6 +210,16 @@
         "description": {
           "type": "string",
           "description": "Method description"
+        },
+        "nodoc": {
+          "type": "boolean",
+          "default": false
+        },
+        "deprecated_from_version": {
+          "type": "string"
+        },
+        "from_version": {
+          "type": "string"
         },
         "access_token_type": {
           "type": "array",

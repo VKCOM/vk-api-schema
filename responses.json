@@ -11,7 +11,62 @@
       },
       "additionalProperties": false
     },
+    "base_create_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Id of created object"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "base_getUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_upload_server"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getChatUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_upload_server"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getMarketUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_upload_server"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getOwnerPhotoUploadServer": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_upload_server"
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_getUploadServer": {
       "type": "object",
       "properties": {
         "response": {
@@ -101,6 +156,22 @@
       },
       "additionalProperties": false
     },
+    "account_addCareer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Id of inserted object"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "account_getCounters_response": {
       "type": "object",
       "properties": {
@@ -118,6 +189,42 @@
         }
       },
       "additionalProperties": false
+    },
+    "account_getContactList_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "description": "Items of the contact list",
+              "items": {
+                "type": "integer",
+                "description": "Peer id of the contact list item"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
+              }
+            },
+            "contacts": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_contact"
+              }
+            }
+          }
+        }
+      }
     },
     "account_getProfileInfo_response": {
       "type": "object",
@@ -610,6 +717,32 @@
       },
       "additionalProperties": false
     },
+    "apps_getScopes_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/apps_scope"
+              }
+            }
+          },
+          "required": [
+            "count",
+            "items"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "apps_getLeaderboard_response": {
       "type": "object",
       "properties": {
@@ -679,6 +812,12 @@
       },
       "additionalProperties": false
     },
+    "apps_getStickerAchievements_response": {
+      "type": "array",
+      "items": {
+        "$ref": "objects.json#/definitions/apps_sticker_achievement"
+      }
+    },
     "apps_getScore_response": {
       "type": "object",
       "properties": {
@@ -731,6 +870,55 @@
               "description": "Parameter to retry"
             }
           }
+        }
+      },
+      "additionalProperties": false
+    },
+    "auth_validatePhoneConfirm_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "sid": {
+              "type": "string",
+              "description": "Sesstion for continue registration or login"
+            },
+            "profile": {
+              "$ref": "#/definitions/auth_user",
+              "description": "User which is believed to be registered with given phone"
+            },
+            "profile_exist": {
+              "type": "boolean",
+              "description": "Flag indicating whether VK have user with given phone"
+            }
+          },
+          "required": [
+            "sid",
+            "profile_exist"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "auth_validatePhone_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "oneOf": [
+            {
+              "$ref": "responses.json#/definitions/ok_response"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sid": {
+                  "type": "string",
+                  "description": "Session id for confirming number"
+                }
+              }
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -991,18 +1179,6 @@
                 "$ref": "objects.json#/definitions/database_region"
               }
             }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "database_getStreetsById_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/database_street"
           }
         }
       },
@@ -2931,6 +3107,155 @@
       },
       "additionalProperties": false
     },
+    "messages_addTemplate_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "template_id": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "required": [
+        "template_id"
+      ]
+    },
+    "messages_getInviteLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "link"
+      ]
+    },
+    "messages_joinChatByInviteLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "link"
+      ]
+    },
+    "messages_getTemplates_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_template"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "count",
+        "items"
+      ]
+    },
+    "messages_getTemplates_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_template"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "items",
+        "count"
+      ]
+    },
+    "messages_getGroupsCounters_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unread_dialogs": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "required": [
+        "group_id",
+        "unread_dialogs"
+      ]
+    },
+    "messages_pin_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_conversation_with_message"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "count",
+        "items"
+      ]
+    },
     "messages_getConversations_response": {
       "type": "object",
       "properties": {
@@ -2961,12 +3286,6 @@
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
-              }
-            },
-            "emails": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/messages_email"
               }
             }
           },
@@ -3005,6 +3324,30 @@
       },
       "additionalProperties": false
     },
+    "messages_getRecentCalls_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/calls_call_group"
+              }
+            }
+          },
+          "required": [
+            "items",
+            "count"
+          ]
+        }
+      }
+    },
     "messages_getImportantMessages_response": {
       "type": "object",
       "properties": {
@@ -3029,16 +3372,47 @@
                 "$ref": "objects.json#/definitions/groups_group"
               }
             },
-            "emails": {
+            "conversations": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/messages_email"
+                "$ref": "objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "required": [
+            "messages"
+          ]
+        }
+      }
+    },
+    "messages_getImportantMessages_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "messages": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_message"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
               }
             },
             "conversations": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/messages_conversation"
+                "$ref": "objects.json#/definitions/messages_conversation"
               }
             }
           },
@@ -3390,6 +3764,108 @@
       },
       "additionalProperties": false
     },
+    "messages_getChatPreview_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "preview": {
+              "$ref": "objects.json#/definitions/message_chat_preview"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "preview"
+      ]
+    },
+    "messages_getConversationMembers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Chat members count",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_conversation_member"
+              }
+            },
+            "chat_restrictions": {
+              "$ref": "objects.json#/definitions/messages_chat_restrictions"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
+            },
+            "contacts": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_contact"
+              }
+            }
+          },
+          "required": [
+            "items",
+            "count"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_searchConversations_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total results number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_conversation"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "messages_getLastActivity_response": {
       "type": "object",
       "properties": {
@@ -3398,6 +3874,14 @@
         }
       },
       "additionalProperties": false
+    },
+    "messages_hideRecentGraffiti_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/base_ok_response"
+        }
+      }
     },
     "messages_setChatPhoto_response": {
       "type": "object",
@@ -3416,6 +3900,24 @@
         }
       },
       "additionalProperties": false
+    },
+    "messages_deleteConversation_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "last_deleted_id": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Id of the last message, that was deleted"
+            }
+          },
+          "required": [
+            "last_deleted_id"
+          ]
+        }
+      }
     },
     "messages_deleteChatPhoto_response": {
       "type": "object",
@@ -3766,6 +4268,17 @@
         }
       },
       "additionalProperties": false
+    },
+    "newsfeed_getGateways_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/discover_template_gateway"
+          }
+        }
+      }
     },
     "notes_get_response": {
       "type": "object",
@@ -4559,112 +5072,6 @@
             "items"
           ],
           "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "places_add_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "description": "Place ID"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "places_getById_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/places_place_min"
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "places_search_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/places_place_full"
-              }
-            }
-          },
-          "required": [
-            "count",
-            "items"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "places_checkin_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "description": "Checkin ID"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    "places_getCheckins_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/places_checkin"
-              }
-            }
-          },
-          "required": [
-            "count",
-            "items"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "places_getTypes_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/places_types"
-          }
         }
       },
       "additionalProperties": false
@@ -5595,138 +6002,6 @@
       },
       "additionalProperties": false
     },
-    "video_getCatalog_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_cat_block"
-              }
-            },
-            "next": {
-              "type": "string",
-              "description": "New value for _from_ parameter"
-            }
-          },
-          "required": [
-            "items",
-            "next"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "video_getCatalog_extended_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_cat_block"
-              }
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/users_user_full"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_group_full"
-              }
-            },
-            "next": {
-              "type": "string",
-              "description": "New value for _from_ parameter"
-            }
-          },
-          "required": [
-            "items",
-            "profiles",
-            "groups",
-            "next"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "video_getCatalogSection_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_cat_element"
-              }
-            },
-            "next": {
-              "type": "string",
-              "description": "New value for _from_ parameter"
-            }
-          },
-          "required": [
-            "items",
-            "next"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
-    "video_getCatalogSection_extended_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_cat_element"
-              }
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/users_user_full"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_group_full"
-              }
-            },
-            "next": {
-              "type": "string",
-              "description": "New value for _from_ parameter"
-            }
-          },
-          "required": [
-            "items",
-            "profiles",
-            "groups",
-            "next"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
-    },
     "wall_get_response": {
       "type": "object",
       "properties": {
@@ -6029,6 +6304,18 @@
               "items": {
                 "$ref": "objects.json#/definitions/wall_wall_comment"
               }
+            },
+            "can_post": {
+              "$ref": "#/definitions/base_bool_int",
+              "description": "Information whether current user can comment the post"
+            },
+            "groups_can_post": {
+              "type": "boolean",
+              "description": "Information whether groups can comment the post"
+            },
+            "current_level_count": {
+              "type": "integer",
+              "description": "Count of replies of current level"
             }
           },
           "required": [
@@ -6056,6 +6343,18 @@
                 "$ref": "objects.json#/definitions/wall_wall_comment"
               }
             },
+            "can_post": {
+              "$ref": "#/definitions/base_bool_int",
+              "description": "Information whether current user can comment the post"
+            },
+            "groups_can_post": {
+              "type": "boolean",
+              "description": "Information whether groups can comment the post"
+            },
+            "current_level_count": {
+              "type": "integer",
+              "description": "Count of replies of current level"
+            },
             "profiles": {
               "type": "array",
               "items": {
@@ -6071,6 +6370,62 @@
           },
           "required": [
             "count",
+            "items",
+            "profiles",
+            "groups"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_getComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          },
+          "required": [
+            "items"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_getComment_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/wall_wall_comment"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
+              }
+            }
+          },
+          "required": [
             "items",
             "profiles",
             "groups"
