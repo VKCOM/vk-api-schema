@@ -2152,6 +2152,20 @@
       },
       "additionalProperties": false
     },
+    "base_message_error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Error message"
+        }
+      },
+      "withoutRefs": true
+    },
     "base_object": {
       "type": "object",
       "properties": {
@@ -2674,6 +2688,33 @@
           "description": "School title"
         }
       }
+    },
+    "database_station": {
+      "type": "object",
+      "properties": {
+        "city_id": {
+          "type": "integer",
+          "description": "City ID",
+          "minimum": 1
+        },
+        "color": {
+          "type": "string",
+          "description": "Hex color code without #"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Station ID",
+          "minimum": 1
+        },
+        "name": {
+          "type": "string",
+          "description": "Station name"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
     },
     "database_university": {
       "type": "object",

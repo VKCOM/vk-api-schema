@@ -1039,6 +1039,39 @@
       },
       "additionalProperties": false
     },
+    "database_getMetroStationsById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/database_station"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_getMetroStations_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/database_station"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "database_getRegions_response": {
       "type": "object",
       "properties": {
