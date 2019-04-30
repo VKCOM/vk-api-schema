@@ -17307,7 +17307,8 @@
           "type": "string",
           "default": "vk_cc",
           "enum": [
-            "vk_cc"
+            "vk_cc",
+            "vk_link"
           ]
         },
         {
