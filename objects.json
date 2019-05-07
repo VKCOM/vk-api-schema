@@ -7440,7 +7440,7 @@
     "pages_wikipage_version": {
       "type": "object",
       "properties": {
-        "edited": {
+        "date": {
           "type": "integer",
           "description": "Date when the page has been edited in Unixtime"
         },
