@@ -4713,7 +4713,7 @@
           "description": "Long Poll server address"
         },
         "ts": {
-          "type": "integer",
+          "type": "string",
           "description": "Number of the last event"
         }
       },
