@@ -4716,16 +4716,14 @@
         "response": {
           "type": "object",
           "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/search_hint"
-              }
-            },
-            "suggested_queries": {
-              "type": "array",
-              "items": {
-                "type": "string"
               }
             }
           }
