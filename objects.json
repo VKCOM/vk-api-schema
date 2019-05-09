@@ -7108,7 +7108,7 @@
       "type": "object",
       "properties": {
         "date": {
-          "type": "integer",
+          "type": "string",
           "description": "Date when the reply has been created in Unixtime"
         },
         "id": {
@@ -7116,7 +7116,7 @@
           "description": "Reply ID"
         },
         "text": {
-          "type": "integer",
+          "type": "string",
           "description": "Reply text"
         }
       }
