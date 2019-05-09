@@ -8675,15 +8675,15 @@
       "type": "object",
       "properties": {
         "app_id": {
-          "type": "integer",
+          "type": "string",
           "description": "Application ID"
         },
         "date": {
-          "type": "integer",
+          "type": "string",
           "description": "Date when message has been sent in Unixtime"
         },
         "id": {
-          "type": "integer",
+          "type": "string",
           "description": "Notification ID"
         },
         "message": {
@@ -8691,7 +8691,7 @@
           "description": "Messsage text"
         },
         "user_id": {
-          "type": "integer",
+          "type": "string",
           "description": "User ID"
         }
       }
