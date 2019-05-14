@@ -8479,8 +8479,8 @@
       "type": "object",
       "properties": {
         "anonymous": {
-          "description": "Information whether the pole is anonymous",
-          "$ref": "#/definitions/base_bool_int"
+          "type": "boolean",
+          "description": "Information whether the pole is anonymous"
         },
         "answer_id": {
           "type": "integer",
