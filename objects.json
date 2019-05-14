@@ -7032,7 +7032,7 @@
       "properties": {
         "date": {
           "type": "integer",
-          "description": "Date when the event has been occured"
+          "description": "Date when the event has been occurred"
         },
         "feedback": {
           "$ref": "#/definitions/notifications_feedback"
