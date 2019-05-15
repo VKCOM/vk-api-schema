@@ -66,7 +66,19 @@
             "items": {
               "type": "array",
               "items": {
+                "type": "integer"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
                 "$ref": "objects.json#/definitions/users_user_min"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
               }
             }
           },
@@ -2292,6 +2304,10 @@
               "description": "Information whether user has been invited to the group",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "can_recall": {
+              "description": "Information whether user's invite to the group can be recalled",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "request": {
               "description": "Information whether user has sent request to the group",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -3975,7 +3991,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/pages_wikipage_version"
+            "$ref": "objects.json#/definitions/pages_wikipage_history"
           }
         }
       }
@@ -4778,6 +4794,25 @@
           "type": "array",
           "items": {
             "$ref": "objects.json#/definitions/secure_level"
+          }
+        }
+      }
+    },
+    "secure_giveEventSticker_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "user_id": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
           }
         }
       }

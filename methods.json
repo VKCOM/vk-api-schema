@@ -15781,6 +15781,35 @@
       }
     },
     {
+      "name": "secure.giveEventSticker",
+      "description": "Opens the game achievement and gives the user a sticker",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "achievement_id",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/secure_giveEventSticker_response"
+        }
+      }
+    },
+    {
       "name": "secure.sendNotification",
       "description": "Sends notification to the user.",
       "access_token_type": [
@@ -17307,7 +17336,8 @@
           "type": "string",
           "default": "vk_cc",
           "enum": [
-            "vk_cc"
+            "vk_cc",
+            "vk_link"
           ]
         },
         {
@@ -18775,6 +18805,11 @@
           "code": 222,
           "name": "API_ERROR_WALL_LINKS_FORBIDDEN",
           "description": "Hyperlinks are forbidden"
+        },
+        {
+          "code": 212,
+          "name": "API_ERROR_WALL_ACCESS_REPLIES",
+          "description": "Access to post comments denied"
         }
       ]
     },
@@ -19458,6 +19493,10 @@
         {
           "name": "close_comments",
           "type": "boolean"
+        },
+        {
+          "name": "mute_notifications",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -19724,6 +19763,10 @@
           "name": "mark_as_ads",
           "type": "boolean",
           "default": false
+        },
+        {
+          "name": "mute_notifications",
+          "type": "boolean"
         }
       ],
       "responses": {
