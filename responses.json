@@ -2027,12 +2027,19 @@
               "items": {
                 "$ref": "objects.json#/definitions/users_user_min"
               }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
             }
           },
           "required": [
             "count",
             "items",
-            "profiles"
+            "profiles",
+            "groups"
           ]
         }
       }
