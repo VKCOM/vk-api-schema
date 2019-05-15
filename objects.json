@@ -5358,6 +5358,12 @@
           "type": "integer",
           "description": "User ID"
         },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "role": {
           "$ref": "#/definitions/groups_member_role_status"
         }
