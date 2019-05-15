@@ -20,6 +20,11 @@
           "description": "New friends requests number",
           "minimum": 1
         },
+        "friends_recommendations": {
+          "type": "integer",
+          "description": "New friends recommendations number",
+          "minimum": 1
+        },
         "friends_suggestions": {
           "type": "integer",
           "description": "New friends suggestions number",
@@ -40,6 +45,10 @@
           "description": "New messages number",
           "minimum": 1
         },
+        "menu_discover_badge": {
+          "type": "integer",
+          "description": "New menu discover badge number"
+        },
         "notifications": {
           "type": "integer",
           "description": "New notifications number",
@@ -48,6 +57,11 @@
         "photos": {
           "type": "integer",
           "description": "New photo tags number",
+          "minimum": 1
+        },
+        "sdk": {
+          "type": "integer",
+          "description": "New SDK number",
           "minimum": 1
         },
         "videos": {
