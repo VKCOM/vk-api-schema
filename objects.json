@@ -4987,6 +4987,10 @@
           "description": "Information whether current user is manager",
           "$ref": "#/definitions/base_bool_int"
         },
+        "is_advertiser": {
+          "description": "Information whether current user is advertiser",
+          "$ref": "#/definitions/base_bool_int"
+        },
         "is_closed": {
           "description": "Information whether community is closed",
           "$ref": "#/definitions/base_bool_int"
