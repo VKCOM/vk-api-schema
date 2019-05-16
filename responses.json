@@ -3837,7 +3837,9 @@
             },
             "items": {
               "type": "array",
-              "items": []
+              "items": {
+                "$ref": "objects.json#/definitions/notifications_notification"
+              }
             },
             "profiles": {
               "type": "array",
