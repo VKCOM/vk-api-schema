@@ -2304,6 +2304,10 @@
               "description": "Information whether user has been invited to the group",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "can_invite": {
+              "description": "Information whether user can be invite",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "can_recall": {
               "description": "Information whether user's invite to the group can be recalled",
               "$ref": "objects.json#/definitions/base_bool_int"
