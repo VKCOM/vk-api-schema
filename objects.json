@@ -5395,6 +5395,14 @@
     "groups_member_status_full": {
       "type": "object",
       "properties": {
+        "can_invite": {
+          "description": "Information whether user can be invite",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_recall": {
+          "description": "Information whether user's invite to the group can be recalled",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
         "invitation": {
           "description": "Information whether user has been invited to the group",
           "$ref": "#/definitions/base_bool_int"
