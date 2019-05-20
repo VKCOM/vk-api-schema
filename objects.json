@@ -11316,7 +11316,17 @@
           "format": "uri",
           "description": "URL of the first frame for the corresponding width."
         },
+        "first_frame_640": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the first frame for the corresponding width."
+        },
         "first_frame_800": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the first frame for the corresponding width."
+        },
+        "first_frame_1280": {
           "type": "string",
           "format": "uri",
           "description": "URL of the first frame for the corresponding width."
@@ -11346,10 +11356,20 @@
           "format": "uri",
           "description": "URL of the preview image with 320 px in width"
         },
+        "photo_640": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 640 px in width"
+        },
         "photo_800": {
           "type": "string",
           "format": "uri",
           "description": "URL of the preview image with 800 px in width"
+        },
+        "photo_1280": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 1280 px in width"
         },
         "player": {
           "type": "string",
