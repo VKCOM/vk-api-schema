@@ -11266,6 +11266,10 @@
           "description": "Information whether current user can add the video",
           "$ref": "#/definitions/base_bool_int"
         },
+        "can_add_to_faves": {
+          "description": "Information whether current user can add the video to faves",
+          "$ref": "#/definitions/base_bool_int"
+        },
         "can_comment": {
           "description": "Information whether current user can comment the video",
           "$ref": "#/definitions/base_bool_int"
