@@ -11000,6 +11000,10 @@
     "video_save_result": {
       "type": "object",
       "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Video access key"
+        },
         "description": {
           "type": "string",
           "description": "Video description"
