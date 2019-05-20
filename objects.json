@@ -11536,6 +11536,10 @@
           "items": {
             "$ref": "objects.json#/definitions/wall_wall_comment"
           }
+        },
+        "show_reply_button": {
+          "type": "boolean",
+          "description": "Information whether recommended to display reply button"
         }
       },
       "required": [
