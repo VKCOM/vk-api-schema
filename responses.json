@@ -4511,11 +4511,27 @@
           "properties": {
             "photo_hash": {
               "type": "string",
-              "description": "Parameter for saveProfilePhoto method"
+              "description": "Photo hash"
             },
             "photo_src": {
               "type": "string",
               "description": "Uploaded image url"
+            },
+            "photo_src_big": {
+              "type": "string",
+              "description": "Uploaded image url"
+            },
+            "photo_src_small": {
+              "type": "string",
+              "description": "Uploaded image url"
+            },
+            "saved": {
+              "type": "integer",
+              "description": "Returns 1 if profile photo is saved"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Created post ID"
             }
           },
           "required": [
