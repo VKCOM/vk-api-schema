@@ -10695,6 +10695,10 @@
     "users_user_min": {
       "type": "object",
       "properties": {
+        "can_access_closed": {
+          "type": "boolean",
+          "description": "Information whether the current user can see the profile when is_closed=true"
+        },
         "deactivated": {
           "type": "string",
           "description": "Returns if a profile is deleted or blocked"
@@ -10710,6 +10714,10 @@
         "id": {
           "type": "integer",
           "description": "User ID"
+        },
+        "is_closed": {
+          "type": "boolean",
+          "description": "Information whether the profile is closed"
         },
         "last_name": {
           "type": "string",
