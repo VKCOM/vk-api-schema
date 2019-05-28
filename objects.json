@@ -8653,7 +8653,7 @@
           "description": "Height in px",
           "minimum": 0
         },
-        "src": {
+        "url": {
           "type": "string",
           "format": "uri",
           "description": "URL of the image"
