@@ -8083,6 +8083,12 @@
         "likes": {
           "$ref": "#/definitions/base_likes_info"
         },
+        "parents_stack": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
         "pid": {
           "type": "integer",
           "description": "Photo ID",
@@ -8099,6 +8105,9 @@
         "text": {
           "type": "string",
           "description": "Comment text"
+        },
+        "thread": {
+          "$ref": "#/definitions/wall_comment_thread"
         }
       },
       "required": [
