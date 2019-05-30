@@ -3455,13 +3455,13 @@
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_full"
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             },
-            "members": {
+            "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_group_full"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             }
           }
