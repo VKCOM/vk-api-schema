@@ -7290,8 +7290,17 @@
         "geo": {
           "$ref": "#/definitions/base_geo"
         },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "Information whether the post in favorites list"
+        },
         "likes": {
-          "$ref": "#/definitions/base_likes_info"
+          "$ref": "#/definitions/base_likes_info",
+          "description": "Count of likes"
+        },
+        "marked_as_ads": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether the post is marked as ads"
         },
         "post_id": {
           "type": "integer",
@@ -7306,9 +7315,17 @@
         "reposts": {
           "$ref": "#/definitions/base_reposts_info"
         },
+        "signer_id": {
+          "type": "integer",
+          "description": "Post signer ID"
+        },
         "text": {
           "type": "string",
           "description": "Post text"
+        },
+        "views": {
+          "$ref": "#/definitions/wall_views",
+          "description": "Count of views"
         }
       }
     },
