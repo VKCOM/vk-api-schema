@@ -6552,7 +6552,10 @@
           "description": "Button type",
           "enum": [
             "text",
-            "start"
+            "start",
+            "location",
+            "vkpay",
+            "open_app"
           ]
         }
       },
