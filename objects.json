@@ -558,6 +558,10 @@
           "type": "integer",
           "description": "Cost of 1000 impressions, kopecks"
         },
+        "cpa": {
+          "type": "integer",
+          "description": "Cost of an action, kopecks"
+        },
         "disclaimer_medical": {
           "description": "Information whether disclaimer is enabled",
           "$ref": "#/definitions/base_bool_int"
@@ -627,11 +631,13 @@
       "description": "Cost type",
       "enum": [
         0,
-        1
+        1,
+        2
       ],
       "enumNames": [
         "per clicks",
-        "per impressions"
+        "per impressions",
+        "per actions"
       ]
     },
     "ads_ad_layout": {
@@ -646,7 +652,7 @@
           "description": "Campaign ID"
         },
         "cost_type": {
-          "$ref": "#/definitions/ads_ad_layout_cost_type"
+          "$ref": "#/definitions/ads_ad_cost_type"
         },
         "description": {
           "type": "string",
@@ -702,18 +708,6 @@
         "image_src"
       ],
       "additionalProperties": false
-    },
-    "ads_ad_layout_cost_type": {
-      "type": "integer",
-      "description": "Cost type",
-      "enum": [
-        0,
-        1
-      ],
-      "enumNames": [
-        "per clicks",
-        "per impressions"
-      ]
     },
     "ads_ad_status": {
       "type": "integer",
@@ -1914,7 +1908,7 @@
       "type": "object",
       "properties": {
         "coordinates": {
-          "type": "string"
+          "$ref": "#/definitions/base_geo_coordinates"
         },
         "place": {
           "$ref": "#/definitions/base_place"
@@ -1928,6 +1922,22 @@
           "description": "Place type"
         }
       }
+    },
+    "base_geo_coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "additionalProperties": false
     },
     "base_image": {
       "type": "object",
@@ -4155,6 +4165,7 @@
         "main_section",
         "trending",
         "can_message",
+        "is_market_cart_enabled",
         "is_messages_blocked",
         "can_send_notify",
         "online_status",
@@ -4170,7 +4181,8 @@
         "live_covers",
         "is_adult",
         "can_subscribe_posts",
-        "menu"
+        "menu",
+        "warning_notification"
       ]
     },
     "groups_filter": {
@@ -6493,6 +6505,9 @@
         "one_time": {
           "type": "boolean",
           "description": "Should this keyboard disappear on first use"
+        },
+        "inline": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -7703,6 +7718,47 @@
         "text": {
           "type": "integer",
           "description": "Reply text"
+        }
+      }
+    },
+    "notifications_send_message_error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "notifications disabled",
+            "flood control per hour",
+            "flood control per day",
+            "app is not installed"
+          ],
+          "description": "Error code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Error description"
+        }
+      }
+    },
+    "notifications_send_message_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID"
+        },
+        "status": {
+          "type": "boolean",
+          "description": "Notification status"
+        },
+        "error": {
+          "$ref": "#/definitions/notifications_send_message_error"
         }
       }
     },
@@ -11542,6 +11598,26 @@
         "count"
       ]
     },
+    "wall_geo": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "string",
+          "description": "Coordinates as string. <latitude> <longtitude>"
+        },
+        "place": {
+          "$ref": "#/definitions/base_place"
+        },
+        "showmap": {
+          "type": "integer",
+          "description": "Information whether a map is showed"
+        },
+        "type": {
+          "type": "string",
+          "description": "Place type"
+        }
+      }
+    },
     "wall_graffiti": {
       "type": "object",
       "properties": {
@@ -11738,7 +11814,7 @@
           "description": "Post author ID"
         },
         "geo": {
-          "$ref": "#/definitions/base_geo"
+          "$ref": "#/definitions/wall_geo"
         },
         "id": {
           "type": "integer",
@@ -11948,7 +12024,7 @@
           "description": "Post author ID"
         },
         "geo": {
-          "$ref": "#/definitions/base_geo"
+          "$ref": "#/definitions/wall_geo"
         },
         "id": {
           "type": "integer",
