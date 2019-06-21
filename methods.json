@@ -274,8 +274,8 @@
           "name": "user_id",
           "description": "User ID whose settings information shall be got. By default: current user.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -631,8 +631,8 @@
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "name",
@@ -1980,19 +1980,19 @@
           "description": "Ad format: *1 — image and text,, *2 — big image,, *3 — exclusive format,, *4 — community, square image,, *7 — special app format.",
           "type": "integer",
           "required": true,
-          "enumNames": [
-            "image and text",
-            "big image",
-            "exclusive format",
-            "community, square image",
-            "special app format"
-          ],
           "enum": [
             1,
             2,
             3,
             4,
             7
+          ],
+          "enumNames": [
+            "image and text",
+            "big image",
+            "exclusive format",
+            "community, square image",
+            "special app format"
           ]
         },
         {
@@ -2386,9 +2386,9 @@
           "name": "count",
           "description": "Number of apps to return.",
           "type": "integer",
+          "required": true,
           "default": 100,
-          "minimum": 0,
-          "required": true
+          "minimum": 0
         },
         {
           "name": "platform",
@@ -2566,8 +2566,8 @@
         {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -2587,8 +2587,8 @@
           "name": "user_id",
           "description": "id of the user to send a request",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "text",
@@ -2729,8 +2729,8 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -2802,15 +2802,15 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "ID of the topic to be commented on.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -2860,22 +2860,22 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -2895,15 +2895,15 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -2923,22 +2923,22 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "comment_id",
           "description": "ID of the comment on the topic.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -2971,15 +2971,15 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -3034,15 +3034,15 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "need_likes",
@@ -3107,8 +3107,8 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_ids",
@@ -3228,22 +3228,22 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -3292,8 +3292,8 @@
           "name": "faculty_id",
           "description": "id of the faculty to get chairs from",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -3328,8 +3328,8 @@
           "name": "country_id",
           "description": "Country ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "region_id",
@@ -3469,8 +3469,8 @@
           "name": "university_id",
           "description": "University ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -3504,8 +3504,8 @@
         {
           "name": "city_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -3567,8 +3567,8 @@
           "name": "country_id",
           "description": "Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "q",
@@ -3634,8 +3634,8 @@
           "name": "city_id",
           "description": "City ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -3721,8 +3721,8 @@
           "name": "doc_id",
           "description": "Document ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "access_key",
@@ -3753,8 +3753,8 @@
           "name": "doc_id",
           "description": "Document ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -3792,8 +3792,8 @@
           "name": "doc_id",
           "description": "Document ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -4090,8 +4090,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -4131,8 +4131,8 @@
           "name": "user_id",
           "description": "Profile ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -4329,8 +4329,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -4369,8 +4369,8 @@
           "name": "user_id",
           "description": "Profile ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -4538,9 +4538,9 @@
           "name": "list_id",
           "description": "ID of the friend list to delete.",
           "type": "integer",
+          "required": true,
           "minimum": 0,
-          "maximum": 24,
-          "required": true
+          "maximum": 24
         }
       ],
       "responses": {
@@ -4567,8 +4567,8 @@
           "name": "user_id",
           "description": "ID of the user whose friend list is to be edited.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "list_ids",
@@ -4602,8 +4602,8 @@
           "name": "list_id",
           "description": "Friend list ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_ids",
@@ -4715,6 +4715,11 @@
             "instrumental",
             "prepositional"
           ]
+        },
+        {
+          "name": "ref",
+          "type": "string",
+          "maxLength": 255
         }
       ],
       "responses": {
@@ -4939,7 +4944,9 @@
           "name": "count",
           "description": "Number of friend requests to return (default 100, maximum 1000).",
           "type": "integer",
-          "minimum": 0
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
         },
         {
           "name": "extended",
@@ -4979,6 +4986,18 @@
           "name": "suggested",
           "description": "'1' — to return a list of suggested friends, '0' — to return friend requests (default)",
           "type": "boolean"
+        },
+        {
+          "name": "ref",
+          "type": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/users_fields"
+          }
         }
       ],
       "responses": {
@@ -5074,8 +5093,8 @@
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "q",
@@ -5175,8 +5194,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -5198,14 +5217,14 @@
         {
           "name": "country_id",
           "type": "integer",
-          "minimum": 1,
-          "required": true
+          "required": true,
+          "minimum": 1
         },
         {
           "name": "city_id",
           "type": "integer",
-          "minimum": 1,
-          "required": true
+          "required": true,
+          "minimum": 1
         },
         {
           "name": "metro_id",
@@ -5215,16 +5234,16 @@
         {
           "name": "latitude",
           "type": "number",
+          "required": true,
           "minimum": -90,
-          "maximum": 90,
-          "required": true
+          "maximum": 90
         },
         {
           "name": "longitude",
           "type": "number",
+          "required": true,
           "minimum": -180,
-          "maximum": 180,
-          "required": true
+          "maximum": 180
         },
         {
           "name": "phone",
@@ -5285,8 +5304,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "url",
@@ -5330,8 +5349,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "link",
@@ -5362,15 +5381,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -5395,8 +5414,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -5504,14 +5523,14 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "server_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -5538,15 +5557,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "link_id",
           "description": "Link ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -5565,8 +5584,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -5586,8 +5605,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -5879,14 +5898,14 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "address_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -5988,14 +6007,14 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "server_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "url",
@@ -6038,15 +6057,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "link_id",
           "description": "Link ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "text",
@@ -6071,15 +6090,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "role",
@@ -6151,8 +6170,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -6237,8 +6256,8 @@
           "name": "group_id",
           "description": "ID or screen name of the community.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "address_ids",
@@ -6247,8 +6266,8 @@
             "type": "integer",
             "minimum": 0
           },
-          "maxItems": 100,
-          "minItems": 0
+          "minItems": 0,
+          "maxItems": 100
         },
         {
           "name": "latitude",
@@ -6327,8 +6346,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -6418,8 +6437,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -6438,8 +6457,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "server_ids",
@@ -6468,8 +6487,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "server_id",
@@ -6570,8 +6589,8 @@
           "name": "group_id",
           "description": "Group ID to return invited users for.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -6669,8 +6688,8 @@
           "name": "group_id",
           "description": "Community ID",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -6691,8 +6710,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -6788,8 +6807,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "offset",
@@ -6834,8 +6853,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -6866,15 +6885,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -6984,8 +7003,8 @@
           "name": "group_id",
           "description": "ID or screen name of the community.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -7005,15 +7024,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -7033,15 +7052,15 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "link_id",
           "description": "Link ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "after",
@@ -7155,8 +7174,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "server_id",
@@ -7181,6 +7200,10 @@
         {
           "name": "message_allow",
           "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_edit",
           "type": "boolean"
         },
         {
@@ -7385,8 +7408,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "enabled",
@@ -7604,8 +7627,8 @@
         {
           "name": "group_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -7629,8 +7652,8 @@
           "name": "lead_id",
           "description": "Lead ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "test_result",
@@ -7728,8 +7751,8 @@
           "name": "lead_id",
           "description": "Lead ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "secret",
@@ -7765,8 +7788,8 @@
           "name": "offer_id",
           "description": "Offer ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "secret",
@@ -7853,8 +7876,8 @@
           "name": "lead_id",
           "description": "Lead ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "secret",
@@ -7921,8 +7944,8 @@
           "name": "item_id",
           "description": "Object ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "access_key",
@@ -7959,8 +7982,8 @@
           "name": "item_id",
           "description": "Object ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -8080,8 +8103,8 @@
           "name": "item_id",
           "description": "Object ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -8122,15 +8145,15 @@
           "name": "category_id",
           "description": "Item category ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "price",
           "description": "Item price.",
           "type": "number",
-          "minimum": 0.01,
-          "required": true
+          "required": true,
+          "minimum": 0.01
         },
         {
           "name": "deleted",
@@ -8141,8 +8164,8 @@
           "name": "main_photo_id",
           "description": "Cover photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "photo_ids",
@@ -8247,8 +8270,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "album_ids",
@@ -8306,8 +8329,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -8368,8 +8391,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -8402,8 +8425,8 @@
           "name": "album_id",
           "description": "Collection ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -8436,8 +8459,8 @@
           "name": "comment_id",
           "description": "comment id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -8463,8 +8486,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "name",
@@ -8485,15 +8508,15 @@
           "name": "category_id",
           "description": "Item category ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "price",
           "description": "Item price.",
           "type": "number",
-          "minimum": 0.01,
-          "required": true
+          "required": true,
+          "minimum": 0.01
         },
         {
           "name": "deleted",
@@ -8504,8 +8527,8 @@
           "name": "main_photo_id",
           "description": "Cover photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "photo_ids",
@@ -8545,6 +8568,26 @@
           "code": 1408,
           "name": "API_ERROR_MARKET_ITEM_HAS_BAD_LINKS",
           "description": "Item has bad links in description"
+        },
+        {
+          "code": 1416,
+          "name": "API_ERROR_MARKET_VARIANT_NOT_FOUND",
+          "description": "Variant not found"
+        },
+        {
+          "code": 1417,
+          "name": "API_ERROR_MARKET_PROPERTY_NOT_FOUND",
+          "description": "Property not found"
+        },
+        {
+          "code": 1426,
+          "name": "API_ERROR_MARKET_GROUPING_ITEMS_MUST_HAVE_DISTINCT_PROPERTIES",
+          "description": "Item must have distinct properties"
+        },
+        {
+          "code": 1425,
+          "name": "API_ERROR_MARKET_GROUPING_MUST_CONTAIN_MORE_THAN_ONE_ITEM",
+          "description": "Grouping must have two or more items"
         }
       ]
     },
@@ -8565,8 +8608,8 @@
           "name": "album_id",
           "description": "Collection ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -8617,8 +8660,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -8829,8 +8872,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "need_likes",
@@ -8915,8 +8958,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "album_ids",
@@ -9019,8 +9062,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "before",
@@ -9075,8 +9118,8 @@
           "name": "item_id",
           "description": "Item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -9084,15 +9127,6 @@
           "type": "integer",
           "default": 0,
           "minimum": 0,
-          "enumNames": [
-            "spam",
-            "child pornography",
-            "extremism",
-            "violence",
-            "drug propaganda",
-            "adult material",
-            "insult abuse"
-          ],
           "enum": [
             0,
             1,
@@ -9101,6 +9135,15 @@
             4,
             5,
             6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
           ]
         }
       ],
@@ -9127,15 +9170,15 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
           "description": "Complaint reason. Possible values: *'0' — spam,, *'1' — child porn,, *'2' — extremism,, *'3' — violence,, *'4' — drugs propaganda,, *'5' — adult materials,, *'6' — insult.",
           "type": "integer",
-          "minimum": 0,
           "required": true,
+          "minimum": 0,
           "enum": [
             0,
             1,
@@ -9179,8 +9222,8 @@
           "name": "item_id",
           "description": "Deleted item ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -9218,8 +9261,8 @@
           "name": "comment_id",
           "description": "deleted comment id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -9289,13 +9332,13 @@
           "type": "integer",
           "default": 1,
           "minimum": 0,
-          "enumNames": [
-            "normal",
-            "reverse"
-          ],
           "enum": [
             0,
             1
+          ],
+          "enumNames": [
+            "normal",
+            "reverse"
           ]
         },
         {
@@ -9349,9 +9392,9 @@
           "name": "chat_id",
           "description": "Chat ID.",
           "type": "integer",
+          "required": true,
           "minimum": 0,
-          "maximum": 100000000,
-          "required": true
+          "maximum": 100000000
         },
         {
           "name": "user_id",
@@ -9378,8 +9421,8 @@
         },
         {
           "code": 939,
-          "name": "API_ERROR_MESSAGES_MESSAGE_REQUEST_ALREADY_SEND",
-          "description": "Message request already send"
+          "name": "API_ERROR_MESSAGES_MESSAGE_REQUEST_ALREADY_SENT",
+          "description": "Message request already sent"
         },
         {
           "code": 936,
@@ -9399,8 +9442,8 @@
           "name": "group_id",
           "description": "Group ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "key",
@@ -9508,9 +9551,9 @@
           "name": "chat_id",
           "description": "Chat ID.",
           "type": "integer",
+          "required": true,
           "minimum": 0,
-          "maximum": 100000000,
-          "required": true
+          "maximum": 100000000
         },
         {
           "name": "group_id",
@@ -9594,8 +9637,8 @@
           "name": "group_id",
           "description": "Group ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -9626,8 +9669,8 @@
         {
           "name": "message_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "lat",
@@ -9721,9 +9764,9 @@
           "name": "chat_id",
           "description": "Chat ID.",
           "type": "integer",
+          "required": true,
           "minimum": 0,
-          "maximum": 100000000,
-          "required": true
+          "maximum": 100000000
         },
         {
           "name": "title",
@@ -10250,8 +10293,8 @@
           "name": "peer_id",
           "description": "Destination ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reset",
@@ -10450,15 +10493,15 @@
           "name": "group_id",
           "description": "Group ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -10603,6 +10646,16 @@
       ],
       "parameters": [
         {
+          "name": "message_ids",
+          "description": "IDs of messages to mark as read.",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer"
@@ -10671,9 +10724,9 @@
           "name": "chat_id",
           "description": "Chat ID.",
           "type": "integer",
+          "required": true,
           "minimum": 0,
-          "maximum": 100000000,
-          "required": true
+          "maximum": 100000000
         },
         {
           "name": "user_id",
@@ -10715,8 +10768,8 @@
           "name": "message_id",
           "description": "ID of a previously-deleted message to restore.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "group_id",
@@ -11010,6 +11063,11 @@
           "code": 936,
           "name": "API_ERROR_MESSAGES_CONTACT_NOT_FOUND",
           "description": "Contact not found"
+        },
+        {
+          "code": 940,
+          "name": "API_ERROR_MESSAGES_TOO_MANY_POSTS",
+          "description": "Too many posts in messages"
         }
       ]
     },
@@ -11202,8 +11260,8 @@
         {
           "name": "list_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -11596,8 +11654,8 @@
           "name": "item_id",
           "description": "Item identifier",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -11746,8 +11804,8 @@
           "name": "item_id",
           "description": "Item identifier",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -11785,8 +11843,8 @@
           "name": "item_id",
           "description": "Object ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -11848,8 +11906,8 @@
           "name": "note_id",
           "description": "Note ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -11903,8 +11961,8 @@
           "name": "note_id",
           "description": "Note ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -11931,8 +11989,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -11970,8 +12028,8 @@
           "name": "note_id",
           "description": "Note ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -12026,8 +12084,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -12127,8 +12185,8 @@
           "name": "note_id",
           "description": "Note ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -12171,8 +12229,8 @@
           "name": "note_id",
           "description": "Note ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -12229,8 +12287,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -12319,6 +12377,41 @@
       }
     },
     {
+      "name": "notifications.sendMessage",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "maxItems": 100
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "fragment",
+          "type": "string",
+          "maxLength": 2047
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/notifications_sendMessage_response"
+        }
+      }
+    },
+    {
       "name": "orders.cancelSubscription",
       "access_token_type": [
         "user",
@@ -12328,14 +12421,14 @@
         {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "subscription_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "pending_cancel",
@@ -12374,8 +12467,8 @@
           "name": "order_id",
           "description": "order ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "action",
@@ -12461,8 +12554,8 @@
         {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "votes",
@@ -12524,14 +12617,14 @@
         {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "subscription_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12558,8 +12651,8 @@
         {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12579,20 +12672,20 @@
         {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "subscription_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "price",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -12991,8 +13084,8 @@
           "name": "photo_id",
           "description": "photo ID",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "access_key",
@@ -13144,8 +13237,8 @@
           "name": "photo_id",
           "description": "Photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -13165,8 +13258,8 @@
           "name": "album_id",
           "description": "Album ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "group_id",
@@ -13229,8 +13322,8 @@
           "name": "photo_id",
           "description": "Photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "caption",
@@ -13275,8 +13368,8 @@
           "name": "album_id",
           "description": "ID of the photo album to be edited.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -13684,8 +13777,8 @@
           "name": "chat_id",
           "description": "ID of the chat for which you want to upload a cover photo.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "crop_x",
@@ -13800,8 +13893,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -13821,8 +13914,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "main_photo",
@@ -13920,8 +14013,8 @@
           "name": "group_id",
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "crop_x",
@@ -14173,8 +14266,8 @@
           "name": "photo_id",
           "description": "Photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "user_id",
@@ -14334,8 +14427,8 @@
           "name": "photo_id",
           "description": "Photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -14385,8 +14478,8 @@
           "name": "comment_id",
           "description": "ID of the comment being reported.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -14435,8 +14528,8 @@
           "name": "photo_id",
           "description": "Photo ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -14552,8 +14645,8 @@
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "photo",
@@ -14565,8 +14658,8 @@
           "name": "server",
           "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "hash",
@@ -14924,8 +15017,8 @@
           "name": "poll_id",
           "description": "Poll ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "answer_ids",
@@ -15041,15 +15134,15 @@
           "name": "poll_id",
           "description": "Poll ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "answer_id",
           "description": "Answer ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "is_board",
@@ -15095,8 +15188,8 @@
           "name": "poll_id",
           "description": "edited poll's id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "question",
@@ -15170,8 +15263,8 @@
           "name": "poll_id",
           "description": "Poll ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "extended",
@@ -15234,8 +15327,8 @@
           "name": "poll_id",
           "description": "Poll ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "answer_ids",
@@ -15608,15 +15701,15 @@
           "name": "user_id",
           "description": "ID of a user to save the data",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "activity_id",
           "description": "there are 2 default activities: , * 1 – level. Works similar to ,, * 2 – points, saves points amount, Any other value is for saving completed missions",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "value",
@@ -15799,8 +15892,8 @@
         {
           "name": "achievement_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -15853,8 +15946,8 @@
           "name": "user_id",
           "description": "ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -16005,8 +16098,8 @@
           "name": "post_id",
           "description": "wall post id. Note that stats are available only for '300' last (newest) posts on a community wall.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -16258,8 +16351,8 @@
           "name": "story_id",
           "description": "Story ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -16348,7 +16441,7 @@
           "name": "extended",
           "description": "'1' — to return additional fields for users and communities. Default value is 0.",
           "type": "boolean",
-          "default": 0
+          "default": false
         },
         {
           "name": "fields",
@@ -16462,8 +16555,8 @@
           "name": "story_id",
           "description": "Story ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "access_key",
@@ -16512,8 +16605,8 @@
           "name": "story_id",
           "description": "Story ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -16609,8 +16702,8 @@
           "name": "story_id",
           "description": "Story ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "count",
@@ -16693,8 +16786,8 @@
           "name": "story_id",
           "description": "Story ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "access_key",
@@ -16972,19 +17065,19 @@
           "name": "user_id",
           "description": "ID of the user about whom a complaint is being made.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "type",
-          "description": "Type of complaint: 'porn' – pornography, 'spam' – spamming, 'insult' – abusive behavior, 'advertisment' – disruptive advertisements",
+          "description": "Type of complaint: 'porn' – pornography, 'spam' – spamming, 'insult' – abusive behavior, 'advertisement' – disruptive advertisements",
           "type": "string",
           "required": true,
           "enum": [
             "porn",
             "spam",
             "insult",
-            "advertisment"
+            "advertisement"
           ]
         },
         {
@@ -17469,8 +17562,8 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -17583,8 +17676,8 @@
         {
           "name": "video_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -17680,8 +17773,8 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -17716,8 +17809,8 @@
           "name": "album_id",
           "description": "Album ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -17836,8 +17929,8 @@
           "name": "album_id",
           "description": "Album ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "title",
@@ -18081,8 +18174,8 @@
         {
           "name": "video_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "extended",
@@ -18122,8 +18215,8 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "need_likes",
@@ -18218,8 +18311,8 @@
         {
           "name": "video_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -18251,8 +18344,8 @@
           "name": "album_id",
           "description": "Album ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "before",
@@ -18312,8 +18405,8 @@
           "name": "video_id",
           "description": "ID of the video.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "before_owner_id",
@@ -18368,8 +18461,8 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -18429,8 +18522,8 @@
           "name": "comment_id",
           "description": "ID of the comment being reported.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -18474,8 +18567,8 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "owner_id",
@@ -18719,8 +18812,8 @@
         {
           "name": "post_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -18746,8 +18839,8 @@
           "name": "post_id",
           "description": "Post ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "from_group",
@@ -18861,8 +18954,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -18893,8 +18986,8 @@
         {
           "name": "post_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "friends_only",
@@ -18990,8 +19083,8 @@
           "name": "post_id",
           "description": "Post ID. Used for publishing of scheduled and suggested posts.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -19077,8 +19170,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "message",
@@ -19372,8 +19465,8 @@
         {
           "name": "post_id",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -19398,8 +19491,8 @@
           "name": "post_id",
           "description": "Post ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -19650,8 +19743,8 @@
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -19701,8 +19794,8 @@
           "name": "post_id",
           "description": "Post ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         },
         {
           "name": "reason",
@@ -19949,8 +20042,8 @@
           "name": "post_id",
           "description": "Post ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {

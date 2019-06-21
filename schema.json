@@ -267,6 +267,9 @@
             }
           },
           "additionalProperties": false
+        },
+        "withoutRefs": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false

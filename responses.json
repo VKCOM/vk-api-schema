@@ -16,7 +16,10 @@
               "type": "string",
               "description": "New secret"
             }
-          }
+          },
+          "required": [
+            "token"
+          ]
         }
       }
     },
@@ -3892,6 +3895,17 @@
         }
       }
     },
+    "notifications_sendMessage_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/notifications_send_message_item"
+          }
+        }
+      }
+    },
     "ok_response": {
       "type": "object",
       "properties": {
@@ -5261,6 +5275,23 @@
         }
       }
     },
+    "stories_upload_response": {
+      "withoutRefs": true,
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "story": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          },
+          "required": [
+            "story"
+          ]
+        }
+      }
+    },
     "streaming_getServerUrl_response": {
       "type": "object",
       "properties": {
@@ -5347,9 +5378,11 @@
               "items": {
                 "oneOf": [
                   {
+                    "invalid_one_of": true,
                     "$ref": "objects.json#/definitions/users_user_xtr_type"
                   },
                   {
+                    "invalid_one_of": true,
                     "$ref": "objects.json#/definitions/groups_group_full"
                   }
                 ]
