@@ -16,7 +16,10 @@
               "type": "string",
               "description": "New secret"
             }
-          }
+          },
+          "required": [
+            "token"
+          ]
         }
       }
     },
@@ -3892,6 +3895,17 @@
         }
       }
     },
+    "notifications_sendMessage_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/notifications_send_message_item"
+          }
+        }
+      }
+    },
     "ok_response": {
       "type": "object",
       "properties": {
@@ -5252,11 +5266,50 @@
                   "$ref": "objects.json#/definitions/stories_story"
                 }
               }
+            },
+            "promo_data": {
+              "type": "object",
+              "description": "Additional data for promo stories",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Promo story title"
+                },
+                "photo_50": {
+                  "type": "string",
+                  "description": "RL of square photo of the story with 50 pixels in width"
+                },
+                "photo_100": {
+                  "type": "string",
+                  "description": "RL of square photo of the story with 100 pixels in width"
+                },
+                "not_animated": {
+                  "type": "boolean",
+                  "description": "Hide animation for promo story"
+                }
+              }
             }
           },
           "required": [
             "count",
             "items"
+          ]
+        }
+      }
+    },
+    "stories_upload_response": {
+      "withoutRefs": true,
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "story": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          },
+          "required": [
+            "story"
           ]
         }
       }
@@ -5347,9 +5400,11 @@
               "items": {
                 "oneOf": [
                   {
+                    "invalid_one_of": true,
                     "$ref": "objects.json#/definitions/users_user_xtr_type"
                   },
                   {
+                    "invalid_one_of": true,
                     "$ref": "objects.json#/definitions/groups_group_full"
                   }
                 ]
@@ -5823,6 +5878,24 @@
           },
           "required": [
             "comment_id"
+          ]
+        }
+      }
+    },
+    "wall_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "Edited post ID",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "post_id"
           ]
         }
       }
