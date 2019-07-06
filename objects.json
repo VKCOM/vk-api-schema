@@ -11222,27 +11222,27 @@
           "format": "uri",
           "description": "URL of the external player"
         },
-        "mp_1080": {
+        "mp4_1080": {
           "type": "string",
           "format": "uri",
           "description": "URL of the mpeg4 file with 1080p quality"
         },
-        "mp_240": {
+        "mp4_240": {
           "type": "string",
           "format": "uri",
           "description": "URL of the mpeg4 file with 240p quality"
         },
-        "mp_360": {
+        "mp4_360": {
           "type": "string",
           "format": "uri",
           "description": "URL of the mpeg4 file with 360p quality"
         },
-        "mp_480": {
+        "mp4_480": {
           "type": "string",
           "format": "uri",
           "description": "URL of the mpeg4 file with 480p quality"
         },
-        "mp_720": {
+        "mp4_720": {
           "type": "string",
           "format": "uri",
           "description": "URL of the mpeg4 file with 720p quality"
