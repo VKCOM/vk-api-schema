@@ -16,7 +16,10 @@
               "type": "string",
               "description": "New secret"
             }
-          }
+          },
+          "required": [
+            "token"
+          ]
         }
       }
     },
@@ -1211,47 +1214,53 @@
         }
       }
     },
-    "fave_getLinks_response": {
+    "fave_addTag_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/fave_tag"
+        }
+      }
+    },
+    "fave_getPages_response": {
       "type": "object",
       "properties": {
         "response": {
           "type": "object",
           "properties": {
             "count": {
-              "type": "integer",
-              "description": "Total number"
+              "type": "integer"
             },
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/fave_faves_link"
+                "$ref": "objects.json#/definitions/fave_page"
               }
             }
           }
         }
       }
     },
-    "fave_getMarketItems_response": {
+    "fave_getTags_response": {
       "type": "object",
       "properties": {
         "response": {
           "type": "object",
           "properties": {
             "count": {
-              "type": "integer",
-              "description": "Total number"
+              "type": "integer"
             },
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/market_market_item"
+                "$ref": "objects.json#/definitions/fave_tag"
               }
             }
           }
         }
       }
     },
-    "fave_getPhotos_response": {
+    "fave_get_extended_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -1264,14 +1273,26 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/photos_photo"
+                "$ref": "objects.json#/definitions/fave_bookmark"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
               }
             }
           }
         }
       }
     },
-    "fave_getPosts_response": {
+    "fave_get_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -1284,47 +1305,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/wall_wallpost_full"
-              }
-            }
-          }
-        }
-      }
-    },
-    "fave_getUsers_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
-              }
-            }
-          }
-        }
-      }
-    },
-    "fave_getVideos_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_video"
+                "$ref": "objects.json#/definitions/fave_bookmark"
               }
             }
           }
@@ -1841,7 +1822,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_owner_xtr_ban_info"
+                "$ref": "objects.json#/definitions/groups_banned_item"
               }
             }
           },
@@ -3892,6 +3873,17 @@
         }
       }
     },
+    "notifications_sendMessage_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/notifications_send_message_item"
+          }
+        }
+      }
+    },
     "ok_response": {
       "type": "object",
       "properties": {
@@ -4732,6 +4724,10 @@
         "response": {
           "type": "object",
           "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
             "items": {
               "type": "array",
               "items": {
@@ -4744,7 +4740,11 @@
                 "type": "string"
               }
             }
-          }
+          },
+          "required": [
+            "count",
+            "items"
+          ]
         }
       }
     },
@@ -5252,11 +5252,50 @@
                   "$ref": "objects.json#/definitions/stories_story"
                 }
               }
+            },
+            "promo_data": {
+              "type": "object",
+              "description": "Additional data for promo stories",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Promo story title"
+                },
+                "photo_50": {
+                  "type": "string",
+                  "description": "RL of square photo of the story with 50 pixels in width"
+                },
+                "photo_100": {
+                  "type": "string",
+                  "description": "RL of square photo of the story with 100 pixels in width"
+                },
+                "not_animated": {
+                  "type": "boolean",
+                  "description": "Hide animation for promo story"
+                }
+              }
             }
           },
           "required": [
             "count",
             "items"
+          ]
+        }
+      }
+    },
+    "stories_upload_response": {
+      "withoutRefs": true,
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "story": {
+              "$ref": "objects.json#/definitions/stories_story"
+            }
+          },
+          "required": [
+            "story"
           ]
         }
       }
@@ -5345,14 +5384,7 @@
             "items": {
               "type": "array",
               "items": {
-                "oneOf": [
-                  {
-                    "$ref": "objects.json#/definitions/users_user_xtr_type"
-                  },
-                  {
-                    "$ref": "objects.json#/definitions/groups_group_full"
-                  }
-                ]
+                "$ref": "objects.json#/definitions/users_subscriptions_item"
               }
             }
           },
@@ -5622,30 +5654,6 @@
               "items": {
                 "$ref": "objects.json#/definitions/wall_wall_comment"
               }
-            }
-          },
-          "required": [
-            "count",
-            "items"
-          ]
-        }
-      }
-    },
-    "video_getComments_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/wall_wall_comment"
-              }
             },
             "profiles": {
               "type": "array",
@@ -5665,6 +5673,30 @@
             "items",
             "groups",
             "profiles"
+          ]
+        }
+      }
+    },
+    "video_getComments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          },
+          "required": [
+            "count",
+            "items"
           ]
         }
       }
@@ -5827,6 +5859,24 @@
         }
       }
     },
+    "wall_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "Edited post ID",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        }
+      }
+    },
     "wall_getById_extended_response": {
       "type": "object",
       "properties": {
@@ -5891,7 +5941,7 @@
               "type": "boolean"
             },
             "can_post": {
-              "$ref": "objects.json#/definitions/base_bool_int",
+              "type": "boolean",
               "description": "Information whether current user can comment the post"
             },
             "groups_can_post": {
@@ -5941,7 +5991,7 @@
               }
             },
             "can_post": {
-              "$ref": "objects.json#/definitions/base_bool_int",
+              "type": "boolean",
               "description": "Information whether current user can comment the post"
             },
             "groups_can_post": {

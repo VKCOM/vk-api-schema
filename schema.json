@@ -109,7 +109,7 @@
               "minItems": 1,
               "uniqueItems": true
             },
-            "sdkIgnore": {
+            "ignore_sdk": {
               "type": "boolean",
               "default": false
             }
@@ -267,6 +267,9 @@
             }
           },
           "additionalProperties": false
+        },
+        "withoutRefs": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false
@@ -332,8 +335,10 @@
             "enum": [
               "open",
               "user",
+              "user_nodoc",
               "group",
-              "service"
+              "service",
+              "service_nodoc"
             ],
             "description": "Access token type"
           },
@@ -362,6 +367,10 @@
         },
         "errors": {
           "$ref": "#/definitions/errors"
+        },
+        "ignore_sdk": {
+          "type": "boolean",
+          "default": false
         }
       },
       "required": [
