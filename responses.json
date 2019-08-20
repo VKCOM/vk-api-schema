@@ -3518,7 +3518,7 @@
             },
             "next_from": {
               "type": "string",
-              "description": "New from value"
+              "description": "Value for pagination"
             }
           },
           "required": [
@@ -3625,13 +3625,9 @@
                 "$ref": "objects.json#/definitions/groups_group_full"
               }
             },
-            "new_offset": {
+            "next_from": {
               "type": "string",
-              "description": "New offset value"
-            },
-            "new_from": {
-              "type": "string",
-              "description": "New from value"
+              "description": "Value for pagination"
             }
           }
         }
@@ -3687,6 +3683,10 @@
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
               }
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Value for pagination"
             }
           }
         }
@@ -3713,6 +3713,14 @@
                 "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             },
+            "count": {
+              "type": "integer",
+              "description": "Number"
+            },
+            "total_count": {
+              "type": "integer",
+              "description": "Total number"
+            },
             "profiles": {
               "type": "array",
               "items": {
@@ -3724,6 +3732,10 @@
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
               }
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Value for pagination"
             }
           }
         }
@@ -3741,11 +3753,23 @@
                 "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             },
+            "count": {
+              "type": "integer",
+              "description": "Number"
+            },
+            "total_count": {
+              "type": "integer",
+              "description": "Total number"
+            },
             "suggested_queries": {
               "type": "array",
               "items": {
                 "type": "string"
               }
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Value for pagination"
             }
           }
         }
