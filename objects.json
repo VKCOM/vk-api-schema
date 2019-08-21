@@ -11744,16 +11744,6 @@
             "$ref": "#/definitions/video_video_image"
           }
         },
-        "first_frame_640": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the first frame for the corresponding width."
-        },
-        "first_frame_1280": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the first frame for the corresponding width."
-        },
         "id": {
           "type": "integer",
           "description": "Video ID"
