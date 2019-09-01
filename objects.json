@@ -5081,7 +5081,7 @@
           "$ref": "#/definitions/groups_group_xtr_invited_by_admin_level"
         },
         "id": {
-          "type": "string",
+          "type": "integer",
           "description": "Community ID"
         },
         "invited_by": {
