@@ -9965,6 +9965,10 @@
           "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can comment the story (0 - no, 1 - yes)."
         },
+        "can_hide": {
+          "$ref": "#/definitions/base_bool_int",
+          "description": "Information whether current user can hide the story (0 - no, 1 - yes)."
+        },
         "can_reply": {
           "$ref": "#/definitions/base_bool_int",
           "description": "Information whether current user can reply to the story (0 - no, 1 - yes)."
