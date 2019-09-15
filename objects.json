@@ -8975,8 +8975,10 @@
       "type": "string",
       "description": "Size type",
       "enum": [
+        "temp",
         "s",
         "m",
+        "j",
         "x",
         "o",
         "p",
