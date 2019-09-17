@@ -1582,6 +1582,10 @@
               "type": "integer",
               "description": "Genre ID"
             },
+            "installed": {
+              "type": "boolean",
+              "description": "Information whether the application is installed"
+            },
             "international": {
               "type": "integer",
               "description": "Information whether the application is multilanguage"
