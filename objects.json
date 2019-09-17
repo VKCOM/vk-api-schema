@@ -2547,6 +2547,10 @@
         "text": {
           "type": "string",
           "description": "Comment text"
+        },
+        "can_edit": {
+          "description": "Information whether current user can edit the comment",
+          "$ref": "#/definitions/base_bool_int"
         }
       },
       "required": [
