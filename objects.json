@@ -2540,6 +2540,9 @@
           "description": "Comment ID",
           "minimum": 1
         },
+        "likes": {
+          "$ref": "#/definitions/base_likes_info"
+        },
         "real_offset": {
           "type": "integer",
           "description": "Real position of the comment"
