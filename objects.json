@@ -3420,7 +3420,7 @@
     "docs_doc_preview_video": {
       "type": "object",
       "properties": {
-        "filesize": {
+        "file_size": {
           "type": "integer",
           "description": "Video file size in bites",
           "minimum": 0
