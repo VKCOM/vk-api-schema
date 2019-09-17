@@ -3461,7 +3461,7 @@
           "type": "integer",
           "description": "Doc type ID"
         },
-        "title": {
+        "name": {
           "type": "string",
           "description": "Doc type title"
         }
