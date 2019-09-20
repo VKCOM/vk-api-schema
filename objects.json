@@ -5218,6 +5218,9 @@
     "groups_long_poll_events": {
       "type": "object",
       "properties": {
+        "app_payload": {
+          "$ref": "#/definitions/base_bool_int"
+        },
         "audio_new": {
           "$ref": "#/definitions/base_bool_int"
         },
@@ -5339,6 +5342,9 @@
           "$ref": "#/definitions/base_bool_int"
         },
         "wall_repost": {
+          "$ref": "#/definitions/base_bool_int"
+        },
+        "vkpay_transaction": {
           "$ref": "#/definitions/base_bool_int"
         }
       },
