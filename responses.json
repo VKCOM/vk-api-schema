@@ -1897,8 +1897,8 @@
           "type": "object",
           "properties": {
             "enabled": {
-              "type": "integer",
-              "description": "Information whether catalog is enabled for current user"
+              "description": "Information whether catalog is enabled for current user",
+              "$ref": "objects.json#/definitions/base_bool_int"
             },
             "categories": {
               "type": "array",
@@ -1920,8 +1920,8 @@
           "type": "object",
           "properties": {
             "enabled": {
-              "type": "integer",
-              "description": "Information whether catalog is enabled for current user"
+              "description": "Information whether catalog is enabled for current user",
+              "$ref": "objects.json#/definitions/base_bool_int"
             },
             "categories": {
               "type": "array",
