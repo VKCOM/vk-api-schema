@@ -4589,6 +4589,10 @@
               "description": "Information whether current user can upload video",
               "$ref": "#/definitions/base_bool_int"
             },
+            "has_market_app": {
+              "type": "boolean",
+              "description": "Information whether community has market app"
+            },
             "has_photo": {
               "description": "Information whether community has photo",
               "$ref": "#/definitions/base_bool_int"
