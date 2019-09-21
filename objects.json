@@ -5452,11 +5452,11 @@
           "description": "Main market album ID"
         },
         "price_max": {
-          "type": "integer",
+          "type": "string",
           "description": "Maximum price"
         },
         "price_min": {
-          "type": "integer",
+          "type": "string",
           "description": "Minimum price"
         }
       }
