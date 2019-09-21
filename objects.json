@@ -4529,6 +4529,10 @@
               "$ref": "#/definitions/groups_group_full_member_status",
               "description": "Current user's member status"
             },
+            "is_adult": {
+              "description": "Information whether community is adult",
+              "$ref": "#/definitions/base_bool_int"
+            },
             "is_favorite": {
               "description": "Information whether community is in faves",
               "$ref": "#/definitions/base_bool_int"
