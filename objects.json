@@ -4628,6 +4628,10 @@
               "description": "Information whether current user can send a message to community",
               "$ref": "#/definitions/base_bool_int"
             },
+            "is_hidden_from_feed": {
+              "description": "Information whether community is hidden from current user's newsfeed",
+              "$ref": "#/definitions/base_bool_int"
+            },
             "is_messages_blocked": {
               "description": "Information whether community can send a message to current user",
               "$ref": "#/definitions/base_bool_int"
