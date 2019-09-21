@@ -4585,6 +4585,10 @@
               "description": "Information whether current user can create topic",
               "$ref": "#/definitions/base_bool_int"
             },
+            "can_upload_doc": {
+              "description": "Information whether current user can upload doc",
+              "$ref": "#/definitions/base_bool_int"
+            },
             "can_upload_video": {
               "description": "Information whether current user can upload video",
               "$ref": "#/definitions/base_bool_int"
