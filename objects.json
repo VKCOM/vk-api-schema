@@ -4276,7 +4276,11 @@
         "live_covers",
         "is_adult",
         "can_subscribe_posts",
-        "warning_notification"
+        "warning_notification",
+        "can_upload_doc",
+        "crop_photo",
+        "is_hidden_from_feed",
+        "wall"
       ]
     },
     "groups_filter": {
