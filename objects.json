@@ -4663,6 +4663,10 @@
             "can_subscribe_posts": {
               "description": "Can subscribe to wall",
               "type": "boolean"
+            },
+            "wall": {
+              "type": "integer",
+              "description": "Wall settings"
             }
           }
         }
