@@ -10885,11 +10885,11 @@
             },
             "mobile_phone": {
               "type": "string",
-              "description": "Information whether current user can see"
+              "description": "User's mobile phone number"
             },
             "home_phone": {
               "type": "string",
-              "description": "User's mobile phone number"
+              "description": "User's additional phone number"
             },
             "site": {
               "type": "string",
