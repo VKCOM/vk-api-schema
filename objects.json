@@ -10360,6 +10360,7 @@
         "can_see_audio",
         "can_write_private_message",
         "can_send_friend_request",
+        "can_be_invited_group",
         "is_favorite",
         "is_hidden_from_feed",
         "timezone",
@@ -10878,6 +10879,10 @@
             "can_write_private_message": {
               "description": "Information whether current user can write private message",
               "$ref": "#/definitions/base_bool_int"
+            },
+            "can_be_invited_group": {
+              "type": "boolean",
+              "description": "Information whether current user can be invited to the community"
             },
             "can_send_friend_request": {
               "description": "Information whether current user can send a friend request",
