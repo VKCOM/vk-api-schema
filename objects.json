@@ -12520,7 +12520,7 @@
           "$ref": "#/definitions/wall_post_source"
         },
         "post_type": {
-          "type": "integer",
+          "type": "string",
           "description": "Post type"
         },
         "reposts": {
