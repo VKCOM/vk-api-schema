@@ -12536,6 +12536,10 @@
         },
         "user": {
           "$ref": "#/definitions/users_user_full"
+        },
+        "views": {
+          "description": "Count of views",
+          "$ref": "#/definitions/wall_views"
         }
       },
       "required": [
