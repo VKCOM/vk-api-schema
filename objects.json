@@ -1883,7 +1883,8 @@
       "type": "object",
       "properties": {
         "coordinates": {
-          "$ref": "#/definitions/base_geo_coordinates"
+          "type": "string",
+          "description": "Coordinates as string. <latitude> <longtitude>"
         },
         "place": {
           "$ref": "#/definitions/base_place"
@@ -1897,22 +1898,6 @@
           "description": "Place type"
         }
       }
-    },
-    "base_geo_coordinates": {
-      "type": "object",
-      "properties": {
-        "latitude": {
-          "type": "number"
-        },
-        "longitude": {
-          "type": "number"
-        }
-      },
-      "required": [
-        "latitude",
-        "longitude"
-      ],
-      "additionalProperties": false
     },
     "base_image": {
       "type": "object",
