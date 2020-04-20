@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/VKCOM/vk-api-schema/issues"
   },
-  "homepage": "https://github.com/VKCOM/vk-api-schema#readme"
+  "homepage": "https://github.com/VKCOM/vk-api-schema#readme",
+  "scripts": {
+    "release": "./tasks/release.sh"
+  }
 }
