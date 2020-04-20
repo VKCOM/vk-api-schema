@@ -4881,6 +4881,10 @@
               "$ref": "objects.json#/definitions/groups_group_full_member_status",
               "description": "Current user's member status"
             },
+            "is_hidden_from_feed": {
+              "description": "Information whether community is hidden from current user's newsfeed",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "is_favorite": {
               "description": "Information whether community is in faves",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -5339,7 +5343,7 @@
           "$ref": "objects.json#/definitions/groups_group_xtr_invited_by_admin_level"
         },
         "id": {
-          "type": "string",
+          "type": "integer",
           "description": "Community ID"
         },
         "invited_by": {
@@ -5710,11 +5714,11 @@
           "description": "Main market album ID"
         },
         "price_max": {
-          "type": "integer",
+          "type": "string",
           "description": "Maximum price"
         },
         "price_min": {
-          "type": "integer",
+          "type": "string",
           "description": "Minimum price"
         }
       }
@@ -11768,13 +11772,17 @@
               "description": "Information whether current user can send a friend request",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "can_be_invited_group": {
+              "type": "boolean",
+              "description": "Information whether current user can be invited to the community"
+            },
             "mobile_phone": {
               "type": "string",
-              "description": "Information whether current user can see"
+              "description": "User's mobile phone number"
             },
             "home_phone": {
               "type": "string",
-              "description": "User's mobile phone number"
+              "description": "User's additional phone number"
             },
             "site": {
               "type": "string",
