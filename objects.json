@@ -11772,6 +11772,10 @@
               "description": "Information whether current user can send a friend request",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "can_be_invited_group": {
+              "type": "boolean",
+              "description": "Information whether current user can be invited to the community"
+            },
             "mobile_phone": {
               "type": "string",
               "description": "User's mobile phone number"
