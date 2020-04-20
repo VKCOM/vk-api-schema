@@ -54,6 +54,11 @@
           "description": "New messages number",
           "minimum": 1
         },
+        "memories": {
+          "type": "integer",
+          "description": "New memories number",
+          "minimum": 1
+        },
         "notes": {
           "type": "integer",
           "description": "New notes number",
@@ -108,6 +113,10 @@
           "description": "Ads slot id for MyTarget",
           "minimum": 0,
           "type": "integer"
+        },
+        "qr_promotion": {
+          "type": "integer",
+          "minimum": 0
         },
         "link_redirects": {
           "type": "object"
@@ -1693,14 +1702,6 @@
         },
         {
           "properties": {
-            "author_group": {
-              "type": "integer",
-              "description": "Official community's ID"
-            },
-            "author_id": {
-              "type": "integer",
-              "description": "Application author's ID"
-            },
             "author_url": {
               "type": "string",
               "format": "uri",
@@ -1722,10 +1723,6 @@
               "description": "URL of the app icon with 16 px in width"
             },
             "is_new": {
-              "description": "Is new flag",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "new": {
               "description": "Is new flag",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
@@ -1824,6 +1821,10 @@
           "type": "string",
           "description": "Application title"
         },
+        "author_owner_id": {
+          "type": "integer",
+          "description": "Application author's ID"
+        },
         "icon_139": {
           "type": "string",
           "format": "uri",
@@ -1866,7 +1867,8 @@
         "standalone",
         "vk_app",
         "community_app",
-        "html5_game"
+        "html5_game",
+        "mini_app"
       ]
     },
     "apps_leaderboard": {
@@ -2556,6 +2558,13 @@
           "type": "string",
           "format": "uri",
           "description": "URL of sticker animation script"
+        },
+        "animations": {
+          "type": "array",
+          "description": "Array of sticker animation script objects",
+          "items": {
+            "$ref": "objects.json#/definitions/base_sticker_animation"
+          }
         },
         "is_allowed": {
           "type": "boolean",
@@ -6698,12 +6707,8 @@
             "business_notify"
           ]
         },
-        "message_request": {
-          "type": "string",
-          "enum": [
-            "pending",
-            "rejected"
-          ]
+        "message_request_data": {
+          "$ref": "objects.json#/definitions/messages_message_request_data"
         },
         "mentions": {
           "type": "array",
@@ -6851,6 +6856,10 @@
         "was_listened": {
           "type": "boolean",
           "description": "Was the audio message inside already listened by you"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
         }
       },
       "required": [
@@ -7381,6 +7390,23 @@
         "graffiti",
         "audio_message"
       ]
+    },
+    "messages_message_request_data": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Status of message request"
+        },
+        "inviter_id": {
+          "type": "integer",
+          "description": "Message request sender id"
+        },
+        "request_date": {
+          "type": "integer",
+          "description": "Message request date"
+        }
+      }
     },
     "messages_pinned_message": {
       "type": "object",
@@ -10638,6 +10664,48 @@
         "clickable_stickers"
       ]
     },
+    "stories_feed_item": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "promo_stories",
+            "stories",
+            "live_active",
+            "live_finished",
+            "community_grouped_stories",
+            "app_grouped_stories"
+          ],
+          "description": "Type of Feed Item"
+        },
+        "stories": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/stories_story"
+          },
+          "description": "Author stories"
+        },
+        "grouped": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/stories_feed_item"
+          },
+          "description": "Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)"
+        },
+        "app": {
+          "$ref": "objects.json#/definitions/apps_app_min",
+          "description": "App, which stories has been grouped (for type app_grouped_stories)"
+        },
+        "promo_data": {
+          "$ref": "objects.json#/definitions/stories_promo_block",
+          "description": "Additional data for promo stories (for type promo_stories)"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
     "stories_promo_block": {
       "type": "object",
       "description": "Additional data for promo stories",
@@ -10719,6 +10787,10 @@
         "can_see": {
           "$ref": "objects.json#/definitions/base_bool_int",
           "description": "Information whether current user can see the story (0 - no, 1 - yes)."
+        },
+        "can_like": {
+          "type": "boolean",
+          "description": "Information whether current user can like the story."
         },
         "can_share": {
           "$ref": "objects.json#/definitions/base_bool_int",

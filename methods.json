@@ -16619,7 +16619,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/storage_get_response"
+          "$ref": "responses.json#/definitions/storage_get_v5110_response"
         },
         "keysResponse": {
           "$ref": "responses.json#/definitions/storage_get_with_keys_response"
@@ -16781,7 +16781,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/stories_get_response"
+          "$ref": "responses.json#/definitions/stories_get_V5113_response"
         }
       }
     },
@@ -16979,7 +16979,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/stories_get_response"
+          "$ref": "responses.json#/definitions/stories_get_V5113_response"
         }
       }
     },
@@ -17128,10 +17128,10 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/stories_getViewers_response"
+          "$ref": "responses.json#/definitions/stories_getViewers_extended_V5115_response"
         },
         "extendedResponse": {
-          "$ref": "responses.json#/definitions/stories_getViewers_extended_response"
+          "$ref": "responses.json#/definitions/stories_getViewers_extended_V5115_response"
         }
       },
       "errors": [
