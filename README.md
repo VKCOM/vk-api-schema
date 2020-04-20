@@ -2,19 +2,19 @@
 
 This repository contains JSON Schema documents explaining all the VK.COM API objects and methods mentioned [here](https://vk.com/dev).
 
-JSON Schema standard specifications and the most common usage scenarios could be found here: http://json-schema.org/ 
+JSON Schema standard specifications and the most common usage scenarios could be found here: http://json-schema.org/
 
-These schemes are compatible with JSON Schema version draft-06 and VK API [version](https://vk.com/dev/versions) 5.92.
+These schemes are compatible with JSON Schema version draft-06 and VK API [version](https://vk.com/dev/versions) 5.107.
 
 [![Packagist](https://img.shields.io/packagist/v/vkcom/vk-api-schema.svg)](https://packagist.org/packages/vkcom/vk-api-schema)
 
 ## Structure
 
-Repository contains four .json files. 
+Repository contains four .json files.
 * "methods.json" describes all of VK API methods (could be found at [this page](https://vk.com/dev/methods)).
 * "objects.json" describes objects which are used in methods responses.
 * "responses.json" describes methods responses structure.
-* "schema.json" describes additional keywords used in our implementation, such as "method", "error", "parameter" and others so to extend the canonical specification for our needs. 
+* "schema.json" describes additional keywords used in our implementation, such as "method", "error", "parameter" and others so to extend the canonical specification for our needs.
 
 ## Samples
 
