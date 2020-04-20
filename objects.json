@@ -1825,6 +1825,10 @@
           "type": "integer",
           "description": "Application author's ID"
         },
+        "is_installed": {
+          "type": "boolean",
+          "description": "Is application installed"
+        },
         "icon_139": {
           "type": "string",
           "format": "uri",
