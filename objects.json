@@ -4881,6 +4881,10 @@
               "$ref": "objects.json#/definitions/groups_group_full_member_status",
               "description": "Current user's member status"
             },
+            "is_hidden_from_feed": {
+              "description": "Information whether community is hidden from current user's newsfeed",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "is_favorite": {
               "description": "Information whether community is in faves",
               "$ref": "objects.json#/definitions/base_bool_int"
