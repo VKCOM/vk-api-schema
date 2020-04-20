@@ -6122,6 +6122,58 @@
         }
       }
     },
+    "wall_getComment_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/wall_wall_comment"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
+              }
+            }
+          },
+          "required": [
+            "items",
+            "profiles",
+            "groups"
+          ]
+        }
+      }
+    },
+    "wall_getComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          },
+          "required": [
+            "items"
+          ]
+        }
+      }
+    },
     "wall_getComments_extended_response": {
       "type": "object",
       "properties": {

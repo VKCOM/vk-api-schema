@@ -19686,6 +19686,53 @@
       }
     },
     {
+      "name": "wall.getComment",
+      "description": "Returns a comment on a post on a user wall or community wall.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "User ID or community ID. Use a negative value to designate a community ID.",
+          "type": "integer"
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/wall_getComment_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/wall_getComment_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "code": 212,
+          "name": "API_ERROR_WALL_ACCESS_REPLIES",
+          "description": "Access to post comments denied"
+        }
+      ]
+    },
+    {
       "name": "wall.getComments",
       "description": "Returns a list of comments on a post on a user wall or community wall.",
       "access_token_type": [
