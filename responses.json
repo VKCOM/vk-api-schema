@@ -5359,6 +5359,33 @@
         }
       }
     },
+    "stories_getViewers_extended_V5115_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Viewers count"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/stories_viewers_item"
+              }
+            },
+            "hidden_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "count",
+            "items"
+          ]
+        }
+      }
+    },
     "stories_getViewers_extended_response": {
       "type": "object",
       "properties": {
@@ -5383,21 +5410,35 @@
         }
       }
     },
-    "stories_getViewers_response": {
+    "stories_get_V5113_response": {
       "type": "object",
       "properties": {
         "response": {
           "type": "object",
           "properties": {
             "count": {
-              "type": "integer",
-              "description": "Viewers count"
+              "type": "integer"
             },
             "items": {
               "type": "array",
               "items": {
-                "type": "integer"
+                "$ref": "objects.json#/definitions/stories_feed_item"
               }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
+              }
+            },
+            "need_upload_screen": {
+              "type": "boolean"
             }
           },
           "required": [
