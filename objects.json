@@ -4881,6 +4881,10 @@
               "$ref": "objects.json#/definitions/groups_group_full_member_status",
               "description": "Current user's member status"
             },
+            "is_adult": {
+              "description": "Information whether community is adult",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "is_hidden_from_feed": {
               "description": "Information whether community is hidden from current user's newsfeed",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -4941,6 +4945,14 @@
               "description": "Information whether current user can create topic",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "can_upload_doc": {
+              "description": "Information whether current user can upload doc",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_story": {
+              "description": "Information whether current user can upload story",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "can_upload_video": {
               "description": "Information whether current user can upload video",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -4968,6 +4980,22 @@
               "items": {
                 "$ref": "objects.json#/definitions/groups_contacts_item"
               }
+            },
+            "wall": {
+              "type": "integer",
+              "description": "Information about wall status in community",
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "enumNames": [
+                "disabled",
+                "open",
+                "limited",
+                "restricted"
+              ]
             },
             "site": {
               "type": "string",
@@ -5003,6 +5031,10 @@
             "ban_info": {
               "$ref": "objects.json#/definitions/groups_group_ban_info",
               "description": "User ban info"
+            },
+            "has_market_app": {
+              "type": "boolean",
+              "description": "Information whether community has installed market app"
             },
             "addresses": {
               "$ref": "objects.json#/definitions/groups_addresses_info",
