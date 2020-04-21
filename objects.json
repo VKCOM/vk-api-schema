@@ -12975,6 +12975,28 @@
         }
       }
     },
+    "wall_post_copyright": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "link": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "link",
+        "name"
+      ]
+    },
     "wall_post_source": {
       "type": "object",
       "properties": {
@@ -13133,6 +13155,10 @@
           "items": {
             "$ref": "objects.json#/definitions/wall_wallpost_attachment"
           }
+        },
+        "copyright": {
+          "$ref": "objects.json#/definitions/wall_post_copyright",
+          "description": "Information about the source of the post"
         },
         "date": {
           "type": "integer",
