@@ -4792,7 +4792,7 @@
         "id": {
           "type": "integer",
           "description": "Category ID",
-          "minimum": 1
+          "minimum": 0
         },
         "name": {
           "type": "string",
@@ -4817,7 +4817,7 @@
         "id": {
           "type": "integer",
           "description": "Category ID",
-          "minimum": 1
+          "minimum": 0
         },
         "name": {
           "type": "string",
