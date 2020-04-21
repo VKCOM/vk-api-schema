@@ -2810,6 +2810,13 @@
         "text": {
           "type": "string",
           "description": "Comment text"
+        },
+        "can_edit": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can edit the comment"
+        },
+        "likes": {
+          "$ref": "objects.json#/definitions/base_likes_info"
         }
       },
       "required": [
