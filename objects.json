@@ -5451,6 +5451,10 @@
             "can_subscribe_posts": {
               "description": "Can subscribe to wall",
               "type": "boolean"
+            },
+            "live_covers": {
+              "description": "Live covers state",
+              "$ref": "objects.json#/definitions/groups_live_covers"
             }
           }
         }
@@ -5909,6 +5913,29 @@
           "description": "Link URL"
         }
       }
+    },
+    "groups_live_covers": {
+      "type": "object",
+      "properties": {
+        "is_enabled": {
+          "description": "Information whether live covers is enabled",
+          "type": "boolean"
+        },
+        "is_scalable": {
+          "description": "Information whether live covers photo scaling is enabled",
+          "type": "boolean"
+        },
+        "story_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "is_enabled"
+      ],
+      "additionalProperties": false
     },
     "groups_long_poll_events": {
       "type": "object",
@@ -11754,64 +11781,6 @@
       },
       "additionalProperties": false
     },
-    "users_crop_photo": {
-      "type": "object",
-      "properties": {
-        "crop": {
-          "$ref": "objects.json#/definitions/users_crop_photo_crop"
-        },
-        "photo": {
-          "$ref": "objects.json#/definitions/photos_photo"
-        },
-        "rect": {
-          "$ref": "objects.json#/definitions/users_crop_photo_rect"
-        }
-      }
-    },
-    "users_crop_photo_crop": {
-      "type": "object",
-      "properties": {
-        "x": {
-          "type": "number",
-          "description": "Coordinate X of the left upper corner"
-        },
-        "x2": {
-          "type": "number",
-          "description": "Coordinate X of the right lower corner"
-        },
-        "y": {
-          "type": "number",
-          "description": "Coordinate Y of the left upper corner"
-        },
-        "y2": {
-          "type": "number",
-          "description": "Coordinate Y of the right lower corner"
-        }
-      },
-      "additionalProperties": false
-    },
-    "users_crop_photo_rect": {
-      "type": "object",
-      "properties": {
-        "x": {
-          "type": "number",
-          "description": "Coordinate X of the left upper corner"
-        },
-        "x2": {
-          "type": "number",
-          "description": "Coordinate X of the right lower corner"
-        },
-        "y": {
-          "type": "number",
-          "description": "Coordinate Y of the left upper corner"
-        },
-        "y2": {
-          "type": "number",
-          "description": "Coordinate Y of the right lower corner"
-        }
-      },
-      "additionalProperties": false
-    },
     "users_exports": {
       "type": "object",
       "properties": {
@@ -11971,6 +11940,47 @@
         }
       },
       "additionalProperties": false
+    },
+    "users_online_info": {
+      "type": "object",
+      "properties": {
+        "visible": {
+          "type": "boolean",
+          "description": "Whether you can see real online status of user or not"
+        },
+        "last_seen": {
+          "type": "integer",
+          "description": "Last time we saw user being active",
+          "minimum": 0
+        },
+        "is_online": {
+          "type": "boolean",
+          "description": "Whether user is currently online or not"
+        },
+        "app_id": {
+          "type": "integer",
+          "description": "Application id from which user is currently online or was last seen online",
+          "minimum": 0
+        },
+        "is_mobile": {
+          "type": "boolean",
+          "description": "Is user online from desktop app or mobile app"
+        },
+        "status": {
+          "type": "string",
+          "description": "In case user online is not visible, it indicates approximate timeframe of user online",
+          "enum": [
+            "recently",
+            "last_week",
+            "last_month",
+            "long_ago",
+            "not_show"
+          ]
+        }
+      },
+      "required": [
+        "visible"
+      ]
     },
     "users_personal": {
       "type": "object",
@@ -12183,6 +12193,9 @@
               "type": "string",
               "format": "uri",
               "description": "URL of square photo of the user with 100 pixels in width"
+            },
+            "online_info": {
+              "$ref": "objects.json#/definitions/users_online_info"
             },
             "online": {
               "description": "Information whether the user is online",
@@ -12494,7 +12507,7 @@
               "$ref": "objects.json#/definitions/users_exports"
             },
             "crop_photo": {
-              "$ref": "objects.json#/definitions/users_crop_photo"
+              "$ref": "objects.json#/definitions/base_crop_photo"
             },
             "followers_count": {
               "type": "integer",
