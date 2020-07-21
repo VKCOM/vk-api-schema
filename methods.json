@@ -6359,7 +6359,7 @@
         },
         {
           "name": "role",
-          "description": "Manager role. Possible values: *'moderator',, *'editor',, *'administrator'.",
+          "description": "Manager role. Possible values: *'moderator',, *'editor',, *'administrator',, *'advertiser'.",
           "type": "string",
           "$ref": "objects.json#/definitions/groups_group_role"
         },

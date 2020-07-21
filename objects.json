@@ -575,13 +575,18 @@
         },
         "account_type": {
           "$ref": "objects.json#/definitions/ads_account_type"
+        },
+        "account_name": {
+          "type": "string",
+          "description": "Account name"
         }
       },
       "required": [
         "account_id",
         "account_type",
         "account_status",
-        "access_role"
+        "access_role",
+        "account_name"
       ],
       "additionalProperties": false
     },
@@ -2165,6 +2170,81 @@
       ],
       "additionalProperties": false
     },
+    "base_crop_photo": {
+      "type": "object",
+      "properties": {
+        "photo": {
+          "$ref": "objects.json#/definitions/photos_photo"
+        },
+        "crop": {
+          "$ref": "objects.json#/definitions/base_crop_photo_crop"
+        },
+        "rect": {
+          "$ref": "objects.json#/definitions/base_crop_photo_rect"
+        }
+      },
+      "required": [
+        "photo",
+        "crop",
+        "rect"
+      ]
+    },
+    "base_crop_photo_crop": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "Coordinate X of the left upper corner"
+        },
+        "y": {
+          "type": "number",
+          "description": "Coordinate Y of the left upper corner"
+        },
+        "x2": {
+          "type": "number",
+          "description": "Coordinate X of the right lower corner"
+        },
+        "y2": {
+          "type": "number",
+          "description": "Coordinate Y of the right lower corner"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "x2",
+        "y2"
+      ],
+      "additionalProperties": false
+    },
+    "base_crop_photo_rect": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "Coordinate X of the left upper corner"
+        },
+        "y": {
+          "type": "number",
+          "description": "Coordinate Y of the left upper corner"
+        },
+        "x2": {
+          "type": "number",
+          "description": "Coordinate X of the right lower corner"
+        },
+        "y2": {
+          "type": "number",
+          "description": "Coordinate Y of the right lower corner"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "x2",
+        "y2"
+      ],
+      "additionalProperties": false
+    },
     "base_error": {
       "type": "object",
       "properties": {
@@ -2175,6 +2255,10 @@
         "error_msg": {
           "type": "string",
           "description": "Error message"
+        },
+        "error_text": {
+          "type": "string",
+          "description": "Localized error message"
         },
         "request_params": {
           "type": "array",
@@ -5273,6 +5357,10 @@
               "description": "Information whether community has photo",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "crop_photo": {
+              "description": "Данные о точках, по которым вырезаны профильная и миниатюрная фотографии сообщества",
+              "$ref": "objects.json#/definitions/base_crop_photo"
+            },
             "status": {
               "type": "string",
               "description": "Community status"
@@ -5519,7 +5607,8 @@
       "enum": [
         "moderator",
         "editor",
-        "administrator"
+        "administrator",
+        "advertiser"
       ]
     },
     "groups_group_subject": {
@@ -11062,14 +11151,17 @@
     "status_status": {
       "type": "object",
       "properties": {
-        "audio": {
-          "$ref": "objects.json#/definitions/audio_audio"
-        },
         "text": {
           "type": "string",
           "description": "Status text"
+        },
+        "audio": {
+          "$ref": "objects.json#/definitions/audio_audio"
         }
-      }
+      },
+      "required": [
+        "text"
+      ]
     },
     "storage_value": {
       "type": "object",
