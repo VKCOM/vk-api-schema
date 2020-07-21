@@ -2294,7 +2294,7 @@
           "type": "object",
           "properties": {
             "access": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_access",
               "description": "Community access settings"
             },
             "address": {
@@ -2302,7 +2302,7 @@
               "description": "Community's page domain"
             },
             "audio": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_audio",
               "description": "Audio settings"
             },
             "articles": {
@@ -2340,7 +2340,7 @@
               "description": "Community description"
             },
             "docs": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_docs",
               "description": "Docs settings"
             },
             "events": {
@@ -2420,18 +2420,18 @@
               "description": "Community title"
             },
             "topics": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_topics",
               "description": "Topics settings"
             },
             "twitter": {
               "$ref": "objects.json#/definitions/groups_settings_twitter"
             },
             "video": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_video",
               "description": "Video settings"
             },
             "wall": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_wall",
               "description": "Wall settings"
             },
             "website": {
@@ -2447,7 +2447,7 @@
               "description": "Community email"
             },
             "wiki": {
-              "type": "integer",
+              "$ref": "objects.json#/definitions/groups_group_wiki",
               "description": "Wiki settings"
             }
           },

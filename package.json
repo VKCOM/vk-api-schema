@@ -1,6 +1,6 @@
 {
   "name": "@vkontakte/api-schema",
-  "version": "5.116.7",
+  "version": "5.122.1",
   "description": "VK API JSON Schema",
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/VKCOM/vk-api-schema#readme",
   "scripts": {
-    "release": "./tasks/release.sh"
+    "release": "./tasks/release.sh",
+    "test": "npx @vkontakte/api-schema-typescript-generator --schemaDir . --methods '*'"
   }
 }
