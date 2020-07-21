@@ -13,7 +13,7 @@ else
   git tag -a "v$1" -m "v$1"
 
   echo "[vk-api-schema release]: pushing updates"
-  git push origin master
+  git push origin HEAD
 
   echo "[vk-api-schema release]: pushing new tag"
   git push origin "v$1"
