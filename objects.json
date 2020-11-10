@@ -590,6 +590,10 @@
         "account_name": {
           "type": "string",
           "description": "Account name"
+        },
+        "can_view_budget": {
+          "type": "boolean",
+          "description": "Can user view account budget"
         }
       },
       "required": [
@@ -597,7 +601,8 @@
         "account_type",
         "account_status",
         "access_role",
-        "account_name"
+        "account_name",
+        "can_view_budget"
       ],
       "additionalProperties": false
     },
@@ -1918,9 +1923,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "params": {
-          "$ref": "#/definitions/adsweb_getAdUnits_response_ad_units_ad_unit_params"
         }
       },
       "required": [
@@ -2001,12 +2003,6 @@
         },
         "hour_max": {
           "type": "string"
-        },
-        "stats": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/adsweb_getStatistics_response_items_item_stats_period"
-          }
         }
       }
     },
@@ -2022,9 +2018,6 @@
           "items": {
             "$ref": "objects.json#/definitions/base_image"
           }
-        },
-        "type": {
-          "$ref": "objects.json#/definitions/appWidgets_photo_type"
         }
       },
       "required": [
@@ -2391,6 +2384,9 @@
         "groups_can_post": {
           "type": "boolean",
           "description": "Information whether groups can comment the post"
+        },
+        "donut": {
+          "$ref": "objects.json#/definitions/wall_wallpost_comments_donut"
         }
       }
     },
@@ -2513,8 +2509,7 @@
             "$ref": "objects.json#/definitions/base_request_param"
           }
         }
-      },
-      "withoutRefs": true
+      }
     },
     "base_geo": {
       "type": "object",
@@ -2757,6 +2752,10 @@
           "type": "string",
           "description": "Target section id"
         },
+        "curator_id": {
+          "type": "integer",
+          "description": "curator id"
+        },
         "owner_id": {
           "type": "integer",
           "description": "Owner id"
@@ -2801,8 +2800,14 @@
     "base_link_button_style": {
       "type": "string",
       "description": "Button style",
-      "enum": [],
-      "enumNames": []
+      "enum": [
+        "primary",
+        "secondary"
+      ],
+      "enumNames": [
+        "primary",
+        "secondary"
+      ]
     },
     "base_link_product": {
       "type": "object",
@@ -2858,8 +2863,7 @@
           "type": "string",
           "description": "Error message"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "base_object": {
       "type": "object",
@@ -3382,14 +3386,14 @@
         "topic_owner_id",
         "topic_id",
         "id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_confirmation_message": {
       "type": "object",
       "properties": {
         "type": {
-          "$ref": "objects.json#/definitions/callback_message_type"
+          "$ref": "objects.json#/definitions/callback_message_type",
+          "default": "confirmation"
         },
         "group_id": {
           "type": "integer"
@@ -3400,10 +3404,126 @@
       },
       "required": [
         "type",
-        "group_id",
-        "secret"
-      ],
-      "withoutRefs": true
+        "group_id"
+      ]
+    },
+    "callback_donut_money_withdraw": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "amount_without_fee": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "amount",
+        "amount_without_fee"
+      ]
+    },
+    "callback_donut_money_withdraw_error": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "reason"
+      ]
+    },
+    "callback_donut_subscription_cancelled": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "callback_donut_subscription_create": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount_without_fee": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "amount",
+        "amount_without_fee"
+      ]
+    },
+    "callback_donut_subscription_expired": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "callback_donut_subscription_price_changed": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount_old": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount_new": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount_diff": {
+          "type": "number",
+          "minimum": 0
+        },
+        "amount_diff_without_fee": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "amount_old",
+        "amount_new"
+      ]
+    },
+    "callback_donut_subscription_prolonged": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "amount_without_fee": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "amount",
+        "amount_without_fee"
+      ]
     },
     "callback_group_change_photo": {
       "type": "object",
@@ -3419,8 +3539,7 @@
       "required": [
         "user_id",
         "photo"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_change_settings": {
       "type": "object",
@@ -3436,8 +3555,7 @@
       "required": [
         "user_id",
         "self"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_join": {
       "type": "object",
@@ -3452,8 +3570,7 @@
       "required": [
         "user_id",
         "join_type"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_join_type": {
       "type": "string",
@@ -3463,8 +3580,7 @@
         "accepted",
         "approved",
         "request"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_leave": {
       "type": "object",
@@ -3476,8 +3592,7 @@
         "self": {
           "$ref": "objects.json#/definitions/base_bool_int"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "callback_group_market": {
       "type": "integer",
@@ -3488,8 +3603,7 @@
       "enumNames": [
         "disabled",
         "open"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_officer_role": {
       "type": "integer",
@@ -3504,8 +3618,7 @@
         "moderator",
         "editor",
         "administrator"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_officers_edit": {
       "type": "object",
@@ -3530,8 +3643,7 @@
         "user_id",
         "level_old",
         "level_new"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_group_settings_changes": {
       "type": "object",
@@ -3575,8 +3687,7 @@
         "enable_market": {
           "$ref": "objects.json#/definitions/callback_group_market"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "callback_like_add_remove": {
       "type": "object",
@@ -3620,8 +3731,7 @@
         "post_id",
         "object_type",
         "object_owner_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_market_comment": {
       "type": "object",
@@ -3651,8 +3761,7 @@
         "id",
         "from_id",
         "date"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_market_comment_delete": {
       "type": "object",
@@ -3677,8 +3786,7 @@
         "id",
         "user_id",
         "item_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_message_allow": {
       "type": "object",
@@ -3694,8 +3802,7 @@
       "required": [
         "user_id",
         "key"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_message_base": {
       "type": "object",
@@ -3715,8 +3822,7 @@
         "type",
         "object",
         "group_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_message_deny": {
       "type": "object",
@@ -3728,8 +3834,7 @@
       },
       "required": [
         "user_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_message_type": {
       "type": "string",
@@ -3760,8 +3865,7 @@
         "wall_reply_delete",
         "wall_reply_restore",
         "wall_repost"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_photo_comment": {
       "type": "object",
@@ -3791,8 +3895,7 @@
         "date",
         "text",
         "photo_owner_od"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_photo_comment_delete": {
       "type": "object",
@@ -3819,8 +3922,7 @@
         "owner_id",
         "user_id",
         "photo_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_poll_vote_new": {
       "type": "object",
@@ -3846,8 +3948,7 @@
         "poll_id",
         "option_id",
         "user_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_qr_scan": {
       "type": "object",
@@ -3875,8 +3976,7 @@
         "type",
         "subtype",
         "reread"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_user_block": {
       "type": "object",
@@ -3906,8 +4006,7 @@
         "user_id",
         "unblock_date",
         "reason"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_user_unblock": {
       "type": "object",
@@ -3929,8 +4028,7 @@
         "admin_id",
         "user_id",
         "by_end_date"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_video_comment": {
       "type": "object",
@@ -3959,8 +4057,7 @@
         "date",
         "text",
         "video_owner_od"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_video_comment_delete": {
       "type": "object",
@@ -3986,8 +4083,7 @@
         "owner_id",
         "user_id",
         "video_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "callback_wall_comment_delete": {
       "type": "object",
@@ -4013,8 +4109,7 @@
         "id",
         "user_id",
         "post_id"
-      ],
-      "withoutRefs": true
+      ]
     },
     "comment_thread": {
       "type": "object",
@@ -4409,8 +4504,35 @@
           "type": "string",
           "description": "Uploaded file data"
         }
+      }
+    },
+    "donut_donator_subscription_info": {
+      "description": "Info about user VK Donut subscription",
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer"
+        },
+        "next_payment_date": {
+          "type": "integer"
+        },
+        "amount": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "expiring"
+          ]
+        }
       },
-      "withoutRefs": true
+      "required": [
+        "owner_id",
+        "next_payment_date",
+        "amount",
+        "status"
+      ]
     },
     "events_event_attach": {
       "type": "object",
@@ -4546,8 +4668,7 @@
         "type",
         "description",
         "tags"
-      ],
-      "withoutRefs": true
+      ]
     },
     "fave_page_type": {
       "type": "string",
@@ -4835,6 +4956,10 @@
           "type": "integer",
           "minimum": 0,
           "description": "ID of the sticker pack, if the gift is representing one"
+        },
+        "is_stickers_style": {
+          "type": "boolean",
+          "description": "Information whether gift represents a stickers style"
         },
         "build_id": {
           "type": "string",
@@ -5584,6 +5709,11 @@
               "description": "Number of community's live streams",
               "minimum": 0
             },
+            "clips_count": {
+              "type": "integer",
+              "description": "Number of community's clips",
+              "minimum": 0
+            },
             "counters": {
               "$ref": "objects.json#/definitions/groups_counters_group"
             },
@@ -6298,6 +6428,12 @@
         "market_comment_restore": {
           "$ref": "objects.json#/definitions/base_bool_int"
         },
+        "market_order_new": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "market_order_edit": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
         "message_allow": {
           "$ref": "objects.json#/definitions/base_bool_int"
         },
@@ -6646,6 +6782,30 @@
         "profile"
       ]
     },
+    "groups_profile_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User id"
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "Url for user photo"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "Url for user photo"
+        }
+      },
+      "required": [
+        "id",
+        "photo_50",
+        "photo_100"
+      ]
+    },
     "groups_role_options": {
       "type": "string",
       "description": "User's credentials as community admin",
@@ -6722,163 +6882,6 @@
           }
         }
       ]
-    },
-    "leads_checked": {
-      "type": "object",
-      "properties": {
-        "reason": {
-          "type": "string",
-          "description": "Reason why user can't start the lead"
-        },
-        "result": {
-          "$ref": "objects.json#/definitions/leads_checked_result"
-        },
-        "sid": {
-          "type": "string",
-          "description": "Session ID"
-        },
-        "start_link": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL user should open to start the lead"
-        }
-      }
-    },
-    "leads_checked_result": {
-      "type": "string",
-      "description": "Information whether user can start the lead",
-      "enum": [
-        "true",
-        "false"
-      ]
-    },
-    "leads_complete": {
-      "type": "object",
-      "properties": {
-        "cost": {
-          "type": "integer",
-          "description": "Offer cost"
-        },
-        "limit": {
-          "type": "integer",
-          "description": "Offer limit"
-        },
-        "spent": {
-          "type": "integer",
-          "description": "Amount of spent votes"
-        },
-        "success": {
-          "type": "integer",
-          "default": 1
-        },
-        "test_mode": {
-          "description": "Information whether test mode is enabled",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        }
-      }
-    },
-    "leads_entry": {
-      "type": "object",
-      "properties": {
-        "aid": {
-          "type": "integer",
-          "description": "Application ID"
-        },
-        "comment": {
-          "type": "string",
-          "description": "Comment text"
-        },
-        "date": {
-          "type": "integer",
-          "description": "Date when the action has been started in Unixtime"
-        },
-        "sid": {
-          "type": "string",
-          "description": "Session string ID"
-        },
-        "start_date": {
-          "type": "integer",
-          "description": "Start date in Unixtime (for status=2)"
-        },
-        "status": {
-          "type": "integer",
-          "description": "Action type"
-        },
-        "test_mode": {
-          "description": "Information whether test mode is enabled",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        },
-        "uid": {
-          "type": "integer",
-          "description": "User ID"
-        }
-      }
-    },
-    "leads_lead": {
-      "type": "object",
-      "properties": {
-        "completed": {
-          "type": "integer",
-          "description": "Completed offers number"
-        },
-        "cost": {
-          "type": "integer",
-          "description": "Offer cost"
-        },
-        "days": {
-          "$ref": "objects.json#/definitions/leads_lead_days"
-        },
-        "impressions": {
-          "type": "integer",
-          "description": "Impressions number"
-        },
-        "limit": {
-          "type": "integer",
-          "description": "Lead limit"
-        },
-        "spent": {
-          "type": "integer",
-          "description": "Amount of spent votes"
-        },
-        "started": {
-          "type": "integer",
-          "description": "Started offers number"
-        }
-      }
-    },
-    "leads_lead_days": {
-      "type": "object",
-      "properties": {
-        "completed": {
-          "type": "integer",
-          "description": "Completed offers number"
-        },
-        "impressions": {
-          "type": "integer",
-          "description": "Impressions number"
-        },
-        "spent": {
-          "type": "integer",
-          "description": "Amount of spent votes"
-        },
-        "started": {
-          "type": "integer",
-          "description": "Started offers number"
-        }
-      }
-    },
-    "leads_start": {
-      "type": "object",
-      "properties": {
-        "test_mode": {
-          "description": "Information whether test mode is enabled",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        },
-        "vk_sid": {
-          "type": "string",
-          "description": "Session data"
-        }
-      }
     },
     "likes_type": {
       "type": "string",
@@ -6973,6 +6976,30 @@
       "additionalProperties": false
     },
     "market_market_category": {
+      "$ref": "objects.json#/definitions/market_market_category_old"
+    },
+    "market_market_category_nested": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Category ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name"
+        },
+        "parent": {
+          "$ref": "objects.json#/definitions/market_market_category_nested"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "market_market_category_old": {
       "type": "object",
       "properties": {
         "id": {
@@ -6991,6 +7018,30 @@
         "id",
         "name",
         "section"
+      ],
+      "additionalProperties": false
+    },
+    "market_market_category_tree": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Category ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/market_market_category_tree"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name"
       ],
       "additionalProperties": false
     },
@@ -7123,6 +7174,18 @@
             "views_count": {
               "type": "integer",
               "description": "Views number"
+            },
+            "wishlist_item_id": {
+              "type": "integer",
+              "description": "Object identifier in wishlist of viewer"
+            },
+            "cancel_info": {
+              "description": "Information for cancel and revert order",
+              "$ref": "objects.json#/definitions/base_link"
+            },
+            "user_agreement_info": {
+              "description": "User agreement info",
+              "type": "string"
             }
           }
         }
@@ -7177,15 +7240,6 @@
           "type": "integer",
           "minimum": 0
         },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/market_order_tag"
-          }
-        },
-        "dimensions": {
-          "$ref": "objects.json#/definitions/market_item_dimensions"
-        },
         "total_price": {
           "$ref": "objects.json#/definitions/market_price"
         },
@@ -7196,17 +7250,9 @@
             "$ref": "objects.json#/definitions/market_order_item"
           }
         },
-        "delivery": {
-          "$ref": "objects.json#/definitions/market_order_delivery"
-        },
-        "recipient": {
-          "$ref": "objects.json#/definitions/market_order_recipient"
-        },
-        "price_details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/market_order_details_price"
-          }
+        "cancel_info": {
+          "description": "Information for cancel and revert order",
+          "$ref": "objects.json#/definitions/base_link"
         }
       },
       "required": [
@@ -7278,6 +7324,10 @@
         "text": {
           "type": "string",
           "description": "Text"
+        },
+        "old_amount_text": {
+          "type": "string",
+          "description": "Textual representation of old price"
         }
       }
     },
@@ -7352,6 +7402,11 @@
         "access_key": {
           "type": "string",
           "description": "Access key for audio message"
+        },
+        "transcript_error": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 11
         },
         "duration": {
           "type": "integer",
@@ -7617,6 +7672,9 @@
           "type": "boolean",
           "description": "Is this conversation uread"
         },
+        "out_read_by": {
+          "$ref": "objects.json#/definitions/messages_out_read_by"
+        },
         "important": {
           "type": "boolean"
         },
@@ -7789,6 +7847,39 @@
         "from_id",
         "text"
       ]
+    },
+    "messages_forward": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "description": "Messages owner_id"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Messages peer_id"
+        },
+        "conversation_message_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Message conversation_message_id"
+          }
+        },
+        "message_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Message message_id"
+          }
+        },
+        "is_reply": {
+          "type": "boolean",
+          "description": "If you need to reply to a message"
+        }
+      },
+      "required": [],
+      "withSetters": true
     },
     "messages_graffiti": {
       "type": "object",
@@ -8349,6 +8440,22 @@
         }
       }
     },
+    "messages_out_read_by": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "member_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Member IDs"
+          }
+        }
+      }
+    },
     "messages_pinned_message": {
       "type": "object",
       "properties": {
@@ -8585,9 +8692,6 @@
         },
         {
           "properties": {
-            "button_text": {
-              "type": "string"
-            },
             "feed_id": {
               "type": "string",
               "description": "id of feed in digest"
@@ -8608,18 +8712,88 @@
               "type": "string",
               "enum": [
                 "list",
-                "grid"
+                "grid",
+                "single"
               ],
               "description": "type of digest"
             },
-            "title": {
-              "type": "string"
+            "header": {
+              "$ref": "objects.json#/definitions/newsfeed_item_digest_header"
+            },
+            "footer": {
+              "$ref": "objects.json#/definitions/newsfeed_item_digest_footer"
             },
             "track_code": {
               "type": "string"
             }
           }
         }
+      ]
+    },
+    "newsfeed_item_digest_footer": {
+      "type": "object",
+      "properties": {
+        "style": {
+          "type": "string",
+          "enum": [
+            "text",
+            "button"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "description": "text for invite to enable smart feed"
+        },
+        "button": {
+          "$ref": "objects.json#/definitions/newsfeed_item_digest_footer_button"
+        }
+      },
+      "required": [
+        "style",
+        "text"
+      ]
+    },
+    "newsfeed_item_digest_footer_button": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "primary"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "style",
+        "action"
+      ]
+    },
+    "newsfeed_item_digest_header": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the header"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Subtitle of the header, when title have two strings"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "singleline",
+            "multiline"
+          ]
+        }
+      },
+      "required": [
+        "style",
+        "title"
       ]
     },
     "newsfeed_item_friend": {
@@ -8673,8 +8847,7 @@
         "action": {
           "$ref": "objects.json#/definitions/base_link_button_action"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "newsfeed_item_photo": {
       "type": "object",
@@ -9106,13 +9279,11 @@
         "photo_tag",
         "wall_photo",
         "friend",
-        "note",
         "audio",
         "video",
         "topic",
         "digest",
-        "stories",
-        "tags_suggestions"
+        "stories"
       ]
     },
     "newsfeed_newsfeed_photo": {
@@ -9429,8 +9600,7 @@
       "required": [
         "error",
         "error_description"
-      ],
-      "withoutRefs": true
+      ]
     },
     "orders_amount": {
       "type": "object",
@@ -9904,8 +10074,7 @@
           "type": "integer",
           "description": "Upload server number"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_market_upload_response": {
       "type": "object",
@@ -9934,8 +10103,7 @@
           "type": "integer",
           "description": "Upload server number"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_message_upload_response": {
       "type": "object",
@@ -9952,8 +10120,7 @@
           "type": "integer",
           "description": "Upload server number"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_owner_upload_response": {
       "type": "object",
@@ -9970,8 +10137,7 @@
           "type": "integer",
           "description": "Upload server number"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_photo": {
       "type": "object",
@@ -10195,6 +10361,17 @@
         "size"
       ],
       "additionalProperties": false
+    },
+    "photos_photo_falseable": {
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ]
     },
     "photos_photo_full": {
       "type": "object",
@@ -10460,7 +10637,19 @@
         "y",
         "z",
         "c",
-        "w"
+        "w",
+        "a",
+        "b",
+        "e",
+        "i",
+        "d",
+        "j",
+        "temp",
+        "h",
+        "g",
+        "n",
+        "f",
+        "max"
       ]
     },
     "photos_photo_tag": {
@@ -10570,6 +10759,10 @@
           "type": "string",
           "description": "Uploading hash"
         },
+        "photo": {
+          "type": "string",
+          "description": "Uploaded photo data"
+        },
         "photos_list": {
           "type": "string",
           "description": "Uploaded photos data"
@@ -10578,8 +10771,7 @@
           "type": "integer",
           "description": "Upload server number"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_photo_xtr_real_offset": {
       "type": "object",
@@ -10836,8 +11028,7 @@
         "track_code": {
           "type": "string"
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_tags_suggestion_item_button": {
       "type": "object",
@@ -10860,8 +11051,7 @@
             "secondary"
           ]
         }
-      },
-      "withoutRefs": true
+      }
     },
     "photos_wall_upload_response": {
       "type": "object",
@@ -10877,39 +11067,6 @@
         "server": {
           "type": "integer",
           "description": "Upload server number"
-        }
-      },
-      "withoutRefs": true
-    },
-    "podcast_podcast": {
-      "type": "object",
-      "properties": {
-        "owner_id": {
-          "type": "integer",
-          "description": "ID of the podcast's owner"
-        },
-        "podcast_title": {
-          "type": "string",
-          "description": "Podcast title"
-        }
-      },
-      "required": [
-        "owner_id",
-        "podcast_title"
-      ]
-    },
-    "podcast_popular_podcast": {
-      "type": "object",
-      "properties": {
-        "owner_id": {
-          "type": "integer"
-        },
-        "owner_title": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string",
-          "format": "uri"
         }
       }
     },
@@ -10993,8 +11150,7 @@
           "minimum": 0
         }
       },
-      "additionalProperties": false,
-      "withoutRefs": true
+      "additionalProperties": false
     },
     "polls_friend": {
       "type": "object",
@@ -11847,6 +12003,9 @@
           ],
           "description": "Type of Feed Item"
         },
+        "id": {
+          "type": "string"
+        },
         "stories": {
           "type": "array",
           "items": {
@@ -11868,6 +12027,9 @@
         "promo_data": {
           "$ref": "objects.json#/definitions/stories_promo_block",
           "description": "Additional data for promo stories (for type promo_stories)"
+        },
+        "birthday_user_id": {
+          "type": "integer"
         }
       },
       "required": [
@@ -12209,6 +12371,10 @@
           "type": "integer",
           "description": "City ID"
         },
+        "city_name": {
+          "type": "string",
+          "description": "City name"
+        },
         "company": {
           "type": "string",
           "description": "Company name"
@@ -12269,9 +12435,11 @@
         "photo_100",
         "photo_200_orig",
         "photo_200",
+        "photo_400",
         "photo_400_orig",
         "photo_max",
         "photo_max_orig",
+        "photo_max_size",
         "online",
         "lists",
         "domain",
@@ -12329,7 +12497,9 @@
         "stories_archive_count",
         "video_live_level",
         "video_live_count",
-        "clips_count"
+        "clips_count",
+        "service_description",
+        "is_dead"
       ]
     },
     "users_last_seen": {
@@ -12560,6 +12730,9 @@
         "year_to": {
           "type": "integer",
           "description": "Year the user finished to study"
+        },
+        "speciality": {
+          "type": "string"
         }
       },
       "additionalProperties": false
@@ -12623,6 +12796,9 @@
         "name": {
           "type": "string",
           "description": "University name"
+        },
+        "university_group_id": {
+          "type": "integer"
         }
       },
       "additionalProperties": false
@@ -12779,6 +12955,33 @@
         "videos": {
           "type": "integer",
           "description": "Videos number"
+        },
+        "new_photo_tags": {
+          "type": "integer"
+        },
+        "new_recognition_tags": {
+          "type": "integer"
+        },
+        "mutual_friends": {
+          "type": "integer"
+        },
+        "posts": {
+          "type": "integer"
+        },
+        "articles": {
+          "type": "integer"
+        },
+        "wishes": {
+          "type": "integer"
+        },
+        "podcasts": {
+          "type": "integer"
+        },
+        "clips": {
+          "type": "integer"
+        },
+        "clips_followers": {
+          "type": "integer"
         }
       }
     },
@@ -12861,7 +13064,7 @@
               "$ref": "objects.json#/definitions/base_country"
             },
             "timezone": {
-              "type": "integer",
+              "type": "number",
               "description": "User's timezone"
             },
             "owner_state": {
@@ -12924,6 +13127,118 @@
               "description": "Information whether current user can see the user's audio",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "type": {
+              "$ref": "objects.json#/definitions/users_user_type"
+            },
+            "email": {
+              "type": "string"
+            },
+            "skype": {
+              "type": "string"
+            },
+            "facebook": {
+              "type": "string"
+            },
+            "facebook_name": {
+              "type": "string"
+            },
+            "twitter": {
+              "type": "string"
+            },
+            "livejournal": {
+              "type": "string"
+            },
+            "instagram": {
+              "type": "string"
+            },
+            "test": {
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "video_live": {
+              "$ref": "objects.json#/definitions/video_live_info"
+            },
+            "is_video_live_notifications_blocked": {
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "is_service": {
+              "type": "boolean"
+            },
+            "service_description": {
+              "type": "string"
+            },
+            "photo_rec": {
+              "$ref": "objects.json#/definitions/photos_photo_falseable"
+            },
+            "photo_medium": {
+              "$ref": "objects.json#/definitions/photos_photo_falseable"
+            },
+            "photo_medium_rec": {
+              "$ref": "objects.json#/definitions/photos_photo_falseable"
+            },
+            "photo": {
+              "type": "string"
+            },
+            "photo_big": {
+              "type": "string"
+            },
+            "photo_400": {
+              "type": "string"
+            },
+            "photo_max_size": {
+              "$ref": "objects.json#/definitions/photos_photo"
+            },
+            "language": {
+              "type": "string"
+            },
+            "stories_archive_count": {
+              "type": "integer"
+            },
+            "wall_default": {
+              "type": "string",
+              "enum": [
+                "owner",
+                "all"
+              ]
+            },
+            "can_call": {
+              "description": "Information whether current user can call",
+              "type": "boolean"
+            },
+            "can_see_wishes": {
+              "description": "Information whether current user can see the user's wishes",
+              "type": "boolean"
+            },
+            "can_see_gifts": {
+              "description": "Information whether current user can see the user's gifts",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "interests": {
+              "type": "string"
+            },
+            "books": {
+              "type": "string"
+            },
+            "tv": {
+              "type": "string"
+            },
+            "quotes": {
+              "type": "string"
+            },
+            "about": {
+              "type": "string"
+            },
+            "games": {
+              "type": "string"
+            },
+            "movies": {
+              "type": "string"
+            },
+            "activities": {
+              "type": "string"
+            },
+            "music": {
+              "type": "string"
+            },
             "can_write_private_message": {
               "description": "Information whether current user can write private message",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -12983,6 +13298,11 @@
               "description": "Number of user's live streams",
               "minimum": 0
             },
+            "clips_count": {
+              "type": "integer",
+              "description": "Number of user's clips",
+              "minimum": 0
+            },
             "blacklisted": {
               "description": "Information whether current user is in the requested user's blacklist.",
               "$ref": "objects.json#/definitions/base_bool_int"
@@ -13026,6 +13346,9 @@
             "university_name": {
               "type": "string",
               "description": "University name"
+            },
+            "university_group_id": {
+              "type": "integer"
             },
             "faculty": {
               "type": "integer",
@@ -13089,6 +13412,22 @@
             },
             "can_subscribe_posts": {
               "description": "Can subscribe to wall",
+              "type": "boolean"
+            },
+            "counters": {
+              "$ref": "objects.json#/definitions/users_user_counters"
+            },
+            "access_key": {
+              "type": "string"
+            },
+            "can_upload_doc": {
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "hash": {
+              "type": "string"
+            },
+            "has_email": {
+              "notod": true,
               "type": "boolean"
             }
           },
@@ -13267,13 +13606,6 @@
       "allOf": [
         {
           "$ref": "objects.json#/definitions/users_user_full"
-        },
-        {
-          "properties": {
-            "counters": {
-              "$ref": "objects.json#/definitions/users_user_counters"
-            }
-          }
         }
       ]
     },
@@ -13338,7 +13670,8 @@
         "group",
         "application",
         "page",
-        "vk_app"
+        "vk_app",
+        "community_application"
       ]
     },
     "utils_last_shortened_link": {
@@ -13531,6 +13864,17 @@
         "male": {
           "type": "integer",
           "description": " Views by male users"
+        }
+      }
+    },
+    "video_live_info": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "is_notifications_blocked": {
+          "$ref": "objects.json#/definitions/base_bool_int"
         }
       }
     },
@@ -13791,6 +14135,15 @@
             "upcoming": {
               "description": "1 if the video is an upcoming stream",
               "$ref": "objects.json#/definitions/base_property_exists"
+            },
+            "live_start_time": {
+              "description": "Date in Unixtime when the live stream is scheduled to start by the author",
+              "type": "integer",
+              "minimum": 0
+            },
+            "live_notify": {
+              "description": "Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)",
+              "$ref": "objects.json#/definitions/base_bool_int"
             },
             "spectators": {
               "type": "integer",
@@ -14232,6 +14585,9 @@
           "description": "Date when the comment has been added in Unixtime",
           "minimum": 0
         },
+        "donut": {
+          "$ref": "objects.json#/definitions/wall_wall_comment_donut"
+        },
         "from_id": {
           "type": "integer",
           "description": "Author ID"
@@ -14286,6 +14642,30 @@
         "text"
       ],
       "additionalProperties": false
+    },
+    "wall_wall_comment_donut": {
+      "type": "object",
+      "properties": {
+        "is_don": {
+          "description": "Means commentator is donator",
+          "type": "boolean"
+        },
+        "placeholder": {
+          "$ref": "objects.json#/definitions/wall_wall_comment_donut_placeholder"
+        }
+      }
+    },
+    "wall_wall_comment_donut_placeholder": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "button"
+      ]
     },
     "wall_wallpost": {
       "type": "object",
@@ -14456,6 +14836,71 @@
         "event"
       ]
     },
+    "wall_wallpost_comments_donut": {
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "$ref": "objects.json#/definitions/wall_wallpost_comments_donut_placeholder"
+        }
+      }
+    },
+    "wall_wallpost_comments_donut_placeholder": {
+      "description": "Info about paid comments feature",
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "wall_wallpost_donut": {
+      "description": "Info about paid wall post",
+      "type": "object",
+      "properties": {
+        "is_donut": {
+          "description": "Post only for dons",
+          "type": "boolean"
+        },
+        "paid_duration": {
+          "description": "Value of this field need to pass in wall.post/edit in donut_paid_duration",
+          "type": "integer"
+        },
+        "placeholder": {
+          "description": "If placeholder was respond, text and all attachments will be hidden",
+          "$ref": "objects.json#/definitions/wall_wallpost_donut_placeholder"
+        },
+        "can_publish_free_copy": {
+          "description": "Says whether group admin can post free copy of this donut post",
+          "type": "boolean"
+        },
+        "edit_mode": {
+          "description": "Says what user can edit in post about donut properties",
+          "type": "string",
+          "enum": [
+            "all",
+            "duration"
+          ]
+        }
+      },
+      "required": [
+        "is_donut"
+      ]
+    },
+    "wall_wallpost_donut_placeholder": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "button"
+      ]
+    },
     "wall_wallpost_full": {
       "type": "object",
       "allOf": [
@@ -14488,6 +14933,9 @@
             "can_pin": {
               "$ref": "objects.json#/definitions/base_bool_int",
               "description": "Information whether current user can pin the post"
+            },
+            "donut": {
+              "$ref": "objects.json#/definitions/wall_wallpost_donut"
             },
             "is_pinned": {
               "type": "integer",
