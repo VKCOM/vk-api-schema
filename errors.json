@@ -176,6 +176,11 @@
       "code": 36,
       "description": "Method execution was interrupted due to timeout"
     },
+    "api_error_user_banned": {
+      "code": 37,
+      "description": "User was banned",
+      "global": true
+    },
     "api_error_param": {
       "code": 100,
       "description": "One of the parameters specified was missing or invalid",

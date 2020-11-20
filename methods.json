@@ -5860,11 +5860,13 @@
           "minimum": 0,
           "enum": [
             0,
-            1
+            1,
+            2
           ],
           "enumNames": [
             "date",
-            "mutual"
+            "mutual",
+            "rotate"
           ]
         },
         {
@@ -10584,7 +10586,8 @@
         },
         {
           "name": "key",
-          "type": "string"
+          "type": "string",
+          "maxLength": 256
         }
       ],
       "responses": {
@@ -12123,7 +12126,8 @@
           "type": "array",
           "items": {
             "type": "integer"
-          }
+          },
+          "maxItems": 100
         },
         {
           "name": "domain",
@@ -12143,7 +12147,8 @@
           "type": "array",
           "items": {
             "type": "integer"
-          }
+          },
+          "maxItems": 100
         },
         {
           "name": "message",

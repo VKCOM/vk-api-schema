@@ -2795,7 +2795,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_group_xtr_invited_by"
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             },
             "profiles": {
@@ -2837,7 +2837,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_group_xtr_invited_by"
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             }
           },
@@ -3050,7 +3050,8 @@
               "$ref": "objects.json#/definitions/base_bool_int"
             },
             "sections_list": {
-              "type": "object"
+              "type": "array",
+              "items": []
             },
             "main_section": {
               "$ref": "objects.json#/definitions/groups_group_full_main_section"
@@ -3059,7 +3060,7 @@
               "type": "integer"
             },
             "age_limits": {
-              "type": "integer"
+              "$ref": "objects.json#/definitions/groups_group_age_limits"
             },
             "country_id": {
               "type": "integer",
@@ -3095,8 +3096,8 @@
               "type": "integer"
             },
             "photos": {
-              "type": "integer",
-              "description": "Photos settings"
+              "description": "Photos settings",
+              "$ref": "objects.json#/definitions/groups_group_photos"
             },
             "public_category": {
               "type": "integer",
@@ -3143,7 +3144,7 @@
               }
             },
             "suggested_privacy": {
-              "type": "integer"
+              "$ref": "objects.json#/definitions/groups_group_suggested_privacy"
             },
             "title": {
               "type": "string",

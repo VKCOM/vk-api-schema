@@ -5236,21 +5236,21 @@
     "groups_contacts_item": {
       "type": "object",
       "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID"
+        },
         "desc": {
           "type": "string",
           "description": "Contact description"
-        },
-        "email": {
-          "type": "string",
-          "description": "Contact email"
         },
         "phone": {
           "type": "string",
           "description": "Contact phone"
         },
-        "user_id": {
-          "type": "integer",
-          "description": "User ID"
+        "email": {
+          "type": "string",
+          "description": "Contact email"
         }
       },
       "additionalProperties": false
@@ -5322,20 +5322,26 @@
         "member_status",
         "is_favorite",
         "is_subscribed",
+        "is_subscribed_podcasts",
+        "can_subscribe_podcasts",
         "city",
         "country",
         "verified",
         "description",
         "wiki_page",
         "members_count",
+        "requests_count",
         "counters",
         "cover",
         "can_post",
+        "can_suggest",
+        "can_upload_story",
+        "can_upload_doc",
+        "can_upload_video",
         "can_see_all_posts",
+        "can_create_topic",
         "activity",
         "fixed_post",
-        "can_create_topic",
-        "can_upload_video",
         "has_photo",
         "status",
         "main_album_id",
@@ -5343,11 +5349,15 @@
         "contacts",
         "site",
         "main_section",
+        "secondary_section",
+        "wall",
         "trending",
         "can_message",
         "is_market_cart_enabled",
         "is_messages_blocked",
         "can_send_notify",
+        "has_group_channel",
+        "group_channel",
         "online_status",
         "start_date",
         "finish_date",
@@ -5366,7 +5376,8 @@
         "stories_archive_count",
         "video_live_level",
         "video_live_count",
-        "clips_count"
+        "clips_count",
+        "is_business"
       ]
     },
     "groups_filter": {
@@ -5385,39 +5396,55 @@
     "groups_group": {
       "type": "object",
       "properties": {
-        "admin_level": {
-          "$ref": "objects.json#/definitions/groups_group_admin_level"
-        },
-        "deactivated": {
-          "type": "string",
-          "description": "Information whether community is banned"
-        },
-        "finish_date": {
-          "description": "Finish date in Unixtime format",
-          "type": "integer"
-        },
         "id": {
           "type": "integer",
           "description": "Community ID"
         },
+        "name": {
+          "type": "string",
+          "description": "Community name"
+        },
+        "screen_name": {
+          "type": "string",
+          "description": "Domain of the community page"
+        },
+        "is_closed": {
+          "$ref": "objects.json#/definitions/groups_group_is_closed"
+        },
+        "type": {
+          "$ref": "objects.json#/definitions/groups_group_type"
+        },
         "is_admin": {
           "description": "Information whether current user is administrator",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "admin_level": {
+          "$ref": "objects.json#/definitions/groups_group_admin_level"
+        },
+        "is_member": {
+          "description": "Information whether current user is member",
           "$ref": "objects.json#/definitions/base_bool_int"
         },
         "is_advertiser": {
           "description": "Information whether current user is advertiser",
           "$ref": "objects.json#/definitions/base_bool_int"
         },
-        "is_closed": {
-          "$ref": "objects.json#/definitions/groups_group_is_closed"
+        "start_date": {
+          "description": "Start date in Unixtime format",
+          "type": "integer"
         },
-        "is_member": {
-          "description": "Information whether current user is member",
-          "$ref": "objects.json#/definitions/base_bool_int"
+        "finish_date": {
+          "description": "Finish date in Unixtime format",
+          "type": "integer"
         },
-        "name": {
+        "deactivated": {
           "type": "string",
-          "description": "Community name"
+          "description": "Information whether community is banned"
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 50 pixels in width"
         },
         "photo_100": {
           "type": "string",
@@ -5428,24 +5455,14 @@
           "type": "string",
           "format": "uri",
           "description": "URL of square photo of the community with 200 pixels in width"
-        },
-        "photo_50": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of square photo of the community with 50 pixels in width"
-        },
-        "screen_name": {
-          "type": "string",
-          "description": "Domain of the community page"
-        },
-        "start_date": {
-          "description": "Start date in Unixtime format",
-          "type": "integer"
-        },
-        "type": {
-          "$ref": "objects.json#/definitions/groups_group_type"
         }
-      }
+      },
+      "required": [
+        "id",
+        "name",
+        "screen_name",
+        "is_closed"
+      ]
     },
     "groups_group_access": {
       "type": "integer",
@@ -5697,7 +5714,13 @@
             },
             "members_count": {
               "type": "integer",
+              "minimum": 0,
               "description": "Community members number"
+            },
+            "requests_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The number of incoming requests to the community"
             },
             "video_live_level": {
               "type": "integer",
@@ -5724,8 +5747,27 @@
               "description": "Information whether current user can post on community's wall",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
+            "can_suggest": {
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_story": {
+              "description": "Information whether current user can upload story",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_doc": {
+              "description": "Information whether current user can upload doc",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_video": {
+              "description": "Information whether current user can upload video",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
             "can_see_all_posts": {
               "description": "Information whether current user can see all posts on community's wall",
+              "$ref": "objects.json#/definitions/base_bool_int"
+            },
+            "can_create_topic": {
+              "description": "Information whether current user can create topic",
               "$ref": "objects.json#/definitions/base_bool_int"
             },
             "activity": {
@@ -5735,22 +5777,6 @@
             "fixed_post": {
               "type": "integer",
               "description": "Fixed post ID"
-            },
-            "can_create_topic": {
-              "description": "Information whether current user can create topic",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_upload_doc": {
-              "description": "Information whether current user can upload doc",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_upload_story": {
-              "description": "Information whether current user can upload story",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_upload_video": {
-              "description": "Information whether current user can upload video",
-              "$ref": "objects.json#/definitions/base_bool_int"
             },
             "has_photo": {
               "description": "Information whether community has photo",
@@ -5763,6 +5789,9 @@
             "status": {
               "type": "string",
               "description": "Community status"
+            },
+            "status_audio": {
+              "$ref": "objects.json#/definitions/audio_audio"
             },
             "main_album_id": {
               "type": "integer",
@@ -5803,6 +5832,9 @@
             "main_section": {
               "$ref": "objects.json#/definitions/groups_group_full_main_section"
             },
+            "secondary_section": {
+              "type": "integer"
+            },
             "trending": {
               "$ref": "objects.json#/definitions/base_bool_int",
               "description": "Information whether the community has a \"fire\" pictogram."
@@ -5823,6 +5855,11 @@
               "$ref": "objects.json#/definitions/groups_online_status",
               "description": "Status of replies in community messages"
             },
+            "invited_by": {
+              "type": "integer",
+              "description": "Inviter ID",
+              "minimum": 1
+            },
             "age_limits": {
               "$ref": "objects.json#/definitions/groups_group_full_age_limits",
               "description": "Information whether age limit"
@@ -5834,6 +5871,12 @@
             "has_market_app": {
               "type": "boolean",
               "description": "Information whether community has installed market app"
+            },
+            "using_vkpay_market_app": {
+              "type": "boolean"
+            },
+            "has_group_channel": {
+              "type": "boolean"
             },
             "addresses": {
               "$ref": "objects.json#/definitions/groups_addresses_info",
@@ -5854,6 +5897,9 @@
             "live_covers": {
               "description": "Live covers state",
               "$ref": "objects.json#/definitions/groups_live_covers"
+            },
+            "stories_archive_count": {
+              "type": "integer"
             }
           }
         }
@@ -6105,6 +6151,20 @@
         "design and graphics"
       ]
     },
+    "groups_group_suggested_privacy": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "none",
+        "all",
+        "subscribers"
+      ]
+    },
     "groups_group_tag": {
       "type": "object",
       "properties": {
@@ -6214,89 +6274,6 @@
         "disabled",
         "open",
         "limited"
-      ]
-    },
-    "groups_group_xtr_invited_by": {
-      "type": "object",
-      "properties": {
-        "admin_level": {
-          "$ref": "objects.json#/definitions/groups_group_xtr_invited_by_admin_level"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Community ID"
-        },
-        "invited_by": {
-          "type": "integer",
-          "description": "Inviter ID",
-          "minimum": 1
-        },
-        "is_admin": {
-          "description": "Information whether current user is manager",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        },
-        "is_advertiser": {
-          "description": "Information whether current user is advertiser",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        },
-        "is_closed": {
-          "description": "Information whether community is closed",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        },
-        "is_member": {
-          "description": "Information whether current user is member",
-          "$ref": "objects.json#/definitions/base_bool_int"
-        },
-        "name": {
-          "type": "string",
-          "description": "Community name"
-        },
-        "photo_100": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of square photo of the community with 100 pixels in width"
-        },
-        "photo_200": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of square photo of the community with 200 pixels in width"
-        },
-        "photo_50": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of square photo of the community with 50 pixels in width"
-        },
-        "screen_name": {
-          "type": "string",
-          "description": "Domain of the community page"
-        },
-        "type": {
-          "$ref": "objects.json#/definitions/groups_group_xtr_invited_by_type"
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_group_xtr_invited_by_admin_level": {
-      "type": "integer",
-      "description": "Level of current user's credentials as manager",
-      "enum": [
-        1,
-        2,
-        3
-      ],
-      "enumNames": [
-        "moderator",
-        "editor",
-        "administrator"
-      ]
-    },
-    "groups_group_xtr_invited_by_type": {
-      "type": "string",
-      "description": "Community type",
-      "enum": [
-        "group",
-        "page",
-        "event"
       ]
     },
     "groups_groups_array": {
@@ -6510,6 +6487,27 @@
           "$ref": "objects.json#/definitions/base_bool_int"
         },
         "wall_repost": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_subscription_create": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_subscription_prolonged": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_subscription_cancelled": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_subscription_expired": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_subscription_price_changed": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_money_withdraw": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "donut_money_withdraw_error": {
           "$ref": "objects.json#/definitions/base_bool_int"
         }
       },
@@ -7642,11 +7640,241 @@
         }
       }
     },
+    "messages_chat_settings": {
+      "type": "object",
+      "properties": {
+        "members_count": {
+          "type": "integer"
+        },
+        "owner_id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string",
+          "description": "Chat title"
+        },
+        "pinned_message": {
+          "$ref": "objects.json#/definitions/messages_pinned_message"
+        },
+        "state": {
+          "$ref": "objects.json#/definitions/messages_chat_settings_state"
+        },
+        "photo": {
+          "$ref": "objects.json#/definitions/messages_chat_settings_photo"
+        },
+        "admin_ids": {
+          "type": "array",
+          "description": "Ids of chat admins",
+          "items": {
+            "type": "integer",
+            "description": "Admin id"
+          }
+        },
+        "active_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Active member ID"
+          }
+        },
+        "is_group_channel": {
+          "type": "boolean"
+        },
+        "acl": {
+          "$ref": "objects.json#/definitions/messages_chat_settings_acl"
+        },
+        "permissions": {
+          "$ref": "objects.json#/definitions/messages_chat_settings_permissions"
+        },
+        "is_disappearing": {
+          "type": "boolean"
+        },
+        "theme": {
+          "type": "string"
+        },
+        "disappearing_chat_link": {
+          "type": "string"
+        },
+        "is_service": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "owner_id",
+        "title",
+        "state",
+        "active_ids",
+        "acl"
+      ]
+    },
+    "messages_chat_settings_acl": {
+      "type": "object",
+      "properties": {
+        "can_change_info": {
+          "type": "boolean",
+          "description": "Can you change photo, description and name"
+        },
+        "can_change_invite_link": {
+          "type": "boolean",
+          "description": "Can you change invite link for this chat"
+        },
+        "can_change_pin": {
+          "type": "boolean",
+          "description": "Can you pin/unpin message for this chat"
+        },
+        "can_invite": {
+          "type": "boolean",
+          "description": "Can you invite other peers in chat"
+        },
+        "can_promote_users": {
+          "type": "boolean",
+          "description": "Can you promote simple users to chat admins"
+        },
+        "can_see_invite_link": {
+          "type": "boolean",
+          "description": "Can you see invite link for this chat"
+        },
+        "can_moderate": {
+          "type": "boolean",
+          "description": "Can you moderate (delete) other users' messages"
+        },
+        "can_copy_chat": {
+          "type": "boolean",
+          "description": "Can you copy chat"
+        },
+        "can_call": {
+          "type": "boolean",
+          "description": "Can you init group call in the chat"
+        },
+        "can_use_mass_mentions": {
+          "type": "boolean",
+          "description": "Can you use mass mentions"
+        },
+        "can_change_service_type": {
+          "type": "boolean",
+          "description": "Can you change chat service type"
+        }
+      },
+      "required": [
+        "can_invite",
+        "can_change_info",
+        "can_change_pin",
+        "can_promote_users",
+        "can_see_invite_link",
+        "can_change_invite_link",
+        "can_moderate",
+        "can_copy_chat",
+        "can_call",
+        "can_use_mass_mentions"
+      ]
+    },
+    "messages_chat_settings_permissions": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "type": "string",
+          "description": "Who can invite users to chat",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "change_info": {
+          "type": "string",
+          "description": "Who can change chat info",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "change_pin": {
+          "type": "string",
+          "description": "Who can change pinned message",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "use_mass_mentions": {
+          "type": "string",
+          "description": "Who can use mass mentions",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "see_invite_link": {
+          "type": "string",
+          "description": "Who can see invite link",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "call": {
+          "type": "string",
+          "description": "Who can make calls",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "change_admins": {
+          "type": "string",
+          "description": "Who can change admins",
+          "enum": [
+            "owner",
+            "owner_and_admins"
+          ]
+        }
+      }
+    },
+    "messages_chat_settings_photo": {
+      "type": "object",
+      "properties": {
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 50px in width"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 100px in width"
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 200px in width"
+        },
+        "is_default_photo": {
+          "type": "boolean",
+          "description": "If provided photo is default"
+        }
+      }
+    },
+    "messages_chat_settings_state": {
+      "type": "string",
+      "enum": [
+        "in",
+        "kicked",
+        "left"
+      ]
+    },
     "messages_conversation": {
       "type": "object",
       "properties": {
         "peer": {
           "$ref": "objects.json#/definitions/messages_conversation_peer"
+        },
+        "sort_id": {
+          "$ref": "objects.json#/definitions/messages_conversation_sort_id"
         },
         "last_message_id": {
           "type": "integer",
@@ -7700,6 +7928,15 @@
         },
         "current_keyboard": {
           "$ref": "objects.json#/definitions/messages_keyboard"
+        },
+        "push_settings": {
+          "$ref": "objects.json#/definitions/messages_push_settings"
+        },
+        "can_write": {
+          "$ref": "objects.json#/definitions/messages_conversation_can_write"
+        },
+        "chat_settings": {
+          "$ref": "objects.json#/definitions/messages_chat_settings"
         }
       },
       "required": [
@@ -7707,6 +7944,20 @@
         "in_read",
         "out_read",
         "last_message_id"
+      ]
+    },
+    "messages_conversation_can_write": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "allowed"
       ]
     },
     "messages_conversation_member": {
@@ -7772,6 +8023,25 @@
         "group"
       ],
       "description": "Peer type"
+    },
+    "messages_conversation_sort_id": {
+      "type": "object",
+      "properties": {
+        "major_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Major id for sorting conversations"
+        },
+        "minor_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minor id for sorting conversations"
+        }
+      },
+      "required": [
+        "major_id",
+        "minor_id"
+      ]
     },
     "messages_conversation_with_message": {
       "type": "object",
@@ -7935,6 +8205,10 @@
         "from_id": {
           "type": "integer",
           "description": "Message author's ID"
+        },
+        "forward_level": {
+          "type": "integer",
+          "description": "Forward level (optional)"
         }
       },
       "required": [
@@ -8512,6 +8786,27 @@
         "from_id",
         "peer_id",
         "text"
+      ]
+    },
+    "messages_push_settings": {
+      "type": "object",
+      "properties": {
+        "disabled_forever": {
+          "type": "boolean",
+          "description": "Information whether push notifications are disabled forever"
+        },
+        "disabled_until": {
+          "type": "integer",
+          "description": "Time until what notifications are disabled"
+        },
+        "no_sound": {
+          "type": "boolean",
+          "description": "Information whether the sound is on"
+        }
+      },
+      "required": [
+        "disabled_forever",
+        "no_sound"
       ]
     },
     "messages_template_action_type_names": {
@@ -11910,7 +12205,8 @@
             "post",
             "poll",
             "sticker",
-            "app"
+            "app",
+            "situational_theme"
           ]
         },
         "subtype": {
@@ -11955,6 +12251,9 @@
         "is_broadcast_notify_allowed": {
           "type": "boolean",
           "description": "Whether current user allowed broadcast notify from this app"
+        },
+        "situational_theme_id": {
+          "type": "integer"
         }
       },
       "required": [
@@ -13048,6 +13347,10 @@
             "maiden_name": {
               "type": "string",
               "description": "User maiden name"
+            },
+            "contact_name": {
+              "type": "string",
+              "description": "User contact name"
             },
             "domain": {
               "type": "string",
