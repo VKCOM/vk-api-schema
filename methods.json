@@ -3060,51 +3060,6 @@
       }
     },
     {
-      "name": "auth.checkPhone",
-      "description": "Checks a user's phone number for correctness.",
-      "access_token_type": [
-        "user",
-        "open"
-      ],
-      "parameters": [
-        {
-          "name": "phone",
-          "description": "Phone number.",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "client_id",
-          "description": "User ID.",
-          "type": "integer"
-        },
-        {
-          "name": "client_secret",
-          "type": "string"
-        },
-        {
-          "name": "auth_by_phone",
-          "type": "boolean"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/base_ok_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "errors.json#/errors/api_error_phone_already_used"
-        },
-        {
-          "$ref": "errors.json#/errors/api_error_auth_delay"
-        },
-        {
-          "$ref": "errors.json#/errors/api_error_param_phone"
-        }
-      ]
-    },
-    {
       "name": "auth.restore",
       "description": "Allows to restore account access using a code received via SMS. \" This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. \"",
       "access_token_type": [
@@ -11318,6 +11273,9 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_getHistory_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/messages_getHistory_extended_response"
         }
       },
       "errors": [

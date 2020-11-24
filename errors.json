@@ -609,21 +609,9 @@
       "code": 950,
       "description": "Can't send message, reply timed out"
     },
-    "api_error_param_phone": {
-      "code": 1000,
-      "description": "Invalid phone number"
-    },
-    "api_error_phone_already_used": {
-      "code": 1004,
-      "description": "This phone number is used by another user"
-    },
     "api_error_auth_flood_error": {
       "code": 1105,
       "description": "Too many auth attempts, try again later"
-    },
-    "api_error_auth_delay": {
-      "code": 1112,
-      "description": "Processing.. Try later"
     },
     "api_error_param_doc_id": {
       "code": 1150,

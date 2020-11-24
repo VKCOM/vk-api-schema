@@ -4399,7 +4399,7 @@
         "response"
       ]
     },
-    "messages_getHistory_response": {
+    "messages_getHistory_extended_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -4425,6 +4425,39 @@
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
+              }
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "required": [
+            "count",
+            "items"
+          ]
+        }
+      },
+      "required": [
+        "response"
+      ]
+    },
+    "messages_getHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_message"
               }
             }
           },
