@@ -12005,6 +12005,9 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_search_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/messages_search_extended_response"
         }
       }
     },
