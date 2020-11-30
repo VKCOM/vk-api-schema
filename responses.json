@@ -4588,19 +4588,22 @@
                 }
               }
             },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_group"
-              }
-            },
             "messages": {
               "$ref": "objects.json#/definitions/messages_longpoll_messages"
+            },
+            "credentials": {
+              "$ref": "objects.json#/definitions/messages_longpoll_params"
             },
             "profiles": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group"
               }
             },
             "chats": {
@@ -4612,6 +4615,9 @@
             "new_pts": {
               "type": "integer",
               "description": "Persistence timestamp"
+            },
+            "from_pts": {
+              "type": "integer"
             },
             "more": {
               "type": "boolean",

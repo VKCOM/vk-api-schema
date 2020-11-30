@@ -3839,11 +3839,19 @@
     "callback_message_type": {
       "type": "string",
       "enum": [
+        "audio_new",
+        "board_post_new",
+        "board_post_edit",
+        "board_post_restore",
+        "board_post_delete",
         "confirmation",
+        "group_leave",
+        "group_join",
         "group_change_photo",
         "group_change_settings",
         "group_officers_edit",
         "lead_forms_new",
+        "market_comment_new",
         "market_comment_delete",
         "market_comment_edit",
         "market_comment_restore",
@@ -3851,17 +3859,25 @@
         "message_deny",
         "message_read",
         "message_reply",
+        "message_edit",
         "message_typing_state",
         "messages_edit",
+        "photo_new",
+        "photo_comment_new",
         "photo_comment_delete",
         "photo_comment_edit",
         "photo_comment_restore",
         "poll_vote_new",
         "user_block",
         "user_unblock",
+        "video_new",
+        "video_comment_new",
         "video_comment_delete",
         "video_comment_edit",
         "video_comment_restore",
+        "wall_post_new",
+        "wall_reply_new",
+        "wall_reply_edit",
         "wall_reply_delete",
         "wall_reply_restore",
         "wall_repost"
@@ -8402,23 +8418,28 @@
     "messages_longpoll_params": {
       "type": "object",
       "properties": {
-        "key": {
-          "type": "string",
-          "description": "Key"
-        },
-        "pts": {
-          "type": "integer",
-          "description": "Persistent timestamp"
-        },
         "server": {
           "type": "string",
           "description": "Server URL"
         },
-        "ts": {
+        "key": {
           "type": "string",
+          "description": "Key"
+        },
+        "ts": {
+          "type": "integer",
           "description": "Timestamp"
+        },
+        "pts": {
+          "type": "integer",
+          "description": "Persistent timestamp"
         }
-      }
+      },
+      "required": [
+        "server",
+        "key",
+        "ts"
+      ]
     },
     "messages_message": {
       "type": "object",
@@ -8994,7 +9015,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/wall_wallpost"
+                "$ref": "objects.json#/definitions/newsfeed_item_digest_item"
               }
             },
             "main_post_ids": {
@@ -9025,6 +9046,23 @@
         }
       ]
     },
+    "newsfeed_item_digest_button": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "primary"
+          ]
+        }
+      },
+      "required": [
+        "title"
+      ]
+    },
     "newsfeed_item_digest_footer": {
       "type": "object",
       "properties": {
@@ -9040,7 +9078,7 @@
           "description": "text for invite to enable smart feed"
         },
         "button": {
-          "$ref": "objects.json#/definitions/newsfeed_item_digest_footer_button"
+          "$ref": "objects.json#/definitions/newsfeed_item_digest_button"
         }
       },
       "required": [
@@ -9048,23 +9086,34 @@
         "text"
       ]
     },
-    "newsfeed_item_digest_footer_button": {
+    "newsfeed_item_digest_full_item": {
       "type": "object",
       "properties": {
-        "title": {
+        "text": {
           "type": "string"
+        },
+        "source_name": {
+          "type": "string"
+        },
+        "attachment_index": {
+          "type": "integer"
+        },
+        "attachment": {
+          "$ref": "objects.json#/definitions/wall_wallpost_attachment"
         },
         "style": {
           "type": "string",
           "enum": [
-            "primary"
+            "default",
+            "inversed"
           ]
+        },
+        "post": {
+          "$ref": "objects.json#/definitions/wall_wallpost"
         }
       },
       "required": [
-        "title",
-        "style",
-        "action"
+        "post"
       ]
     },
     "newsfeed_item_digest_header": {
@@ -9084,12 +9133,18 @@
             "singleline",
             "multiline"
           ]
+        },
+        "button": {
+          "$ref": "objects.json#/definitions/newsfeed_item_digest_button"
         }
       },
       "required": [
         "style",
         "title"
       ]
+    },
+    "newsfeed_item_digest_item": {
+      "$ref": "objects.json#/definitions/wall_wallpost"
     },
     "newsfeed_item_friend": {
       "type": "object",
@@ -12254,6 +12309,9 @@
         },
         "situational_theme_id": {
           "type": "integer"
+        },
+        "situational_app_url": {
+          "type": "string"
         }
       },
       "required": [
@@ -12722,6 +12780,18 @@
     "users_fields": {
       "type": "string",
       "enum": [
+        "first_name_nom",
+        "first_name_gen",
+        "first_name_dat",
+        "first_name_acc",
+        "first_name_ins",
+        "first_name_abl",
+        "last_name_nom",
+        "last_name_gen",
+        "last_name_dat",
+        "last_name_acc",
+        "last_name_ins",
+        "last_name_abl",
         "photo_id",
         "verified",
         "sex",
