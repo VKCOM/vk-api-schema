@@ -8843,7 +8843,8 @@
         "vkpay",
         "open_app",
         "open_photo",
-        "open_link"
+        "open_link",
+        "callback"
       ]
     },
     "messages_user_xtr_invited_by": {
