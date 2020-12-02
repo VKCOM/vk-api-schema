@@ -3039,6 +3039,10 @@
               "type": "integer",
               "description": "Articles settings"
             },
+            "recognize_photo": {
+              "type": "integer",
+              "description": "Photo suggests setting"
+            },
             "city_id": {
               "type": "integer",
               "description": "City id of group"
@@ -6635,18 +6639,6 @@
       ]
     },
     "storage_get_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "string",
-          "description": "Value of key"
-        }
-      },
-      "required": [
-        "response"
-      ]
-    },
-    "storage_get_v5110_response": {
       "type": "object",
       "properties": {
         "response": {

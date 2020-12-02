@@ -2993,7 +2993,10 @@
           "type": "integer",
           "description": "Information whether current user has reposted the post"
         }
-      }
+      },
+      "required": [
+        "count"
+      ]
     },
     "base_request_param": {
       "type": "object",
@@ -3316,16 +3319,14 @@
     "board_topic_poll": {
       "type": "object",
       "properties": {
-        "answer_id": {
+        "owner_id": {
           "type": "integer",
-          "description": "Current user's answer ID",
-          "minimum": 0
+          "description": "Poll owner's ID"
         },
-        "answers": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/polls_answer"
-          }
+        "poll_id": {
+          "type": "integer",
+          "description": "Poll ID",
+          "minimum": 1
         },
         "created": {
           "type": "integer",
@@ -3336,23 +3337,25 @@
           "description": "Information whether the poll is closed",
           "$ref": "objects.json#/definitions/base_bool_int"
         },
-        "owner_id": {
-          "type": "integer",
-          "description": "Poll owner's ID"
-        },
-        "poll_id": {
-          "type": "integer",
-          "description": "Poll ID",
-          "minimum": 1
-        },
         "question": {
           "type": "string",
           "description": "Poll question"
         },
         "votes": {
-          "type": "string",
+          "type": "integer",
           "description": "Votes number",
           "minimum": 0
+        },
+        "answer_id": {
+          "type": "integer",
+          "description": "Current user's answer ID",
+          "minimum": 0
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/polls_answer"
+          }
         }
       },
       "required": [
@@ -10738,9 +10741,6 @@
           "description": "Information whether current user can comment the photo",
           "$ref": "objects.json#/definitions/base_bool_int"
         },
-        "comments": {
-          "$ref": "objects.json#/definitions/base_object_count"
-        },
         "date": {
           "type": "integer",
           "description": "Date when uploaded",
@@ -10769,6 +10769,12 @@
         "likes": {
           "$ref": "objects.json#/definitions/base_likes"
         },
+        "reposts": {
+          "$ref": "objects.json#/definitions/base_reposts_info"
+        },
+        "comments": {
+          "$ref": "objects.json#/definitions/base_object_count"
+        },
         "long": {
           "type": "number",
           "description": "Longitude"
@@ -10781,9 +10787,6 @@
           "type": "integer",
           "description": "Post ID",
           "minimum": 1
-        },
-        "reposts": {
-          "$ref": "objects.json#/definitions/base_object_count"
         },
         "tags": {
           "$ref": "objects.json#/definitions/base_object_count"
@@ -15092,6 +15095,20 @@
         "owner_id": {
           "type": "integer",
           "description": "Wall owner's ID"
+        },
+        "poster": {
+          "type": "object"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "If post type 'reply', contains original post ID"
+        },
+        "parents_stack": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "If post type 'reply', contains original parent IDs stack"
         },
         "post_source": {
           "$ref": "objects.json#/definitions/wall_post_source"
