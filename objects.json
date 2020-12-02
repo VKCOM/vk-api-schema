@@ -4130,6 +4130,68 @@
         "post_id"
       ]
     },
+    "calls_call": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "type": "integer",
+          "description": "Call duration",
+          "minimum": 0
+        },
+        "initiator_id": {
+          "type": "integer",
+          "description": "Caller initiator",
+          "minimum": 0
+        },
+        "receiver_id": {
+          "type": "integer",
+          "description": "Caller receiver",
+          "minimum": 0
+        },
+        "state": {
+          "$ref": "objects.json#/definitions/calls_end_state"
+        },
+        "time": {
+          "type": "integer",
+          "description": "Timestamp for call"
+        },
+        "video": {
+          "type": "boolean",
+          "description": "Was this call initiated as video call"
+        }
+      },
+      "required": [
+        "initiator_id",
+        "receiver_id",
+        "state",
+        "time"
+      ]
+    },
+    "calls_end_state": {
+      "type": "string",
+      "description": "State in which call ended up",
+      "enum": [
+        "canceled_by_initiator",
+        "canceled_by_receiver",
+        "reached"
+      ]
+    },
+    "calls_participants": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Participants count"
+        }
+      }
+    },
     "comment_thread": {
       "type": "object",
       "properties": {
@@ -8641,6 +8703,9 @@
         "audio_message": {
           "$ref": "objects.json#/definitions/messages_audio_message"
         },
+        "call": {
+          "$ref": "objects.json#/definitions/calls_call"
+        },
         "doc": {
           "$ref": "objects.json#/definitions/docs_doc"
         },
@@ -8679,6 +8744,9 @@
         },
         "wall_reply": {
           "$ref": "objects.json#/definitions/wall_wall_comment"
+        },
+        "poll": {
+          "$ref": "objects.json#/definitions/polls_poll"
         }
       },
       "required": [
@@ -8702,6 +8770,8 @@
         "wall",
         "wall_reply",
         "article",
+        "poll",
+        "call",
         "graffiti",
         "audio_message"
       ]

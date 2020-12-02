@@ -11428,6 +11428,71 @@
       }
     },
     {
+      "name": "messages.getIntentUsers",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "intent",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "confirmed_notification",
+            "non_promo_newsletter",
+            "promo_newsletter"
+          ]
+        },
+        {
+          "name": "subscribe_id",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "name_case",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/messages_getIntentUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "errors.json#/errors/api_error_messages_intent_cant_use"
+        }
+      ]
+    },
+    {
       "name": "messages.getInviteLink",
       "access_token_type": [
         "user",

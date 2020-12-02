@@ -4549,6 +4549,40 @@
         "response"
       ]
     },
+    "messages_getIntentUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            }
+          },
+          "required": [
+            "items",
+            "count"
+          ]
+        }
+      },
+      "required": [
+        "response"
+      ]
+    },
     "messages_getInviteLink_response": {
       "type": "object",
       "properties": {
