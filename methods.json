@@ -6464,7 +6464,8 @@
       "name": "groups.edit",
       "description": "Edits a community.",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -10408,6 +10409,12 @@
             1,
             2,
             3
+          ],
+          "enumNames": [
+            "default",
+            "date",
+            "price",
+            "relevance"
           ]
         },
         {
@@ -10453,6 +10460,10 @@
           "enum": [
             0,
             2
+          ],
+          "enumNames": [
+            "active",
+            "disabled"
           ]
         }
       ],

@@ -181,6 +181,21 @@
       "description": "User was banned",
       "global": true
     },
+    "api_error_unknown_application": {
+      "code": 38,
+      "description": "Unknown application",
+      "global": true
+    },
+    "api_error_unknown_user": {
+      "code": 39,
+      "description": "Unknown user",
+      "global": true
+    },
+    "api_error_unknown_group": {
+      "code": 40,
+      "description": "Unknown group",
+      "global": true
+    },
     "api_error_param": {
       "code": 100,
       "description": "One of the parameters specified was missing or invalid",

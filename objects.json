@@ -138,7 +138,8 @@
           "items": {
             "type": "integer"
           }
-        }
+        },
+        "newsfeed": []
       },
       "additionalProperties": false
     },
@@ -3859,6 +3860,7 @@
         "market_comment_edit",
         "market_comment_restore",
         "message_allow",
+        "message_new",
         "message_deny",
         "message_read",
         "message_reply",
@@ -6877,12 +6879,17 @@
           "type": "string",
           "format": "uri",
           "description": "Url for user photo"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User first name"
         }
       },
       "required": [
         "id",
         "photo_50",
-        "photo_100"
+        "photo_100",
+        "first_name"
       ]
     },
     "groups_role_options": {
