@@ -770,7 +770,7 @@
           "description": "Ad description"
         },
         "id": {
-          "type": "integer",
+          "type": "string",
           "description": "Ad ID"
         },
         "image_src": {
@@ -6738,7 +6738,10 @@
         "role": {
           "$ref": "objects.json#/definitions/groups_member_role_status"
         }
-      }
+      },
+      "required": [
+        "id"
+      ]
     },
     "groups_member_role_permission": {
       "type": "string",
@@ -7687,6 +7690,9 @@
         },
         "title": {
           "type": "string"
+        },
+        "is_member": {
+          "type": "boolean"
         }
       }
     },
@@ -9003,7 +9009,8 @@
         "video",
         "audio_playlist",
         "games_carousel",
-        "clip"
+        "clip",
+        "recommended_game"
       ]
     },
     "newsfeed_ignore_item_type": {
@@ -14977,7 +14984,8 @@
         "widget",
         "api",
         "rss",
-        "sms"
+        "sms",
+        "mvk"
       ]
     },
     "wall_post_type": {

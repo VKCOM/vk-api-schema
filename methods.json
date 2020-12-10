@@ -4228,6 +4228,17 @@
             6,
             7,
             8
+          ],
+          "enumNames": [
+            "all",
+            "text",
+            "archive",
+            "gif",
+            "image",
+            "audio",
+            "video",
+            "ebook",
+            "default"
           ]
         },
         {
@@ -7594,7 +7605,9 @@
           "type": "string",
           "enum": [
             "friends",
-            "unsure"
+            "unsure",
+            "managers",
+            "donut"
           ]
         }
       ],

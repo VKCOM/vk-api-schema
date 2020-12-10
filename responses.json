@@ -4994,7 +4994,7 @@
             },
             "next_from": {
               "type": "string",
-              "description": "New from value"
+              "description": "Next from value"
             }
           },
           "required": [
@@ -5112,10 +5112,6 @@
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
               }
-            },
-            "new_offset": {
-              "type": "string",
-              "description": "New offset value"
             },
             "next_from": {
               "type": "string",
