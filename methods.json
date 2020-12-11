@@ -10005,7 +10005,8 @@
       "name": "market.getOrderItems",
       "description": "Get market items in the order",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -16455,6 +16456,17 @@
       }
     },
     {
+      "name": "polls.getBackgrounds",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/polls_getBackgrounds_response"
+        }
+      }
+    },
+    {
       "name": "polls.getById",
       "description": "Returns detailed information about a poll by its ID.",
       "access_token_type": [
@@ -16520,6 +16532,23 @@
           "$ref": "errors.json#/errors/api_error_polls_access"
         }
       ]
+    },
+    {
+      "name": "polls.getPhotoUploadServer",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
     },
     {
       "name": "polls.getVoters",
@@ -16618,6 +16647,34 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_polls_access_without_vote"
+        }
+      ]
+    },
+    {
+      "name": "polls.savePhoto",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "photo",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "hash",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/polls_savePhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "errors.json#/errors/api_error_param_photo"
         }
       ]
     },

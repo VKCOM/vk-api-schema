@@ -138,8 +138,7 @@
           "items": {
             "type": "integer"
           }
-        },
-        "newsfeed": []
+        }
       },
       "additionalProperties": false
     },
@@ -7738,6 +7737,9 @@
       "type": "object",
       "properties": {
         "members_count": {
+          "type": "integer"
+        },
+        "friends_count": {
           "type": "integer"
         },
         "owner_id": {
