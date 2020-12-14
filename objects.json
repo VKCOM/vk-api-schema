@@ -3084,6 +3084,12 @@
         }
       }
     },
+    "base_stickers_list": {
+      "type": "array",
+      "items": {
+        "$ref": "objects.json#/definitions/base_sticker"
+      }
+    },
     "base_upload_server": {
       "type": "object",
       "properties": {
@@ -12255,6 +12261,121 @@
         "key",
         "value"
       ]
+    },
+    "store_product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Id of the product"
+        },
+        "type": {
+          "type": "string",
+          "description": "Product type",
+          "enum": [
+            "stickers"
+          ]
+        },
+        "purchased": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "Information whether the product is purchased (1 - yes, 0 - no)"
+        },
+        "active": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "Information whether the product is active (1 - yes, 0 - no)"
+        },
+        "promoted": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "Information whether the product is promoted (1 - yes, 0 - no)"
+        },
+        "purchase_date": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Date (Unix time) when the product was purchased"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the product"
+        },
+        "stickers": {
+          "$ref": "objects.json#/definitions/base_stickers_list"
+        },
+        "icon": {
+          "$ref": "objects.json#/definitions/store_product_icon",
+          "description": "Array of icon images or icon set object of the product (for stickers product type)"
+        },
+        "previews": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/base_image"
+          },
+          "description": "Array of preview images of the product (for stickers product type)"
+        },
+        "has_animation": {
+          "type": "boolean",
+          "description": "Information whether the product is an animated sticker pack (for stickers product type)"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Subtitle of the product"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    "store_product_icon": {
+      "type": "array",
+      "items": {
+        "$ref": "objects.json#/definitions/base_image"
+      }
+    },
+    "store_stickers_keyword": {
+      "type": "object",
+      "properties": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user_stickers": {
+          "$ref": "objects.json#/definitions/store_stickers_keyword_stickers"
+        },
+        "promoted_stickers": {
+          "$ref": "objects.json#/definitions/store_stickers_keyword_stickers"
+        },
+        "stickers": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/store_stickers_keyword_sticker"
+          }
+        }
+      },
+      "required": [
+        "words"
+      ]
+    },
+    "store_stickers_keyword_sticker": {
+      "type": "object",
+      "properties": {
+        "pack_id": {
+          "type": "integer",
+          "description": "Pack id"
+        },
+        "sticker_id": {
+          "type": "integer",
+          "description": "Sticker id"
+        }
+      },
+      "required": [
+        "pack_id",
+        "sticker_id"
+      ]
+    },
+    "store_stickers_keyword_stickers": {
+      "$ref": "objects.json#/definitions/base_stickers_list"
     },
     "stories_clickable_area": {
       "type": "object",

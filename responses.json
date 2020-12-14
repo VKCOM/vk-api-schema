@@ -6707,6 +6707,71 @@
         "response"
       ]
     },
+    "store_getFavoriteStickers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/base_sticker"
+          }
+        }
+      },
+      "required": [
+        "response"
+      ]
+    },
+    "store_getProducts_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/store_product"
+          }
+        }
+      },
+      "required": [
+        "response"
+      ]
+    },
+    "store_getStickersKeywords_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "dictionary": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/store_stickers_keyword"
+              }
+            },
+            "chunks_count": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Total count of chunks to load"
+            },
+            "chunks_hash": {
+              "type": "string",
+              "minimum": 1,
+              "description": "Chunks version hash"
+            }
+          },
+          "required": [
+            "count",
+            "dictionary"
+          ]
+        }
+      },
+      "required": [
+        "response"
+      ]
+    },
     "stories_getBanned_extended_response": {
       "type": "object",
       "properties": {
