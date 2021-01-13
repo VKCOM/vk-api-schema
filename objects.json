@@ -1293,6 +1293,10 @@
         "name": {
           "type": "string",
           "description": "Music artist name"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Music artist photo"
         }
       },
       "required": [
@@ -2288,6 +2292,10 @@
     "audio_audio": {
       "type": "object",
       "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the audio"
+        },
         "artist": {
           "type": "string",
           "description": "Artist name"
@@ -2296,6 +2304,10 @@
           "type": "integer",
           "description": "Audio ID",
           "minimum": 0
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Audio owner's ID"
         },
         "title": {
           "type": "string",
@@ -4584,15 +4596,6 @@
         "name",
         "count"
       ]
-    },
-    "docs_doc_upload_response": {
-      "type": "object",
-      "properties": {
-        "file": {
-          "type": "string",
-          "description": "Uploaded file data"
-        }
-      }
     },
     "donut_donator_subscription_info": {
       "description": "Info about user VK Donut subscription",
@@ -7212,7 +7215,6 @@
         "description",
         "price",
         "category",
-        "thumb_photo",
         "availability"
       ],
       "additionalProperties": false
@@ -7423,7 +7425,12 @@
           "type": "string",
           "description": "Textual representation of old price"
         }
-      }
+      },
+      "required": [
+        "amount",
+        "currency",
+        "text"
+      ]
     },
     "market_section": {
       "type": "object",
@@ -8154,7 +8161,10 @@
         "last_message": {
           "$ref": "objects.json#/definitions/messages_message"
         }
-      }
+      },
+      "required": [
+        "conversation"
+      ]
     },
     "messages_foreign_message": {
       "type": "object",
@@ -9011,14 +9021,11 @@
         "photo_tag",
         "wall_photo",
         "friend",
-        "recommended_groups",
         "note",
         "audio",
         "video",
         "audio_playlist",
-        "games_carousel",
-        "clip",
-        "recommended_game"
+        "clip"
       ]
     },
     "newsfeed_ignore_item_type": {
@@ -9911,8 +9918,7 @@
       }
     },
     "notifications_notification_item": {
-      "type": "object",
-      "enum": []
+      "$ref": "objects.json#/definitions/notifications_notification"
     },
     "notifications_notification_parent": {
       "type": "object",
@@ -10500,90 +10506,6 @@
         "z",
         "w"
       ]
-    },
-    "photos_market_album_upload_response": {
-      "type": "object",
-      "properties": {
-        "gid": {
-          "type": "integer",
-          "description": "Community ID"
-        },
-        "hash": {
-          "type": "string",
-          "description": "Uploading hash"
-        },
-        "photo": {
-          "type": "string",
-          "description": "Uploaded photo data"
-        },
-        "server": {
-          "type": "integer",
-          "description": "Upload server number"
-        }
-      }
-    },
-    "photos_market_upload_response": {
-      "type": "object",
-      "properties": {
-        "crop_data": {
-          "type": "string",
-          "description": "Crop data"
-        },
-        "crop_hash": {
-          "type": "string",
-          "description": "Crop hash"
-        },
-        "group_id": {
-          "type": "integer",
-          "description": "Community ID"
-        },
-        "hash": {
-          "type": "string",
-          "description": "Uploading hash"
-        },
-        "photo": {
-          "type": "string",
-          "description": "Uploaded photo data"
-        },
-        "server": {
-          "type": "integer",
-          "description": "Upload server number"
-        }
-      }
-    },
-    "photos_message_upload_response": {
-      "type": "object",
-      "properties": {
-        "hash": {
-          "type": "string",
-          "description": "Uploading hash"
-        },
-        "photo": {
-          "type": "string",
-          "description": "Uploaded photo data"
-        },
-        "server": {
-          "type": "integer",
-          "description": "Upload server number"
-        }
-      }
-    },
-    "photos_owner_upload_response": {
-      "type": "object",
-      "properties": {
-        "hash": {
-          "type": "string",
-          "description": "Uploading hash"
-        },
-        "photo": {
-          "type": "string",
-          "description": "Uploaded photo data"
-        },
-        "server": {
-          "type": "integer",
-          "description": "Upload server number"
-        }
-      }
     },
     "photos_photo": {
       "type": "object",
@@ -11194,31 +11116,6 @@
       ],
       "additionalProperties": false
     },
-    "photos_photo_upload_response": {
-      "type": "object",
-      "properties": {
-        "aid": {
-          "type": "integer",
-          "description": "Album ID"
-        },
-        "hash": {
-          "type": "string",
-          "description": "Uploading hash"
-        },
-        "photo": {
-          "type": "string",
-          "description": "Uploaded photo data"
-        },
-        "photos_list": {
-          "type": "string",
-          "description": "Uploaded photos data"
-        },
-        "server": {
-          "type": "integer",
-          "description": "Upload server number"
-        }
-      }
-    },
     "photos_photo_xtr_real_offset": {
       "type": "object",
       "properties": {
@@ -11499,20 +11396,39 @@
         }
       }
     },
-    "photos_wall_upload_response": {
+    "podcast_cover": {
       "type": "object",
       "properties": {
-        "hash": {
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/photos_photo_sizes"
+          }
+        }
+      }
+    },
+    "podcast_external_data": {
+      "type": "object",
+      "properties": {
+        "url": {
           "type": "string",
-          "description": "Uploading hash"
+          "description": "Url of the podcast page"
         },
-        "photo": {
+        "owner_url": {
           "type": "string",
-          "description": "Uploaded photo data"
+          "description": "Url of the podcasts owner community"
         },
-        "server": {
-          "type": "integer",
-          "description": "Upload server number"
+        "title": {
+          "type": "string",
+          "description": "Podcast title"
+        },
+        "owner_name": {
+          "type": "string",
+          "description": "Name of the podcasts owner community"
+        },
+        "cover": {
+          "$ref": "objects.json#/definitions/podcast_cover",
+          "description": "Podcast cover"
         }
       }
     },
@@ -12245,6 +12161,23 @@
       },
       "required": [
         "text"
+      ]
+    },
+    "stickers_image_set": {
+      "type": "object",
+      "properties": {
+        "base_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL for images in set"
+        },
+        "version": {
+          "type": "integer",
+          "description": "Version number to be appended to the image URL"
+        }
+      },
+      "required": [
+        "base_url"
       ]
     },
     "storage_value": {
