@@ -3771,7 +3771,7 @@
         "text": {
           "type": "string"
         },
-        "market_owner_od": {
+        "market_owner_id": {
           "type": "integer"
         },
         "photo_id": {
@@ -3923,7 +3923,7 @@
         "text": {
           "type": "string"
         },
-        "photo_owner_od": {
+        "photo_owner_id": {
           "type": "integer"
         }
       },
@@ -3932,7 +3932,7 @@
         "from_id",
         "date",
         "text",
-        "photo_owner_od"
+        "photo_owner_id"
       ]
     },
     "callback_photo_comment_delete": {
@@ -4085,7 +4085,7 @@
         "text": {
           "type": "string"
         },
-        "video_owner_od": {
+        "video_owner_id": {
           "type": "integer"
         }
       },
@@ -4094,7 +4094,7 @@
         "from_id",
         "date",
         "text",
-        "video_owner_od"
+        "video_owner_id"
       ]
     },
     "callback_video_comment_delete": {
