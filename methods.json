@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.126",
+  "version": "5.130",
   "title": "VK API JSON Schema",
   "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
   "termsOfService": "https://vk.com/dev/rules",
@@ -5451,7 +5451,8 @@
           "required": true,
           "items": {
             "type": "integer"
-          }
+          },
+          "maxItems": 1000
         },
         {
           "name": "need_sign",
@@ -8824,7 +8825,8 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2000000000
         },
         {
           "name": "act",
@@ -9799,6 +9801,49 @@
           "name": "status",
           "type": "integer",
           "minimum": 0
+        },
+        {
+          "name": "track_number",
+          "type": "string",
+          "maxLength": 60
+        },
+        {
+          "name": "payment_status",
+          "type": "string",
+          "enum": [
+            "not_paid",
+            "paid",
+            "returned"
+          ]
+        },
+        {
+          "name": "delivery_price",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "width",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "length",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "height",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "weight",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
         }
       ],
       "responses": {
@@ -10788,7 +10833,8 @@
           "items": {
             "type": "integer",
             "minimum": 0
-          }
+          },
+          "maxItems": 1000
         },
         {
           "name": "spam",
@@ -10929,7 +10975,8 @@
         {
           "name": "message",
           "description": "(Required if 'attachments' is not set.) Text of the message.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 9000
         },
         {
           "name": "lat",
@@ -12202,7 +12249,8 @@
         {
           "name": "q",
           "description": "Search query string.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 9000
         },
         {
           "name": "peer_id",
@@ -12370,7 +12418,8 @@
         {
           "name": "message",
           "description": "(Required if 'attachments' is not set.) Text of the message.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 9000
         },
         {
           "name": "lat",
@@ -12385,7 +12434,8 @@
         {
           "name": "attachment",
           "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
-          "type": "string"
+          "type": "string",
+          "maxLength": 9000
         },
         {
           "name": "reply_to",
@@ -12397,7 +12447,8 @@
           "type": "array",
           "items": {
             "type": "integer"
-          }
+          },
+          "maxItems": 1000
         },
         {
           "name": "forward",
@@ -14977,7 +15028,8 @@
           "type": "array",
           "items": {
             "type": "integer"
-          }
+          },
+          "maxItems": 1000
         },
         {
           "name": "offset",
@@ -15165,7 +15217,8 @@
           "required": true,
           "items": {
             "type": "string"
-          }
+          },
+          "maxItems": 500
         },
         {
           "name": "extended",
@@ -17112,7 +17165,8 @@
         {
           "name": "q",
           "description": "Search query string.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 9000
         },
         {
           "name": "offset",
@@ -21672,7 +21726,8 @@
         {
           "name": "query",
           "description": "search query string.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 9000
         },
         {
           "name": "owners_only",

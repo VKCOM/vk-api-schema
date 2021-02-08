@@ -278,6 +278,14 @@
         "sound": {
           "description": "Information whether the sound are enabled",
           "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "disabled_mentions": {
+          "description": "Information whether the mentions are disabled",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "disabled_mass_mentions": {
+          "description": "Information whether the mass mentions (like '@all', '@online') are disabled. Can be affected by 'disabled_mentions'",
+          "$ref": "objects.json#/definitions/base_bool_int"
         }
       },
       "required": [
@@ -462,6 +470,10 @@
         },
         {
           "properties": {
+            "nick_name": {
+              "type": "string",
+              "description": "Used as patronymic in education profiles"
+            },
             "photo_200": {
               "type": "string",
               "format": "uri",
@@ -470,6 +482,14 @@
             "is_service_account": {
               "type": "boolean",
               "description": "flag about service account"
+            },
+            "primary_profile": {
+              "$ref": "objects.json#/definitions/account_user_settings",
+              "description": "primary account information"
+            },
+            "edu_signup_required": {
+              "type": "boolean",
+              "description": "requests to open signup page for education profile"
             }
           }
         }
@@ -2212,6 +2232,10 @@
           "type": "string",
           "format": "uri",
           "description": "URL of the app icon with 75 px in width"
+        },
+        "need_policy_confirmation": {
+          "type": "boolean",
+          "description": "If app need policy and terms confirmation"
         }
       },
       "required": [
@@ -4180,6 +4204,9 @@
         "video": {
           "type": "boolean",
           "description": "Was this call initiated as video call"
+        },
+        "participants": {
+          "$ref": "objects.json#/definitions/calls_participants"
         }
       },
       "required": [
@@ -5432,6 +5459,7 @@
         "can_upload_story",
         "can_upload_doc",
         "can_upload_video",
+        "can_upload_clip",
         "can_see_all_posts",
         "can_create_topic",
         "activity",
@@ -5471,7 +5499,8 @@
         "video_live_level",
         "video_live_count",
         "clips_count",
-        "is_business"
+        "is_business",
+        "textlives_count"
       ]
     },
     "groups_filter": {
@@ -6916,6 +6945,18 @@
         "creator"
       ]
     },
+    "groups_sections_list_item": {
+      "type": "array",
+      "maxItems": 2,
+      "minItems": 2,
+      "description": "(index, title) tuples",
+      "items": {
+        "type": [
+          "integer",
+          "string"
+        ]
+      }
+    },
     "groups_settings_twitter": {
       "type": "object",
       "properties": {
@@ -7511,6 +7552,14 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 11
+        },
+        "transcript_rate_enabled": {
+          "type": "boolean",
+          "description": "Should client enable transcription rate"
+        },
+        "transcript_update_time": {
+          "type": "integer",
+          "description": "Date when the transcription of audio message has been updated in Unixtime"
         },
         "duration": {
           "type": "integer",
@@ -8930,6 +8979,14 @@
         "no_sound": {
           "type": "boolean",
           "description": "Information whether the sound is on"
+        },
+        "disabled_mentions": {
+          "type": "boolean",
+          "description": "Information whether the mentions are disabled"
+        },
+        "disabled_mass_mentions": {
+          "type": "boolean",
+          "description": "Information whether the mass mentions (like '@all', '@online') are disabled"
         }
       },
       "required": [
@@ -10211,13 +10268,15 @@
             1,
             2,
             3,
-            4
+            4,
+            5
           ],
           "enumNames": [
             "banned",
             "adult",
             "hidden",
-            "deleted"
+            "deleted",
+            "blacklisted"
           ]
         },
         "description": {
@@ -12212,6 +12271,10 @@
             "stickers"
           ]
         },
+        "is_new": {
+          "type": "boolean",
+          "description": "Information whether sticker product wasn't used after being purchased"
+        },
         "purchased": {
           "$ref": "objects.json#/definitions/base_bool_int",
           "description": "Information whether the product is purchased (1 - yes, 0 - no)"
@@ -12235,6 +12298,13 @@
         },
         "stickers": {
           "$ref": "objects.json#/definitions/base_stickers_list"
+        },
+        "style_sticker_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Array of style sticker ids (for sticker pack styles)"
         },
         "icon": {
           "$ref": "objects.json#/definitions/store_product_icon",
@@ -15368,7 +15438,8 @@
         "photos_list",
         "market_market_album",
         "market",
-        "event"
+        "event",
+        "donut_link"
       ]
     },
     "wall_wallpost_comments_donut": {

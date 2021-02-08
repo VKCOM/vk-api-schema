@@ -3115,7 +3115,10 @@
               "$ref": "objects.json#/definitions/base_bool_int"
             },
             "sections_list": {
-              "type": "array"
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_sections_list_item"
+              }
             },
             "main_section": {
               "$ref": "objects.json#/definitions/groups_group_full_main_section"
@@ -7999,9 +8002,7 @@
           },
           "required": [
             "count",
-            "items",
-            "profiles",
-            "groups"
+            "items"
           ]
         }
       },
@@ -8022,7 +8023,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/video_video"
+                "$ref": "objects.json#/definitions/video_video_full"
               }
             }
           },
@@ -8072,7 +8073,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/video_video"
+                "$ref": "objects.json#/definitions/video_video_full"
               }
             },
             "profiles": {
