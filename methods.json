@@ -12581,6 +12581,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_messages_peer_blocked_reason_by_time"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_not_found"
         }
       ]
     },
@@ -12633,7 +12636,14 @@
         {
           "name": "type",
           "description": "'typing' — user has started to type.",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "audiomessage",
+            "file",
+            "photo",
+            "typing",
+            "video"
+          ]
         },
         {
           "name": "peer_id",

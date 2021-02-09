@@ -470,10 +470,6 @@
         },
         {
           "properties": {
-            "nick_name": {
-              "type": "string",
-              "description": "Used as patronymic in education profiles"
-            },
             "photo_200": {
               "type": "string",
               "format": "uri",
@@ -482,14 +478,6 @@
             "is_service_account": {
               "type": "boolean",
               "description": "flag about service account"
-            },
-            "primary_profile": {
-              "$ref": "objects.json#/definitions/account_user_settings",
-              "description": "primary account information"
-            },
-            "edu_signup_required": {
-              "type": "boolean",
-              "description": "requests to open signup page for education profile"
             }
           }
         }
@@ -2232,10 +2220,6 @@
           "type": "string",
           "format": "uri",
           "description": "URL of the app icon with 75 px in width"
-        },
-        "need_policy_confirmation": {
-          "type": "boolean",
-          "description": "If app need policy and terms confirmation"
         }
       },
       "required": [
@@ -7552,14 +7536,6 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 11
-        },
-        "transcript_rate_enabled": {
-          "type": "boolean",
-          "description": "Should client enable transcription rate"
-        },
-        "transcript_update_time": {
-          "type": "integer",
-          "description": "Date when the transcription of audio message has been updated in Unixtime"
         },
         "duration": {
           "type": "integer",
