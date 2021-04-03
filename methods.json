@@ -4365,7 +4365,8 @@
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       ],
       "responses": {
@@ -9165,6 +9166,7 @@
           "name": "main_photo_id",
           "description": "Cover photo ID.",
           "type": "integer",
+          "required": true,
           "minimum": 0
         },
         {
@@ -9812,11 +9814,13 @@
           "name": "owner_id",
           "description": "ID of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int32"
         },
         {
           "name": "album_id",
           "type": "integer",
+          "format": "int32",
           "default": 0,
           "minimum": 0
         },
@@ -11205,7 +11209,8 @@
           "name": "peer_id",
           "description": "Peer ID.",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int32"
         },
         {
           "name": "fields",
@@ -11291,6 +11296,7 @@
           "name": "group_id",
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -11397,7 +11403,8 @@
         },
         {
           "name": "peer_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         {
           "name": "start_message_id",
@@ -11435,6 +11442,7 @@
           "name": "group_id",
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -12027,7 +12035,8 @@
           "default": [],
           "items": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "format": "int32"
           }
         },
         {
@@ -12118,11 +12127,13 @@
         {
           "name": "user_id",
           "description": "ID of the user to be removed from the chat.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         {
           "name": "member_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         }
       ],
       "responses": {
@@ -12586,7 +12597,8 @@
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         {
           "name": "group_id",

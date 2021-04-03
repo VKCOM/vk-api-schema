@@ -9,6 +9,14 @@
       "minItems": 1,
       "uniqueItems": true
     },
+    "format": {
+      "type": "string",
+      "enum": [
+        "json",
+        "int32",
+        "int64"
+      ]
+    },
     "enumNames": {
       "type": "array",
       "description": "Enum values text representations",
@@ -86,10 +94,7 @@
           "description": "Parameter name"
         },
         "format": {
-          "type": "string",
-          "enum": [
-            "json"
-          ]
+          "$ref": "#/definitions/format"
         },
         "type": {
           "$ref": "#/definitions/parameterTypes",
@@ -104,6 +109,9 @@
             },
             "type": {
               "$ref": "#/definitions/itemTypes"
+            },
+            "format": {
+              "$ref": "#/definitions/format"
             },
             "maximum": {
               "type": "number"

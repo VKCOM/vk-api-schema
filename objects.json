@@ -1519,6 +1519,14 @@
           "type": "integer",
           "description": "Clicks number"
         },
+        "link_owner_clicks": {
+          "type": "integer",
+          "description": "Group clicks number"
+        },
+        "link_external_clicks": {
+          "type": "integer",
+          "description": "External clicks number"
+        },
         "day": {
           "type": "string",
           "description": "Day as YYYY-MM-DD"
@@ -2887,6 +2895,9 @@
         "price"
       ],
       "additionalProperties": false
+    },
+    "base_link_product_category": {
+      "type": "string"
     },
     "base_link_product_status": {
       "type": "string",
@@ -7612,6 +7623,18 @@
       ],
       "additionalProperties": false
     },
+    "market_services_view_type": {
+      "type": "integer",
+      "description": "Type of view. 1 - cards, 2 - rows",
+      "enum": [
+        1,
+        2
+      ],
+      "enumNames": [
+        "cards",
+        "rows"
+      ]
+    },
     "media_restriction": {
       "description": "Media restrictions",
       "type": "object",
@@ -9410,7 +9433,8 @@
           "type": "string",
           "enum": [
             "default",
-            "inversed"
+            "inversed",
+            "spotlight"
           ]
         },
         "post": {
@@ -12812,6 +12836,12 @@
           "type": "integer"
         },
         "track_code": {
+          "type": "string"
+        },
+        "has_unseen": {
+          "type": "boolean"
+        },
+        "name": {
           "type": "string"
         }
       },

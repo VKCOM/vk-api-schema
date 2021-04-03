@@ -4307,6 +4307,9 @@
               "type": "integer",
               "description": "Total number"
             },
+            "view_type": {
+              "$ref": "objects.json#/definitions/market_services_view_type"
+            },
             "items": {
               "type": "array",
               "items": {
@@ -4314,6 +4317,11 @@
               }
             }
           },
+          "required": [
+            "count",
+            "view_type",
+            "items"
+          ],
           "additionalProperties": false
         }
       },
@@ -4332,6 +4340,9 @@
               "type": "integer",
               "description": "Total number"
             },
+            "view_type": {
+              "$ref": "objects.json#/definitions/market_services_view_type"
+            },
             "items": {
               "type": "array",
               "items": {
@@ -4339,6 +4350,11 @@
               }
             }
           },
+          "required": [
+            "count",
+            "view_type",
+            "items"
+          ],
           "additionalProperties": false
         }
       },
