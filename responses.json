@@ -3883,6 +3883,9 @@
               "description": "Item ID"
             }
           },
+          "required": [
+            "market_item_id"
+          ],
           "additionalProperties": false
         }
       },

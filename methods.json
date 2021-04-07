@@ -9150,7 +9150,7 @@
           "name": "price",
           "description": "Item price.",
           "type": "number",
-          "minimum": 0.01
+          "minimum": 0
         },
         {
           "name": "old_price",
@@ -9557,8 +9557,7 @@
           "name": "price",
           "description": "Item price.",
           "type": "number",
-          "required": true,
-          "minimum": 0.01
+          "minimum": 0
         },
         {
           "name": "deleted",
@@ -11876,6 +11875,7 @@
           "description": "Group ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -11883,6 +11883,7 @@
           "description": "User ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         }
       ],
