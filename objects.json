@@ -3919,7 +3919,7 @@
           "$ref": "objects.json#/definitions/callback_message_type"
         },
         "object": {
-          "type": "object"
+          "$ref": "objects.json#/definitions/callback_message_data"
         },
         "group_id": {
           "type": "integer",
@@ -3993,6 +3993,17 @@
         "wall_reply_restore",
         "wall_repost"
       ]
+    },
+    "callback_message_data": {
+      "type": "object",
+      "properties": {
+        "client_info": {
+          "type": "object"
+        },
+        "message": {
+          "type": "object"
+        }
+      }
     },
     "callback_photo_comment": {
       "type": "object",
