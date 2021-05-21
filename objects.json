@@ -5246,6 +5246,22 @@
       },
       "additionalProperties": false
     },
+    "group_call_in_progress": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "objects.json#/definitions/calls_call"
+          },
+          {
+            "properties": {
+              "join_link": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "additionalProperties": false
+    },
     "groups_address": {
       "type": "object",
       "properties": {
@@ -8950,7 +8966,8 @@
         "chat_kick_user",
         "chat_pin_message",
         "chat_unpin_message",
-        "chat_invite_user_by_link"
+        "chat_invite_user_by_link",
+        "chat_invite_user_by_message_request"
       ]
     },
     "messages_message_attachment": {
@@ -9006,6 +9023,9 @@
         },
         "poll": {
           "$ref": "objects.json#/definitions/polls_poll"
+        },
+        "group_call_in_progress": {
+          "$ref": "objects.json#/definitions/group_call_in_progress"
         }
       },
       "required": [
@@ -9032,7 +9052,9 @@
         "poll",
         "call",
         "graffiti",
-        "audio_message"
+        "audio_message",
+        "story",
+        "group_call_in_progress"
       ]
     },
     "messages_message_request_data": {
@@ -9186,7 +9208,9 @@
         "open_app",
         "open_photo",
         "open_link",
-        "callback"
+        "callback",
+        "intent_subscribe",
+        "intent_unsubscribe"
       ]
     },
     "messages_user_xtr_invited_by": {
