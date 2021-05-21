@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.130",
+  "version": "5.131",
   "title": "VK API JSON Schema",
   "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
   "termsOfService": "https://vk.com/dev/rules",
@@ -9220,6 +9220,11 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 100000000
+        },
+        {
+          "name": "sku",
+          "type": "string",
+          "maxLength": 50
         }
       ],
       "responses": {
@@ -10163,6 +10168,11 @@
         "group"
       ],
       "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "minimum": 0
+        },
         {
           "name": "order_id",
           "type": "integer",

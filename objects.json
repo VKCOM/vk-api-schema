@@ -7436,6 +7436,10 @@
         },
         "is_main_variant": {
           "type": "boolean"
+        },
+        "sku": {
+          "type": "string",
+          "maxLength": 50
         }
       },
       "required": [
