@@ -15477,7 +15477,8 @@
         "copy",
         "reply",
         "postpone",
-        "suggest"
+        "suggest",
+        "post_ads"
       ]
     },
     "wall_posted_photo": {
