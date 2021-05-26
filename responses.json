@@ -1045,26 +1045,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/apps_app"
-              }
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
-              }
-            }
-          },
-          "additionalProperties": false
+          "$ref": "objects.json#/definitions/apps_catalog_list"
         }
       },
       "required": [
@@ -1881,7 +1862,7 @@
       ],
       "additionalProperties": false
     },
-    "docs_getUploadServer": {
+    "docs_getUploadServer_response": {
       "type": "object",
       "properties": {
         "response": {

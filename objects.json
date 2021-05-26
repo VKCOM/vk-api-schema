@@ -2300,6 +2300,33 @@
         "mini_app"
       ]
     },
+    "apps_catalog_list": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Total number",
+          "minimum": 0
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/apps_app"
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/users_user_min"
+          }
+        }
+      },
+      "required": [
+        "count",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "apps_leaderboard": {
       "type": "object",
       "properties": {

@@ -4424,7 +4424,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/docs_getUploadServer"
+          "$ref": "responses.json#/definitions/docs_getUploadServer_response"
         }
       }
     },
