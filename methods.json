@@ -4231,6 +4231,7 @@
           "name": "title",
           "description": "Document title.",
           "type": "string",
+          "required": true,
           "maxLength": 128
         },
         {
@@ -12603,6 +12604,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_messages_user_not_don"
         }
       ]
     },
@@ -20842,6 +20846,12 @@
         {
           "name": "copyright",
           "type": "string"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -21421,6 +21431,12 @@
         {
           "name": "copyright",
           "type": "string"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {

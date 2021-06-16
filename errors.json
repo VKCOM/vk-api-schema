@@ -629,6 +629,10 @@
       "code": 950,
       "description": "Can't send message, reply timed out"
     },
+    "api_error_messages_user_not_don": {
+      "code": 962,
+      "description": "You can't access donut chat without subscription"
+    },
     "api_error_auth_flood_error": {
       "code": 1105,
       "description": "Too many auth attempts, try again later"

@@ -5691,6 +5691,7 @@
         "video_live_level",
         "video_live_count",
         "clips_count",
+        "has_unseen_stories",
         "is_business",
         "textlives_count"
       ]
@@ -6217,6 +6218,9 @@
             },
             "stories_archive_count": {
               "type": "integer"
+            },
+            "has_unseen_stories": {
+              "type": "boolean"
             }
           }
         }
@@ -8977,7 +8981,8 @@
         "chat_kick_user",
         "chat_pin_message",
         "chat_unpin_message",
-        "chat_invite_user_by_link"
+        "chat_invite_user_by_link",
+        "chat_invite_user_by_message_request"
       ]
     },
     "messages_message_attachment": {
@@ -9213,7 +9218,9 @@
         "open_app",
         "open_photo",
         "open_link",
-        "callback"
+        "callback",
+        "intent_subscribe",
+        "intent_unsubscribe"
       ]
     },
     "messages_user_xtr_invited_by": {
@@ -10460,6 +10467,10 @@
         "next_bill_time": {
           "type": "integer",
           "description": "Date of next bill in Unixtime"
+        },
+        "expire_time": {
+          "type": "integer",
+          "description": "Subscription expiration time in Unixtime"
         },
         "pending_cancel": {
           "type": "boolean",
@@ -12083,11 +12094,13 @@
         },
         "type": {
           "$ref": "objects.json#/definitions/search_hint_type"
+        },
+        "link": {
+          "$ref": "objects.json#/definitions/base_link"
         }
       },
       "required": [
         "type",
-        "section",
         "description"
       ],
       "additionalProperties": false
@@ -12102,7 +12115,8 @@
         "correspondents",
         "people",
         "friends",
-        "mutual_friends"
+        "mutual_friends",
+        "promo"
       ]
     },
     "search_hint_type": {
@@ -12113,7 +12127,8 @@
         "profile",
         "vk_app",
         "app",
-        "html5_game"
+        "html5_game",
+        "link"
       ]
     },
     "secure_level": {
@@ -13396,6 +13411,7 @@
         "friendship_weeks",
         "can_invite_to_chats",
         "stories_archive_count",
+        "has_unseen_stories",
         "video_live_level",
         "video_live_count",
         "clips_count",
@@ -14101,6 +14117,9 @@
             },
             "stories_archive_count": {
               "type": "integer"
+            },
+            "has_unseen_stories": {
+              "type": "boolean"
             },
             "wall_default": {
               "type": "string",
@@ -15270,6 +15289,29 @@
         "title": {
           "type": "string",
           "description": "Note title"
+        },
+        "text": {
+          "type": "string",
+          "description": "Note text"
+        },
+        "privacy_view": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "privacy_comment": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "can_comment": {
+          "type": "integer"
+        },
+        "text_wiki": {
+          "type": "string",
+          "description": "Note wiki text"
         },
         "view_url": {
           "type": "string",
