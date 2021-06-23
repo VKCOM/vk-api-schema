@@ -3017,7 +3017,8 @@
     {
       "name": "apps.promoHasActiveGift",
       "access_token_type": [
-        "user"
+        "user",
+        "service"
       ],
       "parameters": [
         {
@@ -3047,7 +3048,8 @@
     {
       "name": "apps.promoUseGift",
       "access_token_type": [
-        "user"
+        "user",
+        "service"
       ],
       "parameters": [
         {
@@ -3129,7 +3131,8 @@
       "description": "Allows to restore account access using a code received via SMS. \" This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. \"",
       "access_token_type": [
         "user",
-        "open"
+        "open",
+        "service"
       ],
       "parameters": [
         {
@@ -6123,7 +6126,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "title",
@@ -6227,7 +6230,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "url",
@@ -6269,7 +6272,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "link",
@@ -6301,14 +6304,14 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -6332,7 +6335,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "owner_id",
@@ -6439,7 +6442,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "address_id",
@@ -6473,7 +6476,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "server_id",
@@ -6505,7 +6508,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "link_id",
@@ -6532,7 +6535,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -6554,7 +6557,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "title",
@@ -6845,7 +6848,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "address_id",
@@ -6948,7 +6951,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "server_id",
@@ -6996,7 +6999,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "link_id",
@@ -7029,14 +7032,14 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "role",
@@ -7099,7 +7102,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7119,7 +7122,7 @@
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "extended",
@@ -7183,7 +7186,7 @@
           "description": "ID or screen name of the community.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "address_ids",
@@ -7257,7 +7260,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "offset",
@@ -7346,7 +7349,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7366,7 +7369,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "server_ids",
@@ -7396,7 +7399,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "server_id",
@@ -7492,7 +7495,7 @@
           "description": "Group ID to return invited users for.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "offset",
@@ -7591,7 +7594,7 @@
           "description": "Community ID",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7613,7 +7616,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7710,7 +7713,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "offset",
@@ -7756,7 +7759,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7776,7 +7779,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7808,14 +7811,14 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7856,7 +7859,7 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 1
           }
         },
         {
@@ -7891,7 +7894,7 @@
           "name": "group_id",
           "description": "ID or screen name of the community.",
           "type": "integer",
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "not_sure",
@@ -7925,7 +7928,7 @@
           "description": "ID or screen name of the community.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7951,14 +7954,14 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -7979,7 +7982,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "link_id",
@@ -8101,7 +8104,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "server_id",
@@ -8381,7 +8384,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "enabled",
@@ -8641,7 +8644,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "messages",
@@ -8677,13 +8680,13 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "note",
@@ -8709,7 +8712,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "tag_name",
@@ -8761,7 +8764,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "tag_id",
@@ -8804,7 +8807,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "tag_id",
@@ -8830,7 +8833,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "tag_id",
@@ -8861,7 +8864,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "state",
@@ -8903,7 +8906,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "owner_id",
@@ -9299,6 +9302,11 @@
           "name": "main_album",
           "description": "Set as main ('1' - set, '0' - no).",
           "type": "boolean"
+        },
+        {
+          "name": "is_hidden",
+          "description": "Set as hidden",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -9329,11 +9337,13 @@
           "required": true
         },
         {
-          "name": "item_id",
-          "description": "Item ID.",
-          "type": "integer",
+          "name": "item_ids",
+          "type": "array",
           "required": true,
-          "minimum": 0
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
         },
         {
           "name": "album_ids",
@@ -9676,6 +9686,11 @@
         {
           "name": "main_album",
           "description": "Set as main ('1' - set, '0' - no).",
+          "type": "boolean"
+        },
+        {
+          "name": "is_hidden",
+          "description": "Set as hidden",
           "type": "boolean"
         }
       ],
@@ -20849,9 +20864,37 @@
         },
         {
           "name": "topic_id",
-          "description": "Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method",
+          "description": "Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            7,
+            12,
+            16,
+            19,
+            21,
+            23,
+            25,
+            26,
+            32,
+            43
+          ],
+          "enumNames": [
+            "empty_topic",
+            "art",
+            "it",
+            "games",
+            "music",
+            "photo",
+            "science_and_tech",
+            "sport",
+            "travel",
+            "tv_and_cinema",
+            "humor",
+            "fashion"
+          ]
         }
       ],
       "responses": {
@@ -21434,9 +21477,37 @@
         },
         {
           "name": "topic_id",
-          "description": "Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method",
+          "description": "Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            7,
+            12,
+            16,
+            19,
+            21,
+            23,
+            25,
+            26,
+            32,
+            43
+          ],
+          "enumNames": [
+            "empty_topic",
+            "art",
+            "it",
+            "games",
+            "music",
+            "photo",
+            "science_and_tech",
+            "sport",
+            "travel",
+            "tv_and_cinema",
+            "humor",
+            "fashion"
+          ]
         }
       ],
       "responses": {

@@ -637,6 +637,11 @@
       "code": 1105,
       "description": "Too many auth attempts, try again later"
     },
+    "api_error_auth_anonymous_token_has_expired": {
+      "code": 1114,
+      "description": "Anonymous token has expired",
+      "global": true
+    },
     "api_error_param_doc_id": {
       "code": 1150,
       "description": "Invalid document id"

@@ -1537,10 +1537,6 @@
           "type": "integer",
           "description": "Clicks number"
         },
-        "link_owner_clicks": {
-          "type": "integer",
-          "description": "Group clicks number"
-        },
         "link_external_clicks": {
           "type": "integer",
           "description": "External clicks number"
@@ -3148,6 +3144,37 @@
     },
     "base_sticker": {
       "type": "object",
+      "oneOf": [
+        {
+          "$ref": "objects.json#/definitions/base_sticker_old",
+          "description": "Deprecated from 5.74, but still used in later versions in queue"
+        },
+        {
+          "$ref": "objects.json#/definitions/base_sticker_new"
+        }
+      ]
+    },
+    "base_sticker_animation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "light",
+            "dark"
+          ],
+          "description": "Type of animation script"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of animation script"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_sticker_new": {
+      "type": "object",
       "properties": {
         "sticker_id": {
           "type": "integer",
@@ -3188,21 +3215,53 @@
       },
       "additionalProperties": false
     },
-    "base_sticker_animation": {
+    "base_sticker_old": {
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "light",
-            "dark"
-          ],
-          "description": "Type of animation script"
+        "id": {
+          "type": "integer",
+          "description": "Sticker ID"
         },
-        "url": {
+        "product_id": {
+          "type": "integer",
+          "description": "Pack ID"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width in px"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in px"
+        },
+        "photo_128": {
           "type": "string",
           "format": "uri",
-          "description": "URL of animation script"
+          "description": "URL of the preview image with 128 px in height"
+        },
+        "photo_256": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 256 px in height"
+        },
+        "photo_352": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 352 px in height"
+        },
+        "photo_512": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 512 px in height"
+        },
+        "photo_64": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 64 px in height"
+        },
+        "is_allowed": {
+          "type": "boolean",
+          "description": "Information whether the sticker is allowed"
         }
       },
       "additionalProperties": false
@@ -3210,7 +3269,7 @@
     "base_stickers_list": {
       "type": "array",
       "items": {
-        "$ref": "objects.json#/definitions/base_sticker"
+        "$ref": "objects.json#/definitions/base_sticker_new"
       }
     },
     "base_upload_server": {
@@ -14358,9 +14417,9 @@
             "hash": {
               "type": "string"
             },
-            "has_email": {
-              "notod": true,
-              "type": "boolean"
+            "is_no_index": {
+              "type": "boolean",
+              "description": "Access to user profile is restricted for search engines"
             }
           },
           "required": [
@@ -15961,6 +16020,39 @@
             "marked_as_ads": {
               "$ref": "objects.json#/definitions/base_bool_int",
               "description": "Information whether the post is marked as ads"
+            },
+            "topic_id": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method",
+              "enum": [
+                0,
+                1,
+                7,
+                12,
+                16,
+                19,
+                21,
+                23,
+                25,
+                26,
+                32,
+                43
+              ],
+              "enumNames": [
+                "empty_topic",
+                "art",
+                "it",
+                "games",
+                "music",
+                "photo",
+                "science_and_tech",
+                "sport",
+                "travel",
+                "tv_and_cinema",
+                "humor",
+                "fashion"
+              ]
             },
             "short_text_rate": {
               "type": "number",
