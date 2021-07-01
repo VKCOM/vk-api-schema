@@ -9320,6 +9320,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_market_album_main_hidden"
         }
       ]
     },
@@ -9705,6 +9708,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_market_album_main_hidden"
         }
       ]
     },

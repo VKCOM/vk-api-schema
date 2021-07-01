@@ -866,6 +866,18 @@
           "type": "integer",
           "description": "Campaign create time, as Unixtime"
         },
+        "goal_type": {
+          "type": "integer",
+          "description": "Campaign goal type"
+        },
+        "user_goal_type": {
+          "type": "integer",
+          "description": "Campaign user goal type"
+        },
+        "is_cbo_enabled": {
+          "type": "boolean",
+          "description": "Shows if Campaign Budget Optimization is on"
+        },
         "day_limit": {
           "type": "string",
           "description": "Campaign's day limit, rubles"
@@ -3559,6 +3571,41 @@
       ],
       "additionalProperties": false
     },
+    "callback_base": {
+      "type": "object",
+      "required": [
+        "type",
+        "group_id",
+        "event_id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "$ref": "objects.json#/definitions/callback_type"
+        },
+        "group_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "event_id": {
+          "type": "string",
+          "description": "Unique event id. If it passed twice or more - you should ignore it."
+        },
+        "secret": {
+          "type": "string"
+        }
+      },
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "message_new": "../callback/objects.json#/definitions/callback_message_new",
+          "message_reply": "../callback/objects.json#/definitions/callback_message_reply",
+          "message_edit": "../callback/objects.json#/definitions/callback_message_edit",
+          "confirmation": "../callback/objects.json#/definitions/callback_confirmation"
+        }
+      },
+      "additionalProperties": false
+    },
     "callback_board_post_delete": {
       "type": "object",
       "properties": {
@@ -3582,23 +3629,22 @@
       ],
       "additionalProperties": false
     },
-    "callback_confirmation_message": {
+    "callback_confirmation": {
       "type": "object",
-      "properties": {
-        "type": {
-          "$ref": "objects.json#/definitions/callback_message_type",
-          "default": "confirmation"
+      "allOf": [
+        {
+          "$ref": "objects.json#/definitions/callback_base"
         },
-        "group_id": {
-          "type": "integer"
-        },
-        "secret": {
-          "type": "string"
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "objects.json#/definitions/callback_type",
+              "default": "confirmation"
+            }
+          }
         }
-      },
-      "required": [
-        "type",
-        "group_id"
       ],
       "additionalProperties": false
     },
@@ -4001,6 +4047,31 @@
     },
     "callback_message_allow": {
       "type": "object",
+      "allOf": [
+        {
+          "$ref": "objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "objects.json#/definitions/callback_type",
+              "default": "message_allow"
+            },
+            "object": {
+              "$ref": "objects.json#/definitions/callback_message_allow_object"
+            }
+          },
+          "required": [
+            "object"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_message_allow_object": {
+      "type": "object",
       "properties": {
         "user_id": {
           "type": "integer",
@@ -4016,43 +4087,6 @@
       ],
       "additionalProperties": false
     },
-    "callback_message_base": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "$ref": "objects.json#/definitions/callback_message_type"
-        },
-        "object": {
-          "$ref": "objects.json#/definitions/callback_message_data"
-        },
-        "group_id": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "event_id": {
-          "type": "string",
-          "description": "Unique event id. If it passed twice or more - you should ignore it."
-        }
-      },
-      "required": [
-        "type",
-        "object",
-        "group_id"
-      ],
-      "additionalProperties": false
-    },
-    "callback_message_data": {
-      "type": "object",
-      "properties": {
-        "client_info": {
-          "$ref": "objects.json#/definitions/client_info_for_bots"
-        },
-        "message": {
-          "type": "object"
-        }
-      },
-      "additionalProperties": true
-    },
     "callback_message_deny": {
       "type": "object",
       "properties": {
@@ -4066,53 +4100,93 @@
       ],
       "additionalProperties": false
     },
-    "callback_message_type": {
-      "type": "string",
-      "enum": [
-        "audio_new",
-        "board_post_new",
-        "board_post_edit",
-        "board_post_restore",
-        "board_post_delete",
-        "confirmation",
-        "group_leave",
-        "group_join",
-        "group_change_photo",
-        "group_change_settings",
-        "group_officers_edit",
-        "lead_forms_new",
-        "market_comment_new",
-        "market_comment_delete",
-        "market_comment_edit",
-        "market_comment_restore",
-        "message_allow",
-        "message_new",
-        "message_deny",
-        "message_read",
-        "message_reply",
-        "message_edit",
-        "message_typing_state",
-        "messages_edit",
-        "photo_new",
-        "photo_comment_new",
-        "photo_comment_delete",
-        "photo_comment_edit",
-        "photo_comment_restore",
-        "poll_vote_new",
-        "user_block",
-        "user_unblock",
-        "video_new",
-        "video_comment_new",
-        "video_comment_delete",
-        "video_comment_edit",
-        "video_comment_restore",
-        "wall_post_new",
-        "wall_reply_new",
-        "wall_reply_edit",
-        "wall_reply_delete",
-        "wall_reply_restore",
-        "wall_repost"
-      ]
+    "callback_message_edit": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "objects.json#/definitions/callback_type",
+              "default": "message_edit"
+            },
+            "object": {
+              "$ref": "objects.json#/definitions/messages_message"
+            }
+          },
+          "required": [
+            "object"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_message_new": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "objects.json#/definitions/callback_type",
+              "default": "message_new"
+            },
+            "object": {
+              "type": "object",
+              "$ref": "objects.json#/definitions/callback_message_object"
+            }
+          },
+          "required": [
+            "object"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_message_object": {
+      "type": "object",
+      "properties": {
+        "client_info": {
+          "$ref": "objects.json#/definitions/client_info_for_bots"
+        },
+        "message": {
+          "$ref": "objects.json#/definitions/messages_message"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_message_reply": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "objects.json#/definitions/callback_type",
+              "default": "message_reply"
+            },
+            "object": {
+              "$ref": "objects.json#/definitions/messages_message"
+            }
+          },
+          "required": [
+            "object"
+          ]
+        }
+      ],
+      "additionalProperties": false
     },
     "callback_photo_comment": {
       "type": "object",
@@ -4228,6 +4302,54 @@
         "reread"
       ],
       "additionalProperties": false
+    },
+    "callback_type": {
+      "type": "string",
+      "enum": [
+        "audio_new",
+        "board_post_new",
+        "board_post_edit",
+        "board_post_restore",
+        "board_post_delete",
+        "confirmation",
+        "group_leave",
+        "group_join",
+        "group_change_photo",
+        "group_change_settings",
+        "group_officers_edit",
+        "lead_forms_new",
+        "market_comment_new",
+        "market_comment_delete",
+        "market_comment_edit",
+        "market_comment_restore",
+        "message_new",
+        "message_reply",
+        "message_edit",
+        "message_allow",
+        "message_deny",
+        "message_read",
+        "message_typing_state",
+        "messages_edit",
+        "photo_new",
+        "photo_comment_new",
+        "photo_comment_delete",
+        "photo_comment_edit",
+        "photo_comment_restore",
+        "poll_vote_new",
+        "user_block",
+        "user_unblock",
+        "video_new",
+        "video_comment_new",
+        "video_comment_delete",
+        "video_comment_edit",
+        "video_comment_restore",
+        "wall_post_new",
+        "wall_reply_new",
+        "wall_reply_edit",
+        "wall_reply_delete",
+        "wall_reply_restore",
+        "wall_repost"
+      ]
     },
     "callback_user_block": {
       "type": "object",
@@ -15969,8 +16091,7 @@
         }
       },
       "required": [
-        "text",
-        "button"
+        "text"
       ],
       "additionalProperties": false
     },
