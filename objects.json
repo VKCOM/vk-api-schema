@@ -8413,6 +8413,11 @@
           "minimum": 0,
           "description": "ID of the last message in conversation"
         },
+        "last_conversation_message_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Conversation message ID of the last message in conversation"
+        },
         "in_read": {
           "type": "integer",
           "minimum": 0,

@@ -98,7 +98,7 @@
           "description": "User ID whose settings information shall be got. By default: current user.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -461,7 +461,7 @@
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "name",
@@ -3005,7 +3005,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -3088,7 +3088,7 @@
           "description": "id of the user to send a request",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "text",
@@ -3171,7 +3171,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "title",
@@ -3244,7 +3244,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -3302,7 +3302,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -3337,7 +3337,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -3365,7 +3365,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -3413,7 +3413,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -3476,7 +3476,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -3549,7 +3549,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_ids",
@@ -3670,7 +3670,7 @@
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "topic_id",
@@ -5496,7 +5496,7 @@
           "description": "ID of the user whose friend list is to be edited.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "list_ids",
@@ -6025,7 +6025,7 @@
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "q",
@@ -9766,7 +9766,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "order_id",
@@ -10125,7 +10125,7 @@
           "name": "group_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "offset",
@@ -10769,7 +10769,7 @@
           "description": "Group ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "key",
@@ -10973,7 +10973,7 @@
           "description": "Group ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -11962,16 +11962,14 @@
           "description": "Group ID.",
           "type": "integer",
           "required": true,
-          "format": "int32",
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "format": "int32",
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -14012,7 +14010,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "subscription_id",
@@ -14134,7 +14132,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "votes",
@@ -14195,7 +14193,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "subscription_id",
@@ -14225,7 +14223,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -14244,7 +14242,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "subscription_id",
@@ -15435,7 +15433,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -15461,7 +15459,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "main_photo",
@@ -15563,7 +15561,7 @@
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "crop_x",
@@ -16186,7 +16184,7 @@
           "description": "Community ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "photo",
@@ -17291,7 +17289,7 @@
           "description": "ID of a user to save the data",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "activity_id",
@@ -17534,7 +17532,7 @@
           "description": "ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "message",
@@ -18904,7 +18902,7 @@
           "description": "ID of the user about whom a complaint is being made.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "type",
