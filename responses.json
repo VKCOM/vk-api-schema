@@ -3334,10 +3334,10 @@
               }
             },
             "main_section": {
-              "$ref": "objects.json#/definitions/groups_group_full_main_section"
+              "$ref": "objects.json#/definitions/groups_group_full_section"
             },
             "secondary_section": {
-              "type": "integer"
+              "$ref": "objects.json#/definitions/groups_group_full_section"
             },
             "age_limits": {
               "$ref": "objects.json#/definitions/groups_group_age_limits"

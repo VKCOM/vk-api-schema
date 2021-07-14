@@ -46,8 +46,7 @@
           "minimum": 1
         },
         "menu_discover_badge": {
-          "type": "integer",
-          "description": ""
+          "type": "integer"
         },
         "menu_clips_badge": {
           "type": "integer"
@@ -6329,10 +6328,10 @@
               "description": "Community's website"
             },
             "main_section": {
-              "$ref": "objects.json#/definitions/groups_group_full_main_section"
+              "$ref": "objects.json#/definitions/groups_group_full_section"
             },
             "secondary_section": {
-              "type": "integer"
+              "$ref": "objects.json#/definitions/groups_group_full_section"
             },
             "trending": {
               "$ref": "objects.json#/definitions/base_bool_int",
@@ -6421,26 +6420,6 @@
         "over 18"
       ]
     },
-    "groups_group_full_main_section": {
-      "type": "integer",
-      "description": "Main section of community",
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "enumNames": [
-        "absent",
-        "photos",
-        "topics",
-        "audio",
-        "video",
-        "market"
-      ]
-    },
     "groups_group_full_member_status": {
       "type": "integer",
       "enum": [
@@ -6458,6 +6437,36 @@
         "declined",
         "has sent a request",
         "invited"
+      ]
+    },
+    "groups_group_full_section": {
+      "type": "integer",
+      "description": "Main section of community",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        10,
+        35,
+        39,
+        43,
+        51
+      ],
+      "enumNames": [
+        "absent",
+        "photos",
+        "topics",
+        "audio",
+        "video",
+        "market",
+        "events",
+        "addresses",
+        "articles",
+        "chats",
+        "market_services"
       ]
     },
     "groups_group_is_closed": {
@@ -12157,7 +12166,6 @@
         "question",
         "votes",
         "answers",
-        "anonymous",
         "disable_unvote",
         "is_board",
         "multiple",

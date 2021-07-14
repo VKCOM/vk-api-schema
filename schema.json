@@ -348,8 +348,13 @@
         },
         "$comment": {
           "type": "string"
+        },
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "methodErrors": {
       "type": "array",
@@ -360,7 +365,8 @@
             "type": "string",
             "format": "uri-reference"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "description": "Possible custom errors"
     },
