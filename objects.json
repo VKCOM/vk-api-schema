@@ -7028,6 +7028,13 @@
       },
       "required": [
         "app_payload",
+        "donut_money_withdraw",
+        "donut_money_withdraw_error",
+        "donut_subscription_cancelled",
+        "donut_subscription_create",
+        "donut_subscription_expired",
+        "donut_subscription_price_changed",
+        "donut_subscription_prolonged",
         "message_new",
         "message_reply",
         "photo_new",
@@ -8707,6 +8714,27 @@
       "required": [],
       "additionalProperties": false
     },
+    "messages_getConversationById": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/messages_conversation"
+          }
+        }
+      },
+      "required": [
+        "count",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "messages_graffiti": {
       "type": "object",
       "properties": {
@@ -9399,6 +9427,30 @@
       "required": [
         "disabled_forever",
         "no_sound"
+      ],
+      "additionalProperties": false
+    },
+    "messages_send_user_ids_response_item": {
+      "type": "object",
+      "properties": {
+        "peer_id": {
+          "type": "integer"
+        },
+        "message_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "error": {
+          "$ref": "objects.json#/definitions/base_message_error"
+        }
+      },
+      "required": [
+        "peer_id",
+        "message_id"
       ],
       "additionalProperties": false
     },
@@ -12324,6 +12376,18 @@
         "html5_game",
         "link"
       ]
+    },
+    "secure_giveEventSticker_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "secure_level": {
       "type": "object",
@@ -15858,6 +15922,9 @@
         "access_key": {
           "type": "string",
           "description": "Access key to private object"
+        },
+        "is_deleted": {
+          "type": "boolean"
         },
         "attachments": {
           "type": "array",

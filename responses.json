@@ -4664,33 +4664,27 @@
       "properties": {
         "response": {
           "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
+          "allOf": [
+            {
+              "$ref": "objects.json#/definitions/messages_getConversationById"
             },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/messages_conversation"
-              }
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/users_user_full"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_group_full"
+            {
+              "type": "object",
+              "properties": {
+                "profiles": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "objects.json#/definitions/users_user_full"
+                  }
+                },
+                "groups": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "objects.json#/definitions/groups_group_full"
+                  }
+                }
               }
             }
-          },
-          "required": [
-            "count",
-            "items"
           ],
           "additionalProperties": false
         }
@@ -4704,24 +4698,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/messages_conversation"
-              }
-            }
-          },
-          "required": [
-            "count",
-            "items"
-          ],
-          "additionalProperties": false
+          "$ref": "objects.json#/definitions/messages_getConversationById"
         }
       },
       "required": [
@@ -5326,28 +5303,8 @@
         "response": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "peer_id": {
-                "type": "integer"
-              },
-              "message_id": {
-                "type": "integer",
-                "minimum": 0
-              },
-              "conversation_message_id": {
-                "type": "integer",
-                "minimum": 0
-              },
-              "error": {
-                "$ref": "objects.json#/definitions/base_message_error"
-              }
-            }
-          },
-          "required": [
-            "peer_id",
-            "message_id"
-          ]
+            "$ref": "objects.json#/definitions/messages_send_user_ids_response_item"
+          }
         }
       },
       "required": [
@@ -7494,15 +7451,7 @@
         "response": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "user_id": {
-                "type": "integer"
-              },
-              "status": {
-                "type": "string"
-              }
-            }
+            "$ref": "objects.json#/definitions/secure_giveEventSticker_item"
           }
         }
       },

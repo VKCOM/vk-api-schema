@@ -1,6 +1,6 @@
 {
   "name": "@vkontakte/api-schema",
-  "version": "5.131.90",
+  "version": "5.131.92",
   "description": "VK API JSON Schema",
   "repository": {
     "type": "git",

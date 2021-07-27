@@ -79,6 +79,7 @@
     "itemTypes": {
       "type": "string",
       "enum": [
+        "object",
         "boolean",
         "integer",
         "number",
@@ -196,12 +197,6 @@
         "description": {
           "type": "string",
           "description": "Parameter description"
-        },
-        "deprecated_from_version": {
-          "$ref": "#/definitions/deprecated_from_version"
-        },
-        "from_version": {
-          "$ref": "#/definitions/from_version"
         }
       },
       "required": [
@@ -241,12 +236,6 @@
         },
         "description": {
           "type": "string"
-        },
-        "deprecated_from_version": {
-          "$ref": "#/definitions/deprecated_from_version"
-        },
-        "from_version": {
-          "$ref": "#/definitions/from_version"
         },
         "allOf": {
           "type": "array",
@@ -323,12 +312,6 @@
         "disabled": {
           "type": "boolean",
           "default": false
-        },
-        "deprecated_from_version": {
-          "$ref": "#/definitions/deprecated_from_version"
-        },
-        "from_version": {
-          "$ref": "#/definitions/from_version"
         }
       },
       "required": [
@@ -344,9 +327,6 @@
           "type": "integer"
         },
         "description": {
-          "type": "string"
-        },
-        "$comment": {
           "type": "string"
         },
         "$ref": {
@@ -386,12 +366,6 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 30
-        },
-        "deprecated_from_version": {
-          "$ref": "#/definitions/deprecated_from_version"
-        },
-        "from_version": {
-          "$ref": "#/definitions/from_version"
         },
         "access_token_type": {
           "type": "array",
