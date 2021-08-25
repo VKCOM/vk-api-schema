@@ -89,7 +89,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             },
             "groups": {
@@ -2584,7 +2584,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/friends_user_xtr_lists"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             }
           },
@@ -2725,7 +2725,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/groups_group_link"
+          "$ref": "objects.json#/definitions/groups_links_item"
         }
       },
       "required": [
@@ -2818,7 +2818,7 @@
       ],
       "additionalProperties": false
     },
-    "groups_getById_legacy_response": {
+    "groups_getById_object_legacy_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -2826,33 +2826,6 @@
           "items": {
             "$ref": "objects.json#/definitions/groups_group_full"
           }
-        }
-      },
-      "required": [
-        "response"
-      ],
-      "additionalProperties": false
-    },
-    "groups_getById_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_group_full"
-              }
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_profile_item"
-              }
-            }
-          },
-          "additionalProperties": false
         }
       },
       "required": [
@@ -3532,7 +3505,7 @@
       ],
       "additionalProperties": false
     },
-    "groups_get_extended_response": {
+    "groups_get_object_extended_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -4233,6 +4206,12 @@
               "items": {
                 "$ref": "objects.json#/definitions/market_market_item_full"
               }
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/market_market_item_full"
+              }
             }
           },
           "additionalProperties": false
@@ -4254,6 +4233,12 @@
               "description": "Total number"
             },
             "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/market_market_item"
+              }
+            },
+            "variants": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/market_market_item"
@@ -4299,6 +4284,12 @@
               "items": {
                 "$ref": "objects.json#/definitions/market_market_item_full"
               }
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/market_market_item_full"
+              }
             }
           },
           "required": [
@@ -4328,6 +4319,12 @@
               "$ref": "objects.json#/definitions/market_services_view_type"
             },
             "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/market_market_item"
+              }
+            },
+            "variants": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/market_market_item"
@@ -5340,13 +5337,13 @@
         "response": {
           "type": "object",
           "properties": {
-            "groups": {
+            "profiles": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/users_user_full"
               }
             },
-            "profiles": {
+            "groups": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
@@ -5964,7 +5961,10 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "objects.json#/definitions/orders_amount"
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/orders_amount"
+          }
         }
       },
       "required": [
@@ -7917,7 +7917,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             },
             "groups": {
@@ -7967,7 +7967,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             },
             "groups": {
@@ -8633,7 +8633,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
+                "$ref": "objects.json#/definitions/users_user"
               }
             },
             "groups": {

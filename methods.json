@@ -6407,6 +6407,12 @@
           "minimum": 0
         },
         {
+          "name": "public_subcategory",
+          "description": "Public page subcategory ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "subtype",
           "description": "Public page subtype. Possible values: *'1' - place or small business,, *'2' - company, organization or website,, *'3' - famous person or group of people,, *'4' - product or work of art.",
           "type": "integer",
@@ -7169,7 +7175,7 @@
           "$ref": "responses.json#/definitions/groups_get_response"
         },
         "extendedResponse": {
-          "$ref": "responses.json#/definitions/groups_get_extended_response"
+          "$ref": "responses.json#/definitions/groups_get_object_extended_response"
         }
       },
       "errors": [
@@ -7337,7 +7343,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/groups_getById_legacy_response"
+          "$ref": "responses.json#/definitions/groups_getById_object_legacy_response"
         }
       }
     },
@@ -8781,7 +8787,7 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "minimum": 0,
+          "minimum": 1,
           "maximum": 2000000000
         },
         {
@@ -9899,6 +9905,11 @@
           "name": "date_to",
           "description": "Items update date to (format: yyyy-mm-dd)",
           "type": "string"
+        },
+        {
+          "name": "need_variants",
+          "description": "Add variants to response if exist",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -10691,6 +10702,11 @@
             "active",
             "disabled"
           ]
+        },
+        {
+          "name": "need_variants",
+          "description": "Add variants to response if exist",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -11387,7 +11403,6 @@
           "name": "group_id",
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
-          "format": "int32",
           "minimum": 0
         }
       ],
@@ -11533,7 +11548,6 @@
           "name": "group_id",
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
-          "format": "int32",
           "minimum": 0
         }
       ],
@@ -14173,8 +14187,10 @@
           "description": "order IDs (when information about several orders is requested).",
           "type": "array",
           "items": {
-            "type": "integer"
-          }
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 500
         },
         {
           "name": "test_mode",
