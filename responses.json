@@ -3677,6 +3677,120 @@
       ],
       "additionalProperties": false
     },
+    "leadForms_create_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "form_id": {
+              "type": "integer"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "form_id",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_delete_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "form_id": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "form_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_getLeads_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "leads": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/leadForms_lead"
+              }
+            },
+            "next_page_token": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "leads"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "objects.json#/definitions/leadForms_form"
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_list_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/leadForms_form"
+          }
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_uploadUrl_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
     "likes_add_response": {
       "type": "object",
       "properties": {
@@ -4660,30 +4774,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "allOf": [
-            {
-              "$ref": "objects.json#/definitions/messages_getConversationById"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "profiles": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "objects.json#/definitions/users_user_full"
-                  }
-                },
-                "groups": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "objects.json#/definitions/groups_group_full"
-                  }
-                }
-              }
-            }
-          ],
-          "additionalProperties": false
+          "$ref": "objects.json#/definitions/messages_getConversationById_extended"
         }
       },
       "required": [
@@ -6253,7 +6344,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/photos_comment_xtr_pid"
+                "$ref": "objects.json#/definitions/wall_wall_comment"
               }
             }
           },
@@ -6731,7 +6822,8 @@
             },
             "group_id": {
               "type": "integer",
-              "description": "Community ID"
+              "description": "Community ID",
+              "format": "int64"
             },
             "hash": {
               "type": "string",
@@ -6941,10 +7033,16 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/base_image"
-          }
+          "type": "object",
+          "properties": {
+            "images": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/base_image"
+              }
+            }
+          },
+          "additionalProperties": false
         }
       },
       "required": [
@@ -7206,7 +7304,8 @@
           "properties": {
             "owner_id": {
               "type": "integer",
-              "description": "Owner ID of created pretty card"
+              "description": "Owner ID of created pretty card",
+              "format": "int64"
             },
             "card_id": {
               "type": "string",
@@ -7233,7 +7332,8 @@
           "properties": {
             "owner_id": {
               "type": "integer",
-              "description": "Owner ID of deleted pretty card"
+              "description": "Owner ID of deleted pretty card",
+              "format": "int64"
             },
             "card_id": {
               "type": "string",
@@ -7264,7 +7364,8 @@
           "properties": {
             "owner_id": {
               "type": "integer",
-              "description": "Owner ID of edited pretty card"
+              "description": "Owner ID of edited pretty card",
+              "format": "int64"
             },
             "card_id": {
               "type": "string",
@@ -7855,6 +7956,9 @@
               }
             },
             "hidden_reason": {
+              "type": "string"
+            },
+            "next_from": {
               "type": "string"
             }
           },
@@ -8906,21 +9010,6 @@
                 "$ref": "objects.json#/definitions/wall_wall_comment"
               }
             },
-            "show_reply_button": {
-              "type": "boolean"
-            },
-            "can_post": {
-              "type": "boolean",
-              "description": "Information whether current user can comment the post"
-            },
-            "groups_can_post": {
-              "type": "boolean",
-              "description": "Information whether groups can comment the post"
-            },
-            "current_level_count": {
-              "type": "integer",
-              "description": "Count of replies of current level"
-            },
             "profiles": {
               "type": "array",
               "items": {
@@ -8932,6 +9021,21 @@
               "items": {
                 "$ref": "objects.json#/definitions/groups_group"
               }
+            },
+            "current_level_count": {
+              "type": "integer",
+              "description": "Count of replies of current level"
+            },
+            "can_post": {
+              "type": "boolean",
+              "description": "Information whether current user can comment the post"
+            },
+            "show_reply_button": {
+              "type": "boolean"
+            },
+            "groups_can_post": {
+              "type": "boolean",
+              "description": "Information whether groups can comment the post"
             }
           },
           "required": [
@@ -8964,17 +9068,20 @@
                 "$ref": "objects.json#/definitions/wall_wall_comment"
               }
             },
+            "current_level_count": {
+              "type": "integer",
+              "description": "Count of replies of current level"
+            },
             "can_post": {
               "type": "boolean",
               "description": "Information whether current user can comment the post"
             },
+            "show_reply_button": {
+              "type": "boolean"
+            },
             "groups_can_post": {
               "type": "boolean",
               "description": "Information whether groups can comment the post"
-            },
-            "current_level_count": {
-              "type": "integer",
-              "description": "Count of replies of current level"
             }
           },
           "required": [

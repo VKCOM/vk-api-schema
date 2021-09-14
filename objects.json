@@ -1876,7 +1876,8 @@
         "user_id": {
           "name": "user_id",
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "is_success": {
           "type": "boolean",
@@ -1897,7 +1898,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "role": {
           "$ref": "objects.json#/definitions/ads_access_role_public"
@@ -1929,7 +1931,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "role": {
           "$ref": "objects.json#/definitions/ads_access_role_public"
@@ -1960,7 +1963,8 @@
         },
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         }
       },
       "required": [
@@ -2355,7 +2359,8 @@
         },
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         }
       },
       "required": [
@@ -2412,7 +2417,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Audio owner's ID"
+          "description": "Audio owner's ID",
+          "format": "int64"
         },
         "title": {
           "type": "string",
@@ -2885,7 +2891,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Owner id"
+          "description": "Owner id",
+          "format": "int64"
         },
         "icon": {
           "type": "string",
@@ -3416,7 +3423,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -3531,7 +3539,8 @@
       "properties": {
         "owner_id": {
           "type": "integer",
-          "description": "Poll owner's ID"
+          "description": "Poll owner's ID",
+          "format": "int64"
         },
         "poll_id": {
           "type": "integer",
@@ -3593,7 +3602,8 @@
         },
         "group_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "event_id": {
           "type": "string",
@@ -3692,7 +3702,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -3702,7 +3713,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "amount": {
           "type": "integer",
@@ -3724,7 +3736,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -3734,7 +3747,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "amount_old": {
           "type": "integer",
@@ -3764,7 +3778,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "amount": {
           "type": "integer",
@@ -3786,7 +3801,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "photo": {
           "$ref": "objects.json#/definitions/photos_photo"
@@ -3803,7 +3819,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "self": {
           "$ref": "objects.json#/definitions/base_bool_int"
@@ -3819,7 +3836,8 @@
       "type": "object",
       "properties": {
         "user_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "join_type": {
           "$ref": "objects.json#/definitions/callback_group_join_type"
@@ -3846,7 +3864,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "self": {
           "$ref": "objects.json#/definitions/base_bool_int"
@@ -3889,7 +3908,8 @@
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "level_old": {
           "$ref": "objects.json#/definitions/callback_group_officer_role"
@@ -4031,14 +4051,16 @@
       "type": "object",
       "properties": {
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "id": {
           "type": "integer"
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "item_id": {
           "type": "integer",
@@ -4083,7 +4105,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "key": {
           "type": "string"
@@ -4100,7 +4123,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         }
       },
       "required": [
@@ -4236,11 +4260,13 @@
         },
         "owner_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "photo_id": {
           "type": "integer",
@@ -4259,7 +4285,8 @@
       "type": "object",
       "properties": {
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "poll_id": {
           "type": "integer",
@@ -4271,7 +4298,8 @@
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         }
       },
       "required": [
@@ -4287,7 +4315,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "data": {
           "type": "string"
@@ -4368,7 +4397,8 @@
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "unblock_date": {
           "type": "integer",
@@ -4399,7 +4429,8 @@
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "by_end_date": {
           "type": "integer",
@@ -4451,11 +4482,13 @@
           "minimum": 0
         },
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "video_id": {
           "type": "integer",
@@ -4474,7 +4507,8 @@
       "type": "object",
       "properties": {
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "id": {
           "type": "integer",
@@ -4482,7 +4516,8 @@
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "post_id": {
           "type": "integer",
@@ -4595,18 +4630,10 @@
     "comment_thread": {
       "type": "object",
       "properties": {
-        "can_post": {
-          "type": "boolean",
-          "description": "Information whether current user can comment the post"
-        },
         "count": {
           "type": "integer",
           "description": "Comments number",
           "minimum": 0
-        },
-        "groups_can_post": {
-          "type": "boolean",
-          "description": "Information whether groups can comment the post"
         },
         "items": {
           "type": "array",
@@ -4614,9 +4641,17 @@
             "$ref": "objects.json#/definitions/wall_wall_comment"
           }
         },
+        "can_post": {
+          "type": "boolean",
+          "description": "Information whether current user can comment the post"
+        },
         "show_reply_button": {
           "type": "boolean",
           "description": "Information whether recommended to display reply button"
+        },
+        "groups_can_post": {
+          "type": "boolean",
+          "description": "Information whether groups can comment the post"
         }
       },
       "required": [
@@ -4744,7 +4779,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Document owner ID"
+          "description": "Document owner ID",
+          "format": "int64"
         },
         "title": {
           "type": "string",
@@ -4993,7 +5029,8 @@
       "type": "object",
       "properties": {
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "next_payment_date": {
           "type": "integer"
@@ -5208,7 +5245,8 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         }
       },
       "required": [
@@ -5286,7 +5324,8 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -5327,7 +5366,8 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -5717,7 +5757,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         },
         "desc": {
           "type": "string",
@@ -7247,7 +7288,8 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         }
       },
       "required": [
@@ -7282,7 +7324,8 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         }
       },
       "required": [
@@ -7457,6 +7500,196 @@
       ],
       "additionalProperties": false
     },
+    "leadForms_answer": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "answer": {
+          "oneOf": [
+            {
+              "$ref": "objects.json#/definitions/leadForms_answer_item"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/leadForms_answer_item"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "key",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_answer_item": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_form": {
+      "type": "object",
+      "properties": {
+        "form_id": {
+          "type": "integer"
+        },
+        "group_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "confirmation": {
+          "type": "string"
+        },
+        "site_link_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "policy_link_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/leadForms_question_item"
+          }
+        },
+        "active": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "leads_count": {
+          "type": "integer"
+        },
+        "pixel_code": {
+          "type": "string"
+        },
+        "once_per_user": {
+          "type": "integer"
+        },
+        "notify_admins": {
+          "type": "string"
+        },
+        "notify_emails": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "form_id",
+        "group_id",
+        "leads_count",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_lead": {
+      "type": "object",
+      "properties": {
+        "lead_id": {
+          "type": "integer"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "date": {
+          "type": "integer"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/leadForms_answer"
+          }
+        },
+        "ad_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "lead_id",
+        "user_id",
+        "date",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_question_item": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "input",
+            "textarea",
+            "radio",
+            "checkbox",
+            "select"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "options": {
+          "description": "Опции выбора для типов radio, checkbox, select",
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/leadForms_question_item_option"
+          }
+        }
+      },
+      "required": [
+        "key",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "leadForms_question_item_option": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "likes_type": {
       "type": "string",
       "enum": [
@@ -7471,7 +7704,8 @@
         "video_comment",
         "topic_comment",
         "market_comment",
-        "sitepage"
+        "sitepage",
+        "textpost"
       ]
     },
     "link_target_object": {
@@ -7483,7 +7717,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Owner ID"
+          "description": "Owner ID",
+          "format": "int64"
         },
         "item_id": {
           "type": "integer",
@@ -7526,7 +7761,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Market album owner's ID"
+          "description": "Market album owner's ID",
+          "format": "int64"
         },
         "title": {
           "type": "string",
@@ -7672,7 +7908,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Item owner's ID"
+          "description": "Item owner's ID",
+          "format": "int64"
         },
         "price": {
           "$ref": "objects.json#/definitions/market_price"
@@ -7792,11 +8029,13 @@
         },
         "group_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "user_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         },
         "display_order_id": {
           "type": "string"
@@ -7862,7 +8101,8 @@
       "type": "object",
       "properties": {
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "item_id": {
           "type": "integer"
@@ -7996,7 +8236,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Audio message owner ID"
+          "description": "Audio message owner ID",
+          "format": "int64"
         },
         "waveform": {
           "type": "array",
@@ -8224,7 +8465,8 @@
           "type": "integer"
         },
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "title": {
           "type": "string",
@@ -8719,7 +8961,8 @@
       "properties": {
         "owner_id": {
           "type": "integer",
-          "description": "Messages owner_id"
+          "description": "Messages owner_id",
+          "format": "int64"
         },
         "peer_id": {
           "type": "integer",
@@ -8768,6 +9011,32 @@
       ],
       "additionalProperties": false
     },
+    "messages_getConversationById_extended": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "objects.json#/definitions/messages_getConversationById"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
     "messages_graffiti": {
       "type": "object",
       "properties": {
@@ -8787,7 +9056,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Graffiti owner ID"
+          "description": "Graffiti owner ID",
+          "format": "int64"
         },
         "url": {
           "type": "string",
@@ -8967,7 +9237,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Fragment value in app link like vk.com/app123456_{owner_id}#hash"
+          "description": "Fragment value in app link like vk.com/app123456_{owner_id}#hash",
+          "format": "int64"
         },
         "payload": {
           "type": "string",
@@ -10268,39 +10539,30 @@
       "type": "object",
       "oneOf": [
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_wallpost"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_photo"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_photo_tag"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_friend"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_audio"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_video"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_topic"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_digest"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/newsfeed_item_promo_button"
         }
       ]
@@ -10373,7 +10635,8 @@
         "owner_id": {
           "type": "integer",
           "description": "Note owner's ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "text": {
           "type": "string",
@@ -10391,6 +10654,18 @@
           "type": "string",
           "format": "uri",
           "description": "URL of the page with note preview"
+        },
+        "privacy_view": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "privacy_comment": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
@@ -10541,7 +10816,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Author ID"
+          "description": "Author ID",
+          "format": "int64"
         },
         "photo": {
           "$ref": "objects.json#/definitions/photos_photo"
@@ -10611,7 +10887,8 @@
       "properties": {
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         },
         "status": {
           "type": "boolean",
@@ -10683,23 +10960,23 @@
       "type": "object",
       "properties": {
         "amount": {
-          "type": "integer",
+          "type": "string",
           "description": "Amount"
         },
         "app_order_id": {
-          "type": "integer",
+          "type": "string",
           "description": "App order ID"
         },
         "cancel_transaction_id": {
-          "type": "integer",
+          "type": "string",
           "description": "Cancel transaction ID"
         },
         "date": {
-          "type": "integer",
+          "type": "string",
           "description": "Date of creation in Unixtime"
         },
         "id": {
-          "type": "integer",
+          "type": "string",
           "description": "Order ID"
         },
         "item": {
@@ -10707,22 +10984,40 @@
           "description": "Order item"
         },
         "receiver_id": {
-          "type": "integer",
+          "type": "string",
           "description": "Receiver ID"
         },
         "status": {
           "type": "string",
-          "description": "Order status"
+          "description": "Order status",
+          "enum": [
+            "created",
+            "charged",
+            "refunded",
+            "chargeable",
+            "cancelled",
+            "declined"
+          ]
         },
         "transaction_id": {
-          "type": "integer",
+          "type": "string",
           "description": "Transaction ID"
         },
         "user_id": {
-          "type": "integer",
+          "type": "string",
           "description": "User ID"
         }
       },
+      "required": [
+        "id",
+        "app_order_id",
+        "status",
+        "user_id",
+        "receiver_id",
+        "item",
+        "amount",
+        "date"
+      ],
       "additionalProperties": false
     },
     "orders_subscription": {
@@ -10875,7 +11170,8 @@
         "group_id": {
           "type": "integer",
           "description": "Community ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "id": {
           "type": "integer",
@@ -10939,7 +11235,8 @@
         "group_id": {
           "type": "integer",
           "description": "Community ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "html": {
           "type": "string",
@@ -10990,7 +11287,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Owner ID"
+          "description": "Owner ID",
+          "format": "int64"
         }
       },
       "required": [
@@ -11039,68 +11337,6 @@
         "date",
         "editor_id",
         "editor_name"
-      ],
-      "additionalProperties": false
-    },
-    "photos_comment_xtr_pid": {
-      "type": "object",
-      "properties": {
-        "attachments": {
-          "type": "array",
-          "items": {
-            "$ref": "objects.json#/definitions/wall_comment_attachment"
-          }
-        },
-        "date": {
-          "type": "integer",
-          "description": "Date when the comment has been added in Unixtime",
-          "minimum": 0
-        },
-        "from_id": {
-          "type": "integer",
-          "description": "Author ID"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Comment ID",
-          "minimum": 1
-        },
-        "likes": {
-          "$ref": "objects.json#/definitions/base_likes_info"
-        },
-        "pid": {
-          "type": "integer",
-          "description": "Photo ID",
-          "minimum": 1
-        },
-        "reply_to_comment": {
-          "type": "integer",
-          "description": "Replied comment ID"
-        },
-        "reply_to_user": {
-          "type": "integer",
-          "description": "Replied user ID"
-        },
-        "text": {
-          "type": "string",
-          "description": "Comment text"
-        },
-        "parents_stack": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
-        "thread": {
-          "$ref": "objects.json#/definitions/comment_thread"
-        }
-      },
-      "required": [
-        "id",
-        "from_id",
-        "date",
-        "text",
-        "pid"
       ],
       "additionalProperties": false
     },
@@ -11185,7 +11421,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Photo owner's ID"
+          "description": "Photo owner's ID",
+          "format": "int64"
         },
         "photo_256": {
           "type": "string",
@@ -11217,7 +11454,8 @@
         "user_id": {
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "width": {
           "type": "integer",
@@ -11256,7 +11494,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Album owner's ID"
+          "description": "Album owner's ID",
+          "format": "int64"
         },
         "size": {
           "type": "integer",
@@ -11312,7 +11551,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Album owner's ID"
+          "description": "Album owner's ID",
+          "format": "int64"
         },
         "size": {
           "type": "integer",
@@ -11429,7 +11669,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Photo owner's ID"
+          "description": "Photo owner's ID",
+          "format": "int64"
         },
         "post_id": {
           "type": "integer",
@@ -11446,7 +11687,8 @@
         "user_id": {
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "width": {
           "type": "integer",
@@ -11511,7 +11753,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Photo owner's ID"
+          "description": "Photo owner's ID",
+          "format": "int64"
         },
         "photo_1280": {
           "type": "string",
@@ -11571,7 +11814,8 @@
         "user_id": {
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "width": {
           "type": "integer",
@@ -11679,7 +11923,8 @@
         },
         "user_id": {
           "type": "integer",
-          "description": "Tagged user ID"
+          "description": "Tagged user ID",
+          "format": "int64"
         },
         "viewed": {
           "description": "Information whether the tag is reviewed",
@@ -11735,11 +11980,13 @@
         },
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         },
         "group_id": {
           "type": "integer",
-          "description": "Group ID"
+          "description": "Group ID",
+          "format": "int64"
         }
       },
       "required": [
@@ -11789,7 +12036,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Photo owner's ID"
+          "description": "Photo owner's ID",
+          "format": "int64"
         },
         "photo_1280": {
           "type": "string",
@@ -11843,7 +12091,8 @@
         "user_id": {
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "width": {
           "type": "integer",
@@ -11895,7 +12144,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Photo owner's ID"
+          "description": "Photo owner's ID",
+          "format": "int64"
         },
         "photo_1280": {
           "type": "string",
@@ -11958,7 +12208,8 @@
         "user_id": {
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "width": {
           "type": "integer",
@@ -12239,7 +12490,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Poll owner's ID"
+          "description": "Poll owner's ID",
+          "format": "int64"
         },
         "author_id": {
           "type": "integer",
@@ -12431,7 +12683,8 @@
       "type": "object",
       "properties": {
         "user_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "status": {
           "type": "string"
@@ -12497,7 +12750,8 @@
         },
         "user_id": {
           "type": "integer",
-          "description": "User ID"
+          "description": "User ID",
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -13041,7 +13295,8 @@
           "type": "string"
         },
         "owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "story_id": {
           "type": "integer"
@@ -13363,7 +13618,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Story owner's ID."
+          "description": "Story owner's ID.",
+          "format": "int64"
         },
         "parent_story": {
           "$ref": "objects.json#/definitions/stories_story"
@@ -13563,7 +13819,8 @@
         },
         "user_id": {
           "type": "integer",
-          "description": "user id"
+          "description": "user id",
+          "format": "int64"
         },
         "user": {
           "$ref": "objects.json#/definitions/users_user_full"
@@ -13600,7 +13857,8 @@
         },
         "group_id": {
           "type": "integer",
-          "description": "Community ID"
+          "description": "Community ID",
+          "format": "int64"
         },
         "id": {
           "type": "integer",
@@ -13984,11 +14242,9 @@
       "type": "object",
       "oneOf": [
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/users_user_xtr_type"
         },
         {
-          "invalid_one_of": true,
           "$ref": "objects.json#/definitions/groups_group_full"
         }
       ]
@@ -14936,7 +15192,8 @@
         },
         "group_id": {
           "type": "integer",
-          "description": "Group ID"
+          "description": "Group ID",
+          "format": "int64"
         },
         "type": {
           "$ref": "objects.json#/definitions/utils_domain_resolved_type"
@@ -15203,7 +15460,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Video owner ID"
+          "description": "Video owner ID",
+          "format": "int64"
         },
         "title": {
           "type": "string",
@@ -15319,12 +15577,14 @@
             },
             "owner_id": {
               "type": "integer",
-              "description": "Video owner ID"
+              "description": "Video owner ID",
+              "format": "int64"
             },
             "user_id": {
               "type": "integer",
               "minimum": 0,
-              "description": "Id of the user who uploaded the video if it was uploaded to a group by member"
+              "description": "Id of the user who uploaded the video if it was uploaded to a group by member",
+              "format": "int64"
             },
             "title": {
               "type": "string",
@@ -15451,7 +15711,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Album owner's ID"
+          "description": "Album owner's ID",
+          "format": "int64"
         },
         "title": {
           "type": "string",
@@ -15642,7 +15903,8 @@
         "owner_id": {
           "type": "integer",
           "description": "Note owner's ID",
-          "minimum": 1
+          "minimum": 1,
+          "format": "int64"
         },
         "read_comments": {
           "type": "integer",
@@ -15805,7 +16067,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Graffiti owner's ID"
+          "description": "Graffiti owner's ID",
+          "format": "int64"
         },
         "photo_200": {
           "type": "string",
@@ -15897,7 +16160,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Photo owner's ID"
+          "description": "Photo owner's ID",
+          "format": "int64"
         },
         "photo_130": {
           "type": "string",
@@ -15926,28 +16190,55 @@
     "wall_wall_comment": {
       "type": "object",
       "properties": {
-        "attachments": {
+        "id": {
+          "type": "integer",
+          "description": "Comment ID",
+          "minimum": 1
+        },
+        "from_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Author ID"
+        },
+        "can_edit": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "post_id": {
+          "type": "integer"
+        },
+        "owner_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "parents_stack": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/wall_comment_attachment"
+            "type": "integer"
           }
+        },
+        "photo_id": {
+          "type": "integer"
+        },
+        "video_id": {
+          "type": "integer"
         },
         "date": {
           "type": "integer",
           "description": "Date when the comment has been added in Unixtime",
           "minimum": 0
         },
+        "text": {
+          "type": "string",
+          "description": "Comment text"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/wall_comment_attachment"
+          }
+        },
         "donut": {
           "$ref": "objects.json#/definitions/wall_wall_comment_donut"
-        },
-        "from_id": {
-          "type": "integer",
-          "description": "Author ID"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Comment ID",
-          "minimum": 1
         },
         "likes": {
           "$ref": "objects.json#/definitions/base_likes_info"
@@ -15956,35 +16247,25 @@
           "type": "integer",
           "description": "Real position of the comment"
         },
+        "reply_to_user": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Replied user ID"
+        },
         "reply_to_comment": {
           "type": "integer",
           "description": "Replied comment ID"
         },
-        "reply_to_user": {
-          "type": "integer",
-          "description": "Replied user ID"
-        },
-        "text": {
-          "type": "string",
-          "description": "Comment text"
-        },
         "thread": {
           "$ref": "objects.json#/definitions/comment_thread"
         },
-        "post_id": {
-          "type": "integer"
-        },
-        "owner_id": {
-          "type": "integer"
-        },
-        "parents_stack": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
         "deleted": {
           "type": "boolean"
+        },
+        "pid": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Photo ID"
         }
       },
       "required": [
@@ -16075,7 +16356,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Wall owner's ID"
+          "description": "Wall owner's ID",
+          "format": "int64"
         },
         "poster": {
           "type": "object"
@@ -16153,7 +16435,7 @@
           "$ref": "objects.json#/definitions/market_market_album"
         },
         "note": {
-          "$ref": "objects.json#/definitions/wall_attached_note"
+          "$ref": "objects.json#/definitions/notes_note"
         },
         "page": {
           "$ref": "objects.json#/definitions/pages_wikipage_full"
@@ -16210,7 +16492,9 @@
         "article",
         "textlive",
         "textpost",
-        "situational_theme"
+        "situational_theme",
+        "group",
+        "sticker"
       ]
     },
     "wall_wallpost_comments_donut": {
@@ -16455,7 +16739,8 @@
         },
         "owner_id": {
           "type": "integer",
-          "description": "Media owner's ID"
+          "description": "Media owner's ID",
+          "format": "int64"
         },
         "thumb_src": {
           "type": "string",

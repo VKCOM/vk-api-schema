@@ -168,6 +168,11 @@
       "description": "Not implemented yet",
       "global": true
     },
+    "api_error_client_version_deprecated": {
+      "code": 34,
+      "description": "Client version deprecated",
+      "global": true
+    },
     "api_error_client_update_needed": {
       "code": 35,
       "description": "Client update needed"
