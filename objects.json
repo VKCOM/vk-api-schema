@@ -2814,7 +2814,6 @@
         },
         "url": {
           "type": "string",
-          "format": "uri",
           "description": "Link URL"
         },
         "target_object": {

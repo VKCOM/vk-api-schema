@@ -4358,7 +4358,8 @@
       "name": "docs.getById",
       "description": "Returns information about documents by their IDs.",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {

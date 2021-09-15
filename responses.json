@@ -1922,9 +1922,6 @@
               "$ref": "objects.json#/definitions/messages_graffiti"
             }
           },
-          "required": [
-            "response"
-          ],
           "additionalProperties": false
         }
       },
@@ -6484,10 +6481,10 @@
           "additionalProperties": false
         }
       },
+      "additionalProperties": false,
       "required": [
-        "items"
-      ],
-      "additionalProperties": false
+        "response"
+      ]
     },
     "photos_getComments_extended_response": {
       "type": "object",
@@ -8927,10 +8924,10 @@
           "additionalProperties": false
         }
       },
+      "additionalProperties": false,
       "required": [
-        "items"
-      ],
-      "additionalProperties": false
+        "response"
+      ]
     },
     "wall_getComment_extended_response": {
       "type": "object",
