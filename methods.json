@@ -3326,14 +3326,14 @@
           "description": "Topic ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         },
         {
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "minimum": 1
         }
       ],
       "responses": {
@@ -16212,14 +16212,14 @@
       ],
       "parameters": [
         {
+          "name": "album_id",
+          "type": "integer"
+        },
+        {
           "name": "group_id",
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
           "type": "integer",
           "format": "int64"
-        },
-        {
-          "name": "album_id",
-          "type": "integer"
         }
       ],
       "responses": {

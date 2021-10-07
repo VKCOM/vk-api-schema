@@ -813,10 +813,7 @@
           "description": "URL of advertised object"
         },
         "preview_link": {
-          "type": [
-            "integer",
-            "string"
-          ],
+          "type": "string",
           "description": "link to preview an ad as it is shown on the website"
         },
         "title": {
@@ -2499,6 +2496,12 @@
         "can_post": {
           "$ref": "objects.json#/definitions/base_bool_int",
           "description": "Information whether current user can comment the post"
+        },
+        "can_open": {
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_close": {
+          "$ref": "objects.json#/definitions/base_bool_int"
         },
         "count": {
           "type": "integer",
@@ -8677,6 +8680,10 @@
         "is_default_photo": {
           "type": "boolean",
           "description": "If provided photo is default"
+        },
+        "is_default_call_photo": {
+          "type": "boolean",
+          "description": "If provided photo is default call photo"
         }
       },
       "additionalProperties": false
@@ -9800,45 +9807,6 @@
         "note"
       ]
     },
-    "newsfeed_event_activity": {
-      "type": "object",
-      "properties": {
-        "address": {
-          "type": "string",
-          "description": "address of event"
-        },
-        "button_text": {
-          "type": "string",
-          "description": "text of attach"
-        },
-        "friends": {
-          "type": "array",
-          "description": "array of friends ids",
-          "items": {
-            "type": "integer"
-          }
-        },
-        "member_status": {
-          "$ref": "objects.json#/definitions/groups_group_full_member_status",
-          "description": "Current user's member status"
-        },
-        "text": {
-          "type": "string",
-          "description": "text of attach"
-        },
-        "time": {
-          "type": "integer",
-          "description": "event start time"
-        }
-      },
-      "required": [
-        "text",
-        "button_text",
-        "friends",
-        "member_status"
-      ],
-      "additionalProperties": false
-    },
     "newsfeed_filters": {
       "type": "string",
       "enum": [
@@ -9918,7 +9886,8 @@
         },
         "source_id": {
           "type": "integer",
-          "description": "Item source ID"
+          "description": "Item source ID",
+          "format": "int64"
         },
         "date": {
           "type": "integer",
@@ -10358,72 +10327,12 @@
           "$ref": "objects.json#/definitions/newsfeed_item_base"
         },
         {
+          "$ref": "objects.json#/definitions/wall_wallpost_full"
+        },
+        {
           "properties": {
-            "activity": {
-              "$ref": "objects.json#/definitions/newsfeed_event_activity"
-            },
-            "attachments": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/wall_wallpost_attachment"
-              }
-            },
-            "comments": {
-              "$ref": "objects.json#/definitions/base_comments_info"
-            },
-            "copy_history": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/wall_wallpost"
-              }
-            },
             "feedback": {
               "$ref": "objects.json#/definitions/newsfeed_item_wallpost_feedback"
-            },
-            "geo": {
-              "$ref": "objects.json#/definitions/base_geo"
-            },
-            "is_favorite": {
-              "type": "boolean",
-              "description": "Information whether the post in favorites list"
-            },
-            "likes": {
-              "$ref": "objects.json#/definitions/base_likes_info"
-            },
-            "marked_as_ads": {
-              "$ref": "objects.json#/definitions/base_bool_int",
-              "description": "Information whether the post is marked as ads"
-            },
-            "post_id": {
-              "type": "integer",
-              "description": "Post ID"
-            },
-            "post_source": {
-              "$ref": "objects.json#/definitions/wall_post_source"
-            },
-            "post_type": {
-              "$ref": "objects.json#/definitions/newsfeed_item_wallpost_type"
-            },
-            "reposts": {
-              "$ref": "objects.json#/definitions/base_reposts_info"
-            },
-            "signer_id": {
-              "type": "integer",
-              "description": "Post signer ID"
-            },
-            "text": {
-              "type": "string",
-              "description": "Post text"
-            },
-            "views": {
-              "$ref": "objects.json#/definitions/wall_views",
-              "description": "Count of views"
-            },
-            "short_text_rate": {
-              "type": "number",
-              "description": "Preview length control parameter",
-              "minimum": 0,
-              "maximum": 1
             }
           }
         }
@@ -10483,15 +10392,6 @@
         "stars"
       ]
     },
-    "newsfeed_item_wallpost_type": {
-      "type": "string",
-      "description": "Post type",
-      "enum": [
-        "post",
-        "copy",
-        "reply"
-      ]
-    },
     "newsfeed_list": {
       "type": "object",
       "properties": {
@@ -10526,6 +10426,7 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "format": "int64",
                 "description": "Users and communities IDs"
               }
             }
@@ -13190,6 +13091,9 @@
         "subtitle": {
           "type": "string",
           "description": "Subtitle of the product"
+        },
+        "payment_region": {
+          "type": "string"
         }
       },
       "required": [
@@ -13926,6 +13830,7 @@
         "photo_max",
         "photo_max_orig",
         "photo_max_size",
+        "third_party_buttons",
         "online",
         "lists",
         "domain",
@@ -15135,15 +15040,6 @@
         "profile"
       ]
     },
-    "users_user_xtr_counters": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "objects.json#/definitions/users_user_full"
-        }
-      ],
-      "additionalProperties": false
-    },
     "users_user_xtr_type": {
       "type": "object",
       "allOf": [
@@ -15425,6 +15321,9 @@
           "$ref": "objects.json#/definitions/base_bool_int"
         }
       },
+      "required": [
+        "enabled"
+      ],
       "additionalProperties": false
     },
     "video_live_settings": {
@@ -16039,7 +15938,11 @@
         },
         "type": {
           "type": "string",
-          "description": "Place type"
+          "description": "Place type",
+          "enum": [
+            "place",
+            "point"
+          ]
         }
       },
       "additionalProperties": false
@@ -16086,7 +15989,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "link": {
           "type": "string"
@@ -16123,6 +16027,9 @@
           "type": "string",
           "format": "uri",
           "description": "URL to an external site used to publish the post"
+        },
+        "link": {
+          "$ref": "objects.json#/definitions/base_link"
         }
       },
       "additionalProperties": false
@@ -16147,7 +16054,8 @@
         "copy",
         "reply",
         "postpone",
-        "suggest"
+        "suggest",
+        "post_ads"
       ]
     },
     "wall_posted_photo": {
@@ -16332,7 +16240,8 @@
         },
         "from_id": {
           "type": "integer",
-          "description": "Post author ID"
+          "description": "Post author ID",
+          "format": "int64"
         },
         "geo": {
           "$ref": "objects.json#/definitions/wall_geo"
@@ -16358,9 +16267,6 @@
           "description": "Wall owner's ID",
           "format": "int64"
         },
-        "poster": {
-          "type": "object"
-        },
         "post_id": {
           "type": "integer",
           "description": "If post type 'reply', contains original post ID"
@@ -16383,7 +16289,8 @@
         },
         "signer_id": {
           "type": "integer",
-          "description": "Post signer ID"
+          "description": "Post signer ID",
+          "format": "int64"
         },
         "text": {
           "type": "string",
@@ -16442,13 +16349,6 @@
         "photo": {
           "$ref": "objects.json#/definitions/photos_photo"
         },
-        "photos_list": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "description": "String ID of photo"
-          }
-        },
         "poll": {
           "$ref": "objects.json#/definitions/polls_poll"
         },
@@ -16459,7 +16359,7 @@
           "$ref": "objects.json#/definitions/wall_wallpost_attachment_type"
         },
         "video": {
-          "$ref": "objects.json#/definitions/video_video"
+          "$ref": "objects.json#/definitions/video_video_full"
         }
       },
       "required": [
@@ -16474,6 +16374,7 @@
         "photo",
         "posted_photo",
         "audio",
+        "audio_playlist",
         "video",
         "doc",
         "link",
@@ -16483,8 +16384,7 @@
         "poll",
         "page",
         "album",
-        "photos_list",
-        "market_market_album",
+        "market_album",
         "market",
         "event",
         "donut_link",
@@ -16493,7 +16393,8 @@
         "textpost",
         "situational_theme",
         "group",
-        "sticker"
+        "sticker",
+        "podcast"
       ]
     },
     "wall_wallpost_comments_donut": {
@@ -16587,7 +16488,8 @@
             },
             "created_by": {
               "type": "integer",
-              "description": "Post creator ID (if post still can be edited)"
+              "description": "Post creator ID (if post still can be edited)",
+              "format": "int64"
             },
             "can_delete": {
               "$ref": "objects.json#/definitions/base_bool_int",
@@ -16673,7 +16575,8 @@
         },
         "copy_owner_id": {
           "type": "integer",
-          "description": "ID of the source post owner"
+          "description": "ID of the source post owner",
+          "format": "int64"
         },
         "copy_post_id": {
           "type": "integer",
@@ -16685,7 +16588,8 @@
         },
         "from_id": {
           "type": "integer",
-          "description": "Post author ID"
+          "description": "Post author ID",
+          "format": "int64"
         },
         "geo": {
           "$ref": "objects.json#/definitions/wall_geo"
@@ -16716,7 +16620,8 @@
         },
         "signer_id": {
           "type": "integer",
-          "description": "Post signer ID"
+          "description": "Post signer ID",
+          "format": "int64"
         },
         "text": {
           "type": "string",
@@ -16724,7 +16629,8 @@
         },
         "to_id": {
           "type": "integer",
-          "description": "Wall owner's ID"
+          "description": "Wall owner's ID",
+          "format": "int64"
         }
       },
       "additionalProperties": false

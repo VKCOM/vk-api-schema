@@ -3927,6 +3927,10 @@
             "market_album_id": {
               "type": "integer",
               "description": "Album ID"
+            },
+            "albums_count": {
+              "type": "integer",
+              "description": "Albums count"
             }
           },
           "additionalProperties": false
@@ -5112,7 +5116,7 @@
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_group"
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             },
             "chats": {
@@ -8298,7 +8302,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/users_user_xtr_counters"
+            "$ref": "objects.json#/definitions/users_user_full"
           }
         }
       },

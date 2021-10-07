@@ -206,6 +206,11 @@
       "description": "Additional signup required",
       "global": true
     },
+    "api_error_ip_is_not_allowed": {
+      "code": 42,
+      "description": "IP is not allowed",
+      "global": true
+    },
     "api_error_param": {
       "code": 100,
       "description": "One of the parameters specified was missing or invalid",
