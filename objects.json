@@ -7319,7 +7319,8 @@
         "moderator",
         "editor",
         "administrator",
-        "creator"
+        "creator",
+        "advertiser"
       ]
     },
     "groups_member_status": {
@@ -9572,7 +9573,8 @@
         "chat_pin_message",
         "chat_unpin_message",
         "chat_invite_user_by_link",
-        "chat_invite_user_by_message_request"
+        "chat_invite_user_by_message_request",
+        "chat_screenshot"
       ]
     },
     "messages_message_attachment": {
@@ -16157,7 +16159,8 @@
         "reply",
         "postpone",
         "suggest",
-        "post_ads"
+        "post_ads",
+        "photo"
       ]
     },
     "wall_posted_photo": {
