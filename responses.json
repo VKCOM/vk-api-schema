@@ -5031,6 +5031,7 @@
             },
             "items": {
               "type": "array",
+              "entity": "owner",
               "items": {
                 "type": "integer",
                 "minimum": 0
@@ -6824,6 +6825,7 @@
             "group_id": {
               "type": "integer",
               "description": "Community ID",
+              "entity": "groups",
               "format": "int64"
             },
             "hash": {
@@ -7306,6 +7308,7 @@
             "owner_id": {
               "type": "integer",
               "description": "Owner ID of created pretty card",
+              "entity": "owner",
               "format": "int64"
             },
             "card_id": {
@@ -7334,6 +7337,7 @@
             "owner_id": {
               "type": "integer",
               "description": "Owner ID of deleted pretty card",
+              "entity": "owner",
               "format": "int64"
             },
             "card_id": {
@@ -7366,6 +7370,7 @@
             "owner_id": {
               "type": "integer",
               "description": "Owner ID of edited pretty card",
+              "entity": "owner",
               "format": "int64"
             },
             "card_id": {
@@ -8222,6 +8227,7 @@
             },
             "items": {
               "type": "array",
+              "entity": "owner",
               "items": {
                 "type": "integer",
                 "description": "User ID",

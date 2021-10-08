@@ -1874,6 +1874,7 @@
           "name": "user_id",
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "is_success": {
@@ -1896,6 +1897,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "role": {
@@ -1929,6 +1931,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "role": {
@@ -1961,6 +1964,7 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -2357,6 +2361,7 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -2413,6 +2418,7 @@
           "minimum": 0
         },
         "owner_id": {
+          "entity": "owner",
           "type": "integer",
           "description": "Audio owner's ID",
           "format": "int64"
@@ -2894,6 +2900,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Owner id",
+          "entity": "owner",
           "format": "int64"
         },
         "icon": {
@@ -3426,6 +3433,7 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -3542,6 +3550,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Poll owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "poll_id": {
@@ -3605,6 +3614,7 @@
         "group_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "groups",
           "format": "int64"
         },
         "event_id": {
@@ -3705,6 +3715,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -3716,6 +3727,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "amount": {
@@ -3739,6 +3751,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -3750,6 +3763,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "amount_old": {
@@ -3781,6 +3795,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "amount": {
@@ -3804,6 +3819,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "photo": {
@@ -3822,6 +3838,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "self": {
@@ -3839,6 +3856,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "join_type": {
@@ -3867,6 +3885,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "self": {
@@ -3911,6 +3930,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "level_old": {
@@ -4054,6 +4074,7 @@
       "properties": {
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "id": {
@@ -4062,6 +4083,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "item_id": {
@@ -4108,6 +4130,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "key": {
@@ -4126,6 +4149,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -4263,11 +4287,13 @@
         "owner_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "photo_id": {
@@ -4288,6 +4314,7 @@
       "properties": {
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "poll_id": {
@@ -4301,6 +4328,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -4318,6 +4346,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "data": {
@@ -4400,6 +4429,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "unblock_date": {
@@ -4432,6 +4462,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "by_end_date": {
@@ -4485,11 +4516,13 @@
         },
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "video_id": {
@@ -4510,6 +4543,7 @@
       "properties": {
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "id": {
@@ -4519,6 +4553,7 @@
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "post_id": {
@@ -4782,6 +4817,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Document owner ID",
+          "entity": "owner",
           "format": "int64"
         },
         "title": {
@@ -5032,6 +5068,7 @@
       "properties": {
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "next_payment_date": {
@@ -5248,6 +5285,7 @@
           "type": "integer",
           "description": "User ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -5327,6 +5365,7 @@
           "type": "integer",
           "description": "User ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -5369,6 +5408,7 @@
           "type": "integer",
           "description": "User ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -5760,6 +5800,7 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         },
         "desc": {
@@ -5950,6 +5991,7 @@
       "properties": {
         "id": {
           "type": "integer",
+          "entity": "groups",
           "description": "Community ID"
         },
         "name": {
@@ -7291,6 +7333,7 @@
           "type": "integer",
           "description": "User ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -7327,6 +7370,7 @@
           "type": "integer",
           "description": "User ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -7551,6 +7595,7 @@
         },
         "group_id": {
           "type": "integer",
+          "entity": "groups",
           "format": "int64"
         },
         "photo": {
@@ -7621,6 +7666,7 @@
         },
         "user_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "date": {
@@ -7720,6 +7766,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Owner ID",
+          "entity": "owner",
           "format": "int64"
         },
         "item_id": {
@@ -7764,6 +7811,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Market album owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "title": {
@@ -7910,6 +7958,7 @@
         },
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "description": "Item owner's ID",
           "format": "int64"
         },
@@ -8032,11 +8081,13 @@
         "group_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "groups",
           "format": "int64"
         },
         "user_id": {
           "type": "integer",
           "minimum": 0,
+          "entity": "owner",
           "format": "int64"
         },
         "display_order_id": {
@@ -8104,6 +8155,7 @@
       "properties": {
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "item_id": {
@@ -8239,6 +8291,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Audio message owner ID",
+          "entity": "owner",
           "format": "int64"
         },
         "waveform": {
@@ -8468,6 +8521,7 @@
         },
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "title": {
@@ -8968,6 +9022,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Messages owner_id",
+          "entity": "owner",
           "format": "int64"
         },
         "peer_id": {
@@ -9063,6 +9118,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Graffiti owner ID",
+          "entity": "owner",
           "format": "int64"
         },
         "url": {
@@ -9244,6 +9300,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Fragment value in app link like vk.com/app123456_{owner_id}#hash",
+          "entity": "owner",
           "format": "int64"
         },
         "payload": {
@@ -9887,6 +9944,7 @@
         "source_id": {
           "type": "integer",
           "description": "Item source ID",
+          "entity": "owner",
           "format": "int64"
         },
         "date": {
@@ -10424,6 +10482,7 @@
             },
             "source_ids": {
               "type": "array",
+              "entity": "owner",
               "items": {
                 "type": "integer",
                 "format": "int64",
@@ -10536,6 +10595,7 @@
           "type": "integer",
           "description": "Note owner's ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "text": {
@@ -10717,6 +10777,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Author ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo": {
@@ -10788,6 +10849,7 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         },
         "status": {
@@ -11071,6 +11133,7 @@
           "type": "integer",
           "description": "Community ID",
           "minimum": 1,
+          "entity": "groups",
           "format": "int64"
         },
         "id": {
@@ -11136,6 +11199,7 @@
           "type": "integer",
           "description": "Community ID",
           "minimum": 1,
+          "entity": "groups",
           "format": "int64"
         },
         "html": {
@@ -11188,6 +11252,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Owner ID",
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -11322,6 +11387,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Photo owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo_256": {
@@ -11355,6 +11421,7 @@
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "width": {
@@ -11395,6 +11462,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Album owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "size": {
@@ -11452,6 +11520,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Album owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "size": {
@@ -11570,6 +11639,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Photo owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "post_id": {
@@ -11588,6 +11658,7 @@
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "width": {
@@ -11654,6 +11725,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Photo owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo_1280": {
@@ -11715,6 +11787,7 @@
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "width": {
@@ -11824,6 +11897,7 @@
         "user_id": {
           "type": "integer",
           "description": "Tagged user ID",
+          "entity": "owner",
           "format": "int64"
         },
         "viewed": {
@@ -11881,11 +11955,13 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         },
         "group_id": {
           "type": "integer",
           "description": "Group ID",
+          "entity": "groups",
           "format": "int64"
         }
       },
@@ -11937,6 +12013,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Photo owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo_1280": {
@@ -11992,6 +12069,7 @@
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "width": {
@@ -12045,6 +12123,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Photo owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo_1280": {
@@ -12109,6 +12188,7 @@
           "type": "integer",
           "description": "ID of the user who have uploaded the photo",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "width": {
@@ -12307,6 +12387,7 @@
       "properties": {
         "id": {
           "type": "integer",
+          "entity": "owner",
           "minimum": 0
         }
       },
@@ -12390,6 +12471,7 @@
         },
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "description": "Poll owner's ID",
           "format": "int64"
         },
@@ -12584,6 +12666,7 @@
       "properties": {
         "user_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "status": {
@@ -12651,6 +12734,7 @@
         "user_id": {
           "type": "integer",
           "description": "User ID",
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -13199,6 +13283,7 @@
         },
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "story_id": {
@@ -13264,7 +13349,8 @@
           ]
         },
         "post_owner_id": {
-          "type": "integer"
+          "type": "integer",
+          "entity": "owner"
         },
         "post_id": {
           "type": "integer"
@@ -13522,6 +13608,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Story owner's ID.",
+          "entity": "owner",
           "format": "int64"
         },
         "parent_story": {
@@ -13723,6 +13810,7 @@
         "user_id": {
           "type": "integer",
           "description": "user id",
+          "entity": "owner",
           "format": "int64"
         },
         "user": {
@@ -13761,6 +13849,7 @@
         "group_id": {
           "type": "integer",
           "description": "Community ID",
+          "entity": "groups",
           "format": "int64"
         },
         "id": {
@@ -14308,6 +14397,10 @@
         "albums": {
           "type": "integer",
           "description": "Albums number"
+        },
+        "badges": {
+          "type": "integer",
+          "description": "Badges number"
         },
         "audios": {
           "type": "integer",
@@ -14893,6 +14986,7 @@
         },
         "id": {
           "type": "integer",
+          "entity": "owner",
           "description": "User ID"
         },
         "last_name": {
@@ -15088,6 +15182,7 @@
         "group_id": {
           "type": "integer",
           "description": "Group ID",
+          "entity": "groups",
           "format": "int64"
         },
         "type": {
@@ -15359,6 +15454,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Video owner ID",
+          "entity": "owner",
           "format": "int64"
         },
         "title": {
@@ -15475,6 +15571,7 @@
             },
             "owner_id": {
               "type": "integer",
+              "entity": "owner",
               "description": "Video owner ID",
               "format": "int64"
             },
@@ -15482,6 +15579,7 @@
               "type": "integer",
               "minimum": 0,
               "description": "Id of the user who uploaded the video if it was uploaded to a group by member",
+              "entity": "owner",
               "format": "int64"
             },
             "title": {
@@ -15610,6 +15708,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Album owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "title": {
@@ -15802,6 +15901,7 @@
           "type": "integer",
           "description": "Note owner's ID",
           "minimum": 1,
+          "entity": "owner",
           "format": "int64"
         },
         "read_comments": {
@@ -15970,6 +16070,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Graffiti owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo_200": {
@@ -15990,6 +16091,7 @@
       "properties": {
         "id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "link": {
@@ -16068,6 +16170,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Photo owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "photo_130": {
@@ -16104,6 +16207,7 @@
         },
         "from_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64",
           "description": "Author ID"
         },
@@ -16115,6 +16219,7 @@
         },
         "owner_id": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64"
         },
         "parents_stack": {
@@ -16156,6 +16261,7 @@
         },
         "reply_to_user": {
           "type": "integer",
+          "entity": "owner",
           "format": "int64",
           "description": "Replied user ID"
         },
@@ -16241,6 +16347,7 @@
         "from_id": {
           "type": "integer",
           "description": "Post author ID",
+          "entity": "owner",
           "format": "int64"
         },
         "geo": {
@@ -16265,6 +16372,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Wall owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "post_id": {
@@ -16290,6 +16398,7 @@
         "signer_id": {
           "type": "integer",
           "description": "Post signer ID",
+          "entity": "owner",
           "format": "int64"
         },
         "text": {
@@ -16489,6 +16598,7 @@
             "created_by": {
               "type": "integer",
               "description": "Post creator ID (if post still can be edited)",
+              "entity": "owner",
               "format": "int64"
             },
             "can_delete": {
@@ -16576,6 +16686,7 @@
         "copy_owner_id": {
           "type": "integer",
           "description": "ID of the source post owner",
+          "entity": "owner",
           "format": "int64"
         },
         "copy_post_id": {
@@ -16589,6 +16700,7 @@
         "from_id": {
           "type": "integer",
           "description": "Post author ID",
+          "entity": "owner",
           "format": "int64"
         },
         "geo": {
@@ -16621,6 +16733,7 @@
         "signer_id": {
           "type": "integer",
           "description": "Post signer ID",
+          "entity": "owner",
           "format": "int64"
         },
         "text": {
@@ -16630,6 +16743,7 @@
         "to_id": {
           "type": "integer",
           "description": "Wall owner's ID",
+          "entity": "owner",
           "format": "int64"
         }
       },
@@ -16645,6 +16759,7 @@
         "owner_id": {
           "type": "integer",
           "description": "Media owner's ID",
+          "entity": "owner",
           "format": "int64"
         },
         "thumb_src": {

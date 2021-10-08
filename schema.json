@@ -197,6 +197,14 @@
         "description": {
           "type": "string",
           "description": "Parameter description"
+        },
+        "entity": {
+          "type": "string",
+          "enum": [
+            "owner",
+            "profiles",
+            "groups"
+          ]
         }
       },
       "required": [

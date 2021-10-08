@@ -14,7 +14,8 @@
         {
           "name": "owner_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -100,7 +101,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -171,7 +173,8 @@
           "description": "User ID",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -465,7 +468,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "name",
@@ -596,7 +600,8 @@
         {
           "name": "owner_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -3016,7 +3021,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -3043,7 +3049,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -3075,7 +3082,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -3102,7 +3110,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "text",
@@ -3186,7 +3195,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "title",
@@ -3260,7 +3270,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -3319,7 +3330,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -3355,7 +3367,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -3384,7 +3397,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -3433,7 +3447,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -3497,7 +3512,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -3571,7 +3587,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_ids",
@@ -3693,7 +3710,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -4178,7 +4196,8 @@
           "description": "ID of the user or community that owns the document. Use a negative value to designate a community ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "doc_id",
@@ -4211,7 +4230,8 @@
           "description": "ID of the user or community that owns the document. Use a negative value to designate a community ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "doc_id",
@@ -4247,7 +4267,8 @@
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "doc_id",
@@ -4340,7 +4361,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the documents. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "return_tags",
@@ -4432,7 +4454,8 @@
           "description": "ID of the user or community that owns the documents. Use a negative value to designate a community ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -4453,7 +4476,8 @@
           "description": "Community ID (if the document will be uploaded to the community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -4577,7 +4601,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -4616,7 +4641,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -4674,7 +4700,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -4693,7 +4720,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -4763,13 +4791,15 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -4788,7 +4818,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "id",
@@ -4816,7 +4847,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "id",
@@ -4876,7 +4908,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "id",
@@ -5064,7 +5097,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "article_id",
@@ -5112,12 +5146,14 @@
         {
           "name": "user_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -5136,7 +5172,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "id",
@@ -5160,7 +5197,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "id",
@@ -5202,7 +5240,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "id",
@@ -5247,13 +5286,15 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "tag_ids",
@@ -5344,13 +5385,15 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -5371,7 +5414,8 @@
           "description": "ID of the user whose friend request will be approved or to whom a friend request will be sent.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "text",
@@ -5487,7 +5531,8 @@
           "description": "ID of the user whose friend request is to be declined or who is to be deleted from the current user's friend list.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -5548,7 +5593,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "list_ids",
@@ -5636,7 +5682,8 @@
           "name": "user_id",
           "description": "User ID. By default, the current user ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "order",
@@ -5767,7 +5814,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "return_system",
@@ -5849,7 +5897,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "list_id",
@@ -6081,7 +6130,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "q",
@@ -6151,7 +6201,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "count",
@@ -6184,7 +6235,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "title",
@@ -6289,7 +6341,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "url",
@@ -6332,7 +6385,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "link",
@@ -6365,7 +6419,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "user_id",
@@ -6373,7 +6428,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -6398,12 +6454,14 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "owner_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "end_date",
@@ -6513,7 +6571,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "address_id",
@@ -6548,7 +6607,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "server_id",
@@ -6581,7 +6641,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "link_id",
@@ -6609,7 +6670,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -6632,7 +6694,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "title",
@@ -6699,7 +6762,8 @@
           "description": "Organizer community ID (for events only).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "public_category",
@@ -6925,7 +6989,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "address_id",
@@ -7029,7 +7094,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "server_id",
@@ -7078,7 +7144,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "link_id",
@@ -7112,7 +7179,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "user_id",
@@ -7120,7 +7188,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "role",
@@ -7184,7 +7253,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7205,7 +7275,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "extended",
@@ -7270,7 +7341,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "address_ids",
@@ -7345,7 +7417,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -7371,7 +7444,8 @@
         {
           "name": "owner_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7436,7 +7510,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7457,7 +7532,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "server_ids",
@@ -7488,7 +7564,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "server_id",
@@ -7585,7 +7662,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -7685,7 +7763,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7708,7 +7787,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7806,7 +7886,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -7853,7 +7934,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7866,7 +7948,8 @@
       "name": "groups.getTagList",
       "description": "List of group's tags",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -7874,7 +7957,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7907,7 +7991,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "user_id",
@@ -7915,7 +8000,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -7949,7 +8035,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "user_ids",
@@ -7959,7 +8046,8 @@
           "items": {
             "type": "integer",
             "minimum": 1
-          }
+          },
+          "entity": "owner"
         },
         {
           "name": "extended",
@@ -7994,7 +8082,8 @@
           "description": "ID or screen name of the community.",
           "type": "integer",
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "not_sure",
@@ -8029,7 +8118,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -8056,7 +8146,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "user_id",
@@ -8064,7 +8155,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -8086,7 +8178,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "link_id",
@@ -8209,7 +8302,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "server_id",
@@ -8490,7 +8584,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "enabled",
@@ -8751,7 +8846,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "messages",
@@ -8780,7 +8876,8 @@
       "name": "groups.setUserNote",
       "description": "In order to save note about group participant",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -8788,14 +8885,16 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "user_id",
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "note",
@@ -8814,7 +8913,8 @@
       "name": "groups.tagAdd",
       "description": "Add new group's tag",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -8822,7 +8922,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "tag_name",
@@ -8867,7 +8968,8 @@
       "name": "groups.tagBind",
       "description": "Bind or unbind group's tag to user",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -8875,7 +8977,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "tag_id",
@@ -8889,7 +8992,8 @@
           "required": true,
           "format": "int64",
           "minimum": 1,
-          "maximum": 2000000000
+          "maximum": 2000000000,
+          "entity": "owner"
         },
         {
           "name": "act",
@@ -8912,7 +9016,8 @@
       "name": "groups.tagDelete",
       "description": "Delete group's tag",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -8920,7 +9025,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "tag_id",
@@ -8939,7 +9045,8 @@
       "name": "groups.tagUpdate",
       "description": "Update group's tag",
       "access_token_type": [
-        "user"
+        "user",
+        "group"
       ],
       "parameters": [
         {
@@ -8947,7 +9054,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "tag_id",
@@ -8979,7 +9087,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "state",
@@ -9022,12 +9131,14 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "owner_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -9368,7 +9479,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the object.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -9412,7 +9524,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the object.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -9452,7 +9565,8 @@
           "name": "owner_id",
           "description": "ID of the user, community, or application that owns the object. If the 'type' parameter is set as 'sitepage', the application ID is passed as 'owner_id'. Use negative value for a community id. If the 'type' parameter is not set, the 'owner_id' is assumed to be either the current user or the same application ID as if the 'type' parameter was set to 'sitepage'.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -9534,7 +9648,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "type",
@@ -9547,7 +9662,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the object.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -9575,7 +9691,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "name",
@@ -9721,7 +9838,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "title",
@@ -9776,7 +9894,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_ids",
@@ -9833,7 +9952,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -9896,7 +10016,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -9932,7 +10053,8 @@
           "description": "ID of an collection owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -9968,7 +10090,8 @@
           "description": "identifier of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -10108,7 +10231,8 @@
           "description": "ID of an collection owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -10170,7 +10294,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -10212,7 +10337,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "order_id",
@@ -10373,7 +10499,8 @@
           "description": "identifier of an album owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_ids",
@@ -10404,7 +10531,8 @@
           "description": "ID of an items owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -10499,7 +10627,8 @@
           "description": "ID of an item owner community",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -10585,7 +10714,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -10624,7 +10754,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "order_id",
@@ -10655,7 +10786,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "order_id",
@@ -10736,7 +10868,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -10785,7 +10918,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -10835,7 +10969,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -10894,7 +11029,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -10947,7 +11083,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -11000,7 +11137,8 @@
           "description": "ID of an item owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -11039,7 +11177,8 @@
           "description": "identifier of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -11067,7 +11206,8 @@
           "description": "ID of an items owner community.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -11192,7 +11332,8 @@
           "description": "ID of the user to be added to the chat.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "visible_messages_count",
@@ -11246,7 +11387,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "key",
@@ -11291,7 +11433,8 @@
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11333,7 +11476,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "delete_for_all",
@@ -11388,7 +11532,8 @@
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11428,7 +11573,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11455,7 +11601,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11515,7 +11662,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "dont_parse_links",
@@ -11666,7 +11814,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11720,7 +11869,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11796,7 +11946,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11870,7 +12021,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -11926,7 +12078,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12017,7 +12170,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12097,7 +12251,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "preserve_order",
@@ -12167,7 +12322,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12269,7 +12425,8 @@
           "description": "Group ID",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12298,7 +12455,8 @@
           "description": "User ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12372,7 +12530,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "lp_version",
@@ -12427,7 +12586,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "lp_version",
@@ -12457,7 +12617,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "user_id",
@@ -12465,7 +12626,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12531,7 +12693,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12595,7 +12758,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12639,7 +12803,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "mark_conversation_as_read",
@@ -12764,7 +12929,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12836,7 +13002,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -12887,7 +13054,8 @@
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -13008,7 +13176,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "keyboard",
@@ -13147,7 +13316,8 @@
           "name": "user_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "peer_id",
@@ -13202,7 +13372,8 @@
           "description": "Group ID (for group messages with group access token)",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -13270,7 +13441,8 @@
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -13595,7 +13767,8 @@
           "name": "owner_id",
           "description": "Owner ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "start_time",
@@ -13741,7 +13914,8 @@
           "description": "Item owner's identifier (user or community), \"Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community \"",
           "type": "integer",
           "format": "int64",
-          "default": 0
+          "default": 0,
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -13890,7 +14064,8 @@
           "description": "Item owner's identifier (user or community), \"Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community \"",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -13935,7 +14110,8 @@
           "name": "owner_id",
           "description": "Object owner ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -14012,7 +14188,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "reply_to",
@@ -14090,7 +14267,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -14180,7 +14358,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "message",
@@ -14222,7 +14401,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -14279,7 +14459,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "need_wiki",
@@ -14320,7 +14501,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "sort",
@@ -14377,7 +14559,8 @@
           "description": "Note owner ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -14489,7 +14672,8 @@
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "random_id",
@@ -14529,7 +14713,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "subscription_id",
@@ -14652,7 +14837,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "votes",
@@ -14716,7 +14902,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "subscription_id",
@@ -14747,7 +14934,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -14767,7 +14955,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "subscription_id",
@@ -14828,7 +15017,8 @@
           "name": "owner_id",
           "description": "Page owner ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "page_id",
@@ -14883,12 +15073,14 @@
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "user_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -14916,7 +15108,8 @@
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -14946,12 +15139,14 @@
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "user_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "need_html",
@@ -14988,7 +15183,8 @@
           "description": "ID of the group in the context of which this markup is interpreted.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -15018,13 +15214,15 @@
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "user_id",
           "description": "User ID",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "title",
@@ -15066,12 +15264,14 @@
           "name": "group_id",
           "description": "ID of the community that owns the wiki page.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "user_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "view",
@@ -15129,7 +15329,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -15162,7 +15363,8 @@
           "description": "photo's owner ID",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -15201,7 +15403,8 @@
           "name": "group_id",
           "description": "ID of the community in which the album will be created.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "description",
@@ -15255,7 +15458,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -15316,7 +15520,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -15351,7 +15556,8 @@
           "description": "ID of the community that owns the album.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -15376,7 +15582,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -15402,7 +15609,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -15471,7 +15679,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the album.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "privacy_view",
@@ -15518,7 +15727,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -15558,7 +15768,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photos. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -15632,7 +15843,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the albums.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_ids",
@@ -15688,13 +15900,15 @@
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "description": "Community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -15714,7 +15928,8 @@
           "name": "owner_id",
           "description": "ID of a user or community that owns the photos. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "extended",
@@ -15781,7 +15996,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the album(s).",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -15905,7 +16121,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -15987,7 +16204,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -16014,7 +16232,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "main_photo",
@@ -16117,7 +16336,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "crop_x",
@@ -16165,7 +16385,8 @@
           "name": "owner_id",
           "description": "identifier of a community or current user. \"Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, \"",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -16185,7 +16406,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16219,7 +16441,8 @@
           "name": "group_id",
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -16240,7 +16463,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -16306,7 +16530,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16337,7 +16562,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "target_album_id",
@@ -16369,7 +16595,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16383,7 +16610,8 @@
           "description": "ID of the user to be tagged.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "x",
@@ -16423,7 +16651,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16455,7 +16684,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the album.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -16491,7 +16721,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16533,7 +16764,8 @@
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16585,7 +16817,8 @@
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -16636,7 +16869,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "photo_id",
@@ -16663,7 +16897,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the photo.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -16694,7 +16929,8 @@
           "name": "group_id",
           "description": "ID of the community to save photos to.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "server",
@@ -16757,7 +16993,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "photo",
@@ -16808,7 +17045,8 @@
           "description": "Community ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "photo",
@@ -16974,14 +17212,16 @@
           "description": "ID of the user on whose wall the photo will be saved.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "description": "ID of community on whose wall the photo will be saved.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "photo",
@@ -17140,7 +17380,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "poll_id",
@@ -17210,7 +17451,8 @@
           "name": "owner_id",
           "description": "If a poll will be added to a communty it is required to send a negative group identifier. Current user by default.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "app_id",
@@ -17261,7 +17503,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "poll_id",
@@ -17310,7 +17553,8 @@
           "name": "owner_id",
           "description": "poll owner id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "poll_id",
@@ -17392,7 +17636,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "is_board",
@@ -17458,7 +17703,8 @@
         {
           "name": "owner_id",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -17478,7 +17724,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "poll_id",
@@ -17873,7 +18120,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "activity_id",
@@ -17947,7 +18195,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "date_from",
@@ -18091,7 +18340,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "message",
@@ -18119,7 +18369,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "message",
@@ -18160,7 +18411,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "counter",
@@ -18195,7 +18447,8 @@
           "description": "Community ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "app_id",
@@ -18321,13 +18574,15 @@
           "name": "user_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -18353,7 +18608,8 @@
           "description": "Identifier of a community to set a status in. If left blank the status is set to current user.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -18393,7 +18649,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -18416,7 +18673,8 @@
           "description": "user id, whose variables names are returned if they were requested with a server method.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -18462,7 +18720,8 @@
           "name": "user_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -18672,7 +18931,8 @@
           "name": "owner_id",
           "description": "Story owner's ID. Current user id is used by default.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "story_id",
@@ -18707,7 +18967,8 @@
           "name": "owner_id",
           "description": "Owner ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "extended",
@@ -18850,7 +19111,8 @@
           "description": "ID of the community to upload the story (should be verified or with the \"fire\" icon).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "clickable_stickers",
@@ -18887,7 +19149,8 @@
           "description": "Story owner ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "story_id",
@@ -18935,7 +19198,8 @@
           "description": "Story owner ID. ",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "story_id",
@@ -18995,7 +19259,8 @@
           "description": "ID of the community to upload the story (should be verified or with the \"fire\" icon).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "clickable_stickers",
@@ -19032,7 +19297,8 @@
           "description": "Story owner ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "story_id",
@@ -19089,13 +19355,15 @@
           "description": "ID of the user whose replies should be hidden.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "group_id",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -19117,7 +19385,8 @@
           "description": "ID of the user whose replies should be hidden.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "story_id",
@@ -19391,7 +19660,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -19459,7 +19729,8 @@
           "description": "User ID.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "extended",
@@ -19510,7 +19781,8 @@
           "type": "integer",
           "required": true,
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "type",
@@ -19762,7 +20034,8 @@
           "description": "ID of a community to search in communities.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "from_list",
@@ -20008,7 +20281,8 @@
           "description": "ID of the user or community that owns the video. Use a negative value to designate a community ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -20037,7 +20311,8 @@
           "description": "Community ID (if the album will be created in a community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "title",
@@ -20104,7 +20379,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20138,7 +20414,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20208,7 +20485,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "target_id",
@@ -20233,7 +20511,8 @@
           "description": "Community ID (if the album is owned by a community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -20265,7 +20544,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -20291,7 +20571,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20354,7 +20635,8 @@
           "description": "Community ID (if the album edited is owned by a community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -20412,7 +20694,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -20451,7 +20734,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video(s).",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "videos",
@@ -20515,7 +20799,8 @@
           "name": "owner_id",
           "description": "identifier of a user or community to add a video to. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -20546,7 +20831,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video album(s).",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -20601,7 +20887,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20640,7 +20927,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20736,7 +21024,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20767,7 +21056,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the albums..",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -20825,7 +21115,8 @@
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20880,7 +21171,8 @@
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
@@ -20942,7 +21234,8 @@
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -21000,7 +21293,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -21020,7 +21314,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the video.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -21072,7 +21367,8 @@
           "description": "ID of the community in which the video will be saved. By default, the current user's page.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -21261,7 +21557,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21288,7 +21585,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21364,7 +21662,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21395,7 +21694,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -21427,7 +21727,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21567,7 +21868,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21653,7 +21955,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -21694,7 +21997,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "domain",
@@ -21801,7 +22105,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -21848,7 +22153,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21948,7 +22254,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. By default, current user ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -21988,7 +22295,8 @@
           "name": "owner_id",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -22014,7 +22322,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -22041,7 +22350,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "friends_only",
@@ -22202,7 +22512,8 @@
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "message",
@@ -22296,7 +22607,8 @@
           "description": "ID of the user or community that owns the wall.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -22348,7 +22660,8 @@
           "description": "ID of the user or community that owns the wall.",
           "type": "integer",
           "required": true,
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -22411,7 +22724,8 @@
           "description": "Target community ID when reposting to a community.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "mark_as_ads",
@@ -22451,7 +22765,8 @@
           "name": "owner_id",
           "description": "User ID or community ID from whose wall the post was deleted. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
@@ -22485,7 +22800,8 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "comment_id",
@@ -22517,7 +22833,8 @@
           "name": "owner_id",
           "description": "user or community id. \"Remember that for a community 'owner_id' must be negative.\"",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "domain",
@@ -22588,7 +22905,8 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "post_id",
