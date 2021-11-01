@@ -2645,6 +2645,9 @@
           }
         }
       },
+      "required": [
+        "error_code"
+      ],
       "additionalProperties": false
     },
     "base_geo": {
@@ -5992,6 +5995,7 @@
         "id": {
           "type": "integer",
           "entity": "groups",
+          "format": "int64",
           "description": "Community ID"
         },
         "name": {
@@ -6528,6 +6532,14 @@
               "description": "Owner in whitelist or not",
               "type": "boolean"
             },
+            "is_subscribed_stories": {
+              "description": "Information whether current user is subscribed to stories",
+              "type": "boolean"
+            },
+            "can_subscribe_stories": {
+              "description": "Owner in whitelist or not",
+              "type": "boolean"
+            },
             "can_subscribe_posts": {
               "description": "Can subscribe to wall",
               "type": "boolean"
@@ -6909,6 +6921,8 @@
         },
         "items": {
           "type": "array",
+          "entity": "owner",
+          "format": "int64",
           "items": {
             "type": "integer",
             "description": "Community ID"
@@ -10489,7 +10503,8 @@
                 "type": "integer",
                 "format": "int64",
                 "description": "Users and communities IDs"
-              }
+              },
+              "format": "int64"
             }
           }
         }
@@ -10727,7 +10742,7 @@
           "$ref": "objects.json#/definitions/notifications_feedback"
         },
         "parent": {
-          "$ref": "objects.json#/definitions/notifications_notification_parent"
+          "$ref": "objects.json#/definitions/notifications_notification"
         },
         "reply": {
           "$ref": "objects.json#/definitions/notifications_reply"
@@ -12390,7 +12405,8 @@
         "id": {
           "type": "integer",
           "entity": "owner",
-          "minimum": 0
+          "minimum": 0,
+          "format": "int64"
         }
       },
       "required": [
@@ -13189,6 +13205,7 @@
       "additionalProperties": false
     },
     "store_product_icon": {
+      "deprecated_from_version": "5.134",
       "type": "array",
       "items": {
         "$ref": "objects.json#/definitions/base_image"
@@ -13352,7 +13369,8 @@
         },
         "post_owner_id": {
           "type": "integer",
-          "entity": "owner"
+          "entity": "owner",
+          "format": "int64"
         },
         "post_id": {
           "type": "integer"
@@ -14989,6 +15007,7 @@
         "id": {
           "type": "integer",
           "entity": "owner",
+          "format": "int64",
           "description": "User ID"
         },
         "last_name": {
@@ -16084,6 +16103,25 @@
           "type": "string",
           "format": "uri",
           "description": "URL of the preview image with 586 px in width"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Graffiti height",
+          "minimum": 0
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Graffiti URL"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Graffiti width",
+          "minimum": 0
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for graffiti"
         }
       },
       "additionalProperties": false
@@ -16160,7 +16198,8 @@
         "postpone",
         "suggest",
         "post_ads",
-        "photo"
+        "photo",
+        "video"
       ]
     },
     "wall_posted_photo": {
@@ -16484,6 +16523,7 @@
       "description": "Attachment type",
       "enum": [
         "photo",
+        "photos_list",
         "posted_photo",
         "audio",
         "audio_playlist",
@@ -16591,7 +16631,7 @@
             "copy_history": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/wall_wallpost"
+                "$ref": "objects.json#/definitions/wall_wallpost_full"
               }
             },
             "can_edit": {

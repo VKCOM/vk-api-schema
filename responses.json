@@ -2520,6 +2520,8 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "entity": "profiles",
+                "format": "int64",
                 "description": "User ID",
                 "minimum": 1
               }
@@ -2610,6 +2612,8 @@
             },
             "items": {
               "type": "array",
+              "entity": "profiles",
+              "format": "int64",
               "items": {
                 "type": "integer",
                 "description": "User ID",
@@ -5035,7 +5039,8 @@
               "items": {
                 "type": "integer",
                 "minimum": 0
-              }
+              },
+              "format": "int64"
             },
             "profiles": {
               "type": "array",
@@ -8232,7 +8237,8 @@
                 "type": "integer",
                 "description": "User ID",
                 "minimum": 1
-              }
+              },
+              "format": "int64"
             }
           },
           "required": [
@@ -8334,6 +8340,10 @@
               }
             }
           },
+          "required": [
+            "count",
+            "items"
+          ],
           "additionalProperties": false
         }
       },

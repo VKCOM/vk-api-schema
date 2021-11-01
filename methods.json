@@ -4498,6 +4498,8 @@
           "name": "group_id",
           "description": "Community ID (if the document will be uploaded to the community).",
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "minimum": 0
         }
       ],
@@ -7759,7 +7761,7 @@
       "parameters": [
         {
           "name": "group_id",
-          "description": "Community ID",
+          "description": "Community ID.",
           "type": "integer",
           "required": true,
           "format": "int64",
@@ -11285,17 +11287,11 @@
         },
         {
           "name": "status",
-          "type": "integer",
-          "default": 0,
-          "minimum": 0,
-          "enum": [
-            0,
-            2
-          ],
-          "enumNames": [
-            "active",
-            "disabled"
-          ]
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2
         },
         {
           "name": "need_variants",
@@ -11667,6 +11663,11 @@
         },
         {
           "name": "dont_parse_links",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "disable_mentions",
           "type": "boolean",
           "default": false
         },
@@ -16510,7 +16511,9 @@
         {
           "name": "group_id",
           "description": "ID of community to whose wall the photo will be uploaded.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -21421,6 +21424,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_upload"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_group_host_need_2fa"
         }
       ]
     },
