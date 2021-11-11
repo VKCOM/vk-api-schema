@@ -1871,7 +1871,6 @@
       "type": "object",
       "properties": {
         "user_id": {
-          "name": "user_id",
           "type": "integer",
           "minimum": 0,
           "entity": "owner",
@@ -6921,11 +6920,11 @@
         },
         "items": {
           "type": "array",
-          "entity": "owner",
-          "format": "int64",
           "items": {
             "type": "integer",
-            "description": "Community ID"
+            "description": "Community ID",
+            "entity": "owner",
+            "format": "int64"
           }
         }
       },
@@ -9113,6 +9112,42 @@
       ],
       "additionalProperties": false
     },
+    "messages_getConversationMembers": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Chat members count",
+          "minimum": 0
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/messages_conversation_member"
+          }
+        },
+        "chat_restrictions": {
+          "$ref": "objects.json#/definitions/messages_chat_restrictions"
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/users_user_full"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/groups_group_full"
+          }
+        }
+      },
+      "required": [
+        "items",
+        "count"
+      ],
+      "additionalProperties": false
+    },
     "messages_graffiti": {
       "type": "object",
       "properties": {
@@ -9880,21 +9915,6 @@
         "note"
       ]
     },
-    "newsfeed_filters": {
-      "type": "string",
-      "enum": [
-        "post",
-        "photo",
-        "photo_tag",
-        "wall_photo",
-        "friend",
-        "note",
-        "audio",
-        "video",
-        "audio_playlist",
-        "clip"
-      ]
-    },
     "newsfeed_ignore_item_type": {
       "type": "string",
       "enum": [
@@ -10498,13 +10518,12 @@
             },
             "source_ids": {
               "type": "array",
-              "entity": "owner",
               "items": {
                 "type": "integer",
                 "format": "int64",
-                "description": "Users and communities IDs"
-              },
-              "format": "int64"
+                "description": "Users and communities IDs",
+                "entity": "owner"
+              }
             }
           }
         }
@@ -10556,7 +10575,10 @@
         "video",
         "topic",
         "digest",
-        "stories"
+        "stories",
+        "note",
+        "audio_playlist",
+        "clip"
       ]
     },
     "newsfeed_newsfeed_photo": {
@@ -13269,7 +13291,7 @@
           "type": "integer"
         }
       },
-      "requried": [
+      "required": [
         "x",
         "y"
       ],
@@ -16543,6 +16565,7 @@
         "article",
         "textlive",
         "textpost",
+        "textpost_publish",
         "situational_theme",
         "group",
         "sticker",

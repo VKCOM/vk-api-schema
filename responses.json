@@ -2612,12 +2612,12 @@
             },
             "items": {
               "type": "array",
-              "entity": "profiles",
-              "format": "int64",
               "items": {
                 "type": "integer",
                 "description": "User ID",
-                "minimum": 1
+                "minimum": 1,
+                "entity": "profiles",
+                "format": "int64"
               }
             }
           },
@@ -4734,40 +4734,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Chat members count",
-              "minimum": 0
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/messages_conversation_member"
-              }
-            },
-            "chat_restrictions": {
-              "$ref": "objects.json#/definitions/messages_chat_restrictions"
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/users_user_full"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/groups_group_full"
-              }
-            }
-          },
-          "required": [
-            "items",
-            "count"
-          ],
-          "additionalProperties": false
+          "$ref": "objects.json#/definitions/messages_getConversationMembers"
         }
       },
       "required": [
@@ -5035,12 +5002,12 @@
             },
             "items": {
               "type": "array",
-              "entity": "owner",
               "items": {
                 "type": "integer",
-                "minimum": 0
-              },
-              "format": "int64"
+                "minimum": 0,
+                "entity": "owner",
+                "format": "int64"
+              }
             },
             "profiles": {
               "type": "array",
@@ -8232,13 +8199,13 @@
             },
             "items": {
               "type": "array",
-              "entity": "owner",
               "items": {
                 "type": "integer",
                 "description": "User ID",
-                "minimum": 1
-              },
-              "format": "int64"
+                "minimum": 1,
+                "entity": "owner",
+                "format": "int64"
+              }
             }
           },
           "required": [
@@ -8688,7 +8655,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             },
             "groups": {

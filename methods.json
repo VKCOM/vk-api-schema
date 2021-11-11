@@ -441,7 +441,12 @@
         {
           "name": "name",
           "description": "Setting name.",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "intro",
+            "no_wall_replies",
+            "own_posts_default"
+          ]
         },
         {
           "name": "value",
@@ -8044,12 +8049,12 @@
           "name": "user_ids",
           "description": "User IDs.",
           "type": "array",
-          "format": "int64",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 1
-          },
-          "entity": "owner"
+          }
         },
         {
           "name": "extended",
@@ -13546,7 +13551,7 @@
           "description": "Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends",
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/newsfeed_filters"
+            "$ref": "objects.json#/definitions/newsfeed_newsfeed_item_type"
           }
         },
         {
@@ -21440,8 +21445,7 @@
         {
           "name": "q",
           "description": "Search query string (e.g., 'The Beatles').",
-          "type": "string",
-          "required": true
+          "type": "string"
         },
         {
           "name": "sort",
@@ -21527,7 +21531,12 @@
         "extendedResponse": {
           "$ref": "responses.json#/definitions/video_search_extended_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "errors.json#/errors/api_error_action_failed"
+        }
+      ]
     },
     {
       "name": "wall.checkCopyrightLink",
