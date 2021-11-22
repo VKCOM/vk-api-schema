@@ -8583,7 +8583,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             },
             "groups": {

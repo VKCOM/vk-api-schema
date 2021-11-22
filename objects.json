@@ -6531,14 +6531,6 @@
               "description": "Owner in whitelist or not",
               "type": "boolean"
             },
-            "is_subscribed_stories": {
-              "description": "Information whether current user is subscribed to stories",
-              "type": "boolean"
-            },
-            "can_subscribe_stories": {
-              "description": "Owner in whitelist or not",
-              "type": "boolean"
-            },
             "can_subscribe_posts": {
               "description": "Can subscribe to wall",
               "type": "boolean"
@@ -8382,13 +8374,22 @@
         "is_default_photo": {
           "type": "boolean",
           "description": "If provided photo is default"
+        },
+        "members_count": {
+          "type": "integer",
+          "description": "Count members in a chat"
+        },
+        "is_group_channel": {
+          "type": "boolean",
+          "description": "If chat is group channel"
         }
       },
       "required": [
         "id",
         "type",
         "admin_id",
-        "users"
+        "users",
+        "members_count"
       ],
       "additionalProperties": false
     },
@@ -9309,7 +9310,7 @@
       "type": "object",
       "properties": {
         "action": {
-          "$ref": "objects.json#/definitions/messages_keyboard_button_action"
+          "$ref": "objects.json#/definitions/messages_keyboard_button_property_action"
         },
         "color": {
           "type": "string",
@@ -9327,7 +9328,52 @@
       ],
       "additionalProperties": false
     },
-    "messages_keyboard_button_action": {
+    "messages_keyboard_button_action_callback": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label for button"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "callback"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_location": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "location"
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_open_app": {
       "type": "object",
       "description": "Description of the action, that should be performed on button click",
       "properties": {
@@ -9343,10 +9389,6 @@
           "type": "string",
           "description": "Label for button"
         },
-        "link": {
-          "type": "string",
-          "description": "link for button"
-        },
         "owner_id": {
           "type": "integer",
           "description": "Fragment value in app link like vk.com/app123456_{owner_id}#hash",
@@ -9358,14 +9400,141 @@
           "description": "Additional data sent along with message for developer convenience"
         },
         "type": {
-          "description": "Button type",
-          "$ref": "objects.json#/definitions/messages_template_action_type_names"
+          "type": "string",
+          "enum": [
+            "open_app"
+          ]
+        }
+      },
+      "required": [
+        "app_id",
+        "label",
+        "owner_id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_open_link": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label for button"
+        },
+        "link": {
+          "type": "string",
+          "description": "link for button"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "open_link"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "link",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_open_photo": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "open_photo"
+          ]
         }
       },
       "required": [
         "type"
       ],
       "additionalProperties": false
+    },
+    "messages_keyboard_button_action_text": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label for button"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_vkpay": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "Fragment value in app link like vk.com/app123456_-654321#{hash}"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "vkpay"
+          ]
+        }
+      },
+      "required": [
+        "hash",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_property_action": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_location"
+        },
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_open_app"
+        },
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_open_link"
+        },
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_open_photo"
+        },
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_text"
+        },
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_callback"
+        },
+        {
+          "$ref": "objects.json#/definitions/messages_keyboard_button_action_vkpay"
+        }
+      ]
     },
     "messages_last_activity": {
       "type": "object",
@@ -15871,6 +16040,9 @@
         {
           "properties": {
             "files": {
+              "$ref": "objects.json#/definitions/video_video_files"
+            },
+            "trailer": {
               "$ref": "objects.json#/definitions/video_video_files"
             },
             "live_settings": {

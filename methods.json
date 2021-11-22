@@ -5474,6 +5474,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           }
         }
@@ -11314,6 +11316,75 @@
       }
     },
     {
+      "name": "market.searchItems",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 300
+        },
+        {
+          "name": "category_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "price_from",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "price_to",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sort_by",
+          "type": "integer",
+          "default": 3,
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "enumNames": [
+            "date",
+            "price",
+            "relevance"
+          ]
+        },
+        {
+          "name": "sort_direction",
+          "type": "integer",
+          "default": 1,
+          "enum": [
+            0,
+            1
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "responses.json#/definitions/market_search_response"
+        }
+      }
+    },
+    {
       "name": "messages.addChatUser",
       "description": "Adds a new user to a chat.",
       "access_token_type": [
@@ -11422,6 +11493,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           }
         },
@@ -11492,7 +11565,7 @@
           "type": "integer"
         },
         {
-          "name": "conversation_message_ids",
+          "name": "cmids",
           "description": "Conversation message IDs.",
           "type": "array",
           "items": {
@@ -20275,13 +20348,16 @@
         {
           "name": "target_id",
           "description": "identifier of a user or community to add a video to. Use a negative value to designate a community ID.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -20370,7 +20446,9 @@
       "parameters": [
         {
           "name": "target_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -20394,6 +20472,7 @@
           "name": "video_id",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -20429,7 +20508,9 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int32",
+          "minimum": 0
         },
         {
           "name": "message",
@@ -20487,6 +20568,7 @@
           "description": "Video ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -20498,7 +20580,9 @@
         },
         {
           "name": "target_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -20586,7 +20670,9 @@
           "name": "video_id",
           "description": "Video ID.",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int32",
+          "minimum": 0
         },
         {
           "name": "name",
@@ -20889,7 +20975,9 @@
       "parameters": [
         {
           "name": "target_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "owner_id",
@@ -20902,6 +20990,7 @@
           "name": "video_id",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -20943,6 +21032,7 @@
           "description": "Video ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -21015,7 +21105,9 @@
       "parameters": [
         {
           "name": "target_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -21039,6 +21131,7 @@
           "name": "video_id",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -21111,12 +21204,15 @@
         {
           "name": "target_id",
           "description": "ID of the user or community that owns the album with videos.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
           "description": "ID of the video album.",
-          "type": "integer"
+          "type": "integer",
+          "default": -2
         },
         {
           "name": "owner_id",
@@ -21131,28 +21227,35 @@
           "description": "ID of the video.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
           "name": "before_owner_id",
           "description": "ID of the user or community that owns the video before which the video in question shall be placed.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "before_video_id",
           "description": "ID of the video before which the video in question shall be placed.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         },
         {
           "name": "after_owner_id",
           "description": "ID of the user or community that owns the video after which the photo in question shall be placed.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "after_video_id",
           "description": "ID of the video after which the photo in question shall be placed.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -21187,6 +21290,7 @@
           "description": "Video ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -21295,6 +21399,7 @@
           "description": "Video ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -21614,7 +21719,9 @@
           "name": "from_group",
           "description": "Group ID.",
           "type": "integer",
-          "minimum": 0
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "message",
