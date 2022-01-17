@@ -4627,7 +4627,8 @@
         "list": {
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64"
           }
         },
         "count": {
@@ -6596,7 +6597,8 @@
         35,
         39,
         43,
-        51
+        51,
+        53
       ],
       "enumNames": [
         "absent",
@@ -6609,7 +6611,8 @@
         "addresses",
         "articles",
         "chats",
-        "market_services"
+        "market_services",
+        "classifieds"
       ]
     },
     "groups_group_is_closed": {
@@ -8324,6 +8327,8 @@
       "properties": {
         "admin_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Chat creator ID"
         },
         "id": {
@@ -8368,6 +8373,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "description": "User ID"
           }
         },
@@ -8398,6 +8405,8 @@
       "properties": {
         "admin_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Chat creator ID"
         },
         "id": {
@@ -8458,6 +8467,8 @@
       "properties": {
         "admin_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "minimum": 0
         },
         "joined": {
@@ -8469,7 +8480,9 @@
         "members": {
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
           }
         },
         "members_count": {
@@ -8557,6 +8570,8 @@
           "description": "Ids of chat admins",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "description": "Admin id"
           }
         },
@@ -8564,6 +8579,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "description": "Active member ID"
           }
         },
@@ -8873,7 +8890,9 @@
           "description": "Is it possible for user to kick this member"
         },
         "invited_by": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         "is_admin": {
           "type": "boolean"
@@ -8894,7 +8913,9 @@
           "description": "Message request date"
         },
         "member_id": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         }
       },
       "required": [
@@ -8985,6 +9006,8 @@
         },
         "from_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Message author's ID"
         },
         "fwd_messages": {
@@ -9204,6 +9227,8 @@
         },
         "from_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Message author's ID"
         },
         "forward_level": {
@@ -9281,6 +9306,8 @@
       "properties": {
         "author_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Community or bot, which set this keyboard"
         },
         "buttons": {
@@ -9606,6 +9633,8 @@
         },
         "admin_author_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Only for messages from community. Contains user ID of community admin, who sent this message."
         },
         "attachments": {
@@ -9628,6 +9657,8 @@
         },
         "from_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Message author's ID"
         },
         "fwd_messages": {
@@ -9730,6 +9761,8 @@
         },
         "member_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "User or email peer ID"
         },
         "message": {
@@ -9886,6 +9919,8 @@
         },
         "inviter_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Message request sender id"
         },
         "request_date": {
@@ -9922,6 +9957,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "description": "Member IDs"
           }
         }
@@ -9947,6 +9984,8 @@
         },
         "from_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "description": "Message author's ID"
         },
         "fwd_messages": {
@@ -10067,6 +10106,8 @@
           "properties": {
             "invited_by": {
               "type": "integer",
+              "format": "int64",
+              "entity": "owner",
               "description": "ID of the inviter"
             }
           }
@@ -12902,6 +12943,22 @@
         "uid": {
           "type": "integer",
           "description": "User ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_setCounter_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "result": {
+          "type": "integer",
+          "description": "result (0 or 1)"
         }
       },
       "additionalProperties": false

@@ -12957,12 +12957,14 @@
           "name": "user_id",
           "description": "ID of the user to be removed from the chat.",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "member_id",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -13158,7 +13160,8 @@
           "name": "user_id",
           "description": "User ID (by default — current user).",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "random_id",
@@ -13199,7 +13202,8 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64",
+            "entity": "owner"
           },
           "maxItems": 100
         },
@@ -18517,15 +18521,13 @@
         }
       ],
       "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/base_ok_response"
+        "responseInteger": {
+          "$ref": "responses.json#/definitions/secure_setCounter_integer_response"
+        },
+        "responseArray": {
+          "$ref": "responses.json#/definitions/secure_setCounter_array_response"
         }
-      },
-      "errors": [
-        {
-          "$ref": "errors.json#/errors/api_error_access_menu"
-        }
-      ]
+      }
     },
     {
       "name": "stats.get",

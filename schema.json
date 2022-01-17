@@ -99,15 +99,25 @@
         },
         "oneOf": {
           "type": "array",
-          "items": {
-            "type": "object"
-          },
-          "minItems": 2
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/definitions/property"
+              },
+              "minItems": 2
+            }
+          ]
         },
         "allOf": {
           "type": "array",
           "items": {
-            "type": "object"
+            "$ref": "#/definitions/property"
+          }
+        },
+        "anyOf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/property"
           }
         },
         "items": {
@@ -354,8 +364,7 @@
         "^api_error_[a-zA-Z0-9_]+$": {
           "$ref": "#/definitions/error"
         }
-      },
-      "uniqueProperties": true
+      }
     },
     "methods": {
       "type": "array",
@@ -381,8 +390,7 @@
       },
       "additionalProperties": {
         "$ref": "#/definitions/property"
-      },
-      "uniqueProperties": true
+      }
     },
     "$schema": {
       "type": "string",

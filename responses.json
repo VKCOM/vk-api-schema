@@ -7556,8 +7556,38 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "description": "User ID"
+            "description": "User ID",
+            "entity": "owner",
+            "format": "int64"
           }
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "secure_setCounter_array_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/secure_setCounter_item"
+          }
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "secure_setCounter_integer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "result (0 or 1)"
         }
       },
       "required": [
