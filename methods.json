@@ -18320,12 +18320,16 @@
         {
           "name": "uid_from",
           "type": "integer",
-          "minimum": 0
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "uid_to",
           "type": "integer",
-          "minimum": 0
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "date_from",
@@ -18363,7 +18367,10 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         }
       ],
@@ -18386,7 +18393,9 @@
           "required": true,
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         },
         {
@@ -18414,7 +18423,9 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         },
         {

@@ -12762,8 +12762,16 @@
       "type": "object",
       "properties": {
         "button": {
-          "type": "string",
-          "description": "Button key"
+          "description": "Button key",
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "objects.json#/definitions/base_link_button"
+            },
+            {
+              "type": "string"
+            }
+          ]
         },
         "button_text": {
           "type": "string",

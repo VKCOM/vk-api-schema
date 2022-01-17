@@ -83,6 +83,8 @@
             "items": {
               "type": "array",
               "items": {
+                "entity": "owner",
+                "format": "int64",
                 "type": "integer"
               }
             },
@@ -3879,6 +3881,8 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "format": "int64",
+                "entity": "owner",
                 "description": "User ID"
               }
             }
@@ -4447,6 +4451,12 @@
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/market_market_item"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             }
           },
