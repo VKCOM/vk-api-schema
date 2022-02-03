@@ -98,15 +98,10 @@
           ]
         },
         "oneOf": {
-          "type": "array",
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/property"
-              },
-              "minItems": 2
-            }
-          ]
+          "items": {
+            "$ref": "#/definitions/property"
+          },
+          "minItems": 2
         },
         "allOf": {
           "type": "array",

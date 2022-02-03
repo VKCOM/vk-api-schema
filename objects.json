@@ -956,7 +956,7 @@
         "subcategories": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/base_object_with_name"
+            "$ref": "objects.json#/definitions/ads_category"
           }
         }
       },
@@ -984,6 +984,53 @@
           "type": "string",
           "description": "Client name",
           "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_create_ad_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Ad ID",
+          "required": true
+        },
+        "post_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Stealth Post ID"
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_create_campaign_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Campaign ID",
+          "required": true
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
         }
       },
       "additionalProperties": false
@@ -4568,6 +4615,9 @@
       ],
       "additionalProperties": false
     },
+    "database_city_by_id": {
+      "$ref": "objects.json#/definitions/base_object"
+    },
     "database_faculty": {
       "type": "object",
       "properties": {
@@ -5780,7 +5830,8 @@
         "clips_count",
         "has_unseen_stories",
         "is_business",
-        "textlives_count"
+        "textlives_count",
+        "members_count_text"
       ]
     },
     "groups_filter": {
@@ -5808,17 +5859,14 @@
         },
         "name": {
           "type": "string",
-          "description": "Community name",
-          "required": true
+          "description": "Community name"
         },
         "screen_name": {
           "type": "string",
-          "description": "Domain of the community page",
-          "required": true
+          "description": "Domain of the community page"
         },
         "is_closed": {
-          "$ref": "objects.json#/definitions/groups_group_is_closed",
-          "required": true
+          "$ref": "objects.json#/definitions/groups_group_is_closed"
         },
         "type": {
           "$ref": "objects.json#/definitions/groups_group_type"
@@ -6156,6 +6204,10 @@
               "minimum": 0,
               "description": "Community members number"
             },
+            "members_count_text": {
+              "type": "string",
+              "description": "Info about number of users in group"
+            },
             "requests_count": {
               "type": "integer",
               "minimum": 0,
@@ -6390,26 +6442,92 @@
         3,
         4,
         5,
+        6,
+        7,
+        8,
+        9,
         10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        24,
+        26,
+        27,
+        31,
+        32,
+        33,
+        34,
         35,
+        36,
+        37,
         39,
+        40,
+        41,
+        42,
         43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
         51,
-        53
+        53,
+        54,
+        55,
+        57,
+        58
       ],
       "enumNames": [
-        "absent",
+        "none",
         "photos",
         "topics",
-        "audio",
-        "video",
+        "audios",
+        "videos",
         "market",
+        "stories",
+        "apps",
+        "followers",
+        "links",
         "events",
+        "places",
+        "contacts",
+        "app_btns",
+        "docs",
+        "event_counters",
+        "group_messages",
+        "albums",
+        "categories",
+        "admin_help",
+        "app_widget",
+        "public_help",
+        "hs_donation_app",
+        "hs_market_app",
         "addresses",
+        "artist_page",
+        "podcast",
         "articles",
+        "admin_tips",
+        "menu",
+        "fixed_post",
         "chats",
+        "evergreen_notice",
+        "musicians",
+        "narratives",
+        "donut_donate",
+        "clips",
+        "market_cart",
+        "curators",
         "market_services",
-        "classifieds"
+        "classifieds",
+        "textlives",
+        "donut_for_dons",
+        "badges",
+        "chats_creation"
       ]
     },
     "groups_group_is_closed": {
@@ -7818,6 +7936,10 @@
             "user_agreement_info": {
               "description": "User agreement info",
               "type": "string"
+            },
+            "ad_id": {
+              "description": "Contains ad ID if it has",
+              "type": "integer"
             }
           }
         }
@@ -8224,6 +8346,18 @@
         },
         "is_member": {
           "type": "boolean"
+        },
+        "photo": {
+          "$ref": "objects.json#/definitions/messages_chat_settings_photo"
+        },
+        "is_don": {
+          "type": "boolean"
+        },
+        "is_group_channel": {
+          "type": "boolean"
+        },
+        "button": {
+          "$ref": "objects.json#/definitions/base_link_button"
         }
       },
       "additionalProperties": false
@@ -8942,6 +9076,9 @@
         "forward_level": {
           "type": "integer",
           "description": "Forward level (optional)"
+        },
+        "was_listened": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false
@@ -8965,13 +9102,10 @@
           "$ref": "objects.json#/definitions/base_link"
         },
         "market": {
-          "$ref": "objects.json#/definitions/base_link"
+          "$ref": "objects.json#/definitions/market_market_item"
         },
         "photo": {
           "$ref": "objects.json#/definitions/photos_photo"
-        },
-        "share": {
-          "$ref": "objects.json#/definitions/base_link"
         },
         "type": {
           "$ref": "objects.json#/definitions/messages_history_message_attachment_type",
@@ -8981,7 +9115,7 @@
           "$ref": "objects.json#/definitions/video_video"
         },
         "wall": {
-          "$ref": "objects.json#/definitions/base_link"
+          "$ref": "objects.json#/definitions/wall_wallpost_full"
         }
       },
       "additionalProperties": false
@@ -9522,9 +9656,6 @@
         "graffiti": {
           "$ref": "objects.json#/definitions/messages_graffiti"
         },
-        "link": {
-          "$ref": "objects.json#/definitions/base_link"
-        },
         "market": {
           "$ref": "objects.json#/definitions/market_market_item"
         },
@@ -9545,10 +9676,7 @@
           "required": true
         },
         "video": {
-          "$ref": "objects.json#/definitions/video_video"
-        },
-        "wall": {
-          "$ref": "objects.json#/definitions/wall_wallpost_full"
+          "$ref": "objects.json#/definitions/video_video_full"
         },
         "wall_reply": {
           "$ref": "objects.json#/definitions/wall_wall_comment"
@@ -11390,6 +11518,10 @@
           "type": "string",
           "description": "Photo album description"
         },
+        "can_delete": {
+          "type": "boolean",
+          "description": "album can delete"
+        },
         "id": {
           "type": "integer",
           "description": "Photo album ID",
@@ -12398,6 +12530,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "entity": "profiles",
+            "format": "int64",
             "description": "User ID"
           }
         }
@@ -12459,6 +12593,17 @@
         }
       },
       "additionalProperties": false
+    },
+    "prettyCards_prettyCardOrError": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "objects.json#/definitions/prettyCards_prettyCard"
+        },
+        {
+          "$ref": "objects.json#/definitions/base_error"
+        }
+      ]
     },
     "search_hint": {
       "type": "object",
@@ -12555,11 +12700,12 @@
           "type": "integer",
           "description": "User ID",
           "entity": "owner",
-          "format": "int64"
+          "format": "int64",
+          "required": true
         },
         "result": {
-          "type": "integer",
-          "description": "result (0 or 1)"
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "required": true
         }
       },
       "additionalProperties": false
@@ -13538,6 +13684,10 @@
           "format": "uri",
           "description": "Link URL",
           "required": true
+        },
+        "link_url_target": {
+          "type": "string",
+          "description": "How to open url"
         }
       },
       "additionalProperties": false
@@ -13740,6 +13890,7 @@
         "verified",
         "sex",
         "bdate",
+        "bdate_visibility",
         "city",
         "country",
         "home_town",
@@ -13994,6 +14145,8 @@
         },
         "id": {
           "type": "integer",
+          "entity": "owner",
+          "format": "int64",
           "description": "Relative ID"
         },
         "name": {
@@ -14798,7 +14951,6 @@
       "additionalProperties": false
     },
     "users_user_min": {
-      "type": "object",
       "properties": {
         "deactivated": {
           "type": "string",
@@ -14806,8 +14958,7 @@
         },
         "first_name": {
           "type": "string",
-          "description": "User first name",
-          "required": true
+          "description": "User first name"
         },
         "hidden": {
           "type": "integer",
@@ -14822,8 +14973,7 @@
         },
         "last_name": {
           "type": "string",
-          "description": "User last name",
-          "required": true
+          "description": "User last name"
         },
         "can_access_closed": {
           "type": "boolean"
@@ -14831,8 +14981,7 @@
         "is_closed": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_user_relation": {
       "type": "integer",
@@ -14988,7 +15137,9 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "description": "User ID"
+            "description": "User ID",
+            "entity": "profiles",
+            "format": "int64"
           },
           "required": true
         }
@@ -15295,229 +15446,223 @@
       "additionalProperties": false
     },
     "video_video": {
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "access_key": {
-              "type": "string",
-              "description": "Video access key"
-            },
-            "adding_date": {
-              "type": "integer",
-              "description": "Date when the video has been added in Unixtime",
-              "minimum": 0
-            },
-            "can_comment": {
-              "description": "Information whether current user can comment the video",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_edit": {
-              "description": "Information whether current user can edit the video",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_like": {
-              "description": "Information whether current user can like the video",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_repost": {
-              "$ref": "objects.json#/definitions/base_bool_int",
-              "description": "Information whether current user can repost the video"
-            },
-            "can_subscribe": {
-              "description": "Information whether current user can subscribe to author of the video",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_add_to_faves": {
-              "description": "Information whether current user can add the video to favourites",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_add": {
-              "description": "Information whether current user can add the video",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "can_attach_link": {
-              "description": "Information whether current user can attach action button to the video",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "is_private": {
-              "description": "1 if video is private",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "comments": {
-              "type": "integer",
-              "description": "Number of comments",
-              "minimum": 0
-            },
-            "date": {
-              "type": "integer",
-              "description": "Date when video has been uploaded in Unixtime",
-              "minimum": 0
-            },
-            "description": {
-              "type": "string",
-              "description": "Video description"
-            },
-            "duration": {
-              "type": "integer",
-              "description": "Video duration in seconds",
-              "minimum": 0
-            },
-            "image": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_video_image"
-              }
-            },
-            "first_frame": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/video_video_image"
-              }
-            },
-            "width": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Video width"
-            },
-            "height": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Video height"
-            },
-            "id": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Video ID"
-            },
-            "owner_id": {
-              "type": "integer",
-              "entity": "owner",
-              "description": "Video owner ID",
-              "format": "int64"
-            },
-            "user_id": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Id of the user who uploaded the video if it was uploaded to a group by member",
-              "entity": "owner",
-              "format": "int64"
-            },
-            "title": {
-              "type": "string",
-              "description": "Video title"
-            },
-            "is_favorite": {
-              "type": "boolean",
-              "description": "Whether video is added to bookmarks"
-            },
-            "player": {
-              "type": "string",
-              "format": "uri",
-              "description": "Video embed URL"
-            },
-            "processing": {
-              "description": "Returns if the video is processing",
-              "$ref": "objects.json#/definitions/base_property_exists"
-            },
-            "converting": {
-              "$ref": "objects.json#/definitions/base_bool_int",
-              "description": "1 if  video is being converted"
-            },
-            "added": {
-              "$ref": "objects.json#/definitions/base_bool_int",
-              "description": "1 if video is added to user's albums"
-            },
-            "is_subscribed": {
-              "$ref": "objects.json#/definitions/base_bool_int",
-              "description": "1 if user is subscribed to author of the video"
-            },
-            "track_code": {
-              "type": "string"
-            },
-            "repeat": {
-              "description": "Information whether the video is repeated",
-              "$ref": "objects.json#/definitions/base_property_exists"
-            },
-            "type": {
-              "type": "string",
-              "enum": [
-                "video",
-                "music_video",
-                "movie"
-              ]
-            },
-            "views": {
-              "type": "integer",
-              "description": "Number of views",
-              "minimum": 0
-            },
-            "local_views": {
-              "type": "integer",
-              "description": "If video is external, number of views on vk",
-              "minimum": 0
-            },
-            "content_restricted": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Restriction code"
-            },
-            "content_restricted_message": {
-              "type": "string",
-              "description": "Restriction text"
-            },
-            "balance": {
-              "type": "integer",
-              "description": "Live donations balance",
-              "minimum": 0
-            },
-            "live_status": {
-              "type": "string",
-              "description": "Live stream status",
-              "enum": [
-                "waiting",
-                "started",
-                "finished",
-                "failed",
-                "upcoming"
-              ]
-            },
-            "live": {
-              "description": "1 if the video is a live stream",
-              "$ref": "objects.json#/definitions/base_property_exists"
-            },
-            "upcoming": {
-              "description": "1 if the video is an upcoming stream",
-              "$ref": "objects.json#/definitions/base_property_exists"
-            },
-            "live_start_time": {
-              "description": "Date in Unixtime when the live stream is scheduled to start by the author",
-              "type": "integer",
-              "minimum": 0
-            },
-            "live_notify": {
-              "description": "Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)",
-              "$ref": "objects.json#/definitions/base_bool_int"
-            },
-            "spectators": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Number of spectators of the stream"
-            },
-            "platform": {
-              "type": "string",
-              "description": "External platform"
-            },
-            "likes": {
-              "$ref": "objects.json#/definitions/base_likes"
-            },
-            "reposts": {
-              "$ref": "objects.json#/definitions/base_reposts_info"
-            }
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Video access key"
+        },
+        "adding_date": {
+          "type": "integer",
+          "description": "Date when the video has been added in Unixtime",
+          "minimum": 0
+        },
+        "can_comment": {
+          "description": "Information whether current user can comment the video",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_edit": {
+          "description": "Information whether current user can edit the video",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_like": {
+          "description": "Information whether current user can like the video",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_repost": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can repost the video"
+        },
+        "can_subscribe": {
+          "description": "Information whether current user can subscribe to author of the video",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_add_to_faves": {
+          "description": "Information whether current user can add the video to favourites",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_add": {
+          "description": "Information whether current user can add the video",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "can_attach_link": {
+          "description": "Information whether current user can attach action button to the video",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "is_private": {
+          "description": "1 if video is private",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "comments": {
+          "type": "integer",
+          "description": "Number of comments",
+          "minimum": 0
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when video has been uploaded in Unixtime",
+          "minimum": 0
+        },
+        "description": {
+          "type": "string",
+          "description": "Video description"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Video duration in seconds",
+          "minimum": 0
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/video_video_image"
           }
+        },
+        "first_frame": {
+          "type": "array",
+          "items": {
+            "$ref": "objects.json#/definitions/video_video_image"
+          }
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Video width"
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Video height"
+        },
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Video ID"
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "description": "Video owner ID",
+          "format": "int64"
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Id of the user who uploaded the video if it was uploaded to a group by member",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string",
+          "description": "Video title"
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "Whether video is added to bookmarks"
+        },
+        "player": {
+          "type": "string",
+          "format": "uri",
+          "description": "Video embed URL"
+        },
+        "processing": {
+          "description": "Returns if the video is processing",
+          "$ref": "objects.json#/definitions/base_property_exists"
+        },
+        "converting": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "1 if  video is being converted"
+        },
+        "added": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "1 if video is added to user's albums"
+        },
+        "is_subscribed": {
+          "$ref": "objects.json#/definitions/base_bool_int",
+          "description": "1 if user is subscribed to author of the video"
+        },
+        "track_code": {
+          "type": "string"
+        },
+        "repeat": {
+          "description": "Information whether the video is repeated",
+          "$ref": "objects.json#/definitions/base_property_exists"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "video",
+            "music_video",
+            "movie"
+          ]
+        },
+        "views": {
+          "type": "integer",
+          "description": "Number of views",
+          "minimum": 0
+        },
+        "local_views": {
+          "type": "integer",
+          "description": "If video is external, number of views on vk",
+          "minimum": 0
+        },
+        "content_restricted": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Restriction code"
+        },
+        "content_restricted_message": {
+          "type": "string",
+          "description": "Restriction text"
+        },
+        "balance": {
+          "type": "integer",
+          "description": "Live donations balance",
+          "minimum": 0
+        },
+        "live_status": {
+          "type": "string",
+          "description": "Live stream status",
+          "enum": [
+            "waiting",
+            "started",
+            "finished",
+            "failed",
+            "upcoming"
+          ]
+        },
+        "live": {
+          "description": "1 if the video is a live stream",
+          "$ref": "objects.json#/definitions/base_property_exists"
+        },
+        "upcoming": {
+          "description": "1 if the video is an upcoming stream",
+          "$ref": "objects.json#/definitions/base_property_exists"
+        },
+        "live_start_time": {
+          "description": "Date in Unixtime when the live stream is scheduled to start by the author",
+          "type": "integer",
+          "minimum": 0
+        },
+        "live_notify": {
+          "description": "Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)",
+          "$ref": "objects.json#/definitions/base_bool_int"
+        },
+        "spectators": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of spectators of the stream"
+        },
+        "platform": {
+          "type": "string",
+          "description": "External platform"
+        },
+        "likes": {
+          "$ref": "objects.json#/definitions/base_likes"
+        },
+        "reposts": {
+          "$ref": "objects.json#/definitions/base_reposts_info"
         }
-      ],
-      "additionalProperties": false
+      }
     },
     "video_video_album": {
       "type": "object",

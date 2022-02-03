@@ -147,7 +147,8 @@
           "properties": {
             "changed": {
               "description": "1 if changes has been processed",
-              "$ref": "objects.json#/definitions/base_bool_int"
+              "$ref": "objects.json#/definitions/base_bool_int",
+              "required": true
             },
             "name_request": {
               "$ref": "objects.json#/definitions/account_name_request"
@@ -186,8 +187,7 @@
         "response": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "description": "Ad ID"
+            "$ref": "objects.json#/definitions/ads_create_ad_status"
           },
           "required": true
         }
@@ -200,8 +200,7 @@
         "response": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "description": "Campaign ID"
+            "$ref": "objects.json#/definitions/ads_create_campaign_status"
           },
           "required": true
         }
@@ -261,8 +260,11 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "integer",
-          "description": "0 if success",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "0 if success"
+          },
           "required": true
         }
       },
@@ -272,8 +274,11 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "integer",
-          "description": "0 if sucess",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "0 if success"
+          },
           "required": true
         }
       },
@@ -909,6 +914,30 @@
       },
       "additionalProperties": false
     },
+    "apps_getFriendsList_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "apps_getFriendsList_response": {
       "type": "object",
       "properties": {
@@ -917,12 +946,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_full"
+                "type": "integer",
+                "format": "int64",
+                "entity": "owner"
               }
             }
           },
@@ -951,7 +983,7 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user_min"
+                "$ref": "objects.json#/definitions/users_user"
               }
             }
           },
@@ -1339,13 +1371,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/base_object"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1360,7 +1394,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/base_object"
+            "$ref": "objects.json#/definitions/database_city_by_id"
           },
           "required": true
         }
@@ -1375,13 +1409,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/database_city"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1411,13 +1447,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/base_country"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1434,13 +1472,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/database_faculty"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1470,13 +1510,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/database_station"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1493,13 +1535,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/database_region"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1536,13 +1580,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/database_school"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -1559,13 +1605,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/database_university"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -2032,7 +2080,9 @@
           "items": {
             "type": "integer",
             "description": "User ID",
-            "minimum": 1
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
           },
           "required": true
         }
@@ -2086,6 +2136,8 @@
           "items": {
             "type": "integer",
             "description": "User ID",
+            "entity": "owner",
+            "format": "int64",
             "minimum": 1
           },
           "required": true
@@ -2114,18 +2166,24 @@
           "properties": {
             "online": {
               "type": "array",
+              "required": true,
               "items": {
                 "type": "integer",
                 "description": "User ID",
-                "minimum": 1
+                "minimum": 1,
+                "format": "int64",
+                "entity": "owner"
               }
             },
             "online_mobile": {
               "type": "array",
+              "required": true,
               "items": {
                 "type": "integer",
                 "description": "User ID",
-                "minimum": 1
+                "minimum": 1,
+                "format": "int64",
+                "entity": "owner"
               }
             }
           },
@@ -2143,7 +2201,9 @@
           "items": {
             "type": "integer",
             "description": "User ID",
-            "minimum": 1
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
           },
           "required": true
         }
@@ -2807,6 +2867,8 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "format": "int64",
+                "entity": "owner",
                 "description": "User ID",
                 "minimum": 0
               },
@@ -2861,6 +2923,8 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "format": "int64",
+                "entity": "owner",
                 "description": "User ID",
                 "minimum": 1
               },
@@ -2906,6 +2970,11 @@
               "description": "City id of group",
               "required": true
             },
+            "city_name": {
+              "type": "string",
+              "description": "City name of group",
+              "required": true
+            },
             "contacts": {
               "$ref": "objects.json#/definitions/base_bool_int"
             },
@@ -2930,6 +2999,11 @@
             "country_id": {
               "type": "integer",
               "description": "Country id of group",
+              "required": true
+            },
+            "country_name": {
+              "type": "string",
+              "description": "Country name of group",
               "required": true
             },
             "description": {
@@ -3144,6 +3218,8 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "format": "int64",
+                "entity": "groups",
                 "description": "Community ID",
                 "minimum": 0
               },
@@ -4027,6 +4103,43 @@
       },
       "additionalProperties": false
     },
+    "messages_getByConversationMessageId_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/messages_message"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "messages_getByConversationMessageId_response": {
       "type": "object",
       "properties": {
@@ -4128,6 +4241,12 @@
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             }
           },
@@ -4269,6 +4388,18 @@
             "next_from": {
               "type": "string",
               "description": "Value for pagination"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "objects.json#/definitions/groups_group_full"
+              }
             }
           },
           "additionalProperties": false,
@@ -4358,13 +4489,13 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/users_user"
+                "$ref": "objects.json#/definitions/users_user_full"
               }
             },
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_group"
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             },
             "conversations": {
@@ -4399,7 +4530,7 @@
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "objects.json#/definitions/groups_group"
+                "$ref": "objects.json#/definitions/groups_group_full"
               }
             },
             "conversations": {
@@ -6533,7 +6664,7 @@
         "response": {
           "type": "array",
           "items": {
-            "$ref": "objects.json#/definitions/prettyCards_prettyCard"
+            "$ref": "objects.json#/definitions/prettyCards_prettyCardOrError"
           },
           "required": true
         }
@@ -6704,17 +6835,6 @@
           "items": {
             "$ref": "objects.json#/definitions/secure_setCounter_item"
           },
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
-    "secure_setCounter_integer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "integer",
-          "description": "result (0 or 1)",
           "required": true
         }
       },
@@ -6899,6 +7019,8 @@
               "type": "array",
               "items": {
                 "type": "integer",
+                "entity": "owner",
+                "format": "int64",
                 "description": "Owner ID"
               },
               "required": true
@@ -6939,31 +7061,6 @@
               "type": "array",
               "items": {
                 "$ref": "objects.json#/definitions/groups_group_full"
-              },
-              "required": true
-            }
-          },
-          "additionalProperties": false,
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
-    "stories_getById_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Stories count",
-              "required": true
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "objects.json#/definitions/stories_story"
               },
               "required": true
             }

@@ -374,7 +374,9 @@
           "name": "relation_partner_id",
           "description": "ID of the relationship partner.",
           "type": "integer",
-          "minimum": 0
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "bdate",
@@ -459,39 +461,6 @@
           "$ref": "responses.json#/definitions/base_ok_response"
         }
       }
-    },
-    {
-      "name": "account.setNameInMenu",
-      "description": "Sets an application screen name (up to 17 characters), that is shown to the user in the left menu.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "user_id",
-          "description": "User ID.",
-          "type": "integer",
-          "required": true,
-          "format": "int64",
-          "minimum": 1,
-          "entity": "owner"
-        },
-        {
-          "name": "name",
-          "description": "Application screen name.",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "responses.json#/definitions/base_ok_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "errors.json#/errors/api_error_access_menu"
-        }
-      ]
     },
     {
       "name": "account.setOffline",
@@ -2927,6 +2896,9 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/apps_getFriendsList_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/apps_getFriendsList_extended_response"
         }
       }
     },
@@ -5346,7 +5318,9 @@
         },
         {
           "name": "item_owner_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "item_id",
@@ -5504,7 +5478,9 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
           },
           "maxItems": 1000
         },
@@ -5646,6 +5622,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           }
         },
@@ -5655,6 +5633,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           }
         },
@@ -5664,6 +5644,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           }
         }
@@ -5849,13 +5831,17 @@
           "name": "source_uid",
           "description": "ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.",
           "type": "integer",
-          "minimum": 0
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "target_uid",
           "description": "ID of the user whose friends will be checked against the friends of the user specified in 'source_uid'.",
           "type": "integer",
-          "minimum": 0
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
         },
         {
           "name": "target_uids",
@@ -5863,6 +5849,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           },
           "maxItems": 100
@@ -6137,7 +6125,6 @@
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
@@ -7482,13 +7469,23 @@
           "description": "IDs or screen names of communities.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64",
+            "entity": "groups"
           }
         },
         {
           "name": "group_id",
           "description": "ID or screen name of the community.",
-          "type": "string"
+          "type": [
+            "integer",
+            "string"
+          ],
+          "format": "int64",
+          "entity": "groups"
         },
         {
           "name": "fields",
@@ -10127,6 +10124,8 @@
           "name": "owner_id",
           "description": "ID of an item owner community.",
           "type": "integer",
+          "format": "int64",
+          "entity": "owner",
           "required": true
         },
         {
@@ -10438,7 +10437,8 @@
           "description": "ID of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
           "type": "integer",
           "required": true,
-          "format": "int32"
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "album_id",
@@ -11376,6 +11376,16 @@
             0,
             1
           ]
+        },
+        {
+          "name": "country",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
@@ -11900,6 +11910,9 @@
       "responses": {
         "response": {
           "$ref": "responses.json#/definitions/messages_getByConversationMessageId_response"
+        },
+        "extendedResponse": {
+          "$ref": "responses.json#/definitions/messages_getByConversationMessageId_extended_response"
         }
       }
     },
@@ -11918,8 +11931,8 @@
           "required": true,
           "items": {
             "type": "integer",
-            "minimum": 0,
-            "format": "int32"
+            "format": "int32",
+            "minimum": 0
           },
           "maxItems": 100
         },
@@ -12215,8 +12228,7 @@
         {
           "name": "start_message_id",
           "description": "Starting message ID from which to return history.",
-          "type": "integer",
-          "minimum": 0
+          "type": "integer"
         },
         {
           "name": "rev",
@@ -12862,8 +12874,8 @@
           "default": [],
           "items": {
             "type": "integer",
-            "minimum": 0,
-            "format": "int32"
+            "format": "int32",
+            "minimum": 0
           }
         },
         {
@@ -12934,6 +12946,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_messages_cant_pin_one_time_story"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_messages_cant_pin_expiring_message"
         }
       ]
     },
@@ -13381,6 +13396,9 @@
         },
         {
           "$ref": "errors.json#/errors/api_error_messages_user_not_don"
+        },
+        {
+          "$ref": "errors.json#/errors/api_error_messages_message_cannot_be_forwarded"
         }
       ]
     },
@@ -14038,7 +14056,9 @@
           "description": "users and communities identifiers to be added to the list. Community identifiers must be negative numbers.",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
           }
         },
         {
@@ -18522,7 +18542,7 @@
       ],
       "responses": {
         "responseInteger": {
-          "$ref": "responses.json#/definitions/secure_setCounter_integer_response"
+          "$ref": "responses.json#/definitions/base_bool_response"
         },
         "responseArray": {
           "$ref": "responses.json#/definitions/secure_setCounter_array_response"
@@ -19002,7 +19022,9 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
           },
           "maxItems": 200
         }
@@ -19149,9 +19171,6 @@
       ],
       "responses": {
         "response": {
-          "$ref": "responses.json#/definitions/stories_getById_response"
-        },
-        "extendedResponse": {
           "$ref": "responses.json#/definitions/stories_getById_extended_response"
         }
       },
@@ -19638,7 +19657,9 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
           },
           "maxItems": 200
         }
@@ -19701,7 +19722,12 @@
           "description": "User IDs or screen names ('screen_name'). By default, current user ID.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64",
+            "entity": "profiles"
           },
           "maxItems": 1000
         },

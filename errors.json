@@ -294,10 +294,6 @@
       "code": 147,
       "description": "Application has insufficient funds"
     },
-    "api_error_access_menu": {
-      "code": 148,
-      "description": "Access to the menu of the user denied"
-    },
     "api_error_param_timestamp": {
       "code": 150,
       "description": "Invalid timestamp",
@@ -645,6 +641,14 @@
     "api_error_messages_user_not_don": {
       "code": 962,
       "description": "You can't access donut chat without subscription"
+    },
+    "api_error_messages_message_cannot_be_forwarded": {
+      "code": 969,
+      "description": "Message cannot be forwarded"
+    },
+    "api_error_messages_cant_pin_expiring_message": {
+      "code": 970,
+      "description": "Cannot pin an expiring message"
     },
     "api_error_auth_flood_error": {
       "code": 1105,
