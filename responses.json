@@ -7105,6 +7105,9 @@
             },
             "need_upload_screen": {
               "type": "boolean"
+            },
+            "next_from": {
+              "type": "string"
             }
           },
           "additionalProperties": false,

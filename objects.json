@@ -3392,7 +3392,8 @@
         "last_name_gen",
         "can_subscribe_stories",
         "is_subscribed_stories",
-        "vk_admin_status"
+        "vk_admin_status",
+        "can_upload_story"
       ]
     },
     "base_user_id": {
@@ -13326,7 +13327,9 @@
             "live_finished",
             "community_grouped_stories",
             "app_grouped_stories",
-            "birthday"
+            "birthday",
+            "discover",
+            "advices"
           ],
           "description": "Type of Feed Item",
           "required": true

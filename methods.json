@@ -16184,7 +16184,23 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "string"
+            "type": "string",
+            "properties": {
+              "owner_id": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "owner",
+                "required": true
+              },
+              "photo_id": {
+                "type": "integer",
+                "minimum": 0,
+                "required": true
+              },
+              "access_key": {
+                "type": "string"
+              }
+            }
           },
           "maxItems": 500
         },
