@@ -119,10 +119,7 @@
           "minimum": 0
         },
         "link_redirects": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "object"
         },
         "lang": {
           "type": "integer",
