@@ -6290,13 +6290,6 @@
           "name": "work_info_status",
           "type": "string",
           "default": "no_information",
-          "enum": [
-            "always_opened",
-            "forever_closed",
-            "no_information",
-            "temporarily_closed",
-            "timetable"
-          ],
           "$ref": "objects.json#/definitions/groups_address_work_info_status"
         },
         {
@@ -7043,13 +7036,6 @@
         {
           "name": "work_info_status",
           "type": "string",
-          "enum": [
-            "always_opened",
-            "forever_closed",
-            "no_information",
-            "temporarily_closed",
-            "timetable"
-          ],
           "$ref": "objects.json#/definitions/groups_address_work_info_status"
         },
         {
