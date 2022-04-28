@@ -13283,6 +13283,7 @@
           "name": "forward",
           "description": "JSON describing the forwarded message or reply",
           "type": "string",
+          "format": "json",
           "$ref": "objects.json#/definitions/messages_forward"
         },
         {
@@ -13302,6 +13303,7 @@
         {
           "name": "keyboard",
           "type": "string",
+          "format": "json",
           "$ref": "objects.json#/definitions/messages_keyboard"
         },
         {
