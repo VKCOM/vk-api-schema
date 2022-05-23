@@ -470,9 +470,6 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "objects.json#/definitions/users_user_min"
-        },
-        {
           "$ref": "objects.json#/definitions/users_user_settings_xtr"
         },
         {
