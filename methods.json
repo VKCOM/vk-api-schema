@@ -6290,13 +6290,6 @@
           "name": "work_info_status",
           "type": "string",
           "default": "no_information",
-          "enum": [
-            "always_opened",
-            "forever_closed",
-            "no_information",
-            "temporarily_closed",
-            "timetable"
-          ],
           "$ref": "objects.json#/definitions/groups_address_work_info_status"
         },
         {
@@ -6723,7 +6716,7 @@
         {
           "name": "subject",
           "description": "Community subject. Possible values: , *'1' - auto/moto,, *'2' - activity holidays,, *'3' - business,, *'4' - pets,, *'5' - health,, *'6' - dating and communication, , *'7' - games,, *'8' - IT (computers and software),, *'9' - cinema,, *'10' - beauty and fashion,, *'11' - cooking,, *'12' - art and culture,, *'13' - literature,, *'14' - mobile services and internet,, *'15' - music,, *'16' - science and technology,, *'17' - real estate,, *'18' - news and media,, *'19' - security,, *'20' - education,, *'21' - home and renovations,, *'22' - politics,, *'23' - food,, *'24' - industry,, *'25' - travel,, *'26' - work,, *'27' - entertainment,, *'28' - religion,, *'29' - family,, *'30' - sports,, *'31' - insurance,, *'32' - television,, *'33' - goods and services,, *'34' - hobbies,, *'35' - finance,, *'36' - photo,, *'37' - esoterics,, *'38' - electronics and appliances,, *'39' - erotic,, *'40' - humor,, *'41' - society, humanities,, *'42' - design and graphics.",
-          "type": "string",
+          "type": "integer",
           "$ref": "objects.json#/definitions/groups_group_subject"
         },
         {
@@ -7043,13 +7036,6 @@
         {
           "name": "work_info_status",
           "type": "string",
-          "enum": [
-            "always_opened",
-            "forever_closed",
-            "no_information",
-            "temporarily_closed",
-            "timetable"
-          ],
           "$ref": "objects.json#/definitions/groups_address_work_info_status"
         },
         {
@@ -13297,6 +13283,7 @@
           "name": "forward",
           "description": "JSON describing the forwarded message or reply",
           "type": "string",
+          "format": "json",
           "$ref": "objects.json#/definitions/messages_forward"
         },
         {
@@ -13316,6 +13303,7 @@
         {
           "name": "keyboard",
           "type": "string",
+          "format": "json",
           "$ref": "objects.json#/definitions/messages_keyboard"
         },
         {

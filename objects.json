@@ -119,7 +119,10 @@
           "minimum": 0
         },
         "link_redirects": {
-          "type": "object"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "lang": {
           "type": "integer",
@@ -469,9 +472,6 @@
     "account_user_settings": {
       "type": "object",
       "allOf": [
-        {
-          "$ref": "objects.json#/definitions/users_user_min"
-        },
         {
           "$ref": "objects.json#/definitions/users_user_settings_xtr"
         },
@@ -2446,7 +2446,53 @@
         "genre_id": {
           "type": "integer",
           "description": "Genre ID",
-          "minimum": 0
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            21,
+            8,
+            1001,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            19,
+            22,
+            18
+          ],
+          "enumNames": [
+            "Rock",
+            "Pop",
+            "Rap & Hip-Hop",
+            "Easy Listening",
+            "House & Dance",
+            "Instrumental",
+            "Metal",
+            "Alternative",
+            "Dubstep",
+            "Jazz & Blues",
+            "Drum & Bass",
+            "Trance",
+            "Chanson",
+            "Ethnic",
+            "Acoustic & Vocal",
+            "Reggae",
+            "Classical",
+            "Indie Pop",
+            "Speech",
+            "Electropop & Disco",
+            "Other"
+          ]
         },
         "performer": {
           "type": "string",
@@ -6570,7 +6616,7 @@
       ]
     },
     "groups_group_subject": {
-      "type": "string",
+      "type": "integer",
       "enum": [
         1,
         2,
