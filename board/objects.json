@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "board_default_order": {
+      "type": "integer",
+      "description": "Sort type",
+      "enum": [
+        1,
+        2,
+        -1,
+        -2
+      ],
+      "enumNames": [
+        "desc_updated",
+        "desc_created",
+        "asc_updated",
+        "asc_created"
+      ]
+    },
+    "board_topic": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "integer",
+          "description": "Comments number"
+        },
+        "created": {
+          "type": "integer",
+          "description": "Date when the topic has been created in Unixtime"
+        },
+        "created_by": {
+          "type": "integer",
+          "description": "Creator ID"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Topic ID"
+        },
+        "is_closed": {
+          "description": "Information whether the topic is closed",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "is_fixed": {
+          "description": "Information whether the topic is fixed",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "title": {
+          "type": "string",
+          "description": "Topic title"
+        },
+        "updated": {
+          "type": "integer",
+          "description": "Date when the topic has been updated in Unixtime"
+        },
+        "updated_by": {
+          "type": "integer",
+          "description": "ID of user who updated the topic"
+        },
+        "first_comment": {
+          "type": "string",
+          "description": "First comment text"
+        },
+        "last_comment": {
+          "type": "string",
+          "description": "Last comment text"
+        }
+      },
+      "additionalProperties": false
+    },
+    "board_topic_comment": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_comment_attachment"
+          }
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the comment has been added in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Author ID",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Comment ID",
+          "minimum": 1,
+          "required": true
+        },
+        "real_offset": {
+          "type": "integer",
+          "description": "Real position of the comment"
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment text",
+          "required": true
+        },
+        "can_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can edit the comment"
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes_info"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

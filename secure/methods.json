@@ -1,0 +1,346 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "secure.addAppEvent",
+      "description": "Adds user activity information to an application",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of a user to save the data",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "activity_id",
+          "description": "there are 2 default activities: , * 1 - level. Works similar to ,, * 2 - points, saves points amount, Any other value is for saving completed missions",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "value",
+          "description": "depends on activity_id: * 1 - number, current level number,, * 2 - number, current user's points amount, , Any other value is ignored",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_already_unlocked"
+        }
+      ]
+    },
+    {
+      "name": "secure.checkToken",
+      "description": "Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "token",
+          "description": "client 'access_token'",
+          "type": "string"
+        },
+        {
+          "name": "ip",
+          "description": "user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to transmit the 'ipv6' address. If not transmitted, the address will not be checked.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_checkToken_response"
+        }
+      }
+    },
+    {
+      "name": "secure.getAppBalance",
+      "description": "Returns payment balance of the application in hundredth of a vote.",
+      "access_token_type": [
+        "service"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_getAppBalance_response"
+        }
+      }
+    },
+    {
+      "name": "secure.getSMSHistory",
+      "description": "Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "date_from",
+          "description": "filter by start date. It is set as UNIX-time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "date_to",
+          "description": "filter by end date. It is set as UNIX-time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "limit",
+          "description": "number of returned posts. By default — 1000.",
+          "type": "integer",
+          "default": 1000,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_getSMSHistory_response"
+        }
+      }
+    },
+    {
+      "name": "secure.getTransactionsHistory",
+      "description": "Shows history of votes transaction between users and the application.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "type": "integer"
+        },
+        {
+          "name": "uid_from",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "uid_to",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "date_from",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "date_to",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": 1000,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_getTransactionsHistory_response"
+        }
+      }
+    },
+    {
+      "name": "secure.getUserLevel",
+      "description": "Returns one of the previously set game levels of one or more users in the application.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_getUserLevel_response"
+        }
+      }
+    },
+    {
+      "name": "secure.giveEventSticker",
+      "description": "Opens the game achievement and gives the user a sticker",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
+        },
+        {
+          "name": "achievement_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_giveEventSticker_response"
+        }
+      }
+    },
+    {
+      "name": "secure.sendNotification",
+      "description": "Sends notification to the user.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "message",
+          "description": "notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../secure/responses.json#/definitions/secure_sendNotification_response"
+        }
+      }
+    },
+    {
+      "name": "secure.sendSMSNotification",
+      "description": "Sends 'SMS' notification to a user's mobile device.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "message",
+          "description": "'SMS' text to be sent in 'UTF-8' encoding. Only Latin letters and numbers are allowed. Maximum size is '160' characters.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_insufficient_funds"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_mobile_not_activated"
+        }
+      ]
+    },
+    {
+      "name": "secure.setCounter",
+      "description": "Sets a counter which is shown to the user in bold in the left menu.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "counters",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "counter",
+          "description": "counter value.",
+          "type": "integer"
+        },
+        {
+          "name": "increment",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "responseInteger": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        },
+        "responseArray": {
+          "$ref": "../secure/responses.json#/definitions/secure_setCounter_array_response"
+        }
+      }
+    }
+  ]
+}

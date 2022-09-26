@@ -1,0 +1,899 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "groups_addAddress_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../groups/objects.json#/definitions/groups_address",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_addCallbackServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "server_id": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_addLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../groups/objects.json#/definitions/groups_links_item",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_create_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../groups/objects.json#/definitions/groups_group",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_editAddress_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "../groups/objects.json#/definitions/groups_address",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getAddresses_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total count of addresses",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_address"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getBanned_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total users number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_banned_item"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getById_object_legacy_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_group_full"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getCallbackConfirmationCode_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Confirmation code",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getCallbackServers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_callback_server"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getCallbackSettings_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../groups/objects.json#/definitions/groups_callback_settings",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getCatalogInfo_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether catalog is enabled for current user",
+              "required": true
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_category_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getCatalogInfo_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether catalog is enabled for current user",
+              "required": true
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_category"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getCatalog_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getInvitedUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getInvites_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_min"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getInvites_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getLongPollServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../groups/objects.json#/definitions/groups_long_poll_server",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getLongPollSettings_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../groups/objects.json#/definitions/groups_long_poll_settings",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getMembers_fields_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total members number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_user_xtr_role"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getMembers_filter_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total members number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_member_role"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getMembers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total members number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "owner",
+                "description": "User ID",
+                "minimum": 0
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getRequests_fields_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getRequests_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "owner",
+                "description": "User ID",
+                "minimum": 1
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getSettings_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "access": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_access",
+              "description": "Community access settings"
+            },
+            "address": {
+              "type": "string",
+              "description": "Community's page domain"
+            },
+            "audio": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_audio",
+              "description": "Audio settings",
+              "required": true
+            },
+            "articles": {
+              "type": "integer",
+              "description": "Articles settings",
+              "required": true
+            },
+            "recognize_photo": {
+              "type": "integer",
+              "description": "Photo suggests setting"
+            },
+            "city_id": {
+              "type": "integer",
+              "description": "City id of group",
+              "required": true
+            },
+            "city_name": {
+              "type": "string",
+              "description": "City name of group",
+              "required": true
+            },
+            "contacts": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "links": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "sections_list": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_sections_list_item"
+              }
+            },
+            "main_section": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_full_section"
+            },
+            "secondary_section": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_full_section"
+            },
+            "age_limits": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_age_limits"
+            },
+            "country_id": {
+              "type": "integer",
+              "description": "Country id of group",
+              "required": true
+            },
+            "country_name": {
+              "type": "string",
+              "description": "Country name of group",
+              "required": true
+            },
+            "description": {
+              "type": "string",
+              "description": "Community description",
+              "required": true
+            },
+            "docs": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_docs",
+              "description": "Docs settings",
+              "required": true
+            },
+            "events": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "obscene_filter": {
+              "description": "Information whether the obscene filter is enabled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "obscene_stopwords": {
+              "description": "Information whether the stop words filter is enabled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "obscene_words": {
+              "type": "array",
+              "description": "The list of stop words",
+              "items": {
+                "type": "string"
+              },
+              "required": true
+            },
+            "event_group_id": {
+              "type": "integer"
+            },
+            "photos": {
+              "description": "Photos settings",
+              "$ref": "../groups/objects.json#/definitions/groups_group_photos",
+              "required": true
+            },
+            "public_category": {
+              "type": "integer",
+              "description": "Information about the group category"
+            },
+            "public_category_list": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_public_category_list"
+              }
+            },
+            "public_date": {
+              "type": "string"
+            },
+            "public_date_label": {
+              "type": "string"
+            },
+            "public_subcategory": {
+              "type": "integer",
+              "description": "Information about the group subcategory"
+            },
+            "rss": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of the RSS feed"
+            },
+            "start_date": {
+              "type": "integer",
+              "description": "Start date",
+              "minimum": 0
+            },
+            "finish_date": {
+              "description": "Finish date in Unix-time format",
+              "type": "integer"
+            },
+            "subject": {
+              "type": "integer",
+              "description": "Community subject ID"
+            },
+            "subject_list": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_subject_item"
+              }
+            },
+            "suggested_privacy": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_suggested_privacy"
+            },
+            "title": {
+              "type": "string",
+              "description": "Community title",
+              "required": true
+            },
+            "topics": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_topics",
+              "description": "Topics settings",
+              "required": true
+            },
+            "twitter": {
+              "$ref": "../groups/objects.json#/definitions/groups_settings_twitter"
+            },
+            "video": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_video",
+              "description": "Video settings",
+              "required": true
+            },
+            "wall": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_wall",
+              "description": "Wall settings",
+              "required": true
+            },
+            "website": {
+              "type": "string",
+              "description": "Community website"
+            },
+            "phone": {
+              "type": "string",
+              "description": "Community phone"
+            },
+            "email": {
+              "type": "string",
+              "description": "Community email"
+            },
+            "wiki": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_wiki",
+              "description": "Wiki settings",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getTagList_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_group_tag"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getTokenPermissions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "mask": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            },
+            "permissions": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_token_permission_setting"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_get_object_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "groups",
+                "description": "Community ID",
+                "minimum": 0
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_isMember_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "member": {
+              "description": "Information whether user is a member of the group",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "invitation": {
+              "description": "Information whether user has been invited to the group",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_invite": {
+              "description": "Information whether user can be invited",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_recall": {
+              "description": "Information whether user's invite to the group can be recalled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "request": {
+              "description": "Information whether user has sent request to the group",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_isMember_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Information whether user is a member of the group",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_isMember_user_ids_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_member_status_full"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_isMember_user_ids_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_member_status"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_search_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total communities number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "account_changePassword_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "New token",
+              "required": true
+            },
+            "secret": {
+              "type": "string",
+              "description": "New secret"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getActiveOffers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../account/objects.json#/definitions/account_offer"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getAppPermissions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Permissions mask",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getBanned_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "entity": "owner",
+                "format": "int64",
+                "type": "integer"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getCounters_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../account/objects.json#/definitions/account_account_counters",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getInfo_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../account/objects.json#/definitions/account_info",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getProfileInfo_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_getPushSettings_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../account/objects.json#/definitions/account_push_settings",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_saveProfileInfo_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "changed": {
+              "description": "1 if changes has been processed",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "name_request": {
+              "$ref": "../account/objects.json#/definitions/account_name_request"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

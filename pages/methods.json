@@ -1,0 +1,342 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "pages.clearCache",
+      "description": "Allows to clear the cache of particular 'external' pages which may be attached to VK posts.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "url",
+          "description": "Address of the page where you need to refesh the cached version",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "pages.get",
+      "description": "Returns information about a wiki page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Page owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "page_id",
+          "description": "Wiki page ID.",
+          "type": "integer"
+        },
+        {
+          "name": "global",
+          "description": "'1' — to return information about a global wiki page",
+          "type": "boolean"
+        },
+        {
+          "name": "site_preview",
+          "description": "'1' — resulting wiki page is a preview for the attached link",
+          "type": "boolean"
+        },
+        {
+          "name": "title",
+          "description": "Wiki page title.",
+          "type": "string"
+        },
+        {
+          "name": "need_source",
+          "type": "boolean"
+        },
+        {
+          "name": "need_html",
+          "description": "'1' — to return the page as HTML,",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_get_response"
+        }
+      }
+    },
+    {
+      "name": "pages.getHistory",
+      "description": "Returns a list of all previous versions of a wiki page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "page_id",
+          "description": "Wiki page ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the wiki page.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_getHistory_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_page"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_page_id"
+        }
+      ]
+    },
+    {
+      "name": "pages.getTitles",
+      "description": "Returns a list of wiki pages in a group.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the wiki page.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_getTitles_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_page"
+        }
+      ]
+    },
+    {
+      "name": "pages.getVersion",
+      "description": "Returns the text of one of the previous versions of a wiki page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "version_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the wiki page.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "need_html",
+          "description": "'1' — to return the page as HTML",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_getVersion_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_page"
+        }
+      ]
+    },
+    {
+      "name": "pages.parseWiki",
+      "description": "Returns HTML representation of the wiki markup.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "text",
+          "description": "Text of the wiki page.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the group in the context of which this markup is interpreted.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_parseWiki_response"
+        }
+      }
+    },
+    {
+      "name": "pages.save",
+      "description": "Saves the text of a wiki page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "text",
+          "description": "Text of the wiki page in wiki-format.",
+          "type": "string"
+        },
+        {
+          "name": "page_id",
+          "description": "Wiki page ID. The 'title' parameter can be passed instead of 'pid'.",
+          "type": "integer"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the wiki page.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "description": "User ID",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "description": "Wiki page title.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_save_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_page"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_page_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_title"
+        }
+      ]
+    },
+    {
+      "name": "pages.saveAccess",
+      "description": "Saves modified read and edit access settings for a wiki page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "page_id",
+          "description": "Wiki page ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the wiki page.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "view",
+          "description": "Who can view the wiki page: '1' — only community members, '2' — all users can view the page, '0' — only community managers",
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "managers",
+            "members",
+            "all"
+          ]
+        },
+        {
+          "name": "edit",
+          "description": "Who can edit the wiki page: '1' — only community members, '2' — all users can edit the page, '0' — only community managers",
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "managers",
+            "members",
+            "all"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../pages/responses.json#/definitions/pages_saveAccess_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_page"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_page_id"
+        }
+      ]
+    }
+  ]
+}

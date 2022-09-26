@@ -1,0 +1,959 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "base_bool_int": {
+      "type": "integer",
+      "enum": [
+        0,
+        1
+      ],
+      "enumNames": [
+        "no",
+        "yes"
+      ]
+    },
+    "base_city": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "City ID",
+          "minimum": 1,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "City title",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_comments_info": {
+      "type": "object",
+      "properties": {
+        "can_post": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can comment the post"
+        },
+        "can_open": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "can_close": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Comments number"
+        },
+        "groups_can_post": {
+          "type": "boolean",
+          "description": "Information whether groups can comment the post"
+        },
+        "donut": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_comments_donut"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_country": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Country ID",
+          "minimum": 1,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Country title",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_crop_photo": {
+      "type": "object",
+      "properties": {
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo",
+          "required": true
+        },
+        "crop": {
+          "$ref": "../base/objects.json#/definitions/base_crop_photo_crop",
+          "required": true
+        },
+        "rect": {
+          "$ref": "../base/objects.json#/definitions/base_crop_photo_rect",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_crop_photo_crop": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "Coordinate X of the left upper corner",
+          "required": true
+        },
+        "y": {
+          "type": "number",
+          "description": "Coordinate Y of the left upper corner",
+          "required": true
+        },
+        "x2": {
+          "type": "number",
+          "description": "Coordinate X of the right lower corner",
+          "required": true
+        },
+        "y2": {
+          "type": "number",
+          "description": "Coordinate Y of the right lower corner",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_crop_photo_rect": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "Coordinate X of the left upper corner",
+          "required": true
+        },
+        "y": {
+          "type": "number",
+          "description": "Coordinate Y of the left upper corner",
+          "required": true
+        },
+        "x2": {
+          "type": "number",
+          "description": "Coordinate X of the right lower corner",
+          "required": true
+        },
+        "y2": {
+          "type": "number",
+          "description": "Coordinate Y of the right lower corner",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_error": {
+      "type": "object",
+      "properties": {
+        "error_code": {
+          "type": "integer",
+          "description": "Error code",
+          "required": true
+        },
+        "error_subcode": {
+          "type": "integer",
+          "description": "Error subcode"
+        },
+        "error_msg": {
+          "type": "string",
+          "description": "Error message"
+        },
+        "error_text": {
+          "type": "string",
+          "description": "Localized error message"
+        },
+        "request_params": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_request_param"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_geo": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "$ref": "../base/objects.json#/definitions/base_geo_coordinates"
+        },
+        "place": {
+          "$ref": "../base/objects.json#/definitions/base_place"
+        },
+        "showmap": {
+          "type": "integer",
+          "description": "Information whether a map is showed"
+        },
+        "type": {
+          "type": "string",
+          "description": "Place type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_geo_coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "required": true
+        },
+        "longitude": {
+          "type": "number",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_gradient_point": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string",
+          "description": "Hex color code without #",
+          "required": true
+        },
+        "position": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Point position",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_image": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Image url",
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Image width",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Image height",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_likes": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Likes number"
+        },
+        "user_likes": {
+          "description": "Information whether current user likes the photo",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_likes_info": {
+      "type": "object",
+      "properties": {
+        "can_like": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can like the post",
+          "required": true
+        },
+        "can_publish": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can repost"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Likes number",
+          "required": true
+        },
+        "user_likes": {
+          "type": "integer",
+          "description": "Information whether current uer has liked the post",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "../base/objects.json#/definitions/base_link_application"
+        },
+        "button": {
+          "$ref": "../base/objects.json#/definitions/base_link_button"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Link caption"
+        },
+        "description": {
+          "type": "string",
+          "description": "Link description"
+        },
+        "id": {
+          "type": "string",
+          "description": "Link ID"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "preview_page": {
+          "type": "string",
+          "description": "String ID of the page with article preview"
+        },
+        "preview_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the page with article preview"
+        },
+        "product": {
+          "$ref": "../base/objects.json#/definitions/base_link_product"
+        },
+        "rating": {
+          "$ref": "../base/objects.json#/definitions/base_link_rating"
+        },
+        "title": {
+          "type": "string",
+          "description": "Link title"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link URL",
+          "required": true
+        },
+        "target_object": {
+          "$ref": "../link/objects.json#/definitions/link_target_object"
+        },
+        "is_external": {
+          "type": "boolean",
+          "description": "Information whether the current link is external"
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video",
+          "description": "Video from link"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_application": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "number",
+          "description": "Application Id"
+        },
+        "store": {
+          "$ref": "../base/objects.json#/definitions/base_link_application_store"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_application_store": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Store Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Store name"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_button": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "../base/objects.json#/definitions/base_link_button_action",
+          "description": "Button action"
+        },
+        "title": {
+          "type": "string",
+          "description": "Button title"
+        },
+        "block_id": {
+          "type": "string",
+          "description": "Target block id"
+        },
+        "section_id": {
+          "type": "string",
+          "description": "Target section id"
+        },
+        "curator_id": {
+          "type": "integer",
+          "description": "curator id"
+        },
+        "album_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Video album id"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Owner id",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Button icon name, e.g. 'phone' or 'gift'"
+        },
+        "style": {
+          "$ref": "../base/objects.json#/definitions/base_link_button_style"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_button_action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "../base/objects.json#/definitions/base_link_button_action_type",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Action URL"
+        },
+        "consume_reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_button_action_type": {
+      "type": "string",
+      "description": "Action type",
+      "enum": [
+        "open_url"
+      ],
+      "enumNames": [
+        "open_url"
+      ]
+    },
+    "base_link_button_style": {
+      "type": "string",
+      "description": "Button style",
+      "enum": [
+        "primary",
+        "secondary"
+      ],
+      "enumNames": [
+        "primary",
+        "secondary"
+      ]
+    },
+    "base_link_product": {
+      "type": "object",
+      "properties": {
+        "price": {
+          "$ref": "../market/objects.json#/definitions/market_price",
+          "required": true
+        },
+        "merchant": {
+          "type": "string"
+        },
+        "orders_count": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_link_product_category": {
+      "type": "string"
+    },
+    "base_link_product_status": {
+      "type": "string",
+      "description": "Status representation",
+      "enum": [
+        "active",
+        "blocked",
+        "sold",
+        "deleted",
+        "archived"
+      ]
+    },
+    "base_link_rating": {
+      "type": "object",
+      "properties": {
+        "reviews_count": {
+          "type": "integer",
+          "description": "Count of reviews"
+        },
+        "stars": {
+          "type": "number",
+          "description": "Count of stars"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_message_error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Error message"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_object": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Object title",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_object_count": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Items count"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_object_with_name": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Object name",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_place": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Place address"
+        },
+        "checkins": {
+          "type": "integer",
+          "description": "Checkins number"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name"
+        },
+        "created": {
+          "type": "integer",
+          "description": "Date of the place creation in Unixtime"
+        },
+        "icon": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the place's icon"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Place ID"
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Place latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Place longitude"
+        },
+        "title": {
+          "type": "string",
+          "description": "Place title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Place type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_property_exists": {
+      "type": "integer",
+      "enum": [
+        1
+      ],
+      "enumNames": [
+        "Property exists"
+      ]
+    },
+    "base_reposts_info": {
+      "type": "object",
+      "description": "Count of views",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total reposts counter. Sum of wall and mail reposts counters",
+          "required": true
+        },
+        "wall_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Wall reposts counter"
+        },
+        "mail_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Mail reposts counter"
+        },
+        "user_reposted": {
+          "type": "integer",
+          "description": "Information whether current user has reposted the post"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_request_param": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Parameter name"
+        },
+        "value": {
+          "type": "string",
+          "description": "Parameter value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_sex": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "unknown",
+        "female",
+        "male"
+      ]
+    },
+    "base_sticker": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "../base/objects.json#/definitions/base_sticker_old",
+          "description": "Deprecated from 5.74, but still used in later versions in queue"
+        },
+        {
+          "$ref": "../base/objects.json#/definitions/base_sticker_new"
+        }
+      ]
+    },
+    "base_sticker_animation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "light",
+            "dark"
+          ],
+          "description": "Type of animation script"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of animation script"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_sticker_new": {
+      "type": "object",
+      "properties": {
+        "sticker_id": {
+          "type": "integer",
+          "description": "Sticker ID"
+        },
+        "product_id": {
+          "type": "integer",
+          "description": "Pack ID"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          }
+        },
+        "images_with_background": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          }
+        },
+        "animation_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of sticker animation script"
+        },
+        "animations": {
+          "type": "array",
+          "description": "Array of sticker animation script objects",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_sticker_animation"
+          }
+        },
+        "is_allowed": {
+          "type": "boolean",
+          "description": "Information whether the sticker is allowed"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_sticker_old": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Sticker ID"
+        },
+        "product_id": {
+          "type": "integer",
+          "description": "Pack ID"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width in px"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in px"
+        },
+        "photo_128": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 128 px in height"
+        },
+        "photo_256": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 256 px in height"
+        },
+        "photo_352": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 352 px in height"
+        },
+        "photo_512": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 512 px in height"
+        },
+        "photo_64": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 64 px in height"
+        },
+        "is_allowed": {
+          "type": "boolean",
+          "description": "Information whether the sticker is allowed"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_stickers_list": {
+      "type": "array",
+      "items": {
+        "$ref": "../base/objects.json#/definitions/base_sticker_new"
+      }
+    },
+    "base_upload_server": {
+      "type": "object",
+      "properties": {
+        "upload_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Upload URL",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_user_group_fields": {
+      "type": "string",
+      "enum": [
+        "about",
+        "action_button",
+        "activities",
+        "activity",
+        "addresses",
+        "admin_level",
+        "age_limits",
+        "author_id",
+        "ban_info",
+        "bdate",
+        "blacklisted",
+        "blacklisted_by_me",
+        "books",
+        "can_create_topic",
+        "can_message",
+        "can_post",
+        "can_see_all_posts",
+        "can_see_audio",
+        "can_send_friend_request",
+        "can_upload_video",
+        "can_write_private_message",
+        "career",
+        "city",
+        "common_count",
+        "connections",
+        "contacts",
+        "counters",
+        "country",
+        "cover",
+        "crop_photo",
+        "deactivated",
+        "description",
+        "domain",
+        "education",
+        "exports",
+        "finish_date",
+        "fixed_post",
+        "followers_count",
+        "friend_status",
+        "games",
+        "has_market_app",
+        "has_mobile",
+        "has_photo",
+        "home_town",
+        "id",
+        "interests",
+        "is_admin",
+        "is_closed",
+        "is_favorite",
+        "is_friend",
+        "is_hidden_from_feed",
+        "is_member",
+        "is_messages_blocked",
+        "can_send_notify",
+        "is_subscribed",
+        "last_seen",
+        "links",
+        "lists",
+        "maiden_name",
+        "main_album_id",
+        "main_section",
+        "market",
+        "member_status",
+        "members_count",
+        "military",
+        "movies",
+        "music",
+        "name",
+        "nickname",
+        "occupation",
+        "online",
+        "online_status",
+        "personal",
+        "phone",
+        "photo_100",
+        "photo_200",
+        "photo_200_orig",
+        "photo_400_orig",
+        "photo_50",
+        "photo_id",
+        "photo_max",
+        "photo_max_orig",
+        "quotes",
+        "relation",
+        "relatives",
+        "schools",
+        "screen_name",
+        "sex",
+        "site",
+        "start_date",
+        "status",
+        "timezone",
+        "trending",
+        "tv",
+        "type",
+        "universities",
+        "verified",
+        "wall_comments",
+        "wiki_page",
+        "first_name",
+        "first_name_acc",
+        "first_name_dat",
+        "first_name_gen",
+        "last_name",
+        "last_name_acc",
+        "last_name_dat",
+        "last_name_gen",
+        "can_subscribe_stories",
+        "is_subscribed_stories",
+        "vk_admin_status",
+        "can_upload_story"
+      ]
+    },
+    "base_user_id": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

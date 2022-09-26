@@ -1,0 +1,2177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "messages.addChatUser",
+      "description": "Adds a new user to a chat.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "description": "Chat ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "user_id",
+          "description": "ID of the user to be added to the chat.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "visible_messages_count",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_message_request_already_sent"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_member_access_to_group_denied"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_group_peer_access"
+        }
+      ]
+    },
+    {
+      "name": "messages.allowMessagesFromGroup",
+      "description": "Allows sending messages from community to the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "key",
+          "type": "string",
+          "maxLength": 256
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_intent_cant_use"
+        }
+      ]
+    },
+    {
+      "name": "messages.createChat",
+      "description": "Creates a chat with several participants.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "description": "IDs of the users to be added to the chat.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "title",
+          "description": "Chat title.",
+          "type": "string"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_createChat_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        }
+      ]
+    },
+    {
+      "name": "messages.delete",
+      "description": "Deletes one or more messages.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "message_ids",
+          "description": "Message IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "spam",
+          "description": "'1' — to mark message as spam.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "delete_for_all",
+          "description": "'1' — delete message for for all.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "cmids",
+          "description": "Conversation message IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_delete_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_delete_for_all"
+        }
+      ]
+    },
+    {
+      "name": "messages.deleteChatPhoto",
+      "description": "Deletes a chat's cover picture.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "description": "Chat ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_deleteChatPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
+        }
+      ]
+    },
+    {
+      "name": "messages.deleteConversation",
+      "description": "Deletes all private messages in a conversation.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID. To clear a chat history use 'chat_id'",
+          "type": "integer"
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_deleteConversation_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        }
+      ]
+    },
+    {
+      "name": "messages.denyMessagesFromGroup",
+      "description": "Denies sending message from community to the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.edit",
+      "description": "Edits the message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "required": true,
+          "format": "int32"
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the message.",
+          "type": "string",
+          "maxLength": 9000
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
+          "type": "number"
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
+          "type": "number"
+        },
+        {
+          "name": "attachment",
+          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
+          "type": "string"
+        },
+        {
+          "name": "keep_forward_messages",
+          "description": "'1' — to keep forwarded, messages.",
+          "type": "boolean"
+        },
+        {
+          "name": "keep_snippets",
+          "description": "'1' — to keep attached snippets.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "dont_parse_links",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "disable_mentions",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "message_id",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "conversation_message_id",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "template",
+          "type": "string"
+        },
+        {
+          "name": "keyboard",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_edit_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_deny_send"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_edit_expired"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_big"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_edit_kind_disallowed"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_long_message"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_keyboard_invalid"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_many_posts"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_bot_feature"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_edit_pinned_yet"
+        }
+      ]
+    },
+    {
+      "name": "messages.editChat",
+      "description": "Edits the title of a chat.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "description": "Chat ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "title",
+          "description": "New title of the chat.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        }
+      ]
+    },
+    {
+      "name": "messages.getByConversationMessageId",
+      "description": "Returns messages by their IDs within the conversation.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "conversation_message_ids",
+          "description": "Conversation message IDs.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getByConversationMessageId_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getByConversationMessageId_extended_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getById",
+      "description": "Returns messages by their IDs.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "message_ids",
+          "description": "Message IDs.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "preview_length",
+          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getById_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getById_extended_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getChatPreview",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "link",
+          "description": "Invitation link.",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getChatPreview_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        }
+      ]
+    },
+    {
+      "name": "messages.getConversationMembers",
+      "description": "Returns a list of IDs of users participating in a chat.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Peer ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getConversationMembers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        }
+      ]
+    },
+    {
+      "name": "messages.getConversations",
+      "description": "Returns a list of the current user's conversations.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of conversations.",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of conversations to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "filter",
+          "description": "Filter to apply: 'all' — all conversations, 'unread' — conversations with unread messages, 'important' — conversations, marked as important (only for community messages), 'unanswered' — conversations, marked as unanswered (only for community messages)",
+          "type": "string",
+          "default": "all",
+          "enum": [
+            "all",
+            "archive",
+            "important",
+            "unanswered",
+            "unread"
+          ]
+        },
+        {
+          "name": "extended",
+          "description": "'1' — return extra information about users and communities",
+          "type": "boolean"
+        },
+        {
+          "name": "start_message_id",
+          "description": "ID of the message from what to return dialogs.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Profile and communities fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getConversations_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        }
+      ]
+    },
+    {
+      "name": "messages.getConversationsById",
+      "description": "Returns conversations by their IDs",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_ids",
+          "description": "Destination IDs. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "extended",
+          "description": "Return extended properties",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile and communities fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getConversationsById_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getConversationsById_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        }
+      ]
+    },
+    {
+      "name": "messages.getHistory",
+      "description": "Returns message history for the specified user or group chat.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of messages.",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "description": "Number of messages to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "user_id",
+          "description": "ID of the user whose message history you want to return.",
+          "type": "integer"
+        },
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "name": "start_message_id",
+          "description": "Starting message ID from which to return history.",
+          "type": "integer"
+        },
+        {
+          "name": "rev",
+          "description": "Sort order: '1' — return messages in chronological order. '0' — return messages in reverse chronological order.",
+          "type": "integer",
+          "enum": [
+            1,
+            0
+          ],
+          "enumNames": [
+            "chronological",
+            "reverse chronological"
+          ]
+        },
+        {
+          "name": "extended",
+          "description": "Information whether the response should be extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getHistory_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getHistory_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        }
+      ]
+    },
+    {
+      "name": "messages.getHistoryAttachments",
+      "description": "Returns media files from the dialog or group chat.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Peer ID. \", For group chat: '2000000000 + chat ID' , , For community: '-community ID'\"",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "media_type",
+          "description": "Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'",
+          "type": "string",
+          "default": "photo",
+          "enum": [
+            "audio",
+            "audio_message",
+            "doc",
+            "graffiti",
+            "link",
+            "market",
+            "photo",
+            "share",
+            "video",
+            "wall"
+          ]
+        },
+        {
+          "name": "start_from",
+          "description": "Message ID to start return results from.",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "description": "Number of objects to return.",
+          "type": "integer",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "photo_sizes",
+          "description": "'1' — to return photo sizes in a",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Additional profile [vk.com/dev/fields|fields] to return. ",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "preserve_order",
+          "type": "boolean"
+        },
+        {
+          "name": "max_forwards_level",
+          "type": "integer",
+          "default": 45,
+          "minimum": 0,
+          "maximum": 45
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getHistoryAttachments_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getImportantMessages",
+      "description": "Returns a list of user's important messages.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "count",
+          "description": "Amount of needed important messages.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "start_message_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "preview_length",
+          "description": "Maximum length of messages body.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Actors fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "extended",
+          "description": "Return extended properties",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getImportantMessages_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getImportantMessages_extended_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getIntentUsers",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "intent",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "confirmed_notification",
+            "non_promo_newsletter",
+            "promo_newsletter"
+          ]
+        },
+        {
+          "name": "subscribe_id",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "name_case",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getIntentUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_intent_cant_use"
+        }
+      ]
+    },
+    {
+      "name": "messages.getInviteLink",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reset",
+          "description": "1 — to generate new link (revoke previous), 0 — to return previous link.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getInviteLink_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_see_invite_link"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_change_invite_link"
+        }
+      ]
+    },
+    {
+      "name": "messages.getLastActivity",
+      "description": "Returns a user's current status and date of last activity.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getLastActivity_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getLongPollHistory",
+      "description": "Returns updates in user's private messages.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "ts",
+          "description": "Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "pts",
+          "description": "Last value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "preview_length",
+          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "onlines",
+          "description": "'1' — to return history with online users only.",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Additional profile [vk.com/dev/fields|fields] to return.",
+          "type": "array",
+          "default": "photo,photo_medium_rec,sex,online,screen_name",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "events_limit",
+          "description": "Maximum number of events to return.",
+          "type": "integer",
+          "default": 1000,
+          "minimum": 1000
+        },
+        {
+          "name": "msgs_limit",
+          "description": "Maximum number of messages to return.",
+          "type": "integer",
+          "default": 200,
+          "minimum": 200
+        },
+        {
+          "name": "max_msg_id",
+          "description": "Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4) are taken into account.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "lp_version",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "last_n",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 2000
+        },
+        {
+          "name": "credentials",
+          "type": "boolean"
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getLongPollHistory_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_old_pts"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_new_pts"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_timeout"
+        }
+      ],
+      "timeout": 5
+    },
+    {
+      "name": "messages.getLongPollServer",
+      "description": "Returns data required for connection to a Long Poll server.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "need_pts",
+          "description": "'1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "lp_version",
+          "description": "Long poll version",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getLongPollServer_response"
+        }
+      }
+    },
+    {
+      "name": "messages.isMessagesFromGroupAllowed",
+      "description": "Returns information whether sending messages from the community to current user is allowed.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_isMessagesFromGroupAllowed_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_intent_cant_use"
+        }
+      ]
+    },
+    {
+      "name": "messages.joinChatByInviteLink",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "link",
+          "description": "Invitation link.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_joinChatByInviteLink_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "messages.markAsAnsweredConversation",
+      "description": "Marks and unmarks conversations as unanswered.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "ID of conversation to mark as important.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "answered",
+          "description": "'1' — to mark as answered, '0' — to remove the mark",
+          "type": "boolean",
+          "default": 1
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.markAsImportant",
+      "description": "Marks and unmarks messages as important (starred).",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "message_ids",
+          "description": "IDs of messages to mark as important.",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "important",
+          "description": "'1' — to add a star (mark as important), '0' — to remove the star",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_markAsImportant_response"
+        }
+      }
+    },
+    {
+      "name": "messages.markAsImportantConversation",
+      "description": "Marks and unmarks conversations as important.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "ID of conversation to mark as important.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "important",
+          "description": "'1' — to add a star (mark as important), '0' — to remove the star",
+          "type": "boolean",
+          "default": 1
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.markAsRead",
+      "description": "Marks messages as read.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "message_ids",
+          "description": "IDs of messages to mark as read.",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "start_message_id",
+          "description": "Message ID to start from.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "mark_conversation_as_read",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.pin",
+      "description": "Pin a message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message_id",
+          "description": "Message ID",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "conversation_message_id",
+          "description": "Conversation message ID",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_pin_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_pin_one_time_story"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_pin_expiring_message"
+        }
+      ]
+    },
+    {
+      "name": "messages.removeChatUser",
+      "description": "Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "description": "Chat ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "user_id",
+          "description": "ID of the user to be removed from the chat.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "member_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_not_in_chat"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        }
+      ]
+    },
+    {
+      "name": "messages.restore",
+      "description": "Restores a deleted message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "message_id",
+          "description": "ID of a previously-deleted message to restore.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.search",
+      "description": "Returns a list of the current user's private messages that match search criteria.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string.",
+          "type": "string",
+          "maxLength": 9000
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "date",
+          "description": "Date to search message before in Unixtime.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "preview_length",
+          "description": "Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. \"NOTE: Messages are not truncated by default. Messages are truncated by words.\"",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of messages.",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of messages to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_search_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_search_extended_response"
+        }
+      }
+    },
+    {
+      "name": "messages.searchConversations",
+      "description": "Returns a list of the current user's conversations that match search criteria.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string.",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "description": "Maximum number of results.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 1,
+          "maximum": 255
+        },
+        {
+          "name": "extended",
+          "description": "'1' — return extra information about users and communities",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with user access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_searchConversations_response"
+        },
+        "extendedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_searchConversations_extended_response"
+        }
+      }
+    },
+    {
+      "name": "messages.send",
+      "description": "Sends a message.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID (by default — current user).",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "random_id",
+          "description": "Unique identifier to avoid resending the message.",
+          "type": "integer"
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "name": "peer_ids",
+          "description": "IDs of message recipients. (See peer_id)",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "domain",
+          "description": "User's short address (for example, 'illarionov').",
+          "type": "string"
+        },
+        {
+          "name": "chat_id",
+          "description": "ID of conversation the message will relate to.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "user_ids",
+          "description": "IDs of message recipients (if new conversation shall be started).",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the message.",
+          "type": "string",
+          "maxLength": 9000
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude of a check-in, in degrees (from -90 to 90).",
+          "type": "number"
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude of a check-in, in degrees (from -180 to 180).",
+          "type": "number"
+        },
+        {
+          "name": "attachment",
+          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
+          "type": "string",
+          "maxLength": 9000
+        },
+        {
+          "name": "reply_to",
+          "type": "integer"
+        },
+        {
+          "name": "forward_messages",
+          "description": "ID of forwarded messages, separated with a comma. Listed messages of the sender will be shown in the message body at the recipient's. Example: \"123,431,544\"",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "forward",
+          "description": "JSON describing the forwarded message or reply",
+          "type": "string",
+          "$ref": "../messages/objects.json#/definitions/messages_forward"
+        },
+        {
+          "name": "sticker_id",
+          "description": "Sticker id.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "keyboard",
+          "type": "string",
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard"
+        },
+        {
+          "name": "template",
+          "type": "string"
+        },
+        {
+          "name": "payload",
+          "type": "string",
+          "maxLength": 1000
+        },
+        {
+          "name": "content_source",
+          "description": "JSON describing the content source in the message",
+          "type": "string"
+        },
+        {
+          "name": "dont_parse_links",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "disable_mentions",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "intent",
+          "type": "string",
+          "default": "default",
+          "enum": [
+            "account_update",
+            "bot_ad_invite",
+            "bot_ad_promo",
+            "confirmed_notification",
+            "customer_support",
+            "default",
+            "game_notification",
+            "moderated_newsletter",
+            "non_promo_newsletter",
+            "promo_newsletter",
+            "purchase_update"
+          ]
+        },
+        {
+          "name": "subscribe_id",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_send_response"
+        },
+        "userIdsResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_send_user_ids_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_user_blocked"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_deny_send"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_privacy"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_long_message"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_long_forwards"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_cant_fwd"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_keyboard_invalid"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_bot_feature"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_too_many_posts"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_intent_cant_use"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_intent_limit_overflow"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_peer_blocked_reason_by_time"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_user_not_don"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_message_cannot_be_forwarded"
+        }
+      ]
+    },
+    {
+      "name": "messages.sendMessageEventAnswer",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "event_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "event_data",
+          "type": "string",
+          "maxLength": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.setActivity",
+      "description": "Changes the status of a user as typing in a conversation.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer"
+        },
+        {
+          "name": "type",
+          "description": "'typing' — user has started to type.",
+          "type": "string",
+          "enum": [
+            "audiomessage",
+            "file",
+            "photo",
+            "typing",
+            "video"
+          ]
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_group_peer_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        }
+      ]
+    },
+    {
+      "name": "messages.setChatPhoto",
+      "description": "Sets a previously-uploaded picture as the cover picture of a chat.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "file",
+          "description": "Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_setChatPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_upload"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_photo_changed"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        }
+      ]
+    },
+    {
+      "name": "messages.unpin",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        }
+      ]
+    }
+  ]
+}

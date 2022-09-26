@@ -1,0 +1,431 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "database.getChairs",
+      "description": "Returns list of chairs on a specified faculty.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "faculty_id",
+          "description": "id of the faculty to get chairs from",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "offset required to get a certain subset of chairs",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "amount of chairs to get",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 10000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getChairs_response"
+        }
+      }
+    },
+    {
+      "name": "database.getCities",
+      "description": "Returns a list of cities.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "country_id",
+          "description": "Country ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "region_id",
+          "description": "Region ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "q",
+          "description": "Search query.",
+          "type": "string"
+        },
+        {
+          "name": "need_all",
+          "description": "'1' — to return all cities in the country, '0' — to return major cities in the country (default),",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of cities.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of cities to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getCities_response"
+        }
+      }
+    },
+    {
+      "name": "database.getCitiesById",
+      "description": "Returns information about cities by their IDs.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "city_ids",
+          "description": "City IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getCitiesById_response"
+        }
+      }
+    },
+    {
+      "name": "database.getCountries",
+      "description": "Returns a list of countries.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "need_all",
+          "description": "'1' — to return a full list of all countries, '0' — to return a list of countries near the current user's country (default).",
+          "type": "boolean"
+        },
+        {
+          "name": "code",
+          "description": "Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of countries.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of countries to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getCountries_response"
+        }
+      }
+    },
+    {
+      "name": "database.getCountriesById",
+      "description": "Returns information about countries by their IDs.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "country_ids",
+          "description": "Country IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getCountriesById_response"
+        }
+      }
+    },
+    {
+      "name": "database.getFaculties",
+      "description": "Returns a list of faculties (i.e., university departments).",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "university_id",
+          "description": "University ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of faculties.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of faculties to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 10000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getFaculties_response"
+        }
+      }
+    },
+    {
+      "name": "database.getMetroStations",
+      "description": "Get metro stations by city",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "city_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 500
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getMetroStations_response"
+        }
+      }
+    },
+    {
+      "name": "database.getMetroStationsById",
+      "description": "Get metro station by his id",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "station_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 30
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getMetroStationsById_response"
+        }
+      }
+    },
+    {
+      "name": "database.getRegions",
+      "description": "Returns a list of regions.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "country_id",
+          "description": "Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "q",
+          "description": "Search query.",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return specific subset of regions.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of regions to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getRegions_response"
+        }
+      }
+    },
+    {
+      "name": "database.getSchoolClasses",
+      "description": "Returns a list of school classes specified for the country.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "country_id",
+          "description": "Country ID.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getSchoolClasses_response"
+        }
+      }
+    },
+    {
+      "name": "database.getSchools",
+      "description": "Returns a list of schools.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query.",
+          "type": "string"
+        },
+        {
+          "name": "city_id",
+          "description": "City ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of schools.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of schools to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 10000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getSchools_response"
+        }
+      }
+    },
+    {
+      "name": "database.getUniversities",
+      "description": "Returns a list of higher education institutions.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query.",
+          "type": "string"
+        },
+        {
+          "name": "country_id",
+          "description": "Country ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city_id",
+          "description": "City ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of universities.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of universities to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 10000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../database/responses.json#/definitions/database_getUniversities_response"
+        }
+      }
+    }
+  ]
+}

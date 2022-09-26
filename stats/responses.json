@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "stats_getPostReach_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_wallpost_stat"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_period"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

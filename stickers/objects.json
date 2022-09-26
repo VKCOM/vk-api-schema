@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "stickers_image_set": {
+      "type": "object",
+      "properties": {
+        "base_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL for images in set",
+          "required": true
+        },
+        "version": {
+          "type": "integer",
+          "description": "Version number to be appended to the image URL"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

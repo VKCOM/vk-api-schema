@@ -1,0 +1,2943 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "groups.addAddress",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "maxLength": 255
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "required": true,
+          "maxLength": 255
+        },
+        {
+          "name": "additional_address",
+          "type": "string",
+          "maxLength": 400
+        },
+        {
+          "name": "country_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        },
+        {
+          "name": "city_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        },
+        {
+          "name": "metro_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "latitude",
+          "type": "number",
+          "required": true,
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "longitude",
+          "type": "number",
+          "required": true,
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "phone",
+          "type": "string"
+        },
+        {
+          "name": "work_info_status",
+          "type": "string",
+          "default": "no_information",
+          "enum": [
+            "always_opened",
+            "forever_closed",
+            "no_information",
+            "temporarily_closed",
+            "timetable"
+          ],
+          "$ref": "../groups/objects.json#/definitions/groups_address_work_info_status"
+        },
+        {
+          "name": "timetable",
+          "type": "string"
+        },
+        {
+          "name": "is_main_address",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_addAddress_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_groups"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_too_many_addresses"
+        }
+      ]
+    },
+    {
+      "name": "groups.addCallbackServer",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "maxLength": 14
+        },
+        {
+          "name": "secret_key",
+          "type": "string",
+          "maxLength": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_addCallbackServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_callback_api_servers_limit"
+        }
+      ]
+    },
+    {
+      "name": "groups.addLink",
+      "description": "Allows to add a link to the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "link",
+          "description": "Link URL.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "text",
+          "description": "Description text for the link.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_addLink_response"
+        }
+      }
+    },
+    {
+      "name": "groups.approveRequest",
+      "description": "Allows to approve join request to the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "groups.ban",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "end_date",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "comment",
+          "type": "string"
+        },
+        {
+          "name": "comment_visible",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.create",
+      "description": "Creates a new community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "description": "Community title.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "description": "Community description (ignored for 'type' = 'public').",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "description": "Community type. Possible values: *'group' - group,, *'event' - event,, *'public' - public page",
+          "type": "string",
+          "default": "group",
+          "enum": [
+            "event",
+            "group",
+            "public"
+          ]
+        },
+        {
+          "name": "public_category",
+          "description": "Category ID (for 'type' = 'public' only).",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "public_subcategory",
+          "description": "Public page subcategory ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "subtype",
+          "description": "Public page subtype. Possible values: *'1' - place or small business,, *'2' - company, organization or website,, *'3' - famous person or group of people,, *'4' - product or work of art.",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "place or business",
+            "company or website",
+            "person or group",
+            "product or art"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_create_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "groups.deleteAddress",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "address_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_groups"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "groups.deleteCallbackServer",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "server_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "groups.deleteLink",
+      "description": "Allows to delete a link from the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "link_id",
+          "description": "Link ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.disableOnline",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.edit",
+      "description": "Edits a community.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "description": "Community title.",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "description": "Community description.",
+          "type": "string"
+        },
+        {
+          "name": "screen_name",
+          "description": "Community screen name.",
+          "type": "string"
+        },
+        {
+          "name": "access",
+          "description": "Community type. Possible values: *'0' - open,, *'1' - closed,, *'2' - private.",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_access"
+        },
+        {
+          "name": "website",
+          "description": "Website that will be displayed in the community information field.",
+          "type": "string"
+        },
+        {
+          "name": "subject",
+          "description": "Community subject. Possible values: , *'1' - auto/moto,, *'2' - activity holidays,, *'3' - business,, *'4' - pets,, *'5' - health,, *'6' - dating and communication, , *'7' - games,, *'8' - IT (computers and software),, *'9' - cinema,, *'10' - beauty and fashion,, *'11' - cooking,, *'12' - art and culture,, *'13' - literature,, *'14' - mobile services and internet,, *'15' - music,, *'16' - science and technology,, *'17' - real estate,, *'18' - news and media,, *'19' - security,, *'20' - education,, *'21' - home and renovations,, *'22' - politics,, *'23' - food,, *'24' - industry,, *'25' - travel,, *'26' - work,, *'27' - entertainment,, *'28' - religion,, *'29' - family,, *'30' - sports,, *'31' - insurance,, *'32' - television,, *'33' - goods and services,, *'34' - hobbies,, *'35' - finance,, *'36' - photo,, *'37' - esoterics,, *'38' - electronics and appliances,, *'39' - erotic,, *'40' - humor,, *'41' - society, humanities,, *'42' - design and graphics.",
+          "type": "string",
+          "$ref": "../groups/objects.json#/definitions/groups_group_subject"
+        },
+        {
+          "name": "email",
+          "description": "Organizer email (for events).",
+          "type": "string"
+        },
+        {
+          "name": "phone",
+          "description": "Organizer phone number (for events).",
+          "type": "string"
+        },
+        {
+          "name": "rss",
+          "description": "RSS feed address for import (available only to communities with special permission. Contact vk.com/support to get it.",
+          "type": "string"
+        },
+        {
+          "name": "event_start_date",
+          "description": "Event start date in Unixtime format.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "event_finish_date",
+          "description": "Event finish date in Unixtime format.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "event_group_id",
+          "description": "Organizer community ID (for events only).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "public_category",
+          "description": "Public page category ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "public_subcategory",
+          "description": "Public page subcategory ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "public_date",
+          "description": "Founding date of a company or organization owning the community in \"dd.mm.YYYY\" format.",
+          "type": "string"
+        },
+        {
+          "name": "wall",
+          "description": "Wall settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (groups and events only),, *'3' - closed (groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_wall"
+        },
+        {
+          "name": "topics",
+          "description": "Board topics settings. Possbile values: , *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_topics"
+        },
+        {
+          "name": "photos",
+          "description": "Photos settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_photos"
+        },
+        {
+          "name": "video",
+          "description": "Video settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_video"
+        },
+        {
+          "name": "audio",
+          "description": "Audio settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_audio"
+        },
+        {
+          "name": "links",
+          "description": "Links settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "events",
+          "description": "Events settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "places",
+          "description": "Places settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "contacts",
+          "description": "Contacts settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "docs",
+          "description": "Documents settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_docs"
+        },
+        {
+          "name": "wiki",
+          "description": "Wiki pages settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_wiki"
+        },
+        {
+          "name": "messages",
+          "description": "Community messages. Possible values: *'0' — disabled,, *'1' — enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "articles",
+          "type": "boolean"
+        },
+        {
+          "name": "addresses",
+          "type": "boolean"
+        },
+        {
+          "name": "age_limits",
+          "description": "Community age limits. Possible values: *'1' — no limits,, *'2' — 16+,, *'3' — 18+.",
+          "type": "integer",
+          "default": 1,
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "$ref": "../groups/objects.json#/definitions/groups_group_age_limits"
+        },
+        {
+          "name": "market",
+          "description": "Market settings. Possible values: *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comments",
+          "description": "market comments settings. Possible values: *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "market_country",
+          "description": "Market delivery countries.",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 10
+        },
+        {
+          "name": "market_city",
+          "description": "Market delivery cities (if only one country is specified).",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 10
+        },
+        {
+          "name": "market_currency",
+          "description": "Market currency settings. Possbile values: , *'643' - Russian rubles,, *'980' - Ukrainian hryvnia,, *'398' - Kazakh tenge,, *'978' - Euro,, *'840' - US dollars",
+          "type": "integer",
+          "minimum": 0,
+          "$ref": "../groups/objects.json#/definitions/groups_group_market_currency"
+        },
+        {
+          "name": "market_contact",
+          "description": "Seller contact for market. Set '0' for community messages.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "market_wiki",
+          "description": "ID of a wiki page with market description.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "obscene_filter",
+          "description": "Obscene expressions filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "obscene_stopwords",
+          "description": "Stopwords filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "obscene_words",
+          "description": "Keywords for stopwords filter.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "main_section",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "secondary_section",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "country",
+          "description": "Country of the community.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city",
+          "description": "City of the community.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_invalid_address"
+        }
+      ]
+    },
+    {
+      "name": "groups.editAddress",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "address_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "address",
+          "type": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "additional_address",
+          "type": "string",
+          "maxLength": 400
+        },
+        {
+          "name": "country_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "metro_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "latitude",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "longitude",
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "phone",
+          "type": "string"
+        },
+        {
+          "name": "work_info_status",
+          "type": "string",
+          "enum": [
+            "always_opened",
+            "forever_closed",
+            "no_information",
+            "temporarily_closed",
+            "timetable"
+          ],
+          "$ref": "../groups/objects.json#/definitions/groups_address_work_info_status"
+        },
+        {
+          "name": "timetable",
+          "type": "string"
+        },
+        {
+          "name": "is_main_address",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_editAddress_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_groups"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_too_many_addresses"
+        }
+      ]
+    },
+    {
+      "name": "groups.editCallbackServer",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "server_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "maxLength": 14
+        },
+        {
+          "name": "secret_key",
+          "type": "string",
+          "maxLength": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "groups.editLink",
+      "description": "Allows to edit a link in the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "link_id",
+          "description": "Link ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "text",
+          "description": "New description text for the link.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.editManager",
+      "description": "Allows to add, remove or edit the community manager.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "role",
+          "description": "Manager role. Possible values: *'moderator',, *'editor',, *'administrator',, *'advertiser'.",
+          "type": "string",
+          "$ref": "../groups/objects.json#/definitions/groups_group_role"
+        },
+        {
+          "name": "is_contact",
+          "description": "'1' — to show the manager in Contacts block of the community.",
+          "type": "boolean"
+        },
+        {
+          "name": "contact_position",
+          "description": "Position to show in Contacts block.",
+          "type": "string"
+        },
+        {
+          "name": "contact_phone",
+          "description": "Contact phone.",
+          "type": "string"
+        },
+        {
+          "name": "contact_email",
+          "description": "Contact e-mail.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_group_change_creator"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_not_in_club"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_too_many_officers"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_host_need_2fa"
+        }
+      ]
+    },
+    {
+      "name": "groups.enableOnline",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.get",
+      "description": "Returns a list of the communities to which a user belongs.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return complete information about a user's communities, '0' — to return a list of community IDs without any additional fields (default),",
+          "type": "boolean"
+        },
+        {
+          "name": "filter",
+          "description": "Types of communities to return: 'admin' — to return communities administered by the user , 'editor' — to return communities where the user is an administrator or editor, 'moder' — to return communities where the user is an administrator, editor, or moderator, 'groups' — to return only groups, 'publics' — to return only public pages, 'events' — to return only events",
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_filter"
+          }
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_fields"
+          }
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of communities.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of communities to return.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_get_response"
+        },
+        "extendedResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_get_object_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_groups"
+        }
+      ]
+    },
+    {
+      "name": "groups.getAddresses",
+      "description": "Returns a list of community addresses.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "address_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "latitude",
+          "description": "Latitude of  the user geo position.",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "name": "longitude",
+          "description": "Longitude of the user geo position.",
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of community addresses.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of community addresses to return.",
+          "type": "integer",
+          "default": 10,
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Address fields",
+          "type": "array",
+          "items": {
+            "$ref": "../addresses/objects.json#/definitions/addresses_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getAddresses_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_group_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_access_groups"
+        }
+      ]
+    },
+    {
+      "name": "groups.getBanned",
+      "description": "Returns a list of users on a community blacklist.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of users to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getBanned_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "groups.getById",
+      "description": "Returns information about communities by their IDs.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_ids",
+          "description": "IDs or screen names of communities.",
+          "type": "array",
+          "items": {
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64",
+            "entity": "groups"
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": [
+            "integer",
+            "string"
+          ],
+          "format": "int64",
+          "entity": "groups"
+        },
+        {
+          "name": "fields",
+          "description": "Group fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getById_object_legacy_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getCallbackConfirmationCode",
+      "description": "Returns Callback API confirmation code for the community.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getCallbackConfirmationCode_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getCallbackServers",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "server_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getCallbackServers_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getCallbackSettings",
+      "description": "Returns [vk.com/dev/callback_api|Callback API] notifications settings.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getCallbackSettings_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "groups.getCatalog",
+      "description": "Returns communities list for a catalog category.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "category_id",
+          "description": "Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "subcategory_id",
+          "description": "Subcategory id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getCatalog_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_communities_catalog_disabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_communities_categories_disabled"
+        }
+      ]
+    },
+    {
+      "name": "groups.getCatalogInfo",
+      "description": "Returns categories list for communities catalog",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "extended",
+          "description": "1 - to return communities count and three communities for preview. By default: 0.",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "subcategories",
+          "description": "1 - to return subcategories info. By default: 0.",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getCatalogInfo_response"
+        },
+        "extendedResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_getCatalogInfo_extended_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getInvitedUsers",
+      "description": "Returns invited users list of a community",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group ID to return invited users for.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname. Possible values: *'nom' — nominative (default),, *'gen' — genitive,, *'dat' — dative,, *'acc' — accusative, , *'ins' — instrumental,, *'abl' — prepositional.",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getInvitedUsers_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getInvites",
+      "description": "Returns a list of invitations to join communities and events.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of invitations.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of invitations to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional [vk.com/dev/fields_groups|fields] for communities..",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getInvites_response"
+        },
+        "extendedResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_getInvites_extended_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getLongPollServer",
+      "description": "Returns the data needed to query a Long Poll server for events",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getLongPollServer_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getLongPollSettings",
+      "description": "Returns Long Poll notification settings",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getLongPollSettings_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getMembers",
+      "description": "Returns a list of community members.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": "string"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order. Available values: 'id_asc', 'id_desc', 'time_asc', 'time_desc'. 'time_asc' and 'time_desc' are availavle only if the method is called by the group's 'moderator'.",
+          "type": "string",
+          "default": "id_asc",
+          "enum": [
+            "id_asc",
+            "id_desc",
+            "time_asc",
+            "time_desc"
+          ]
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of community members.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of community members to return.",
+          "type": "integer",
+          "default": 1000,
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "filter",
+          "description": "*'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).",
+          "type": "string",
+          "enum": [
+            "friends",
+            "unsure",
+            "managers",
+            "donut"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getMembers_response"
+        },
+        "fieldsResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_getMembers_fields_response"
+        },
+        "filterResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_getMembers_filter_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_group_id"
+        }
+      ]
+    },
+    {
+      "name": "groups.getRequests",
+      "description": "Returns a list of requests to the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getRequests_response"
+        },
+        "fieldsResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_getRequests_fields_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getSettings",
+      "description": "Returns community settings.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getSettings_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getTagList",
+      "description": "List of group's tags",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getTagList_response"
+        }
+      }
+    },
+    {
+      "name": "groups.getTokenPermissions",
+      "access_token_type": [
+        "group"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getTokenPermissions_response"
+        }
+      }
+    },
+    {
+      "name": "groups.invite",
+      "description": "Allows to invite friends to the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "groups.isMember",
+      "description": "Returns information specifying whether a user is a member of a community.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "user_ids",
+          "description": "User IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return an extended response with additional fields. By default: '0'.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_isMember_response"
+        },
+        "userIdsResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_isMember_user_ids_response"
+        },
+        "extendedResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_isMember_extended_response"
+        },
+        "userIds_Extended_Response": {
+          "$ref": "../groups/responses.json#/definitions/groups_isMember_user_ids_extended_response"
+        }
+      }
+    },
+    {
+      "name": "groups.join",
+      "description": "With this method you can join the group or public page, and also confirm your participation in an event.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "not_sure",
+          "description": "Optional parameter which is taken into account when 'gid' belongs to the event: '1' — Perhaps I will attend, '0' — I will be there for sure (default), ,",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_invite_links_not_valid"
+        }
+      ]
+    },
+    {
+      "name": "groups.leave",
+      "description": "With this method you can leave a group, public page, or event.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID or screen name of the community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_client_update_needed"
+        }
+      ]
+    },
+    {
+      "name": "groups.removeUser",
+      "description": "Removes a user from the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.reorderLink",
+      "description": "Allows to reorder links in the community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "link_id",
+          "description": "Link ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "after",
+          "description": "ID of the link after which to place the link with 'link_id'.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.search",
+      "description": "Returns a list of communities matching the search criteria.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "type",
+          "description": "Community type. Possible values: 'group, page, event.'",
+          "type": "string",
+          "enum": [
+            "group",
+            "page",
+            "event"
+          ]
+        },
+        {
+          "name": "country_id",
+          "description": "Country ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city_id",
+          "description": "City ID. If this parameter is transmitted, country_id is ignored.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "future",
+          "description": "'1' — to return only upcoming events. Works with the 'type' = 'event' only.",
+          "type": "boolean"
+        },
+        {
+          "name": "market",
+          "description": "'1' — to return communities with enabled market only.",
+          "type": "boolean"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order. Possible values: *'0' — default sorting (similar the full version of the site),, *'1' — by growth speed,, *'2'— by the \"day attendance/members number\" ratio,, *'3' — by the \"Likes number/members number\" ratio,, *'4' — by the \"comments number/members number\" ratio,, *'5' — by the \"boards entries number/members number\" ratio.",
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "enumNames": [
+            "default",
+            "growth",
+            "attendance",
+            "likes",
+            "comments",
+            "entries"
+          ]
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of communities to return. \"Note that you can not receive more than first thousand of results, regardless of 'count' and 'offset' values.\"",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_search_response"
+        }
+      }
+    },
+    {
+      "name": "groups.setCallbackSettings",
+      "description": "Allow to set notifications settings for group.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "server_id",
+          "description": "Server ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "api_version",
+          "type": "string"
+        },
+        {
+          "name": "message_new",
+          "description": "A new incoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_reply",
+          "description": "A new outcoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_allow",
+          "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_edit",
+          "type": "boolean"
+        },
+        {
+          "name": "message_deny",
+          "description": "Denied messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_typing_state",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_new",
+          "description": "New photos notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "audio_new",
+          "description": "New audios notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_new",
+          "description": "New videos notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_new",
+          "description": "New wall replies notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_edit",
+          "description": "Wall replies edited notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_delete",
+          "description": "A wall comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_restore",
+          "description": "A wall comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_post_new",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_repost",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_new",
+          "description": "New board posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_edit",
+          "description": "Board posts edited notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_restore",
+          "description": "Board posts restored notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_delete",
+          "description": "Board posts deleted notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_new",
+          "description": "New comment to photo notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_edit",
+          "description": "A photo comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_delete",
+          "description": "A photo comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_restore",
+          "description": "A photo comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_new",
+          "description": "New comment to video notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_edit",
+          "description": "A video comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_delete",
+          "description": "A video comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_restore",
+          "description": "A video comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_new",
+          "description": "New comment to market item notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_edit",
+          "description": "A market comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_delete",
+          "description": "A market comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_restore",
+          "description": "A market comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_order_new",
+          "type": "boolean"
+        },
+        {
+          "name": "market_order_edit",
+          "type": "boolean"
+        },
+        {
+          "name": "poll_vote_new",
+          "description": "A vote in a public poll has been added ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_join",
+          "description": "Joined community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_leave",
+          "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_change_settings",
+          "type": "boolean"
+        },
+        {
+          "name": "group_change_photo",
+          "type": "boolean"
+        },
+        {
+          "name": "group_officers_edit",
+          "type": "boolean"
+        },
+        {
+          "name": "user_block",
+          "description": "User added to community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "user_unblock",
+          "description": "User removed from community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "lead_forms_new",
+          "description": "New form in lead forms",
+          "type": "boolean"
+        },
+        {
+          "name": "like_add",
+          "type": "boolean"
+        },
+        {
+          "name": "like_remove",
+          "type": "boolean"
+        },
+        {
+          "name": "message_event",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_create",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_prolonged",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_cancelled",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_price_changed",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_expired",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_money_withdraw",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_money_withdraw_error",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "groups.setLongPollSettings",
+      "description": "Sets Long Poll notification settings",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "enabled",
+          "description": "Sets whether Long Poll is enabled ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "api_version",
+          "type": "string"
+        },
+        {
+          "name": "message_new",
+          "description": "A new incoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_reply",
+          "description": "A new outcoming message has been received ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_allow",
+          "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_deny",
+          "description": "Denied messages notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_edit",
+          "description": "A message has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "message_typing_state",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_new",
+          "description": "New photos notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "audio_new",
+          "description": "New audios notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_new",
+          "description": "New videos notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_new",
+          "description": "New wall replies notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_edit",
+          "description": "Wall replies edited notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_delete",
+          "description": "A wall comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_reply_restore",
+          "description": "A wall comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_post_new",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_repost",
+          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_new",
+          "description": "New board posts notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_edit",
+          "description": "Board posts edited notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_restore",
+          "description": "Board posts restored notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "board_post_delete",
+          "description": "Board posts deleted notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_new",
+          "description": "New comment to photo notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_edit",
+          "description": "A photo comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_delete",
+          "description": "A photo comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_comment_restore",
+          "description": "A photo comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_new",
+          "description": "New comment to video notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_edit",
+          "description": "A video comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_delete",
+          "description": "A video comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "video_comment_restore",
+          "description": "A video comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_new",
+          "description": "New comment to market item notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_edit",
+          "description": "A market comment has been edited ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_delete",
+          "description": "A market comment has been deleted ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "market_comment_restore",
+          "description": "A market comment has been restored ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "poll_vote_new",
+          "description": "A vote in a public poll has been added ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_join",
+          "description": "Joined community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_leave",
+          "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "group_change_settings",
+          "type": "boolean"
+        },
+        {
+          "name": "group_change_photo",
+          "type": "boolean"
+        },
+        {
+          "name": "group_officers_edit",
+          "type": "boolean"
+        },
+        {
+          "name": "user_block",
+          "description": "User added to community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "user_unblock",
+          "description": "User removed from community blacklist",
+          "type": "boolean"
+        },
+        {
+          "name": "like_add",
+          "type": "boolean"
+        },
+        {
+          "name": "like_remove",
+          "type": "boolean"
+        },
+        {
+          "name": "message_event",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_create",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_prolonged",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_cancelled",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_price_changed",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_subscription_expired",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_money_withdraw",
+          "type": "boolean"
+        },
+        {
+          "name": "donut_money_withdraw_error",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.setSettings",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "messages",
+          "type": "boolean"
+        },
+        {
+          "name": "bots_capabilities",
+          "type": "boolean"
+        },
+        {
+          "name": "bots_start_button",
+          "type": "boolean"
+        },
+        {
+          "name": "bots_add_to_chat",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "groups.setUserNote",
+      "description": "In order to save note about group participant",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "note",
+          "description": "Note body",
+          "type": "string",
+          "maxLength": 96
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "groups.tagAdd",
+      "description": "Add new group's tag",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "tag_name",
+          "type": "string",
+          "required": true,
+          "maxLength": 20
+        },
+        {
+          "name": "tag_color",
+          "type": "string",
+          "enum": [
+            "454647",
+            "45678f",
+            "4bb34b",
+            "5181b8",
+            "539b9c",
+            "5c9ce6",
+            "63b9ba",
+            "6bc76b",
+            "76787a",
+            "792ec0",
+            "7a6c4f",
+            "7ececf",
+            "9e8d6b",
+            "a162de",
+            "aaaeb3",
+            "bbaa84",
+            "e64646",
+            "ff5c5c",
+            "ffa000",
+            "ffc107"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "groups.tagBind",
+      "description": "Bind or unbind group's tag to user",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "tag_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "maximum": 2000000000,
+          "entity": "owner"
+        },
+        {
+          "name": "act",
+          "description": "Describe the action",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "bind",
+            "unbind"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "groups.tagDelete",
+      "description": "Delete group's tag",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "tag_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "groups.tagUpdate",
+      "description": "Update group's tag",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "tag_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "tag_name",
+          "type": "string",
+          "required": true,
+          "maxLength": 20
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "groups.toggleMarket",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "state",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "advanced",
+            "basic",
+            "none"
+          ],
+          "$ref": "../groups/objects.json#/definitions/groups_market_state"
+        },
+        {
+          "name": "ref",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_shop_already_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_shop_already_disabled"
+        }
+      ]
+    },
+    {
+      "name": "groups.unban",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

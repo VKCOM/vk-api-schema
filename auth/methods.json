@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "auth.restore",
+      "description": "Allows to restore account access using a code received via SMS. \" This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. \"",
+      "access_token_type": [
+        "user",
+        "open",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "phone",
+          "description": "User phone number.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "last_name",
+          "description": "User last name.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../auth/responses.json#/definitions/auth_restore_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_auth_flood_error"
+        }
+      ]
+    }
+  ]
+}

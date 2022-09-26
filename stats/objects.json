@@ -1,0 +1,296 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "stats_activity": {
+      "type": "object",
+      "description": "Activity stats",
+      "properties": {
+        "comments": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Comments number"
+        },
+        "copies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reposts number"
+        },
+        "hidden": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Hidden from news count"
+        },
+        "likes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Likes number"
+        },
+        "subscribed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "New subscribers count"
+        },
+        "unsubscribed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unsubscribed count"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_city": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Visitors number",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string",
+          "description": "City name"
+        },
+        "value": {
+          "type": "integer",
+          "description": "City ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_country": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Country code"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Visitors number"
+        },
+        "name": {
+          "type": "string",
+          "description": "Country name"
+        },
+        "value": {
+          "type": "integer",
+          "description": "Country ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_period": {
+      "type": "object",
+      "properties": {
+        "activity": {
+          "$ref": "../stats/objects.json#/definitions/stats_activity"
+        },
+        "period_from": {
+          "type": "integer",
+          "description": "Unix timestamp"
+        },
+        "period_to": {
+          "type": "integer",
+          "description": "Unix timestamp"
+        },
+        "reach": {
+          "$ref": "../stats/objects.json#/definitions/stats_reach"
+        },
+        "visitors": {
+          "$ref": "../stats/objects.json#/definitions/stats_views"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_reach": {
+      "type": "object",
+      "description": "Reach stats",
+      "properties": {
+        "age": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_city"
+          }
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_country"
+          }
+        },
+        "mobile_reach": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reach count from mobile devices"
+        },
+        "reach": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reach count"
+        },
+        "reach_subscribers": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Subscribers reach count"
+        },
+        "sex": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_sex_age": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Visitors number"
+        },
+        "value": {
+          "type": "string",
+          "description": "Sex/age value",
+          "required": true
+        },
+        "reach": {
+          "type": "integer"
+        },
+        "reach_subscribers": {
+          "type": "integer"
+        },
+        "count_subscribers": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_views": {
+      "type": "object",
+      "description": "Views stats",
+      "properties": {
+        "age": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_city"
+          }
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_country"
+          }
+        },
+        "mobile_views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of views from mobile devices"
+        },
+        "sex": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        },
+        "views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Views number"
+        },
+        "visitors": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Visitors number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stats_wallpost_stat": {
+      "type": "object",
+      "properties": {
+        "post_id": {
+          "type": "integer"
+        },
+        "hide": {
+          "type": "integer",
+          "description": "Hidings number"
+        },
+        "join_group": {
+          "type": "integer",
+          "description": "People have joined the group"
+        },
+        "links": {
+          "type": "integer",
+          "description": "Link clickthrough"
+        },
+        "reach_subscribers": {
+          "type": "integer",
+          "description": "Subscribers reach"
+        },
+        "reach_subscribers_count": {
+          "type": "integer"
+        },
+        "reach_total": {
+          "type": "integer",
+          "description": "Total reach"
+        },
+        "reach_total_count": {
+          "type": "integer"
+        },
+        "reach_viral": {
+          "type": "integer"
+        },
+        "reach_ads": {
+          "type": "integer"
+        },
+        "report": {
+          "type": "integer",
+          "description": "Reports number"
+        },
+        "to_group": {
+          "type": "integer",
+          "description": "Clickthrough to community"
+        },
+        "unsubscribe": {
+          "type": "integer",
+          "description": "Unsubscribed members"
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "../stats/objects.json#/definitions/stats_sex_age"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "notes_add_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Note ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes_createComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Comment ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../notes/objects.json#/definitions/notes_note",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes_getComments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../notes/objects.json#/definitions/notes_note_comment"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../notes/objects.json#/definitions/notes_note"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

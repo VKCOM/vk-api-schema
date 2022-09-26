@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "secure_checkToken_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../secure/objects.json#/definitions/secure_token_checked",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_getAppBalance_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "App balance",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_getSMSHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../secure/objects.json#/definitions/secure_sms_notification"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_getTransactionsHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../secure/objects.json#/definitions/secure_transaction"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_getUserLevel_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../secure/objects.json#/definitions/secure_level"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_giveEventSticker_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../secure/objects.json#/definitions/secure_giveEventSticker_item"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_sendNotification_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "entity": "owner",
+            "format": "int64"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_setCounter_array_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../secure/objects.json#/definitions/secure_setCounter_item"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

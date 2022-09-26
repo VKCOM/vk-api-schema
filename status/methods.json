@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "status.get",
+      "description": "Returns data required to show the status of a user or community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID or community ID. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../status/responses.json#/definitions/status_get_response"
+        }
+      }
+    },
+    {
+      "name": "status.set",
+      "description": "Sets a new status for the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "text",
+          "description": "Text of the new status.",
+          "type": "string"
+        },
+        {
+          "name": "group_id",
+          "description": "Identifier of a community to set a status in. If left blank the status is set to current user.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_status_no_audio"
+        }
+      ]
+    }
+  ]
+}

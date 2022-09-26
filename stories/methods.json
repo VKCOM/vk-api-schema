@@ -1,0 +1,677 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "stories.banOwner",
+      "description": "Allows to hide stories from chosen sources from current user's feed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owners_ids",
+          "description": "List of sources IDs",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.delete",
+      "description": "Allows to delete story.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner's ID. Current user id is used by default.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "stories",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.get",
+      "description": "Returns stories available for current user.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_get_V5113_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getBanned",
+      "description": "Returns list of sources hidden from current user's feed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields to return",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getBanned_response"
+        },
+        "extendedResponse": {
+          "$ref": "../stories/responses.json#/definitions/stories_getBanned_extended_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getById",
+      "description": "Returns story by its ID.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "stories",
+          "description": "Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields to return",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getById_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_story_expired"
+        }
+      ]
+    },
+    {
+      "name": "stories.getPhotoUploadServer",
+      "description": "Returns URL for uploading a story with photo.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "add_to_news",
+          "description": "1 — to add the story to friend's feed.",
+          "type": "boolean"
+        },
+        {
+          "name": "user_ids",
+          "description": "List of users IDs who can see the story.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "reply_to_story",
+          "description": "ID of the story to reply with the current.",
+          "type": "string"
+        },
+        {
+          "name": "link_text",
+          "description": "Link text (for community's stories only).",
+          "type": "string",
+          "$ref": "../stories/objects.json#/definitions/stories_upload_link_text"
+        },
+        {
+          "name": "link_url",
+          "description": "Link URL. Internal links on https://vk.com only.",
+          "type": "string",
+          "maxLength": 2048
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community to upload the story (should be verified or with the \"fire\" icon).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "clickable_stickers",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getPhotoUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_user_blocked"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_story_incorrect_reply_privacy"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_blocked"
+        }
+      ]
+    },
+    {
+      "name": "stories.getReplies",
+      "description": "Returns replies to the story.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "access_key",
+          "description": "Access key for the private object.",
+          "type": "string"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields to return",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_get_V5113_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getStats",
+      "description": "Returns stories available for current user.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner ID. ",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getStats_response"
+        }
+      }
+    },
+    {
+      "name": "stories.getVideoUploadServer",
+      "description": "Allows to receive URL for uploading story with video.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "add_to_news",
+          "description": "1 — to add the story to friend's feed.",
+          "type": "boolean"
+        },
+        {
+          "name": "user_ids",
+          "description": "List of users IDs who can see the story.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "reply_to_story",
+          "description": "ID of the story to reply with the current.",
+          "type": "string"
+        },
+        {
+          "name": "link_text",
+          "description": "Link text (for community's stories only).",
+          "type": "string",
+          "$ref": "../stories/objects.json#/definitions/stories_upload_link_text"
+        },
+        {
+          "name": "link_url",
+          "description": "Link URL. Internal links on https://vk.com only.",
+          "type": "string",
+          "maxLength": 2048
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community to upload the story (should be verified or with the \"fire\" icon).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "clickable_stickers",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getVideoUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_user_blocked"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_story_incorrect_reply_privacy"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_blocked"
+        }
+      ]
+    },
+    {
+      "name": "stories.getViewers",
+      "description": "Returns a list of story viewers.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Story owner ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Maximum number of results.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return detailed information about photos",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getViewers_extended_V5115_response"
+        },
+        "extendedResponse": {
+          "$ref": "../stories/responses.json#/definitions/stories_getViewers_extended_V5115_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_story_expired"
+        }
+      ]
+    },
+    {
+      "name": "stories.hideAllReplies",
+      "description": "Hides all replies in the last 24 hours from the user to current user's stories.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user whose replies should be hidden.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.hideReply",
+      "description": "Hides the reply to the current user's story.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user whose replies should be hidden.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "story_id",
+          "description": "Story ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.save",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "upload_results",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_save_response"
+        }
+      }
+    },
+    {
+      "name": "stories.search",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "place_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "latitude",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "type": "number"
+        },
+        {
+          "name": "radius",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "mentioned_id",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 20,
+          "minimum": 1,
+          "maximum": 1000
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_get_V5113_response"
+        }
+      }
+    },
+    {
+      "name": "stories.sendInteraction",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "access_key",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "maxLength": 1000
+        },
+        {
+          "name": "is_broadcast",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "is_anonymous",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "unseen_marker",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "stories.unbanOwner",
+      "description": "Allows to show stories from hidden sources in current user's feed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owners_ids",
+          "description": "List of hidden sources to show stories from.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,472 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "users.get",
+      "description": "Returns detailed information on users.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "description": "User IDs or screen names ('screen_name'). By default, current user ID.",
+          "type": "array",
+          "items": {
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64",
+            "entity": "profiles"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../users/responses.json#/definitions/users_get_response"
+        }
+      }
+    },
+    {
+      "name": "users.getFollowers",
+      "description": "Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of followers.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of followers to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../users/responses.json#/definitions/users_getFollowers_response"
+        },
+        "fieldsResponse": {
+          "$ref": "../users/responses.json#/definitions/users_getFollowers_fields_response"
+        }
+      }
+    },
+    {
+      "name": "users.getSubscriptions",
+      "description": "Returns a list of IDs of users and communities followed by the user.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return a combined list of users and communities, '0' — to return separate lists of users and communities (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of subscriptions.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of users and communities to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../users/responses.json#/definitions/users_getSubscriptions_response"
+        },
+        "extendedResponse": {
+          "$ref": "../users/responses.json#/definitions/users_getSubscriptions_extended_response"
+        }
+      }
+    },
+    {
+      "name": "users.report",
+      "description": "Reports (submits a complain about) a user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of the user about whom a complaint is being made.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "type",
+          "description": "Type of complaint: 'porn' - pornography, 'spam' - spamming, 'insult' - abusive behavior, 'advertisement' - disruptive advertisements",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "porn",
+            "spam",
+            "insult",
+            "advertisement"
+          ]
+        },
+        {
+          "name": "comment",
+          "description": "Comment describing the complaint.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "users.search",
+      "description": "Returns a list of users matching the search criteria.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string (e.g., 'Vasya Babich').",
+          "type": "string"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: '1' — by date registered, '0' — by rating",
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ],
+          "enumNames": [
+            "by rating",
+            "by date registered"
+          ]
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of users to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online',",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "city",
+          "description": "City ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "country",
+          "description": "Country ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "hometown",
+          "description": "City name in a string.",
+          "type": "string"
+        },
+        {
+          "name": "university_country",
+          "description": "ID of the country where the user graduated.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "university",
+          "description": "ID of the institution of higher education.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "university_year",
+          "description": "Year of graduation from an institution of higher education.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "university_faculty",
+          "description": "Faculty ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "university_chair",
+          "description": "Chair ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sex",
+          "description": "'1' — female, '2' — male, '0' — any (default)",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "any",
+            "female",
+            "male"
+          ]
+        },
+        {
+          "name": "status",
+          "description": "Relationship status: '1' — Not married, '2' — In a relationship, '3' — Engaged, '4' — Married, '5' — It's complicated, '6' — Actively searching, '7' — In love",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "enumNames": [
+            "not specified",
+            "not married",
+            "relationship",
+            "engaged",
+            "married",
+            "complicated",
+            "actively searching",
+            "in love"
+          ]
+        },
+        {
+          "name": "age_from",
+          "description": "Minimum age.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "age_to",
+          "description": "Maximum age.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "birth_day",
+          "description": "Day of birth.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "birth_month",
+          "description": "Month of birth.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "birth_year",
+          "description": "Year of birth.",
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        {
+          "name": "online",
+          "description": "'1' — online only, '0' — all users",
+          "type": "boolean"
+        },
+        {
+          "name": "has_photo",
+          "description": "'1' — with photo only, '0' — all users",
+          "type": "boolean"
+        },
+        {
+          "name": "school_country",
+          "description": "ID of the country where users finished school.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "school_city",
+          "description": "ID of the city where users finished school.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "school_class",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "school",
+          "description": "ID of the school.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "school_year",
+          "description": "School graduation year.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "religion",
+          "description": "Users' religious affiliation.",
+          "type": "string"
+        },
+        {
+          "name": "company",
+          "description": "Name of the company where users work.",
+          "type": "string"
+        },
+        {
+          "name": "position",
+          "description": "Job position.",
+          "type": "string"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of a community to search in communities.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "from_list",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../users/responses.json#/definitions/users_search_response"
+        }
+      }
+    }
+  ]
+}

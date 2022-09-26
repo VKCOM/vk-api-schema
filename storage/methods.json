@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "storage.get",
+      "description": "Returns a value of variable with the name set by key parameter.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "maxLength": 100
+        },
+        {
+          "name": "keys",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../storage/responses.json#/definitions/storage_get_response"
+        }
+      }
+    },
+    {
+      "name": "storage.getKeys",
+      "description": "Returns the names of all variables.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "user id, whose variables names are returned if they were requested with a server method.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "amount of variable names the info needs to be collected from.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../storage/responses.json#/definitions/storage_getKeys_response"
+        }
+      }
+    },
+    {
+      "name": "storage.set",
+      "description": "Saves a value of variable with the name set by 'key' parameter.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "key",
+          "type": "string",
+          "required": true,
+          "maxLength": 100
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    }
+  ]
+}

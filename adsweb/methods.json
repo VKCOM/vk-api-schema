@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "adsweb.getAdCategories",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "office_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../adsweb/responses.json#/definitions/adsweb_getAdCategories_response"
+        }
+      }
+    },
+    {
+      "name": "adsweb.getAdUnitCode",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../adsweb/responses.json#/definitions/adsweb_getAdUnitCode_response"
+        }
+      }
+    },
+    {
+      "name": "adsweb.getAdUnits",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "office_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "sites_ids",
+          "type": "string"
+        },
+        {
+          "name": "ad_units_ids",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": null,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../adsweb/responses.json#/definitions/adsweb_getAdUnits_response"
+        }
+      }
+    },
+    {
+      "name": "adsweb.getFraudHistory",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "office_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "sites_ids",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": null,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../adsweb/responses.json#/definitions/adsweb_getFraudHistory_response"
+        }
+      }
+    },
+    {
+      "name": "adsweb.getSites",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "office_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "sites_ids",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": null,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../adsweb/responses.json#/definitions/adsweb_getSites_response"
+        }
+      }
+    },
+    {
+      "name": "adsweb.getStatistics",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "office_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids_type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date_from",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date_to",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "fields",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": null,
+          "minimum": 0
+        },
+        {
+          "name": "page_id",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../adsweb/responses.json#/definitions/adsweb_getStatistics_response"
+        }
+      }
+    }
+  ]
+}

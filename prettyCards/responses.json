@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "prettyCards_create_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "owner_id": {
+              "type": "integer",
+              "description": "Owner ID of created pretty card",
+              "entity": "owner",
+              "format": "int64",
+              "required": true
+            },
+            "card_id": {
+              "type": "string",
+              "description": "Card ID of created pretty card",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "prettyCards_delete_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "owner_id": {
+              "type": "integer",
+              "description": "Owner ID of deleted pretty card",
+              "entity": "owner",
+              "format": "int64",
+              "required": true
+            },
+            "card_id": {
+              "type": "string",
+              "description": "Card ID of deleted pretty card",
+              "required": true
+            },
+            "error": {
+              "type": "string",
+              "description": "Error reason if error happened"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "prettyCards_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "owner_id": {
+              "type": "integer",
+              "description": "Owner ID of edited pretty card",
+              "entity": "owner",
+              "format": "int64",
+              "required": true
+            },
+            "card_id": {
+              "type": "string",
+              "description": "Card ID of edited pretty card",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "prettyCards_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../prettyCards/objects.json#/definitions/prettyCards_prettyCardOrError"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "prettyCards_getUploadURL_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "description": "Upload URL",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "prettyCards_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../prettyCards/objects.json#/definitions/prettyCards_prettyCard"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

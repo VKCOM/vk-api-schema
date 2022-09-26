@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "adsweb_getAdCategories_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "categories": {
+              "type": "array",
+              "items": {
+                "$ref": "../adsweb/objects.json#/definitions/adsweb_getAdCategories_response_categories_category"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getAdUnitCode_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "html": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getAdUnits_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "required": true
+            },
+            "ad_units": {
+              "type": "array",
+              "items": {
+                "$ref": "../adsweb/objects.json#/definitions/adsweb_getAdUnits_response_ad_units_ad_unit"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getFraudHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "required": true
+            },
+            "entries": {
+              "type": "array",
+              "items": {
+                "$ref": "../adsweb/objects.json#/definitions/adsweb_getFraudHistory_response_entries_entry"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getSites_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "required": true
+            },
+            "sites": {
+              "type": "array",
+              "items": {
+                "$ref": "../adsweb/objects.json#/definitions/adsweb_getSites_response_sites_site"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getStatistics_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "next_page_id": {
+              "type": "string"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../adsweb/objects.json#/definitions/adsweb_getStatistics_response_items_item"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "database_city": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../base/objects.json#/definitions/base_object"
+        },
+        {
+          "properties": {
+            "area": {
+              "type": "string",
+              "description": "Area title"
+            },
+            "region": {
+              "type": "string",
+              "description": "Region title"
+            },
+            "important": {
+              "description": "Information whether the city is included in important cities list",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "additionalProperties": false
+    },
+    "database_city_by_id": {
+      "$ref": "../base/objects.json#/definitions/base_object"
+    },
+    "database_faculty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Faculty ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Faculty title"
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_region": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Region ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Region title"
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_school": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "School ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "School title"
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_station": {
+      "type": "object",
+      "properties": {
+        "city_id": {
+          "type": "integer",
+          "description": "City ID",
+          "minimum": 1
+        },
+        "color": {
+          "type": "string",
+          "description": "Hex color code without #"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Station ID",
+          "minimum": 1,
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Station name",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_university": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "University ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "University title"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

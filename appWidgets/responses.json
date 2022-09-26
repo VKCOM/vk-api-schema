@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "appWidgets_getAppImageUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "upload_url": {
+              "type": "string",
+              "description": "To upload an image, generate POST-request to upload_url with a file in photo field. Then call appWidgets.saveAppImage method"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_getAppImages_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photos",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_getGroupImageUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "upload_url": {
+              "type": "string",
+              "description": "To upload an image, generate POST-request to upload_url with a file in photo field. Then call appWidgets.saveAppImage method"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_getGroupImages_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photos",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_getImagesById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_saveAppImage_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_saveGroupImage_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

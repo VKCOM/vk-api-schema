@@ -1,0 +1,687 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "newsfeed_comments_filters": {
+      "type": "string",
+      "enum": [
+        "post",
+        "photo",
+        "video",
+        "topic",
+        "note"
+      ]
+    },
+    "newsfeed_ignore_item_type": {
+      "type": "string",
+      "enum": [
+        "wall",
+        "tag",
+        "profilephoto",
+        "video",
+        "photo",
+        "audio"
+      ],
+      "enumNames": [
+        "post on the wall",
+        "tag on a photo",
+        "profile photo",
+        "video",
+        "photo",
+        "audio"
+      ]
+    },
+    "newsfeed_item_audio": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "audio": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_audio_audio"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Post ID"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_audio_audio": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Audios number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../audio/objects.json#/definitions/audio_audio"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_base": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_item_type",
+          "required": true
+        },
+        "source_id": {
+          "type": "integer",
+          "description": "Item source ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when item has been added in Unixtime",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_digest": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "feed_id": {
+              "type": "string",
+              "description": "id of feed in digest"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_item"
+              }
+            },
+            "main_post_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "template": {
+              "type": "string",
+              "enum": [
+                "list",
+                "grid",
+                "single"
+              ],
+              "description": "type of digest"
+            },
+            "header": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_header"
+            },
+            "footer": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_footer"
+            },
+            "track_code": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_digest_button": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "primary"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_digest_footer": {
+      "type": "object",
+      "properties": {
+        "style": {
+          "type": "string",
+          "enum": [
+            "text",
+            "button"
+          ],
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "description": "text for invite to enable smart feed",
+          "required": true
+        },
+        "button": {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_button"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_digest_full_item": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "source_name": {
+          "type": "string"
+        },
+        "attachment_index": {
+          "type": "integer"
+        },
+        "attachment": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "default",
+            "inversed",
+            "spotlight"
+          ]
+        },
+        "post": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_digest_header": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the header",
+          "required": true
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Subtitle of the header, when title have two strings"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "singleline",
+            "multiline"
+          ],
+          "required": true
+        },
+        "button": {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_button"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_digest_item": {
+      "$ref": "../wall/objects.json#/definitions/wall_wallpost"
+    },
+    "newsfeed_item_friend": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "friends": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_friend_friends"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_friend_friends": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of friends has been added"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_id"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_holiday_recommendations_block_header": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the header"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Subtitle of the header"
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          }
+        },
+        "action": {
+          "$ref": "../base/objects.json#/definitions/base_link_button_action"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_photo": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_carousel_base"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "photos": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_photo_photos"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Post ID"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_photo_photos": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Photos number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_photo"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_photo_tag": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_carousel_base"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "photo_tags": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_photo_tag_photo_tags"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Post ID"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_photo_tag_photo_tags": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Tags number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_photo"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_promo_button": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "action": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_promo_button_action"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_promo_button_image"
+              }
+            },
+            "track_code": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_promo_button_action": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_promo_button_image": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_topic": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "comments": {
+              "$ref": "../base/objects.json#/definitions/base_comments_info"
+            },
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes_info"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Topic post ID",
+              "required": true
+            },
+            "text": {
+              "type": "string",
+              "description": "Post text",
+              "required": true
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_video": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_carousel_base"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "properties": {
+            "video": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_video_video"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_video_video": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Tags number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../video/objects.json#/definitions/video_video"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_wallpost": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_carousel_base"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
+        },
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+        },
+        {
+          "properties": {
+            "feedback": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_item_wallpost_feedback": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback_type",
+          "required": true
+        },
+        "question": {
+          "type": "string",
+          "required": true
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback_answer"
+          }
+        },
+        "stars_count": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 5
+        },
+        "gratitude": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_wallpost_feedback_answer": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_item_wallpost_feedback_type": {
+      "type": "string",
+      "enum": [
+        "buttons",
+        "stars"
+      ]
+    },
+    "newsfeed_list": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "List ID",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "List title",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_list_full": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_list"
+        },
+        {
+          "properties": {
+            "no_reposts": {
+              "description": "Information whether reposts hiding is enabled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "source_ids": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64",
+                "description": "Users and communities IDs",
+                "entity": "owner"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_newsfeed_item": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_photo"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_photo_tag"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_friend"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_audio"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_video"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_topic"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_promo_button"
+        }
+      ]
+    },
+    "newsfeed_newsfeed_item_type": {
+      "type": "string",
+      "description": "Item type",
+      "enum": [
+        "post",
+        "photo",
+        "photo_tag",
+        "wall_photo",
+        "friend",
+        "audio",
+        "video",
+        "topic",
+        "digest",
+        "stories",
+        "note",
+        "audio_playlist",
+        "clip"
+      ]
+    },
+    "newsfeed_newsfeed_photo": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        {
+          "properties": {
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes"
+            },
+            "comments": {
+              "$ref": "../base/objects.json#/definitions/base_object_count"
+            },
+            "can_repost": {
+              "description": "Information whether current user can repost the photo",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

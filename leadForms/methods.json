@@ -1,0 +1,323 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "leadForms.create",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "maxLength": 100
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "maxLength": 60
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": true,
+          "maxLength": 600
+        },
+        {
+          "name": "questions",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "policy_link_url",
+          "type": "string",
+          "required": true,
+          "maxLength": 200
+        },
+        {
+          "name": "photo",
+          "type": "string"
+        },
+        {
+          "name": "confirmation",
+          "type": "string",
+          "maxLength": 300
+        },
+        {
+          "name": "site_link_url",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "once_per_user",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "pixel_code",
+          "type": "string"
+        },
+        {
+          "name": "notify_admins",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "notify_emails",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_create_response"
+        }
+      }
+    },
+    {
+      "name": "leadForms.delete",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "form_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_delete_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "leadForms.get",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "form_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_get_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "leadForms.getLeads",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "form_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 1000
+        },
+        {
+          "name": "next_page_token",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_getLeads_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "leadForms.getUploadURL",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_uploadUrl_response"
+        }
+      }
+    },
+    {
+      "name": "leadForms.list",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_list_response"
+        }
+      }
+    },
+    {
+      "name": "leadForms.update",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "form_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "maxLength": 100
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "maxLength": 60
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": true,
+          "maxLength": 600
+        },
+        {
+          "name": "questions",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "policy_link_url",
+          "type": "string",
+          "required": true,
+          "maxLength": 200
+        },
+        {
+          "name": "photo",
+          "type": "string"
+        },
+        {
+          "name": "confirmation",
+          "type": "string",
+          "maxLength": 300
+        },
+        {
+          "name": "site_link_url",
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "once_per_user",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "pixel_code",
+          "type": "string"
+        },
+        {
+          "name": "notify_admins",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "notify_emails",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../leadForms/responses.json#/definitions/leadForms_create_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    }
+  ]
+}

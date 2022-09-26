@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "search.getHints",
+      "description": "Allows the programmer to do a quick search for any substring.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string.",
+          "type": "string",
+          "maxLength": 9000
+        },
+        {
+          "name": "offset",
+          "description": "Offset for querying specific result subset",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "limit",
+          "description": "Maximum number of results to return.",
+          "type": "integer",
+          "default": 9,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "filters",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "search_global",
+          "type": "boolean",
+          "default": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../search/responses.json#/definitions/search_getHints_response"
+        }
+      }
+    }
+  ]
+}

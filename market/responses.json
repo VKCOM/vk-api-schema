@@ -1,0 +1,495 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "market_addAlbum_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "market_album_id": {
+              "type": "integer",
+              "description": "Album ID"
+            },
+            "albums_count": {
+              "type": "integer",
+              "description": "Albums count"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_add_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "market_item_id": {
+              "type": "integer",
+              "description": "Item ID",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_createComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Comment ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_deleteComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Returns 1 if request has been processed successfully (0 if the comment is not found)",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getAlbumById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_album"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getAlbums_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_album"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getById_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getCategories_new_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_category_tree"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getCategories_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_category"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getComments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getGroupOrders_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_order"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getOrderById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "order": {
+              "$ref": "../market/objects.json#/definitions/market_order"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getOrderItems_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_order_item"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getOrders_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_order"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_getOrders_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_order"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_get_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item_full"
+              }
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item"
+              }
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_restoreComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Returns 1 if request has been processed successfully (0 if the comment is not found)",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_search_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "view_type": {
+              "$ref": "../market/objects.json#/definitions/market_services_view_type",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item_full"
+              },
+              "required": true
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_search_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "view_type": {
+              "$ref": "../market/objects.json#/definitions/market_services_view_type",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item"
+              },
+              "required": true
+            },
+            "variants": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

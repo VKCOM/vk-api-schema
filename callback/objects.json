@@ -1,0 +1,918 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "callback_base": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "$ref": "../callback/objects.json#/definitions/callback_type",
+          "required": true
+        },
+        "group_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "groups",
+          "format": "int64",
+          "required": true
+        },
+        "event_id": {
+          "type": "string",
+          "description": "Unique event id. If it passed twice or more - you should ignore it.",
+          "required": true
+        },
+        "secret": {
+          "type": "string"
+        }
+      },
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "message_new": "../callback/objects.json#/definitions/callback_message_new",
+          "message_reply": "../callback/objects.json#/definitions/callback_message_reply",
+          "message_edit": "../callback/objects.json#/definitions/callback_message_edit",
+          "confirmation": "../callback/objects.json#/definitions/callback_confirmation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_board_post_delete": {
+      "type": "object",
+      "properties": {
+        "topic_owner_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "topic_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_confirmation": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../callback/objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "../callback/objects.json#/definitions/callback_type",
+              "default": "confirmation"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_donut_money_withdraw": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0,
+          "required": true
+        },
+        "amount_without_fee": {
+          "type": "number",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_donut_money_withdraw_error": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_donut_subscription_cancelled": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_donut_subscription_create": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "amount_without_fee": {
+          "type": "number",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_donut_subscription_expired": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_donut_subscription_price_changed": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "amount_old": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "amount_new": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "amount_diff": {
+          "type": "number",
+          "minimum": 0
+        },
+        "amount_diff_without_fee": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_donut_subscription_prolonged": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "amount": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "amount_without_fee": {
+          "type": "number",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_group_change_photo": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_group_change_settings": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "self": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_group_join": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "join_type": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_join_type",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_group_join_type": {
+      "type": "string",
+      "enum": [
+        "join",
+        "unsure",
+        "accepted",
+        "approved",
+        "request"
+      ]
+    },
+    "callback_group_leave": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "self": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_group_market": {
+      "type": "integer",
+      "enum": [
+        0,
+        1
+      ],
+      "enumNames": [
+        "disabled",
+        "open"
+      ]
+    },
+    "callback_group_officer_role": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "none",
+        "moderator",
+        "editor",
+        "administrator"
+      ]
+    },
+    "callback_group_officers_edit": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "level_old": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_officer_role",
+          "required": true
+        },
+        "level_new": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_officer_role",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_group_settings_changes": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "access": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_is_closed"
+        },
+        "screen_name": {
+          "type": "string"
+        },
+        "public_category": {
+          "type": "integer"
+        },
+        "public_subcategory": {
+          "type": "integer"
+        },
+        "age_limits": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_full_age_limits"
+        },
+        "website": {
+          "type": "string"
+        },
+        "enable_status_default": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_wall"
+        },
+        "enable_audio": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_audio"
+        },
+        "enable_video": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_video"
+        },
+        "enable_photo": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_photos"
+        },
+        "enable_market": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_market"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_like_add_remove": {
+      "type": "object",
+      "properties": {
+        "liker_id": {
+          "type": "integer",
+          "required": true
+        },
+        "object_type": {
+          "type": "string",
+          "enum": [
+            "video",
+            "photo",
+            "post",
+            "comment",
+            "note",
+            "topic_comment",
+            "photo_comment",
+            "video_comment",
+            "market",
+            "market_comment"
+          ],
+          "required": true
+        },
+        "object_owner_id": {
+          "type": "integer",
+          "required": true
+        },
+        "object_id": {
+          "type": "integer",
+          "required": true
+        },
+        "post_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "thread_reply_id": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_market_comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string"
+        },
+        "market_owner_id": {
+          "type": "integer"
+        },
+        "photo_id": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_market_comment_delete": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "item_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_message_allow": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../callback/objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "../callback/objects.json#/definitions/callback_type",
+              "default": "message_allow"
+            },
+            "object": {
+              "$ref": "../callback/objects.json#/definitions/callback_message_allow_object",
+              "required": true
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_message_allow_object": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "key": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_message_deny": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_message_edit": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../callback/objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "../callback/objects.json#/definitions/callback_type",
+              "default": "message_edit"
+            },
+            "object": {
+              "$ref": "../messages/objects.json#/definitions/messages_message",
+              "required": true
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_message_new": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../callback/objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "../callback/objects.json#/definitions/callback_type",
+              "default": "message_new"
+            },
+            "object": {
+              "type": "object",
+              "$ref": "../callback/objects.json#/definitions/callback_message_object",
+              "required": true
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_message_object": {
+      "type": "object",
+      "properties": {
+        "client_info": {
+          "$ref": "../client/objects.json#/definitions/client_info_for_bots"
+        },
+        "message": {
+          "$ref": "../messages/objects.json#/definitions/messages_message"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_message_reply": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../callback/objects.json#/definitions/callback_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "$ref": "../callback/objects.json#/definitions/callback_type",
+              "default": "message_reply"
+            },
+            "object": {
+              "$ref": "../messages/objects.json#/definitions/messages_message",
+              "required": true
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "callback_photo_comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "required": true
+        },
+        "photo_owner_id": {
+          "type": "integer",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_photo_comment_delete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "photo_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_poll_vote_new": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "poll_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "option_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_qr_scan": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "data": {
+          "type": "string",
+          "required": true
+        },
+        "type": {
+          "type": "string",
+          "required": true
+        },
+        "subtype": {
+          "type": "string",
+          "required": true
+        },
+        "reread": {
+          "type": "boolean",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_type": {
+      "type": "string",
+      "enum": [
+        "audio_new",
+        "board_post_new",
+        "board_post_edit",
+        "board_post_restore",
+        "board_post_delete",
+        "confirmation",
+        "group_leave",
+        "group_join",
+        "group_change_photo",
+        "group_change_settings",
+        "group_officers_edit",
+        "lead_forms_new",
+        "market_comment_new",
+        "market_comment_delete",
+        "market_comment_edit",
+        "market_comment_restore",
+        "message_new",
+        "message_reply",
+        "message_edit",
+        "message_allow",
+        "message_deny",
+        "message_read",
+        "message_typing_state",
+        "messages_edit",
+        "photo_new",
+        "photo_comment_new",
+        "photo_comment_delete",
+        "photo_comment_edit",
+        "photo_comment_restore",
+        "poll_vote_new",
+        "user_block",
+        "user_unblock",
+        "video_new",
+        "video_comment_new",
+        "video_comment_delete",
+        "video_comment_edit",
+        "video_comment_restore",
+        "wall_post_new",
+        "wall_reply_new",
+        "wall_reply_edit",
+        "wall_reply_delete",
+        "wall_reply_restore",
+        "wall_repost"
+      ]
+    },
+    "callback_user_block": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "unblock_date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "reason": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "comment": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_user_unblock": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "by_end_date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_video_comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "required": true
+        },
+        "video_owner_id": {
+          "type": "integer",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_video_comment_delete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "video_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "callback_wall_comment_delete": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "post_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "donut_donator_subscription_info": {
+      "description": "Info about user VK Donut subscription",
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "next_payment_date": {
+          "type": "integer",
+          "required": true
+        },
+        "amount": {
+          "type": "integer",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "expiring"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

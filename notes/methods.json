@@ -1,0 +1,456 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "notes.add",
+      "description": "Creates a new note for the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "description": "Note title.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "text",
+          "description": "Note text.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "privacy_view",
+          "type": "array",
+          "default": "all",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "type": "array",
+          "default": "all",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../notes/responses.json#/definitions/notes_add_response"
+        }
+      }
+    },
+    {
+      "name": "notes.createComment",
+      "description": "Adds a new comment on a note.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "note_id",
+          "description": "Note ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "reply_to",
+          "description": "ID of the user to whom the reply is addressed (if the comment is a reply to another comment).",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "message",
+          "description": "Comment text.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "guid",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../notes/responses.json#/definitions/notes_createComment_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_note"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_access_note_comment"
+        }
+      ]
+    },
+    {
+      "name": "notes.delete",
+      "description": "Deletes a note of the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "note_id",
+          "description": "Note ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_note_id"
+        }
+      ]
+    },
+    {
+      "name": "notes.deleteComment",
+      "description": "Deletes a comment on a note.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_note"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_access_comment"
+        }
+      ]
+    },
+    {
+      "name": "notes.edit",
+      "description": "Edits a note of the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "note_id",
+          "description": "Note ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "Note title.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "text",
+          "description": "Note text.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "privacy_view",
+          "type": "array",
+          "default": "all",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "type": "array",
+          "default": "all",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_note_id"
+        }
+      ]
+    },
+    {
+      "name": "notes.editComment",
+      "description": "Edits a comment on a note.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "message",
+          "description": "New comment text.",
+          "type": "string",
+          "required": true,
+          "minLength": 2
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_comment"
+        }
+      ]
+    },
+    {
+      "name": "notes.get",
+      "description": "Returns a list of notes created by a user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "note_ids",
+          "description": "Note IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "user_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of notes to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "sort",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "enum": [
+            0,
+            1
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../notes/responses.json#/definitions/notes_get_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_note_id"
+        }
+      ]
+    },
+    {
+      "name": "notes.getById",
+      "description": "Returns a note by its ID.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "note_id",
+          "description": "Note ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "need_wiki",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../notes/responses.json#/definitions/notes_getById_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_note"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_note_id"
+        }
+      ]
+    },
+    {
+      "name": "notes.getComments",
+      "description": "Returns a list of comments on a note.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "note_id",
+          "description": "Note ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "sort",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of comments to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../notes/responses.json#/definitions/notes_getComments_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_note"
+        }
+      ]
+    },
+    {
+      "name": "notes.restoreComment",
+      "description": "Restores a deleted comment on a note.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "Note owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_comment"
+        }
+      ]
+    }
+  ]
+}

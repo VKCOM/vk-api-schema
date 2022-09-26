@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "widgets_comment_media": {
+      "type": "object",
+      "properties": {
+        "item_id": {
+          "type": "integer",
+          "description": "Media item ID"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Media owner's ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "thumb_src": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image (type=photo only)"
+        },
+        "type": {
+          "$ref": "../widgets/objects.json#/definitions/widgets_comment_media_type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "widgets_comment_media_type": {
+      "type": "string",
+      "description": "Media type",
+      "enum": [
+        "audio",
+        "photo",
+        "video"
+      ]
+    },
+    "widgets_comment_replies": {
+      "type": "object",
+      "properties": {
+        "can_post": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can comment the post"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Comments number"
+        },
+        "replies": {
+          "type": "array",
+          "items": {
+            "$ref": "../widgets/objects.json#/definitions/widgets_comment_replies_item"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "widgets_comment_replies_item": {
+      "type": "object",
+      "properties": {
+        "cid": {
+          "type": "integer",
+          "description": "Comment ID"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the comment has been added in Unixtime"
+        },
+        "likes": {
+          "$ref": "../widgets/objects.json#/definitions/widgets_widget_likes"
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment text"
+        },
+        "uid": {
+          "type": "integer",
+          "description": "User ID"
+        },
+        "user": {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        }
+      },
+      "additionalProperties": false
+    },
+    "widgets_widget_comment": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_comment_attachment"
+          }
+        },
+        "can_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can delete the comment"
+        },
+        "comments": {
+          "$ref": "../widgets/objects.json#/definitions/widgets_comment_replies"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the comment has been added in Unixtime",
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Comment author ID",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Comment ID",
+          "required": true
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes_info"
+        },
+        "media": {
+          "$ref": "../widgets/objects.json#/definitions/widgets_comment_media"
+        },
+        "post_source": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_source"
+        },
+        "post_type": {
+          "type": "integer",
+          "description": "Post type",
+          "required": true
+        },
+        "reposts": {
+          "$ref": "../base/objects.json#/definitions/base_reposts_info"
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment text",
+          "required": true
+        },
+        "to_id": {
+          "type": "integer",
+          "description": "Wall owner",
+          "required": true
+        },
+        "user": {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        }
+      },
+      "additionalProperties": false
+    },
+    "widgets_widget_likes": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Likes number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "widgets_widget_page": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when widgets on the page has been initialized firstly in Unixtime"
+        },
+        "description": {
+          "type": "string",
+          "description": "Page description"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Page ID"
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        },
+        "page_id": {
+          "type": "string",
+          "description": "page_id parameter value"
+        },
+        "photo": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Page absolute URL"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

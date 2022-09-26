@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "appWidgets.getAppImageUploadServer",
+      "description": "Returns a URL for uploading a photo to the community collection for community app widgets",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "image_type",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "160x160",
+            "160x240",
+            "24x24",
+            "50x50",
+            "510x128"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_getAppImageUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "appWidgets.getAppImages",
+      "description": "Returns an app collection of images for community app widgets",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of images.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Maximum count of results.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "image_type",
+          "type": "string",
+          "enum": [
+            "160x160",
+            "160x240",
+            "24x24",
+            "50x50",
+            "510x128"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_getAppImages_response"
+        }
+      }
+    },
+    {
+      "name": "appWidgets.getGroupImageUploadServer",
+      "description": "Returns a URL for uploading a photo to the community collection for community app widgets",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "image_type",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "160x160",
+            "160x240",
+            "24x24",
+            "50x50",
+            "510x128"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_getGroupImageUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "appWidgets.getGroupImages",
+      "description": "Returns a community collection of images for community app widgets",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of images.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Maximum count of results.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "image_type",
+          "type": "string",
+          "enum": [
+            "160x160",
+            "160x240",
+            "24x24",
+            "50x50",
+            "510x128"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_getGroupImages_response"
+        }
+      }
+    },
+    {
+      "name": "appWidgets.getImagesById",
+      "description": "Returns an image for community app widgets by its ID",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "images",
+          "description": "List of images IDs",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_getImagesById_response"
+        }
+      }
+    },
+    {
+      "name": "appWidgets.saveAppImage",
+      "description": "Allows to save image into app collection for community app widgets",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "hash",
+          "description": "Parameter returned when photo is uploaded to server",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "image",
+          "description": "Parameter returned when photo is uploaded to server",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_saveAppImage_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        }
+      ]
+    },
+    {
+      "name": "appWidgets.saveGroupImage",
+      "description": "Allows to save image into community collection for community app widgets",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "hash",
+          "description": "Parameter returned when photo is uploaded to server",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "image",
+          "description": "Parameter returned when photo is uploaded to server",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../appWidgets/responses.json#/definitions/appWidgets_saveGroupImage_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        }
+      ]
+    },
+    {
+      "name": "appWidgets.update",
+      "description": "Allows to update community app widget",
+      "access_token_type": [
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "code",
+          "type": "string",
+          "required": true,
+          "maxLength": 100000
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "compact_list",
+            "cover_list",
+            "donation",
+            "list",
+            "match",
+            "matches",
+            "table",
+            "text",
+            "tiles"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_compile"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_runtime"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_blocked"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_access_post"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_access_replies"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_group_id"
+        }
+      ]
+    }
+  ]
+}

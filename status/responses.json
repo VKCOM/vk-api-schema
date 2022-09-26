@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "status_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../status/objects.json#/definitions/status_status",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

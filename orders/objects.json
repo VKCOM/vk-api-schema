@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "orders_amount": {
+      "type": "object",
+      "properties": {
+        "amounts": {
+          "type": "array",
+          "items": {
+            "$ref": "../orders/objects.json#/definitions/orders_amount_item"
+          }
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency name"
+        }
+      },
+      "additionalProperties": false
+    },
+    "orders_amount_item": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "Votes amount in user's currency"
+        },
+        "description": {
+          "type": "string",
+          "description": "Amount description"
+        },
+        "votes": {
+          "type": "string",
+          "description": "Votes number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "orders_order": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "description": "Amount",
+          "required": true
+        },
+        "app_order_id": {
+          "type": "string",
+          "description": "App order ID",
+          "required": true
+        },
+        "cancel_transaction_id": {
+          "type": "string",
+          "description": "Cancel transaction ID"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of creation in Unixtime",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "description": "Order ID",
+          "required": true
+        },
+        "item": {
+          "type": "string",
+          "description": "Order item",
+          "required": true
+        },
+        "receiver_id": {
+          "type": "string",
+          "description": "Receiver ID",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "description": "Order status",
+          "enum": [
+            "created",
+            "charged",
+            "refunded",
+            "chargeable",
+            "cancelled",
+            "declined"
+          ],
+          "required": true
+        },
+        "transaction_id": {
+          "type": "string",
+          "description": "Transaction ID"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "User ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "orders_subscription": {
+      "type": "object",
+      "properties": {
+        "cancel_reason": {
+          "type": "string",
+          "description": "Cancel reason"
+        },
+        "create_time": {
+          "type": "integer",
+          "description": "Date of creation in Unixtime",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Subscription ID",
+          "required": true
+        },
+        "item_id": {
+          "type": "string",
+          "description": "Subscription order item",
+          "required": true
+        },
+        "next_bill_time": {
+          "type": "integer",
+          "description": "Date of next bill in Unixtime"
+        },
+        "expire_time": {
+          "type": "integer",
+          "description": "Subscription expiration time in Unixtime"
+        },
+        "pending_cancel": {
+          "type": "boolean",
+          "description": "Pending cancel state"
+        },
+        "period": {
+          "type": "integer",
+          "description": "Subscription period",
+          "required": true
+        },
+        "period_start_time": {
+          "type": "integer",
+          "description": "Date of last period start in Unixtime",
+          "required": true
+        },
+        "price": {
+          "type": "integer",
+          "description": "Subscription price",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Subscription name"
+        },
+        "app_id": {
+          "type": "integer",
+          "description": "Subscription's application id"
+        },
+        "application_name": {
+          "type": "string",
+          "description": "Subscription's application name"
+        },
+        "photo_url": {
+          "type": "string",
+          "description": "Item photo image url"
+        },
+        "status": {
+          "type": "string",
+          "description": "Subscription status",
+          "required": true
+        },
+        "test_mode": {
+          "type": "boolean",
+          "description": "Is test subscription"
+        },
+        "trial_expire_time": {
+          "type": "integer",
+          "description": "Date of trial expire in Unixtime"
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Date of last change in Unixtime",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

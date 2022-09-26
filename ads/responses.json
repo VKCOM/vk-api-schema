@@ -1,0 +1,534 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "ads_addOfficeUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "boolean",
+          "description": "true if success",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_checkLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../ads/objects.json#/definitions/ads_link_status",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_createAds_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_create_ad_status"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_createCampaigns_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_create_campaign_status"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_createClients_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Client ID"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_createTargetGroup_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Group ID"
+            },
+            "pixel": {
+              "type": "string",
+              "description": "Pixel code"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_deleteAds_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "0 if success"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_deleteCampaigns_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "0 if success"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_deleteClients_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "0 if success"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getAccounts_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_account"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getAdsLayout_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_ad_layout"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getAdsTargeting_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_targ_settings"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getAds_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_ad"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getBudget_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Budget",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getCampaigns_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_campaign"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getCategories_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "v1": {
+              "type": "array",
+              "items": {
+                "$ref": "../ads/objects.json#/definitions/ads_category"
+              },
+              "description": "Old categories"
+            },
+            "v2": {
+              "type": "array",
+              "items": {
+                "$ref": "../ads/objects.json#/definitions/ads_category"
+              },
+              "description": "Actual categories"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getClients_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_client"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getDemographics_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_demo_stats"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getFloodStats_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../ads/objects.json#/definitions/ads_flood_stats",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getLookalikeRequests_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total count of found lookalike requests",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "description": "found lookalike requests",
+              "items": {
+                "$ref": "../ads/objects.json#/definitions/ads_lookalike_request"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getMusicians_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../ads/objects.json#/definitions/ads_musician"
+              },
+              "description": "Musicians",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getOfficeUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_users"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getPostsReach_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_promoted_post_reach"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getRejectionReason_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../ads/objects.json#/definitions/ads_reject_reason",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getStatistics_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_stats"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getSuggestions_cities_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_targ_suggestions_cities"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getSuggestions_regions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_targ_suggestions_regions"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getSuggestions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_targ_suggestions"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getSuggestions_schools_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_targ_suggestions_schools"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getTargetGroups_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_target_group"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getTargetingStats_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../ads/objects.json#/definitions/ads_targ_stats",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getUploadURL_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "description": "Photo upload URL",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_getVideoUploadURL_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "description": "Video upload URL",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_importTargetContacts_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Imported contacts number",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_removeOfficeUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "boolean",
+          "description": "true if success",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_updateAds_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Ad ID"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_updateCampaigns_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Campaign ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_updateClients_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Client ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_updateOfficeUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_updateOfficeUsers_result"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

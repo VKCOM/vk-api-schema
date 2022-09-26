@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "events_event_attach": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "address of event"
+        },
+        "button_text": {
+          "type": "string",
+          "description": "text of attach",
+          "required": true
+        },
+        "friends": {
+          "type": "array",
+          "description": "array of friends ids",
+          "items": {
+            "type": "integer"
+          },
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "event ID",
+          "minimum": 0,
+          "required": true
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "is favorite",
+          "required": true
+        },
+        "member_status": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_full_member_status",
+          "description": "Current user's member status"
+        },
+        "text": {
+          "type": "string",
+          "description": "text of attach",
+          "required": true
+        },
+        "time": {
+          "type": "integer",
+          "description": "event start time"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

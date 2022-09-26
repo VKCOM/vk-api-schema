@@ -1,0 +1,1340 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "users_career": {
+      "type": "object",
+      "properties": {
+        "city_id": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "city_name": {
+          "type": "string",
+          "description": "City name"
+        },
+        "company": {
+          "type": "string",
+          "description": "Company name"
+        },
+        "country_id": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "from": {
+          "type": "integer",
+          "description": "From year"
+        },
+        "group_id": {
+          "type": "integer",
+          "description": "Community ID",
+          "entity": "groups",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Career ID"
+        },
+        "position": {
+          "type": "string",
+          "description": "Position"
+        },
+        "until": {
+          "type": "integer",
+          "description": "Till year"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_exports": {
+      "type": "object",
+      "properties": {
+        "facebook": {
+          "type": "integer"
+        },
+        "livejournal": {
+          "type": "integer"
+        },
+        "twitter": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_fields": {
+      "type": "string",
+      "enum": [
+        "first_name_nom",
+        "first_name_gen",
+        "first_name_dat",
+        "first_name_acc",
+        "first_name_ins",
+        "first_name_abl",
+        "last_name_nom",
+        "last_name_gen",
+        "last_name_dat",
+        "last_name_acc",
+        "last_name_ins",
+        "last_name_abl",
+        "photo_id",
+        "verified",
+        "sex",
+        "bdate",
+        "bdate_visibility",
+        "city",
+        "country",
+        "home_town",
+        "has_photo",
+        "photo",
+        "photo_rec",
+        "photo_50",
+        "photo_100",
+        "photo_200_orig",
+        "photo_200",
+        "photo_400",
+        "photo_400_orig",
+        "photo_big",
+        "photo_medium",
+        "photo_medium_rec",
+        "photo_max",
+        "photo_max_orig",
+        "photo_max_size",
+        "third_party_buttons",
+        "online",
+        "lists",
+        "domain",
+        "has_mobile",
+        "contacts",
+        "language",
+        "site",
+        "education",
+        "universities",
+        "schools",
+        "status",
+        "last_seen",
+        "followers_count",
+        "counters",
+        "common_count",
+        "online_info",
+        "occupation",
+        "nickname",
+        "relatives",
+        "relation",
+        "personal",
+        "connections",
+        "exports",
+        "wall_comments",
+        "wall_default",
+        "activities",
+        "activity",
+        "interests",
+        "music",
+        "movies",
+        "tv",
+        "books",
+        "is_no_index",
+        "games",
+        "about",
+        "quotes",
+        "can_post",
+        "can_see_all_posts",
+        "can_see_audio",
+        "can_see_gifts",
+        "work",
+        "places",
+        "can_write_private_message",
+        "can_send_friend_request",
+        "can_upload_doc",
+        "is_favorite",
+        "is_hidden_from_feed",
+        "timezone",
+        "screen_name",
+        "maiden_name",
+        "crop_photo",
+        "is_friend",
+        "friend_status",
+        "career",
+        "military",
+        "blacklisted",
+        "blacklisted_by_me",
+        "can_subscribe_posts",
+        "descriptions",
+        "trending",
+        "mutual",
+        "friendship_weeks",
+        "can_invite_to_chats",
+        "stories_archive_count",
+        "has_unseen_stories",
+        "video_live",
+        "video_live_level",
+        "video_live_count",
+        "clips_count",
+        "service_description",
+        "can_see_wishes",
+        "is_subscribed_podcasts",
+        "can_subscribe_podcasts"
+      ]
+    },
+    "users_last_seen": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "integer",
+          "description": "Type of the platform that used for the last authorization"
+        },
+        "time": {
+          "type": "integer",
+          "description": "Last visit date (in Unix time)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_military": {
+      "type": "object",
+      "properties": {
+        "country_id": {
+          "type": "integer",
+          "description": "Country ID",
+          "required": true
+        },
+        "from": {
+          "type": "integer",
+          "description": "From year"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Military ID"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit name",
+          "required": true
+        },
+        "unit_id": {
+          "type": "integer",
+          "description": "Unit ID",
+          "required": true
+        },
+        "until": {
+          "type": "integer",
+          "description": "Till year"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_occupation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID of school, university, company group",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of occupation"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of occupation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_online_info": {
+      "type": "object",
+      "properties": {
+        "visible": {
+          "type": "boolean",
+          "description": "Whether you can see real online status of user or not",
+          "required": true
+        },
+        "last_seen": {
+          "type": "integer",
+          "description": "Last time we saw user being active",
+          "minimum": 0
+        },
+        "is_online": {
+          "type": "boolean",
+          "description": "Whether user is currently online or not"
+        },
+        "app_id": {
+          "type": "integer",
+          "description": "Application id from which user is currently online or was last seen online",
+          "minimum": 0
+        },
+        "is_mobile": {
+          "type": "boolean",
+          "description": "Is user online from desktop app or mobile app"
+        },
+        "status": {
+          "type": "string",
+          "description": "In case user online is not visible, it indicates approximate timeframe of user online",
+          "enum": [
+            "recently",
+            "last_week",
+            "last_month",
+            "long_ago",
+            "not_show"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_personal": {
+      "type": "object",
+      "properties": {
+        "alcohol": {
+          "type": "integer",
+          "description": "User's views on alcohol"
+        },
+        "inspired_by": {
+          "type": "string",
+          "description": "User's inspired by"
+        },
+        "langs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "User's languages"
+          }
+        },
+        "life_main": {
+          "type": "integer",
+          "description": "User's personal priority in life"
+        },
+        "people_main": {
+          "type": "integer",
+          "description": "User's personal priority in people"
+        },
+        "political": {
+          "type": "integer",
+          "description": "User's political views"
+        },
+        "religion": {
+          "type": "string",
+          "description": "User's religion"
+        },
+        "religion_id": {
+          "type": "integer",
+          "description": "User's religion id"
+        },
+        "smoking": {
+          "type": "integer",
+          "description": "User's views on smoking"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_relative": {
+      "type": "object",
+      "properties": {
+        "birth_date": {
+          "type": "string",
+          "description": "Date of child birthday (format dd.mm.yyyy)"
+        },
+        "id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "description": "Relative ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of relative"
+        },
+        "type": {
+          "type": "string",
+          "description": "Relative type",
+          "enum": [
+            "parent",
+            "child",
+            "grandparent",
+            "grandchild",
+            "sibling"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_school": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "class": {
+          "type": "string",
+          "description": "School class letter"
+        },
+        "country": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "id": {
+          "type": "string",
+          "description": "School ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "School name"
+        },
+        "type": {
+          "type": "integer",
+          "description": "School type ID"
+        },
+        "type_str": {
+          "type": "string",
+          "description": "School type name"
+        },
+        "year_from": {
+          "type": "integer",
+          "description": "Year the user started to study"
+        },
+        "year_graduated": {
+          "type": "integer",
+          "description": "Graduation year"
+        },
+        "year_to": {
+          "type": "integer",
+          "description": "Year the user finished to study"
+        },
+        "speciality": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_subscriptions_item": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_xtr_type"
+        },
+        {
+          "$ref": "../groups/objects.json#/definitions/groups_group_full"
+        }
+      ]
+    },
+    "users_university": {
+      "type": "object",
+      "properties": {
+        "chair": {
+          "type": "integer",
+          "description": "Chair ID"
+        },
+        "chair_name": {
+          "type": "string",
+          "description": "Chair name"
+        },
+        "city": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "country": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "education_form": {
+          "type": "string",
+          "description": "Education form"
+        },
+        "education_status": {
+          "type": "string",
+          "description": "Education status"
+        },
+        "faculty": {
+          "type": "integer",
+          "description": "Faculty ID"
+        },
+        "faculty_name": {
+          "type": "string",
+          "description": "Faculty name"
+        },
+        "graduation": {
+          "type": "integer",
+          "description": "Graduation year"
+        },
+        "id": {
+          "type": "integer",
+          "description": "University ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "University name"
+        },
+        "university_group_id": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_user": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_min"
+        },
+        {
+          "properties": {
+            "sex": {
+              "$ref": "../base/objects.json#/definitions/base_sex",
+              "description": "User sex"
+            },
+            "screen_name": {
+              "type": "string",
+              "description": "Domain name of the user's page"
+            },
+            "photo_50": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of square photo of the user with 50 pixels in width"
+            },
+            "photo_100": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of square photo of the user with 100 pixels in width"
+            },
+            "online_info": {
+              "$ref": "../users/objects.json#/definitions/users_online_info"
+            },
+            "online": {
+              "description": "Information whether the user is online",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "online_mobile": {
+              "description": "Information whether the user is online in mobile site or application",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "online_app": {
+              "type": "integer",
+              "description": "Application ID"
+            },
+            "verified": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether the user is verified"
+            },
+            "trending": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether the user has a \"fire\" pictogram."
+            },
+            "friend_status": {
+              "$ref": "../friends/objects.json#/definitions/friends_friend_status_status"
+            },
+            "mutual": {
+              "$ref": "../friends/objects.json#/definitions/friends_requests_mutual"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "users_user_connections": {
+      "type": "object",
+      "properties": {
+        "skype": {
+          "type": "string",
+          "description": "User's Skype nickname",
+          "required": true
+        },
+        "facebook": {
+          "type": "string",
+          "description": "User's Facebook account",
+          "required": true
+        },
+        "facebook_name": {
+          "type": "string",
+          "description": "User's Facebook name"
+        },
+        "twitter": {
+          "type": "string",
+          "description": "User's Twitter account",
+          "required": true
+        },
+        "livejournal": {
+          "type": "string",
+          "description": "User's Livejournal account"
+        },
+        "instagram": {
+          "type": "string",
+          "description": "User's Instagram account",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_user_counters": {
+      "type": "object",
+      "properties": {
+        "albums": {
+          "type": "integer",
+          "description": "Albums number"
+        },
+        "badges": {
+          "type": "integer",
+          "description": "Badges number"
+        },
+        "audios": {
+          "type": "integer",
+          "description": "Audios number"
+        },
+        "followers": {
+          "type": "integer",
+          "description": "Followers number"
+        },
+        "friends": {
+          "type": "integer",
+          "description": "Friends number"
+        },
+        "gifts": {
+          "type": "integer",
+          "description": "Gifts number"
+        },
+        "groups": {
+          "type": "integer",
+          "description": "Communities number"
+        },
+        "notes": {
+          "type": "integer",
+          "description": "Notes number"
+        },
+        "online_friends": {
+          "type": "integer",
+          "description": "Online friends number"
+        },
+        "pages": {
+          "type": "integer",
+          "description": "Public pages number"
+        },
+        "photos": {
+          "type": "integer",
+          "description": "Photos number"
+        },
+        "subscriptions": {
+          "type": "integer",
+          "description": "Subscriptions number"
+        },
+        "user_photos": {
+          "type": "integer",
+          "description": "Number of photos with user"
+        },
+        "user_videos": {
+          "type": "integer",
+          "description": "Number of videos with user"
+        },
+        "videos": {
+          "type": "integer",
+          "description": "Videos number"
+        },
+        "new_photo_tags": {
+          "type": "integer"
+        },
+        "new_recognition_tags": {
+          "type": "integer"
+        },
+        "mutual_friends": {
+          "type": "integer"
+        },
+        "posts": {
+          "type": "integer"
+        },
+        "articles": {
+          "type": "integer"
+        },
+        "wishes": {
+          "type": "integer"
+        },
+        "podcasts": {
+          "type": "integer"
+        },
+        "clips": {
+          "type": "integer"
+        },
+        "clips_followers": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_user_full": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user"
+        },
+        {
+          "properties": {
+            "first_name_nom": {
+              "type": "string",
+              "description": "User's first name in nominative case"
+            },
+            "first_name_gen": {
+              "type": "string",
+              "description": "User's first name in genitive case"
+            },
+            "first_name_dat": {
+              "type": "string",
+              "description": "User's first name in dative case"
+            },
+            "first_name_acc": {
+              "type": "string",
+              "description": "User's first name in accusative case"
+            },
+            "first_name_ins": {
+              "type": "string",
+              "description": "User's first name in instrumental case"
+            },
+            "first_name_abl": {
+              "type": "string",
+              "description": "User's first name in prepositional case"
+            },
+            "last_name_nom": {
+              "type": "string",
+              "description": "User's last name in nominative case"
+            },
+            "last_name_gen": {
+              "type": "string",
+              "description": "User's last name in genitive case"
+            },
+            "last_name_dat": {
+              "type": "string",
+              "description": "User's last name in dative case"
+            },
+            "last_name_acc": {
+              "type": "string",
+              "description": "User's last name in accusative case"
+            },
+            "last_name_ins": {
+              "type": "string",
+              "description": "User's last name in instrumental case"
+            },
+            "last_name_abl": {
+              "type": "string",
+              "description": "User's last name in prepositional case"
+            },
+            "nickname": {
+              "type": "string",
+              "description": "User nickname"
+            },
+            "maiden_name": {
+              "type": "string",
+              "description": "User maiden name"
+            },
+            "contact_name": {
+              "type": "string",
+              "description": "User contact name"
+            },
+            "domain": {
+              "type": "string",
+              "description": "Domain name of the user's page"
+            },
+            "bdate": {
+              "type": "string",
+              "description": "User's date of birth"
+            },
+            "city": {
+              "$ref": "../base/objects.json#/definitions/base_city"
+            },
+            "country": {
+              "$ref": "../base/objects.json#/definitions/base_country"
+            },
+            "timezone": {
+              "type": "number",
+              "description": "User's timezone"
+            },
+            "owner_state": {
+              "$ref": "../owner/objects.json#/definitions/owner_state"
+            },
+            "photo_200": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of square photo of the user with 200 pixels in width"
+            },
+            "photo_max": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of square photo of the user with maximum width"
+            },
+            "photo_200_orig": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of user's photo with 200 pixels in width"
+            },
+            "photo_400_orig": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of user's photo with 400 pixels in width"
+            },
+            "photo_max_orig": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of user's photo of maximum size"
+            },
+            "photo_id": {
+              "type": "string",
+              "description": "ID of the user's main photo"
+            },
+            "has_photo": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether the user has main photo"
+            },
+            "has_mobile": {
+              "description": "Information whether the user specified his phone number",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_friend": {
+              "description": "Information whether the user is a friend of current user",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "wall_comments": {
+              "description": "Information whether current user can comment wall posts",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_post": {
+              "description": "Information whether current user can post on the user's wall",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_see_all_posts": {
+              "description": "Information whether current user can see other users' audio on the wall",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_see_audio": {
+              "description": "Information whether current user can see the user's audio",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "type": {
+              "$ref": "../users/objects.json#/definitions/users_user_type"
+            },
+            "email": {
+              "type": "string"
+            },
+            "skype": {
+              "type": "string"
+            },
+            "facebook": {
+              "type": "string"
+            },
+            "facebook_name": {
+              "type": "string"
+            },
+            "twitter": {
+              "type": "string"
+            },
+            "livejournal": {
+              "type": "string"
+            },
+            "instagram": {
+              "type": "string"
+            },
+            "test": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "video_live": {
+              "$ref": "../video/objects.json#/definitions/video_live_info"
+            },
+            "is_video_live_notifications_blocked": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_service": {
+              "type": "boolean"
+            },
+            "service_description": {
+              "type": "string"
+            },
+            "photo_rec": {
+              "$ref": "../photos/objects.json#/definitions/photos_photo_falseable"
+            },
+            "photo_medium": {
+              "$ref": "../photos/objects.json#/definitions/photos_photo_falseable"
+            },
+            "photo_medium_rec": {
+              "$ref": "../photos/objects.json#/definitions/photos_photo_falseable"
+            },
+            "photo": {
+              "type": "string"
+            },
+            "photo_big": {
+              "type": "string"
+            },
+            "photo_400": {
+              "type": "string"
+            },
+            "photo_max_size": {
+              "$ref": "../photos/objects.json#/definitions/photos_photo"
+            },
+            "language": {
+              "type": "string"
+            },
+            "stories_archive_count": {
+              "type": "integer"
+            },
+            "has_unseen_stories": {
+              "type": "boolean"
+            },
+            "wall_default": {
+              "type": "string",
+              "enum": [
+                "owner",
+                "all"
+              ]
+            },
+            "can_call": {
+              "description": "Information whether current user can call",
+              "type": "boolean"
+            },
+            "can_call_from_group": {
+              "description": "Information whether group can call user",
+              "type": "boolean"
+            },
+            "can_see_wishes": {
+              "description": "Information whether current user can see the user's wishes",
+              "type": "boolean"
+            },
+            "can_see_gifts": {
+              "description": "Information whether current user can see the user's gifts",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "interests": {
+              "type": "string"
+            },
+            "books": {
+              "type": "string"
+            },
+            "tv": {
+              "type": "string"
+            },
+            "quotes": {
+              "type": "string"
+            },
+            "about": {
+              "type": "string"
+            },
+            "games": {
+              "type": "string"
+            },
+            "movies": {
+              "type": "string"
+            },
+            "activities": {
+              "type": "string"
+            },
+            "music": {
+              "type": "string"
+            },
+            "can_write_private_message": {
+              "description": "Information whether current user can write private message",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_send_friend_request": {
+              "description": "Information whether current user can send a friend request",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_be_invited_group": {
+              "type": "boolean",
+              "description": "Information whether current user can be invited to the community"
+            },
+            "mobile_phone": {
+              "type": "string",
+              "description": "User's mobile phone number"
+            },
+            "home_phone": {
+              "type": "string",
+              "description": "User's additional phone number"
+            },
+            "site": {
+              "type": "string",
+              "description": "User's website"
+            },
+            "status_audio": {
+              "$ref": "../audio/objects.json#/definitions/audio_audio"
+            },
+            "status": {
+              "type": "string",
+              "description": "User's status"
+            },
+            "activity": {
+              "type": "string",
+              "description": "User's status"
+            },
+            "last_seen": {
+              "$ref": "../users/objects.json#/definitions/users_last_seen"
+            },
+            "exports": {
+              "$ref": "../users/objects.json#/definitions/users_exports"
+            },
+            "crop_photo": {
+              "$ref": "../base/objects.json#/definitions/base_crop_photo"
+            },
+            "followers_count": {
+              "type": "integer",
+              "description": "Number of user's followers",
+              "minimum": 0
+            },
+            "video_live_level": {
+              "type": "integer",
+              "description": "User level in live streams achievements",
+              "minimum": 0
+            },
+            "video_live_count": {
+              "type": "integer",
+              "description": "Number of user's live streams",
+              "minimum": 0
+            },
+            "clips_count": {
+              "type": "integer",
+              "description": "Number of user's clips",
+              "minimum": 0
+            },
+            "blacklisted": {
+              "description": "Information whether current user is in the requested user's blacklist.",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "blacklisted_by_me": {
+              "description": "Information whether the requested user is in current user's blacklist",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_favorite": {
+              "description": "Information whether the requested user is in faves of current user",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_hidden_from_feed": {
+              "description": "Information whether the requested user is hidden from current user's newsfeed",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "common_count": {
+              "type": "integer",
+              "description": "Number of common friends with current user",
+              "minimum": 0
+            },
+            "occupation": {
+              "$ref": "../users/objects.json#/definitions/users_occupation"
+            },
+            "career": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_career"
+              }
+            },
+            "military": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_military"
+              }
+            },
+            "university": {
+              "type": "integer",
+              "description": "University ID"
+            },
+            "university_name": {
+              "type": "string",
+              "description": "University name"
+            },
+            "university_group_id": {
+              "type": "integer"
+            },
+            "faculty": {
+              "type": "integer",
+              "description": "Faculty ID"
+            },
+            "faculty_name": {
+              "type": "string",
+              "description": "Faculty name"
+            },
+            "graduation": {
+              "type": "integer",
+              "description": "Graduation year"
+            },
+            "education_form": {
+              "type": "string",
+              "description": "Education form"
+            },
+            "education_status": {
+              "type": "string",
+              "description": "User's education status"
+            },
+            "home_town": {
+              "type": "string",
+              "description": "User hometown"
+            },
+            "relation": {
+              "$ref": "../users/objects.json#/definitions/users_user_relation",
+              "description": "User relationship status"
+            },
+            "relation_partner": {
+              "$ref": "../users/objects.json#/definitions/users_user_min"
+            },
+            "personal": {
+              "$ref": "../users/objects.json#/definitions/users_personal"
+            },
+            "universities": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_university"
+              }
+            },
+            "schools": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_school"
+              }
+            },
+            "relatives": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_relative"
+              }
+            },
+            "is_subscribed_podcasts": {
+              "description": "Information whether current user is subscribed to podcasts",
+              "type": "boolean"
+            },
+            "can_subscribe_podcasts": {
+              "description": "Owner in whitelist or not",
+              "type": "boolean"
+            },
+            "can_subscribe_posts": {
+              "description": "Can subscribe to wall",
+              "type": "boolean"
+            },
+            "counters": {
+              "$ref": "../users/objects.json#/definitions/users_user_counters"
+            },
+            "access_key": {
+              "type": "string"
+            },
+            "can_upload_doc": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "hash": {
+              "type": "string"
+            },
+            "is_no_index": {
+              "type": "boolean",
+              "description": "Access to user profile is restricted for search engines"
+            },
+            "contact_id": {
+              "type": "integer",
+              "description": "Contact person ID"
+            },
+            "is_message_request": {
+              "type": "boolean"
+            },
+            "descriptions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lists": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "description": "IDs of friend lists with user"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "additionalProperties": false
+    },
+    "users_user_min": {
+      "properties": {
+        "deactivated": {
+          "type": "string",
+          "description": "Returns if a profile is deleted or blocked"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User first name"
+        },
+        "hidden": {
+          "type": "integer",
+          "description": "Returns if a profile is hidden."
+        },
+        "id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "description": "User ID",
+          "required": true
+        },
+        "last_name": {
+          "type": "string",
+          "description": "User last name"
+        },
+        "can_access_closed": {
+          "type": "boolean"
+        },
+        "is_closed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "users_user_relation": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "enumNames": [
+        "not specified",
+        "single",
+        "in a relationship",
+        "engaged",
+        "married",
+        "complicated",
+        "actively searching",
+        "in love",
+        "in a civil union"
+      ]
+    },
+    "users_user_settings_xtr": {
+      "type": "object",
+      "properties": {
+        "connections": {
+          "$ref": "../users/objects.json#/definitions/users_user_connections"
+        },
+        "bdate": {
+          "type": "string",
+          "description": "User's date of birth"
+        },
+        "bdate_visibility": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Information whether user's birthdate are hidden"
+        },
+        "city": {
+          "$ref": "../base/objects.json#/definitions/base_city"
+        },
+        "country": {
+          "$ref": "../base/objects.json#/definitions/base_country"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User first name"
+        },
+        "home_town": {
+          "type": "string",
+          "description": "User's hometown",
+          "required": true
+        },
+        "last_name": {
+          "type": "string",
+          "description": "User last name"
+        },
+        "maiden_name": {
+          "type": "string",
+          "description": "User maiden name"
+        },
+        "name_request": {
+          "$ref": "../account/objects.json#/definitions/account_name_request"
+        },
+        "personal": {
+          "$ref": "../users/objects.json#/definitions/users_personal"
+        },
+        "phone": {
+          "type": "string",
+          "description": "User phone number with some hidden digits"
+        },
+        "relation": {
+          "$ref": "../users/objects.json#/definitions/users_user_relation",
+          "description": "User relationship status"
+        },
+        "relation_partner": {
+          "$ref": "../users/objects.json#/definitions/users_user_min"
+        },
+        "relation_pending": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether relation status is pending"
+        },
+        "relation_requests": {
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_user_min"
+          }
+        },
+        "screen_name": {
+          "type": "string",
+          "description": "Domain name of the user's page"
+        },
+        "sex": {
+          "$ref": "../base/objects.json#/definitions/base_sex",
+          "description": "User sex"
+        },
+        "status": {
+          "type": "string",
+          "description": "User status",
+          "required": true
+        },
+        "status_audio": {
+          "$ref": "../audio/objects.json#/definitions/audio_audio"
+        },
+        "interests": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interests"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "users_user_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "profile"
+      ]
+    },
+    "users_user_xtr_type": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user"
+        },
+        {
+          "properties": {
+            "type": {
+              "$ref": "../users/objects.json#/definitions/users_user_type"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "users_users_array": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Users number",
+          "minimum": 0,
+          "required": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "entity": "profiles",
+            "format": "int64"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

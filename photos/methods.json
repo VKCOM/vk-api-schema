@@ -1,0 +1,2022 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "photos.confirmTag",
+      "description": "Confirms a tag on a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "tag_id",
+          "description": "Tag ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.copy",
+      "description": "Allows to copy a photo to the \"Saved photos\" album",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "photo's owner ID",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "photo ID",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "access_key",
+          "description": "for private photos",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_copy_response"
+        }
+      }
+    },
+    {
+      "name": "photos.createAlbum",
+      "description": "Creates an empty photo album.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "description": "Album title.",
+          "type": "string",
+          "required": true,
+          "minLength": 2
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community in which the album will be created.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "description",
+          "description": "Album description.",
+          "type": "string"
+        },
+        {
+          "name": "privacy_view",
+          "type": "array",
+          "default": "all",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "type": "array",
+          "default": "all",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "upload_by_admins_only",
+          "type": "boolean"
+        },
+        {
+          "name": "comments_disabled",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_createAlbum_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_albums_limit"
+        }
+      ]
+    },
+    {
+      "name": "photos.createComment",
+      "description": "Adds a new comment on the photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "Comment text.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "from_group",
+          "description": "'1' — to post a comment from the community",
+          "type": "boolean"
+        },
+        {
+          "name": "reply_to_comment",
+          "type": "integer"
+        },
+        {
+          "name": "sticker_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "access_key",
+          "type": "string"
+        },
+        {
+          "name": "guid",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_createComment_response"
+        }
+      }
+    },
+    {
+      "name": "photos.delete",
+      "description": "Deletes a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.deleteAlbum",
+      "description": "Deletes a photo album belonging to the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the album.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_album_id"
+        }
+      ]
+    },
+    {
+      "name": "photos.deleteComment",
+      "description": "Deletes a comment on the photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_deleteComment_response"
+        }
+      }
+    },
+    {
+      "name": "photos.edit",
+      "description": "Edits the caption of a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "caption",
+          "description": "New caption for the photo. If this parameter is not set, it is considered to be equal to an empty string.",
+          "type": "string"
+        },
+        {
+          "name": "latitude",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "type": "number"
+        },
+        {
+          "name": "place_str",
+          "type": "string"
+        },
+        {
+          "name": "foursquare_id",
+          "type": "string"
+        },
+        {
+          "name": "delete_place",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.editAlbum",
+      "description": "Edits information about a photo album.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "album_id",
+          "description": "ID of the photo album to be edited.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "New album title.",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "description": "New album description.",
+          "type": "string"
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the album.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "privacy_view",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "upload_by_admins_only",
+          "type": "boolean"
+        },
+        {
+          "name": "comments_disabled",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_album_id"
+        }
+      ]
+    },
+    {
+      "name": "photos.editComment",
+      "description": "Edits a comment on a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "New text of the comment.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.get",
+      "description": "Returns a list of a user's or community's photos.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photos. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.",
+          "type": "string"
+        },
+        {
+          "name": "photo_ids",
+          "description": "Photo IDs.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "rev",
+          "description": "Sort order: '1' — reverse chronological, '0' — chronological",
+          "type": "boolean"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional 'likes', 'comments', and 'tags' fields, '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "feed_type",
+          "description": "Type of feed obtained in 'feed' field of the method.",
+          "type": "string"
+        },
+        {
+          "name": "feed",
+          "description": "unixtime, that can be obtained with [vk.com/dev/newsfeed.get|newsfeed.get] method in date field to get all photos uploaded by the user on a specific day, or photos the user has been tagged on. Also, 'uid' parameter of the user the event happened with shall be specified.",
+          "type": "integer"
+        },
+        {
+          "name": "photo_sizes",
+          "description": "'1' — to return photo sizes in a [vk.com/dev/photo_sizes|special format]",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 50,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_get_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getAlbums",
+      "description": "Returns a list of a user's or community's photo albums.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the albums.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_ids",
+          "description": "Album IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of albums.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of albums to return.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "need_system",
+          "description": "'1' — to return system albums with negative IDs",
+          "type": "boolean"
+        },
+        {
+          "name": "need_covers",
+          "description": "'1' — to return an additional 'thumb_src' field, '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_sizes",
+          "description": "'1' — to return photo sizes in a",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getAlbums_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getAlbumsCount",
+      "description": "Returns the number of photo albums belonging to a user or community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getAlbumsCount_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getAll",
+      "description": "Returns a list of photos belonging to a user or community, in reverse chronological order.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of a user or community that owns the photos. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return detailed information about photos",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of photos. By default, '0'.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of photos to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "photo_sizes",
+          "description": "'1' - to return image sizes in [vk.com/dev/photo_sizes|special format].",
+          "type": "boolean"
+        },
+        {
+          "name": "no_service_albums",
+          "description": "'1' - to return photos only from standard albums, '0' - to return all photos including those in service albums, e.g., 'My wall photos' (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "need_hidden",
+          "description": "'1' - to show information about photos being hidden from the block above the wall.",
+          "type": "boolean"
+        },
+        {
+          "name": "skip_hidden",
+          "description": "'1' - not to return photos being hidden from the block above the wall. Works only with owner_id>0, no_service_albums is ignored.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getAll_response"
+        },
+        "extendedResponse": {
+          "$ref": "../photos/responses.json#/definitions/photos_getAll_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_blocked"
+        }
+      ]
+    },
+    {
+      "name": "photos.getAllComments",
+      "description": "Returns a list of comments on a specific photo album or all albums of the user sorted in reverse chronological order.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the album(s).",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID. If the parameter is not set, comments on all of the user's albums will be returned.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "need_likes",
+          "description": "'1' — to return an additional 'likes' field, '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of comments. By default, '0'.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of comments to return. By default, '20'. Maximum value, '100'.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getAllComments_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_album_id"
+        }
+      ]
+    },
+    {
+      "name": "photos.getById",
+      "description": "Returns information about photos by their IDs.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "photos",
+          "description": "IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: \"1_129207899,6492_135055734, , -20629724_271945303\"",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 500
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional fields, '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "photo_sizes",
+          "description": "'1' — to return photo sizes in a",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getById_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getChatUploadServer",
+      "description": "Returns an upload link for chat cover pictures.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "description": "ID of the chat for which you want to upload a cover photo.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "crop_x",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "crop_y",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "crop_width",
+          "description": "Width (in pixels) of the photo after cropping.",
+          "type": "integer",
+          "minimum": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getComments",
+      "description": "Returns a list of comments on a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "need_likes",
+          "description": "'1' — to return an additional 'likes' field, '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "start_comment_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of comments. By default, '0'.",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "description": "Number of comments to return.",
+          "type": "integer",
+          "default": "20",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: 'asc' — old first, 'desc' — new first",
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "old first",
+            "new first"
+          ]
+        },
+        {
+          "name": "access_key",
+          "type": "string"
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getComments_response"
+        },
+        "extendedResponse": {
+          "$ref": "../photos/responses.json#/definitions/photos_getComments_extended_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getMarketAlbumUploadServer",
+      "description": "Returns the server address for market album photo upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "photos.getMarketUploadServer",
+      "description": "Returns the server address for market photo upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "main_photo",
+          "description": "'1' if you want to upload the main item photo.",
+          "type": "boolean"
+        },
+        {
+          "name": "crop_x",
+          "description": "X coordinate of the crop left upper corner.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "crop_y",
+          "description": "Y coordinate of the crop left upper corner.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "crop_width",
+          "description": "Width of the cropped photo in px.",
+          "type": "integer",
+          "minimum": 400
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getMarketUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "photos.getMessagesUploadServer",
+      "description": "Returns the server address for photo upload in a private message for a user.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getMessagesUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_deny_send"
+        }
+      ]
+    },
+    {
+      "name": "photos.getNewTags",
+      "description": "Returns a list of photos with tags that have not been viewed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of photos.",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "description": "Number of photos to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getNewTags_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getOwnerCoverPhotoUploadServer",
+      "description": "Returns the server address for owner cover upload.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "crop_x",
+          "description": "X coordinate of the left-upper corner",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "crop_y",
+          "description": "Y coordinate of the left-upper corner",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "crop_x2",
+          "description": "X coordinate of the right-bottom corner",
+          "type": "integer",
+          "default": 795,
+          "minimum": 0
+        },
+        {
+          "name": "crop_y2",
+          "description": "Y coordinate of the right-bottom corner",
+          "type": "integer",
+          "default": 200,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getOwnerPhotoUploadServer",
+      "description": "Returns an upload server address for a profile or community photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "identifier of a community or current user. \"Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, \"",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getTags",
+      "description": "Returns a list of tags on a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "access_key",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getTags_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getUploadServer",
+      "description": "Returns the server address for photo upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "album_id",
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getUserPhotos",
+      "description": "Returns a list of photos in which a user is tagged.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of photos. By default, '0'.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of photos to return. Maximum value is 1000.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return an additional 'likes' field, '0' — (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: '1' — by date the tag was added in ascending order, '0' — by date the tag was added in descending order",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getUserPhotos_response"
+        }
+      }
+    },
+    {
+      "name": "photos.getWallUploadServer",
+      "description": "Returns the server address for photo upload onto a user's wall.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of community to whose wall the photo will be uploaded.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_getWallUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "photos.makeCover",
+      "description": "Makes a photo into an album cover.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.move",
+      "description": "Moves a photo from one album to another.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "target_album_id",
+          "description": "ID of the album to which the photo will be moved.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "photo_ids",
+          "type": "integer",
+          "required": true,
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.putTag",
+      "description": "Adds a tag on the photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "user_id",
+          "description": "ID of the user to be tagged.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "x",
+          "description": "Upper left-corner coordinate of the tagged area (as a percentage of the photo's width).",
+          "type": "number"
+        },
+        {
+          "name": "y",
+          "description": "Upper left-corner coordinate of the tagged area (as a percentage of the photo's height).",
+          "type": "number"
+        },
+        {
+          "name": "x2",
+          "description": "Lower right-corner coordinate of the tagged area (as a percentage of the photo's width).",
+          "type": "number"
+        },
+        {
+          "name": "y2",
+          "description": "Lower right-corner coordinate of the tagged area (as a percentage of the photo's height).",
+          "type": "number"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_putTag_response"
+        }
+      }
+    },
+    {
+      "name": "photos.removeTag",
+      "description": "Removes a tag from a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "tag_id",
+          "description": "Tag ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.reorderAlbums",
+      "description": "Reorders the album in the list of user albums.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the album.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "before",
+          "description": "ID of the album before which the album in question shall be placed.",
+          "type": "integer"
+        },
+        {
+          "name": "after",
+          "description": "ID of the album after which the album in question shall be placed.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.reorderPhotos",
+      "description": "Reorders the photo in the list of photos of the user album.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "before",
+          "description": "ID of the photo before which the photo in question shall be placed.",
+          "type": "integer"
+        },
+        {
+          "name": "after",
+          "description": "ID of the photo after which the photo in question shall be placed.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photos"
+        }
+      ]
+    },
+    {
+      "name": "photos.report",
+      "description": "Reports (submits a complaint about) a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.reportComment",
+      "description": "Reports (submits a complaint about) a comment on a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "ID of the comment being reported.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.restore",
+      "description": "Restores a deleted photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "photo_id",
+          "description": "Photo ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "photos.restoreComment",
+      "description": "Restores a deleted comment on a photo.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the photo.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "ID of the deleted comment.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_restoreComment_response"
+        }
+      }
+    },
+    {
+      "name": "photos.save",
+      "description": "Saves photos after successful uploading.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "album_id",
+          "description": "ID of the album to save photos to.",
+          "type": "integer"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community to save photos to.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "server",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "integer"
+        },
+        {
+          "name": "photos_list",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string"
+        },
+        {
+          "name": "hash",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string"
+        },
+        {
+          "name": "latitude",
+          "description": "Geographical latitude, in degrees (from '-90' to '90').",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "Geographical longitude, in degrees (from '-180' to '180').",
+          "type": "number"
+        },
+        {
+          "name": "caption",
+          "description": "Text describing the photo. 2048 digits max.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_save_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_album_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_server"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_hash"
+        }
+      ]
+    },
+    {
+      "name": "photos.saveMarketAlbumPhoto",
+      "description": "Saves market album photos after successful uploading.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "photo",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "server",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "hash",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_saveMarketAlbumPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_hash"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "photos.saveMarketPhoto",
+      "description": "Saves market photos after successful uploading.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "photo",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "server",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "hash",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "crop_data",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string"
+        },
+        {
+          "name": "crop_hash",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_saveMarketPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_hash"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "photos.saveMessagesPhoto",
+      "description": "Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "photo",
+          "description": "Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "server",
+          "type": "integer"
+        },
+        {
+          "name": "hash",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_saveMessagesPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_album_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_server"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_hash"
+        }
+      ]
+    },
+    {
+      "name": "photos.saveOwnerCoverPhoto",
+      "description": "Saves cover photo after successful uploading.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "hash",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "photo",
+          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_saveOwnerCoverPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        }
+      ]
+    },
+    {
+      "name": "photos.saveOwnerPhoto",
+      "description": "Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "server",
+          "description": "parameter returned after [vk.com/dev/upload_files|photo upload].",
+          "type": "string"
+        },
+        {
+          "name": "hash",
+          "description": "parameter returned after [vk.com/dev/upload_files|photo upload].",
+          "type": "string"
+        },
+        {
+          "name": "photo",
+          "description": "parameter returned after [vk.com/dev/upload_files|photo upload].",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_saveOwnerPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        }
+      ]
+    },
+    {
+      "name": "photos.saveWallPhoto",
+      "description": "Saves a photo to a user's or community's wall after being uploaded.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of the user on whose wall the photo will be saved.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of community on whose wall the photo will be saved.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "photo",
+          "description": "Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "server",
+          "type": "integer"
+        },
+        {
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "name": "latitude",
+          "description": "Geographical latitude, in degrees (from '-90' to '90').",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "Geographical longitude, in degrees (from '-180' to '180').",
+          "type": "number"
+        },
+        {
+          "name": "caption",
+          "description": "Text describing the photo. 2048 digits max.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_saveWallPhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_album_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_server"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_hash"
+        }
+      ]
+    },
+    {
+      "name": "photos.search",
+      "description": "Returns a list of photos.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string.",
+          "type": "string"
+        },
+        {
+          "name": "lat",
+          "description": "Geographical latitude, in degrees (from '-90' to '90').",
+          "type": "number"
+        },
+        {
+          "name": "long",
+          "description": "Geographical longitude, in degrees (from '-180' to '180').",
+          "type": "number"
+        },
+        {
+          "name": "start_time",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "end_time",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sort",
+          "description": "Sort order:",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of photos.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of photos to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "radius",
+          "description": "Radius of search in meters (works very approximately). Available values: '10', '100', '800', '6000', '50000'.",
+          "type": "integer",
+          "default": 5000,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../photos/responses.json#/definitions/photos_search_response"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "addresses_fields": {
+      "type": "string",
+      "enum": [
+        "id",
+        "title",
+        "address",
+        "additional_address",
+        "country_id",
+        "city_id",
+        "metro_station_id",
+        "latitude",
+        "longitude",
+        "distance",
+        "work_info_status",
+        "timetable",
+        "phone",
+        "time_offset"
+      ]
+    }
+  }
+}

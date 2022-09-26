@@ -1,0 +1,1594 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "ads.addOfficeUsers",
+      "description": "Adds managers and/or supervisors to advertising account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.",
+          "type": "string",
+          "required": true,
+          "format": "json",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_user_specification_cutted"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_addOfficeUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.checkLink",
+      "description": "Allows to check the ad link.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "link_type",
+          "description": "Object type: *'community' — community,, *'post' — community post,, *'application' — VK application,, *'video' — video,, *'site' — external site.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "community",
+            "post",
+            "application",
+            "video",
+            "site"
+          ]
+        },
+        {
+          "name": "link_url",
+          "description": "Object URL.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "campaign_id",
+          "description": "Campaign ID",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_checkLink_response"
+        }
+      }
+    },
+    {
+      "name": "ads.createAds",
+      "description": "Creates ads.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe created ads. Description of 'ad_specification' objects see below.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_createAds_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.createCampaigns",
+      "description": "Creates advertising campaigns.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe created campaigns. Description of 'campaign_specification' objects see below.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_createCampaigns_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.createClients",
+      "description": "Creates clients of an advertising agency.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe created campaigns. Description of 'client_specification' objects see below.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_createClients_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.createTargetGroup",
+      "description": "Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'Only for advertising agencies.', ID of the client with the advertising account where the group will be created.",
+          "type": "integer"
+        },
+        {
+          "name": "name",
+          "description": "Name of the target group — a string up to 64 characters long.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "lifetime",
+          "description": "'For groups with auditory created with pixel code only.', , Number of days after that users will be automatically removed from the group.",
+          "type": "integer",
+          "required": true,
+          "minimum": 1,
+          "maximum": 720
+        },
+        {
+          "name": "target_pixel_id",
+          "type": "integer"
+        },
+        {
+          "name": "target_pixel_rules",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_createTargetGroup_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.deleteAds",
+      "description": "Archives ads.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "description": "Serialized JSON array with ad IDs.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_deleteAds_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_object_deleted"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.deleteCampaigns",
+      "description": "Archives advertising campaigns.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "description": "Serialized JSON array with IDs of deleted campaigns.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_deleteCampaigns_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_object_deleted"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.deleteClients",
+      "description": "Archives clients of an advertising agency.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "description": "Serialized JSON array with IDs of deleted clients.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_deleteClients_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_object_deleted"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.deleteTargetGroup",
+      "description": "Deletes a retarget group.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.",
+          "type": "integer"
+        },
+        {
+          "name": "target_group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getAccounts",
+      "description": "Returns a list of advertising accounts.",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getAccounts_response"
+        }
+      }
+    },
+    {
+      "name": "ads.getAds",
+      "description": "Returns number of ads.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "ad_ids",
+          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "campaign_ids",
+          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "client_id",
+          "description": "'Available and required for advertising agencies.' ID of the client ads are retrieved from.",
+          "type": "integer"
+        },
+        {
+          "name": "include_deleted",
+          "description": "Flag that specifies whether archived ads shall be shown: *0 — show only active ads,, *1 — show all ads.",
+          "type": "boolean"
+        },
+        {
+          "name": "only_deleted",
+          "description": "Flag that specifies whether to show only archived ads: *0 — show all ads,, *1 — show only archived ads. Available when include_deleted flag is *1",
+          "type": "boolean"
+        },
+        {
+          "name": "limit",
+          "description": "Limit of number of returned ads. Used only if ad_ids parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "description": "Offset. Used in the same cases as 'limit' parameter.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getAds_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getAdsLayout",
+      "description": "Returns descriptions of ad layouts.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'For advertising agencies.' ID of the client ads are retrieved from.",
+          "type": "integer"
+        },
+        {
+          "name": "include_deleted",
+          "description": "Flag that specifies whether archived ads shall be shown. *0 — show only active ads,, *1 — show all ads.",
+          "type": "boolean"
+        },
+        {
+          "name": "only_deleted",
+          "description": "Flag that specifies whether to show only archived ads: *0 — show all ads,, *1 — show only archived ads. Available when include_deleted flag is *1",
+          "type": "boolean"
+        },
+        {
+          "name": "campaign_ids",
+          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "ad_ids",
+          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "description": "Limit of number of returned ads. Used only if 'ad_ids' parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "description": "Offset. Used in the same cases as 'limit' parameter.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getAdsLayout_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getAdsTargeting",
+      "description": "Returns ad targeting parameters.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "name": "ad_ids",
+          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "campaign_ids",
+          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "client_id",
+          "description": "'For advertising agencies.' ID of the client ads are retrieved from.",
+          "type": "integer"
+        },
+        {
+          "name": "include_deleted",
+          "description": "flag that specifies whether archived ads shall be shown: *0 — show only active ads,, *1 — show all ads.",
+          "type": "boolean"
+        },
+        {
+          "name": "limit",
+          "description": "Limit of number of returned ads. Used only if 'ad_ids' parameter is null, and 'campaign_ids' parameter contains ID of only one campaign.",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getAdsTargeting_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getBudget",
+      "description": "Returns current budget of the advertising account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getBudget_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getCampaigns",
+      "description": "Returns a list of campaigns in an advertising account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'For advertising agencies'. ID of the client advertising campaigns are retrieved from.",
+          "type": "integer"
+        },
+        {
+          "name": "include_deleted",
+          "description": "Flag that specifies whether archived ads shall be shown. *0 — show only active campaigns,, *1 — show all campaigns.",
+          "type": "boolean"
+        },
+        {
+          "name": "campaign_ids",
+          "description": "Filter of advertising campaigns to show. Serialized JSON array with campaign IDs. Only campaigns that exist in 'campaign_ids' and belong to the specified advertising account will be shown. If the parameter is null, all campaigns will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "ads_count"
+            ]
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getCampaigns_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getCategories",
+      "description": "Returns a list of possible ad categories.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "lang",
+          "description": "Language. The full list of supported languages is [vk.com/dev/api_requests|here].",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getCategories_response"
+        }
+      }
+    },
+    {
+      "name": "ads.getClients",
+      "description": "Returns a list of advertising agency's clients.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getClients_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getDemographics",
+      "description": "Returns demographics for ads or campaigns.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids_type",
+          "description": "Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "ad",
+            "campaign"
+          ]
+        },
+        {
+          "name": "ids",
+          "description": "IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "period",
+          "description": "Data grouping by dates: *day — statistics by days,, *month — statistics by months,, *overall — overall statistics. 'date_from' and 'date_to' parameters set temporary limits.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "day",
+            "month",
+            "overall"
+          ]
+        },
+        {
+          "name": "date_from",
+          "description": "Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — day it was created on,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — month it was created in,, *overall: 0.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date_to",
+          "description": "Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — current day,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — current month,, *overall: 0.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getDemographics_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getFloodStats",
+      "description": "Returns information about current state of a counter — number of remaining runs of methods and time to the next counter nulling in seconds.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getFloodStats_response"
+        }
+      }
+    },
+    {
+      "name": "ads.getLookalikeRequests",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "requests_ids",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "sort_by",
+          "type": "string",
+          "default": "id"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getLookalikeRequests_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getMusicians",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "artist_name",
+          "type": "string",
+          "required": true,
+          "minLength": 3
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getMusicians_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "ads.getMusiciansByIds",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getMusicians_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getOfficeUsers",
+      "description": "Returns a list of managers and supervisors of advertising account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getOfficeUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getPostsReach",
+      "description": "Returns detailed statistics of promoted posts reach from campaigns and ads.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids_type",
+          "description": "Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "ad",
+            "campaign"
+          ]
+        },
+        {
+          "name": "ids",
+          "description": "IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 100 objects.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getPostsReach_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getRejectionReason",
+      "description": "Returns a reason of ad rejection for pre-moderation.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ad_id",
+          "description": "Ad ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getRejectionReason_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getStatistics",
+      "description": "Returns statistics of performance indicators for ads, campaigns, clients or the whole account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids_type",
+          "description": "Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns,, *client — clients,, *office — account.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "ad",
+            "campaign",
+            "client",
+            "office"
+          ]
+        },
+        {
+          "name": "ids",
+          "description": "IDs requested ads, campaigns, clients or account, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "period",
+          "description": "Data grouping by dates: *day — statistics by days,, *month — statistics by months,, *overall — overall statistics. 'date_from' and 'date_to' parameters set temporary limits.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "day",
+            "month",
+            "overall"
+          ]
+        },
+        {
+          "name": "date_from",
+          "description": "Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — day it was created on,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — month it was created in,, *overall: 0.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date_to",
+          "description": "Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — current day,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — current month,, *overall: 0.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "stats_fields",
+          "description": "Additional fields to add to statistics",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "views_times"
+            ]
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getStatistics_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getSuggestions",
+      "description": "Returns a set of auto-suggestions for various targeting parameters.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "section",
+          "description": "Section, suggestions are retrieved in. Available values: *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions — requested list of regions. 'country' parameter is required. *cities — requested list of cities. 'country' parameter is required. *districts — requested list of districts. 'cities' parameter is required. *stations — requested list of subway stations. 'cities' parameter is required. *streets — requested list of streets. 'cities' parameter is required. *schools — requested list of educational organizations. 'cities' parameter is required. *interests — requested list of interests. *positions — requested list of positions (professions). *group_types — requested list of group types. *religions — requested list of religious commitments. *browsers — requested list of browsers and mobile devices.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "countries",
+            "regions",
+            "cities",
+            "districts",
+            "stations",
+            "streets",
+            "schools",
+            "interests",
+            "positions",
+            "group_types",
+            "religions",
+            "browsers"
+          ]
+        },
+        {
+          "name": "ids",
+          "description": "Objects IDs separated by commas. If the parameter is passed, 'q, country, cities' should not be passed.",
+          "type": "string"
+        },
+        {
+          "name": "q",
+          "description": "Filter-line of the request (for countries, regions, cities, streets, schools, interests, positions).",
+          "type": "string"
+        },
+        {
+          "name": "country",
+          "description": "ID of the country objects are searched in.",
+          "type": "integer"
+        },
+        {
+          "name": "cities",
+          "description": "IDs of cities where objects are searched in, separated with a comma.",
+          "type": "string"
+        },
+        {
+          "name": "lang",
+          "description": "Language of the returned string values. Supported languages: *ru — Russian,, *ua — Ukrainian,, *en — English.",
+          "type": "string",
+          "enum": [
+            "ru",
+            "ua",
+            "en"
+          ],
+          "enumNames": [
+            "russian",
+            "ukrainian",
+            "english"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getSuggestions_response"
+        },
+        "regionsResponse": {
+          "$ref": "../ads/responses.json#/definitions/ads_getSuggestions_regions_response"
+        },
+        "citiesResponse": {
+          "$ref": "../ads/responses.json#/definitions/ads_getSuggestions_cities_response"
+        },
+        "schoolsResponse": {
+          "$ref": "../ads/responses.json#/definitions/ads_getSuggestions_schools_response"
+        }
+      }
+    },
+    {
+      "name": "ads.getTargetGroups",
+      "description": "Returns a list of target groups.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'Only for advertising agencies.', ID of the client with the advertising account where the group will be created.",
+          "type": "integer"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return pixel code.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getTargetGroups_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getTargetingStats",
+      "description": "Returns the size of targeting audience, and also recommended values for CPC and CPM.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "criteria",
+          "description": "Serialized JSON object that describes targeting parameters. Description of 'criteria' object see below.",
+          "type": "string"
+        },
+        {
+          "name": "ad_id",
+          "description": "ID of an ad which targeting parameters shall be analyzed.",
+          "type": "integer"
+        },
+        {
+          "name": "ad_format",
+          "description": "Ad format. Possible values: *'1' — image and text,, *'2' — big image,, *'3' — exclusive format,, *'4' — community, square image,, *'7' — special app format,, *'8' — special community format,, *'9' — post in community,, *'10' — app board.",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10
+          ],
+          "enumNames": [
+            "image and text",
+            "big image",
+            "exclusive format",
+            "community square image",
+            "special app format",
+            "special community format",
+            "post in community",
+            "app board"
+          ]
+        },
+        {
+          "name": "ad_platform",
+          "description": "Platforms to use for ad showing. Possible values: (for 'ad_format' = '1'), *'0' — VK and partner sites,, *'1' — VK only. (for 'ad_format' = '9'), *'all' — all platforms,, *'desktop' — desktop version,, *'mobile' — mobile version and apps.",
+          "type": "string"
+        },
+        {
+          "name": "ad_platform_no_wall",
+          "type": "string"
+        },
+        {
+          "name": "ad_platform_no_ad_network",
+          "type": "string"
+        },
+        {
+          "name": "publisher_platforms",
+          "type": "string"
+        },
+        {
+          "name": "link_url",
+          "description": "URL for the advertised object.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "link_domain",
+          "description": "Domain of the advertised object.",
+          "type": "string"
+        },
+        {
+          "name": "need_precise",
+          "description": "Additionally return recommended cpc and cpm to reach 5,10..95 percents of audience.",
+          "type": "boolean"
+        },
+        {
+          "name": "impressions_limit_period",
+          "description": "Impressions limit period in seconds, must be a multiple of 86400(day)",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getTargetingStats_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getUploadURL",
+      "description": "Returns URL to upload an ad photo to.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "ad_format",
+          "description": "Ad format: *1 — image and text,, *2 — big image,, *3 — exclusive format,, *4 — community, square image,, *7 — special app format.",
+          "type": "integer",
+          "required": true,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            7
+          ],
+          "enumNames": [
+            "image and text",
+            "big image",
+            "exclusive format",
+            "community, square image",
+            "special app format"
+          ]
+        },
+        {
+          "name": "icon",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getUploadURL_response"
+        }
+      }
+    },
+    {
+      "name": "ads.getVideoUploadURL",
+      "description": "Returns URL to upload an ad video to.",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getVideoUploadURL_response"
+        }
+      }
+    },
+    {
+      "name": "ads.importTargetContacts",
+      "description": "Imports a list of advertiser's contacts to count VK registered users against the target group.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.",
+          "type": "integer"
+        },
+        {
+          "name": "target_group_id",
+          "description": "Target group ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "contacts",
+          "description": "List of phone numbers, emails or user IDs separated with a comma.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_importTargetContacts_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.removeOfficeUsers",
+      "description": "Removes managers and/or supervisors from advertising account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "description": "Serialized JSON array with IDs of deleted managers.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_removeOfficeUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.updateAds",
+      "description": "Edits ads.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe changes in ads. Description of 'ad_edit_specification' objects see below.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_updateAds_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.updateCampaigns",
+      "description": "Edits advertising campaigns.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe changes in campaigns. Description of 'campaign_mod' objects see below.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_updateCampaigns_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_partial_success"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.updateClients",
+      "description": "Edits clients of an advertising agency.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe changes in clients. Description of 'client_mod' objects see below.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_updateClients_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.updateOfficeUsers",
+      "description": "Adds managers and/or supervisors to advertising account.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "data",
+          "description": "Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.",
+          "type": "string",
+          "required": true,
+          "format": "json",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_user_specification"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_updateOfficeUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.updateTargetGroup",
+      "description": "Edits a retarget group.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "description": "Advertising account ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "description": "'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.",
+          "type": "integer"
+        },
+        {
+          "name": "target_group_id",
+          "description": "Group ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "description": "New name of the target group — a string up to 64 characters long.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "description": "Domain of the site where user accounting code will be placed.",
+          "type": "string"
+        },
+        {
+          "name": "lifetime",
+          "description": "'Only for the groups that get audience from sites with user accounting code.', Time in days when users added to a retarget group will be automatically excluded from it. '0' - automatic exclusion is off.",
+          "type": "integer",
+          "required": true,
+          "minimum": 1,
+          "maximum": 720
+        },
+        {
+          "name": "target_pixel_id",
+          "type": "integer"
+        },
+        {
+          "name": "target_pixel_rules",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    }
+  ]
+}

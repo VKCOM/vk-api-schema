@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "store_getFavoriteStickers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_sticker"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "store_getProducts_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../store/objects.json#/definitions/store_product"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "store_getStickersKeywords_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            },
+            "dictionary": {
+              "type": "array",
+              "items": {
+                "$ref": "../store/objects.json#/definitions/store_stickers_keyword"
+              },
+              "required": true
+            },
+            "chunks_count": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Total count of chunks to load"
+            },
+            "chunks_hash": {
+              "type": "string",
+              "minimum": 1,
+              "description": "Chunks version hash"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

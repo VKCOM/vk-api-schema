@@ -1,0 +1,208 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "pages_privacy_settings": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "community managers only",
+        "community members only",
+        "everyone"
+      ]
+    },
+    "pages_wikipage": {
+      "type": "object",
+      "properties": {
+        "creator_id": {
+          "type": "integer",
+          "description": "Page creator ID"
+        },
+        "creator_name": {
+          "type": "string",
+          "description": "Page creator name"
+        },
+        "editor_id": {
+          "type": "integer",
+          "description": "Last editor ID"
+        },
+        "editor_name": {
+          "type": "string",
+          "description": "Last editor name"
+        },
+        "group_id": {
+          "type": "integer",
+          "description": "Community ID",
+          "minimum": 1,
+          "entity": "groups",
+          "format": "int64",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Page ID",
+          "minimum": 1,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title",
+          "required": true
+        },
+        "views": {
+          "type": "integer",
+          "description": "Views number",
+          "required": true
+        },
+        "who_can_edit": {
+          "description": "Edit settings of the page",
+          "$ref": "../pages/objects.json#/definitions/pages_privacy_settings",
+          "required": true
+        },
+        "who_can_view": {
+          "description": "View settings of the page",
+          "$ref": "../pages/objects.json#/definitions/pages_privacy_settings",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_wikipage_full": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "integer",
+          "description": "Date when the page has been created in Unixtime",
+          "required": true
+        },
+        "creator_id": {
+          "type": "integer",
+          "description": "Page creator ID"
+        },
+        "current_user_can_edit": {
+          "description": "Information whether current user can edit the page",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "current_user_can_edit_access": {
+          "description": "Information whether current user can edit the page access settings",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "edited": {
+          "type": "integer",
+          "description": "Date when the page has been edited in Unixtime",
+          "required": true
+        },
+        "editor_id": {
+          "type": "integer",
+          "description": "Last editor ID"
+        },
+        "group_id": {
+          "type": "integer",
+          "description": "Community ID",
+          "minimum": 1,
+          "entity": "groups",
+          "format": "int64",
+          "required": true
+        },
+        "html": {
+          "type": "string",
+          "description": "Page content, HTML"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Page ID",
+          "minimum": 1,
+          "required": true
+        },
+        "source": {
+          "type": "string",
+          "description": "Page content, wiki"
+        },
+        "title": {
+          "type": "string",
+          "description": "Page title",
+          "required": true
+        },
+        "view_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the page preview",
+          "required": true
+        },
+        "views": {
+          "type": "integer",
+          "description": "Views number",
+          "required": true
+        },
+        "who_can_edit": {
+          "description": "Edit settings of the page",
+          "$ref": "../pages/objects.json#/definitions/pages_privacy_settings",
+          "required": true
+        },
+        "who_can_view": {
+          "description": "View settings of the page",
+          "$ref": "../pages/objects.json#/definitions/pages_privacy_settings",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL"
+        },
+        "parent": {
+          "type": "string",
+          "description": "Parent"
+        },
+        "parent2": {
+          "type": "string",
+          "description": "Parent2"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Owner ID",
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_wikipage_history": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Version ID",
+          "minimum": 0,
+          "required": true
+        },
+        "length": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Page size in bytes",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Date when the page has been edited in Unixtime",
+          "required": true
+        },
+        "editor_id": {
+          "type": "integer",
+          "description": "Last editor ID",
+          "required": true
+        },
+        "editor_name": {
+          "type": "string",
+          "description": "Last editor name",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

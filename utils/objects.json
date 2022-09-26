@@ -1,0 +1,240 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "utils_domain_resolved": {
+      "type": "object",
+      "properties": {
+        "object_id": {
+          "type": "integer",
+          "description": "Object ID"
+        },
+        "group_id": {
+          "type": "integer",
+          "description": "Group ID",
+          "entity": "groups",
+          "format": "int64"
+        },
+        "type": {
+          "$ref": "../utils/objects.json#/definitions/utils_domain_resolved_type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_domain_resolved_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "user",
+        "group",
+        "application",
+        "page",
+        "vk_app",
+        "community_application"
+      ]
+    },
+    "utils_last_shortened_link": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for private stats"
+        },
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "short_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Short link URL"
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Creation time in Unixtime"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Full URL"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Total views number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_link_checked": {
+      "type": "object",
+      "properties": {
+        "link": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL"
+        },
+        "status": {
+          "$ref": "../utils/objects.json#/definitions/utils_link_checked_status"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_link_checked_status": {
+      "type": "string",
+      "description": "Link status",
+      "enum": [
+        "not_banned",
+        "banned",
+        "processing"
+      ]
+    },
+    "utils_link_stats": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "../utils/objects.json#/definitions/utils_stats"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_link_stats_extended": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "../utils/objects.json#/definitions/utils_stats_extended"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_short_link": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for private stats"
+        },
+        "key": {
+          "type": "string",
+          "description": "Link key (characters after vk.cc/)"
+        },
+        "short_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Short link URL"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Full URL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_stats": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "description": "Start time"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Total views number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_stats_city": {
+      "type": "object",
+      "properties": {
+        "city_id": {
+          "type": "integer",
+          "description": "City ID"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Views number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_stats_country": {
+      "type": "object",
+      "properties": {
+        "country_id": {
+          "type": "integer",
+          "description": "Country ID"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Views number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_stats_extended": {
+      "type": "object",
+      "properties": {
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "../utils/objects.json#/definitions/utils_stats_city"
+          }
+        },
+        "countries": {
+          "type": "array",
+          "items": {
+            "$ref": "../utils/objects.json#/definitions/utils_stats_country"
+          }
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "../utils/objects.json#/definitions/utils_stats_sex_age"
+          }
+        },
+        "timestamp": {
+          "type": "integer",
+          "description": "Start time"
+        },
+        "views": {
+          "type": "integer",
+          "description": "Total views number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_stats_sex_age": {
+      "type": "object",
+      "properties": {
+        "age_range": {
+          "type": "string",
+          "description": "Age denotation"
+        },
+        "female": {
+          "type": "integer",
+          "description": " Views by female users"
+        },
+        "male": {
+          "type": "integer",
+          "description": " Views by male users"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

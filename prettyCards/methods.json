@@ -1,0 +1,219 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "prettyCards.create",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "photo",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "required": true,
+          "maxLength": 2000
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "name": "price_old",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "name": "button",
+          "type": "string",
+          "maxLength": 255
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../prettyCards/responses.json#/definitions/prettyCards_create_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_pretty_cards_too_many_cards"
+        }
+      ]
+    },
+    {
+      "name": "prettyCards.delete",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "card_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../prettyCards/responses.json#/definitions/prettyCards_delete_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_pretty_cards_card_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_pretty_cards_card_is_connected_to_post"
+        }
+      ]
+    },
+    {
+      "name": "prettyCards.edit",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "card_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "photo",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "link",
+          "type": "string",
+          "maxLength": 2000
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "name": "price_old",
+          "type": "string",
+          "maxLength": 20
+        },
+        {
+          "name": "button",
+          "type": "string",
+          "maxLength": 255
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../prettyCards/responses.json#/definitions/prettyCards_edit_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_pretty_cards_card_not_found"
+        }
+      ]
+    },
+    {
+      "name": "prettyCards.get",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../prettyCards/responses.json#/definitions/prettyCards_get_response"
+        }
+      }
+    },
+    {
+      "name": "prettyCards.getById",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "card_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 10
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../prettyCards/responses.json#/definitions/prettyCards_getById_response"
+        }
+      }
+    },
+    {
+      "name": "prettyCards.getUploadURL",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../prettyCards/responses.json#/definitions/prettyCards_getUploadURL_response"
+        }
+      }
+    }
+  ]
+}

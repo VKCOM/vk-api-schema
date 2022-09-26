@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "orders.cancelSubscription",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "subscription_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "pending_cancel",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_cancelSubscription_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_subscription_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_subscription_invalid_status"
+        }
+      ]
+    },
+    {
+      "name": "orders.changeState",
+      "description": "Changes order status.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "order_id",
+          "description": "order ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "action",
+          "description": "action to be done with the order. Available actions: *cancel — to cancel unconfirmed order. *charge — to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund — to cancel confirmed order.",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "cancel",
+            "charge",
+            "refund"
+          ]
+        },
+        {
+          "name": "app_order_id",
+          "description": "internal ID of the order in the application.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "test_mode",
+          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_changeState_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_action_failed"
+        }
+      ]
+    },
+    {
+      "name": "orders.get",
+      "description": "Returns a list of orders.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "number of returned orders.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "test_mode",
+          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_get_response"
+        }
+      }
+    },
+    {
+      "name": "orders.getAmount",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "votes",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_getAmount_response"
+        }
+      }
+    },
+    {
+      "name": "orders.getById",
+      "description": "Returns information about orders by their IDs.",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "order_id",
+          "description": "order ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "order_ids",
+          "description": "order IDs (when information about several orders is requested).",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 500
+        },
+        {
+          "name": "test_mode",
+          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_getById_response"
+        }
+      }
+    },
+    {
+      "name": "orders.getUserSubscriptionById",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "subscription_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_getUserSubscriptionById_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_subscription_not_found"
+        }
+      ]
+    },
+    {
+      "name": "orders.getUserSubscriptions",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_getUserSubscriptions_response"
+        }
+      }
+    },
+    {
+      "name": "orders.updateSubscription",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "subscription_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "price",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../orders/responses.json#/definitions/orders_updateSubscription_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_subscription_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_subscription_invalid_status"
+        }
+      ]
+    }
+  ]
+}

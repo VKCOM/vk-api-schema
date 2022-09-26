@@ -1,0 +1,589 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "board.addTopic",
+      "description": "Creates a new topic on a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "description": "Topic title.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "text",
+          "description": "Text of the topic.",
+          "type": "string"
+        },
+        {
+          "name": "from_group",
+          "description": "For a community: '1' — to post the topic as by the community, '0' — to post the topic as by the user (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "attachments",
+          "description": "List of media objects attached to the topic, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. Example: \"photo100172_166443618,photo66748_265827614\", , \"NOTE: If you try to attach more than one reference, an error will be thrown.\",",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../board/responses.json#/definitions/board_addTopic_response"
+        }
+      }
+    },
+    {
+      "name": "board.closeTopic",
+      "description": "Closes a topic on a community's discussion board so that comments cannot be posted.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.createComment",
+      "description": "Adds a comment on a topic on a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "ID of the topic to be commented on.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set.) Text of the comment.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "(Required if 'text' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "from_group",
+          "description": "'1' — to post the comment as by the community, '0' — to post the comment as by the user (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "sticker_id",
+          "description": "Sticker ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "guid",
+          "description": "Unique identifier to avoid repeated comments.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../board/responses.json#/definitions/board_createComment_response"
+        }
+      }
+    },
+    {
+      "name": "board.deleteComment",
+      "description": "Deletes a comment on a topic on a community's discussion board.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.deleteTopic",
+      "description": "Deletes a topic from a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.editComment",
+      "description": "Edits a comment on a topic on a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "comment_id",
+          "description": "ID of the comment on the topic.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "message",
+          "description": "(Required if 'attachments' is not set). New comment text.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "(Required if 'message' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.editTopic",
+      "description": "Edits the title of a topic on a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "New title of the topic.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.fixTopic",
+      "description": "Pins a topic (fixes its place) to the top of a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.getComments",
+      "description": "Returns a list of comments on a topic on a community's discussion board.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "need_likes",
+          "description": "'1' — to return the 'likes' field, '0' — not to return the 'likes' field (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "start_comment_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of comments.",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "description": "Number of comments to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return information about users who posted comments, '0' — to return no additional fields (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: 'asc' — by creation date in chronological order, 'desc' — by creation date in reverse chronological order,",
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "chronological",
+            "reverse chronological"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../board/responses.json#/definitions/board_getComments_response"
+        },
+        "extendedResponse": {
+          "$ref": "../board/responses.json#/definitions/board_getComments_extended_response"
+        }
+      }
+    },
+    {
+      "name": "board.getTopics",
+      "description": "Returns a list of topics on a community's discussion board.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_ids",
+          "description": "IDs of topics to be returned (100 maximum). By default, all topics are returned. If this parameter is set, the 'order', 'offset', and 'count' parameters are ignored.",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "order",
+          "description": "Sort order: '1' — by date updated in reverse chronological order. '2' — by date created in reverse chronological order. '-1' — by date updated in chronological order. '-2' — by date created in chronological order. If no sort order is specified, topics are returned in the order specified by the group administrator. Pinned topics are returned first, regardless of the sorting.",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            -1,
+            -2,
+            0
+          ],
+          "enumNames": [
+            "updated desc",
+            "created desc",
+            "updated asc",
+            "created asc",
+            "as by administrator"
+          ]
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of topics.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of topics to return.",
+          "type": "integer",
+          "default": 40,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return information about users who created topics or who posted there last, '0' — to return no additional fields (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "preview",
+          "description": "'1' — to return the first comment in each topic,, '2' — to return the last comment in each topic,, '0' — to return no comments. By default: '0'.",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            0
+          ],
+          "enumNames": [
+            "first",
+            "last",
+            "none"
+          ]
+        },
+        {
+          "name": "preview_length",
+          "description": "Number of characters after which to truncate the previewed comment. To preview the full comment, specify '0'.",
+          "type": "integer",
+          "default": 90,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../board/responses.json#/definitions/board_getTopics_response"
+        },
+        "extendedResponse": {
+          "$ref": "../board/responses.json#/definitions/board_getTopics_extended_response"
+        }
+      }
+    },
+    {
+      "name": "board.openTopic",
+      "description": "Re-opens a previously closed topic on a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.restoreComment",
+      "description": "Restores a comment deleted from a topic on a community's discussion board.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "board.unfixTopic",
+      "description": "Unpins a pinned topic from the top of a community's discussion board.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "ID of the community that owns the discussion board.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        {
+          "name": "topic_id",
+          "description": "Topic ID.",
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

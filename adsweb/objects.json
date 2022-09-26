@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "adsweb_getAdCategories_response_categories_category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getAdUnits_response_ad_units_ad_unit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "site_id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getFraudHistory_response_entries_entry": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "integer",
+          "required": true
+        },
+        "day": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getSites_response_sites_site": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "status_user": {
+          "type": "string"
+        },
+        "status_moder": {
+          "type": "string"
+        },
+        "domains": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "adsweb_getStatistics_response_items_item": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "integer"
+        },
+        "ad_unit_id": {
+          "type": "integer"
+        },
+        "overall_count": {
+          "type": "integer"
+        },
+        "months_count": {
+          "type": "integer"
+        },
+        "month_min": {
+          "type": "string"
+        },
+        "month_max": {
+          "type": "string"
+        },
+        "days_count": {
+          "type": "integer"
+        },
+        "day_min": {
+          "type": "string"
+        },
+        "day_max": {
+          "type": "string"
+        },
+        "hours_count": {
+          "type": "integer"
+        },
+        "hour_min": {
+          "type": "string"
+        },
+        "hour_max": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

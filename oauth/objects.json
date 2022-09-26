@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "oauth_error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "Error type",
+          "required": true
+        },
+        "error_description": {
+          "type": "string",
+          "description": "Error description",
+          "required": true
+        },
+        "redirect_uri": {
+          "type": "string",
+          "description": "URI for validation"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

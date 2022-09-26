@@ -1,0 +1,472 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "friends_addList_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "list_id": {
+              "type": "integer",
+              "description": "List ID",
+              "minimum": 1,
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_add_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Friend request status",
+          "enum": [
+            1,
+            2,
+            4
+          ],
+          "enumNames": [
+            "SEND",
+            "APPROVED",
+            "RESEND"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_areFriends_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../friends/objects.json#/definitions/friends_friend_extended_status"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_areFriends_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../friends/objects.json#/definitions/friends_friend_status"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_delete_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "integer",
+              "default": 1,
+              "required": true
+            },
+            "friend_deleted": {
+              "type": "integer",
+              "description": "Returns 1 if friend has been deleted",
+              "enum": [
+                1
+              ],
+              "enumNames": [
+                "ok"
+              ]
+            },
+            "out_request_deleted": {
+              "type": "integer",
+              "description": "Returns 1 if out request has been canceled",
+              "enum": [
+                1
+              ],
+              "enumNames": [
+                "ok"
+              ]
+            },
+            "in_request_deleted": {
+              "type": "integer",
+              "description": "Returns 1 if incoming request has been declined",
+              "enum": [
+                1
+              ],
+              "enumNames": [
+                "ok"
+              ]
+            },
+            "suggestion_deleted": {
+              "type": "integer",
+              "description": "Returns 1 if suggestion has been declined",
+              "enum": [
+                1
+              ],
+              "enumNames": [
+                "ok"
+              ]
+            }
+          },
+          "maxProperties": 2,
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getAppUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getByPhones_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../friends/objects.json#/definitions/friends_user_xtr_phone"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getLists_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number of friends lists",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../friends/objects.json#/definitions/friends_friends_list"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getMutual_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "entity": "owner",
+            "format": "int64",
+            "minimum": 1
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getMutual_target_uids_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../friends/objects.json#/definitions/friends_mutual_friend"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getOnline_online_mobile_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "online": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "integer",
+                "description": "User ID",
+                "minimum": 1,
+                "format": "int64",
+                "entity": "owner"
+              }
+            },
+            "online_mobile": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "integer",
+                "description": "User ID",
+                "minimum": 1,
+                "format": "int64",
+                "entity": "owner"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getOnline_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getRecent_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getRequests_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total requests number",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../friends/objects.json#/definitions/friends_requests_xtr_message"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getRequests_need_mutual_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total requests number",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../friends/objects.json#/definitions/friends_requests"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getRequests_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total requests number",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "entity": "profiles",
+                "format": "int64",
+                "description": "User ID",
+                "minimum": 1
+              }
+            },
+            "count_unread": {
+              "type": "integer",
+              "description": "Total unread requests number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_getSuggestions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total results number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_get_fields_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total friends number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total friends number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "description": "User ID",
+                "minimum": 1,
+                "entity": "profiles",
+                "format": "int64"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_search_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

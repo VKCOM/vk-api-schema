@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "utils.checkLink",
+      "description": "Checks whether a link is blocked in VK.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "url",
+          "description": "Link to check (e.g., 'http://google.com').",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../utils/responses.json#/definitions/utils_checkLink_response"
+        }
+      }
+    },
+    {
+      "name": "utils.deleteFromLastShortened",
+      "description": "Deletes shortened link from user's list.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "key",
+          "description": "Link key (characters after vk.cc/).",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "utils.getLastShortenedLinks",
+      "description": "Returns a list of user's shortened links.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "count",
+          "description": "Number of links to return.",
+          "type": "integer",
+          "default": 10,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of links.",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../utils/responses.json#/definitions/utils_getLastShortenedLinks_response"
+        }
+      }
+    },
+    {
+      "name": "utils.getLinkStats",
+      "description": "Returns stats data for shortened link.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "key",
+          "description": "Link key (characters after vk.cc/).",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "source",
+          "description": "Source of scope",
+          "type": "string",
+          "default": "vk_cc",
+          "enum": [
+            "vk_cc",
+            "vk_link"
+          ]
+        },
+        {
+          "name": "access_key",
+          "description": "Access key for private link stats.",
+          "type": "string"
+        },
+        {
+          "name": "interval",
+          "description": "Interval.",
+          "type": "string",
+          "default": "day",
+          "enum": [
+            "day",
+            "forever",
+            "hour",
+            "month",
+            "week"
+          ]
+        },
+        {
+          "name": "intervals_count",
+          "description": "Number of intervals to return.",
+          "type": "integer",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "extended",
+          "description": "1 — to return extended stats data (sex, age, geo). 0 — to return views number only.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../utils/responses.json#/definitions/utils_getLinkStats_response"
+        },
+        "extendedResponse": {
+          "$ref": "../utils/responses.json#/definitions/utils_getLinkStats_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "utils.getServerTime",
+      "description": "Returns the current time of the VK server.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../utils/responses.json#/definitions/utils_getServerTime_response"
+        }
+      }
+    },
+    {
+      "name": "utils.getShortLink",
+      "description": "Allows to receive a link shortened via vk.cc.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "url",
+          "description": "URL to be shortened.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "private",
+          "description": "1 — private stats, 0 — public stats.",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../utils/responses.json#/definitions/utils_getShortLink_response"
+        }
+      }
+    },
+    {
+      "name": "utils.resolveScreenName",
+      "description": "Detects a type of object (e.g., user, community, application) and its ID by screen name.",
+      "access_token_type": [
+        "user",
+        "group",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "screen_name",
+          "description": "Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../utils/responses.json#/definitions/utils_resolveScreenName_response"
+        }
+      }
+    }
+  ]
+}

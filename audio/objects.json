@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "audio_audio": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the audio"
+        },
+        "artist": {
+          "type": "string",
+          "description": "Artist name",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Audio ID",
+          "minimum": 0,
+          "required": true
+        },
+        "owner_id": {
+          "entity": "owner",
+          "type": "integer",
+          "description": "Audio owner's ID",
+          "format": "int64",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Title",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of mp3 file"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Duration in seconds",
+          "minimum": 0,
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when uploaded",
+          "minimum": 0
+        },
+        "album_id": {
+          "type": "integer",
+          "description": "Album ID",
+          "minimum": 0
+        },
+        "genre_id": {
+          "type": "integer",
+          "description": "Genre ID",
+          "minimum": 0
+        },
+        "performer": {
+          "type": "string",
+          "description": "Performer name"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

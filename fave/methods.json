@@ -1,0 +1,675 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "fave.addArticle",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "fave.addLink",
+      "description": "Adds a link to user faves.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "link",
+          "description": "Link URL.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.addPage",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.addPost",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "access_key",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.addProduct",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "access_key",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.addTag",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "maxLength": 50
+        },
+        {
+          "name": "position",
+          "type": "string",
+          "default": "back",
+          "enum": [
+            "back",
+            "front"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../fave/responses.json#/definitions/fave_addTag_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "fave.addVideo",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "access_key",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.editTag",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "maxLength": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.get",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "extended",
+          "description": "'1' — to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "item_type",
+          "type": "string",
+          "enum": [
+            "article",
+            "clip",
+            "link",
+            "narrative",
+            "page",
+            "podcast",
+            "post",
+            "product",
+            "video",
+            "youla_product"
+          ]
+        },
+        {
+          "name": "tag_id",
+          "description": "Tag ID.",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of users to return.",
+          "type": "integer",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 100
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "is_from_snackbar",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../fave/responses.json#/definitions/fave_get_response"
+        },
+        "extendedResponse": {
+          "$ref": "../fave/responses.json#/definitions/fave_get_extended_response"
+        }
+      }
+    },
+    {
+      "name": "fave.getPages",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 500
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "enum": [
+            "groups",
+            "hints",
+            "users"
+          ]
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "tag_id",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../fave/responses.json#/definitions/fave_getPages_response"
+        }
+      }
+    },
+    {
+      "name": "fave.getTags",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../fave/responses.json#/definitions/fave_getTags_response"
+        }
+      }
+    },
+    {
+      "name": "fave.markSeen",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removeArticle",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "article_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removeLink",
+      "description": "Removes link from the user's faves.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "link_id",
+          "description": "Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).",
+          "type": "string"
+        },
+        {
+          "name": "link",
+          "description": "Link URL",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removePage",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removePost",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removeProduct",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removeTag",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.removeVideo",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.reorderTags",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "fave.setPageTags",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "tag_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "fave.setTags",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "item_type",
+          "type": "string",
+          "enum": [
+            "article",
+            "clip",
+            "link",
+            "narrative",
+            "page",
+            "podcast",
+            "post",
+            "product",
+            "video",
+            "youla_product"
+          ]
+        },
+        {
+          "name": "item_owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "type": "integer"
+        },
+        {
+          "name": "tag_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "link_id",
+          "type": "string"
+        },
+        {
+          "name": "link_url",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_fave_aliexpress_tag"
+        }
+      ]
+    },
+    {
+      "name": "fave.trackPageInteraction",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

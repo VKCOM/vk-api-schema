@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "comment_thread": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Comments number",
+          "minimum": 0,
+          "required": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+          }
+        },
+        "can_post": {
+          "type": "boolean",
+          "description": "Information whether current user can comment the post"
+        },
+        "show_reply_button": {
+          "type": "boolean",
+          "description": "Information whether recommended to display reply button"
+        },
+        "groups_can_post": {
+          "type": "boolean",
+          "description": "Information whether groups can comment the post"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

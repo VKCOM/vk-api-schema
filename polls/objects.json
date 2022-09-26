@@ -1,0 +1,252 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "polls_answer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Answer ID",
+          "minimum": 0,
+          "required": true
+        },
+        "rate": {
+          "type": "number",
+          "description": "Answer rate in percents",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "description": "Answer text",
+          "required": true
+        },
+        "votes": {
+          "type": "integer",
+          "description": "Votes number",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_background": {
+      "type": "object",
+      "properties": {
+        "angle": {
+          "description": "Gradient angle with 0 on positive X axis",
+          "type": "integer"
+        },
+        "color": {
+          "type": "string",
+          "description": "Hex color code without #"
+        },
+        "height": {
+          "description": "Original height of pattern tile",
+          "type": "integer",
+          "minimum": 0
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "images": {
+          "description": "Pattern tiles",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          }
+        },
+        "points": {
+          "description": "Gradient points",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_gradient_point"
+          }
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "gradient",
+            "tile"
+          ]
+        },
+        "width": {
+          "description": "Original with of pattern tile",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_friend": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "entity": "owner",
+          "minimum": 0,
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_poll": {
+      "type": "object",
+      "properties": {
+        "anonymous": {
+          "$ref": "../polls/objects.json#/definitions/polls_poll_anonymous"
+        },
+        "friends": {
+          "type": "array",
+          "items": {
+            "$ref": "../polls/objects.json#/definitions/polls_friend"
+          }
+        },
+        "multiple": {
+          "description": "Information whether the poll with multiple choices",
+          "type": "boolean",
+          "required": true
+        },
+        "answer_id": {
+          "type": "integer",
+          "description": "Current user's answer ID",
+          "minimum": 0
+        },
+        "end_date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "answer_ids": {
+          "type": "array",
+          "description": "Current user's answer IDs",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "closed": {
+          "type": "boolean",
+          "required": true
+        },
+        "is_board": {
+          "type": "boolean",
+          "required": true
+        },
+        "can_edit": {
+          "type": "boolean",
+          "required": true
+        },
+        "can_vote": {
+          "type": "boolean",
+          "required": true
+        },
+        "can_report": {
+          "type": "boolean",
+          "required": true
+        },
+        "can_share": {
+          "type": "boolean",
+          "required": true
+        },
+        "embed_hash": {
+          "type": "string"
+        },
+        "photo": {
+          "$ref": "../polls/objects.json#/definitions/polls_background"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "../polls/objects.json#/definitions/polls_answer"
+          },
+          "required": true
+        },
+        "created": {
+          "type": "integer",
+          "description": "Date when poll has been created in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Poll ID",
+          "minimum": 1,
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "description": "Poll owner's ID",
+          "format": "int64",
+          "required": true
+        },
+        "author_id": {
+          "type": "integer",
+          "description": "Poll author's ID"
+        },
+        "question": {
+          "type": "string",
+          "description": "Poll question",
+          "required": true
+        },
+        "background": {
+          "$ref": "../polls/objects.json#/definitions/polls_background"
+        },
+        "votes": {
+          "type": "integer",
+          "description": "Votes number",
+          "minimum": 0,
+          "required": true
+        },
+        "disable_unvote": {
+          "type": "boolean",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_poll_anonymous": {
+      "type": "boolean",
+      "description": "Information whether the field is anonymous"
+    },
+    "polls_voters": {
+      "type": "object",
+      "properties": {
+        "answer_id": {
+          "type": "integer",
+          "description": "Answer ID"
+        },
+        "users": {
+          "$ref": "../polls/objects.json#/definitions/polls_voters_users"
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_voters_users": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Votes number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "entity": "profiles",
+            "format": "int64",
+            "description": "User ID"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

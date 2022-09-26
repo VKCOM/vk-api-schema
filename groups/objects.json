@@ -1,0 +1,2053 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "groups_address": {
+      "type": "object",
+      "properties": {
+        "additional_address": {
+          "type": "string",
+          "description": "Additional address to the place (6 floor, left door)"
+        },
+        "address": {
+          "type": "string",
+          "description": "String address to the place (Nevsky, 28)"
+        },
+        "city_id": {
+          "type": "integer",
+          "description": "City id of address",
+          "minimum": 0
+        },
+        "country_id": {
+          "type": "integer",
+          "description": "Country id of address",
+          "minimum": 0
+        },
+        "distance": {
+          "type": "integer",
+          "description": "Distance from the point"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Address id",
+          "required": true
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Address latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Address longitude"
+        },
+        "metro_station_id": {
+          "type": "integer",
+          "description": "Metro id of address",
+          "minimum": 0
+        },
+        "phone": {
+          "type": "string",
+          "description": "Address phone"
+        },
+        "time_offset": {
+          "type": "integer",
+          "description": "Time offset int minutes from utc time"
+        },
+        "timetable": {
+          "description": "Week timetable for the address",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the place (Zinger, etc)"
+        },
+        "work_info_status": {
+          "description": "Status of information about timetable",
+          "$ref": "../groups/objects.json#/definitions/groups_address_work_info_status"
+        },
+        "place_id": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_address_timetable": {
+      "type": "object",
+      "description": "Timetable for a week",
+      "properties": {
+        "fri": {
+          "description": "Timetable for friday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        },
+        "mon": {
+          "description": "Timetable for monday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        },
+        "sat": {
+          "description": "Timetable for saturday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        },
+        "sun": {
+          "description": "Timetable for sunday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        },
+        "thu": {
+          "description": "Timetable for thursday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        },
+        "tue": {
+          "description": "Timetable for tuesday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        },
+        "wed": {
+          "description": "Timetable for wednesday",
+          "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_address_timetable_day": {
+      "type": "object",
+      "description": "Timetable for one day",
+      "properties": {
+        "break_close_time": {
+          "type": "integer",
+          "description": "Close time of the break in minutes"
+        },
+        "break_open_time": {
+          "type": "integer",
+          "description": "Start time of the break in minutes"
+        },
+        "close_time": {
+          "type": "integer",
+          "description": "Close time in minutes",
+          "required": true
+        },
+        "open_time": {
+          "type": "integer",
+          "description": "Open time in minutes",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_address_work_info_status": {
+      "type": "string",
+      "description": "Status of information about timetable",
+      "enum": [
+        "no_information",
+        "temporarily_closed",
+        "always_opened",
+        "timetable",
+        "forever_closed"
+      ]
+    },
+    "groups_addresses_info": {
+      "type": "object",
+      "properties": {
+        "is_enabled": {
+          "description": "Information whether addresses is enabled",
+          "type": "boolean",
+          "required": true
+        },
+        "main_address_id": {
+          "type": "integer",
+          "description": "Main address id for group"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_ban_info": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "description": "Administrator ID",
+          "minimum": 1
+        },
+        "comment": {
+          "type": "string",
+          "description": "Comment for a ban"
+        },
+        "comment_visible": {
+          "type": "boolean",
+          "description": "Show comment for user"
+        },
+        "is_closed": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when user has been added to blacklist in Unixtime",
+          "minimum": 0
+        },
+        "end_date": {
+          "type": "integer",
+          "description": "Date when user will be removed from blacklist in Unixtime",
+          "minimum": 0
+        },
+        "reason": {
+          "$ref": "../groups/objects.json#/definitions/groups_ban_info_reason"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_ban_info_reason": {
+      "type": "integer",
+      "description": "Ban reason",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "enumNames": [
+        "other",
+        "spam",
+        "verbal abuse",
+        "strong language",
+        "flood"
+      ]
+    },
+    "groups_banned_item": {
+      "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info"
+    },
+    "groups_callback_server": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "creator_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "required": true
+        },
+        "secret_key": {
+          "type": "string",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "unconfigured",
+            "failed",
+            "wait",
+            "ok"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_callback_settings": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "API version used for the events"
+        },
+        "events": {
+          "$ref": "../groups/objects.json#/definitions/groups_long_poll_events"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_contacts_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "desc": {
+          "type": "string",
+          "description": "Contact description"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone"
+        },
+        "email": {
+          "type": "string",
+          "description": "Contact email"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_counters_group": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "integer",
+          "description": "Addresses number"
+        },
+        "albums": {
+          "type": "integer",
+          "description": "Photo albums number"
+        },
+        "audios": {
+          "type": "integer",
+          "description": "Audios number"
+        },
+        "audio_playlists": {
+          "type": "integer",
+          "description": "Audio playlists number"
+        },
+        "docs": {
+          "type": "integer",
+          "description": "Docs number"
+        },
+        "market": {
+          "type": "integer",
+          "description": "Market items number"
+        },
+        "photos": {
+          "type": "integer",
+          "description": "Photos number"
+        },
+        "topics": {
+          "type": "integer",
+          "description": "Topics number"
+        },
+        "videos": {
+          "type": "integer",
+          "description": "Videos number"
+        },
+        "market_services": {
+          "type": "integer",
+          "description": "Market services number"
+        },
+        "podcasts": {
+          "type": "integer",
+          "description": "Podcasts number"
+        },
+        "articles": {
+          "type": "integer",
+          "description": "Articles number"
+        },
+        "narratives": {
+          "type": "integer",
+          "description": "Narratives number"
+        },
+        "clips": {
+          "type": "integer",
+          "description": "Clips number"
+        },
+        "clips_followers": {
+          "type": "integer",
+          "description": "Clips followers number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_cover": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Information whether cover is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_fields": {
+      "type": "string",
+      "enum": [
+        "market",
+        "member_status",
+        "is_favorite",
+        "is_subscribed",
+        "is_subscribed_podcasts",
+        "can_subscribe_podcasts",
+        "city",
+        "country",
+        "verified",
+        "description",
+        "wiki_page",
+        "members_count",
+        "requests_count",
+        "counters",
+        "cover",
+        "can_post",
+        "can_suggest",
+        "can_upload_story",
+        "can_upload_doc",
+        "can_upload_video",
+        "can_upload_clip",
+        "can_see_all_posts",
+        "can_create_topic",
+        "crop_photo",
+        "activity",
+        "fixed_post",
+        "has_photo",
+        "status",
+        "main_album_id",
+        "links",
+        "contacts",
+        "site",
+        "main_section",
+        "secondary_section",
+        "wall",
+        "trending",
+        "can_message",
+        "is_market_cart_enabled",
+        "is_messages_blocked",
+        "can_send_notify",
+        "has_group_channel",
+        "group_channel",
+        "online_status",
+        "start_date",
+        "finish_date",
+        "age_limits",
+        "ban_info",
+        "action_button",
+        "author_id",
+        "phone",
+        "has_market_app",
+        "addresses",
+        "live_covers",
+        "is_adult",
+        "is_hidden_from_feed",
+        "can_subscribe_posts",
+        "warning_notification",
+        "msg_push_allowed",
+        "stories_archive_count",
+        "video_live_level",
+        "video_live_count",
+        "clips_count",
+        "has_unseen_stories",
+        "is_business",
+        "textlives_count",
+        "members_count_text"
+      ]
+    },
+    "groups_filter": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "editor",
+        "moder",
+        "advertiser",
+        "groups",
+        "publics",
+        "events",
+        "has_addresses"
+      ]
+    },
+    "groups_group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "entity": "groups",
+          "format": "int64",
+          "description": "Community ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Community name"
+        },
+        "screen_name": {
+          "type": "string",
+          "description": "Domain of the community page"
+        },
+        "is_closed": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_is_closed"
+        },
+        "type": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_type"
+        },
+        "is_admin": {
+          "description": "Information whether current user is administrator",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "admin_level": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_admin_level"
+        },
+        "is_member": {
+          "description": "Information whether current user is member",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "is_advertiser": {
+          "description": "Information whether current user is advertiser",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "start_date": {
+          "description": "Start date in Unixtime format",
+          "type": "integer"
+        },
+        "finish_date": {
+          "description": "Finish date in Unixtime format",
+          "type": "integer"
+        },
+        "deactivated": {
+          "type": "string",
+          "description": "Information whether community is banned"
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 50 pixels in width"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 100 pixels in width"
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 200 pixels in width"
+        },
+        "photo_200_orig": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 200 pixels in width original"
+        },
+        "photo_400": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 400 pixels in width"
+        },
+        "photo_400_orig": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with 400 pixels in width original"
+        },
+        "photo_max": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with max pixels in width"
+        },
+        "photo_max_orig": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square photo of the community with max pixels in width original"
+        },
+        "est_date": {
+          "type": "string",
+          "description": "Established date"
+        },
+        "public_date_label": {
+          "type": "string",
+          "description": "Public date label"
+        },
+        "photo_max_size": {
+          "$ref": "../groups/objects.json#/definitions/groups_photo_size"
+        },
+        "is_video_live_notifications_blocked": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "video_live": {
+          "$ref": "../video/objects.json#/definitions/video_live_info"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_access": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "open",
+        "closed",
+        "private"
+      ]
+    },
+    "groups_group_admin_level": {
+      "type": "integer",
+      "description": "Level of current user's credentials as manager",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "moderator",
+        "editor",
+        "administrator"
+      ]
+    },
+    "groups_group_age_limits": {
+      "type": "integer",
+      "default": 1,
+      "minimum": 0,
+      "enumNames": [
+        "unlimited",
+        "16 plus",
+        "18 plus"
+      ],
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "groups_group_attach": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "group ID",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "description": "text of attach",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "description": "activity or category of group",
+          "required": true
+        },
+        "size": {
+          "type": "integer",
+          "description": "size of group",
+          "required": true
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "is favorite",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_audio": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited"
+      ]
+    },
+    "groups_group_ban_info": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "description": "Ban comment"
+        },
+        "end_date": {
+          "type": "integer",
+          "description": "End date of ban in Unixtime"
+        },
+        "reason": {
+          "$ref": "../groups/objects.json#/definitions/groups_ban_info_reason"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Category ID",
+          "minimum": 0,
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name",
+          "required": true
+        },
+        "subcategories": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_object_with_name"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_category_full": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Category ID",
+          "minimum": 0,
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name",
+          "required": true
+        },
+        "page_count": {
+          "type": "integer",
+          "description": "Pages number",
+          "required": true
+        },
+        "page_previews": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_group"
+          },
+          "required": true
+        },
+        "subcategories": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_group_category"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_category_type": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_docs": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited"
+      ]
+    },
+    "groups_group_full": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../groups/objects.json#/definitions/groups_group"
+        },
+        {
+          "properties": {
+            "market": {
+              "$ref": "../groups/objects.json#/definitions/groups_market_info"
+            },
+            "member_status": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_full_member_status",
+              "description": "Current user's member status"
+            },
+            "is_adult": {
+              "description": "Information whether community is adult",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_hidden_from_feed": {
+              "description": "Information whether community is hidden from current user's newsfeed",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_favorite": {
+              "description": "Information whether community is in faves",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_subscribed": {
+              "description": "Information whether current user is subscribed",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "city": {
+              "$ref": "../base/objects.json#/definitions/base_object"
+            },
+            "country": {
+              "$ref": "../base/objects.json#/definitions/base_country"
+            },
+            "verified": {
+              "description": "Information whether community is verified",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "description": {
+              "type": "string",
+              "description": "Community description"
+            },
+            "wiki_page": {
+              "type": "string",
+              "description": "Community's main wiki page title"
+            },
+            "members_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Community members number"
+            },
+            "members_count_text": {
+              "type": "string",
+              "description": "Info about number of users in group"
+            },
+            "requests_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The number of incoming requests to the community"
+            },
+            "video_live_level": {
+              "type": "integer",
+              "description": "Community level live streams achievements",
+              "minimum": 0
+            },
+            "video_live_count": {
+              "type": "integer",
+              "description": "Number of community's live streams",
+              "minimum": 0
+            },
+            "clips_count": {
+              "type": "integer",
+              "description": "Number of community's clips",
+              "minimum": 0
+            },
+            "counters": {
+              "$ref": "../groups/objects.json#/definitions/groups_counters_group"
+            },
+            "cover": {
+              "$ref": "../groups/objects.json#/definitions/groups_cover"
+            },
+            "can_post": {
+              "description": "Information whether current user can post on community's wall",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_suggest": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_story": {
+              "description": "Information whether current user can upload story",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_doc": {
+              "description": "Information whether current user can upload doc",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_video": {
+              "description": "Information whether current user can upload video",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_see_all_posts": {
+              "description": "Information whether current user can see all posts on community's wall",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_create_topic": {
+              "description": "Information whether current user can create topic",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "activity": {
+              "type": "string",
+              "description": "Type of group, start date of event or category of public page"
+            },
+            "fixed_post": {
+              "type": "integer",
+              "description": "Fixed post ID"
+            },
+            "has_photo": {
+              "description": "Information whether community has photo",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "crop_photo": {
+              "description": "Данные о точках, по которым вырезаны профильная и миниатюрная фотографии сообщества",
+              "$ref": "../base/objects.json#/definitions/base_crop_photo"
+            },
+            "status": {
+              "type": "string",
+              "description": "Community status"
+            },
+            "status_audio": {
+              "$ref": "../audio/objects.json#/definitions/audio_audio"
+            },
+            "main_album_id": {
+              "type": "integer",
+              "description": "Community's main photo album ID"
+            },
+            "links": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_links_item"
+              }
+            },
+            "contacts": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_contacts_item"
+              }
+            },
+            "wall": {
+              "type": "integer",
+              "description": "Information about wall status in community",
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "enumNames": [
+                "disabled",
+                "open",
+                "limited",
+                "restricted"
+              ]
+            },
+            "site": {
+              "type": "string",
+              "description": "Community's website"
+            },
+            "main_section": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_full_section"
+            },
+            "secondary_section": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_full_section"
+            },
+            "trending": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether the community has a \"fire\" pictogram."
+            },
+            "can_message": {
+              "description": "Information whether current user can send a message to community",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_messages_blocked": {
+              "description": "Information whether community can send a message to current user",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_send_notify": {
+              "description": "Information whether community can send notifications by phone number to current user",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "online_status": {
+              "$ref": "../groups/objects.json#/definitions/groups_online_status",
+              "description": "Status of replies in community messages"
+            },
+            "invited_by": {
+              "type": "integer",
+              "description": "Inviter ID",
+              "minimum": 1
+            },
+            "age_limits": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_full_age_limits",
+              "description": "Information whether age limit"
+            },
+            "ban_info": {
+              "$ref": "../groups/objects.json#/definitions/groups_group_ban_info",
+              "description": "User ban info"
+            },
+            "has_market_app": {
+              "type": "boolean",
+              "description": "Information whether community has installed market app"
+            },
+            "using_vkpay_market_app": {
+              "type": "boolean"
+            },
+            "has_group_channel": {
+              "type": "boolean"
+            },
+            "addresses": {
+              "$ref": "../groups/objects.json#/definitions/groups_addresses_info",
+              "description": "Info about addresses in groups"
+            },
+            "is_subscribed_podcasts": {
+              "description": "Information whether current user is subscribed to podcasts",
+              "type": "boolean"
+            },
+            "can_subscribe_podcasts": {
+              "description": "Owner in whitelist or not",
+              "type": "boolean"
+            },
+            "can_subscribe_posts": {
+              "description": "Can subscribe to wall",
+              "type": "boolean"
+            },
+            "live_covers": {
+              "description": "Live covers state",
+              "$ref": "../groups/objects.json#/definitions/groups_live_covers"
+            },
+            "stories_archive_count": {
+              "type": "integer"
+            },
+            "has_unseen_stories": {
+              "type": "boolean"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "groups_group_full_age_limits": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "no",
+        "over 16",
+        "over 18"
+      ]
+    },
+    "groups_group_full_member_status": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "enumNames": [
+        "not a member",
+        "member",
+        "not sure",
+        "declined",
+        "has sent a request",
+        "invited"
+      ]
+    },
+    "groups_group_full_section": {
+      "type": "integer",
+      "description": "Main section of community",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        24,
+        26,
+        27,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        53,
+        54,
+        55,
+        57,
+        58
+      ],
+      "enumNames": [
+        "none",
+        "photos",
+        "topics",
+        "audios",
+        "videos",
+        "market",
+        "stories",
+        "apps",
+        "followers",
+        "links",
+        "events",
+        "places",
+        "contacts",
+        "app_btns",
+        "docs",
+        "event_counters",
+        "group_messages",
+        "albums",
+        "categories",
+        "admin_help",
+        "app_widget",
+        "public_help",
+        "hs_donation_app",
+        "hs_market_app",
+        "addresses",
+        "artist_page",
+        "podcast",
+        "articles",
+        "admin_tips",
+        "menu",
+        "fixed_post",
+        "chats",
+        "evergreen_notice",
+        "musicians",
+        "narratives",
+        "donut_donate",
+        "clips",
+        "market_cart",
+        "curators",
+        "market_services",
+        "classifieds",
+        "textlives",
+        "donut_for_dons",
+        "badges",
+        "chats_creation"
+      ]
+    },
+    "groups_group_is_closed": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "open",
+        "closed",
+        "private"
+      ],
+      "description": "Information whether community is closed"
+    },
+    "groups_group_market_currency": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        643,
+        980,
+        398,
+        978,
+        840
+      ],
+      "enumNames": [
+        "russian rubles",
+        "ukrainian hryvnia",
+        "kazakh tenge",
+        "euro",
+        "us dollars"
+      ]
+    },
+    "groups_group_photos": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited"
+      ]
+    },
+    "groups_group_public_category_list": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subcategories": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_group_category_type"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_role": {
+      "type": "string",
+      "enum": [
+        "moderator",
+        "editor",
+        "administrator",
+        "advertiser"
+      ]
+    },
+    "groups_group_subject": {
+      "type": "string",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "enumNames": [
+        "auto",
+        "activity holidays",
+        "business",
+        "pets",
+        "health",
+        "dating and communication",
+        "games",
+        "it",
+        "cinema",
+        "beauty and fashion",
+        "cooking",
+        "art and culture",
+        "literature",
+        "mobile services and internet",
+        "music",
+        "science and technology",
+        "real estate",
+        "news and media",
+        "security",
+        "education",
+        "home and renovations",
+        "politics",
+        "food",
+        "industry",
+        "travel",
+        "work",
+        "entertainment",
+        "religion",
+        "family",
+        "sports",
+        "insurance",
+        "television",
+        "goods and services",
+        "hobbies",
+        "finance",
+        "photo",
+        "esoterics",
+        "electronics and appliances",
+        "erotic",
+        "humor",
+        "society_humanities",
+        "design and graphics"
+      ]
+    },
+    "groups_group_suggested_privacy": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "none",
+        "all",
+        "subscribers"
+      ]
+    },
+    "groups_group_tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "color": {
+          "type": "string",
+          "enum": [
+            "454647",
+            "45678f",
+            "4bb34b",
+            "5181b8",
+            "539b9c",
+            "5c9ce6",
+            "63b9ba",
+            "6bc76b",
+            "76787a",
+            "792ec0",
+            "7a6c4f",
+            "7ececf",
+            "9e8d6b",
+            "a162de",
+            "aaaeb3",
+            "bbaa84",
+            "e64646",
+            "ff5c5c",
+            "ffa000",
+            "ffc107"
+          ],
+          "required": true
+        },
+        "uses": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_group_topics": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited"
+      ]
+    },
+    "groups_group_type": {
+      "type": "string",
+      "description": "Community type",
+      "enum": [
+        "group",
+        "page",
+        "event"
+      ]
+    },
+    "groups_group_video": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited"
+      ]
+    },
+    "groups_group_wall": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited",
+        "closed"
+      ]
+    },
+    "groups_group_wiki": {
+      "type": "integer",
+      "minimum": 0,
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "disabled",
+        "open",
+        "limited"
+      ]
+    },
+    "groups_groups_array": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Communities number",
+          "minimum": 0,
+          "required": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Community ID",
+            "entity": "owner",
+            "format": "int64"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_links_item": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Link title"
+        },
+        "desc": {
+          "type": "string",
+          "description": "Link description"
+        },
+        "edit_title": {
+          "description": "Information whether the link title can be edited",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Link ID"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square image of the link with 100 pixels in width"
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of square image of the link with 50 pixels in width"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL"
+        },
+        "image_processing": {
+          "description": "Information whether the image on processing",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_live_covers": {
+      "type": "object",
+      "properties": {
+        "is_enabled": {
+          "description": "Information whether live covers is enabled",
+          "type": "boolean",
+          "required": true
+        },
+        "is_scalable": {
+          "description": "Information whether live covers photo scaling is enabled",
+          "type": "boolean"
+        },
+        "story_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_long_poll_events": {
+      "type": "object",
+      "properties": {
+        "audio_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "board_post_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "board_post_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "board_post_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "board_post_restore": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "group_change_photo": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "group_change_settings": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "group_join": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "group_leave": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "group_officers_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "lead_forms_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "market_comment_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "market_comment_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "market_comment_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "market_comment_restore": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "market_order_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "market_order_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "message_allow": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "message_deny": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "message_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "message_read": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "message_reply": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "message_typing_state": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "message_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "photo_comment_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "photo_comment_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "photo_comment_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "photo_comment_restore": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "photo_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "poll_vote_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "user_block": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "user_unblock": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "video_comment_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "video_comment_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "video_comment_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "video_comment_restore": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "video_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_post_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_reply_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_reply_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_reply_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_reply_restore": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_repost": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_subscription_create": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_subscription_prolonged": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_subscription_cancelled": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_subscription_expired": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_subscription_price_changed": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_money_withdraw": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "donut_money_withdraw_error": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_long_poll_server": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Long Poll key",
+          "required": true
+        },
+        "server": {
+          "type": "string",
+          "description": "Long Poll server address",
+          "required": true
+        },
+        "ts": {
+          "type": "string",
+          "description": "Number of the last event",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_long_poll_settings": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "API version used for the events"
+        },
+        "events": {
+          "$ref": "../groups/objects.json#/definitions/groups_long_poll_events",
+          "required": true
+        },
+        "is_enabled": {
+          "type": "boolean",
+          "description": "Shows whether Long Poll is enabled",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_market_info": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Market type"
+        },
+        "contact_id": {
+          "type": "integer",
+          "description": "Contact person ID"
+        },
+        "currency": {
+          "$ref": "../market/objects.json#/definitions/market_currency"
+        },
+        "currency_text": {
+          "type": "string",
+          "description": "Currency name"
+        },
+        "enabled": {
+          "description": "Information whether the market is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "main_album_id": {
+          "type": "integer",
+          "description": "Main market album ID"
+        },
+        "price_max": {
+          "type": "string",
+          "description": "Maximum price"
+        },
+        "price_min": {
+          "type": "string",
+          "description": "Minimum price"
+        },
+        "min_order_price": {
+          "$ref": "../market/objects.json#/definitions/market_price"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_market_state": {
+      "type": "string",
+      "description": "Declares state if market is enabled in group.",
+      "enum": [
+        "none",
+        "basic",
+        "advanced"
+      ]
+    },
+    "groups_member_role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User ID",
+          "required": true
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_member_role_permission"
+          }
+        },
+        "role": {
+          "$ref": "../groups/objects.json#/definitions/groups_member_role_status"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_member_role_permission": {
+      "type": "string",
+      "enum": [
+        "ads"
+      ]
+    },
+    "groups_member_role_status": {
+      "type": "string",
+      "description": "User's credentials as community admin",
+      "enum": [
+        "moderator",
+        "editor",
+        "administrator",
+        "creator",
+        "advertiser"
+      ]
+    },
+    "groups_member_status": {
+      "type": "object",
+      "properties": {
+        "member": {
+          "description": "Information whether user is a member of the group",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_member_status_full": {
+      "type": "object",
+      "properties": {
+        "can_invite": {
+          "description": "Information whether user can be invited",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "can_recall": {
+          "description": "Information whether user's invite to the group can be recalled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "invitation": {
+          "description": "Information whether user has been invited to the group",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "member": {
+          "description": "Information whether user is a member of the group",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "request": {
+          "description": "Information whether user has send request to the group",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_online_status": {
+      "type": "object",
+      "description": "Online status of group",
+      "properties": {
+        "minutes": {
+          "type": "integer",
+          "description": "Estimated time of answer (for status = answer_mark)"
+        },
+        "status": {
+          "$ref": "../groups/objects.json#/definitions/groups_online_status_type",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_online_status_type": {
+      "type": "string",
+      "description": "Type of online status of group",
+      "enum": [
+        "none",
+        "online",
+        "answer_mark"
+      ]
+    },
+    "groups_owner_xtr_ban_info": {
+      "type": "object",
+      "properties": {
+        "ban_info": {
+          "$ref": "../groups/objects.json#/definitions/groups_ban_info"
+        },
+        "group": {
+          "$ref": "../groups/objects.json#/definitions/groups_group",
+          "description": "Information about group if type = group"
+        },
+        "profile": {
+          "$ref": "../users/objects.json#/definitions/users_user",
+          "description": "Information about group if type = profile"
+        },
+        "type": {
+          "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info_type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_owner_xtr_ban_info_type": {
+      "type": "string",
+      "description": "Owner type",
+      "enum": [
+        "group",
+        "profile"
+      ]
+    },
+    "groups_photo_size": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "description": "Image height",
+          "minimum": 0,
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Image width",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_role_options": {
+      "type": "string",
+      "description": "User's credentials as community admin",
+      "enum": [
+        "moderator",
+        "editor",
+        "administrator",
+        "creator"
+      ]
+    },
+    "groups_sections_list_item": {
+      "type": "array",
+      "maxItems": 2,
+      "minItems": 2,
+      "description": "(index, title) tuples",
+      "items": {
+        "type": [
+          "integer",
+          "string"
+        ]
+      }
+    },
+    "groups_settings_twitter": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "loading",
+            "sync"
+          ],
+          "required": true
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_subject_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Subject ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Subject title",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_token_permission_setting": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "setting": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_user_xtr_role": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        },
+        {
+          "properties": {
+            "role": {
+              "$ref": "../groups/objects.json#/definitions/groups_role_options"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "notifications_feedback": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+          }
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Reply author's ID"
+        },
+        "geo": {
+          "$ref": "../base/objects.json#/definitions/base_geo"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Item ID"
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes_info"
+        },
+        "text": {
+          "type": "string",
+          "description": "Reply text"
+        },
+        "to_id": {
+          "type": "integer",
+          "description": "Wall owner's ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_notification": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Date when the event has been occurred"
+        },
+        "feedback": {
+          "$ref": "../notifications/objects.json#/definitions/notifications_feedback"
+        },
+        "parent": {
+          "$ref": "../notifications/objects.json#/definitions/notifications_notification"
+        },
+        "reply": {
+          "$ref": "../notifications/objects.json#/definitions/notifications_reply"
+        },
+        "type": {
+          "type": "string",
+          "description": "Notification type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_notification_item": {
+      "$ref": "../notifications/objects.json#/definitions/notifications_notification"
+    },
+    "notifications_notification_parent": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_to_id"
+        },
+        {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        {
+          "$ref": "../board/objects.json#/definitions/board_topic"
+        },
+        {
+          "$ref": "../video/objects.json#/definitions/video_video"
+        },
+        {
+          "$ref": "../notifications/objects.json#/definitions/notifications_notifications_comment"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "notifications_notifications_comment": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Date when the comment has been added in Unixtime",
+          "minimum": 0
+        },
+        "id": {
+          "type": "integer",
+          "description": "Comment ID",
+          "minimum": 1
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Author ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "post": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost"
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment text"
+        },
+        "topic": {
+          "$ref": "../board/objects.json#/definitions/board_topic"
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_reply": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Date when the reply has been created in Unixtime"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Reply ID"
+        },
+        "text": {
+          "type": "integer",
+          "description": "Reply text"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_send_message_error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "enumNames": [
+            "notifications disabled",
+            "flood control per hour",
+            "flood control per day",
+            "app is not installed"
+          ],
+          "description": "Error code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Error description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_send_message_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "status": {
+          "type": "boolean",
+          "description": "Notification status"
+        },
+        "error": {
+          "$ref": "../notifications/objects.json#/definitions/notifications_send_message_error"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

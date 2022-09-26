@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "search_hint": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "../apps/objects.json#/definitions/apps_app"
+        },
+        "description": {
+          "type": "string",
+          "description": "Object description",
+          "required": true
+        },
+        "global": {
+          "description": "Information whether the object has been found globally",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "group": {
+          "$ref": "../groups/objects.json#/definitions/groups_group"
+        },
+        "profile": {
+          "$ref": "../users/objects.json#/definitions/users_user_min"
+        },
+        "section": {
+          "$ref": "../search/objects.json#/definitions/search_hint_section"
+        },
+        "type": {
+          "$ref": "../search/objects.json#/definitions/search_hint_type",
+          "required": true
+        },
+        "link": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        }
+      },
+      "additionalProperties": false
+    },
+    "search_hint_section": {
+      "type": "string",
+      "description": "Section title",
+      "enum": [
+        "groups",
+        "events",
+        "publics",
+        "correspondents",
+        "people",
+        "friends",
+        "mutual_friends",
+        "promo"
+      ]
+    },
+    "search_hint_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "group",
+        "profile",
+        "vk_app",
+        "app",
+        "html5_game",
+        "link"
+      ]
+    }
+  }
+}

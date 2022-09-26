@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "storage_getKeys_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Key name"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "storage_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../storage/objects.json#/definitions/storage_value"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

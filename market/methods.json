@@ -1,0 +1,1749 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "market.add",
+      "description": "Ads a new item to the market.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "name",
+          "description": "Item name.",
+          "type": "string",
+          "required": true,
+          "minLength": 4,
+          "maxLength": 100
+        },
+        {
+          "name": "description",
+          "description": "Item description.",
+          "type": "string",
+          "required": true,
+          "minLength": 10
+        },
+        {
+          "name": "category_id",
+          "description": "Item category ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "price",
+          "description": "Item price.",
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "name": "old_price",
+          "type": "number",
+          "minimum": 0.01
+        },
+        {
+          "name": "deleted",
+          "description": "Item status ('1' — deleted, '0' — not deleted).",
+          "type": "boolean"
+        },
+        {
+          "name": "main_photo_id",
+          "description": "Cover photo ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "photo_ids",
+          "description": "IDs of additional photos.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 4
+        },
+        {
+          "name": "url",
+          "description": "Url for button in market item.",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 320
+        },
+        {
+          "name": "dimension_width",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "dimension_height",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "dimension_length",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "weight",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "sku",
+          "type": "string",
+          "maxLength": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_add_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_market"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_too_many_items"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_has_bad_links"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variant_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_property_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_items_must_have_distinct_properties"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_must_contain_more_than_one_item"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_photos_crop_invalid_format"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_photos_crop_overflow"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_photos_crop_size_too_low"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.addAlbum",
+      "description": "Creates new collection of items",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "description": "Collection title.",
+          "type": "string",
+          "required": true,
+          "maxLength": 128
+        },
+        {
+          "name": "photo_id",
+          "description": "Cover photo ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "main_album",
+          "description": "Set as main ('1' - set, '0' - no).",
+          "type": "boolean"
+        },
+        {
+          "name": "is_hidden",
+          "description": "Set as hidden",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_addAlbum_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_too_many_albums"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_main_hidden"
+        }
+      ]
+    },
+    {
+      "name": "market.addToAlbum",
+      "description": "Adds an item to one or multiple collections.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "album_ids",
+          "description": "Collections IDs to add item to.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_too_many_items_in_album"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_already_added"
+        }
+      ]
+    },
+    {
+      "name": "market.createComment",
+      "description": "Creates a new comment for an item.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "message",
+          "description": "Comment text (required if 'attachments' parameter is not specified)",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "Comma-separated list of objects attached to a comment. The field is submitted the following way: , \"'<owner_id>_<media_id>,<owner_id>_<media_id>'\", , '' - media attachment type: \"'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document\", , '<owner_id>' - media owner id, '<media_id>' - media attachment id, , For example: \"photo100172_166443618,photo66748_265827614\",",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "from_group",
+          "description": "'1' - comment will be published on behalf of a community, '0' - on behalf of a user (by default).",
+          "type": "boolean"
+        },
+        {
+          "name": "reply_to_comment",
+          "description": "ID of a comment to reply with current comment to.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sticker_id",
+          "description": "Sticker ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "guid",
+          "description": "Random value to avoid resending one comment.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_createComment_response"
+        }
+      }
+    },
+    {
+      "name": "market.delete",
+      "description": "Deletes an item.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_market"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.deleteAlbum",
+      "description": "Deletes a collection of items.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an collection owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Collection ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.deleteComment",
+      "description": "Deletes an item's comment",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "identifier of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "comment id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_deleteComment_response"
+        }
+      }
+    },
+    {
+      "name": "market.edit",
+      "description": "Edits an item.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "name",
+          "description": "Item name.",
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 100
+        },
+        {
+          "name": "description",
+          "description": "Item description.",
+          "type": "string",
+          "minLength": 10
+        },
+        {
+          "name": "category_id",
+          "description": "Item category ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "price",
+          "description": "Item price.",
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "name": "old_price",
+          "type": "number",
+          "minimum": 0.01
+        },
+        {
+          "name": "deleted",
+          "description": "Item status ('1' — deleted, '0' — not deleted).",
+          "type": "boolean"
+        },
+        {
+          "name": "main_photo_id",
+          "description": "Cover photo ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "photo_ids",
+          "description": "IDs of additional photos.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 4
+        },
+        {
+          "name": "url",
+          "description": "Url for button in market item.",
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 320
+        },
+        {
+          "name": "dimension_width",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "dimension_height",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "dimension_length",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "weight",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "sku",
+          "type": "string",
+          "maxLength": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_market"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_has_bad_links"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_items_with_different_properties"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_already_has_such_variant"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_photos_crop_invalid_format"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_photos_crop_overflow"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_photos_crop_size_too_low"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.editAlbum",
+      "description": "Edits a collection of items",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an collection owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Collection ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "Collection title.",
+          "type": "string",
+          "required": true,
+          "maxLength": 128
+        },
+        {
+          "name": "photo_id",
+          "description": "Cover photo id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "main_album",
+          "description": "Set as main ('1' - set, '0' - no).",
+          "type": "boolean"
+        },
+        {
+          "name": "is_hidden",
+          "description": "Set as hidden",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_main_hidden"
+        }
+      ]
+    },
+    {
+      "name": "market.editComment",
+      "description": "Chages item comment's text",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "message",
+          "description": "New comment text (required if 'attachments' are not specified), , 2048 symbols maximum.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "Comma-separated list of objects attached to a comment. The field is submitted the following way: , \"'<owner_id>_<media_id>,<owner_id>_<media_id>'\", , '' - media attachment type: \"'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document\", , '<owner_id>' - media owner id, '<media_id>' - media attachment id, , For example: \"photo100172_166443618,photo66748_265827614\",",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "market.editOrder",
+      "description": "Edit order",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "order_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "merchant_comment",
+          "type": "string",
+          "maxLength": 800
+        },
+        {
+          "name": "status",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "track_number",
+          "type": "string",
+          "maxLength": 60
+        },
+        {
+          "name": "payment_status",
+          "type": "string",
+          "enum": [
+            "not_paid",
+            "paid",
+            "returned"
+          ]
+        },
+        {
+          "name": "delivery_price",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "width",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "length",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "height",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        {
+          "name": "weight",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_orders_no_cart_items"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_invalid_dimensions"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_cant_change_vkpay_status"
+        }
+      ]
+    },
+    {
+      "name": "market.get",
+      "description": "Returns items list for a community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "type": "integer",
+          "format": "int32",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of items to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "'1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.",
+          "type": "boolean"
+        },
+        {
+          "name": "date_from",
+          "description": "Items update date from (format: yyyy-mm-dd)",
+          "type": "string"
+        },
+        {
+          "name": "date_to",
+          "description": "Items update date to (format: yyyy-mm-dd)",
+          "type": "string"
+        },
+        {
+          "name": "need_variants",
+          "description": "Add variants to response if exist",
+          "type": "boolean"
+        },
+        {
+          "name": "with_disabled",
+          "description": "Add disabled items to response",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_get_response"
+        },
+        "extendedResponse": {
+          "$ref": "../market/responses.json#/definitions/market_get_extended_response"
+        }
+      }
+    },
+    {
+      "name": "market.getAlbumById",
+      "description": "Returns items album's data",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "identifier of an album owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_ids",
+          "description": "collections identifiers to obtain data from",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getAlbumById_response"
+        }
+      }
+    },
+    {
+      "name": "market.getAlbums",
+      "description": "Returns community's market collections list.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an items owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of items to return.",
+          "type": "integer",
+          "default": 50,
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getAlbums_response"
+        }
+      }
+    },
+    {
+      "name": "market.getById",
+      "description": "Returns information about market items by their ids.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "item_ids",
+          "description": "Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. \" 'Videos' value example: , '-4363_136089719,13245770_137352259'\"",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "extended",
+          "description": "'1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getById_response"
+        },
+        "extendedResponse": {
+          "$ref": "../market/responses.json#/definitions/market_getById_extended_response"
+        }
+      }
+    },
+    {
+      "name": "market.getCategories",
+      "description": "Returns a list of market categories.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getCategories_response"
+        }
+      }
+    },
+    {
+      "name": "market.getComments",
+      "description": "Returns comments list for an item.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "need_likes",
+          "description": "'1' — to return likes info.",
+          "type": "boolean"
+        },
+        {
+          "name": "start_comment_id",
+          "description": "ID of a comment to start a list from (details below).",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "sort",
+          "description": "Sort order ('asc' — from old to new, 'desc' — from new to old)",
+          "type": "string",
+          "default": "asc",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "old to new",
+            "new to old"
+          ]
+        },
+        {
+          "name": "extended",
+          "description": "'1' — comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "List of additional profile fields to return. See the [vk.com/dev/fields|details]",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getComments_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_comments_closed"
+        }
+      ]
+    },
+    {
+      "name": "market.getGroupOrders",
+      "description": "Get market orders",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getGroupOrders_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.getOrderById",
+      "description": "Get order",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "order_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getOrderById_response"
+        }
+      }
+    },
+    {
+      "name": "market.getOrderItems",
+      "description": "Get market items in the order",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "order_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 50,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getOrderItems_response"
+        }
+      }
+    },
+    {
+      "name": "market.getOrders",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 10
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "date_from",
+          "description": "Orders status updated date from (format: yyyy-mm-dd)",
+          "type": "string"
+        },
+        {
+          "name": "date_to",
+          "description": "Orders status updated date to (format: yyyy-mm-dd)",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getOrders_response"
+        },
+        "extendedResponse": {
+          "$ref": "../market/responses.json#/definitions/market_getOrders_extended_response"
+        }
+      }
+    },
+    {
+      "name": "market.removeFromAlbum",
+      "description": "Removes an item from one or multiple collections.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "album_ids",
+          "description": "Collections IDs to remove item from.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.reorderAlbums",
+      "description": "Reorders the collections list.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Collection ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "before",
+          "description": "ID of a collection to place current collection before it.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "after",
+          "description": "ID of a collection to place current collection after it.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_market"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.reorderItems",
+      "description": "Changes item place in a collection.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "ID of a collection to reorder items in. Set 0 to reorder full items list.",
+          "type": "integer"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "before",
+          "description": "ID of an item to place current item before it.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "after",
+          "description": "ID of an item to place current item after it.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_market"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_album_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.report",
+      "description": "Sends a complaint to the item.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "description": "Complaint reason. Possible values: *'0' — spam,, *'1' — child porn,, *'2' — extremism,, *'3' — violence,, *'4' — drugs propaganda,, *'5' — adult materials,, *'6' — insult.",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "market.reportComment",
+      "description": "Sends a complaint to the item's comment.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "description": "Complaint reason. Possible values: *'0' — spam,, *'1' — child porn,, *'2' — extremism,, *'3' — violence,, *'4' — drugs propaganda,, *'5' — adult materials,, *'6' — insult.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "market.restore",
+      "description": "Restores recently deleted item",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an item owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Deleted item ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_market"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_restore_too_late"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.restoreComment",
+      "description": "Restores a recently deleted comment",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "identifier of an item owner community, \"Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community \"",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "deleted comment id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_restoreComment_response"
+        }
+      }
+    },
+    {
+      "name": "market.search",
+      "description": "Searches market items in a community's catalog",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of an items owner community.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "q",
+          "description": "Search query, for example \"pink slippers\".",
+          "type": "string"
+        },
+        {
+          "name": "price_from",
+          "description": "Minimum item price value.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "price_to",
+          "description": "Maximum item price value.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sort",
+          "type": "integer",
+          "default": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "enumNames": [
+            "default",
+            "date",
+            "price",
+            "relevance"
+          ]
+        },
+        {
+          "name": "rev",
+          "description": "'0' — do not use reverse order, '1' — use reverse order",
+          "type": "integer",
+          "default": 1,
+          "minimum": 0,
+          "enum": [
+            0,
+            1
+          ],
+          "enumNames": [
+            "normal",
+            "reverse"
+          ]
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of items to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "extended",
+          "description": "'1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.",
+          "type": "boolean",
+          "default": "0"
+        },
+        {
+          "name": "status",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2
+        },
+        {
+          "name": "need_variants",
+          "description": "Add variants to response if exist",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_search_response"
+        },
+        "extendedResponse": {
+          "$ref": "../market/responses.json#/definitions/market_search_extended_response"
+        }
+      }
+    },
+    {
+      "name": "market.searchItems",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 300
+        },
+        {
+          "name": "category_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "price_from",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "price_to",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sort_by",
+          "type": "integer",
+          "default": 3,
+          "enum": [
+            2,
+            3,
+            1
+          ],
+          "enumNames": [
+            "date",
+            "price",
+            "relevance"
+          ]
+        },
+        {
+          "name": "sort_direction",
+          "type": "integer",
+          "default": 1,
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "country",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_search_response"
+        }
+      }
+    }
+  ]
+}

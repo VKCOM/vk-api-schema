@@ -1,0 +1,682 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "newsfeed.addBan",
+      "description": "Prevents news from specified users and communities from appearing in the current user's newsfeed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "group_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.deleteBan",
+      "description": "Allows news from previously banned users and communities to be shown in the current user's newsfeed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "group_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.deleteList",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "list_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.get",
+      "description": "Returns data required to show newsfeed for the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "filters",
+          "description": "Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends",
+          "type": "array",
+          "items": {
+            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_item_type"
+          }
+        },
+        {
+          "name": "return_banned",
+          "description": "'1' — to return news items from banned sources",
+          "type": "boolean"
+        },
+        {
+          "name": "start_time",
+          "description": "Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "end_time",
+          "description": "Latest timestamp (in Unix time) of a news item to return. By default, the current time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "max_photos",
+          "description": "Maximum number of photos to return. By default, '5'.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "source_ids",
+          "description": "Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.",
+          "type": "string"
+        },
+        {
+          "name": "start_from",
+          "description": "identifier required to get the next page of results. Value for this parameter is returned in 'next_from' field in a reply.",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "description": "Number of news items to return (default 50, maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "section",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_generic_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.getBanned",
+      "description": "Returns a list of users and communities banned from the current user's newsfeed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "extended",
+          "description": "'1' — return extra information about users and communities",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getBanned_response"
+        },
+        "extendedResponse": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getBanned_extended_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.getComments",
+      "description": "Returns a list of comments in the current user's newsfeed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "count",
+          "description": "Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.",
+          "type": "integer",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "filters",
+          "description": "Filters to apply: 'post' — new comments on wall posts, 'photo' — new comments on photos, 'video' — new comments on videos, 'topic' — new comments on discussions, 'note' — new comments on notes,",
+          "type": "array",
+          "items": {
+            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_filters"
+          }
+        },
+        {
+          "name": "reposts",
+          "description": "Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter is set, the 'filters' parameter is optional.),",
+          "type": "string"
+        },
+        {
+          "name": "start_time",
+          "description": "Earliest timestamp (in Unix time) of a comment to return. By default, 24 hours ago.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "end_time",
+          "description": "Latest timestamp (in Unix time) of a comment to return. By default, the current time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "last_comments_count",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 10
+        },
+        {
+          "name": "start_from",
+          "description": "Identificator needed to return the next page with results. Value for this parameter returns in 'next_from' field.",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getComments_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.getLists",
+      "description": "Returns a list of newsfeeds followed by the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "list_ids",
+          "description": "numeric list identifiers.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "extended",
+          "description": "Return additional list info",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getLists_response"
+        },
+        "extendedResponse": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getLists_extended_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.getMentions",
+      "description": "Returns a list of posts on user walls in which the current user is mentioned.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "Owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "start_time",
+          "description": "Earliest timestamp (in Unix time) of a post to return. By default, 24 hours ago.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "end_time",
+          "description": "Latest timestamp (in Unix time) of a post to return. By default, the current time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of posts.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of posts to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getMentions_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.getRecommended",
+      "description": ", Returns a list of newsfeeds recommended to the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "start_time",
+          "description": "Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "end_time",
+          "description": "Latest timestamp (in Unix time) of a news item to return. By default, the current time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "max_photos",
+          "description": "Maximum number of photos to return. By default, '5'.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "start_from",
+          "description": "'new_from' value obtained in previous call.",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "description": "Number of news items to return.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_generic_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.getSuggestedSources",
+      "description": "Returns communities and users that current user is suggested to follow.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "offset required to choose a particular subset of communities or users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "amount of communities or users to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "shuffle",
+          "description": "shuffle the returned list or not.",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "description": "list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_getSuggestedSources_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.ignoreItem",
+      "description": "Hides an item from the newsfeed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.",
+          "type": "string",
+          "required": true,
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_ignore_item_type"
+        },
+        {
+          "name": "owner_id",
+          "description": "Item owner's identifier (user or community), \"Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community \"",
+          "type": "integer",
+          "format": "int64",
+          "default": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item identifier",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.saveList",
+      "description": "Creates and edits user newsfeed lists",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "list_id",
+          "description": "numeric list identifier (if not sent, will be set automatically).",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "list name.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "source_ids",
+          "description": "users and communities identifiers to be added to the list. Community identifiers must be negative numbers.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          }
+        },
+        {
+          "name": "no_reposts",
+          "description": "reposts display on and off ('1' is for off).",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_saveList_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_too_many_lists"
+        }
+      ]
+    },
+    {
+      "name": "newsfeed.search",
+      "description": "Returns search results by statuses.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string (e.g., 'New Year').",
+          "type": "string"
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional information about the user or community that placed the post.",
+          "type": "boolean"
+        },
+        {
+          "name": "count",
+          "description": "Number of posts to return.",
+          "type": "integer",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "latitude",
+          "description": "Geographical latitude point (in degrees, -90 to 90) within which to search.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "Geographical longitude point (in degrees, -180 to 180) within which to search.",
+          "type": "number"
+        },
+        {
+          "name": "start_time",
+          "description": "Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "end_time",
+          "description": "Latest timestamp (in Unix time) of a news item to return. By default, the current time.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "start_from",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_search_response"
+        },
+        "extendedResponse": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_search_extended_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.unignoreItem",
+      "description": "Returns a hidden item to the newsfeed.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.",
+          "type": "string",
+          "required": true,
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_ignore_item_type"
+        },
+        {
+          "name": "owner_id",
+          "description": "Item owner's identifier (user or community), \"Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community \"",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Item identifier",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "track_code",
+          "description": "Track code of unignored item",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "newsfeed.unsubscribe",
+      "description": "Unsubscribes the current user from specified newsfeeds.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Type of object from which to unsubscribe: 'note' — note, 'photo' — photo, 'post' — post on user wall or community wall, 'topic' — topic, 'video' — video",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "note",
+            "photo",
+            "post",
+            "topic",
+            "video"
+          ]
+        },
+        {
+          "name": "owner_id",
+          "description": "Object owner ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Object ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

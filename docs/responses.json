@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "docs_add_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Document ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string",
+              "description": "Uploaded file data"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../docs/objects.json#/definitions/docs_doc"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_getTypes_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../docs/objects.json#/definitions/docs_doc_types"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_getUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../base/objects.json#/definitions/base_upload_server",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../docs/objects.json#/definitions/docs_doc"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_save_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "../docs/objects.json#/definitions/docs_doc_attachment_type"
+            },
+            "audio_message": {
+              "$ref": "../messages/objects.json#/definitions/messages_audio_message"
+            },
+            "doc": {
+              "$ref": "../docs/objects.json#/definitions/docs_doc"
+            },
+            "graffiti": {
+              "$ref": "../messages/objects.json#/definitions/messages_graffiti"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_search_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../docs/objects.json#/definitions/docs_doc"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

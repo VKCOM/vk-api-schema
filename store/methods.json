@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "store.addStickersToFavorite",
+      "description": "Adds given sticker IDs to the list of user's favorite stickers",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "sticker_ids",
+          "description": "Sticker IDs to be added",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_stickers_not_purchased"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_stickers_too_many_favorites"
+        }
+      ]
+    },
+    {
+      "name": "store.getFavoriteStickers",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../store/responses.json#/definitions/store_getFavoriteStickers_response"
+        }
+      }
+    },
+    {
+      "name": "store.getProducts",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "merchant",
+          "type": "string"
+        },
+        {
+          "name": "section",
+          "type": "string"
+        },
+        {
+          "name": "product_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "filters",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../store/responses.json#/definitions/store_getProducts_response"
+        }
+      }
+    },
+    {
+      "name": "store.getStickersKeywords",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "stickers_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "products_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "aliases",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "name": "all_products",
+          "type": "boolean"
+        },
+        {
+          "name": "need_stickers",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../store/responses.json#/definitions/store_getStickersKeywords_response"
+        }
+      }
+    },
+    {
+      "name": "store.removeStickersFromFavorite",
+      "description": "Removes given sticker IDs from the list of user's favorite stickers",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "sticker_ids",
+          "description": "Sticker IDs to be removed",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_stickers_not_favorite"
+        }
+      ]
+    }
+  ]
+}

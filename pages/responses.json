@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "pages_getHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../pages/objects.json#/definitions/pages_wikipage_history"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_getTitles_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../pages/objects.json#/definitions/pages_wikipage"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_getVersion_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../pages/objects.json#/definitions/pages_wikipage_full",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../pages/objects.json#/definitions/pages_wikipage_full",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_parseWiki_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "description": "HTML source",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_saveAccess_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Page ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "pages_save_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Page ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

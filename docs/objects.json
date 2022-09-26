@@ -1,0 +1,250 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "docs_doc": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Document ID",
+          "minimum": 0,
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Document owner ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Document title",
+          "required": true
+        },
+        "size": {
+          "type": "integer",
+          "description": "File size in bites",
+          "minimum": 0,
+          "required": true
+        },
+        "ext": {
+          "type": "string",
+          "description": "File extension",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "File URL"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when file has been uploaded in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "type": {
+          "type": "integer",
+          "description": "Document type",
+          "required": true
+        },
+        "preview": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc_preview"
+        },
+        "is_licensed": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the document"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Document tags",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_attachment_type": {
+      "type": "string",
+      "description": "Doc attachment type",
+      "enum": [
+        "doc",
+        "graffiti",
+        "audio_message"
+      ]
+    },
+    "docs_doc_preview": {
+      "type": "object",
+      "properties": {
+        "audio_msg": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc_preview_audio_msg"
+        },
+        "graffiti": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc_preview_graffiti"
+        },
+        "photo": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc_preview_photo"
+        },
+        "video": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc_preview_video"
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_preview_audio_msg": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "type": "integer",
+          "description": "Audio message duration in seconds",
+          "minimum": 0,
+          "required": true
+        },
+        "link_mp3": {
+          "type": "string",
+          "format": "uri",
+          "description": "MP3 file URL",
+          "required": true
+        },
+        "link_ogg": {
+          "type": "string",
+          "format": "uri",
+          "description": "OGG file URL",
+          "required": true
+        },
+        "waveform": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Sound visualisation",
+            "minimum": 0
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_preview_graffiti": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "Graffiti file URL",
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Graffiti width",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Graffiti height",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_preview_photo": {
+      "type": "object",
+      "properties": {
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "../docs/objects.json#/definitions/docs_doc_preview_photo_sizes"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_preview_photo_sizes": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the image",
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width in px",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Height in px",
+          "minimum": 0,
+          "required": true
+        },
+        "type": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_sizes_type",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_preview_video": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "Video URL",
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Video's width in pixels",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Video's height in pixels",
+          "minimum": 0,
+          "required": true
+        },
+        "file_size": {
+          "type": "integer",
+          "description": "Video file size in bites",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "docs_doc_types": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Doc type ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Doc type title",
+          "required": true
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of docs",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

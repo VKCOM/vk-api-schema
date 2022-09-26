@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "podcasts_searchPodcast_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "podcasts": {
+              "type": "array",
+              "items": {
+                "$ref": "../podcast/objects.json#/definitions/podcast_external_data"
+              },
+              "required": true
+            },
+            "results_total": {
+              "type": "integer",
+              "description": "Total amount of found results",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "leadForms_create_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "form_id": {
+              "type": "integer",
+              "required": true
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadForms_delete_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "form_id": {
+              "type": "integer",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadForms_getLeads_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "leads": {
+              "type": "array",
+              "items": {
+                "$ref": "../leadForms/objects.json#/definitions/leadForms_lead"
+              },
+              "required": true
+            },
+            "next_page_token": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadForms_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../leadForms/objects.json#/definitions/leadForms_form",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadForms_list_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../leadForms/objects.json#/definitions/leadForms_form"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadForms_uploadUrl_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "string",
+          "format": "uri",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

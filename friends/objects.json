@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "friends_friend_extended_status": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../friends/objects.json#/definitions/friends_friend_status"
+        },
+        {
+          "properties": {
+            "is_request_unread": {
+              "type": "boolean",
+              "description": "Is friend request from other user unread"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "friends_friend_status": {
+      "type": "object",
+      "properties": {
+        "friend_status": {
+          "$ref": "../friends/objects.json#/definitions/friends_friend_status_status",
+          "required": true
+        },
+        "sign": {
+          "type": "string",
+          "description": "MD5 hash for the result validation"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_friend_status_status": {
+      "type": "integer",
+      "description": "Friend status with the user",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "not a friend",
+        "outcoming request",
+        "incoming request",
+        "is friend"
+      ]
+    },
+    "friends_friends_list": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "List ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "List title",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_mutual_friend": {
+      "type": "object",
+      "properties": {
+        "common_count": {
+          "type": "integer",
+          "description": "Total mutual friends number"
+        },
+        "common_friends": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1
+          }
+        },
+        "id": {
+          "type": "integer",
+          "description": "User ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_requests": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "ID of the user by whom friend has been suggested"
+        },
+        "mutual": {
+          "$ref": "../friends/objects.json#/definitions/friends_requests_mutual"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_requests_mutual": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total mutual friends number"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_requests_xtr_message": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "ID of the user by whom friend has been suggested"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message sent with a request"
+        },
+        "mutual": {
+          "$ref": "../friends/objects.json#/definitions/friends_requests_mutual"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "friends_user_xtr_phone": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        },
+        {
+          "properties": {
+            "phone": {
+              "type": "string",
+              "description": "User phone"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

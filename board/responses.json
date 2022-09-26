@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "board_addTopic_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Topic ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "board_createComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Comment ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "board_getComments_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../board/objects.json#/definitions/board_topic_comment"
+              },
+              "required": true
+            },
+            "poll": {
+              "type": "object",
+              "$ref": "../polls/objects.json#/definitions/polls_poll"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            },
+            "real_offset": {
+              "type": "integer",
+              "description": "Offset of comment"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "board_getComments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../board/objects.json#/definitions/board_topic_comment"
+              },
+              "required": true
+            },
+            "poll": {
+              "type": "object",
+              "$ref": "../polls/objects.json#/definitions/polls_poll"
+            },
+            "real_offset": {
+              "type": "integer",
+              "description": "Offset of comment"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "board_getTopics_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../board/objects.json#/definitions/board_topic"
+              },
+              "required": true
+            },
+            "default_order": {
+              "$ref": "../board/objects.json#/definitions/board_default_order",
+              "required": true
+            },
+            "can_add_topics": {
+              "description": "Information whether current user can add topic",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "board_getTopics_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../board/objects.json#/definitions/board_topic"
+              },
+              "required": true
+            },
+            "default_order": {
+              "$ref": "../board/objects.json#/definitions/board_default_order",
+              "required": true
+            },
+            "can_add_topics": {
+              "description": "Information whether current user can add topic",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

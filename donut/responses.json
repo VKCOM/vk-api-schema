@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "donut_getSubscription_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../donut/objects.json#/definitions/donut_donator_subscription_info",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "donut_getSubscriptions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "subscriptions": {
+              "type": "array",
+              "items": {
+                "$ref": "../donut/objects.json#/definitions/donut_donator_subscription_info"
+              },
+              "required": true
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

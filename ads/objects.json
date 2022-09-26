@@ -1,0 +1,1433 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "ads_access_role": {
+      "type": "string",
+      "description": "Current user's role",
+      "enum": [
+        "admin",
+        "manager",
+        "reports"
+      ]
+    },
+    "ads_access_role_public": {
+      "type": "string",
+      "description": "Current user's role",
+      "enum": [
+        "manager",
+        "reports"
+      ]
+    },
+    "ads_accesses": {
+      "type": "object",
+      "properties": {
+        "client_id": {
+          "type": "string",
+          "description": "Client ID"
+        },
+        "role": {
+          "$ref": "../ads/objects.json#/definitions/ads_access_role"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_account": {
+      "type": "object",
+      "properties": {
+        "access_role": {
+          "$ref": "../ads/objects.json#/definitions/ads_access_role",
+          "required": true
+        },
+        "account_id": {
+          "type": "integer",
+          "description": "Account ID",
+          "required": true
+        },
+        "account_status": {
+          "description": "Information whether account is active",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "account_type": {
+          "$ref": "../ads/objects.json#/definitions/ads_account_type",
+          "required": true
+        },
+        "account_name": {
+          "type": "string",
+          "description": "Account name",
+          "required": true
+        },
+        "can_view_budget": {
+          "type": "boolean",
+          "description": "Can user view account budget",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_account_type": {
+      "type": "string",
+      "description": "Account type",
+      "enum": [
+        "general",
+        "agency"
+      ]
+    },
+    "ads_ad": {
+      "type": "object",
+      "properties": {
+        "ad_format": {
+          "type": "integer",
+          "description": "Ad format",
+          "required": true
+        },
+        "ad_platform": {
+          "type": [
+            "integer",
+            "string"
+          ],
+          "description": "Ad platform"
+        },
+        "all_limit": {
+          "type": "integer",
+          "description": "Total limit",
+          "required": true
+        },
+        "approved": {
+          "$ref": "../ads/objects.json#/definitions/ads_ad_approved",
+          "required": true
+        },
+        "campaign_id": {
+          "type": "integer",
+          "description": "Campaign ID",
+          "required": true
+        },
+        "category1_id": {
+          "type": "integer",
+          "description": "Category ID"
+        },
+        "category2_id": {
+          "type": "integer",
+          "description": "Additional category ID"
+        },
+        "cost_type": {
+          "$ref": "../ads/objects.json#/definitions/ads_ad_cost_type",
+          "required": true
+        },
+        "cpc": {
+          "type": "integer",
+          "description": "Cost of a click, kopecks"
+        },
+        "cpm": {
+          "type": "integer",
+          "description": "Cost of 1000 impressions, kopecks"
+        },
+        "cpa": {
+          "type": "integer",
+          "description": "Cost of an action, kopecks"
+        },
+        "ocpm": {
+          "type": "integer",
+          "description": "Cost of 1000 impressions optimized, kopecks"
+        },
+        "autobidding_max_cost": {
+          "type": "integer",
+          "description": "Max cost of target actions for autobidding, kopecks"
+        },
+        "disclaimer_medical": {
+          "description": "Information whether disclaimer is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "disclaimer_specialist": {
+          "description": "Information whether disclaimer is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "disclaimer_supplements": {
+          "description": "Information whether disclaimer is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Ad ID",
+          "required": true
+        },
+        "impressions_limit": {
+          "type": "integer",
+          "description": "Impressions limit"
+        },
+        "impressions_limited": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether impressions are limited"
+        },
+        "name": {
+          "type": "string",
+          "description": "Ad title",
+          "required": true
+        },
+        "status": {
+          "$ref": "../ads/objects.json#/definitions/ads_ad_status",
+          "required": true
+        },
+        "video": {
+          "description": "Information whether the ad is a video",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_ad_approved": {
+      "type": "integer",
+      "description": "Review status",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "not moderated",
+        "pending moderation",
+        "approved",
+        "rejected"
+      ]
+    },
+    "ads_ad_cost_type": {
+      "type": "integer",
+      "description": "Cost type",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "enumNames": [
+        "per clicks",
+        "per impressions",
+        "per actions",
+        "per impressions optimized"
+      ]
+    },
+    "ads_ad_layout": {
+      "type": "object",
+      "properties": {
+        "ad_format": {
+          "type": "integer",
+          "description": "Ad format",
+          "required": true
+        },
+        "campaign_id": {
+          "type": "integer",
+          "description": "Campaign ID",
+          "required": true
+        },
+        "cost_type": {
+          "$ref": "../ads/objects.json#/definitions/ads_ad_cost_type",
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "description": "Ad description",
+          "required": true
+        },
+        "id": {
+          "type": "string",
+          "description": "Ad ID",
+          "required": true
+        },
+        "image_src": {
+          "type": "string",
+          "format": "uri",
+          "description": "Image URL",
+          "required": true
+        },
+        "image_src_2x": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image in double size"
+        },
+        "link_domain": {
+          "type": "string",
+          "description": "Domain of advertised object"
+        },
+        "link_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of advertised object",
+          "required": true
+        },
+        "preview_link": {
+          "type": "string",
+          "description": "link to preview an ad as it is shown on the website"
+        },
+        "title": {
+          "type": "string",
+          "description": "Ad title",
+          "required": true
+        },
+        "video": {
+          "description": "Information whether the ad is a video",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_ad_status": {
+      "type": "integer",
+      "description": "Ad atatus",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "stopped",
+        "started",
+        "deleted"
+      ]
+    },
+    "ads_campaign": {
+      "type": "object",
+      "properties": {
+        "ads_count": {
+          "type": "integer",
+          "description": "Amount of active ads in campaign"
+        },
+        "all_limit": {
+          "type": "string",
+          "description": "Campaign's total limit, rubles",
+          "required": true
+        },
+        "create_time": {
+          "type": "integer",
+          "description": "Campaign create time, as Unixtime"
+        },
+        "goal_type": {
+          "type": "integer",
+          "description": "Campaign goal type"
+        },
+        "user_goal_type": {
+          "type": "integer",
+          "description": "Campaign user goal type"
+        },
+        "is_cbo_enabled": {
+          "type": "boolean",
+          "description": "Shows if Campaign Budget Optimization is on"
+        },
+        "day_limit": {
+          "type": "string",
+          "description": "Campaign's day limit, rubles",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Campaign ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Campaign title",
+          "required": true
+        },
+        "start_time": {
+          "type": "integer",
+          "description": "Campaign start time, as Unixtime",
+          "required": true
+        },
+        "status": {
+          "$ref": "../ads/objects.json#/definitions/ads_campaign_status",
+          "required": true
+        },
+        "stop_time": {
+          "type": "integer",
+          "description": "Campaign stop time, as Unixtime",
+          "required": true
+        },
+        "type": {
+          "$ref": "../ads/objects.json#/definitions/ads_campaign_type",
+          "required": true
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Campaign update time, as Unixtime"
+        },
+        "views_limit": {
+          "type": "integer",
+          "description": "Limit of views per user per campaign"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_campaign_status": {
+      "type": "integer",
+      "description": "Campaign status",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "stopped",
+        "started",
+        "deleted"
+      ]
+    },
+    "ads_campaign_type": {
+      "type": "string",
+      "description": "Campaign type",
+      "enum": [
+        "normal",
+        "vk_apps_managed",
+        "mobile_apps",
+        "promoted_posts",
+        "adaptive_ads",
+        "stories"
+      ]
+    },
+    "ads_category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Category ID",
+          "minimum": 1,
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Category name",
+          "required": true
+        },
+        "subcategories": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_category"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_client": {
+      "type": "object",
+      "properties": {
+        "all_limit": {
+          "type": "string",
+          "description": "Client's total limit, rubles",
+          "required": true
+        },
+        "day_limit": {
+          "type": "string",
+          "description": "Client's day limit, rubles",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Client ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Client name",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_create_ad_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Ad ID",
+          "required": true
+        },
+        "post_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Stealth Post ID"
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_create_campaign_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Campaign ID",
+          "required": true
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_criteria": {
+      "type": "object",
+      "properties": {
+        "age_from": {
+          "type": "integer",
+          "description": "Age from",
+          "minimum": 0
+        },
+        "age_to": {
+          "type": "integer",
+          "description": "Age to",
+          "minimum": 0
+        },
+        "apps": {
+          "type": "string",
+          "description": "Apps IDs"
+        },
+        "apps_not": {
+          "type": "string",
+          "description": "Apps IDs to except"
+        },
+        "birthday": {
+          "type": "integer",
+          "description": "Days to birthday"
+        },
+        "cities": {
+          "type": "string",
+          "description": "Cities IDs"
+        },
+        "cities_not": {
+          "type": "string",
+          "description": "Cities IDs to except"
+        },
+        "country": {
+          "type": "integer",
+          "description": "Country ID",
+          "minimum": 0
+        },
+        "districts": {
+          "type": "string",
+          "description": "Districts IDs"
+        },
+        "groups": {
+          "type": "string",
+          "description": "Communities IDs"
+        },
+        "interest_categories": {
+          "type": "string",
+          "description": "Interests categories IDs"
+        },
+        "interests": {
+          "type": "string",
+          "description": "Interests"
+        },
+        "paying": {
+          "description": "Information whether the user has proceeded VK payments before",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "positions": {
+          "type": "string",
+          "description": "Positions IDs"
+        },
+        "religions": {
+          "type": "string",
+          "description": "Religions IDs"
+        },
+        "retargeting_groups": {
+          "type": "string",
+          "description": "Retargeting groups IDs"
+        },
+        "retargeting_groups_not": {
+          "type": "string",
+          "description": "Retargeting groups IDs to except"
+        },
+        "school_from": {
+          "type": "integer",
+          "description": "School graduation year from"
+        },
+        "school_to": {
+          "type": "integer",
+          "description": "School graduation year to"
+        },
+        "schools": {
+          "type": "string",
+          "description": "Schools IDs"
+        },
+        "sex": {
+          "$ref": "../ads/objects.json#/definitions/ads_criteria_sex"
+        },
+        "stations": {
+          "type": "string",
+          "description": "Stations IDs"
+        },
+        "statuses": {
+          "type": "string",
+          "description": "Relationship statuses"
+        },
+        "streets": {
+          "type": "string",
+          "description": "Streets IDs"
+        },
+        "travellers": {
+          "description": "Travellers only",
+          "$ref": "../base/objects.json#/definitions/base_property_exists"
+        },
+        "uni_from": {
+          "type": "integer",
+          "description": "University graduation year from"
+        },
+        "uni_to": {
+          "type": "integer",
+          "description": "University graduation year to"
+        },
+        "user_browsers": {
+          "type": "string",
+          "description": "Browsers"
+        },
+        "user_devices": {
+          "type": "string",
+          "description": "Devices"
+        },
+        "user_os": {
+          "type": "string",
+          "description": "Operating systems"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_criteria_sex": {
+      "type": "integer",
+      "description": "Sex",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "any",
+        "male",
+        "female"
+      ]
+    },
+    "ads_demo_stats": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID"
+        },
+        "stats": {
+          "$ref": "../ads/objects.json#/definitions/ads_demostats_format"
+        },
+        "type": {
+          "$ref": "../ads/objects.json#/definitions/ads_object_type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_demostats_format": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_stats_age"
+          }
+        },
+        "cities": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_stats_cities"
+          }
+        },
+        "day": {
+          "type": "string",
+          "description": "Day as YYYY-MM-DD"
+        },
+        "month": {
+          "type": "string",
+          "description": "Month as YYYY-MM"
+        },
+        "overall": {
+          "type": "integer",
+          "description": "1 if period=overall"
+        },
+        "sex": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_stats_sex"
+          }
+        },
+        "sex_age": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_stats_sex_age"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_flood_stats": {
+      "type": "object",
+      "properties": {
+        "left": {
+          "type": "integer",
+          "description": "Requests left",
+          "required": true
+        },
+        "refresh": {
+          "type": "integer",
+          "description": "Time to refresh in seconds",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_link_status": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Reject reason",
+          "required": true
+        },
+        "redirect_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "description": "Link status",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_lookalike_request": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Lookalike request ID",
+          "minimum": 1,
+          "required": true
+        },
+        "create_time": {
+          "type": "integer",
+          "description": "Lookalike request create time, as Unixtime",
+          "required": true
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Lookalike request update time, as Unixtime",
+          "required": true
+        },
+        "scheduled_delete_time": {
+          "type": "integer",
+          "description": "Time by which lookalike request would be deleted, as Unixtime"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "search_in_progress",
+            "search_failed",
+            "search_done",
+            "save_in_progress",
+            "save_failed",
+            "save_done"
+          ],
+          "description": "Lookalike request status",
+          "required": true
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "retargeting_group"
+          ],
+          "description": "Lookalike request source type",
+          "required": true
+        },
+        "source_retargeting_group_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Retargeting group id, which was used as lookalike seed"
+        },
+        "source_name": {
+          "type": "string",
+          "description": "Lookalike request seed name (retargeting group name)"
+        },
+        "audience_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Lookalike request seed audience size"
+        },
+        "save_audience_levels": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_lookalike_request_save_audience_level"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_lookalike_request_save_audience_level": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Save audience level id, which is used in save audience queries"
+        },
+        "audience_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Saved audience audience size for according level"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_musician": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Targeting music artist ID",
+          "minimum": 1,
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Music artist name",
+          "required": true
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Music artist photo"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_object_type": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "ad",
+        "campaign",
+        "client",
+        "office"
+      ]
+    },
+    "ads_paragraphs": {
+      "type": "object",
+      "properties": {
+        "paragraph": {
+          "type": "string",
+          "description": "Rules paragraph"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_promoted_post_reach": {
+      "type": "object",
+      "properties": {
+        "hide": {
+          "type": "integer",
+          "description": "Hides amount",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Object ID from 'ids' parameter",
+          "required": true
+        },
+        "join_group": {
+          "type": "integer",
+          "description": "Community joins",
+          "required": true
+        },
+        "links": {
+          "type": "integer",
+          "description": "Link clicks",
+          "required": true
+        },
+        "reach_subscribers": {
+          "type": "integer",
+          "description": "Subscribers reach",
+          "required": true
+        },
+        "reach_total": {
+          "type": "integer",
+          "description": "Total reach",
+          "required": true
+        },
+        "report": {
+          "type": "integer",
+          "description": "Reports amount",
+          "required": true
+        },
+        "to_group": {
+          "type": "integer",
+          "description": "Community clicks",
+          "required": true
+        },
+        "unsubscribe": {
+          "type": "integer",
+          "description": "'Unsubscribe' events amount",
+          "required": true
+        },
+        "video_views_100p": {
+          "type": "integer",
+          "description": "Video views for 100 percent"
+        },
+        "video_views_25p": {
+          "type": "integer",
+          "description": "Video views for 25 percent"
+        },
+        "video_views_3s": {
+          "type": "integer",
+          "description": "Video views for 3 seconds"
+        },
+        "video_views_50p": {
+          "type": "integer",
+          "description": "Video views for 50 percent"
+        },
+        "video_views_75p": {
+          "type": "integer",
+          "description": "Video views for 75 percent"
+        },
+        "video_views_start": {
+          "type": "integer",
+          "description": "Video starts"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_reject_reason": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "description": "Comment text"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_rules"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_rules": {
+      "type": "object",
+      "properties": {
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_paragraphs"
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "Comment"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID"
+        },
+        "stats": {
+          "$ref": "../ads/objects.json#/definitions/ads_stats_format"
+        },
+        "type": {
+          "$ref": "../ads/objects.json#/definitions/ads_object_type"
+        },
+        "views_times": {
+          "$ref": "../ads/objects.json#/definitions/ads_stats_views_times"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats_age": {
+      "type": "object",
+      "properties": {
+        "clicks_rate": {
+          "type": "number",
+          "description": "Clicks rate"
+        },
+        "impressions_rate": {
+          "type": "number",
+          "description": "Impressions rate"
+        },
+        "value": {
+          "type": "string",
+          "description": "Age interval"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats_cities": {
+      "type": "object",
+      "properties": {
+        "clicks_rate": {
+          "type": "number",
+          "description": "Clicks rate"
+        },
+        "impressions_rate": {
+          "type": "number",
+          "description": "Impressions rate"
+        },
+        "name": {
+          "type": "string",
+          "description": "City name"
+        },
+        "value": {
+          "type": "integer",
+          "description": "City ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats_format": {
+      "type": "object",
+      "properties": {
+        "clicks": {
+          "type": "integer",
+          "description": "Clicks number"
+        },
+        "link_external_clicks": {
+          "type": "integer",
+          "description": "External clicks number"
+        },
+        "day": {
+          "type": "string",
+          "description": "Day as YYYY-MM-DD"
+        },
+        "impressions": {
+          "type": "integer",
+          "description": "Impressions number"
+        },
+        "join_rate": {
+          "type": "integer",
+          "description": "Events number"
+        },
+        "month": {
+          "type": "string",
+          "description": "Month as YYYY-MM"
+        },
+        "overall": {
+          "type": "integer",
+          "description": "1 if period=overall"
+        },
+        "reach": {
+          "type": "integer",
+          "description": "Reach "
+        },
+        "spent": {
+          "type": "integer",
+          "description": "Spent funds"
+        },
+        "video_clicks_site": {
+          "type": "integer",
+          "description": "Clickthoughs to the advertised site"
+        },
+        "video_views": {
+          "type": "integer",
+          "description": "Video views number"
+        },
+        "video_views_full": {
+          "type": "integer",
+          "description": "Video views (full video)"
+        },
+        "video_views_half": {
+          "type": "integer",
+          "description": "Video views (half of video)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats_sex": {
+      "type": "object",
+      "properties": {
+        "clicks_rate": {
+          "type": "number",
+          "description": "Clicks rate"
+        },
+        "impressions_rate": {
+          "type": "number",
+          "description": "Impressions rate"
+        },
+        "value": {
+          "$ref": "../ads/objects.json#/definitions/ads_stats_sex_value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats_sex_age": {
+      "type": "object",
+      "properties": {
+        "clicks_rate": {
+          "type": "number",
+          "description": "Clicks rate"
+        },
+        "impressions_rate": {
+          "type": "number",
+          "description": "Impressions rate"
+        },
+        "value": {
+          "type": "string",
+          "description": "Sex and age interval"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stats_sex_value": {
+      "type": "string",
+      "description": "Sex",
+      "enum": [
+        "f",
+        "m"
+      ],
+      "enumNames": [
+        "female",
+        "male"
+      ]
+    },
+    "ads_stats_views_times": {
+      "type": "object",
+      "properties": {
+        "views_ads_times_1": {
+          "type": "integer"
+        },
+        "views_ads_times_2": {
+          "type": "integer"
+        },
+        "views_ads_times_3": {
+          "type": "integer"
+        },
+        "views_ads_times_4": {
+          "type": "integer"
+        },
+        "views_ads_times_5": {
+          "type": "string"
+        },
+        "views_ads_times_6": {
+          "type": "integer"
+        },
+        "views_ads_times_7": {
+          "type": "integer"
+        },
+        "views_ads_times_8": {
+          "type": "integer"
+        },
+        "views_ads_times_9": {
+          "type": "integer"
+        },
+        "views_ads_times_10": {
+          "type": "integer"
+        },
+        "views_ads_times_11_plus": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_targ_settings": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Ad ID"
+            },
+            "campaign_id": {
+              "type": "integer",
+              "description": "Campaign ID"
+            }
+          }
+        },
+        {
+          "$ref": "../ads/objects.json#/definitions/ads_criteria"
+        }
+      ],
+      "additionalProperties": false
+    },
+    "ads_targ_stats": {
+      "type": "object",
+      "properties": {
+        "audience_count": {
+          "type": "integer",
+          "description": "Audience",
+          "required": true
+        },
+        "recommended_cpc": {
+          "type": "number",
+          "description": "Recommended CPC value for 50% reach (old format)"
+        },
+        "recommended_cpm": {
+          "type": "number",
+          "description": "Recommended CPM value for 50% reach (old format)"
+        },
+        "recommended_cpc_50": {
+          "type": "number",
+          "description": "Recommended CPC value for 50% reach"
+        },
+        "recommended_cpm_50": {
+          "type": "number",
+          "description": "Recommended CPM value for 50% reach"
+        },
+        "recommended_cpc_70": {
+          "type": "number",
+          "description": "Recommended CPC value for 70% reach"
+        },
+        "recommended_cpm_70": {
+          "type": "number",
+          "description": "Recommended CPM value for 70% reach"
+        },
+        "recommended_cpc_90": {
+          "type": "number",
+          "description": "Recommended CPC value for 90% reach"
+        },
+        "recommended_cpm_90": {
+          "type": "number",
+          "description": "Recommended CPM value for 90% reach"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_targ_suggestions": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Object name"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_targ_suggestions_cities": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Object name"
+        },
+        "parent": {
+          "type": "string",
+          "description": "Parent object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_targ_suggestions_regions": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Object name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Object type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_targ_suggestions_schools": {
+      "type": "object",
+      "properties": {
+        "desc": {
+          "type": "string",
+          "description": "Full school title"
+        },
+        "id": {
+          "type": "integer",
+          "description": "School ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "School title"
+        },
+        "parent": {
+          "type": "string",
+          "description": "City name"
+        },
+        "type": {
+          "$ref": "../ads/objects.json#/definitions/ads_targ_suggestions_schools_type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_targ_suggestions_schools_type": {
+      "type": "string",
+      "description": "School type",
+      "enum": [
+        "school",
+        "university",
+        "faculty",
+        "chair"
+      ]
+    },
+    "ads_target_group": {
+      "type": "object",
+      "properties": {
+        "audience_count": {
+          "type": "integer",
+          "description": "Audience"
+        },
+        "domain": {
+          "type": "string",
+          "description": "Site domain"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Group ID"
+        },
+        "lifetime": {
+          "type": "integer",
+          "description": "Number of days for user to be in group"
+        },
+        "name": {
+          "type": "string",
+          "description": "Group name"
+        },
+        "pixel": {
+          "type": "string",
+          "description": "Pixel code"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_updateOfficeUsers_result": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "is_success": {
+          "type": "boolean",
+          "default": true,
+          "required": true
+        },
+        "error": {
+          "$ref": "../base/objects.json#/definitions/base_error"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_user_specification": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "role": {
+          "$ref": "../ads/objects.json#/definitions/ads_access_role_public",
+          "required": true
+        },
+        "grant_access_to_all_clients": {
+          "type": "boolean",
+          "default": false
+        },
+        "client_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "view_budget": {
+          "type": "boolean",
+          "default": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_user_specification_cutted": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "role": {
+          "$ref": "../ads/objects.json#/definitions/ads_access_role_public",
+          "required": true
+        },
+        "client_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "view_budget": {
+          "type": "boolean",
+          "default": null
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_users": {
+      "type": "object",
+      "properties": {
+        "accesses": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_accesses"
+          },
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "streaming.getServerUrl",
+      "description": "Allows to receive data for the connection to Streaming API.",
+      "access_token_type": [
+        "service"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../streaming/responses.json#/definitions/streaming_getServerUrl_response"
+        }
+      }
+    },
+    {
+      "name": "streaming.setSettings",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "monthly_tier",
+          "type": "string",
+          "enum": [
+            "tier_1",
+            "tier_2",
+            "tier_3",
+            "tier_4",
+            "tier_5",
+            "tier_6",
+            "unlimited"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

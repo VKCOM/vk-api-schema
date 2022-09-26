@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "gifts_gift": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Date when gist has been sent in Unixtime"
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Gift sender ID"
+        },
+        "gift": {
+          "$ref": "../gifts/objects.json#/definitions/gifts_layout"
+        },
+        "gift_hash": {
+          "type": "string",
+          "description": "Hash"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Gift ID"
+        },
+        "message": {
+          "type": "string",
+          "description": "Comment text"
+        },
+        "privacy": {
+          "$ref": "../gifts/objects.json#/definitions/gifts_gift_privacy"
+        }
+      },
+      "additionalProperties": false
+    },
+    "gifts_gift_privacy": {
+      "type": "integer",
+      "description": "Gift privacy",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "name and message for all",
+        "name for all",
+        "name and message for recipient only"
+      ]
+    },
+    "gifts_layout": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Gift ID"
+        },
+        "thumb_512": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 512 px in width"
+        },
+        "thumb_256": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 256 px in width"
+        },
+        "thumb_48": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 48 px in width"
+        },
+        "thumb_96": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 96 px in width"
+        },
+        "stickers_product_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "ID of the sticker pack, if the gift is representing one"
+        },
+        "is_stickers_style": {
+          "type": "boolean",
+          "description": "Information whether gift represents a stickers style"
+        },
+        "build_id": {
+          "type": "string",
+          "description": "ID of the build of constructor gift"
+        },
+        "keywords": {
+          "type": "string",
+          "description": "Keywords used for search"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

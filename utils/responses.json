@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "utils_checkLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../utils/objects.json#/definitions/utils_link_checked",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_getLastShortenedLinks_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number of available results",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../utils/objects.json#/definitions/utils_last_shortened_link"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_getLinkStats_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../utils/objects.json#/definitions/utils_link_stats_extended",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_getLinkStats_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../utils/objects.json#/definitions/utils_link_stats",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_getServerTime_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Time as Unixtime",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_getShortLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../utils/objects.json#/definitions/utils_short_link",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "utils_resolveScreenName_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../utils/objects.json#/definitions/utils_domain_resolved",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

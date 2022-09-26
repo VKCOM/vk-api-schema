@@ -1,0 +1,483 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "polls.addVote",
+      "description": "Adds the current user's vote to the selected answer in the poll.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "poll_id",
+          "description": "Poll ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "answer_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "is_board",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_addVote_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_answer_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_poll_id"
+        }
+      ]
+    },
+    {
+      "name": "polls.create",
+      "description": "Creates polls that can be attached to the users' or communities' posts.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "question",
+          "description": "question text",
+          "type": "string"
+        },
+        {
+          "name": "is_anonymous",
+          "description": "'1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.",
+          "type": "boolean"
+        },
+        {
+          "name": "is_multiple",
+          "type": "boolean"
+        },
+        {
+          "name": "end_date",
+          "type": "integer",
+          "minimum": 1550700000
+        },
+        {
+          "name": "owner_id",
+          "description": "If a poll will be added to a communty it is required to send a negative group identifier. Current user by default.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "app_id",
+          "type": "integer"
+        },
+        {
+          "name": "add_answers",
+          "description": "available answers list, for example: \" [\"yes\",\"no\",\"maybe\"]\", There can be from 1 to 10 answers.",
+          "type": "string"
+        },
+        {
+          "name": "photo_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "background_id",
+          "type": "string",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "name": "disable_unvote",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_create_response"
+        }
+      }
+    },
+    {
+      "name": "polls.deleteVote",
+      "description": "Deletes the current user's vote from the selected answer in the poll.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "poll_id",
+          "description": "Poll ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "answer_id",
+          "description": "Answer ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "is_board",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_deleteVote_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_answer_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_poll_id"
+        }
+      ]
+    },
+    {
+      "name": "polls.edit",
+      "description": "Edits created polls",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "poll owner id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "poll_id",
+          "description": "edited poll's id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "question",
+          "description": "new question text",
+          "type": "string"
+        },
+        {
+          "name": "add_answers",
+          "description": "answers list, for example: , \"[\"yes\",\"no\",\"maybe\"]\"",
+          "type": "string"
+        },
+        {
+          "name": "edit_answers",
+          "description": "object containing answers that need to be edited,, key - answer id, value - new answer text. Example: {\"382967099\":\"option1\", \"382967103\":\"option2\"}\"",
+          "type": "string"
+        },
+        {
+          "name": "delete_answers",
+          "description": "list of answer ids to be deleted. For example: \"[382967099, 382967103]\"",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "photo_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "background_id",
+          "type": "string",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            9
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "polls.getBackgrounds",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_getBackgrounds_response"
+        }
+      }
+    },
+    {
+      "name": "polls.getById",
+      "description": "Returns detailed information about a poll by its ID.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "is_board",
+          "description": "'1' - poll is in a board, '0' - poll is on a wall. '0' by default.",
+          "type": "boolean"
+        },
+        {
+          "name": "poll_id",
+          "description": "Poll ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "friends_count",
+          "type": "integer",
+          "default": 3,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name_case",
+          "type": "string",
+          "default": "nom",
+          "enum": [
+            "abl",
+            "acc",
+            "dat",
+            "gen",
+            "ins",
+            "nom"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_getById_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_access"
+        }
+      ]
+    },
+    {
+      "name": "polls.getPhotoUploadServer",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "polls.getVoters",
+      "description": "Returns a list of IDs of users who selected specific answers in the poll.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the poll. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "poll_id",
+          "description": "Poll ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "answer_ids",
+          "description": "Answer IDs.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "is_board",
+          "type": "boolean"
+        },
+        {
+          "name": "friends_only",
+          "description": "'1' — to return only current user's friends, '0' — to return all users (default),",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of voters. '0' — (default)",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' — (default)",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_getVoters_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_answer_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_poll_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_polls_access_without_vote"
+        }
+      ]
+    },
+    {
+      "name": "polls.savePhoto",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "photo",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "hash",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../polls/responses.json#/definitions/polls_savePhoto_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
+        }
+      ]
+    }
+  ]
+}

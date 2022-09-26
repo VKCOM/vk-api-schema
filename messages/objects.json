@@ -1,0 +1,1791 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "messages_audio_message": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for audio message"
+        },
+        "transcript_error": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 11
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Audio message duration in seconds",
+          "minimum": 0,
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Audio message ID",
+          "minimum": 0,
+          "required": true
+        },
+        "link_mp3": {
+          "type": "string",
+          "format": "uri",
+          "description": "MP3 file URL",
+          "required": true
+        },
+        "link_ogg": {
+          "type": "string",
+          "format": "uri",
+          "description": "OGG file URL",
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Audio message owner ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "waveform": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Sound visualisation",
+            "minimum": 0
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Chat creator ID",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Chat ID",
+          "required": true
+        },
+        "kicked": {
+          "description": "Shows that user has been kicked from the chat",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "left": {
+          "description": "Shows that user has been left the chat",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 100 px in width"
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 200 px in width"
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 50 px in width"
+        },
+        "push_settings": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_push_settings"
+        },
+        "title": {
+          "type": "string",
+          "description": "Chat title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Chat type",
+          "required": true
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "description": "User ID"
+          },
+          "required": true
+        },
+        "is_default_photo": {
+          "type": "boolean",
+          "description": "If provided photo is default"
+        },
+        "members_count": {
+          "type": "integer",
+          "description": "Count members in a chat",
+          "required": true
+        },
+        "is_group_channel": {
+          "type": "boolean",
+          "description": "If chat is group channel"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_full": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Chat creator ID",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Chat ID",
+          "required": true
+        },
+        "kicked": {
+          "description": "Shows that user has been kicked from the chat",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "left": {
+          "description": "Shows that user has been left the chat",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 100 px in width"
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 200 px in width"
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 50 px in width"
+        },
+        "push_settings": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_push_settings"
+        },
+        "title": {
+          "type": "string",
+          "description": "Chat title"
+        },
+        "type": {
+          "type": "string",
+          "description": "Chat type",
+          "required": true
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_user_xtr_invited_by"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_preview": {
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "minimum": 0
+        },
+        "joined": {
+          "type": "boolean"
+        },
+        "local_id": {
+          "type": "integer"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          }
+        },
+        "members_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "title": {
+          "type": "string"
+        },
+        "is_member": {
+          "type": "boolean"
+        },
+        "photo": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_settings_photo"
+        },
+        "is_don": {
+          "type": "boolean"
+        },
+        "is_group_channel": {
+          "type": "boolean"
+        },
+        "button": {
+          "$ref": "../base/objects.json#/definitions/base_link_button"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_push_settings": {
+      "type": "object",
+      "properties": {
+        "disabled_until": {
+          "type": "integer",
+          "description": "Time until that notifications are disabled"
+        },
+        "sound": {
+          "description": "Information whether the sound is on",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_restrictions": {
+      "type": "object",
+      "properties": {
+        "admins_promote_users": {
+          "type": "boolean",
+          "description": "Only admins can promote users to admins"
+        },
+        "only_admins_edit_info": {
+          "type": "boolean",
+          "description": "Only admins can change chat info"
+        },
+        "only_admins_edit_pin": {
+          "type": "boolean",
+          "description": "Only admins can edit pinned message"
+        },
+        "only_admins_invite": {
+          "type": "boolean",
+          "description": "Only admins can invite users to this chat"
+        },
+        "only_admins_kick": {
+          "type": "boolean",
+          "description": "Only admins can kick users from this chat"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_settings": {
+      "type": "object",
+      "properties": {
+        "members_count": {
+          "type": "integer"
+        },
+        "friends_count": {
+          "type": "integer"
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Chat title",
+          "required": true
+        },
+        "pinned_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_pinned_message"
+        },
+        "state": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_settings_state",
+          "required": true
+        },
+        "photo": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_settings_photo"
+        },
+        "admin_ids": {
+          "type": "array",
+          "description": "Ids of chat admins",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "description": "Admin id"
+          }
+        },
+        "active_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "description": "Active member ID"
+          },
+          "required": true
+        },
+        "is_group_channel": {
+          "type": "boolean"
+        },
+        "acl": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_settings_acl",
+          "required": true
+        },
+        "permissions": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_settings_permissions"
+        },
+        "is_disappearing": {
+          "type": "boolean"
+        },
+        "theme": {
+          "type": "string"
+        },
+        "disappearing_chat_link": {
+          "type": "string"
+        },
+        "is_service": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_settings_acl": {
+      "type": "object",
+      "properties": {
+        "can_change_info": {
+          "type": "boolean",
+          "description": "Can you change photo, description and name",
+          "required": true
+        },
+        "can_change_invite_link": {
+          "type": "boolean",
+          "description": "Can you change invite link for this chat",
+          "required": true
+        },
+        "can_change_pin": {
+          "type": "boolean",
+          "description": "Can you pin/unpin message for this chat",
+          "required": true
+        },
+        "can_invite": {
+          "type": "boolean",
+          "description": "Can you invite other peers in chat",
+          "required": true
+        },
+        "can_promote_users": {
+          "type": "boolean",
+          "description": "Can you promote simple users to chat admins",
+          "required": true
+        },
+        "can_see_invite_link": {
+          "type": "boolean",
+          "description": "Can you see invite link for this chat",
+          "required": true
+        },
+        "can_moderate": {
+          "type": "boolean",
+          "description": "Can you moderate (delete) other users' messages",
+          "required": true
+        },
+        "can_copy_chat": {
+          "type": "boolean",
+          "description": "Can you copy chat",
+          "required": true
+        },
+        "can_call": {
+          "type": "boolean",
+          "description": "Can you init group call in the chat",
+          "required": true
+        },
+        "can_use_mass_mentions": {
+          "type": "boolean",
+          "description": "Can you use mass mentions",
+          "required": true
+        },
+        "can_change_service_type": {
+          "type": "boolean",
+          "description": "Can you change chat service type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_settings_permissions": {
+      "type": "object",
+      "properties": {
+        "invite": {
+          "type": "string",
+          "description": "Who can invite users to chat",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "change_info": {
+          "type": "string",
+          "description": "Who can change chat info",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "change_pin": {
+          "type": "string",
+          "description": "Who can change pinned message",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "use_mass_mentions": {
+          "type": "string",
+          "description": "Who can use mass mentions",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "see_invite_link": {
+          "type": "string",
+          "description": "Who can see invite link",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "call": {
+          "type": "string",
+          "description": "Who can make calls",
+          "enum": [
+            "owner",
+            "owner_and_admins",
+            "all"
+          ]
+        },
+        "change_admins": {
+          "type": "string",
+          "description": "Who can change admins",
+          "enum": [
+            "owner",
+            "owner_and_admins"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_settings_photo": {
+      "type": "object",
+      "properties": {
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 50px in width"
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 100px in width"
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 200px in width"
+        },
+        "is_default_photo": {
+          "type": "boolean",
+          "description": "If provided photo is default"
+        },
+        "is_default_call_photo": {
+          "type": "boolean",
+          "description": "If provided photo is default call photo"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_chat_settings_state": {
+      "type": "string",
+      "enum": [
+        "in",
+        "kicked",
+        "left"
+      ]
+    },
+    "messages_conversation": {
+      "type": "object",
+      "properties": {
+        "peer": {
+          "$ref": "../messages/objects.json#/definitions/messages_conversation_peer",
+          "required": true
+        },
+        "sort_id": {
+          "$ref": "../messages/objects.json#/definitions/messages_conversation_sort_id"
+        },
+        "last_message_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "ID of the last message in conversation",
+          "required": true
+        },
+        "last_conversation_message_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Conversation message ID of the last message in conversation"
+        },
+        "in_read": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Last message user have read",
+          "required": true
+        },
+        "out_read": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Last outcoming message have been read by the opponent",
+          "required": true
+        },
+        "unread_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unread messages number"
+        },
+        "is_marked_unread": {
+          "type": "boolean",
+          "description": "Is this conversation uread"
+        },
+        "out_read_by": {
+          "$ref": "../messages/objects.json#/definitions/messages_out_read_by"
+        },
+        "important": {
+          "type": "boolean"
+        },
+        "unanswered": {
+          "type": "boolean"
+        },
+        "special_service_type": {
+          "type": "string",
+          "enum": [
+            "business_notify"
+          ]
+        },
+        "message_request_data": {
+          "$ref": "../messages/objects.json#/definitions/messages_message_request_data"
+        },
+        "mentions": {
+          "type": "array",
+          "description": "Ids of messages with mentions",
+          "items": {
+            "type": "integer",
+            "description": "Message id of message with mention"
+          }
+        },
+        "current_keyboard": {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard"
+        },
+        "push_settings": {
+          "$ref": "../messages/objects.json#/definitions/messages_push_settings"
+        },
+        "can_write": {
+          "$ref": "../messages/objects.json#/definitions/messages_conversation_can_write"
+        },
+        "chat_settings": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_settings"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_conversation_can_write": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "boolean",
+          "required": true
+        },
+        "reason": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_conversation_member": {
+      "type": "object",
+      "properties": {
+        "can_kick": {
+          "type": "boolean",
+          "description": "Is it possible for user to kick this member"
+        },
+        "invited_by": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        "is_admin": {
+          "type": "boolean"
+        },
+        "is_owner": {
+          "type": "boolean"
+        },
+        "is_message_request": {
+          "type": "boolean"
+        },
+        "join_date": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "request_date": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Message request date"
+        },
+        "member_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_conversation_peer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "local_id": {
+          "type": "integer"
+        },
+        "type": {
+          "$ref": "../messages/objects.json#/definitions/messages_conversation_peer_type",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_conversation_peer_type": {
+      "type": "string",
+      "enum": [
+        "chat",
+        "email",
+        "user",
+        "group"
+      ],
+      "description": "Peer type"
+    },
+    "messages_conversation_sort_id": {
+      "type": "object",
+      "properties": {
+        "major_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Major id for sorting conversations",
+          "required": true
+        },
+        "minor_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minor id for sorting conversations",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_conversation_with_message": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "../messages/objects.json#/definitions/messages_conversation",
+          "required": true
+        },
+        "last_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_message"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_foreign_message": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_message_attachment"
+          }
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Conversation message ID"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the message was created",
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Message author's ID",
+          "required": true
+        },
+        "fwd_messages": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+          }
+        },
+        "geo": {
+          "$ref": "../base/objects.json#/definitions/base_geo"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Message ID"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID"
+        },
+        "reply_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message text",
+          "required": true
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Date when the message has been updated in Unixtime"
+        },
+        "was_listened": {
+          "type": "boolean",
+          "description": "Was the audio message inside already listened by you"
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_forward": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "description": "Messages owner_id",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Messages peer_id"
+        },
+        "conversation_message_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Message conversation_message_id"
+          }
+        },
+        "message_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Message message_id"
+          }
+        },
+        "is_reply": {
+          "type": "boolean",
+          "description": "If you need to reply to a message"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversationById": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number",
+          "required": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_conversation"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversationById_extended": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_getConversationById"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "messages_getConversationMembers": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_conversation_member"
+          },
+          "required": true
+        },
+        "count": {
+          "type": "integer",
+          "description": "Chat members count",
+          "minimum": 0,
+          "required": true
+        },
+        "chat_restrictions": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_restrictions"
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_user_full"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "../groups/objects.json#/definitions/groups_group_full"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_graffiti": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for graffiti"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Graffiti ID",
+          "minimum": 0,
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Graffiti owner ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Graffiti URL",
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Graffiti width",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Graffiti height",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_history_attachment": {
+      "type": "object",
+      "properties": {
+        "attachment": {
+          "$ref": "../messages/objects.json#/definitions/messages_history_message_attachment",
+          "required": true
+        },
+        "message_id": {
+          "type": "integer",
+          "description": "Message ID",
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Message author's ID",
+          "required": true
+        },
+        "forward_level": {
+          "type": "integer",
+          "description": "Forward level (optional)"
+        },
+        "was_listened": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_history_message_attachment": {
+      "type": "object",
+      "properties": {
+        "audio": {
+          "$ref": "../audio/objects.json#/definitions/audio_audio"
+        },
+        "audio_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_audio_message"
+        },
+        "doc": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc"
+        },
+        "graffiti": {
+          "$ref": "../messages/objects.json#/definitions/messages_graffiti"
+        },
+        "link": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        },
+        "market": {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "type": {
+          "$ref": "../messages/objects.json#/definitions/messages_history_message_attachment_type",
+          "required": true
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video"
+        },
+        "wall": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_history_message_attachment_type": {
+      "type": "string",
+      "description": "Attachments type",
+      "enum": [
+        "photo",
+        "video",
+        "audio",
+        "doc",
+        "link",
+        "market",
+        "wall",
+        "share",
+        "graffiti",
+        "audio_message"
+      ]
+    },
+    "messages_keyboard": {
+      "type": "object",
+      "properties": {
+        "one_time": {
+          "type": "boolean",
+          "description": "Should this keyboard disappear on first use",
+          "required": true
+        },
+        "buttons": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "../messages/objects.json#/definitions/messages_keyboard_button"
+            }
+          },
+          "required": true
+        },
+        "author_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Community or bot, which set this keyboard"
+        },
+        "inline": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_property_action",
+          "required": true
+        },
+        "color": {
+          "type": "string",
+          "enum": [
+            "default",
+            "positive",
+            "negative",
+            "primary"
+          ],
+          "description": "Button color"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_callback": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label for button",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "callback"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_location": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "location"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_open_app": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "app_id": {
+          "type": "integer",
+          "description": "Fragment value in app link like vk.com/app{app_id}_-654321#hash",
+          "required": true
+        },
+        "hash": {
+          "type": "string",
+          "description": "Fragment value in app link like vk.com/app123456_-654321#{hash}"
+        },
+        "label": {
+          "type": "string",
+          "description": "Label for button",
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Fragment value in app link like vk.com/app123456_{owner_id}#hash",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "open_app"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_open_link": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label for button",
+          "required": true
+        },
+        "link": {
+          "type": "string",
+          "description": "link for button",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "open_link"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_open_photo": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "open_photo"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_text": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label for button",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_action_vkpay": {
+      "type": "object",
+      "description": "Description of the action, that should be performed on button click",
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "Fragment value in app link like vk.com/app123456_-654321#{hash}",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "description": "Additional data sent along with message for developer convenience"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "vkpay"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_keyboard_button_property_action": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_location"
+        },
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_open_app"
+        },
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_open_link"
+        },
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_open_photo"
+        },
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_text"
+        },
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_callback"
+        },
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_vkpay"
+        }
+      ]
+    },
+    "messages_last_activity": {
+      "type": "object",
+      "properties": {
+        "online": {
+          "description": "Information whether user is online",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "time": {
+          "type": "integer",
+          "description": "Time when user was online in Unixtime",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_longpoll_messages": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_message"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_longpoll_params": {
+      "type": "object",
+      "properties": {
+        "server": {
+          "type": "string",
+          "description": "Server URL",
+          "required": true
+        },
+        "key": {
+          "type": "string",
+          "description": "Key",
+          "required": true
+        },
+        "ts": {
+          "type": "integer",
+          "description": "Timestamp",
+          "required": true
+        },
+        "pts": {
+          "type": "integer",
+          "description": "Persistent timestamp"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_message": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "../messages/objects.json#/definitions/messages_message_action"
+        },
+        "admin_author_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Only for messages from community. Contains user ID of community admin, who sent this message."
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_message_attachment"
+          }
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Unique auto-incremented number for all messages with this peer"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the message has been sent in Unixtime",
+          "required": true
+        },
+        "deleted": {
+          "description": "Is it an deleted message",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "from_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Message author's ID",
+          "required": true
+        },
+        "fwd_messages": {
+          "description": "Forwarded messages",
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+          }
+        },
+        "geo": {
+          "$ref": "../base/objects.json#/definitions/base_geo"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Message ID",
+          "required": true
+        },
+        "important": {
+          "type": "boolean",
+          "description": "Is it an important message"
+        },
+        "is_hidden": {
+          "type": "boolean"
+        },
+        "is_cropped": {
+          "type": "boolean",
+          "description": "this message is cropped for bot"
+        },
+        "keyboard": {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard"
+        },
+        "members_count": {
+          "type": "integer",
+          "description": "Members number"
+        },
+        "out": {
+          "description": "Information whether the message is outcoming",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "payload": {
+          "type": "string"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID",
+          "required": true
+        },
+        "random_id": {
+          "type": "integer",
+          "description": "ID used for sending messages. It returned only for outgoing messages"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "ref_source": {
+          "type": "string"
+        },
+        "reply_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message text",
+          "required": true
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Date when the message has been updated in Unixtime"
+        },
+        "was_listened": {
+          "type": "boolean",
+          "description": "Was the audio message inside already listened by you"
+        },
+        "pinned_at": {
+          "type": "integer",
+          "description": "Date when the message has been pinned in Unixtime"
+        },
+        "is_silent": {
+          "type": "boolean",
+          "description": "Is silent message, push without sound"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_message_action": {
+      "type": "object",
+      "properties": {
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Message ID"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address for chat_invite_user or chat_kick_user actions"
+        },
+        "member_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "User or email peer ID"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message body of related message"
+        },
+        "photo": {
+          "$ref": "../messages/objects.json#/definitions/messages_message_action_photo"
+        },
+        "text": {
+          "type": "string",
+          "description": "New chat title for chat_create and chat_title_update actions"
+        },
+        "type": {
+          "$ref": "../messages/objects.json#/definitions/messages_message_action_status",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_message_action_photo": {
+      "type": "object",
+      "properties": {
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 50px in width",
+          "required": true
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 100px in width",
+          "required": true
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 200px in width",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_message_action_status": {
+      "type": "string",
+      "description": "Action status",
+      "enum": [
+        "chat_photo_update",
+        "chat_photo_remove",
+        "chat_create",
+        "chat_title_update",
+        "chat_invite_user",
+        "chat_kick_user",
+        "chat_pin_message",
+        "chat_unpin_message",
+        "chat_invite_user_by_link",
+        "chat_invite_user_by_message_request",
+        "chat_screenshot"
+      ]
+    },
+    "messages_message_attachment": {
+      "type": "object",
+      "properties": {
+        "audio": {
+          "$ref": "../audio/objects.json#/definitions/audio_audio"
+        },
+        "audio_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_audio_message"
+        },
+        "call": {
+          "$ref": "../calls/objects.json#/definitions/calls_call"
+        },
+        "doc": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc"
+        },
+        "gift": {
+          "$ref": "../gifts/objects.json#/definitions/gifts_layout"
+        },
+        "graffiti": {
+          "$ref": "../messages/objects.json#/definitions/messages_graffiti"
+        },
+        "market": {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        "market_market_album": {
+          "$ref": "../market/objects.json#/definitions/market_market_album"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "sticker": {
+          "$ref": "../base/objects.json#/definitions/base_sticker"
+        },
+        "story": {
+          "$ref": "../stories/objects.json#/definitions/stories_story"
+        },
+        "type": {
+          "$ref": "../messages/objects.json#/definitions/messages_message_attachment_type",
+          "required": true
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video_full"
+        },
+        "wall_reply": {
+          "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+        },
+        "poll": {
+          "$ref": "../polls/objects.json#/definitions/polls_poll"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_message_attachment_type": {
+      "type": "string",
+      "description": "Attachment type",
+      "enum": [
+        "photo",
+        "audio",
+        "video",
+        "doc",
+        "link",
+        "market",
+        "market_album",
+        "gift",
+        "sticker",
+        "wall",
+        "wall_reply",
+        "article",
+        "poll",
+        "call",
+        "graffiti",
+        "audio_message"
+      ]
+    },
+    "messages_message_request_data": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Status of message request"
+        },
+        "inviter_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Message request sender id"
+        },
+        "request_date": {
+          "type": "integer",
+          "description": "Message request date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_messages_array": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_message"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_out_read_by": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "member_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "description": "Member IDs"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_pinned_message": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_message_attachment"
+          }
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Unique auto-incremented number for all messages with this peer"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Message ID",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the message has been sent in Unixtime",
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Message author's ID",
+          "required": true
+        },
+        "fwd_messages": {
+          "description": "Forwarded messages",
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+          }
+        },
+        "geo": {
+          "$ref": "../base/objects.json#/definitions/base_geo"
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID",
+          "required": true
+        },
+        "reply_message": {
+          "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message text",
+          "required": true
+        },
+        "keyboard": {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_push_settings": {
+      "type": "object",
+      "properties": {
+        "disabled_forever": {
+          "type": "boolean",
+          "description": "Information whether push notifications are disabled forever",
+          "required": true
+        },
+        "disabled_until": {
+          "type": "integer",
+          "description": "Time until what notifications are disabled"
+        },
+        "no_sound": {
+          "type": "boolean",
+          "description": "Information whether the sound is on",
+          "required": true
+        },
+        "disabled_mentions": {
+          "type": "boolean",
+          "description": "Information whether the mentions are disabled"
+        },
+        "disabled_mass_mentions": {
+          "type": "boolean",
+          "description": "Information whether the mass mentions (like '@all', '@online') are disabled"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_send_user_ids_response_item": {
+      "type": "object",
+      "properties": {
+        "peer_id": {
+          "type": "integer",
+          "required": true
+        },
+        "message_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "error": {
+          "$ref": "../base/objects.json#/definitions/base_message_error"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_template_action_type_names": {
+      "type": "string",
+      "description": "Template action type names",
+      "enum": [
+        "text",
+        "start",
+        "location",
+        "vkpay",
+        "open_app",
+        "open_photo",
+        "open_link",
+        "callback",
+        "intent_subscribe",
+        "intent_unsubscribe"
+      ]
+    },
+    "messages_user_xtr_invited_by": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_xtr_type"
+        },
+        {
+          "properties": {
+            "invited_by": {
+              "type": "integer",
+              "format": "int64",
+              "entity": "owner",
+              "description": "ID of the inviter"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

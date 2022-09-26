@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "link_target_object": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Object type"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Owner ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "item_id": {
+          "type": "integer",
+          "description": "Item ID"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

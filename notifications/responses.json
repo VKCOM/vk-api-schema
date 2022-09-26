@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "notifications_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../notifications/objects.json#/definitions/notifications_notification_item"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group"
+              }
+            },
+            "last_viewed": {
+              "type": "integer",
+              "description": "Time when user has been checked notifications last time"
+            },
+            "photos": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo"
+              }
+            },
+            "videos": {
+              "type": "array",
+              "items": {
+                "$ref": "../video/objects.json#/definitions/video_video"
+              }
+            },
+            "apps": {
+              "type": "array",
+              "items": {
+                "$ref": "../apps/objects.json#/definitions/apps_app"
+              }
+            },
+            "next_from": {
+              "type": "string"
+            },
+            "ttl": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_markAsViewed_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "notifications_sendMessage_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../notifications/objects.json#/definitions/notifications_send_message_item"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

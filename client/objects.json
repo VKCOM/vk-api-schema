@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "client_info_for_bots": {
+      "type": "object",
+      "properties": {
+        "button_actions": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_template_action_type_names"
+          }
+        },
+        "keyboard": {
+          "type": "boolean",
+          "description": "client has support keyboard"
+        },
+        "inline_keyboard": {
+          "type": "boolean",
+          "description": "client has support inline keyboard"
+        },
+        "carousel": {
+          "type": "boolean",
+          "description": "client has support carousel"
+        },
+        "lang_id": {
+          "type": "integer",
+          "description": "client or user language id"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

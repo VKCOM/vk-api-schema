@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "secure_giveEventSticker_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_level": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer",
+          "description": "Level"
+        },
+        "uid": {
+          "type": "integer",
+          "description": "User ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_setCounter_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "result": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_sms_notification": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "Application ID"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date when message has been sent in Unixtime"
+        },
+        "id": {
+          "type": "string",
+          "description": "Notification ID"
+        },
+        "message": {
+          "type": "string",
+          "description": "Messsage text"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "User ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_token_checked": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Date when access_token has been generated in Unixtime"
+        },
+        "expire": {
+          "type": "integer",
+          "description": "Date when access_token will expire in Unixtime"
+        },
+        "success": {
+          "description": "Returns if successfully processed",
+          "type": "integer",
+          "default": 1
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "secure_transaction": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Transaction date in Unixtime"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Transaction ID"
+        },
+        "uid_from": {
+          "type": "integer",
+          "description": "From ID"
+        },
+        "uid_to": {
+          "type": "integer",
+          "description": "To ID"
+        },
+        "votes": {
+          "type": "integer",
+          "description": "Votes number"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

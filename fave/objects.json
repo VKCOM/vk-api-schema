@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "fave_bookmark": {
+      "type": "object",
+      "properties": {
+        "added_date": {
+          "type": "integer",
+          "description": "Timestamp, when this item was bookmarked",
+          "minimum": 0,
+          "required": true
+        },
+        "link": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        },
+        "post": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+        },
+        "product": {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        "seen": {
+          "type": "boolean",
+          "description": "Has user seen this item",
+          "required": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "../fave/objects.json#/definitions/fave_tag"
+          },
+          "required": true
+        },
+        "type": {
+          "description": "Item type",
+          "$ref": "../fave/objects.json#/definitions/fave_bookmark_type",
+          "required": true
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video_full"
+        }
+      },
+      "additionalProperties": false
+    },
+    "fave_bookmark_type": {
+      "type": "string",
+      "enum": [
+        "post",
+        "video",
+        "product",
+        "article",
+        "link"
+      ]
+    },
+    "fave_page": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Some info about user or group",
+          "required": true
+        },
+        "group": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_full"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "../fave/objects.json#/definitions/fave_tag"
+          },
+          "required": true
+        },
+        "type": {
+          "description": "Item type",
+          "$ref": "../fave/objects.json#/definitions/fave_page_type",
+          "required": true
+        },
+        "updated_date": {
+          "type": "integer",
+          "description": "Timestamp, when this page was bookmarked",
+          "minimum": 0
+        },
+        "user": {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        }
+      },
+      "additionalProperties": false
+    },
+    "fave_page_type": {
+      "type": "string",
+      "enum": [
+        "user",
+        "group",
+        "hints"
+      ]
+    },
+    "fave_tag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Tag id",
+          "minimum": 0
+        },
+        "name": {
+          "type": "string",
+          "description": "Tag name"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

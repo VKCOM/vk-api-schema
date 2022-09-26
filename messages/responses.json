@@ -1,0 +1,890 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "messages_createChat_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Chat ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_deleteChatPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "message_id": {
+              "type": "integer",
+              "description": "Service message ID"
+            },
+            "chat": {
+              "$ref": "../messages/objects.json#/definitions/messages_chat"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_deleteConversation_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "last_deleted_id": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Id of the last message, that was deleted",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_delete_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getByConversationMessageId_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getByConversationMessageId_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getById_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getChatPreview_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "preview": {
+              "$ref": "../messages/objects.json#/definitions/messages_chat_preview"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getChat_chat_ids_fields_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_chat_full"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getChat_chat_ids_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_chat"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getChat_fields_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat_full",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getChat_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_chat",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversationMembers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_getConversationMembers",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversationsById_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_getConversationById_extended",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversationsById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_getConversationById",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getConversations_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "unread_count": {
+              "type": "integer",
+              "description": "Unread dialogs number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation_with_message"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getHistoryAttachments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_history_attachment"
+              }
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Value for pagination"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getHistory_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getImportantMessages_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "messages": {
+              "$ref": "../messages/objects.json#/definitions/messages_messages_array",
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getImportantMessages_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "messages": {
+              "$ref": "../messages/objects.json#/definitions/messages_messages_array",
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getIntentUsers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "entity": "owner",
+                "format": "int64"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getInviteLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "link": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getLastActivity_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_last_activity",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getLongPollHistory_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "history": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "description": "Longpoll event value"
+                }
+              }
+            },
+            "messages": {
+              "$ref": "../messages/objects.json#/definitions/messages_longpoll_messages"
+            },
+            "credentials": {
+              "$ref": "../messages/objects.json#/definitions/messages_longpoll_params"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "chats": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_chat"
+              }
+            },
+            "new_pts": {
+              "type": "integer",
+              "description": "Persistence timestamp"
+            },
+            "from_pts": {
+              "type": "integer"
+            },
+            "more": {
+              "type": "boolean",
+              "description": "Has more"
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getLongPollServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_longpoll_params",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_isMessagesFromGroupAllowed_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "is_allowed": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_joinChatByInviteLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "chat_id": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_markAsImportant_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Messages IDs"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_pin_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../messages/objects.json#/definitions/messages_pinned_message",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_searchConversations_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total results number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_searchConversations_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total results number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_search_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "conversations": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_conversation"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_search_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_message"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_send_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Message ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_send_user_ids_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_send_user_ids_response_item"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_setChatPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "message_id": {
+              "type": "integer",
+              "description": "Service message ID"
+            },
+            "chat": {
+              "$ref": "../messages/objects.json#/definitions/messages_chat"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

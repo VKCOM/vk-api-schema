@@ -1,0 +1,542 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "account_account_counters": {
+      "type": "object",
+      "properties": {
+        "app_requests": {
+          "type": "integer",
+          "description": "New app requests number",
+          "minimum": 1
+        },
+        "events": {
+          "type": "integer",
+          "description": "New events number",
+          "minimum": 1
+        },
+        "faves": {
+          "type": "integer",
+          "description": "New faves number",
+          "minimum": 1
+        },
+        "friends": {
+          "type": "integer",
+          "description": "New friends requests number",
+          "minimum": 1
+        },
+        "friends_suggestions": {
+          "type": "integer",
+          "description": "New friends suggestions number",
+          "minimum": 1
+        },
+        "friends_recommendations": {
+          "type": "integer",
+          "description": "New friends recommendations number",
+          "minimum": 1
+        },
+        "gifts": {
+          "type": "integer",
+          "description": "New gifts number",
+          "minimum": 1
+        },
+        "groups": {
+          "type": "integer",
+          "description": "New groups number",
+          "minimum": 1
+        },
+        "menu_discover_badge": {
+          "type": "integer"
+        },
+        "menu_clips_badge": {
+          "type": "integer"
+        },
+        "messages": {
+          "type": "integer",
+          "description": "New messages number",
+          "minimum": 1
+        },
+        "memories": {
+          "type": "integer",
+          "description": "New memories number",
+          "minimum": 1
+        },
+        "notes": {
+          "type": "integer",
+          "description": "New notes number",
+          "minimum": 1
+        },
+        "notifications": {
+          "type": "integer",
+          "description": "New notifications number",
+          "minimum": 1
+        },
+        "photos": {
+          "type": "integer",
+          "description": "New photo tags number",
+          "minimum": 1
+        },
+        "sdk": {
+          "type": "integer",
+          "description": "New sdk number",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_info": {
+      "type": "object",
+      "properties": {
+        "wishlists_ae_promo_banner_show": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "2fa_required": {
+          "description": "Two factor authentication is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country code"
+        },
+        "https_required": {
+          "description": "Information whether HTTPS-only is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "intro": {
+          "description": "Information whether user has been processed intro",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "show_vk_apps_intro": {
+          "type": "boolean"
+        },
+        "mini_apps_ads_slot_id": {
+          "description": "Ads slot id for MyTarget",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "qr_promotion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "link_redirects": {
+          "type": "object"
+        },
+        "lang": {
+          "type": "integer",
+          "description": "Language ID"
+        },
+        "no_wall_replies": {
+          "description": "Information whether wall comments should be hidden",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "own_posts_default": {
+          "description": "Information whether only owners posts should be shown",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "subscriptions": {
+          "type": "object",
+          "$ref": "../account/objects.json#/definitions/account_subscriptions"
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_name_request": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "description": "First name in request"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Request ID needed to cancel the request"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name in request"
+        },
+        "status": {
+          "$ref": "../account/objects.json#/definitions/account_name_request_status"
+        },
+        "lang": {
+          "type": "string",
+          "description": "Text to display to user"
+        },
+        "link_href": {
+          "type": "string",
+          "description": "href for link in lang field"
+        },
+        "link_label": {
+          "type": "string",
+          "description": "label to display for link in lang field"
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_name_request_status": {
+      "type": "string",
+      "description": "Request status",
+      "enum": [
+        "success",
+        "processing",
+        "declined",
+        "was_accepted",
+        "was_declined",
+        "declined_with_link",
+        "response",
+        "response_with_link"
+      ]
+    },
+    "account_offer": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Offer description"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Offer ID"
+        },
+        "img": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image"
+        },
+        "instruction": {
+          "type": "string",
+          "description": "Instruction how to process the offer"
+        },
+        "instruction_html": {
+          "type": "string",
+          "description": "Instruction how to process the offer (HTML format)"
+        },
+        "price": {
+          "type": "integer",
+          "description": "Offer price"
+        },
+        "short_description": {
+          "type": "string",
+          "description": "Offer short description"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Offer tag"
+        },
+        "title": {
+          "type": "string",
+          "description": "Offer title"
+        },
+        "currency_amount": {
+          "type": "number",
+          "description": "Currency amount"
+        },
+        "link_id": {
+          "type": "integer",
+          "description": "Link id"
+        },
+        "link_type": {
+          "type": "string",
+          "description": "Link type",
+          "enum": [
+            "profile",
+            "group",
+            "app"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_push_conversations": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Items count"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_conversations_item"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_push_conversations_item": {
+      "type": "object",
+      "properties": {
+        "disabled_until": {
+          "type": "integer",
+          "description": "Time until that notifications are disabled in seconds",
+          "required": true
+        },
+        "peer_id": {
+          "type": "integer",
+          "description": "Peer ID",
+          "required": true
+        },
+        "sound": {
+          "description": "Information whether the sound are enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "disabled_mentions": {
+          "description": "Information whether the mentions are disabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "disabled_mass_mentions": {
+          "description": "Information whether the mass mentions (like '@all', '@online') are disabled. Can be affected by 'disabled_mentions'",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_push_params": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_mode"
+          }
+        },
+        "chat": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_mode"
+          }
+        },
+        "like": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_settings"
+          }
+        },
+        "repost": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_settings"
+          }
+        },
+        "comment": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_settings"
+          }
+        },
+        "mention": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_settings"
+          }
+        },
+        "reply": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "new_post": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "wall_post": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "wall_publish": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "friend": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "friend_found": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "friend_accepted": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "group_invite": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "group_accepted": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "birthday": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "event_soon": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "app_request": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        },
+        "sdk_open": {
+          "type": "array",
+          "items": {
+            "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_push_params_mode": {
+      "type": "string",
+      "description": "Settings parameters",
+      "enum": [
+        "on",
+        "off",
+        "no_sound",
+        "no_text"
+      ]
+    },
+    "account_push_params_onoff": {
+      "type": "string",
+      "description": "Settings parameters",
+      "enum": [
+        "on",
+        "off"
+      ]
+    },
+    "account_push_params_settings": {
+      "type": "string",
+      "description": "Settings parameters",
+      "enum": [
+        "on",
+        "off",
+        "fr_of_fr"
+      ]
+    },
+    "account_push_settings": {
+      "type": "object",
+      "properties": {
+        "disabled": {
+          "description": "Information whether notifications are disabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "disabled_until": {
+          "type": "integer",
+          "description": "Time until that notifications are disabled in Unixtime"
+        },
+        "settings": {
+          "$ref": "../account/objects.json#/definitions/account_push_params"
+        },
+        "conversations": {
+          "$ref": "../account/objects.json#/definitions/account_push_conversations"
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_subscriptions": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "account_user_settings": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_min"
+        },
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_settings_xtr"
+        },
+        {
+          "properties": {
+            "photo_200": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of square photo of the user with 200 pixels in width"
+            },
+            "is_service_account": {
+              "type": "boolean",
+              "description": "flag about service account"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "account_user_settings_interest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "account_user_settings_interests": {
+      "type": "object",
+      "properties": {
+        "activities": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "interests": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "music": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "tv": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "movies": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "books": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "games": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "quotes": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        },
+        "about": {
+          "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

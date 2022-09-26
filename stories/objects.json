@@ -1,0 +1,572 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "stories_clickable_area": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer",
+          "required": true
+        },
+        "y": {
+          "type": "integer",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_clickable_sticker": {
+      "type": "object",
+      "properties": {
+        "clickable_area": {
+          "type": "array",
+          "items": {
+            "$ref": "../stories/objects.json#/definitions/stories_clickable_area"
+          },
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Clickable sticker ID",
+          "required": true
+        },
+        "hashtag": {
+          "type": "string"
+        },
+        "link_object": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        },
+        "mention": {
+          "type": "string"
+        },
+        "tooltip_text": {
+          "type": "string"
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "story_id": {
+          "type": "integer"
+        },
+        "question": {
+          "type": "string"
+        },
+        "question_button": {
+          "type": "string"
+        },
+        "place_id": {
+          "type": "integer"
+        },
+        "market_item": {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        "audio": {
+          "$ref": "../audio/objects.json#/definitions/audio_audio"
+        },
+        "audio_start_time": {
+          "type": "integer"
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "transparent",
+            "blue_gradient",
+            "red_gradient",
+            "underline",
+            "blue",
+            "green",
+            "white",
+            "question_reply",
+            "light",
+            "impressive"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "hashtag",
+            "mention",
+            "link",
+            "question",
+            "place",
+            "market_item",
+            "music",
+            "story_reply",
+            "owner",
+            "post",
+            "poll",
+            "sticker",
+            "app",
+            "situational_theme"
+          ],
+          "required": true
+        },
+        "subtype": {
+          "type": "string",
+          "enum": [
+            "market_item",
+            "aliexpress_product"
+          ]
+        },
+        "post_owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "post_id": {
+          "type": "integer"
+        },
+        "poll": {
+          "$ref": "../polls/objects.json#/definitions/polls_poll"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color, hex format"
+        },
+        "sticker_id": {
+          "type": "integer",
+          "description": "Sticker ID"
+        },
+        "sticker_pack_id": {
+          "type": "integer",
+          "description": "Sticker pack ID"
+        },
+        "app": {
+          "$ref": "../apps/objects.json#/definitions/apps_app_min"
+        },
+        "app_context": {
+          "type": "string",
+          "description": "Additional context for app sticker"
+        },
+        "has_new_interactions": {
+          "type": "boolean",
+          "description": "Whether current user has unread interaction with this app"
+        },
+        "is_broadcast_notify_allowed": {
+          "type": "boolean",
+          "description": "Whether current user allowed broadcast notify from this app"
+        },
+        "situational_theme_id": {
+          "type": "integer"
+        },
+        "situational_app_url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_clickable_stickers": {
+      "type": "object",
+      "properties": {
+        "clickable_stickers": {
+          "type": "array",
+          "items": {
+            "$ref": "../stories/objects.json#/definitions/stories_clickable_sticker"
+          },
+          "required": true
+        },
+        "original_height": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "original_width": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_feed_item": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "promo_stories",
+            "stories",
+            "live_active",
+            "live_finished",
+            "community_grouped_stories",
+            "app_grouped_stories",
+            "birthday",
+            "discover",
+            "advices"
+          ],
+          "description": "Type of Feed Item",
+          "required": true
+        },
+        "id": {
+          "type": "string"
+        },
+        "stories": {
+          "type": "array",
+          "items": {
+            "$ref": "../stories/objects.json#/definitions/stories_story"
+          },
+          "description": "Author stories"
+        },
+        "grouped": {
+          "type": "array",
+          "items": {
+            "$ref": "../stories/objects.json#/definitions/stories_feed_item"
+          },
+          "description": "Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)"
+        },
+        "app": {
+          "$ref": "../apps/objects.json#/definitions/apps_app_min",
+          "description": "App, which stories has been grouped (for type app_grouped_stories)"
+        },
+        "promo_data": {
+          "$ref": "../stories/objects.json#/definitions/stories_promo_block",
+          "description": "Additional data for promo stories (for type promo_stories)"
+        },
+        "birthday_user_id": {
+          "type": "integer"
+        },
+        "track_code": {
+          "type": "string"
+        },
+        "has_unseen": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_promo_block": {
+      "type": "object",
+      "description": "Additional data for promo stories",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Promo story title",
+          "required": true
+        },
+        "photo_50": {
+          "type": "string",
+          "description": "RL of square photo of the story with 50 pixels in width",
+          "required": true
+        },
+        "photo_100": {
+          "type": "string",
+          "description": "RL of square photo of the story with 100 pixels in width",
+          "required": true
+        },
+        "not_animated": {
+          "type": "boolean",
+          "description": "Hide animation for promo story",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_replies": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Replies number.",
+          "minimum": 0,
+          "required": true
+        },
+        "new": {
+          "type": "integer",
+          "description": "New replies number."
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_stat_line": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "counter": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "is_unavailable": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_story": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for private object."
+        },
+        "can_comment": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can comment the story (0 - no, 1 - yes)."
+        },
+        "can_reply": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can reply to the story (0 - no, 1 - yes)."
+        },
+        "can_see": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can see the story (0 - no, 1 - yes)."
+        },
+        "can_like": {
+          "type": "boolean",
+          "description": "Information whether current user can like the story."
+        },
+        "can_share": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can share the story (0 - no, 1 - yes)."
+        },
+        "can_hide": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can hide the story (0 - no, 1 - yes)."
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Date when story has been added in Unixtime."
+        },
+        "expires_at": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Story expiration time. Unixtime."
+        },
+        "id": {
+          "type": "integer",
+          "description": "Story ID.",
+          "required": true
+        },
+        "is_deleted": {
+          "type": "boolean",
+          "description": "Information whether the story is deleted (false - no, true - yes)."
+        },
+        "is_expired": {
+          "type": "boolean",
+          "description": "Information whether the story is expired (false - no, true - yes)."
+        },
+        "link": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_link"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Story owner's ID.",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "parent_story": {
+          "$ref": "../stories/objects.json#/definitions/stories_story"
+        },
+        "parent_story_access_key": {
+          "type": "string",
+          "description": "Access key for private object."
+        },
+        "parent_story_id": {
+          "type": "integer",
+          "description": "Parent story ID."
+        },
+        "parent_story_owner_id": {
+          "type": "integer",
+          "description": "Parent story owner's ID."
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "replies": {
+          "description": "Replies counters to current story.",
+          "$ref": "../stories/objects.json#/definitions/stories_replies"
+        },
+        "seen": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user has seen the story or not (0 - no, 1 - yes)."
+        },
+        "type": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_type"
+        },
+        "clickable_stickers": {
+          "$ref": "../stories/objects.json#/definitions/stories_clickable_stickers"
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video_full"
+        },
+        "views": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Views number."
+        },
+        "can_ask": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether story has question sticker and current user can send question to the author"
+        },
+        "can_ask_anonymous": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether story has question sticker and current user can send anonymous question to the author"
+        },
+        "narratives_count": {
+          "type": "integer"
+        },
+        "first_narrative_title": {
+          "type": "string"
+        },
+        "birthday_wish_user_id": {
+          "type": "integer"
+        },
+        "can_use_in_narrative": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_story_link": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Link text",
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL",
+          "required": true
+        },
+        "link_url_target": {
+          "type": "string",
+          "description": "How to open url"
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_story_stats": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "bans": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "open_link": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "replies": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "shares": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "subscribers": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "views": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        },
+        "likes": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_story_stats_stat": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Stat value",
+          "minimum": 0
+        },
+        "state": {
+          "$ref": "../stories/objects.json#/definitions/stories_story_stats_state",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_story_stats_state": {
+      "type": "string",
+      "description": "Statistic state",
+      "enum": [
+        "on",
+        "off",
+        "hidden"
+      ]
+    },
+    "stories_story_type": {
+      "type": "string",
+      "description": "Story type.",
+      "enum": [
+        "photo",
+        "video",
+        "live_active",
+        "live_finished",
+        "birthday_invite"
+      ]
+    },
+    "stories_upload_link_text": {
+      "type": "string",
+      "enum": [
+        "to_store",
+        "vote",
+        "more",
+        "book",
+        "order",
+        "enroll",
+        "fill",
+        "signup",
+        "buy",
+        "ticket",
+        "write",
+        "open",
+        "learn_more",
+        "view",
+        "go_to",
+        "contact",
+        "watch",
+        "play",
+        "install",
+        "read",
+        "calendar"
+      ]
+    },
+    "stories_viewers_item": {
+      "type": "object",
+      "properties": {
+        "is_liked": {
+          "type": "boolean",
+          "description": "user has like for this object",
+          "required": true
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "user id",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "user": {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

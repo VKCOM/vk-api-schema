@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "appWidgets_photo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Image ID",
+          "required": true
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "appWidgets_photos": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,869 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "photos_image": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "description": "Height of the photo in px."
+        },
+        "type": {
+          "$ref": "../photos/objects.json#/definitions/photos_image_type"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Photo URL."
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width of the photo in px."
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_image_type": {
+      "type": "string",
+      "description": "Photo's type.",
+      "enum": [
+        "s",
+        "m",
+        "x",
+        "l",
+        "o",
+        "p",
+        "q",
+        "r",
+        "y",
+        "z",
+        "w"
+      ]
+    },
+    "photos_photo": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the photo"
+        },
+        "album_id": {
+          "type": "integer",
+          "description": "Album ID",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when uploaded",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Original photo height",
+          "minimum": 0
+        },
+        "id": {
+          "type": "integer",
+          "description": "Photo ID",
+          "minimum": 0,
+          "required": true
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_image"
+          }
+        },
+        "lat": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "long": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Photo owner's ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "photo_256": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 2560 px width"
+        },
+        "can_comment": {
+          "description": "Information whether current user can comment the photo",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "place": {
+          "type": "string"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID",
+          "minimum": 1
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_sizes"
+          }
+        },
+        "text": {
+          "type": "string",
+          "description": "Photo caption"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "ID of the user who have uploaded the photo",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Original photo width",
+          "minimum": 0
+        },
+        "has_tags": {
+          "type": "boolean",
+          "description": "Whether photo has attached tag links",
+          "required": true
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes"
+        },
+        "comments": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        },
+        "reposts": {
+          "$ref": "../base/objects.json#/definitions/base_reposts_info"
+        },
+        "tags": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_album": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "integer",
+          "description": "Date when the album has been created in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "description": "Photo album description"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Photo album ID",
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Album owner's ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "size": {
+          "type": "integer",
+          "description": "Photos number",
+          "minimum": 0,
+          "required": true
+        },
+        "thumb": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "title": {
+          "type": "string",
+          "description": "Photo album title",
+          "required": true
+        },
+        "updated": {
+          "type": "integer",
+          "description": "Date when the album has been updated last time in Unixtime",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_album_full": {
+      "type": "object",
+      "properties": {
+        "can_upload": {
+          "description": "Information whether current user can upload photo to the album",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "comments_disabled": {
+          "description": "Information whether album comments are disabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "created": {
+          "type": "integer",
+          "description": "Date when the album has been created in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "description": "Photo album description"
+        },
+        "can_delete": {
+          "type": "boolean",
+          "description": "album can delete"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Photo album ID",
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Album owner's ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "size": {
+          "type": "integer",
+          "description": "Photos number",
+          "minimum": 0,
+          "required": true
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_sizes"
+          }
+        },
+        "thumb_id": {
+          "type": "integer",
+          "description": "Thumb photo ID",
+          "minimum": 0
+        },
+        "thumb_is_last": {
+          "description": "Information whether the album thumb is last photo",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "thumb_src": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the thumb image"
+        },
+        "title": {
+          "type": "string",
+          "description": "Photo album title",
+          "required": true
+        },
+        "updated": {
+          "type": "integer",
+          "description": "Date when the album has been updated last time in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "upload_by_admins_only": {
+          "description": "Information whether only community administrators can upload photos",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_falseable": {
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "photos_photo_full_xtr_real_offset": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the photo"
+        },
+        "album_id": {
+          "type": "integer",
+          "description": "Album ID",
+          "required": true
+        },
+        "can_comment": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "comments": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when uploaded",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Original photo height",
+          "minimum": 0
+        },
+        "hidden": {
+          "description": "Returns if the photo is hidden above the wall",
+          "$ref": "../base/objects.json#/definitions/base_property_exists"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Photo ID",
+          "minimum": 0,
+          "required": true
+        },
+        "lat": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes"
+        },
+        "long": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Photo owner's ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "photo_1280": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 1280 px width"
+        },
+        "photo_130": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 130 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 2560 px width"
+        },
+        "photo_604": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 604 px width"
+        },
+        "photo_75": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 75 px width"
+        },
+        "photo_807": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 807 px width"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID",
+          "minimum": 1
+        },
+        "real_offset": {
+          "type": "integer",
+          "description": "Real position of the photo"
+        },
+        "reposts": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_sizes"
+          }
+        },
+        "tags": {
+          "$ref": "../base/objects.json#/definitions/base_object_count"
+        },
+        "text": {
+          "type": "string",
+          "description": "Photo caption"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "ID of the user who have uploaded the photo",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Original photo width",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_sizes": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "description": "Height in px",
+          "minimum": 0,
+          "required": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the image",
+          "required": true
+        },
+        "src": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the image"
+        },
+        "type": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_sizes_type",
+          "required": true
+        },
+        "width": {
+          "type": "integer",
+          "description": "Width in px",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_sizes_type": {
+      "type": "string",
+      "description": "Size type",
+      "enum": [
+        "s",
+        "m",
+        "x",
+        "o",
+        "p",
+        "q",
+        "r",
+        "k",
+        "l",
+        "y",
+        "z",
+        "c",
+        "w",
+        "a",
+        "b",
+        "e",
+        "i",
+        "d",
+        "j",
+        "temp",
+        "h",
+        "g",
+        "n",
+        "f",
+        "max"
+      ]
+    },
+    "photos_photo_tag": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "integer",
+          "description": "Date when tag has been added in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Tag ID",
+          "required": true
+        },
+        "placer_id": {
+          "type": "integer",
+          "description": "ID of the tag creator",
+          "required": true
+        },
+        "tagged_name": {
+          "type": "string",
+          "description": "Tag description",
+          "required": true
+        },
+        "description": {
+          "description": "Tagged description.",
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "Tagged user ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "viewed": {
+          "description": "Information whether the tag is reviewed",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "x": {
+          "type": "number",
+          "description": "Coordinate X of the left upper corner",
+          "required": true
+        },
+        "x2": {
+          "type": "number",
+          "description": "Coordinate X of the right lower corner",
+          "required": true
+        },
+        "y": {
+          "type": "number",
+          "description": "Coordinate Y of the left upper corner",
+          "required": true
+        },
+        "y2": {
+          "type": "number",
+          "description": "Coordinate Y of the right lower corner",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_upload": {
+      "type": "object",
+      "properties": {
+        "album_id": {
+          "type": "integer",
+          "description": "Album ID",
+          "required": true
+        },
+        "upload_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to upload photo",
+          "required": true
+        },
+        "fallback_upload_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Fallback URL if upload_url returned error"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "group_id": {
+          "type": "integer",
+          "description": "Group ID",
+          "entity": "groups",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_xtr_real_offset": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the photo"
+        },
+        "album_id": {
+          "type": "integer",
+          "description": "Album ID",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when uploaded",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Original photo height",
+          "minimum": 0
+        },
+        "hidden": {
+          "description": "Returns if the photo is hidden above the wall",
+          "$ref": "../base/objects.json#/definitions/base_property_exists"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Photo ID",
+          "minimum": 0,
+          "required": true
+        },
+        "lat": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "long": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Photo owner's ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "photo_1280": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 1280 px width"
+        },
+        "photo_130": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 130 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 2560 px width"
+        },
+        "photo_604": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 604 px width"
+        },
+        "photo_75": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 75 px width"
+        },
+        "photo_807": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 807 px width"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID",
+          "minimum": 1
+        },
+        "real_offset": {
+          "type": "integer",
+          "description": "Real position of the photo"
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_sizes"
+          }
+        },
+        "text": {
+          "type": "string",
+          "description": "Photo caption"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "ID of the user who have uploaded the photo",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Original photo width",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_xtr_tag_info": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the photo"
+        },
+        "album_id": {
+          "type": "integer",
+          "description": "Album ID",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when uploaded",
+          "minimum": 0,
+          "required": true
+        },
+        "height": {
+          "type": "integer",
+          "description": "Original photo height",
+          "minimum": 0
+        },
+        "id": {
+          "type": "integer",
+          "description": "Photo ID",
+          "minimum": 0,
+          "required": true
+        },
+        "lat": {
+          "type": "number",
+          "description": "Latitude"
+        },
+        "long": {
+          "type": "number",
+          "description": "Longitude"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Photo owner's ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "photo_1280": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 1280 px width"
+        },
+        "photo_130": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 130 px width"
+        },
+        "photo_2560": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 2560 px width"
+        },
+        "photo_604": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 604 px width"
+        },
+        "photo_75": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 75 px width"
+        },
+        "photo_807": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of image with 807 px width"
+        },
+        "placer_id": {
+          "type": "integer",
+          "description": "ID of the tag creator"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "Post ID",
+          "minimum": 1
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_sizes"
+          }
+        },
+        "tag_created": {
+          "type": "integer",
+          "description": "Date when tag has been added in Unixtime",
+          "minimum": 0
+        },
+        "tag_id": {
+          "type": "integer",
+          "description": "Tag ID"
+        },
+        "text": {
+          "type": "string",
+          "description": "Photo caption"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "ID of the user who have uploaded the photo",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Original photo width",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_tags_suggestion_item": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "buttons": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_tags_suggestion_item_button"
+          }
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_tag"
+          }
+        },
+        "track_code": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_tags_suggestion_item_button": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "confirm",
+            "decline",
+            "show_tags"
+          ]
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

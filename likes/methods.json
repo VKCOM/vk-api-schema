@@ -1,0 +1,227 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "likes.add",
+      "description": "Adds the specified object to the 'Likes' list of the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
+          "type": "string",
+          "required": true,
+          "$ref": "../likes/objects.json#/definitions/likes_type"
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the object.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Object ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "access_key",
+          "description": "Access key required for an object owned by a private entity.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../likes/responses.json#/definitions/likes_add_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_likes_reaction_can_not_be_applied"
+        }
+      ]
+    },
+    {
+      "name": "likes.delete",
+      "description": "Deletes the specified object from the 'Likes' list of the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
+          "type": "string",
+          "required": true,
+          "$ref": "../likes/objects.json#/definitions/likes_type"
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the object.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Object ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "access_key",
+          "description": "Access key required for an object owned by a private entity.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../likes/responses.json#/definitions/likes_delete_response"
+        }
+      }
+    },
+    {
+      "name": "likes.getList",
+      "description": "Returns a list of IDs of users who added the specified object to their 'Likes' list.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": ", Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
+          "type": "string",
+          "required": true,
+          "$ref": "../likes/objects.json#/definitions/likes_type"
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user, community, or application that owns the object. If the 'type' parameter is set as 'sitepage', the application ID is passed as 'owner_id'. Use negative value for a community id. If the 'type' parameter is not set, the 'owner_id' is assumed to be either the current user or the same application ID as if the 'type' parameter was set to 'sitepage'.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Object ID. If 'type' is set as 'sitepage', 'item_id' can include the 'page_id' parameter value used during initialization of the [vk.com/dev/Like|Like widget].",
+          "type": "integer"
+        },
+        {
+          "name": "page_url",
+          "description": "URL of the page where the [vk.com/dev/Like|Like widget] is installed. Used instead of the 'item_id' parameter.",
+          "type": "string"
+        },
+        {
+          "name": "filter",
+          "description": "Filters to apply: 'likes' — returns information about all users who liked the object (default), 'copies' — returns information only about users who told their friends about the object",
+          "type": "string",
+          "enum": [
+            "likes",
+            "copies"
+          ]
+        },
+        {
+          "name": "friends_only",
+          "description": "Specifies which users are returned: '1' — to return only the current user's friends, '0' — to return all users (default)",
+          "type": "integer",
+          "default": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "extended",
+          "description": "Specifies whether extended information will be returned. '1' — to return extended information about users and communities from the 'Likes' list, '0' — to return no additional information (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to select a specific subset of users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of user IDs to return (maximum '1000'). Default is '100' if 'friends_only' is set to '0', otherwise, the default is '10' if 'friends_only' is set to '1'.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "skip_own",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../likes/responses.json#/definitions/likes_getList_response"
+        },
+        "extendedResponse": {
+          "$ref": "../likes/responses.json#/definitions/likes_getList_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_likes_reaction_can_not_be_applied"
+        }
+      ]
+    },
+    {
+      "name": "likes.isLiked",
+      "description": "Checks for the object in the 'Likes' list of the specified user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "type",
+          "description": "Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion",
+          "type": "string",
+          "required": true,
+          "$ref": "../likes/objects.json#/definitions/likes_type"
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the object.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "item_id",
+          "description": "Object ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../likes/responses.json#/definitions/likes_isLiked_response"
+        }
+      }
+    }
+  ]
+}

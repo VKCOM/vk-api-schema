@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "stats.get",
+      "description": "Returns statistics of a community or an application.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "app_id",
+          "description": "Application ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "timestamp_from",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "timestamp_to",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "interval",
+          "type": "string",
+          "default": "day",
+          "enum": [
+            "all",
+            "day",
+            "month",
+            "week",
+            "year"
+          ]
+        },
+        {
+          "name": "intervals_count",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "filters",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "stats_groups",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stats/responses.json#/definitions/stats_get_response"
+        }
+      }
+    },
+    {
+      "name": "stats.getPostReach",
+      "description": "Returns stats for a wall post.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "post owner community id. Specify with \"-\" sign.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "post_ids",
+          "description": "wall posts id",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 30
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stats/responses.json#/definitions/stats_getPostReach_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_access_post"
+        }
+      ]
+    },
+    {
+      "name": "stats.trackVisitor",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

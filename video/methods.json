@@ -1,0 +1,1320 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "video.add",
+      "description": "Adds a video to a user or community page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "target_id",
+          "description": "identifier of a user or community to add a video to. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_video_already_added"
+        }
+      ]
+    },
+    {
+      "name": "video.addAlbum",
+      "description": "Creates an empty album for videos.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID (if the album will be created in a community).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "description": "Album title.",
+          "type": "string"
+        },
+        {
+          "name": "privacy",
+          "description": "new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - \"only me\".",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3"
+            ],
+            "enumNames": [
+              "all",
+              "friends",
+              "friends of friends",
+              "only me"
+            ]
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_addAlbum_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_albums_limit"
+        }
+      ]
+    },
+    {
+      "name": "video.addToAlbum",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "target_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "type": "integer"
+        },
+        {
+          "name": "album_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        },
+        "multiResponse": {
+          "$ref": "../video/responses.json#/definitions/video_changeVideoAlbums_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_video_already_added"
+        }
+      ]
+    },
+    {
+      "name": "video.createComment",
+      "description": "Adds a new comment on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "message",
+          "description": "New comment text.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "List of objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media attachment owner. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "from_group",
+          "description": "'1' — to post the comment from a community name (only if 'owner_id'<0)",
+          "type": "boolean"
+        },
+        {
+          "name": "reply_to_comment",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sticker_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "guid",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_createComment_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_video_comments_closed"
+        }
+      ]
+    },
+    {
+      "name": "video.delete",
+      "description": "Deletes a video from a user or community page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "target_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.deleteAlbum",
+      "description": "Deletes a video album.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID (if the album is owned by a community).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.deleteComment",
+      "description": "Deletes a comment on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "ID of the comment to be deleted.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.edit",
+      "description": "Edits information about a video on a user or community page.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "name",
+          "description": "New video title.",
+          "type": "string"
+        },
+        {
+          "name": "desc",
+          "description": "New video description.",
+          "type": "string"
+        },
+        {
+          "name": "privacy_view",
+          "description": "Privacy settings in a [vk.com/dev/privacy_setting|special format]. Privacy setting is available for videos uploaded to own profile by user.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "description": "Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "no_comments",
+          "description": "Disable comments for the group video.",
+          "type": "boolean"
+        },
+        {
+          "name": "repeat",
+          "description": "'1' — to repeat the playback of the video, '0' — to play the video once,",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.editAlbum",
+      "description": "Edits the title of a video album.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID (if the album edited is owned by a community).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "New album title.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "privacy",
+          "description": "new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - \"only me\".",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3"
+            ],
+            "enumNames": [
+              "all",
+              "friends",
+              "friends of friends",
+              "only me"
+            ]
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.editComment",
+      "description": "Edits the text of a comment on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "Comment ID.",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "New comment text.",
+          "type": "string"
+        },
+        {
+          "name": "attachments",
+          "description": "List of objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media attachment owner. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.get",
+      "description": "Returns detailed information about videos.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video(s).",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "videos",
+          "description": "Video IDs, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", Use a negative value to designate a community ID. Example: \"-4363_136089719,13245770_137352259\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "album_id",
+          "description": "ID of the album containing the video(s).",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "description": "Number of videos to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of videos.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return an extended response with additional fields",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_get_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.getAlbumById",
+      "description": "Returns video album info",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "identifier of a user or community to add a video to. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getAlbumById_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.getAlbums",
+      "description": "Returns a list of video albums owned by a user or community.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video album(s).",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of video albums.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of video albums to return.",
+          "type": "integer",
+          "default": 50,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return additional information about album privacy settings for the current user",
+          "type": "boolean"
+        },
+        {
+          "name": "need_system",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getAlbums_response"
+        },
+        "extendedResponse": {
+          "$ref": "../video/responses.json#/definitions/video_getAlbums_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.getAlbumsByVideo",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "target_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getAlbumsByVideo_response"
+        },
+        "extendedResponse": {
+          "$ref": "../video/responses.json#/definitions/video_getAlbumsByVideo_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.getComments",
+      "description": "Returns a list of comments on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "need_likes",
+          "description": "'1' — to return an additional 'likes' field",
+          "type": "boolean"
+        },
+        {
+          "name": "start_comment_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of comments.",
+          "type": "integer"
+        },
+        {
+          "name": "count",
+          "description": "Number of comments to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: 'asc' — oldest comment first, 'desc' — newest comment first",
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "enumNames": [
+            "oldest comment first",
+            "newest comment first"
+          ]
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getComments_response"
+        },
+        "extendedResponse": {
+          "$ref": "../video/responses.json#/definitions/video_getComments_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_video_comments_closed"
+        }
+      ]
+    },
+    {
+      "name": "video.removeFromAlbum",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "target_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "type": "integer"
+        },
+        {
+          "name": "album_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        },
+        "multiResponse": {
+          "$ref": "../video/responses.json#/definitions/video_changeVideoAlbums_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.reorderAlbums",
+      "description": "Reorders the album in the list of user video albums.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the albums..",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "Album ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "before",
+          "description": "ID of the album before which the album in question shall be placed.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "after",
+          "description": "ID of the album after which the album in question shall be placed.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "video.reorderVideos",
+      "description": "Reorders the video in the video album.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "target_id",
+          "description": "ID of the user or community that owns the album with videos.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "ID of the video album.",
+          "type": "integer",
+          "default": -2
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "description": "ID of the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "before_owner_id",
+          "description": "ID of the user or community that owns the video before which the video in question shall be placed.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "before_video_id",
+          "description": "ID of the video before which the video in question shall be placed.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "after_owner_id",
+          "description": "ID of the user or community that owns the video after which the photo in question shall be placed.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "after_video_id",
+          "description": "ID of the video after which the photo in question shall be placed.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        }
+      ]
+    },
+    {
+      "name": "video.report",
+      "description": "Reports (submits a complaint about) a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
+        },
+        {
+          "name": "comment",
+          "description": "Comment describing the complaint.",
+          "type": "string"
+        },
+        {
+          "name": "search_query",
+          "description": "(If the video was found in search results.) Search query string.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.reportComment",
+      "description": "Reports (submits a complaint about) a comment on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "ID of the comment being reported.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reason",
+          "description": "Reason for the complaint: , 0 - spam , 1 - child pornography , 2 - extremism , 3 - violence , 4 - drug propaganda , 5 - adult material , 6 - insult, abuse",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "enumNames": [
+            "spam",
+            "child pornography",
+            "extremism",
+            "violence",
+            "drug propaganda",
+            "adult material",
+            "insult abuse"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.restore",
+      "description": "Restores a previously deleted video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "video.restoreComment",
+      "description": "Restores a previously deleted comment on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "description": "ID of the deleted comment.",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_restoreComment_response"
+        }
+      }
+    },
+    {
+      "name": "video.save",
+      "description": "Returns a server address (required for upload) and video data.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "description": "Name of the video.",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "description": "Description of the video.",
+          "type": "string"
+        },
+        {
+          "name": "is_private",
+          "description": "'1' — to designate the video as private (send it via a private message), the video will not appear on the user's video list and will not be available by ID for other users, '0' — not to designate the video as private",
+          "type": "boolean"
+        },
+        {
+          "name": "wallpost",
+          "description": "'1' — to post the saved video on a user's wall, '0' — not to post the saved video on a user's wall",
+          "type": "boolean"
+        },
+        {
+          "name": "link",
+          "description": "URL for embedding the video from an external website.",
+          "type": "string"
+        },
+        {
+          "name": "group_id",
+          "description": "ID of the community in which the video will be saved. By default, the current user's page.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "album_id",
+          "description": "ID of the album to which the saved video will be added.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "privacy_view",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "no_comments",
+          "type": "boolean"
+        },
+        {
+          "name": "repeat",
+          "description": "'1' — to repeat the playback of the video, '0' — to play the video once,",
+          "type": "boolean"
+        },
+        {
+          "name": "compression",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_save_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_add_post"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_ads_published"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_upload"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_host_need_2fa"
+        }
+      ]
+    },
+    {
+      "name": "video.search",
+      "description": "Returns a list of videos under the set search criterion.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string (e.g., 'The Beatles').",
+          "type": "string"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: '1' — by duration, '2' — by relevance, '0' — by date added",
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            0
+          ],
+          "enumNames": [
+            "duration",
+            "relevance",
+            "date added"
+          ]
+        },
+        {
+          "name": "hd",
+          "description": "If not null, only searches for high-definition videos.",
+          "type": "integer"
+        },
+        {
+          "name": "adult",
+          "description": "'1' — to disable the Safe Search filter, '0' — to enable the Safe Search filter",
+          "type": "boolean"
+        },
+        {
+          "name": "live",
+          "type": "boolean"
+        },
+        {
+          "name": "filters",
+          "description": "Filters to apply: 'youtube' — return YouTube videos only, 'vimeo' — return Vimeo videos only, 'short' — return short videos only, 'long' — return long videos only",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "youtube",
+              "vimeo",
+              "short",
+              "long"
+            ]
+          }
+        },
+        {
+          "name": "search_own",
+          "type": "boolean"
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of videos.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "longer",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "shorter",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of videos to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_search_response"
+        },
+        "extendedResponse": {
+          "$ref": "../video/responses.json#/definitions/video_search_extended_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_action_failed"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "polls_addVote_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_create_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../polls/objects.json#/definitions/polls_poll",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_deleteVote_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Result",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_getBackgrounds_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../polls/objects.json#/definitions/polls_background"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../polls/objects.json#/definitions/polls_poll",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_getVoters_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../polls/objects.json#/definitions/polls_voters"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_savePhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../polls/objects.json#/definitions/polls_background",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,612 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "account.ban",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.changePassword",
+      "description": "Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "restore_sid",
+          "description": "Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)",
+          "type": "string"
+        },
+        {
+          "name": "change_password_hash",
+          "description": "Hash received after a successful OAuth authorization with a code got by SMS. (If the password is changed right after the access was restored)",
+          "type": "string"
+        },
+        {
+          "name": "old_password",
+          "description": "Current user password.",
+          "type": "string"
+        },
+        {
+          "name": "new_password",
+          "description": "New password that will be set as a current",
+          "type": "string",
+          "required": true,
+          "minLength": 6
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_changePassword_response"
+        }
+      }
+    },
+    {
+      "name": "account.getActiveOffers",
+      "description": "Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getActiveOffers_response"
+        }
+      }
+    },
+    {
+      "name": "account.getAppPermissions",
+      "description": "Gets settings of the user in this application.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID whose settings information shall be got. By default: current user.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getAppPermissions_response"
+        }
+      }
+    },
+    {
+      "name": "account.getBanned",
+      "description": "Returns a user's blacklist.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getBanned_response"
+        }
+      }
+    },
+    {
+      "name": "account.getCounters",
+      "description": "Returns non-null values of user counters.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "filter",
+          "description": "Counters to be returned.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "friends",
+              "messages",
+              "photos",
+              "notes",
+              "gifts",
+              "events",
+              "groups",
+              "sdk",
+              "friends_suggestions",
+              "notifications",
+              "app_requests",
+              "friends_recommendations"
+            ]
+          }
+        },
+        {
+          "name": "user_id",
+          "description": "User ID",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getCounters_response"
+        }
+      }
+    },
+    {
+      "name": "account.getInfo",
+      "description": "Returns current account info.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "fields",
+          "description": "Fields to return. Possible values: *'country' — user country,, *'https_required' — is \"HTTPS only\" option enabled,, *'own_posts_default' — is \"Show my posts only\" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "country",
+              "https_required",
+              "own_posts_default",
+              "no_wall_replies",
+              "intro",
+              "lang"
+            ]
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getInfo_response"
+        }
+      }
+    },
+    {
+      "name": "account.getProfileInfo",
+      "description": "Returns the current account info.",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getProfileInfo_response"
+        }
+      }
+    },
+    {
+      "name": "account.getPushSettings",
+      "description": "Gets settings of push notifications.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "device_id",
+          "description": "Unique device ID.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_getPushSettings_response"
+        }
+      }
+    },
+    {
+      "name": "account.registerDevice",
+      "description": "Subscribes an iOS/Android/Windows Phone-based device to receive push notifications",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "token",
+          "description": "Device token used to send notifications. (for mpns, the token shall be URL for sending of notifications)",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "device_model",
+          "description": "String name of device model.",
+          "type": "string"
+        },
+        {
+          "name": "device_year",
+          "description": "Device year.",
+          "type": "integer"
+        },
+        {
+          "name": "device_id",
+          "description": "Unique device ID.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "system_version",
+          "description": "String version of device operating system.",
+          "type": "string"
+        },
+        {
+          "name": "settings",
+          "description": "Push settings in a [vk.com/dev/push_settings|special format].",
+          "type": "string"
+        },
+        {
+          "name": "sandbox",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.saveProfileInfo",
+      "description": "Edits current profile info.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "first_name",
+          "description": "User first name.",
+          "type": "string"
+        },
+        {
+          "name": "last_name",
+          "description": "User last name.",
+          "type": "string"
+        },
+        {
+          "name": "maiden_name",
+          "description": "User maiden name (female only)",
+          "type": "string"
+        },
+        {
+          "name": "screen_name",
+          "description": "User screen name.",
+          "type": "string"
+        },
+        {
+          "name": "cancel_request_id",
+          "description": "ID of the name change request to be canceled. If this parameter is sent, all the others are ignored.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "sex",
+          "description": "User sex. Possible values: , * '1' - female,, * '2' - male.",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "undefined",
+            "female",
+            "male"
+          ]
+        },
+        {
+          "name": "relation",
+          "description": "User relationship status. Possible values: , * '1' - single,, * '2' - in a relationship,, * '3' - engaged,, * '4' - married,, * '5' - it's complicated,, * '6' - actively searching,, * '7' - in love,, * '0' - not specified.",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            0
+          ],
+          "enumNames": [
+            "single",
+            "relationship",
+            "engaged",
+            "married",
+            "complicated",
+            "actively searching",
+            "in love",
+            "not specified"
+          ]
+        },
+        {
+          "name": "relation_partner_id",
+          "description": "ID of the relationship partner.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "bdate",
+          "description": "User birth date, format: DD.MM.YYYY.",
+          "type": "string"
+        },
+        {
+          "name": "bdate_visibility",
+          "description": "Birth date visibility. Returned values: , * '1' - show birth date,, * '2' - show only month and day,, * '0' - hide birth date.",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            1,
+            2,
+            0
+          ],
+          "enumNames": [
+            "show",
+            "hide year",
+            "hide"
+          ]
+        },
+        {
+          "name": "home_town",
+          "description": "User home town.",
+          "type": "string"
+        },
+        {
+          "name": "country_id",
+          "description": "User country.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "city_id",
+          "description": "User city.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "status",
+          "description": "Status text.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../account/responses.json#/definitions/account_saveProfileInfo_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_invalid_address"
+        }
+      ]
+    },
+    {
+      "name": "account.setInfo",
+      "description": "Allows to edit the current account info.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "description": "Setting name.",
+          "type": "string",
+          "enum": [
+            "intro",
+            "no_wall_replies",
+            "own_posts_default"
+          ]
+        },
+        {
+          "name": "value",
+          "description": "Setting value.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.setOffline",
+      "description": "Marks a current user as offline.",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.setOnline",
+      "description": "Marks the current user as online for 15 minutes.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "voip",
+          "description": "'1' if videocalls are available for current device.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.setPushSettings",
+      "description": "Change push settings.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "device_id",
+          "description": "Unique device ID.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "settings",
+          "description": "Push settings in a [vk.com/dev/push_settings|special format].",
+          "type": "string"
+        },
+        {
+          "name": "key",
+          "description": "Notification key.",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "description": "New value for the key in a [vk.com/dev/push_settings|special format].",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.setSilenceMode",
+      "description": "Mutes push notifications for the set period of time.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "device_id",
+          "description": "Unique device ID.",
+          "type": "string"
+        },
+        {
+          "name": "time",
+          "description": "Time in seconds for what notifications should be disabled. '-1' to disable forever.",
+          "type": "integer"
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer"
+        },
+        {
+          "name": "sound",
+          "description": "'1' — to enable sound in this dialog, '0' — to disable sound. Only if 'peer_id' contains user or community ID.",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.unban",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "account.unregisterDevice",
+      "description": "Unsubscribes a device from push notifications.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "device_id",
+          "description": "Unique device ID.",
+          "type": "string"
+        },
+        {
+          "name": "sandbox",
+          "type": "boolean",
+          "default": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    }
+  ]
+}

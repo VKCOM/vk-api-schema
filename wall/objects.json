@@ -1,0 +1,904 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "wall_app_post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Application ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Application name"
+        },
+        "photo_130": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 130 px in width"
+        },
+        "photo_604": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 604 px in width"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_attached_note": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "integer",
+          "description": "Comments number",
+          "minimum": 0,
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the note has been created in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Note ID",
+          "minimum": 1,
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Note owner's ID",
+          "minimum": 1,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "read_comments": {
+          "type": "integer",
+          "description": "Read comments number",
+          "minimum": 0,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Note title",
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "description": "Note text"
+        },
+        "privacy_view": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "privacy_comment": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "can_comment": {
+          "type": "integer"
+        },
+        "text_wiki": {
+          "type": "string",
+          "description": "Note wiki text"
+        },
+        "view_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the page with note preview",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_carousel_base": {
+      "type": "object",
+      "properties": {
+        "carousel_offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Index of current carousel element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_comment_attachment": {
+      "type": "object",
+      "properties": {
+        "audio": {
+          "$ref": "../audio/objects.json#/definitions/audio_audio"
+        },
+        "doc": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc"
+        },
+        "link": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        },
+        "market": {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        "market_market_album": {
+          "$ref": "../market/objects.json#/definitions/market_market_album"
+        },
+        "note": {
+          "$ref": "../wall/objects.json#/definitions/wall_attached_note"
+        },
+        "page": {
+          "$ref": "../pages/objects.json#/definitions/pages_wikipage_full"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "sticker": {
+          "$ref": "../base/objects.json#/definitions/base_sticker"
+        },
+        "type": {
+          "$ref": "../wall/objects.json#/definitions/wall_comment_attachment_type",
+          "required": true
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_comment_attachment_type": {
+      "type": "string",
+      "description": "Attachment type",
+      "enum": [
+        "photo",
+        "audio",
+        "video",
+        "doc",
+        "link",
+        "note",
+        "page",
+        "market_market_album",
+        "market",
+        "sticker"
+      ]
+    },
+    "wall_geo": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "string",
+          "description": "Coordinates as string. <latitude> <longtitude>"
+        },
+        "place": {
+          "$ref": "../base/objects.json#/definitions/base_place"
+        },
+        "showmap": {
+          "type": "integer",
+          "description": "Information whether a map is showed"
+        },
+        "type": {
+          "type": "string",
+          "description": "Place type",
+          "enum": [
+            "place",
+            "point"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_get_filter": {
+      "description": "Filter to apply: 'owner' — posts by the wall owner, 'others' — posts by someone else, 'all' — posts by the wall owner and others (default), 'postponed' — timed posts (only available for calls with an 'access_token'), 'suggests' — suggested posts on a community wall",
+      "type": "string",
+      "enum": [
+        "owner",
+        "others",
+        "all",
+        "postponed",
+        "suggests",
+        "archived",
+        "donut"
+      ]
+    },
+    "wall_graffiti": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Graffiti ID"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Graffiti owner's ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "photo_200": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 200 px in width"
+        },
+        "photo_586": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 586 px in width"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Graffiti height",
+          "minimum": 0
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Graffiti URL"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Graffiti width",
+          "minimum": 0
+        },
+        "access_key": {
+          "type": "string",
+          "description": "Access key for graffiti"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_post_copyright": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "link": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "type": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_post_source": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "Additional data"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform name"
+        },
+        "type": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_source_type"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to an external site used to publish the post"
+        },
+        "link": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_post_source_type": {
+      "type": "string",
+      "description": "Type of post source",
+      "enum": [
+        "vk",
+        "widget",
+        "api",
+        "rss",
+        "sms",
+        "mvk"
+      ]
+    },
+    "wall_post_type": {
+      "type": "string",
+      "description": "Post type",
+      "enum": [
+        "post",
+        "copy",
+        "reply",
+        "postpone",
+        "suggest",
+        "post_ads",
+        "photo",
+        "video"
+      ]
+    },
+    "wall_posted_photo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Photo ID"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Photo owner's ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "photo_130": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 130 px in width"
+        },
+        "photo_604": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the preview image with 604 px in width"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_views": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wall_comment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Comment ID",
+          "minimum": 1,
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "description": "Author ID",
+          "required": true
+        },
+        "can_edit": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "post_id": {
+          "type": "integer"
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "parents_stack": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "photo_id": {
+          "type": "integer"
+        },
+        "video_id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the comment has been added in Unixtime",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment text",
+          "required": true
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_comment_attachment"
+          }
+        },
+        "donut": {
+          "$ref": "../wall/objects.json#/definitions/wall_wall_comment_donut"
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes_info"
+        },
+        "real_offset": {
+          "type": "integer",
+          "description": "Real position of the comment"
+        },
+        "reply_to_user": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "description": "Replied user ID"
+        },
+        "reply_to_comment": {
+          "type": "integer",
+          "description": "Replied comment ID"
+        },
+        "thread": {
+          "$ref": "../comment/objects.json#/definitions/comment_thread"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "pid": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Photo ID"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wall_comment_donut": {
+      "type": "object",
+      "properties": {
+        "is_don": {
+          "description": "Means commentator is donator",
+          "type": "boolean"
+        },
+        "placeholder": {
+          "$ref": "../wall/objects.json#/definitions/wall_wall_comment_donut_placeholder"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wall_comment_donut_placeholder": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key to private object"
+        },
+        "is_deleted": {
+          "type": "boolean"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+          }
+        },
+        "copyright": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_copyright",
+          "description": "Information about the source of the post"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date of publishing in Unixtime"
+        },
+        "edited": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Date of editing in Unixtime"
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Post author ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "geo": {
+          "$ref": "../wall/objects.json#/definitions/wall_geo"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Post ID"
+        },
+        "is_archived": {
+          "type": "boolean",
+          "description": "Is post archived, only for post owners"
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "Information whether the post in favorites list"
+        },
+        "likes": {
+          "description": "Count of likes",
+          "$ref": "../base/objects.json#/definitions/base_likes_info"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Wall owner's ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "If post type 'reply', contains original post ID"
+        },
+        "parents_stack": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "If post type 'reply', contains original parent IDs stack"
+        },
+        "post_source": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_source"
+        },
+        "post_type": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_type"
+        },
+        "reposts": {
+          "$ref": "../base/objects.json#/definitions/base_reposts_info"
+        },
+        "signer_id": {
+          "type": "integer",
+          "description": "Post signer ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "text": {
+          "type": "string",
+          "description": "Post text"
+        },
+        "views": {
+          "description": "Count of views",
+          "$ref": "../wall/objects.json#/definitions/wall_views"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost_attachment": {
+      "type": "object",
+      "properties": {
+        "access_key": {
+          "type": "string",
+          "description": "Access key for the audio"
+        },
+        "album": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_album"
+        },
+        "app": {
+          "$ref": "../wall/objects.json#/definitions/wall_app_post"
+        },
+        "audio": {
+          "$ref": "../audio/objects.json#/definitions/audio_audio"
+        },
+        "doc": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc"
+        },
+        "event": {
+          "$ref": "../events/objects.json#/definitions/events_event_attach"
+        },
+        "group": {
+          "$ref": "../groups/objects.json#/definitions/groups_group_attach"
+        },
+        "graffiti": {
+          "$ref": "../wall/objects.json#/definitions/wall_graffiti"
+        },
+        "link": {
+          "$ref": "../base/objects.json#/definitions/base_link"
+        },
+        "market": {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        "market_album": {
+          "$ref": "../market/objects.json#/definitions/market_market_album"
+        },
+        "note": {
+          "$ref": "../notes/objects.json#/definitions/notes_note"
+        },
+        "page": {
+          "$ref": "../pages/objects.json#/definitions/pages_wikipage_full"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "poll": {
+          "$ref": "../polls/objects.json#/definitions/polls_poll"
+        },
+        "posted_photo": {
+          "$ref": "../wall/objects.json#/definitions/wall_posted_photo"
+        },
+        "type": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment_type",
+          "required": true
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video_full"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost_attachment_type": {
+      "type": "string",
+      "description": "Attachment type",
+      "enum": [
+        "photo",
+        "photos_list",
+        "posted_photo",
+        "audio",
+        "audio_playlist",
+        "video",
+        "doc",
+        "link",
+        "graffiti",
+        "note",
+        "app",
+        "poll",
+        "page",
+        "album",
+        "market_album",
+        "market",
+        "event",
+        "donut_link",
+        "article",
+        "textlive",
+        "textpost",
+        "textpost_publish",
+        "situational_theme",
+        "group",
+        "sticker",
+        "podcast"
+      ]
+    },
+    "wall_wallpost_comments_donut": {
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_comments_donut_placeholder"
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost_comments_donut_placeholder": {
+      "description": "Info about paid comments feature",
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost_donut": {
+      "description": "Info about paid wall post",
+      "type": "object",
+      "properties": {
+        "is_donut": {
+          "description": "Post only for dons",
+          "type": "boolean",
+          "required": true
+        },
+        "paid_duration": {
+          "description": "Value of this field need to pass in wall.post/edit in donut_paid_duration",
+          "type": "integer"
+        },
+        "placeholder": {
+          "description": "If placeholder was respond, text and all attachments will be hidden",
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_donut_placeholder"
+        },
+        "can_publish_free_copy": {
+          "description": "Says whether group admin can post free copy of this donut post",
+          "type": "boolean"
+        },
+        "edit_mode": {
+          "description": "Says what user can edit in post about donut properties",
+          "type": "string",
+          "enum": [
+            "all",
+            "duration"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost_donut_placeholder": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "wall_wallpost_full": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_carousel_base"
+        },
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost"
+        },
+        {
+          "properties": {
+            "copy_history": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+              }
+            },
+            "can_edit": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether current user can edit the post"
+            },
+            "created_by": {
+              "type": "integer",
+              "description": "Post creator ID (if post still can be edited)",
+              "entity": "owner",
+              "format": "int64"
+            },
+            "can_delete": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether current user can delete the post"
+            },
+            "can_pin": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether current user can pin the post"
+            },
+            "donut": {
+              "$ref": "../wall/objects.json#/definitions/wall_wallpost_donut"
+            },
+            "is_pinned": {
+              "type": "integer",
+              "description": "Information whether the post is pinned"
+            },
+            "comments": {
+              "$ref": "../base/objects.json#/definitions/base_comments_info"
+            },
+            "marked_as_ads": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "description": "Information whether the post is marked as ads"
+            },
+            "topic_id": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method",
+              "enum": [
+                0,
+                1,
+                7,
+                12,
+                16,
+                19,
+                21,
+                23,
+                25,
+                26,
+                32,
+                43
+              ],
+              "enumNames": [
+                "empty_topic",
+                "art",
+                "it",
+                "games",
+                "music",
+                "photo",
+                "science_and_tech",
+                "sport",
+                "travel",
+                "tv_and_cinema",
+                "humor",
+                "fashion"
+              ]
+            },
+            "short_text_rate": {
+              "type": "number",
+              "description": "Preview length control parameter",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "hash": {
+              "type": "string",
+              "description": "Hash for sharing"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "wall_wallpost_to_id": {
+      "type": "object",
+      "properties": {
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+          }
+        },
+        "comments": {
+          "$ref": "../base/objects.json#/definitions/base_comments_info"
+        },
+        "copy_owner_id": {
+          "type": "integer",
+          "description": "ID of the source post owner",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "copy_post_id": {
+          "type": "integer",
+          "description": "ID of the source post"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date of publishing in Unixtime"
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "Post author ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "geo": {
+          "$ref": "../wall/objects.json#/definitions/wall_geo"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Post ID"
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "Information whether the post in favorites list"
+        },
+        "likes": {
+          "$ref": "../base/objects.json#/definitions/base_likes_info"
+        },
+        "post_id": {
+          "type": "integer",
+          "description": "wall post ID (if comment)"
+        },
+        "post_source": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_source"
+        },
+        "post_type": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_type"
+        },
+        "reposts": {
+          "$ref": "../base/objects.json#/definitions/base_reposts_info"
+        },
+        "signer_id": {
+          "type": "integer",
+          "description": "Post signer ID",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "text": {
+          "type": "string",
+          "description": "Post text"
+        },
+        "to_id": {
+          "type": "integer",
+          "description": "Wall owner's ID",
+          "entity": "owner",
+          "format": "int64"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "objects",
+  "definitions": {
+    "apps_app": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../apps/objects.json#/definitions/apps_app_min"
+        },
+        {
+          "properties": {
+            "author_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Application author's URL"
+            },
+            "banner_1120": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of the app banner with 1120 px in width"
+            },
+            "banner_560": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of the app banner with 560 px in width"
+            },
+            "icon_16": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL of the app icon with 16 px in width"
+            },
+            "is_new": {
+              "description": "Is new flag",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "push_enabled": {
+              "description": "Is push enabled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "screen_orientation": {
+              "type": "integer",
+              "description": "Screen orientation"
+            },
+            "friends": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "catalog_position": {
+              "type": "integer",
+              "description": "Catalog position"
+            },
+            "description": {
+              "type": "string",
+              "description": "Application description"
+            },
+            "genre": {
+              "type": "string",
+              "description": "Genre name"
+            },
+            "genre_id": {
+              "type": "integer",
+              "description": "Genre ID"
+            },
+            "international": {
+              "type": "boolean",
+              "description": "Information whether the application is multilanguage"
+            },
+            "is_in_catalog": {
+              "type": "integer",
+              "description": "Information whether application is in mobile catalog"
+            },
+            "leaderboard_type": {
+              "$ref": "../apps/objects.json#/definitions/apps_app_leaderboard_type"
+            },
+            "members_count": {
+              "type": "integer",
+              "description": "Members number"
+            },
+            "platform_id": {
+              "type": "string",
+              "description": "Application ID in store"
+            },
+            "published_date": {
+              "type": "integer",
+              "description": "Date when the application has been published in Unixtime"
+            },
+            "screen_name": {
+              "type": "string",
+              "description": "Screen name"
+            },
+            "section": {
+              "type": "string",
+              "description": "Application section name"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "apps_app_leaderboard_type": {
+      "type": "integer",
+      "description": "Leaderboard type",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "enumNames": [
+        "not supported",
+        "levels",
+        "points"
+      ]
+    },
+    "apps_app_min": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "../apps/objects.json#/definitions/apps_app_type",
+          "required": true
+        },
+        "id": {
+          "type": "integer",
+          "description": "Application ID",
+          "minimum": 0,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Application title",
+          "required": true
+        },
+        "author_owner_id": {
+          "type": "integer",
+          "description": "Application author's ID"
+        },
+        "is_installed": {
+          "type": "boolean",
+          "description": "Is application installed"
+        },
+        "icon_139": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the app icon with 139 px in width"
+        },
+        "icon_150": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the app icon with 150 px in width"
+        },
+        "icon_278": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the app icon with 278 px in width"
+        },
+        "icon_576": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the app icon with 576 px in width"
+        },
+        "background_loader_color": {
+          "type": "string",
+          "description": "Hex color code without hash sign"
+        },
+        "loader_icon": {
+          "type": "string",
+          "description": "SVG data"
+        },
+        "icon_75": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the app icon with 75 px in width"
+        }
+      },
+      "additionalProperties": false
+    },
+    "apps_app_type": {
+      "type": "string",
+      "description": "Application type",
+      "enum": [
+        "app",
+        "game",
+        "site",
+        "standalone",
+        "vk_app",
+        "community_app",
+        "html5_game",
+        "mini_app"
+      ]
+    },
+    "apps_catalog_list": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Total number",
+          "minimum": 0,
+          "required": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../apps/objects.json#/definitions/apps_app"
+          },
+          "required": true
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_user_min"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "apps_leaderboard": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer",
+          "description": "Level"
+        },
+        "points": {
+          "type": "integer",
+          "description": "Points number"
+        },
+        "score": {
+          "type": "integer",
+          "description": "Score number"
+        },
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "apps_scope": {
+      "type": "object",
+      "description": "Scope description",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Scope name",
+          "enum": [
+            "friends",
+            "photos",
+            "video",
+            "pages",
+            "status",
+            "notes",
+            "wall",
+            "docs",
+            "groups",
+            "stats",
+            "market"
+          ],
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Scope title"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

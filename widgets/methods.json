@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "widgets.getComments",
+      "description": "Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "widget_api_id",
+          "type": "integer"
+        },
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "page_id",
+          "type": "string"
+        },
+        {
+          "name": "order",
+          "type": "string",
+          "default": "date"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 10,
+          "maximum": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../widgets/responses.json#/definitions/widgets_getComments_response"
+        }
+      }
+    },
+    {
+      "name": "widgets.getPages",
+      "description": "Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "widget_api_id",
+          "type": "integer"
+        },
+        {
+          "name": "order",
+          "type": "string",
+          "default": "friend_likes"
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "default": "week"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 10,
+          "maximum": 200
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../widgets/responses.json#/definitions/widgets_getPages_response"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,742 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "responses",
+  "definitions": {
+    "photos_copy_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Photo ID",
+          "minimum": 1,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_createAlbum_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_album_full",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_createComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Created comment ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_deleteComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getAlbumsCount_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Albums number",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getAlbums_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo_album_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getAllComments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getAll_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo_full_xtr_real_offset"
+              }
+            },
+            "more": {
+              "description": "Information whether next page is presented",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getAll_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo_xtr_real_offset"
+              }
+            },
+            "more": {
+              "description": "Information whether next page is presented",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getComments_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "real_offset": {
+              "type": "integer",
+              "description": "Real offset of the comments",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getComments_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "real_offset": {
+              "type": "integer",
+              "description": "Real offset of the comments",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getMarketUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../base/objects.json#/definitions/base_upload_server",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getMessagesUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_upload",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getNewTags_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo_xtr_tag_info"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getTags_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo_tag"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_upload",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getUserPhotos_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_getWallUploadServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo_upload",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_get_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo"
+              },
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_market_album_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "gid": {
+              "type": "integer",
+              "description": "Community ID"
+            },
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            },
+            "server": {
+              "type": "integer",
+              "description": "Upload server number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_market_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "crop_data": {
+              "type": "string",
+              "description": "Crop data"
+            },
+            "crop_hash": {
+              "type": "string",
+              "description": "Crop hash"
+            },
+            "group_id": {
+              "type": "integer",
+              "description": "Community ID",
+              "entity": "groups",
+              "format": "int64"
+            },
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            },
+            "server": {
+              "type": "integer",
+              "description": "Upload server number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_message_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            },
+            "server": {
+              "type": "integer",
+              "description": "Upload server number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_owner_cover_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_owner_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            },
+            "server": {
+              "type": "integer",
+              "description": "Upload server number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_photo_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "aid": {
+              "type": "integer",
+              "description": "Album ID"
+            },
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            },
+            "photos_list": {
+              "type": "string",
+              "description": "Uploaded photos data"
+            },
+            "server": {
+              "type": "integer",
+              "description": "Upload server number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_putTag_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "integer",
+          "description": "Created tag ID",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_restoreComment_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_saveMarketAlbumPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_saveMarketPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_saveMessagesPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_saveOwnerCoverPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "images": {
+              "type": "array",
+              "items": {
+                "$ref": "../base/objects.json#/definitions/base_image"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_saveOwnerPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "photo_hash": {
+              "type": "string",
+              "description": "Photo hash",
+              "required": true
+            },
+            "photo_src": {
+              "type": "string",
+              "description": "Uploaded image url",
+              "required": true
+            },
+            "photo_src_big": {
+              "type": "string",
+              "description": "Uploaded image url"
+            },
+            "photo_src_small": {
+              "type": "string",
+              "description": "Uploaded image url"
+            },
+            "saved": {
+              "type": "integer",
+              "description": "Returns 1 if profile photo is saved"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Created post ID"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_saveWallPhoto_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_save_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_search_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../photos/objects.json#/definitions/photos_photo"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "photos_wall_upload_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "hash": {
+              "type": "string",
+              "description": "Uploading hash"
+            },
+            "photo": {
+              "type": "string",
+              "description": "Uploaded photo data"
+            },
+            "server": {
+              "type": "integer",
+              "description": "Upload server number"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

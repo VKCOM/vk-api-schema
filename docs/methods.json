@@ -1,0 +1,418 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "docs.add",
+      "description": "Copies a document to a user's or community's document list.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the document. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "doc_id",
+          "description": "Document ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "access_key",
+          "description": "Access key. This parameter is required if 'access_key' was returned with the document's data.",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_add_response"
+        }
+      }
+    },
+    {
+      "name": "docs.delete",
+      "description": "Deletes a user or community document.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the document. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "doc_id",
+          "description": "Document ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_doc_delete_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_doc_id"
+        }
+      ]
+    },
+    {
+      "name": "docs.edit",
+      "description": "Edits a document.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "User ID or community ID. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "doc_id",
+          "description": "Document ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "Document title.",
+          "type": "string",
+          "required": true,
+          "maxLength": 128
+        },
+        {
+          "name": "tags",
+          "description": "Document tags.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_doc_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_doc_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_doc_title"
+        }
+      ]
+    },
+    {
+      "name": "docs.get",
+      "description": "Returns detailed information about user or community documents.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "count",
+          "description": "Number of documents to return. By default, all documents.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of documents.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "type",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "enumNames": [
+            "all",
+            "text",
+            "archive",
+            "gif",
+            "image",
+            "audio",
+            "video",
+            "ebook",
+            "default"
+          ]
+        },
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the documents. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "return_tags",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_get_response"
+        }
+      }
+    },
+    {
+      "name": "docs.getById",
+      "description": "Returns information about documents by their IDs.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "docs",
+          "description": "Document IDs. Example: , \"66748_91488,66748_91455\",",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "return_tags",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_getById_response"
+        }
+      }
+    },
+    {
+      "name": "docs.getMessagesUploadServer",
+      "description": "Returns the server address for document upload.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "type",
+          "description": "Document type.",
+          "type": "string",
+          "default": "doc",
+          "enum": [
+            "audio_message",
+            "doc",
+            "graffiti"
+          ]
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
+          "type": "integer",
+          "format": "int32"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_getUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_deny_send"
+        }
+      ]
+    },
+    {
+      "name": "docs.getTypes",
+      "description": "Returns documents types available for current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the documents. Use a negative value to designate a community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_getTypes_response"
+        }
+      }
+    },
+    {
+      "name": "docs.getUploadServer",
+      "description": "Returns the server address for document upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID (if the document will be uploaded to the community).",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "docs.getWallUploadServer",
+      "description": "Returns the server address for document upload onto a user's or community's wall.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID (if the document will be uploaded to the community).",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "docs.save",
+      "description": "Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "file",
+          "description": "This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "title",
+          "description": "Document title.",
+          "type": "string"
+        },
+        {
+          "name": "tags",
+          "description": "Document tags.",
+          "type": "string"
+        },
+        {
+          "name": "return_tags",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_save_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_save_file"
+        }
+      ]
+    },
+    {
+      "name": "docs.search",
+      "description": "Returns a list of documents matching the search criteria.",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "q",
+          "description": "Search query string.",
+          "type": "string",
+          "required": true,
+          "maxLength": 512
+        },
+        {
+          "name": "search_own",
+          "type": "boolean"
+        },
+        {
+          "name": "count",
+          "description": "Number of results to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of results.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "return_tags",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../docs/responses.json#/definitions/docs_search_response"
+        }
+      }
+    }
+  ]
+}

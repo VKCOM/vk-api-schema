@@ -1,0 +1,811 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "5.131",
+  "title": "VK API JSON Schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "friends.add",
+      "description": "Approves or creates a friend request.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of the user whose friend request will be approved or to whom a friend request will be sent.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "text",
+          "description": "Text of the message (up to 500 characters) for the friend request, if any.",
+          "type": "string"
+        },
+        {
+          "name": "follow",
+          "description": "'1' to pass an incoming request to followers list.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_add_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_add_in_enemy"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_add_enemy"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_add_yourself"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_add_not_found"
+        }
+      ]
+    },
+    {
+      "name": "friends.addList",
+      "description": "Creates a new friend list for the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "description": "Name of the friend list.",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "user_ids",
+          "description": "IDs of users to be added to the friend list.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_addList_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_list_limit"
+        }
+      ]
+    },
+    {
+      "name": "friends.areFriends",
+      "description": "Checks the current user's friendship status with other specified users.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "description": "IDs of the users whose friendship status to check.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "need_sign",
+          "description": "'1' — to return 'sign' field. 'sign' is md5(\"{id}_{user_id}_{friends_status}_{application_secret}\"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.",
+          "type": "boolean"
+        },
+        {
+          "name": "extended",
+          "description": "Return friend request read_state field",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_areFriends_response"
+        },
+        "extendedResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_areFriends_extended_response"
+        }
+      }
+    },
+    {
+      "name": "friends.delete",
+      "description": "Declines a friend request or deletes a user from the current user's friend list.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of the user whose friend request is to be declined or who is to be deleted from the current user's friend list.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_delete_response"
+        }
+      }
+    },
+    {
+      "name": "friends.deleteAllRequests",
+      "description": "Marks all incoming friend requests as viewed.",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "friends.deleteList",
+      "description": "Deletes a friend list of the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "list_id",
+          "description": "ID of the friend list to delete.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "maximum": 24
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_list_id"
+        }
+      ]
+    },
+    {
+      "name": "friends.edit",
+      "description": "Edits the friend lists of the selected user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "ID of the user whose friend list is to be edited.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "list_ids",
+          "description": "IDs of the friend lists to which to add the user.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "friends.editList",
+      "description": "Edits a friend list of the current user.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "name",
+          "description": "Name of the friend list.",
+          "type": "string"
+        },
+        {
+          "name": "list_id",
+          "description": "Friend list ID.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "user_ids",
+          "description": "IDs of users in the friend list.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "add_user_ids",
+          "description": "(Applies if 'user_ids' parameter is not set.), User IDs to add to the friend list.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "delete_user_ids",
+          "description": "(Applies if 'user_ids' parameter is not set.), User IDs to delete from the friend list.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_list_id"
+        }
+      ]
+    },
+    {
+      "name": "friends.get",
+      "description": "Returns a list of user IDs or detailed information about a user's friends.",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID. By default, the current user ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "order",
+          "description": "Sort order: , 'name' — by name (enabled only if the 'fields' parameter is used), 'hints' — by rating, similar to how friends are sorted in My friends section, , This parameter is available only for [vk.com/dev/standalone|desktop applications].",
+          "type": "string",
+          "enum": [
+            "hints",
+            "random",
+            "mobile",
+            "name",
+            "smart"
+          ]
+        },
+        {
+          "name": "list_id",
+          "description": "ID of the friend list returned by the [vk.com/dev/friends.getLists|friends.getLists] method to be used as the source. This parameter is taken into account only when the uid parameter is set to the current user ID. This parameter is available only for [vk.com/dev/standalone|desktop applications].",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of friends to return.",
+          "type": "integer",
+          "default": 5000,
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of friends.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        },
+        {
+          "name": "ref",
+          "type": "string",
+          "maxLength": 255
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_get_response"
+        },
+        "fieldsResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_get_fields_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getAppUsers",
+      "description": "Returns a list of IDs of the current user's friends who installed the application.",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getAppUsers_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getByPhones",
+      "description": "Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "phones",
+          "description": "List of phone numbers in MSISDN format (maximum 1000). Example: \"+79219876543,+79111234567\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online, counters'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getByPhones_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getLists",
+      "description": "Returns a list of the user's friend lists.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "return_system",
+          "description": "'1' — to return system friend lists. By default: '0'.",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getLists_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getMutual",
+      "description": "Returns a list of user IDs of the mutual friends of two users.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "source_uid",
+          "description": "ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "target_uid",
+          "description": "ID of the user whose friends will be checked against the friends of the user specified in 'source_uid'.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "target_uids",
+          "description": "IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "order",
+          "description": "Sort order: 'random' — random order",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "description": "Number of mutual friends to return.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of mutual friends.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getMutual_response"
+        },
+        "targetUidsResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getMutual_target_uids_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getOnline",
+      "description": "Returns a list of user IDs of a user's friends who are online.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "list_id",
+          "description": "Friend list ID. If this parameter is not set, information about all online friends is returned.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "online_mobile",
+          "description": "'1' — to return an additional 'online_mobile' field, '0' — (default),",
+          "type": "boolean"
+        },
+        {
+          "name": "order",
+          "description": "Sort order: 'random' — random order",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "description": "Number of friends to return.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of friends.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getOnline_response"
+        },
+        "onlineMobileResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getOnline_online_mobile_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getRecent",
+      "description": "Returns a list of user IDs of the current user's recently added friends.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "count",
+          "description": "Number of recently added friends to return.",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getRecent_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getRequests",
+      "description": "Returns information about the current user's incoming and outgoing friend requests.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of friend requests.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of friend requests to return (default 100, maximum 1000).",
+          "type": "integer",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 1000
+        },
+        {
+          "name": "extended",
+          "description": "'1' — to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends",
+          "type": "boolean"
+        },
+        {
+          "name": "need_mutual",
+          "description": "'1' — to return a list of mutual friends (up to 20), if any",
+          "type": "boolean"
+        },
+        {
+          "name": "out",
+          "description": "'1' — to return outgoing requests, '0' — to return incoming requests (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "sort",
+          "description": "Sort order: '1' — by number of mutual friends, '0' — by date",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "enumNames": [
+            "date",
+            "mutual",
+            "rotate"
+          ]
+        },
+        {
+          "name": "need_viewed",
+          "type": "boolean",
+          "default": 0
+        },
+        {
+          "name": "suggested",
+          "description": "'1' — to return a list of suggested friends, '0' — to return friend requests (default)",
+          "type": "boolean"
+        },
+        {
+          "name": "ref",
+          "type": "string",
+          "maxLength": 255
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getRequests_response"
+        },
+        "needMutualResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getRequests_need_mutual_response"
+        },
+        "extendedResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getRequests_extended_response"
+        }
+      }
+    },
+    {
+      "name": "friends.getSuggestions",
+      "description": "Returns a list of profiles of users whom the current user may know.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "filter",
+          "description": "Types of potential friends to return: 'mutual' — users with many mutual friends , 'contacts' — users found with the [vk.com/dev/account.importContacts|account.importContacts] method , 'mutual_contacts' — users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "mutual",
+              "contacts",
+              "mutual_contacts"
+            ]
+          }
+        },
+        {
+          "name": "count",
+          "description": "Number of suggestions to return.",
+          "type": "integer",
+          "default": 500,
+          "minimum": 0,
+          "maximum": 500
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of suggestions.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "enum": [
+            "nom",
+            "gen",
+            "dat",
+            "acc",
+            "ins",
+            "abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_getSuggestions_response"
+        }
+      }
+    },
+    {
+      "name": "friends.search",
+      "description": "Returns a list of friends matching the search criteria.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "description": "User ID.",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "q",
+          "description": "Search query string (e.g., 'Vasya Babich').",
+          "type": "string"
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online',",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "type": "string",
+          "default": "Nom",
+          "enum": [
+            "Nom",
+            "Gen",
+            "Dat",
+            "Acc",
+            "Ins",
+            "Abl"
+          ],
+          "enumNames": [
+            "nominative",
+            "genitive",
+            "dative",
+            "accusative",
+            "instrumental",
+            "prepositional"
+          ]
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of friends.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of friends to return.",
+          "type": "integer",
+          "default": 20,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../friends/responses.json#/definitions/friends_search_response"
+        }
+      }
+    }
+  ]
+}
