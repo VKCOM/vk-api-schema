@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "account_account_counters": {
       "type": "object",
@@ -25,11 +28,6 @@
           "description": "New friends requests number",
           "minimum": 1
         },
-        "friends_suggestions": {
-          "type": "integer",
-          "description": "New friends suggestions number",
-          "minimum": 1
-        },
         "friends_recommendations": {
           "type": "integer",
           "description": "New friends recommendations number",
@@ -44,12 +42,6 @@
           "type": "integer",
           "description": "New groups number",
           "minimum": 1
-        },
-        "menu_discover_badge": {
-          "type": "integer"
-        },
-        "menu_clips_badge": {
-          "type": "integer"
         },
         "messages": {
           "type": "integer",
@@ -75,21 +67,30 @@
           "type": "integer",
           "description": "New photo tags number",
           "minimum": 1
-        },
-        "sdk": {
-          "type": "integer",
-          "description": "New sdk number",
-          "minimum": 1
         }
       },
       "additionalProperties": false
     },
+    "account_counters_filter": {
+      "type": "string",
+      "enum": [
+        "app_requests",
+        "events",
+        "friends",
+        "friends_recommendations",
+        "gifts",
+        "groups",
+        "messages",
+        "notes",
+        "notifications",
+        "photos",
+        "faves",
+        "memories"
+      ]
+    },
     "account_info": {
       "type": "object",
       "properties": {
-        "wishlists_ae_promo_banner_show": {
-          "$ref": "../base/objects.json#/definitions/base_bool_int"
-        },
         "2fa_required": {
           "description": "Two factor authentication is enabled",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
@@ -106,21 +107,6 @@
           "description": "Information whether user has been processed intro",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
-        "show_vk_apps_intro": {
-          "type": "boolean"
-        },
-        "mini_apps_ads_slot_id": {
-          "description": "Ads slot id for MyTarget",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "qr_promotion": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "link_redirects": {
-          "type": "object"
-        },
         "lang": {
           "type": "integer",
           "description": "Language ID"
@@ -132,10 +118,6 @@
         "own_posts_default": {
           "description": "Information whether only owners posts should be shown",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
-        },
-        "subscriptions": {
-          "type": "object",
-          "$ref": "../account/objects.json#/definitions/account_subscriptions"
         }
       },
       "additionalProperties": false
@@ -459,12 +441,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "account_subscriptions": {
-      "type": "array",
-      "items": {
-        "type": "integer"
-      }
     },
     "account_user_settings": {
       "type": "object",

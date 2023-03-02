@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -62,7 +62,7 @@
           "description": "Community ID (if the album will be created in a community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0,
+          "minimum": 1,
           "entity": "owner"
         },
         {
@@ -119,13 +119,15 @@
         },
         {
           "name": "album_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         {
           "name": "album_ids",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int32"
           }
         },
         {
@@ -189,7 +191,7 @@
         },
         {
           "name": "attachments",
-          "description": "List of objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media attachment owner. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "List of objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -197,7 +199,7 @@
         },
         {
           "name": "from_group",
-          "description": "'1' — to post the comment from a community name (only if 'owner_id'<0)",
+          "description": "'1' - to post the comment from a community name (only if 'owner_id'<0)",
           "type": "boolean"
         },
         {
@@ -212,6 +214,10 @@
         },
         {
           "name": "guid",
+          "type": "string"
+        },
+        {
+          "name": "track_code",
           "type": "string"
         }
       ],
@@ -273,7 +279,7 @@
           "description": "Community ID (if the album is owned by a community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0,
+          "minimum": 1,
           "entity": "owner"
         },
         {
@@ -281,6 +287,7 @@
           "description": "Album ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -377,13 +384,13 @@
         },
         {
           "name": "repeat",
-          "description": "'1' — to repeat the playback of the video, '0' — to play the video once,",
+          "description": "'1' - to repeat the playback of the video, '0' - to play the video once,",
           "type": "boolean"
         }
       ],
       "responses": {
         "response": {
-          "$ref": "../base/responses.json#/definitions/base_ok_response"
+          "$ref": "../video/responses.json#/definitions/video_edit_response"
         }
       }
     },
@@ -399,7 +406,7 @@
           "description": "Community ID (if the album edited is owned by a community).",
           "type": "integer",
           "format": "int64",
-          "minimum": 0,
+          "minimum": 1,
           "entity": "owner"
         },
         {
@@ -407,13 +414,13 @@
           "description": "Album ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
           "name": "title",
           "description": "New album title.",
-          "type": "string",
-          "required": true
+          "type": "string"
         },
         {
           "name": "privacy",
@@ -474,7 +481,7 @@
         },
         {
           "name": "attachments",
-          "description": "List of objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media attachment owner. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "List of objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -512,7 +519,8 @@
         {
           "name": "album_id",
           "description": "ID of the album containing the video(s).",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         {
           "name": "count",
@@ -530,7 +538,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return an extended response with additional fields",
+          "description": "'1' - to return an extended response with additional fields",
           "type": "boolean"
         },
         {
@@ -539,6 +547,16 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "sort_album",
+          "description": "Sort order: '0' - newest video first, '1' - oldest video first",
+          "type": "integer",
+          "default": 0,
+          "enum": [
+            0,
+            1
+          ]
         }
       ],
       "responses": {
@@ -570,7 +588,8 @@
           "name": "album_id",
           "description": "Album ID.",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int32"
         }
       ],
       "responses": {
@@ -614,7 +633,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional information about album privacy settings for the current user",
+          "description": "'1' - to return additional information about album privacy settings for the current user",
           "type": "boolean"
         },
         {
@@ -707,7 +726,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return an additional 'likes' field",
+          "description": "'1' - to return an additional 'likes' field",
           "type": "boolean"
         },
         {
@@ -730,8 +749,9 @@
         },
         {
           "name": "sort",
-          "description": "Sort order: 'asc' — oldest comment first, 'desc' — newest comment first",
+          "description": "Sort order: 'asc' - oldest comment first, 'desc' - newest comment first",
           "type": "string",
+          "default": "asc",
           "enum": [
             "asc",
             "desc"
@@ -768,6 +788,48 @@
       ]
     },
     {
+      "name": "video.getLongPollServer",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "type": "integer",
+          "required": true,
+          "format": "int32",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getLongPollServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_wait"
+        }
+      ]
+    },
+    {
+      "name": "video.liveGetCategories",
+      "access_token_type": [
+        "user"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_liveGetCategories_response"
+        }
+      }
+    },
+    {
       "name": "video.removeFromAlbum",
       "access_token_type": [
         "user"
@@ -781,13 +843,15 @@
         },
         {
           "name": "album_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int32"
         },
         {
           "name": "album_ids",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int32"
           }
         },
         {
@@ -838,18 +902,21 @@
           "description": "Album ID.",
           "type": "integer",
           "required": true,
+          "format": "int32",
           "minimum": 0
         },
         {
           "name": "before",
           "description": "ID of the album before which the album in question shall be placed.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         },
         {
           "name": "after",
           "description": "ID of the album after which the album in question shall be placed.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -885,6 +952,7 @@
           "name": "album_id",
           "description": "ID of the video album.",
           "type": "integer",
+          "format": "int32",
           "default": -2
         },
         {
@@ -975,19 +1043,21 @@
             0,
             1,
             2,
-            3,
             4,
             5,
-            6
-          ],
-          "enumNames": [
-            "spam",
-            "child pornography",
-            "extremism",
-            "violence",
-            "drug propaganda",
-            "adult material",
-            "insult abuse"
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            27,
+            41,
+            42,
+            43,
+            101
           ]
         },
         {
@@ -1038,19 +1108,21 @@
             0,
             1,
             2,
-            3,
             4,
             5,
-            6
-          ],
-          "enumNames": [
-            "spam",
-            "child pornography",
-            "extremism",
-            "violence",
-            "drug propaganda",
-            "adult material",
-            "insult abuse"
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            27,
+            41,
+            42,
+            43,
+            101
           ]
         }
       ],
@@ -1112,7 +1184,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../video/responses.json#/definitions/video_restoreComment_response"
+          "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       }
     },
@@ -1135,12 +1208,12 @@
         },
         {
           "name": "is_private",
-          "description": "'1' — to designate the video as private (send it via a private message), the video will not appear on the user's video list and will not be available by ID for other users, '0' — not to designate the video as private",
+          "description": "'1' - to designate the video as private (send it via a private message), the video will not appear on the user's video list and will not be available by ID for other users, '0' - not to designate the video as private",
           "type": "boolean"
         },
         {
           "name": "wallpost",
-          "description": "'1' — to post the saved video on a user's wall, '0' — not to post the saved video on a user's wall",
+          "description": "'1' - to post the saved video on a user's wall, '0' - not to post the saved video on a user's wall",
           "type": "boolean"
         },
         {
@@ -1153,13 +1226,14 @@
           "description": "ID of the community in which the video will be saved. By default, the current user's page.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0,
+          "minimum": 1,
           "entity": "owner"
         },
         {
           "name": "album_id",
           "description": "ID of the album to which the saved video will be added.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -1182,7 +1256,7 @@
         },
         {
           "name": "repeat",
-          "description": "'1' — to repeat the playback of the video, '0' — to play the video once,",
+          "description": "'1' - to repeat the playback of the video, '0' - to play the video once,",
           "type": "boolean"
         },
         {
@@ -1227,7 +1301,7 @@
         },
         {
           "name": "sort",
-          "description": "Sort order: '1' — by duration, '2' — by relevance, '0' — by date added",
+          "description": "Sort order: '1' - by duration, '2' - by relevance, '0' - by date added",
           "type": "integer",
           "enum": [
             1,
@@ -1247,7 +1321,7 @@
         },
         {
           "name": "adult",
-          "description": "'1' — to disable the Safe Search filter, '0' — to enable the Safe Search filter",
+          "description": "'1' - to disable the Safe Search filter, '0' - to enable the Safe Search filter",
           "type": "boolean"
         },
         {
@@ -1256,15 +1330,15 @@
         },
         {
           "name": "filters",
-          "description": "Filters to apply: 'youtube' — return YouTube videos only, 'vimeo' — return Vimeo videos only, 'short' — return short videos only, 'long' — return long videos only",
+          "description": "Filters to apply: 'youtube' - return YouTube videos only, 'vimeo' - return Vimeo videos only, 'short' - return short videos only, 'long' - return long videos only",
           "type": "array",
           "items": {
             "type": "string",
             "enum": [
-              "youtube",
-              "vimeo",
+              "long",
               "short",
-              "long"
+              "vimeo",
+              "youtube"
             ]
           }
         },
@@ -1300,6 +1374,19 @@
           "name": "extended",
           "type": "boolean",
           "default": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       ],
       "responses": {
@@ -1315,6 +1402,136 @@
           "$ref": "../errors.json#/errors/api_error_action_failed"
         }
       ]
+    },
+    {
+      "name": "video.startStreaming",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "video_id",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "wallpost",
+          "type": "boolean"
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
+          "name": "privacy_view",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "privacy_comment",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "no_comments",
+          "type": "boolean"
+        },
+        {
+          "name": "category_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "publish",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_startStreaming_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_add_post"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_ads_published"
+        }
+      ]
+    },
+    {
+      "name": "video.stopStreaming",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "video_id",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_stopStreaming_response"
+        }
+      }
+    },
+    {
+      "name": "video.unpinComment",
+      "description": "Unpin comment of a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "comment_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -226,7 +226,7 @@
       "parameters": [
         {
           "name": "extended",
-          "description": "'1' — to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.",
+          "description": "'1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.",
           "type": "boolean",
           "default": false
         },
@@ -236,7 +236,9 @@
           "enum": [
             "article",
             "clip",
+            "game",
             "link",
+            "mini_app",
             "narrative",
             "page",
             "podcast",
@@ -594,7 +596,9 @@
           "enum": [
             "article",
             "clip",
+            "game",
             "link",
+            "mini_app",
             "narrative",
             "page",
             "podcast",

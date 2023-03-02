@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "base_bool_response": {
       "type": "object",
@@ -35,6 +38,18 @@
             "ok"
           ],
           "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_undefined_response": {
+      "type": "object",
+      "description": "Response schema is not defined yet",
+      "properties": {
+        "response": {
+          "type": "object",
+          "required": true,
+          "additionalProperties": false
         }
       },
       "additionalProperties": false

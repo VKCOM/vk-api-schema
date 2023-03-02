@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "friends_addList_response": {
       "type": "object",
@@ -272,8 +275,9 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "description": "User ID",
-            "minimum": 1
+            "entity": "owner",
+            "format": "int64",
+            "description": "User ID"
           },
           "required": true
         }
@@ -289,13 +293,23 @@
             "count": {
               "type": "integer",
               "description": "Total requests number",
-              "minimum": 0
+              "minimum": 0,
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../friends/objects.json#/definitions/friends_requests_xtr_message"
-              }
+              },
+              "required": true
+            },
+            "count_unread": {
+              "type": "integer",
+              "description": "Total unread requests number"
+            },
+            "last_viewed": {
+              "type": "integer",
+              "description": "Friend requests last viewed timestamp"
             }
           },
           "additionalProperties": false,
@@ -313,13 +327,23 @@
             "count": {
               "type": "integer",
               "description": "Total requests number",
-              "minimum": 0
+              "minimum": 0,
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
-                "$ref": "../friends/objects.json#/definitions/friends_requests"
-              }
+                "$ref": "../friends/objects.json#/definitions/friends_requests_xtr_mutual"
+              },
+              "required": true
+            },
+            "count_unread": {
+              "type": "integer",
+              "description": "Total unread requests number"
+            },
+            "last_viewed": {
+              "type": "integer",
+              "description": "Friend requests last viewed timestamp"
             }
           },
           "additionalProperties": false,
@@ -337,7 +361,8 @@
             "count": {
               "type": "integer",
               "description": "Total requests number",
-              "minimum": 0
+              "minimum": 0,
+              "required": true
             },
             "items": {
               "type": "array",
@@ -347,11 +372,16 @@
                 "format": "int64",
                 "description": "User ID",
                 "minimum": 1
-              }
+              },
+              "required": true
             },
             "count_unread": {
               "type": "integer",
               "description": "Total unread requests number"
+            },
+            "last_viewed": {
+              "type": "integer",
+              "description": "Friend requests last viewed timestamp"
             }
           },
           "additionalProperties": false,
@@ -404,6 +434,12 @@
                 "$ref": "../users/objects.json#/definitions/users_user_full"
               },
               "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
             }
           },
           "additionalProperties": false,
@@ -430,7 +466,7 @@
                 "type": "integer",
                 "description": "User ID",
                 "minimum": 1,
-                "entity": "profiles",
+                "entity": "owner",
                 "format": "int64"
               },
               "required": true

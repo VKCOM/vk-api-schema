@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "gifts_gift": {
       "type": "object",
@@ -11,7 +14,9 @@
         },
         "from_id": {
           "type": "integer",
-          "description": "Gift sender ID"
+          "description": "Gift sender ID",
+          "entity": "owner",
+          "format": "int64"
         },
         "gift": {
           "$ref": "../gifts/objects.json#/definitions/gifts_layout"

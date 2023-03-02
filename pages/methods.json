@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -47,12 +47,12 @@
         },
         {
           "name": "global",
-          "description": "'1' — to return information about a global wiki page",
+          "description": "'1' - to return information about a global wiki page",
           "type": "boolean"
         },
         {
           "name": "site_preview",
-          "description": "'1' — resulting wiki page is a preview for the attached link",
+          "description": "'1' - resulting wiki page is a preview for the attached link",
           "type": "boolean"
         },
         {
@@ -66,7 +66,7 @@
         },
         {
           "name": "need_html",
-          "description": "'1' — to return the page as HTML,",
+          "description": "'1' - to return the page as HTML,",
           "type": "boolean"
         }
       ],
@@ -170,7 +170,7 @@
         },
         {
           "name": "need_html",
-          "description": "'1' — to return the page as HTML",
+          "description": "'1' - to return the page as HTML",
           "type": "boolean"
         }
       ],
@@ -295,7 +295,7 @@
         },
         {
           "name": "view",
-          "description": "Who can view the wiki page: '1' — only community members, '2' — all users can view the page, '0' — only community managers",
+          "description": "Who can view the wiki page: '1' - only community members, '2' - all users can view the page, '0' - only community managers",
           "type": "integer",
           "enum": [
             0,
@@ -310,7 +310,7 @@
         },
         {
           "name": "edit",
-          "description": "Who can edit the wiki page: '1' — only community members, '2' — all users can edit the page, '0' — only community managers",
+          "description": "Who can edit the wiki page: '1' - only community members, '2' - all users can edit the page, '0' - only community managers",
           "type": "integer",
           "enum": [
             0,

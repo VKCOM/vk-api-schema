@@ -1,7 +1,14 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "messages_action_one_of": {
+      "type": "object",
+      "$ref": "../messages/objects.json#/definitions/messages_message_action"
+    },
     "messages_audio_message": {
       "type": "object",
       "properties": {
@@ -189,6 +196,19 @@
             "$ref": "../messages/objects.json#/definitions/messages_user_xtr_invited_by"
           },
           "required": true
+        },
+        "is_default_photo": {
+          "type": "boolean",
+          "description": "If provided photo is default"
+        },
+        "members_count": {
+          "type": "integer",
+          "description": "Count members in a chat",
+          "required": true
+        },
+        "is_group_channel": {
+          "type": "boolean",
+          "description": "If chat is group channel"
         }
       },
       "additionalProperties": false
@@ -230,6 +250,9 @@
           "$ref": "../messages/objects.json#/definitions/messages_chat_settings_photo"
         },
         "is_don": {
+          "type": "boolean"
+        },
+        "is_nft": {
           "type": "boolean"
         },
         "is_group_channel": {
@@ -328,8 +351,7 @@
             "format": "int64",
             "entity": "owner",
             "description": "Active member ID"
-          },
-          "required": true
+          }
         },
         "is_group_channel": {
           "type": "boolean"
@@ -518,7 +540,8 @@
       "enum": [
         "in",
         "kicked",
-        "left"
+        "left",
+        "out"
       ]
     },
     "messages_conversation": {
@@ -576,7 +599,8 @@
           "type": "string",
           "enum": [
             "business_notify"
-          ]
+          ],
+          "default": "business_notify"
         },
         "message_request_data": {
           "$ref": "../messages/objects.json#/definitions/messages_message_request_data"
@@ -661,6 +685,8 @@
       "properties": {
         "id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "peer",
           "required": true
         },
         "local_id": {
@@ -714,6 +740,31 @@
       },
       "additionalProperties": false
     },
+    "messages_delete_full_response_item": {
+      "type": "object",
+      "properties": {
+        "peer_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
+        },
+        "message_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "response": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "error": {
+          "$ref": "../base/objects.json#/definitions/base_message_error"
+        }
+      },
+      "additionalProperties": false
+    },
     "messages_foreign_message": {
       "type": "object",
       "properties": {
@@ -754,6 +805,8 @@
         },
         "peer_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "peer",
           "description": "Peer ID"
         },
         "reply_message": {
@@ -790,6 +843,8 @@
         },
         "peer_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "peer",
           "description": "Messages peer_id"
         },
         "conversation_message_ids": {
@@ -812,6 +867,13 @@
         }
       },
       "additionalProperties": false
+    },
+    "messages_fwd_messages": {
+      "type": "array",
+      "description": "Forwarded messages",
+      "items": {
+        "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+      }
     },
     "messages_getConversationById": {
       "type": "object",
@@ -940,10 +1002,23 @@
           "$ref": "../messages/objects.json#/definitions/messages_history_message_attachment",
           "required": true
         },
+        "date": {
+          "type": "integer",
+          "description": "Message sending time",
+          "required": true
+        },
         "message_id": {
           "type": "integer",
           "description": "Message ID",
           "required": true
+        },
+        "message_expire_ttl": {
+          "type": "integer",
+          "description": "Message Exipire ttl"
+        },
+        "cmid": {
+          "type": "integer",
+          "description": "Conversation Message ID"
         },
         "from_id": {
           "type": "integer",
@@ -958,6 +1033,10 @@
         },
         "was_listened": {
           "type": "boolean"
+        },
+        "position": {
+          "type": "integer",
+          "description": "Attachment position in the Message"
         }
       },
       "additionalProperties": false
@@ -977,9 +1056,6 @@
         "graffiti": {
           "$ref": "../messages/objects.json#/definitions/messages_graffiti"
         },
-        "link": {
-          "$ref": "../base/objects.json#/definitions/base_link"
-        },
         "market": {
           "$ref": "../market/objects.json#/definitions/market_market_item"
         },
@@ -989,12 +1065,6 @@
         "type": {
           "$ref": "../messages/objects.json#/definitions/messages_history_message_attachment_type",
           "required": true
-        },
-        "video": {
-          "$ref": "../video/objects.json#/definitions/video_video"
-        },
-        "wall": {
-          "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
         }
       },
       "additionalProperties": false
@@ -1011,6 +1081,7 @@
         "market",
         "wall",
         "share",
+        "app_action",
         "graffiti",
         "audio_message"
       ]
@@ -1080,10 +1151,11 @@
         },
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "callback"
           ],
-          "required": true
+          "default": "callback"
         }
       },
       "additionalProperties": false
@@ -1098,10 +1170,11 @@
         },
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "location"
           ],
-          "required": true
+          "default": "location"
         }
       },
       "additionalProperties": false
@@ -1137,10 +1210,11 @@
         },
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "open_app"
           ],
-          "required": true
+          "default": "open_app"
         }
       },
       "additionalProperties": false
@@ -1165,10 +1239,11 @@
         },
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "open_link"
           ],
-          "required": true
+          "default": "open_link"
         }
       },
       "additionalProperties": false
@@ -1179,10 +1254,11 @@
       "properties": {
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "open_photo"
           ],
-          "required": true
+          "default": "open_photo"
         }
       },
       "additionalProperties": false
@@ -1202,10 +1278,11 @@
         },
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "text"
           ],
-          "required": true
+          "default": "text"
         }
       },
       "additionalProperties": false
@@ -1225,16 +1302,29 @@
         },
         "type": {
           "type": "string",
+          "required": true,
           "enum": [
             "vkpay"
           ],
-          "required": true
+          "default": "vkpay"
         }
       },
       "additionalProperties": false
     },
     "messages_keyboard_button_property_action": {
       "type": "object",
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "location": "../messages/objects.json#/definitions/messages_keyboard_button_action_location",
+          "open_app": "../messages/objects.json#/definitions/messages_keyboard_button_action_open_app",
+          "open_link": "../messages/objects.json#/definitions/messages_keyboard_button_action_open_link",
+          "open_photo": "../messages/objects.json#/definitions/messages_keyboard_button_action_open_photo",
+          "text": "../messages/objects.json#/definitions/messages_keyboard_button_action_text",
+          "callback": "../messages/objects.json#/definitions/messages_keyboard_button_action_callback",
+          "vkpay": "../messages/objects.json#/definitions/messages_keyboard_button_action_vkpay"
+        }
+      },
       "oneOf": [
         {
           "$ref": "../messages/objects.json#/definitions/messages_keyboard_button_action_location"
@@ -1321,7 +1411,7 @@
       "type": "object",
       "properties": {
         "action": {
-          "$ref": "../messages/objects.json#/definitions/messages_message_action"
+          "$ref": "../messages/objects.json#/definitions/messages_action_one_of"
         },
         "admin_author_id": {
           "type": "integer",
@@ -1356,11 +1446,7 @@
           "required": true
         },
         "fwd_messages": {
-          "description": "Forwarded messages",
-          "type": "array",
-          "items": {
-            "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
-          }
+          "$ref": "../messages/objects.json#/definitions/messages_fwd_messages"
         },
         "geo": {
           "$ref": "../base/objects.json#/definitions/base_geo"
@@ -1398,6 +1484,8 @@
         },
         "peer_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "peer",
           "description": "Peer ID",
           "required": true
         },
@@ -1413,6 +1501,21 @@
         },
         "reply_message": {
           "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+        },
+        "reaction_id": {
+          "type": "integer",
+          "description": "Reaction id set on message"
+        },
+        "reactions": {
+          "type": "array",
+          "description": "Actual reactions counters on this message",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_reaction_counter_response_item"
+          }
+        },
+        "last_reaction_id": {
+          "type": "integer",
+          "description": "Last reaction id set on this message"
         },
         "text": {
           "type": "string",
@@ -1554,9 +1657,6 @@
           "$ref": "../messages/objects.json#/definitions/messages_message_attachment_type",
           "required": true
         },
-        "video": {
-          "$ref": "../video/objects.json#/definitions/video_video_full"
-        },
         "wall_reply": {
           "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
         },
@@ -1573,6 +1673,7 @@
         "photo",
         "audio",
         "video",
+        "video_playlist",
         "doc",
         "link",
         "market",
@@ -1685,6 +1786,8 @@
         },
         "peer_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "peer",
           "description": "Peer ID",
           "required": true
         },
@@ -1730,11 +1833,106 @@
       },
       "additionalProperties": false
     },
+    "messages_reaction_asset_item": {
+      "type": "object",
+      "properties": {
+        "reaction_id": {
+          "type": "integer",
+          "required": true
+        },
+        "links": {
+          "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item_links",
+          "required": true,
+          "description": "Liks to reactions assets for each asset type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_reaction_asset_item_links": {
+      "type": "object",
+      "properties": {
+        "big_animation": {
+          "type": "string",
+          "required": true,
+          "description": "Big reaction animation json file"
+        },
+        "small_animation": {
+          "type": "string",
+          "required": true,
+          "description": "Small reaction animation json file"
+        },
+        "static": {
+          "type": "string",
+          "required": true,
+          "description": "Reaction image file"
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_reaction_counter_response_item": {
+      "type": "object",
+      "properties": {
+        "reaction_id": {
+          "type": "integer",
+          "required": true
+        },
+        "count": {
+          "type": "integer",
+          "required": true
+        },
+        "user_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 3,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_reaction_counters_response_item": {
+      "type": "object",
+      "properties": {
+        "cmid": {
+          "type": "integer",
+          "required": true
+        },
+        "counters": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_reaction_counter_response_item"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_reaction_response_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "reaction_id": {
+          "type": "integer",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "messages_send_user_ids_response_item": {
       "type": "object",
       "properties": {
         "peer_id": {
           "type": "integer",
+          "format": "int64",
+          "entity": "peer",
           "required": true
         },
         "message_id": {
@@ -1765,7 +1963,16 @@
         "open_link",
         "callback",
         "intent_subscribe",
-        "intent_unsubscribe"
+        "intent_unsubscribe",
+        "open_modal_view"
+      ]
+    },
+    "messages_user_type_for_xtr_invited_by": {
+      "type": "string",
+      "description": "Object type",
+      "enum": [
+        "profile",
+        "group"
       ]
     },
     "messages_user_xtr_invited_by": {
@@ -1781,6 +1988,13 @@
               "format": "int64",
               "entity": "owner",
               "description": "ID of the inviter"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of group"
+            },
+            "type": {
+              "$ref": "../messages/objects.json#/definitions/messages_user_type_for_xtr_invited_by"
             }
           }
         }

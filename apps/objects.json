@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "apps_app": {
       "type": "object",
@@ -37,10 +40,6 @@
             "push_enabled": {
               "description": "Is push enabled",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
-            },
-            "screen_orientation": {
-              "type": "integer",
-              "description": "Screen orientation"
             },
             "friends": {
               "type": "array",
@@ -100,6 +99,60 @@
         }
       ],
       "additionalProperties": false
+    },
+    "apps_app_fields": {
+      "type": "string",
+      "description": "App fields available for response",
+      "enum": [
+        "author_group",
+        "author_id",
+        "author_url",
+        "banner_1120",
+        "banner_560",
+        "banner_186",
+        "banner_896",
+        "icon_16",
+        "icon_25",
+        "icon_50",
+        "icon_100",
+        "icon_200",
+        "icon_128",
+        "icon_256",
+        "is_new",
+        "new",
+        "is_html5_app",
+        "push_enabled",
+        "catalog_banner",
+        "friends",
+        "catalog_position",
+        "description",
+        "genre",
+        "genre_id",
+        "international",
+        "is_in_catalog",
+        "installed",
+        "leaderboard_type",
+        "members_count",
+        "platform_id",
+        "published_date",
+        "screen_name",
+        "section",
+        "type",
+        "id",
+        "title",
+        "author_owner_id",
+        "is_installed",
+        "icon_139",
+        "icon_150",
+        "icon_278",
+        "icon_576",
+        "background_loader_color",
+        "loader_icon",
+        "icon_75",
+        "open_in_external_browser",
+        "ad_config",
+        "screen_orientation"
+      ]
     },
     "apps_app_leaderboard_type": {
       "type": "integer",
@@ -173,6 +226,10 @@
           "type": "string",
           "format": "uri",
           "description": "URL of the app icon with 75 px in width"
+        },
+        "screen_orientation": {
+          "type": "integer",
+          "description": "Screen orientation"
         }
       },
       "additionalProperties": false
@@ -259,13 +316,72 @@
             "docs",
             "groups",
             "stats",
-            "market"
+            "market",
+            "stories",
+            "app_widget",
+            "messages",
+            "manage",
+            "notify",
+            "audio",
+            "support",
+            "menu",
+            "wallmenu",
+            "ads",
+            "offline",
+            "notifications",
+            "email",
+            "adsweb",
+            "leads",
+            "group_messages",
+            "exchange",
+            "phone"
           ],
           "required": true
         },
         "title": {
           "type": "string",
           "description": "Scope title"
+        }
+      },
+      "additionalProperties": false
+    },
+    "apps_testing_group": {
+      "type": "object",
+      "properties": {
+        "user_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "entity": "owner",
+            "format": "int64"
+          },
+          "required": true
+        },
+        "group_id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 25,
+          "entity": "groups",
+          "format": "int64",
+          "required": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "webview": {
+          "type": "string"
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "mobile",
+              "web",
+              "mvk"
+            ]
+          }
         }
       },
       "additionalProperties": false

@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -32,7 +32,7 @@
           "required": true,
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64"
           }
         },
         {
@@ -42,7 +42,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../polls/responses.json#/definitions/polls_addVote_response"
+          "description": "Result",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       },
       "errors": [
@@ -150,20 +151,14 @@
           "minimum": 0
         },
         {
-          "name": "answer_id",
-          "description": "Answer ID.",
-          "type": "integer",
-          "required": true,
-          "minimum": 0
-        },
-        {
           "name": "is_board",
           "type": "boolean"
         }
       ],
       "responses": {
         "response": {
-          "$ref": "../polls/responses.json#/definitions/polls_deleteVote_response"
+          "description": "Result",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       },
       "errors": [
@@ -377,7 +372,7 @@
           "required": true,
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64"
           }
         },
         {
@@ -386,18 +381,18 @@
         },
         {
           "name": "friends_only",
-          "description": "'1' — to return only current user's friends, '0' — to return all users (default),",
+          "description": "'1' - to return only current user's friends, '0' - to return all users (default),",
           "type": "boolean"
         },
         {
           "name": "offset",
-          "description": "Offset needed to return a specific subset of voters. '0' — (default)",
+          "description": "Offset needed to return a specific subset of voters. '0' - (default)",
           "type": "integer",
           "minimum": 0
         },
         {
           "name": "count",
-          "description": "Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' — (default)",
+          "description": "Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' - (default)",
           "type": "integer",
           "minimum": 0
         },
@@ -411,29 +406,17 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "description": "Case for declension of user name and surname: , 'nom' - nominative (default) , 'gen' - genitive , 'dat' - dative , 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
         "response": {
           "$ref": "../polls/responses.json#/definitions/polls_getVoters_response"
+        },
+        "fieldsResponse": {
+          "$ref": "../polls/responses.json#/definitions/polls_getVoters_fields_response"
         }
       },
       "errors": [

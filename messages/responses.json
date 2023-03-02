@@ -1,13 +1,60 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
-    "messages_createChat_response": {
+    "messages_addChatUsers_response": {
       "type": "object",
       "properties": {
         "response": {
-          "type": "integer",
-          "description": "Chat ID",
+          "type": "object",
+          "properties": {
+            "failed_peer_ids": {
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "peer"
+              }
+            },
+            "failed_phone_numbers": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "string"
+              }
+            },
+            "invitees": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "peer"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_createChat_withPeerIds_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "chat_id": {
+              "type": "integer",
+              "description": "Chat ID"
+            }
+          },
+          "additionalProperties": false,
           "required": true
         }
       },
@@ -52,28 +99,14 @@
       },
       "additionalProperties": false
     },
-    "messages_delete_response": {
+    "messages_delete_full_response": {
       "type": "object",
       "properties": {
         "response": {
-          "type": "object",
-          "patternProperties": {
-            "^[0-9]+$": {
-              "$ref": "../base/objects.json#/definitions/base_bool_int"
-            }
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_delete_full_response_item"
           },
-          "additionalProperties": false,
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
-    "messages_edit_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "description": "Result",
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         }
       },
@@ -163,8 +196,7 @@
               "type": "array",
               "items": {
                 "$ref": "../users/objects.json#/definitions/users_user_full"
-              },
-              "required": true
+              }
             },
             "groups": {
               "type": "array",
@@ -593,7 +625,10 @@
               "items": {
                 "type": "array",
                 "items": {
-                  "type": "integer",
+                  "type": [
+                    "string",
+                    "integer"
+                  ],
                   "description": "Longpoll event value"
                 }
               }
@@ -656,6 +691,118 @@
       },
       "additionalProperties": false
     },
+    "messages_getMessagesReactions_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_reaction_counters_response_item"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getReactedPeers_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "Total number",
+              "required": true
+            },
+            "reactions": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_reaction_response_item"
+              },
+              "required": true
+            },
+            "counters": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_reaction_counter_response_item"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "messages_getReactionsAssets_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true,
+              "description": "Current reactions assets version"
+            },
+            "assets": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item"
+              },
+              "additionalProperties": false,
+              "required": true,
+              "description": "Base reactions assets to display by default"
+            },
+            "override_assets": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item"
+              },
+              "additionalProperties": false,
+              "description": "Extended reactions assets for special occasions, user allowed to switch to the base version"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "messages_isMessagesFromGroupAllowed_response": {
       "type": "object",
       "properties": {
@@ -688,7 +835,7 @@
       },
       "additionalProperties": false
     },
-    "messages_markAsImportant_response": {
+    "messages_markAsImportant_deprecated_response": {
       "type": "object",
       "properties": {
         "response": {
@@ -842,7 +989,7 @@
       },
       "additionalProperties": false
     },
-    "messages_send_response": {
+    "messages_send_deprecated_response": {
       "type": "object",
       "properties": {
         "response": {

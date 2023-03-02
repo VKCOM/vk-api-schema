@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -34,12 +34,12 @@
         },
         {
           "name": "from_group",
-          "description": "For a community: '1' — to post the topic as by the community, '0' — to post the topic as by the user (default)",
+          "description": "For a community: '1' - to post the topic as by the community, '0' - to post the topic as by the user (default)",
           "type": "boolean"
         },
         {
           "name": "attachments",
-          "description": "List of media objects attached to the topic, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. Example: \"photo100172_166443618,photo66748_265827614\", , \"NOTE: If you try to attach more than one reference, an error will be thrown.\",",
+          "description": "List of media objects attached to the topic, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. Example: \"photo100172_166443618,photo66748_265827614\", , \"NOTE: If you try to attach more than one reference, an error will be thrown.\",",
           "type": "array",
           "items": {
             "type": "string"
@@ -50,7 +50,12 @@
         "response": {
           "$ref": "../board/responses.json#/definitions/board_addTopic_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
+        }
+      ]
     },
     {
       "name": "board.closeTopic",
@@ -63,8 +68,10 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "minimum": 1,
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -110,7 +117,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'text' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID.",
+          "description": "(Required if 'text' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID.",
           "type": "array",
           "items": {
             "type": "string"
@@ -118,7 +125,7 @@
         },
         {
           "name": "from_group",
-          "description": "'1' — to post the comment as by the community, '0' — to post the comment as by the user (default)",
+          "description": "'1' - to post the comment as by the community, '0' - to post the comment as by the user (default)",
           "type": "boolean"
         },
         {
@@ -244,7 +251,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "(Required if 'message' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media object: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. Example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -304,8 +311,10 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "minimum": 1,
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -347,7 +356,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return the 'likes' field, '0' — not to return the 'likes' field (default)",
+          "description": "'1' - to return the 'likes' field, '0' - not to return the 'likes' field (default)",
           "type": "boolean"
         },
         {
@@ -370,12 +379,12 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return information about users who posted comments, '0' — to return no additional fields (default)",
+          "description": "'1' - to return information about users who posted comments, '0' - to return no additional fields (default)",
           "type": "boolean"
         },
         {
           "name": "sort",
-          "description": "Sort order: 'asc' — by creation date in chronological order, 'desc' — by creation date in reverse chronological order,",
+          "description": "Sort order: 'asc' - by creation date in chronological order, 'desc' - by creation date in reverse chronological order,",
           "type": "string",
           "enum": [
             "asc",
@@ -423,7 +432,7 @@
         },
         {
           "name": "order",
-          "description": "Sort order: '1' — by date updated in reverse chronological order. '2' — by date created in reverse chronological order. '-1' — by date updated in chronological order. '-2' — by date created in chronological order. If no sort order is specified, topics are returned in the order specified by the group administrator. Pinned topics are returned first, regardless of the sorting.",
+          "description": "Sort order: '1' - by date updated in reverse chronological order. '2' - by date created in reverse chronological order. '-1' - by date updated in chronological order. '-2' - by date created in chronological order. If no sort order is specified, topics are returned in the order specified by the group administrator. Pinned topics are returned first, regardless of the sorting.",
           "type": "integer",
           "enum": [
             1,
@@ -456,12 +465,12 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return information about users who created topics or who posted there last, '0' — to return no additional fields (default)",
+          "description": "'1' - to return information about users who created topics or who posted there last, '0' - to return no additional fields (default)",
           "type": "boolean"
         },
         {
           "name": "preview",
-          "description": "'1' — to return the first comment in each topic,, '2' — to return the last comment in each topic,, '0' — to return no comments. By default: '0'.",
+          "description": "'1' - to return the first comment in each topic,, '2' - to return the last comment in each topic,, '0' - to return no comments. By default: '0'.",
           "type": "integer",
           "enum": [
             1,
@@ -502,8 +511,10 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "minimum": 1,
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "topic_id",
@@ -568,8 +579,10 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "minimum": 1,
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "topic_id",

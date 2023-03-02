@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "store_product": {
       "type": "object",
@@ -21,6 +24,21 @@
         "is_new": {
           "type": "boolean",
           "description": "Information whether sticker product wasn't used after being purchased"
+        },
+        "copyright": {
+          "type": "string",
+          "description": "Product copyright information"
+        },
+        "base_id": {
+          "type": "integer",
+          "description": "Id of the base pack (for sticker pack styles)"
+        },
+        "style_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Array of style ids available for the sticker pack"
         },
         "purchased": {
           "$ref": "../base/objects.json#/definitions/base_bool_int",
@@ -74,16 +92,27 @@
         },
         "payment_region": {
           "type": "string"
+        },
+        "is_vmoji": {
+          "type": "boolean",
+          "description": "Information whether sticker pack is a vmoji pack"
+        },
+        "title_lang_key": {
+          "type": "string"
+        },
+        "description_lang_key": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
         }
       },
       "additionalProperties": false
     },
     "store_product_icon": {
-      "deprecated_from_version": "5.134",
-      "type": "array",
-      "items": {
-        "$ref": "../base/objects.json#/definitions/base_image"
-      }
+      "type": "object",
+      "$ref": "../stickers/objects.json#/definitions/stickers_image_set"
     },
     "store_stickers_keyword": {
       "type": "object",
@@ -127,6 +156,7 @@
       "additionalProperties": false
     },
     "store_stickers_keyword_stickers": {
+      "type": "object",
       "$ref": "../base/objects.json#/definitions/base_stickers_list"
     }
   }

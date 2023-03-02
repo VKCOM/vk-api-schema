@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "board_default_order": {
       "type": "integer",
@@ -31,7 +34,9 @@
         },
         "created_by": {
           "type": "integer",
-          "description": "Creator ID"
+          "description": "Creator ID",
+          "entity": "owner",
+          "format": "int64"
         },
         "id": {
           "type": "integer",
@@ -55,7 +60,9 @@
         },
         "updated_by": {
           "type": "integer",
-          "description": "ID of user who updated the topic"
+          "description": "ID of user who updated the topic",
+          "entity": "owner",
+          "format": "int64"
         },
         "first_comment": {
           "type": "string",
@@ -86,6 +93,8 @@
         "from_id": {
           "type": "integer",
           "description": "Author ID",
+          "entity": "owner",
+          "format": "int64",
           "required": true
         },
         "id": {

@@ -1,0 +1,37 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
+  "definitions": {
+    "asr_task": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Task ID in UUID format.",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the task.",
+          "enum": [
+            "processing",
+            "finished",
+            "internal_error",
+            "transcoding_error",
+            "recognition_error"
+          ],
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "description": "Recognised text, if task is `finished`.",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "database_city": {
       "type": "object",
@@ -18,6 +21,10 @@
               "type": "string",
               "description": "Region title"
             },
+            "country": {
+              "type": "string",
+              "description": "Country title"
+            },
             "important": {
               "description": "Information whether the city is included in important cities list",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
@@ -29,7 +36,9 @@
       "additionalProperties": false
     },
     "database_city_by_id": {
-      "$ref": "../base/objects.json#/definitions/base_object"
+      "type": "object",
+      "$ref": "../base/objects.json#/definitions/base_object",
+      "additionalProperties": false
     },
     "database_faculty": {
       "type": "object",
@@ -41,6 +50,22 @@
         "title": {
           "type": "string",
           "description": "Faculty title"
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_language_full": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Language ID",
+          "required": true
+        },
+        "native_name": {
+          "type": "string",
+          "description": "Language native name",
+          "required": true
         }
       },
       "additionalProperties": false
@@ -71,6 +96,11 @@
           "description": "School title"
         }
       },
+      "additionalProperties": false
+    },
+    "database_school_class": {
+      "type": "object",
+      "$ref": "../base/objects.json#/definitions/base_object",
       "additionalProperties": false
     },
     "database_station": {

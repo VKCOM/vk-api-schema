@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "wall_app_post": {
       "type": "object",
@@ -145,6 +148,9 @@
         },
         "video": {
           "$ref": "../video/objects.json#/definitions/video_video"
+        },
+        "graffiti": {
+          "$ref": "../wall/objects.json#/definitions/wall_graffiti"
         }
       },
       "additionalProperties": false
@@ -155,6 +161,7 @@
       "enum": [
         "photo",
         "audio",
+        "audio_playlist",
         "video",
         "doc",
         "link",
@@ -162,7 +169,8 @@
         "page",
         "market_market_album",
         "market",
-        "sticker"
+        "sticker",
+        "graffiti"
       ]
     },
     "wall_geo": {
@@ -171,9 +179,6 @@
         "coordinates": {
           "type": "string",
           "description": "Coordinates as string. <latitude> <longtitude>"
-        },
-        "place": {
-          "$ref": "../base/objects.json#/definitions/base_place"
         },
         "showmap": {
           "type": "integer",
@@ -191,7 +196,7 @@
       "additionalProperties": false
     },
     "wall_get_filter": {
-      "description": "Filter to apply: 'owner' — posts by the wall owner, 'others' — posts by someone else, 'all' — posts by the wall owner and others (default), 'postponed' — timed posts (only available for calls with an 'access_token'), 'suggests' — suggested posts on a community wall",
+      "description": "Filter to apply: 'owner' - posts by the wall owner, 'others' - posts by someone else, 'all' - posts by the wall owner and others (default), 'postponed' - timed posts (only available for calls with an 'access_token'), 'suggests' - suggested posts on a community wall",
       "type": "string",
       "enum": [
         "owner",
@@ -257,6 +262,7 @@
           "format": "int64"
         },
         "link": {
+          "format": "uri",
           "type": "string",
           "required": true
         },
@@ -412,7 +418,7 @@
         "attachments": {
           "type": "array",
           "items": {
-            "$ref": "../wall/objects.json#/definitions/wall_comment_attachment"
+            "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
           }
         },
         "donut": {
@@ -472,6 +478,10 @@
       },
       "additionalProperties": false
     },
+    "wall_wall_item": {
+      "type": "object",
+      "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+    },
     "wall_wallpost": {
       "type": "object",
       "properties": {
@@ -481,6 +491,12 @@
         },
         "is_deleted": {
           "type": "boolean"
+        },
+        "deleted_reason": {
+          "type": "string"
+        },
+        "deleted_details": {
+          "type": "string"
         },
         "attachments": {
           "type": "array",
@@ -627,6 +643,9 @@
         },
         "video": {
           "$ref": "../video/objects.json#/definitions/video_video_full"
+        },
+        "video_playlist": {
+          "$ref": "../video/objects.json#/definitions/video_video_album_full"
         }
       },
       "additionalProperties": false
@@ -641,6 +660,7 @@
         "audio",
         "audio_playlist",
         "video",
+        "video_playlist",
         "doc",
         "link",
         "graffiti",
@@ -764,7 +784,7 @@
               "$ref": "../wall/objects.json#/definitions/wall_wallpost_donut"
             },
             "is_pinned": {
-              "type": "integer",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
               "description": "Information whether the post is pinned"
             },
             "comments": {
@@ -816,88 +836,21 @@
             "hash": {
               "type": "string",
               "description": "Hash for sharing"
+            },
+            "type": {
+              "$ref": "../wall/objects.json#/definitions/wall_post_type"
+            },
+            "feedback": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback"
+            },
+            "to_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64"
             }
           }
         }
       ],
-      "additionalProperties": false
-    },
-    "wall_wallpost_to_id": {
-      "type": "object",
-      "properties": {
-        "attachments": {
-          "type": "array",
-          "items": {
-            "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
-          }
-        },
-        "comments": {
-          "$ref": "../base/objects.json#/definitions/base_comments_info"
-        },
-        "copy_owner_id": {
-          "type": "integer",
-          "description": "ID of the source post owner",
-          "entity": "owner",
-          "format": "int64"
-        },
-        "copy_post_id": {
-          "type": "integer",
-          "description": "ID of the source post"
-        },
-        "date": {
-          "type": "integer",
-          "description": "Date of publishing in Unixtime"
-        },
-        "from_id": {
-          "type": "integer",
-          "description": "Post author ID",
-          "entity": "owner",
-          "format": "int64"
-        },
-        "geo": {
-          "$ref": "../wall/objects.json#/definitions/wall_geo"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Post ID"
-        },
-        "is_favorite": {
-          "type": "boolean",
-          "description": "Information whether the post in favorites list"
-        },
-        "likes": {
-          "$ref": "../base/objects.json#/definitions/base_likes_info"
-        },
-        "post_id": {
-          "type": "integer",
-          "description": "wall post ID (if comment)"
-        },
-        "post_source": {
-          "$ref": "../wall/objects.json#/definitions/wall_post_source"
-        },
-        "post_type": {
-          "$ref": "../wall/objects.json#/definitions/wall_post_type"
-        },
-        "reposts": {
-          "$ref": "../base/objects.json#/definitions/base_reposts_info"
-        },
-        "signer_id": {
-          "type": "integer",
-          "description": "Post signer ID",
-          "entity": "owner",
-          "format": "int64"
-        },
-        "text": {
-          "type": "string",
-          "description": "Post text"
-        },
-        "to_id": {
-          "type": "integer",
-          "description": "Wall owner's ID",
-          "entity": "owner",
-          "format": "int64"
-        }
-      },
       "additionalProperties": false
     }
   }

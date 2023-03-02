@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "events_event_attach": {
       "type": "object",
@@ -18,7 +21,9 @@
           "type": "array",
           "description": "array of friends ids",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "entity": "profiles",
+            "format": "int64"
           },
           "required": true
         },
@@ -26,7 +31,9 @@
           "type": "integer",
           "description": "event ID",
           "minimum": 0,
-          "required": true
+          "required": true,
+          "entity": "groups",
+          "format": "int64"
         },
         "is_favorite": {
           "type": "boolean",

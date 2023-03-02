@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -38,24 +38,9 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "description": "Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
@@ -104,24 +89,9 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "description": "Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
@@ -151,7 +121,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return a combined list of users and communities, '0' — to return separate lists of users and communities (default)",
+          "description": "'1' - to return a combined list of users and communities, '0' - to return separate lists of users and communities (default)",
           "type": "boolean"
         },
         {
@@ -207,10 +177,12 @@
           "type": "string",
           "required": true,
           "enum": [
-            "porn",
-            "spam",
+            "advertisement",
+            "advertisment",
+            "fraud",
             "insult",
-            "advertisement"
+            "porn",
+            "spam"
           ]
         },
         {
@@ -239,7 +211,7 @@
         },
         {
           "name": "sort",
-          "description": "Sort order: '1' — by date registered, '0' — by rating",
+          "description": "Sort order: '1' - by date registered, '0' - by rating",
           "type": "integer",
           "enum": [
             0,
@@ -279,8 +251,20 @@
           "minimum": 0
         },
         {
+          "name": "city_id",
+          "description": "City ID. Use parameter city instead",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "country",
           "description": "Country ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "country_id",
+          "description": "Country ID. Use parameter country instead",
           "type": "integer",
           "minimum": 0
         },
@@ -321,7 +305,7 @@
         },
         {
           "name": "sex",
-          "description": "'1' — female, '2' — male, '0' — any (default)",
+          "description": "'1' - female, '2' - male, '0' - any (default)",
           "type": "integer",
           "minimum": 0,
           "enum": [
@@ -337,7 +321,7 @@
         },
         {
           "name": "status",
-          "description": "Relationship status: '1' — Not married, '2' — In a relationship, '3' — Engaged, '4' — Married, '5' — It's complicated, '6' — Actively searching, '7' — In love",
+          "description": "Relationship status: '0' - Not specified, '1' - Not married, '2' - In a relationship, '3' - Engaged, '4' - Married, '5' - It's complicated, '6' - Actively searching, '7' - In love, '8' - In a civil union",
           "type": "integer",
           "minimum": 0,
           "enum": [
@@ -348,7 +332,8 @@
             4,
             5,
             6,
-            7
+            7,
+            8
           ],
           "enumNames": [
             "not specified",
@@ -358,7 +343,8 @@
             "married",
             "complicated",
             "actively searching",
-            "in love"
+            "in love",
+            "civil union"
           ]
         },
         {
@@ -394,12 +380,12 @@
         },
         {
           "name": "online",
-          "description": "'1' — online only, '0' — all users",
+          "description": "'1' - online only, '0' - all users",
           "type": "boolean"
         },
         {
           "name": "has_photo",
-          "description": "'1' — with photo only, '0' — all users",
+          "description": "'1' - with photo only, '0' - all users",
           "type": "boolean"
         },
         {
@@ -460,6 +446,10 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "screen_ref",
+          "type": "string"
         }
       ],
       "responses": {

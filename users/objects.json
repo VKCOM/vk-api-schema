@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "users_career": {
       "type": "object",
@@ -133,6 +136,7 @@
         "tv",
         "books",
         "is_no_index",
+        "no_index",
         "games",
         "about",
         "quotes",
@@ -145,6 +149,7 @@
         "can_write_private_message",
         "can_send_friend_request",
         "can_upload_doc",
+        "can_ban",
         "is_favorite",
         "is_hidden_from_feed",
         "timezone",
@@ -152,6 +157,7 @@
         "maiden_name",
         "crop_photo",
         "is_friend",
+        "is_best_friend",
         "friend_status",
         "career",
         "military",
@@ -172,7 +178,17 @@
         "service_description",
         "can_see_wishes",
         "is_subscribed_podcasts",
-        "can_subscribe_podcasts"
+        "can_subscribe_podcasts",
+        "animated_avatar",
+        "owner_state",
+        "is_esia_verified",
+        "is_esia_linked",
+        "is_tinkoff_linked",
+        "is_tinkoff_verified",
+        "is_sber_verified",
+        "oauth_linked",
+        "oauth_verification",
+        "is_sber_linked"
       ]
     },
     "users_last_seen": {
@@ -235,8 +251,22 @@
           "description": "Name of occupation"
         },
         "type": {
+          "enum": [
+            "school",
+            "university",
+            "work"
+          ],
           "type": "string",
           "description": "Type of occupation"
+        },
+        "graduate_year": {
+          "type": "integer"
+        },
+        "country_id": {
+          "type": "integer"
+        },
+        "city_id": {
+          "type": "integer"
         }
       },
       "additionalProperties": false
@@ -297,6 +327,13 @@
           "items": {
             "type": "string",
             "description": "User's languages"
+          }
+        },
+        "langs_full": {
+          "type": "array",
+          "description": "User's languages with full info",
+          "items": {
+            "$ref": "../database/objects.json#/definitions/database_language_full"
           }
         },
         "life_main": {
@@ -369,6 +406,10 @@
           "type": "string",
           "description": "School class letter"
         },
+        "class_id": {
+          "type": "integer",
+          "description": "School class id"
+        },
         "country": {
           "type": "integer",
           "description": "Country ID"
@@ -409,9 +450,19 @@
     },
     "users_subscriptions_item": {
       "type": "object",
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "group": "../groups/objects.json#/definitions/groups_group_full",
+          "page": "../groups/objects.json#/definitions/groups_group_full",
+          "event": "../groups/objects.json#/definitions/groups_group_full",
+          "profile": "../users/objects.json#/definitions/users_user_full",
+          "email": "../users/objects.json#/definitions/users_user_full"
+        }
+      },
       "oneOf": [
         {
-          "$ref": "../users/objects.json#/definitions/users_user_xtr_type"
+          "$ref": "../users/objects.json#/definitions/users_user_full"
         },
         {
           "$ref": "../groups/objects.json#/definitions/groups_group_full"
@@ -441,9 +492,17 @@
           "type": "string",
           "description": "Education form"
         },
+        "education_form_id": {
+          "type": "integer",
+          "description": "Education form id"
+        },
         "education_status": {
           "type": "string",
           "description": "Education status"
+        },
+        "education_status_id": {
+          "type": "integer",
+          "description": "Education status id"
         },
         "faculty": {
           "type": "integer",
@@ -628,6 +687,10 @@
           "type": "integer",
           "description": "Videos number"
         },
+        "video_playlists": {
+          "type": "integer",
+          "description": "Playlists number"
+        },
         "new_photo_tags": {
           "type": "integer"
         },
@@ -635,6 +698,9 @@
           "type": "integer"
         },
         "mutual_friends": {
+          "type": "integer"
+        },
+        "friends_followers": {
           "type": "integer"
         },
         "posts": {
@@ -650,10 +716,25 @@
           "type": "integer"
         },
         "clips": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
         },
         "clips_followers": {
-          "type": "integer"
+          "type": "integer",
+          "format": "int64"
+        },
+        "videos_followers": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Videos followers number"
+        },
+        "clips_views": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clips_likes": {
+          "type": "integer",
+          "format": "int64"
         }
       },
       "additionalProperties": false
@@ -787,6 +868,10 @@
             "is_friend": {
               "description": "Information whether the user is a friend of current user",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "is_best_friend": {
+              "description": "Information whether the user is a best friend of current user",
+              "type": "boolean"
             },
             "wall_comments": {
               "description": "Information whether current user can comment wall posts",
@@ -958,6 +1043,9 @@
               "type": "string",
               "description": "User's status"
             },
+            "status_app": {
+              "$ref": "../apps/objects.json#/definitions/apps_app_min"
+            },
             "last_seen": {
               "$ref": "../users/objects.json#/definitions/users_last_seen"
             },
@@ -1107,6 +1195,10 @@
             "can_upload_doc": {
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
+            "can_ban": {
+              "description": "Information whether the user can be baned (added to black list) by me",
+              "type": "boolean"
+            },
             "hash": {
               "type": "string"
             },
@@ -1141,6 +1233,7 @@
       "additionalProperties": false
     },
     "users_user_min": {
+      "type": "object",
       "properties": {
         "deactivated": {
           "type": "string",
@@ -1171,7 +1264,8 @@
         "is_closed": {
           "type": "boolean"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "users_user_relation": {
       "type": "integer",
@@ -1302,7 +1396,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "../users/objects.json#/definitions/users_user"
+          "$ref": "../users/objects.json#/definitions/users_user_full"
         },
         {
           "properties": {

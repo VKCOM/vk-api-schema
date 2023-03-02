@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "pages_privacy_settings": {
       "type": "integer",
@@ -81,7 +84,9 @@
         },
         "creator_id": {
           "type": "integer",
-          "description": "Page creator ID"
+          "description": "Page creator ID",
+          "entity": "owner",
+          "format": "int64"
         },
         "current_user_can_edit": {
           "description": "Information whether current user can edit the page",
@@ -98,7 +103,9 @@
         },
         "editor_id": {
           "type": "integer",
-          "description": "Last editor ID"
+          "description": "Last editor ID",
+          "entity": "owner",
+          "format": "int64"
         },
         "group_id": {
           "type": "integer",

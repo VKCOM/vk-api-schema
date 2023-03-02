@@ -1,10 +1,43 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
+    {
+      "name": "apps.addUsersToTestingGroup",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
+        },
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "maximum": 25,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
     {
       "name": "apps.deleteAppRequests",
       "description": "Deletes all request notifications from the current app.",
@@ -29,6 +62,7 @@
           "name": "app_id",
           "description": "Application ID",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         },
         {
@@ -36,20 +70,20 @@
           "description": "List of application ID",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "integer",
+            "format": "int32"
           },
           "maxItems": 100
         },
         {
           "name": "platform",
-          "description": "platform. Possible values: *'ios' — iOS,, *'android' — Android,, *'winphone' — Windows Phone,, *'web' — приложения на vk.com. By default: 'web'.",
+          "description": "platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.com. By default: 'web'.",
           "type": "string",
           "default": "web",
           "enum": [
             "android",
             "ios",
-            "web",
-            "winphone"
+            "web"
           ]
         },
         {
@@ -72,24 +106,17 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: 'nom' — nominative (default),, 'gen' — genitive,, 'dat' — dative,, 'acc' — accusative,, 'ins' — instrumental,, 'abl' — prepositional. (only if 'return_friends' = '1')",
+          "description": "Case for declension of user name and surname: 'nom' - nominative (default),, 'gen' - genitive,, 'dat' - dative,, 'acc' - accusative,, 'ins' - instrumental,, 'abl' - prepositional. (only if 'return_friends' = '1')",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
+        },
+        {
+          "name": "app_fields",
+          "description": "List of app fields to return. Fields 'id', 'type' and 'title' will always be in response. Leave this field empty to get all fields",
+          "type": "array",
+          "items": {
+            "$ref": "../apps/objects.json#/definitions/apps_app_fields"
+          }
         }
       ],
       "responses": {
@@ -108,14 +135,15 @@
       "parameters": [
         {
           "name": "sort",
-          "description": "Sort order: 'popular_today' — popular for one day (default), 'visitors' — by visitors number , 'create_date' — by creation date, 'growth_rate' — by growth rate, 'popular_week' — popular for one week",
+          "description": "Sort order: 'popular_today' - popular for one day (default), 'visitors' - by visitors number , 'create_date' - by creation date, 'growth_rate' - by growth rate, 'popular_week' - popular for one week",
           "type": "string",
           "enum": [
-            "popular_today",
-            "visitors",
             "create_date",
             "growth_rate",
-            "popular_week"
+            "popular",
+            "popular_today",
+            "popular_week",
+            "visitors"
           ]
         },
         {
@@ -128,7 +156,6 @@
           "name": "count",
           "description": "Number of apps to return.",
           "type": "integer",
-          "required": true,
           "default": 100,
           "minimum": 0
         },
@@ -138,7 +165,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional fields 'screenshots', 'MAU', 'catalog_position', and 'international'. If set, 'count' must be less than or equal to '100'. '0' — not to return additional fields (default).",
+          "description": "'1' - to return additional fields 'screenshots', 'MAU', 'catalog_position', and 'international'. If set, 'count' must be less than or equal to '100'. '0' - not to return additional fields (default).",
           "type": "boolean"
         },
         {
@@ -168,7 +195,7 @@
         },
         {
           "name": "filter",
-          "description": "'installed' — to return list of installed apps (only for mobile platform).",
+          "description": "'installed' - to return list of installed apps (only for mobile platform).",
           "type": "string",
           "enum": [
             "favorite",
@@ -212,7 +239,7 @@
         },
         {
           "name": "type",
-          "description": "List type. Possible values: * 'invite' — available for invites (don't play the game),, * 'request' — available for request (play the game). By default: 'invite'.",
+          "description": "List type. Possible values: * 'invite' - available for invites (don't play the game),, * 'request' - available for request (play the game). By default: 'invite'.",
           "type": "string",
           "default": "invite",
           "enum": [
@@ -224,9 +251,18 @@
           "name": "fields",
           "description": "Additional profile fields, see [vk.com/dev/fields|description].",
           "type": "array",
+          "default": [
+            "photo_200"
+          ],
           "items": {
             "$ref": "../users/objects.json#/definitions/users_fields"
           }
+        },
+        {
+          "name": "query",
+          "description": "Search query string (e.g., 'Vasya Babich').",
+          "type": "string",
+          "maxLength": 256
         }
       ],
       "responses": {
@@ -239,6 +275,22 @@
       }
     },
     {
+      "name": "apps.getLastUploadedVersion",
+      "access_token_type": [
+        "service"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../apps/responses.json#/definitions/apps_get_last_uploaded_version_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
       "name": "apps.getLeaderboard",
       "description": "Returns players rating in the game.",
       "access_token_type": [
@@ -247,7 +299,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "Leaderboard type. Possible values: *'level' — by level,, *'points' — by mission points,, *'score' — by score ().",
+          "description": "Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().",
           "type": "string",
           "required": true,
           "enum": [
@@ -258,15 +310,15 @@
         },
         {
           "name": "global",
-          "description": "Rating type. Possible values: *'1' — global rating among all players,, *'0' — rating among user friends.",
+          "description": "Rating type. Possible values: *'1' - global rating among all players,, *'0' - rating among user friends.",
           "type": "boolean",
-          "default": 1
+          "default": true
         },
         {
           "name": "extended",
-          "description": "1 — to return additional info about users",
+          "description": "1 - to return additional info about users",
           "type": "boolean",
-          "default": 0
+          "default": false
         }
       ],
       "responses": {
@@ -332,7 +384,6 @@
         {
           "name": "user_id",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
@@ -341,6 +392,48 @@
       "responses": {
         "response": {
           "$ref": "../apps/responses.json#/definitions/apps_getScore_response"
+        }
+      }
+    },
+    {
+      "name": "apps.getTestingGroups",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "maximum": 25,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../apps/responses.json#/definitions/apps_getTestingGroups_response"
+        }
+      }
+    },
+    {
+      "name": "apps.isNotificationsAllowed",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../apps/responses.json#/definitions/apps_isNotificationsAllowed_response"
         }
       }
     },
@@ -411,6 +504,51 @@
       ]
     },
     {
+      "name": "apps.removeTestingGroup",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "maximum": 25,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "apps.removeUsersFromTestingGroups",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
       "name": "apps.sendRequest",
       "description": "Sends a request to another user in an app that uses VK authorization.",
       "access_token_type": [
@@ -459,6 +597,60 @@
       "responses": {
         "response": {
           "$ref": "../apps/responses.json#/definitions/apps_sendRequest_response"
+        }
+      }
+    },
+    {
+      "name": "apps.updateMetaForTestingGroup",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "maximum": 25,
+          "entity": "owner"
+        },
+        {
+          "name": "webview",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "platforms",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "mobile",
+              "web",
+              "mvk"
+            ]
+          }
+        },
+        {
+          "name": "user_ids",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../apps/responses.json#/definitions/apps_created_group_response"
         }
       }
     }

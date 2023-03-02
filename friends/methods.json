@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -108,7 +108,7 @@
         },
         {
           "name": "need_sign",
-          "description": "'1' — to return 'sign' field. 'sign' is md5(\"{id}_{user_id}_{friends_status}_{application_secret}\"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.",
+          "description": "'1' - to return 'sign' field. 'sign' is md5(\"{id}_{user_id}_{friends_status}_{application_secret}\"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.",
           "type": "boolean"
         },
         {
@@ -296,17 +296,18 @@
           "description": "User ID. By default, the current user ID.",
           "type": "integer",
           "format": "int64",
+          "minimum": 1,
           "entity": "owner"
         },
         {
           "name": "order",
-          "description": "Sort order: , 'name' — by name (enabled only if the 'fields' parameter is used), 'hints' — by rating, similar to how friends are sorted in My friends section, , This parameter is available only for [vk.com/dev/standalone|desktop applications].",
+          "description": "Sort order: , 'name' - by name (enabled only if the 'fields' parameter is used), 'hints' - by rating, similar to how friends are sorted in My friends section, , This parameter is available only for [vk.com/dev/standalone|desktop applications].",
           "type": "string",
           "enum": [
             "hints",
-            "random",
             "mobile",
             "name",
+            "random",
             "smart"
           ]
         },
@@ -336,27 +337,6 @@
           "items": {
             "$ref": "../users/objects.json#/definitions/users_fields"
           }
-        },
-        {
-          "name": "name_case",
-          "description": "Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
-          "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
         },
         {
           "name": "ref",
@@ -432,7 +412,7 @@
         },
         {
           "name": "return_system",
-          "description": "'1' — to return system friend lists. By default: '0'.",
+          "description": "'1' - to return system friend lists. By default: '0'.",
           "type": "boolean"
         }
       ],
@@ -454,7 +434,7 @@
           "description": "ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0,
+          "minimum": 1,
           "entity": "owner"
         },
         {
@@ -462,7 +442,7 @@
           "description": "ID of the user whose friends will be checked against the friends of the user specified in 'source_uid'.",
           "type": "integer",
           "format": "int64",
-          "minimum": 0,
+          "minimum": 1,
           "entity": "owner"
         },
         {
@@ -479,7 +459,7 @@
         },
         {
           "name": "order",
-          "description": "Sort order: 'random' — random order",
+          "description": "Sort order: 'random' - random order",
           "type": "string"
         },
         {
@@ -527,12 +507,12 @@
         },
         {
           "name": "online_mobile",
-          "description": "'1' — to return an additional 'online_mobile' field, '0' — (default),",
+          "description": "'1' - to return an additional 'online_mobile' field, '0' - (default),",
           "type": "boolean"
         },
         {
           "name": "order",
-          "description": "Sort order: 'random' — random order",
+          "description": "Sort order: 'random' - random order",
           "type": "string"
         },
         {
@@ -602,24 +582,23 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends",
+          "description": "'1' - to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends",
           "type": "boolean"
         },
         {
           "name": "need_mutual",
-          "description": "'1' — to return a list of mutual friends (up to 20), if any",
+          "description": "'1' - to return a list of mutual friends (up to 20), if any",
           "type": "boolean"
         },
         {
           "name": "out",
-          "description": "'1' — to return outgoing requests, '0' — to return incoming requests (default)",
+          "description": "'1' - to return outgoing requests, '0' - to return incoming requests (default)",
           "type": "boolean"
         },
         {
           "name": "sort",
-          "description": "Sort order: '1' — by number of mutual friends, '0' — by date",
+          "description": "Sort order: '1' - by number of mutual friends, '0' - by date",
           "type": "integer",
-          "minimum": 0,
           "enum": [
             0,
             1,
@@ -638,7 +617,7 @@
         },
         {
           "name": "suggested",
-          "description": "'1' — to return a list of suggested friends, '0' — to return friend requests (default)",
+          "description": "'1' - to return a list of suggested friends, '0' - to return friend requests (default)",
           "type": "boolean"
         },
         {
@@ -675,7 +654,7 @@
       "parameters": [
         {
           "name": "filter",
-          "description": "Types of potential friends to return: 'mutual' — users with many mutual friends , 'contacts' — users found with the [vk.com/dev/account.importContacts|account.importContacts] method , 'mutual_contacts' — users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method",
+          "description": "Types of potential friends to return: 'mutual' - users with many mutual friends , 'contacts' - users found with the [vk.com/dev/account.importContacts|account.importContacts] method , 'mutual_contacts' - users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method",
           "type": "array",
           "items": {
             "type": "string",
@@ -710,24 +689,9 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "description": "Case for declension of user name and surname: , 'nom' - nominative (default) , 'gen' - genitive , 'dat' - dative , 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
@@ -766,25 +730,9 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "description": "Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
-          "default": "Nom",
-          "enum": [
-            "Nom",
-            "Gen",
-            "Dat",
-            "Acc",
-            "Ins",
-            "Abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         },
         {
           "name": "offset",

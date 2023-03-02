@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -16,20 +16,26 @@
           "name": "user_ids",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         },
         {
           "name": "group_ids",
           "type": "array",
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         }
       ],
       "responses": {
         "response": {
-          "$ref": "../base/responses.json#/definitions/base_ok_response"
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       }
     },
@@ -45,7 +51,9 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         },
         {
@@ -53,7 +61,9 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           }
         }
       ],
@@ -91,7 +101,7 @@
       "parameters": [
         {
           "name": "filters",
-          "description": "Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends",
+          "description": "Filters to apply: 'post' - new wall posts, 'photo' - new photos, 'photo_tag' - new photo tags, 'wall_photo' - new wall photos, 'friend' - new friends",
           "type": "array",
           "items": {
             "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_item_type"
@@ -99,7 +109,7 @@
         },
         {
           "name": "return_banned",
-          "description": "'1' — to return news items from banned sources",
+          "description": "'1' - to return news items from banned sources",
           "type": "boolean"
         },
         {
@@ -164,7 +174,7 @@
       "parameters": [
         {
           "name": "extended",
-          "description": "'1' — return extra information about users and communities",
+          "description": "'1' - return extra information about users and communities",
           "type": "boolean"
         },
         {
@@ -177,24 +187,9 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional",
+          "description": "Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
@@ -223,7 +218,7 @@
         },
         {
           "name": "filters",
-          "description": "Filters to apply: 'post' — new comments on wall posts, 'photo' — new comments on photos, 'video' — new comments on videos, 'topic' — new comments on discussions, 'note' — new comments on notes,",
+          "description": "Filters to apply: 'post' - new comments on wall posts, 'photo' - new comments on photos, 'video' - new comments on videos, 'topic' - new comments on discussions, 'note' - new comments on notes,",
           "type": "array",
           "items": {
             "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_filters"
@@ -476,7 +471,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../base/responses.json#/definitions/base_ok_response"
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_ignore_item_response"
         }
       }
     },
@@ -541,7 +536,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional information about the user or community that placed the post.",
+          "description": "'1' - to return additional information about the user or community that placed the post.",
           "type": "boolean"
         },
         {
@@ -591,8 +586,14 @@
         "response": {
           "$ref": "../newsfeed/responses.json#/definitions/newsfeed_search_response"
         },
+        "responseStrict": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_search_strict_response"
+        },
         "extendedResponse": {
           "$ref": "../newsfeed/responses.json#/definitions/newsfeed_search_extended_response"
+        },
+        "extendedResponseStrict": {
+          "$ref": "../newsfeed/responses.json#/definitions/newsfeed_search_extended_strict_response"
         }
       }
     },
@@ -646,7 +647,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "Type of object from which to unsubscribe: 'note' — note, 'photo' — photo, 'post' — post on user wall or community wall, 'topic' — topic, 'video' — video",
+          "description": "Type of object from which to unsubscribe: 'note' - note, 'photo' - photo, 'post' - post on user wall or community wall, 'topic' - topic, 'video' - video",
           "type": "string",
           "required": true,
           "enum": [

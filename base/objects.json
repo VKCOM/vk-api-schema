@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "base_bool_int": {
       "type": "integer",
@@ -43,6 +46,10 @@
         "can_close": {
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
+        "can_view": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can view the comments"
+        },
         "count": {
           "type": "integer",
           "minimum": 0,
@@ -54,6 +61,12 @@
         },
         "donut": {
           "$ref": "../wall/objects.json#/definitions/wall_wallpost_comments_donut"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+          }
         }
       },
       "additionalProperties": false
@@ -249,9 +262,39 @@
           "description": "Image height",
           "minimum": 0,
           "required": true
+        },
+        "theme": {
+          "type": "string",
+          "enum": [
+            "light",
+            "dark"
+          ]
         }
       },
       "additionalProperties": false
+    },
+    "base_lang": {
+      "type": "string",
+      "enum": [
+        "ru",
+        "ua",
+        "be",
+        "en",
+        "es",
+        "fi",
+        "de",
+        "it"
+      ],
+      "enumNames": [
+        "russian",
+        "ukrainian",
+        "belarusian",
+        "english",
+        "spanish",
+        "finnish",
+        "german",
+        "italian"
+      ]
     },
     "base_likes": {
       "type": "object",
@@ -287,76 +330,35 @@
           "required": true
         },
         "user_likes": {
-          "type": "integer",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether current uer has liked the post",
           "required": true
+        },
+        "repost_disabled": {
+          "type": "boolean",
+          "description": "Remove repost feature for post"
         }
       },
       "additionalProperties": false
     },
     "base_link": {
       "type": "object",
-      "properties": {
-        "application": {
-          "$ref": "../base/objects.json#/definitions/base_link_application"
+      "allOf": [
+        {
+          "$ref": "../base/objects.json#/definitions/base_link_no_product"
         },
-        "button": {
-          "$ref": "../base/objects.json#/definitions/base_link_button"
-        },
-        "caption": {
-          "type": "string",
-          "description": "Link caption"
-        },
-        "description": {
-          "type": "string",
-          "description": "Link description"
-        },
-        "id": {
-          "type": "string",
-          "description": "Link ID"
-        },
-        "is_favorite": {
-          "type": "boolean"
-        },
-        "photo": {
-          "$ref": "../photos/objects.json#/definitions/photos_photo"
-        },
-        "preview_page": {
-          "type": "string",
-          "description": "String ID of the page with article preview"
-        },
-        "preview_url": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the page with article preview"
-        },
-        "product": {
-          "$ref": "../base/objects.json#/definitions/base_link_product"
-        },
-        "rating": {
-          "$ref": "../base/objects.json#/definitions/base_link_rating"
-        },
-        "title": {
-          "type": "string",
-          "description": "Link title"
-        },
-        "url": {
-          "type": "string",
-          "description": "Link URL",
-          "required": true
-        },
-        "target_object": {
-          "$ref": "../link/objects.json#/definitions/link_target_object"
-        },
-        "is_external": {
-          "type": "boolean",
-          "description": "Information whether the current link is external"
-        },
-        "video": {
-          "$ref": "../video/objects.json#/definitions/video_video",
-          "description": "Video from link"
+        {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "product": {
+              "$ref": "../base/objects.json#/definitions/base_link_product"
+            }
+          }
         }
-      },
+      ],
       "additionalProperties": false
     },
     "base_link_application": {
@@ -405,6 +407,10 @@
           "type": "string",
           "description": "Target section id"
         },
+        "artist_id": {
+          "type": "string",
+          "description": "artist id"
+        },
         "curator_id": {
           "type": "integer",
           "description": "curator id"
@@ -426,6 +432,12 @@
         },
         "style": {
           "$ref": "../base/objects.json#/definitions/base_link_button_style"
+        },
+        "audio_id": {
+          "type": "integer"
+        },
+        "hashtag": {
+          "type": "string"
         }
       },
       "additionalProperties": false
@@ -439,7 +451,6 @@
         },
         "url": {
           "type": "string",
-          "format": "uri",
           "description": "Action URL"
         },
         "consume_reason": {
@@ -452,10 +463,13 @@
       "type": "string",
       "description": "Action type",
       "enum": [
-        "open_url"
-      ],
-      "enumNames": [
-        "open_url"
+        "open_url",
+        "market_clear_recent_queries",
+        "close_web_app",
+        "open_search_tab",
+        "import_contacts",
+        "add_friends",
+        "onboarding"
       ]
     },
     "base_link_button_style": {
@@ -470,6 +484,68 @@
         "secondary"
       ]
     },
+    "base_link_no_product": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "$ref": "../base/objects.json#/definitions/base_link_application"
+        },
+        "button": {
+          "$ref": "../base/objects.json#/definitions/base_link_button"
+        },
+        "caption": {
+          "type": "string",
+          "description": "Link caption"
+        },
+        "description": {
+          "type": "string",
+          "description": "Link description"
+        },
+        "id": {
+          "type": "string",
+          "description": "Link ID"
+        },
+        "is_favorite": {
+          "type": "boolean"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "preview_page": {
+          "type": "string",
+          "description": "String ID of the page with article preview"
+        },
+        "preview_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the page with article preview"
+        },
+        "rating": {
+          "$ref": "../base/objects.json#/definitions/base_link_rating"
+        },
+        "title": {
+          "type": "string",
+          "description": "Link title"
+        },
+        "url": {
+          "type": "string",
+          "description": "Link URL",
+          "required": true
+        },
+        "target_object": {
+          "$ref": "../link/objects.json#/definitions/link_target_object"
+        },
+        "is_external": {
+          "type": "boolean",
+          "description": "Information whether the current link is external"
+        },
+        "video": {
+          "$ref": "../video/objects.json#/definitions/video_video_full",
+          "description": "Video from link"
+        }
+      },
+      "additionalProperties": false
+    },
     "base_link_product": {
       "type": "object",
       "properties": {
@@ -480,14 +556,44 @@
         "merchant": {
           "type": "string"
         },
+        "category": {
+          "$ref": "../base/objects.json#/definitions/base_link_product_category"
+        },
+        "geo": {
+          "$ref": "../base/objects.json#/definitions/base_geo_coordinates"
+        },
+        "distance": {
+          "type": "integer"
+        },
+        "city": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "../base/objects.json#/definitions/base_link_product_status"
+        },
         "orders_count": {
           "type": "integer"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "product"
+          ],
+          "default": "product"
         }
       },
       "additionalProperties": false
     },
     "base_link_product_category": {
-      "type": "string"
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "../market/objects.json#/definitions/market_market_category_nested"
+        }
+      ]
     },
     "base_link_product_status": {
       "type": "string",
@@ -510,6 +616,13 @@
         "stars": {
           "type": "number",
           "description": "Count of stars"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "rating"
+          ],
+          "default": "rating"
         }
       },
       "additionalProperties": false
@@ -527,6 +640,26 @@
         }
       },
       "additionalProperties": false
+    },
+    "base_name_case": {
+      "type": "string",
+      "default": "Nom",
+      "enum": [
+        "Nom",
+        "Gen",
+        "Dat",
+        "Acc",
+        "Ins",
+        "Abl"
+      ],
+      "enumNames": [
+        "nominative",
+        "genitive",
+        "dative",
+        "accusative",
+        "instrumental",
+        "prepositional"
+      ]
     },
     "base_object": {
       "type": "object",
@@ -567,6 +700,50 @@
           "type": "string",
           "description": "Object name",
           "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_owner_cover": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Information whether cover is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_image"
+          }
+        },
+        "crop_params": {
+          "$ref": "../base/objects.json#/definitions/base_owner_cover_crop_params"
+        },
+        "original_image": {
+          "$ref": "../base/objects.json#/definitions/base_image"
+        },
+        "photo_id": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base_owner_cover_crop_params": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
         }
       },
       "additionalProperties": false
@@ -652,7 +829,7 @@
           "description": "Mail reposts counter"
         },
         "user_reposted": {
-          "type": "integer",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether current user has reposted the post"
         }
       },
@@ -663,11 +840,13 @@
       "properties": {
         "key": {
           "type": "string",
-          "description": "Parameter name"
+          "description": "Parameter name",
+          "required": true
         },
         "value": {
           "type": "string",
-          "description": "Parameter value"
+          "description": "Parameter value",
+          "required": true
         }
       },
       "additionalProperties": false
@@ -843,6 +1022,7 @@
         "blacklisted",
         "blacklisted_by_me",
         "books",
+        "can_ban",
         "can_create_topic",
         "can_message",
         "can_post",
@@ -880,6 +1060,7 @@
         "is_closed",
         "is_favorite",
         "is_friend",
+        "is_best_friend",
         "is_hidden_from_feed",
         "is_member",
         "is_messages_blocked",
@@ -912,6 +1093,7 @@
         "photo_id",
         "photo_max",
         "photo_max_orig",
+        "photo_avg_color",
         "quotes",
         "relation",
         "relatives",
@@ -940,7 +1122,11 @@
         "can_subscribe_stories",
         "is_subscribed_stories",
         "vk_admin_status",
-        "can_upload_story"
+        "can_upload_story",
+        "clips_count",
+        "image_status",
+        "is_nft",
+        "is_nft_photo"
       ]
     },
     "base_user_id": {

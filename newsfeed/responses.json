@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "newsfeed_generic_response": {
       "type": "object",
@@ -29,9 +32,11 @@
               },
               "required": true
             },
-            "new_returned_news_items_count": {
-              "type": "integer",
-              "minimum": 0
+            "lives_items": {
+              "type": "array",
+              "items": {
+                "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_item"
+              }
             }
           },
           "additionalProperties": false,
@@ -75,14 +80,18 @@
               "type": "array",
               "items": {
                 "type": "integer",
-                "description": "Community ID"
+                "description": "Community ID",
+                "entity": "groups",
+                "format": "int64"
               }
             },
             "members": {
               "type": "array",
               "items": {
                 "type": "integer",
-                "description": "User ID"
+                "description": "User ID",
+                "entity": "profiles",
+                "format": "int64"
               }
             }
           },
@@ -101,7 +110,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_item"
+                "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item"
               },
               "required": true
             },
@@ -194,7 +203,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "../wall/objects.json#/definitions/wall_wallpost_to_id"
+                "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
               },
               "required": true
             }
@@ -213,13 +222,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../users/objects.json#/definitions/users_subscriptions_item"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -267,7 +278,8 @@
               "type": "array",
               "items": {
                 "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
-              }
+              },
+              "required": true
             },
             "profiles": {
               "type": "array",
@@ -293,7 +305,60 @@
             "count": {
               "type": "integer",
               "minimum": 0,
-              "description": "Filtered number"
+              "description": "Filtered number",
+              "required": true
+            },
+            "total_count": {
+              "type": "integer",
+              "description": "Total number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_search_extended_strict_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "suggested_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "next_from": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Filtered number",
+              "required": true
             },
             "total_count": {
               "type": "integer",
@@ -317,7 +382,8 @@
               "type": "array",
               "items": {
                 "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
-              }
+              },
+              "required": true
             },
             "suggested_queries": {
               "type": "array",
@@ -331,7 +397,48 @@
             "count": {
               "type": "integer",
               "minimum": 0,
-              "description": "Filtered number"
+              "description": "Filtered number",
+              "required": true
+            },
+            "total_count": {
+              "type": "integer",
+              "description": "Total number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_search_strict_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+              },
+              "required": true
+            },
+            "suggested_queries": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "next_from": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Filtered number",
+              "required": true
             },
             "total_count": {
               "type": "integer",

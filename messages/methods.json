@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -37,6 +37,8 @@
       ],
       "responses": {
         "response": {
+          "type": "object",
+          "deprecated_from_version": "5.201",
           "$ref": "../base/responses.json#/definitions/base_ok_response"
         }
       },
@@ -66,6 +68,33 @@
           "$ref": "../errors.json#/errors/api_error_messages_group_peer_access"
         }
       ]
+    },
+    {
+      "name": "messages.addChatUsers",
+      "description": "Adds new users to a chat.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "visible_messages_count",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_addChatUsers_response"
+        }
+      }
     },
     {
       "name": "messages.allowMessagesFromGroup",
@@ -134,7 +163,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../messages/responses.json#/definitions/messages_createChat_response"
+          "type": "object",
+          "$ref": "../messages/responses.json#/definitions/messages_createChat_withPeerIds_response"
         }
       },
       "errors": [
@@ -163,7 +193,7 @@
         },
         {
           "name": "spam",
-          "description": "'1' — to mark message as spam.",
+          "description": "'1' - to mark message as spam.",
           "type": "boolean"
         },
         {
@@ -176,14 +206,16 @@
         },
         {
           "name": "delete_for_all",
-          "description": "'1' — delete message for for all.",
+          "description": "'1' - delete message for for all.",
           "type": "boolean",
           "default": false
         },
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "cmids",
@@ -198,7 +230,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../messages/responses.json#/definitions/messages_delete_response"
+          "$ref": "../messages/responses.json#/definitions/messages_delete_full_response"
         }
       },
       "errors": [
@@ -256,12 +288,16 @@
         {
           "name": "user_id",
           "description": "User ID. To clear a chat history use 'chat_id'",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "group_id",
@@ -282,6 +318,34 @@
           "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
         }
       ]
+    },
+    {
+      "name": "messages.deleteReaction",
+      "description": "Delete message reaction",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "cmid",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
     },
     {
       "name": "messages.denyMessagesFromGroup",
@@ -319,7 +383,8 @@
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer",
           "required": true,
-          "format": "int32"
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "message",
@@ -339,17 +404,17 @@
         },
         {
           "name": "attachment",
-          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'wall' - wall post, '<owner_id>' - ID of the media attachment owner. '<media_id>' - media attachment ID. Example: \"photo100172_166443618\"",
           "type": "string"
         },
         {
           "name": "keep_forward_messages",
-          "description": "'1' — to keep forwarded, messages.",
+          "description": "'1' - to keep forwarded, messages.",
           "type": "boolean"
         },
         {
           "name": "keep_snippets",
-          "description": "'1' — to keep attached snippets.",
+          "description": "'1' - to keep attached snippets.",
           "type": "boolean"
         },
         {
@@ -377,7 +442,7 @@
           "minimum": 0
         },
         {
-          "name": "conversation_message_id",
+          "name": "cmid",
           "type": "integer",
           "format": "int32",
           "minimum": 0
@@ -393,7 +458,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../messages/responses.json#/definitions/messages_edit_response"
+          "description": "Result",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       },
       "errors": [
@@ -483,7 +549,9 @@
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "conversation_message_ids",
@@ -539,7 +607,7 @@
           "name": "message_ids",
           "description": "Message IDs.",
           "type": "array",
-          "required": true,
+          "required": false,
           "items": {
             "type": "integer",
             "format": "int32",
@@ -574,6 +642,22 @@
           "format": "int64",
           "minimum": 0,
           "entity": "owner"
+        },
+        {
+          "name": "cmids",
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         }
       ],
       "responses": {
@@ -586,6 +670,64 @@
       }
     },
     {
+      "name": "messages.getChat",
+      "description": "Returns information about a chat.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "chat_id",
+          "description": "Chat ID.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        {
+          "name": "chat_ids",
+          "description": "Chat IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "name": "fields",
+          "description": "Profile fields to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "name_case",
+          "description": "Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
+          "type": "string",
+          "$ref": "../base/objects.json#/definitions/base_name_case"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getChat_response"
+        },
+        "fieldsResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getChat_fields_response"
+        },
+        "chatIdsResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_getChat_chat_ids_response"
+        },
+        "chatIds_Fields_Response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getChat_chat_ids_fields_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        }
+      ]
+    },
+    {
       "name": "messages.getChatPreview",
       "access_token_type": [
         "user"
@@ -594,7 +736,7 @@
         {
           "name": "peer_id",
           "type": "integer",
-          "minimum": 0
+          "format": "int64"
         },
         {
           "name": "link",
@@ -618,6 +760,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_deny_send"
         }
       ]
     },
@@ -634,7 +779,26 @@
           "description": "Peer ID.",
           "type": "integer",
           "required": true,
-          "format": "int32"
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 20,
+          "minimum": 1,
+          "maximum": 1000
+        },
+        {
+          "name": "extended",
+          "description": "Extended flag",
+          "type": "boolean"
         },
         {
           "name": "fields",
@@ -689,20 +853,21 @@
         },
         {
           "name": "filter",
-          "description": "Filter to apply: 'all' — all conversations, 'unread' — conversations with unread messages, 'important' — conversations, marked as important (only for community messages), 'unanswered' — conversations, marked as unanswered (only for community messages)",
+          "description": "Filter to apply: 'all' - all conversations, 'unread' - conversations with unread messages, 'important' - conversations, marked as important (only for community messages), 'unanswered' - conversations, marked as unanswered (only for community messages)",
           "type": "string",
           "default": "all",
           "enum": [
             "all",
             "archive",
             "important",
+            "sorted_chats",
             "unanswered",
             "unread"
           ]
         },
         {
           "name": "extended",
-          "description": "'1' — return extra information about users and communities",
+          "description": "'1' - return extra information about users and communities",
           "type": "boolean"
         },
         {
@@ -759,7 +924,9 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "entity": "peer"
           },
           "maxItems": 100
         },
@@ -829,12 +996,15 @@
         {
           "name": "user_id",
           "description": "ID of the user whose message history you want to return.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "peer_id",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "start_message_id",
@@ -843,7 +1013,7 @@
         },
         {
           "name": "rev",
-          "description": "Sort order: '1' — return messages in chronological order. '0' — return messages in reverse chronological order.",
+          "description": "Sort order: '1' - return messages in chronological order. '0' - return messages in reverse chronological order.",
           "type": "integer",
           "enum": [
             1,
@@ -887,6 +1057,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ]
     },
@@ -899,10 +1072,88 @@
       ],
       "parameters": [
         {
+          "name": "attachment_types",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "app_action_games",
+              "app_action_mini_apps",
+              "audio",
+              "audio_message",
+              "doc",
+              "graffiti",
+              "link",
+              "market",
+              "photo",
+              "share",
+              "video",
+              "wall"
+            ]
+          }
+        },
+        {
+          "name": "group_id",
+          "description": "Group ID (for group messages with group access token)",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "entity": "owner"
+        },
+        {
           "name": "peer_id",
           "description": "Peer ID. \", For group chat: '2000000000 + chat ID' , , For community: '-community ID'\"",
           "type": "integer",
-          "required": true
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "cmid",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "attachment_position",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 1,
+          "maximum": 200
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "format": "int32",
+          "minimum": -200,
+          "maximum": 200
+        },
+        {
+          "name": "count",
+          "description": "Number of objects to return.",
+          "type": "integer",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 200
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "fields",
+          "description": "Additional profile [vk.com/dev/fields|fields] to return. ",
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_fields"
+          }
+        },
+        {
+          "name": "max_forwards_level",
+          "type": "integer",
+          "default": 45,
+          "minimum": 0,
+          "maximum": 45
         },
         {
           "name": "media_type",
@@ -910,6 +1161,8 @@
           "type": "string",
           "default": "photo",
           "enum": [
+            "app_action_games",
+            "app_action_mini_apps",
             "audio",
             "audio_message",
             "doc",
@@ -928,44 +1181,13 @@
           "type": "string"
         },
         {
-          "name": "count",
-          "description": "Number of objects to return.",
-          "type": "integer",
-          "default": 30,
-          "minimum": 0,
-          "maximum": 200
-        },
-        {
-          "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a",
-          "type": "boolean"
-        },
-        {
-          "name": "fields",
-          "description": "Additional profile [vk.com/dev/fields|fields] to return. ",
-          "type": "array",
-          "items": {
-            "$ref": "../users/objects.json#/definitions/users_fields"
-          }
-        },
-        {
-          "name": "group_id",
-          "description": "Group ID (for group messages with group access token)",
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "entity": "owner"
-        },
-        {
           "name": "preserve_order",
           "type": "boolean"
         },
         {
-          "name": "max_forwards_level",
-          "type": "integer",
-          "default": 45,
-          "minimum": 0,
-          "maximum": 45
+          "name": "photo_sizes",
+          "description": "'1' - to return photo sizes in a",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -1114,11 +1336,11 @@
           "description": "Destination ID.",
           "type": "integer",
           "required": true,
-          "minimum": 0
+          "format": "int64"
         },
         {
           "name": "reset",
-          "description": "1 — to generate new link (revoke previous), 0 — to return previous link.",
+          "description": "1 - to generate new link (revoke previous), 0 - to return previous link.",
           "type": "boolean",
           "default": false
         },
@@ -1195,7 +1417,7 @@
         },
         {
           "name": "onlines",
-          "description": "'1' — to return history with online users only.",
+          "description": "'1' - to return history with online users only.",
           "type": "boolean"
         },
         {
@@ -1271,6 +1493,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_timeout"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ],
       "timeout": 5
@@ -1285,7 +1510,7 @@
       "parameters": [
         {
           "name": "need_pts",
-          "description": "'1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
+          "description": "'1' - to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.",
           "type": "boolean"
         },
         {
@@ -1307,6 +1532,95 @@
       "responses": {
         "response": {
           "$ref": "../messages/responses.json#/definitions/messages_getLongPollServer_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getMessagesReactions",
+      "description": "Get reaction counters for message",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "cmids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 1,
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getMessagesReactions_response"
+        }
+      }
+    },
+    {
+      "name": "messages.getReactedPeers",
+      "description": "Get reacted users and counters for message",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "cmid",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reaction_id",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getReactedPeers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_invalid_reaction_id"
+        }
+      ]
+    },
+    {
+      "name": "messages.getReactionsAssets",
+      "description": "Get assets to display message reactions",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "client_version",
+          "type": "integer",
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../messages/responses.json#/definitions/messages_getReactionsAssets_response"
         }
       }
     },
@@ -1387,13 +1701,15 @@
           "name": "peer_id",
           "description": "ID of conversation to mark as important.",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "answered",
-          "description": "'1' — to mark as answered, '0' — to remove the mark",
+          "description": "'1' - to mark as answered, '0' - to remove the mark",
           "type": "boolean",
-          "default": 1
+          "default": true
         },
         {
           "name": "group_id",
@@ -1421,7 +1737,7 @@
           "name": "message_ids",
           "description": "IDs of messages to mark as important.",
           "type": "array",
-          "default": [],
+          "required": false,
           "items": {
             "type": "integer",
             "minimum": 0
@@ -1429,14 +1745,14 @@
         },
         {
           "name": "important",
-          "description": "'1' — to add a star (mark as important), '0' — to remove the star",
+          "description": "'1' - to add a star (mark as important), '0' - to remove the star",
           "type": "integer",
           "minimum": 0
         }
       ],
       "responses": {
         "response": {
-          "$ref": "../messages/responses.json#/definitions/messages_markAsImportant_response"
+          "$ref": "../messages/responses.json#/definitions/messages_markAsImportant_deprecated_response"
         }
       }
     },
@@ -1452,13 +1768,15 @@
           "name": "peer_id",
           "description": "ID of conversation to mark as important.",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "important",
-          "description": "'1' — to add a star (mark as important), '0' — to remove the star",
+          "description": "'1' - to add a star (mark as important), '0' - to remove the star",
           "type": "boolean",
-          "default": 1
+          "default": true
         },
         {
           "name": "group_id",
@@ -1497,7 +1815,9 @@
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "start_message_id",
@@ -1516,11 +1836,45 @@
         {
           "name": "mark_conversation_as_read",
           "type": "boolean"
+        },
+        {
+          "name": "up_to_cmid",
+          "type": "integer",
+          "minimum": 0
         }
       ],
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
+      "name": "messages.markReactionsAsRead",
+      "description": "Mark messages reactions as read",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "cmids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       }
     },
@@ -1536,18 +1890,22 @@
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         {
           "name": "message_id",
           "description": "Message ID",
           "type": "integer",
+          "required": false,
+          "format": "int32",
           "minimum": 0
         },
         {
-          "name": "conversation_message_id",
+          "name": "cmid",
           "description": "Conversation message ID",
           "type": "integer",
+          "format": "int32",
           "minimum": 0
         }
       ],
@@ -1633,7 +1991,7 @@
           "name": "message_id",
           "description": "ID of a previously-deleted message to restore.",
           "type": "integer",
-          "required": true,
+          "required": false,
           "minimum": 0
         },
         {
@@ -1643,6 +2001,20 @@
           "format": "int64",
           "minimum": 0,
           "entity": "owner"
+        },
+        {
+          "name": "cmid",
+          "type": "integer",
+          "required": false,
+          "format": "int32",
+          "minimum": 0
+        },
+        {
+          "name": "peer_id",
+          "description": "Destination ID.",
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         }
       ],
       "responses": {
@@ -1668,7 +2040,9 @@
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "date",
@@ -1750,7 +2124,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — return extra information about users and communities",
+          "description": "'1' - return extra information about users and communities",
           "type": "boolean"
         },
         {
@@ -1789,7 +2163,7 @@
       "parameters": [
         {
           "name": "user_id",
-          "description": "User ID (by default — current user).",
+          "description": "User ID (by default - current user).",
           "type": "integer",
           "format": "int64",
           "entity": "owner"
@@ -1803,7 +2177,8 @@
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "peer_ids",
@@ -1811,7 +2186,8 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64",
+            "entity": "peer"
           },
           "maxItems": 100
         },
@@ -1826,17 +2202,6 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 100000000
-        },
-        {
-          "name": "user_ids",
-          "description": "IDs of message recipients (if new conversation shall be started).",
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int64",
-            "entity": "owner"
-          },
-          "maxItems": 100
         },
         {
           "name": "message",
@@ -1856,7 +2221,7 @@
         },
         {
           "name": "attachment",
-          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: \"photo100172_166443618\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: \"<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'wall' - wall post, '<owner_id>' - ID of the media attachment owner. '<media_id>' - media attachment ID. Example: \"photo100172_166443618\"",
           "type": "string",
           "maxLength": 9000
         },
@@ -1933,6 +2298,7 @@
             "confirmed_notification",
             "customer_support",
             "default",
+            "finance_notification",
             "game_notification",
             "moderated_newsletter",
             "non_promo_newsletter",
@@ -1948,8 +2314,8 @@
         }
       ],
       "responses": {
-        "response": {
-          "$ref": "../messages/responses.json#/definitions/messages_send_response"
+        "deprecatedResponse": {
+          "$ref": "../messages/responses.json#/definitions/messages_send_deprecated_response"
         },
         "userIdsResponse": {
           "$ref": "../messages/responses.json#/definitions/messages_send_user_ids_response"
@@ -2015,6 +2381,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_message_cannot_be_forwarded"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_user_left"
         }
       ]
     },
@@ -2039,7 +2408,9 @@
         {
           "name": "peer_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "event_data",
@@ -2054,6 +2425,51 @@
       }
     },
     {
+      "name": "messages.sendReaction",
+      "description": "Send message reaction",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "peer"
+        },
+        {
+          "name": "cmid",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "reaction_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_invalid_reaction_id"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_forbidden_reaction"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_reactions_limit_reached"
+        }
+      ]
+    },
+    {
       "name": "messages.setActivity",
       "description": "Changes the status of a user as typing in a conversation.",
       "access_token_type": [
@@ -2064,11 +2480,13 @@
         {
           "name": "user_id",
           "description": "User ID.",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "type",
-          "description": "'typing' — user has started to type.",
+          "description": "'typing' - user has started to type.",
           "type": "string",
           "enum": [
             "audiomessage",
@@ -2082,7 +2500,8 @@
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. \"",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "group_id",
@@ -2152,7 +2571,8 @@
         {
           "name": "peer_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         {
           "name": "group_id",

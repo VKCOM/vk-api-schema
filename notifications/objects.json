@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "notifications_feedback": {
       "type": "object",
@@ -60,66 +63,8 @@
       "additionalProperties": false
     },
     "notifications_notification_item": {
+      "type": "object",
       "$ref": "../notifications/objects.json#/definitions/notifications_notification"
-    },
-    "notifications_notification_parent": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "../wall/objects.json#/definitions/wall_wallpost_to_id"
-        },
-        {
-          "$ref": "../photos/objects.json#/definitions/photos_photo"
-        },
-        {
-          "$ref": "../board/objects.json#/definitions/board_topic"
-        },
-        {
-          "$ref": "../video/objects.json#/definitions/video_video"
-        },
-        {
-          "$ref": "../notifications/objects.json#/definitions/notifications_notifications_comment"
-        }
-      ],
-      "additionalProperties": false
-    },
-    "notifications_notifications_comment": {
-      "type": "object",
-      "properties": {
-        "date": {
-          "type": "integer",
-          "description": "Date when the comment has been added in Unixtime",
-          "minimum": 0
-        },
-        "id": {
-          "type": "integer",
-          "description": "Comment ID",
-          "minimum": 1
-        },
-        "owner_id": {
-          "type": "integer",
-          "description": "Author ID",
-          "entity": "owner",
-          "format": "int64"
-        },
-        "photo": {
-          "$ref": "../photos/objects.json#/definitions/photos_photo"
-        },
-        "post": {
-          "$ref": "../wall/objects.json#/definitions/wall_wallpost"
-        },
-        "text": {
-          "type": "string",
-          "description": "Comment text"
-        },
-        "topic": {
-          "$ref": "../board/objects.json#/definitions/board_topic"
-        },
-        "video": {
-          "$ref": "../video/objects.json#/definitions/video_video"
-        }
-      },
-      "additionalProperties": false
     },
     "notifications_reply": {
       "type": "object",

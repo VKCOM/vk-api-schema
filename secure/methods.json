@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -16,7 +16,6 @@
           "name": "user_id",
           "description": "ID of a user to save the data",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
@@ -110,7 +109,7 @@
         },
         {
           "name": "limit",
-          "description": "number of returned posts. By default — 1000.",
+          "description": "number of returned posts. By default - 1000.",
           "type": "integer",
           "default": 1000,
           "minimum": 0,
@@ -257,6 +256,18 @@
           "description": "notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).",
           "type": "string",
           "required": true
+        },
+        {
+          "name": "notification_id",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "promo_id",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
         }
       ],
       "responses": {

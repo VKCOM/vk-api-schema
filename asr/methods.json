@@ -1,0 +1,87 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "asr.checkStatus",
+      "description": "Returns status of the task with provided `task_id`",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "task_id",
+          "description": "ID of ASR task in UUID format.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../asr/responses.json#/definitions/asr_checkStatus_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_asr_not_found"
+        }
+      ]
+    },
+    {
+      "name": "asr.getUploadUrl",
+      "description": "Returns the server address to [vk.com/dev/upload_files_2|upload audio files].",
+      "access_token_type": [
+        "service"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      }
+    },
+    {
+      "name": "asr.process",
+      "description": "Starts ASR task on [vk.com/dev/upload_files_2|uploaded audio file].",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "audio",
+          "description": "This parameter is a JSON response returned from [vk.com/dev/upload_files_2|file uploading server].",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "model",
+          "description": "Which model to use for recognition. `neutral` -- general purpose (interviews, TV shows, etc.), `spontaneous` -- for NSFW audios (slang, profanity, etc.)",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "neutral",
+            "spontaneous"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../asr/responses.json#/definitions/asr_process_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_asr_file_is_too_big"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_asr_audio_duration_flooded"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_asr_invalid_hash"
+        }
+      ]
+    }
+  ]
+}

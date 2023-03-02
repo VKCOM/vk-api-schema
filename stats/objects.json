@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "stats_activity": {
       "type": "object",
@@ -88,21 +91,27 @@
           "$ref": "../stats/objects.json#/definitions/stats_activity"
         },
         "period_from": {
-          "type": "integer",
-          "description": "Unix timestamp"
+          "$ref": "../stats/objects.json#/definitions/stats_period_from_one_of"
         },
         "period_to": {
-          "type": "integer",
-          "description": "Unix timestamp"
+          "$ref": "../stats/objects.json#/definitions/stats_period_to_one_of"
         },
         "reach": {
-          "$ref": "../stats/objects.json#/definitions/stats_reach"
+          "$ref": "../stats/objects.json#/definitions/stats_reach_one_of"
         },
         "visitors": {
-          "$ref": "../stats/objects.json#/definitions/stats_views"
+          "$ref": "../stats/objects.json#/definitions/stats_visitors_one_of"
         }
       },
       "additionalProperties": false
+    },
+    "stats_period_from_one_of": {
+      "type": "integer",
+      "description": "Unix timestamp"
+    },
+    "stats_period_to_one_of": {
+      "type": "integer",
+      "description": "Unix timestamp"
     },
     "stats_reach": {
       "type": "object",
@@ -155,6 +164,10 @@
         }
       },
       "additionalProperties": false
+    },
+    "stats_reach_one_of": {
+      "type": "object",
+      "$ref": "../stats/objects.json#/definitions/stats_reach"
     },
     "stats_sex_age": {
       "type": "object",
@@ -232,6 +245,10 @@
         }
       },
       "additionalProperties": false
+    },
+    "stats_visitors_one_of": {
+      "type": "object",
+      "$ref": "../stats/objects.json#/definitions/stats_views"
     },
     "stats_wallpost_stat": {
       "type": "object",

@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "orders_amount": {
       "type": "object",
@@ -180,6 +183,10 @@
           "type": "integer",
           "description": "Date of last change in Unixtime",
           "required": true
+        },
+        "is_game": {
+          "type": "boolean",
+          "description": "Is game (not miniapp) subscription"
         }
       },
       "additionalProperties": false

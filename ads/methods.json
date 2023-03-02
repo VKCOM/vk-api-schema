@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -57,15 +57,18 @@
         },
         {
           "name": "link_type",
-          "description": "Object type: *'community' — community,, *'post' — community post,, *'application' — VK application,, *'video' — video,, *'site' — external site.",
+          "description": "Object type: *'community' - community,, *'post' - community post,, *'application' - VK application,, *'video' - video,, *'site' - external site.",
           "type": "string",
           "required": true,
           "enum": [
-            "community",
-            "post",
             "application",
-            "video",
-            "site"
+            "community",
+            "mobile_app",
+            "post",
+            "site",
+            "user",
+            "user_post",
+            "video"
           ]
         },
         {
@@ -189,6 +192,54 @@
       ]
     },
     {
+      "name": "ads.createLookalikeRequest",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "source_type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "retargeting_group_id",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_createLookalikeRequest_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_already_in_progress"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_max_count_per_day_reached"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_audience_too_large"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_audience_too_small"
+        }
+      ]
+    },
+    {
       "name": "ads.createTargetGroup",
       "description": "Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).",
       "access_token_type": [
@@ -208,7 +259,7 @@
         },
         {
           "name": "name",
-          "description": "Name of the target group — a string up to 64 characters long.",
+          "description": "Name of the target group - a string up to 64 characters long.",
           "type": "string",
           "required": true
         },
@@ -232,6 +283,47 @@
       "responses": {
         "response": {
           "$ref": "../ads/responses.json#/definitions/ads_createTargetGroup_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.createTargetPixel",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "category_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_createTargetPixel_response"
         }
       },
       "errors": [
@@ -388,6 +480,38 @@
       ]
     },
     {
+      "name": "ads.deleteTargetPixel",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "target_pixel_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_undefined_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
       "name": "ads.getAccounts",
       "description": "Returns a list of advertising accounts.",
       "access_token_type": [
@@ -429,12 +553,12 @@
         },
         {
           "name": "include_deleted",
-          "description": "Flag that specifies whether archived ads shall be shown: *0 — show only active ads,, *1 — show all ads.",
+          "description": "Flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.",
           "type": "boolean"
         },
         {
           "name": "only_deleted",
-          "description": "Flag that specifies whether to show only archived ads: *0 — show all ads,, *1 — show only archived ads. Available when include_deleted flag is *1",
+          "description": "Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1",
           "type": "boolean"
         },
         {
@@ -479,12 +603,12 @@
         },
         {
           "name": "include_deleted",
-          "description": "Flag that specifies whether archived ads shall be shown. *0 — show only active ads,, *1 — show all ads.",
+          "description": "Flag that specifies whether archived ads shall be shown. *0 - show only active ads,, *1 - show all ads.",
           "type": "boolean"
         },
         {
           "name": "only_deleted",
-          "description": "Flag that specifies whether to show only archived ads: *0 — show all ads,, *1 — show only archived ads. Available when include_deleted flag is *1",
+          "description": "Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1",
           "type": "boolean"
         },
         {
@@ -549,7 +673,7 @@
         },
         {
           "name": "include_deleted",
-          "description": "flag that specifies whether archived ads shall be shown: *0 — show only active ads,, *1 — show all ads.",
+          "description": "flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.",
           "type": "boolean"
         },
         {
@@ -619,7 +743,7 @@
         },
         {
           "name": "include_deleted",
-          "description": "Flag that specifies whether archived ads shall be shown. *0 — show only active campaigns,, *1 — show all campaigns.",
+          "description": "Flag that specifies whether archived ads shall be shown. *0 - show only active campaigns,, *1 - show all campaigns.",
           "type": "boolean"
         },
         {
@@ -708,7 +832,7 @@
         },
         {
           "name": "ids_type",
-          "description": "Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.",
+          "description": "Type of requested objects listed in 'ids' parameter: *ad - ads,, *campaign - campaigns.",
           "type": "string",
           "required": true,
           "enum": [
@@ -724,7 +848,7 @@
         },
         {
           "name": "period",
-          "description": "Data grouping by dates: *day — statistics by days,, *month — statistics by months,, *overall — overall statistics. 'date_from' and 'date_to' parameters set temporary limits.",
+          "description": "Data grouping by dates: *day - statistics by days,, *month - statistics by months,, *overall - overall statistics. 'date_from' and 'date_to' parameters set temporary limits.",
           "type": "string",
           "required": true,
           "enum": [
@@ -735,13 +859,13 @@
         },
         {
           "name": "date_from",
-          "description": "Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — day it was created on,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — month it was created in,, *overall: 0.",
+          "description": "Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - day it was created on,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - month it was created in,, *overall: 0.",
           "type": "string",
           "required": true
         },
         {
           "name": "date_to",
-          "description": "Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — current day,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — current month,, *overall: 0.",
+          "description": "Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - current day,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - current month,, *overall: 0.",
           "type": "string",
           "required": true
         }
@@ -759,7 +883,7 @@
     },
     {
       "name": "ads.getFloodStats",
-      "description": "Returns information about current state of a counter — number of remaining runs of methods and time to the next counter nulling in seconds.",
+      "description": "Returns information about current state of a counter - number of remaining runs of methods and time to the next counter nulling in seconds.",
       "access_token_type": [
         "user"
       ],
@@ -865,7 +989,9 @@
           "required": true,
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
           },
           "maxItems": 200
         }
@@ -921,7 +1047,7 @@
         },
         {
           "name": "ids_type",
-          "description": "Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.",
+          "description": "Type of requested objects listed in 'ids' parameter: *ad - ads,, *campaign - campaigns.",
           "type": "string",
           "required": true,
           "enum": [
@@ -993,7 +1119,7 @@
         },
         {
           "name": "ids_type",
-          "description": "Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns,, *client — clients,, *office — account.",
+          "description": "Type of requested objects listed in 'ids' parameter: *ad - ads,, *campaign - campaigns,, *client - clients,, *office - account.",
           "type": "string",
           "required": true,
           "enum": [
@@ -1011,24 +1137,26 @@
         },
         {
           "name": "period",
-          "description": "Data grouping by dates: *day — statistics by days,, *month — statistics by months,, *overall — overall statistics. 'date_from' and 'date_to' parameters set temporary limits.",
+          "description": "Data grouping by dates: *day - statistics by days,, *month - statistics by months,, *overall - overall statistics. 'date_from' and 'date_to' parameters set temporary limits.",
           "type": "string",
           "required": true,
           "enum": [
             "day",
             "month",
-            "overall"
+            "overall",
+            "week",
+            "year"
           ]
         },
         {
           "name": "date_from",
-          "description": "Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — day it was created on,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — month it was created in,, *overall: 0.",
+          "description": "Date to show statistics from. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - day it was created on,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - month it was created in,, *overall: 0.",
           "type": "string",
           "required": true
         },
         {
           "name": "date_to",
-          "description": "Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 — September 27, 2011, **0 — current day,, *month: YYYY-MM, example: 2011-09 — September 2011, **0 — current month,, *overall: 0.",
+          "description": "Date to show statistics to. For different value of 'period' different date format is used: *day: YYYY-MM-DD, example: 2011-09-27 - September 27, 2011, **0 - current day,, *month: YYYY-MM, example: 2011-09 - September 2011, **0 - current month,, *overall: 0.",
           "type": "string",
           "required": true
         },
@@ -1064,22 +1192,31 @@
       "parameters": [
         {
           "name": "section",
-          "description": "Section, suggestions are retrieved in. Available values: *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions — requested list of regions. 'country' parameter is required. *cities — requested list of cities. 'country' parameter is required. *districts — requested list of districts. 'cities' parameter is required. *stations — requested list of subway stations. 'cities' parameter is required. *streets — requested list of streets. 'cities' parameter is required. *schools — requested list of educational organizations. 'cities' parameter is required. *interests — requested list of interests. *positions — requested list of positions (professions). *group_types — requested list of group types. *religions — requested list of religious commitments. *browsers — requested list of browsers and mobile devices.",
+          "description": "Section, suggestions are retrieved in. Available values: *countries - request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions - requested list of regions. 'country' parameter is required. *cities - requested list of cities. 'country' parameter is required. *districts - requested list of districts. 'cities' parameter is required. *stations - requested list of subway stations. 'cities' parameter is required. *streets - requested list of streets. 'cities' parameter is required. *schools - requested list of educational organizations. 'cities' parameter is required. *interests - requested list of interests. *positions - requested list of positions (professions). *group_types - requested list of group types. *religions - requested list of religious commitments. *browsers - requested list of browsers and mobile devices.",
           "type": "string",
           "required": true,
           "enum": [
-            "countries",
-            "regions",
+            "browsers",
             "cities",
+            "cities_regions",
+            "countries",
             "districts",
+            "group_types",
+            "interest_categories",
+            "interest_categories_v2",
+            "interests",
+            "operators",
+            "positions",
+            "price_lists",
+            "regions",
+            "religions",
+            "schools",
             "stations",
             "streets",
-            "schools",
-            "interests",
-            "positions",
-            "group_types",
-            "religions",
-            "browsers"
+            "user_browsers",
+            "user_devices",
+            "user_operating_systems",
+            "user_os"
           ]
         },
         {
@@ -1104,18 +1241,9 @@
         },
         {
           "name": "lang",
-          "description": "Language of the returned string values. Supported languages: *ru — Russian,, *ua — Ukrainian,, *en — English.",
+          "description": "Language of the returned string values. Supported languages: *ru - Russian,, *ua - Ukrainian,, *en - English.",
           "type": "string",
-          "enum": [
-            "ru",
-            "ua",
-            "en"
-          ],
-          "enumNames": [
-            "russian",
-            "ukrainian",
-            "english"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_lang"
         }
       ],
       "responses": {
@@ -1153,13 +1281,40 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return pixel code.",
+          "description": "'1' - to return pixel code.",
           "type": "boolean"
         }
       ],
       "responses": {
         "response": {
           "$ref": "../ads/responses.json#/definitions/ads_getTargetGroups_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.getTargetPixels",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_getTargetPixels_response"
         }
       },
       "errors": [
@@ -1197,17 +1352,17 @@
         },
         {
           "name": "ad_format",
-          "description": "Ad format. Possible values: *'1' — image and text,, *'2' — big image,, *'3' — exclusive format,, *'4' — community, square image,, *'7' — special app format,, *'8' — special community format,, *'9' — post in community,, *'10' — app board.",
+          "description": "Ad format. Possible values: *'1' - image and text,, *'2' - big image,, *'3' - exclusive format,, *'4' - community, square image,, *'7' - special app format,, *'8' - special community format,, *'9' - post in community,, *'10' - app board.",
           "type": "integer",
           "enum": [
             1,
             2,
-            3,
             4,
             7,
-            8,
+            10,
+            6,
             9,
-            10
+            11
           ],
           "enumNames": [
             "image and text",
@@ -1222,7 +1377,7 @@
         },
         {
           "name": "ad_platform",
-          "description": "Platforms to use for ad showing. Possible values: (for 'ad_format' = '1'), *'0' — VK and partner sites,, *'1' — VK only. (for 'ad_format' = '9'), *'all' — all platforms,, *'desktop' — desktop version,, *'mobile' — mobile version and apps.",
+          "description": "Platforms to use for ad showing. Possible values: (for 'ad_format' = '1'), *'0' - VK and partner sites,, *'1' - VK only. (for 'ad_format' = '9'), *'all' - all platforms,, *'desktop' - desktop version,, *'mobile' - mobile version and apps.",
           "type": "string"
         },
         {
@@ -1279,22 +1434,24 @@
       "parameters": [
         {
           "name": "ad_format",
-          "description": "Ad format: *1 — image and text,, *2 — big image,, *3 — exclusive format,, *4 — community, square image,, *7 — special app format.",
+          "description": "Ad format: *1 - image and text,, *2 - big image,, *3 - exclusive format,, *4 - community, square image,, *7 - special app format.",
           "type": "integer",
           "required": true,
           "enum": [
             1,
             2,
-            3,
             4,
-            7
+            7,
+            10,
+            11
           ],
           "enumNames": [
             "image and text",
             "big image",
-            "exclusive format",
             "community, square image",
-            "special app format"
+            "special app format",
+            "exclusive format",
+            "adaptive"
           ]
         },
         {
@@ -1385,6 +1542,125 @@
       "responses": {
         "response": {
           "$ref": "../ads/responses.json#/definitions/ads_removeOfficeUsers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.removeTargetContacts",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "target_group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "contacts",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_removeTargetContacts_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.saveLookalikeRequestResult",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "request_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "level",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_saveLookalikeRequestResult_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_export_already_in_progress"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_export_max_count_per_day_reached"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_ads_lookalike_request_export_retargeting_group_limit"
+        }
+      ]
+    },
+    {
+      "name": "ads.shareTargetGroup",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "target_group_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "share_with_client_id",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../ads/responses.json#/definitions/ads_shareTargetGroup_response"
         }
       },
       "errors": [
@@ -1553,7 +1829,7 @@
         },
         {
           "name": "name",
-          "description": "New name of the target group — a string up to 64 characters long.",
+          "description": "New name of the target group - a string up to 64 characters long.",
           "type": "string",
           "required": true
         },
@@ -1582,6 +1858,52 @@
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_weighted_flood"
+        }
+      ]
+    },
+    {
+      "name": "ads.updateTargetPixel",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "account_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "client_id",
+          "type": "integer"
+        },
+        {
+          "name": "target_pixel_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "category_id",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_undefined_response"
         }
       },
       "errors": [

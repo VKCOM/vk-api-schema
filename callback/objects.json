@@ -1,12 +1,14 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "callback_base": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
           "$ref": "../callback/objects.json#/definitions/callback_type",
           "required": true
         },
@@ -22,17 +24,13 @@
           "description": "Unique event id. If it passed twice or more - you should ignore it.",
           "required": true
         },
+        "v": {
+          "type": "string",
+          "description": "API object version",
+          "required": true
+        },
         "secret": {
           "type": "string"
-        }
-      },
-      "discriminator": {
-        "propertyName": "type",
-        "mapping": {
-          "message_new": "../callback/objects.json#/definitions/callback_message_new",
-          "message_reply": "../callback/objects.json#/definitions/callback_message_reply",
-          "message_edit": "../callback/objects.json#/definitions/callback_message_edit",
-          "confirmation": "../callback/objects.json#/definitions/callback_confirmation"
         }
       },
       "additionalProperties": false
@@ -697,35 +695,6 @@
       },
       "additionalProperties": false
     },
-    "callback_qr_scan": {
-      "type": "object",
-      "properties": {
-        "user_id": {
-          "type": "integer",
-          "minimum": 0,
-          "entity": "owner",
-          "format": "int64",
-          "required": true
-        },
-        "data": {
-          "type": "string",
-          "required": true
-        },
-        "type": {
-          "type": "string",
-          "required": true
-        },
-        "subtype": {
-          "type": "string",
-          "required": true
-        },
-        "reread": {
-          "type": "boolean",
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
     "callback_type": {
       "type": "string",
       "enum": [
@@ -745,6 +714,8 @@
         "market_comment_delete",
         "market_comment_edit",
         "market_comment_restore",
+        "market_order_new",
+        "market_order_edit",
         "message_new",
         "message_reply",
         "message_edit",
@@ -753,6 +724,7 @@
         "message_read",
         "message_typing_state",
         "messages_edit",
+        "message_reaction_event",
         "photo_new",
         "photo_comment_new",
         "photo_comment_delete",

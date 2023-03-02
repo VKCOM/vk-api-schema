@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -14,7 +14,10 @@
         {
           "name": "group_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "name",
@@ -104,7 +107,10 @@
         {
           "name": "group_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "form_id",
@@ -132,7 +138,10 @@
         {
           "name": "group_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "form_id",
@@ -160,7 +169,10 @@
         {
           "name": "group_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "form_id",
@@ -210,7 +222,10 @@
         {
           "name": "group_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -228,7 +243,10 @@
         {
           "name": "group_id",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
         },
         {
           "name": "form_id",

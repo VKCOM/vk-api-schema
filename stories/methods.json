@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -84,7 +84,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "description": "'1' - to return additional fields for users and communities. Default value is 0.",
           "type": "boolean",
           "default": false
         },
@@ -111,7 +111,7 @@
       "parameters": [
         {
           "name": "extended",
-          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "description": "'1' - to return additional fields for users and communities. Default value is 0.",
           "type": "boolean"
         },
         {
@@ -152,7 +152,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "description": "'1' - to return additional fields for users and communities. Default value is 0.",
           "type": "boolean",
           "default": false
         },
@@ -177,6 +177,32 @@
       ]
     },
     {
+      "name": "stories.getDetailedStats",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "story_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../stories/responses.json#/definitions/stories_getStats_V5200_response"
+        }
+      }
+    },
+    {
       "name": "stories.getPhotoUploadServer",
       "description": "Returns URL for uploading a story with photo.",
       "access_token_type": [
@@ -186,7 +212,7 @@
       "parameters": [
         {
           "name": "add_to_news",
-          "description": "1 — to add the story to friend's feed.",
+          "description": "1 - to add the story to friend's feed.",
           "type": "boolean"
         },
         {
@@ -275,7 +301,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional fields for users and communities. Default value is 0.",
+          "description": "'1' - to return additional fields for users and communities. Default value is 0.",
           "type": "boolean",
           "default": false
         },
@@ -334,7 +360,7 @@
       "parameters": [
         {
           "name": "add_to_news",
-          "description": "1 — to add the story to friend's feed.",
+          "description": "1 - to add the story to friend's feed.",
           "type": "boolean"
         },
         {
@@ -405,7 +431,6 @@
           "name": "owner_id",
           "description": "Story owner ID.",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "entity": "owner"
         },
@@ -432,7 +457,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return detailed information about photos",
+          "description": "'1' - to return detailed information about photos",
           "type": "boolean",
           "default": 0
         },
@@ -528,9 +553,16 @@
         {
           "name": "upload_results",
           "type": "array",
-          "required": true,
           "items": {
             "type": "string"
+          }
+        },
+        {
+          "name": "upload_results_json",
+          "type": "string",
+          "format": "json",
+          "items": {
+            "$ref": "../stories/objects.json#/definitions/stories_upload_result"
           }
         },
         {

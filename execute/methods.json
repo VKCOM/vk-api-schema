@@ -1,0 +1,26 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "execute",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_undefined_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_compile"
+        }
+      ]
+    }
+  ]
+}

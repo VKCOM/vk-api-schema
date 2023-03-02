@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "groups_addAddress_response": {
       "type": "object",
@@ -44,7 +47,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "../groups/objects.json#/definitions/groups_group",
+          "$ref": "../groups/objects.json#/definitions/groups_group_full",
           "required": true
         }
       },
@@ -113,14 +116,26 @@
       },
       "additionalProperties": false
     },
-    "groups_getById_object_legacy_response": {
+    "groups_getById_object_response": {
       "type": "object",
       "properties": {
         "response": {
-          "type": "array",
-          "items": {
-            "$ref": "../groups/objects.json#/definitions/groups_group_full"
+          "type": "object",
+          "properties": {
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_profile_item"
+              }
+            }
           },
+          "additionalProperties": false,
           "required": true
         }
       },
@@ -219,32 +234,6 @@
               "items": {
                 "$ref": "../groups/objects.json#/definitions/groups_group_category"
               }
-            }
-          },
-          "additionalProperties": false,
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_getCatalog_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Total communities number",
-              "minimum": 0,
-              "required": true
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_group"
-              },
-              "required": true
             }
           },
           "additionalProperties": false,
@@ -383,6 +372,10 @@
                 "$ref": "../groups/objects.json#/definitions/groups_user_xtr_role"
               },
               "required": true
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Encoded string for a next page"
             }
           },
           "additionalProperties": false,
@@ -409,6 +402,10 @@
                 "$ref": "../groups/objects.json#/definitions/groups_member_role"
               },
               "required": true
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Encoded string for a next page"
             }
           },
           "additionalProperties": false,
@@ -439,10 +436,35 @@
                 "minimum": 0
               },
               "required": true
+            },
+            "next_from": {
+              "type": "string",
+              "description": "Encoded string for a next page"
             }
           },
           "additionalProperties": false,
           "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups_getOnlineStatus_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "minutes": {
+              "type": "integer",
+              "description": "Estimated time of answer (for status = answer_mark)"
+            },
+            "status": {
+              "$ref": "../groups/objects.json#/definitions/groups_online_status_type",
+              "required": true
+            }
+          },
+          "required": true,
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -583,6 +605,21 @@
               "required": true
             },
             "events": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "addresses": {
+              "type": "boolean"
+            },
+            "bots_capabilities": {
+              "description": "By enabling bot abilities, you can send users messages with a customized keyboard attached as well as use other promotional abilities",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "bots_start_button": {
+              "description": "If this setting is enabled, users will see a Start button when they start a chat with your community for the first time",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "bots_add_to_chat": {
+              "description": "If this setting is enabled then users can add your community to a chat",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
             "obscene_filter": {
@@ -798,6 +835,25 @@
       },
       "additionalProperties": false
     },
+    "groups_invite_user_ids_list_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "invites_send_count": {
+              "type": "integer",
+              "description": "Total invited users number",
+              "minimum": 0,
+              "required": true
+            }
+          },
+          "required": true,
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "groups_isMember_extended_response": {
       "type": "object",
       "properties": {
@@ -827,17 +883,6 @@
             }
           },
           "additionalProperties": false,
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_isMember_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "description": "Information whether user is a member of the group",
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         }
       },
@@ -884,7 +929,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_group"
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
               },
               "required": true
             }

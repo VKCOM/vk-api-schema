@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "widgets_comment_media": {
       "type": "object",
@@ -52,6 +55,14 @@
           "items": {
             "$ref": "../widgets/objects.json#/definitions/widgets_comment_replies_item"
           }
+        },
+        "groups_can_post": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether groups can comment the post"
+        },
+        "can_view": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether current user can view the comments"
         }
       },
       "additionalProperties": false
@@ -93,6 +104,12 @@
             "$ref": "../wall/objects.json#/definitions/wall_comment_attachment"
           }
         },
+        "owner_id": {
+          "type": "integer",
+          "description": "Wall owner's ID",
+          "entity": "owner",
+          "format": "int64"
+        },
         "can_delete": {
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether current user can delete the comment"
@@ -125,7 +142,7 @@
           "$ref": "../wall/objects.json#/definitions/wall_post_source"
         },
         "post_type": {
-          "type": "integer",
+          "type": "string",
           "description": "Post type",
           "required": true
         },
@@ -144,6 +161,16 @@
         },
         "user": {
           "$ref": "../users/objects.json#/definitions/users_user_full"
+        },
+        "is_favorite": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Information whether the post in favorites list"
+        },
+        "short_text_rate": {
+          "type": "number",
+          "description": "Preview length control parameter",
+          "minimum": 0,
+          "maximum": 1
         }
       },
       "additionalProperties": false

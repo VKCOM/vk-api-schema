@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -99,7 +99,6 @@
           "name": "user_id",
           "description": "User ID whose settings information shall be got. By default: current user.",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
@@ -152,36 +151,16 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": [
-              "friends",
-              "messages",
-              "photos",
-              "notes",
-              "gifts",
-              "events",
-              "groups",
-              "sdk",
-              "friends_suggestions",
-              "notifications",
-              "app_requests",
-              "friends_recommendations"
-            ]
+            "$ref": "../account/objects.json#/definitions/account_counters_filter"
           }
-        },
-        {
-          "name": "user_id",
-          "description": "User ID",
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "entity": "owner"
         }
       ],
       "responses": {
         "response": {
           "$ref": "../account/responses.json#/definitions/account_getCounters_response"
         }
-      }
+      },
+      "errors": []
     },
     {
       "name": "account.getInfo",
@@ -192,7 +171,7 @@
       "parameters": [
         {
           "name": "fields",
-          "description": "Fields to return. Possible values: *'country' — user country,, *'https_required' — is \"HTTPS only\" option enabled,, *'own_posts_default' — is \"Show my posts only\" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.",
+          "description": "Fields to return. Possible values: *'country' - user country,, *'https_required' - is \"HTTPS only\" option enabled,, *'own_posts_default' - is \"Show my posts only\" option is enabled,, *'no_wall_replies' - are wall replies disabled or not,, *'intro' - is intro passed by user or not,, *'lang' - user language. By default: all.",
           "type": "array",
           "items": {
             "type": "string",
@@ -202,7 +181,8 @@
               "own_posts_default",
               "no_wall_replies",
               "intro",
-              "lang"
+              "lang",
+              "audio_autoplay"
             ]
           }
         }
@@ -332,6 +312,7 @@
           "name": "sex",
           "description": "User sex. Possible values: , * '1' - female,, * '2' - male.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0,
           "enum": [
             0,
@@ -348,8 +329,10 @@
           "name": "relation",
           "description": "User relationship status. Possible values: , * '1' - single,, * '2' - in a relationship,, * '3' - engaged,, * '4' - married,, * '5' - it's complicated,, * '6' - actively searching,, * '7' - in love,, * '0' - not specified.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0,
           "enum": [
+            0,
             1,
             2,
             3,
@@ -357,9 +340,10 @@
             5,
             6,
             7,
-            0
+            8
           ],
           "enumNames": [
+            "not specified",
             "single",
             "relationship",
             "engaged",
@@ -367,7 +351,7 @@
             "complicated",
             "actively searching",
             "in love",
-            "not specified"
+            "in a civil union"
           ]
         },
         {
@@ -387,16 +371,17 @@
           "name": "bdate_visibility",
           "description": "Birth date visibility. Returned values: , * '1' - show birth date,, * '2' - show only month and day,, * '0' - hide birth date.",
           "type": "integer",
+          "format": "int32",
           "minimum": 0,
           "enum": [
+            0,
             1,
-            2,
-            0
+            2
           ],
           "enumNames": [
+            "hide",
             "show",
-            "hide year",
-            "hide"
+            "hide year"
           ]
         },
         {
@@ -445,6 +430,7 @@
           "description": "Setting name.",
           "type": "string",
           "enum": [
+            "audio_autoplay",
             "intro",
             "no_wall_replies",
             "own_posts_default"
@@ -551,11 +537,13 @@
         {
           "name": "peer_id",
           "description": "Destination ID. \"For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. \"",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer"
         },
         {
           "name": "sound",
-          "description": "'1' — to enable sound in this dialog, '0' — to disable sound. Only if 'peer_id' contains user or community ID.",
+          "description": "'1' - to enable sound in this dialog, '0' - to disable sound. Only if 'peer_id' contains user or community ID.",
           "type": "integer"
         }
       ],

@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "audio_audio": {
       "type": "object",
@@ -51,11 +54,6 @@
         "album_id": {
           "type": "integer",
           "description": "Album ID",
-          "minimum": 0
-        },
-        "genre_id": {
-          "type": "integer",
-          "description": "Genre ID",
           "minimum": 0
         },
         "performer": {

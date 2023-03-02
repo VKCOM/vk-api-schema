@@ -1,7 +1,45 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "video_episode": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds from start of the video"
+        },
+        "text": {
+          "type": "string",
+          "description": "Description of episode"
+        }
+      },
+      "additionalProperties": false
+    },
+    "video_live_category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        },
+        "sublist": {
+          "type": "array",
+          "items": {
+            "$ref": "../video/objects.json#/definitions/video_live_category"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "video_live_info": {
       "type": "object",
       "properties": {
@@ -30,6 +68,10 @@
         "max_duration": {
           "description": "Max possible time for rewind",
           "type": "integer"
+        },
+        "is_clips_live": {
+          "description": "If live in clips apps",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
       },
       "additionalProperties": false
@@ -67,8 +109,38 @@
       },
       "additionalProperties": false
     },
-    "video_video": {
+    "video_stream_input_params": {
+      "type": "object",
       "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "key": {
+          "type": "string"
+        },
+        "okmp_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "webrtc_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "video_video": {
+      "type": "object",
+      "properties": {
+        "response_type": {
+          "type": "string",
+          "default": "min",
+          "enum": [
+            "min",
+            "full"
+          ]
+        },
         "access_key": {
           "type": "string",
           "description": "Video access key"
@@ -86,12 +158,18 @@
           "description": "Information whether current user can edit the video",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
+        "can_delete": {
+          "description": "Information whether current user can delete the video",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
         "can_like": {
           "description": "Information whether current user can like the video",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
         "can_repost": {
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3,
           "description": "Information whether current user can repost the video"
         },
         "can_subscribe": {
@@ -108,6 +186,10 @@
         },
         "can_attach_link": {
           "description": "Information whether current user can attach action button to the video",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "can_edit_privacy": {
+          "description": "Information whether current user can edit the video privacy",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
         "is_private": {
@@ -214,7 +296,9 @@
           "enum": [
             "video",
             "music_video",
-            "movie"
+            "movie",
+            "live",
+            "short_video"
           ]
         },
         "views": {
@@ -240,17 +324,6 @@
           "type": "integer",
           "description": "Live donations balance",
           "minimum": 0
-        },
-        "live_status": {
-          "type": "string",
-          "description": "Live stream status",
-          "enum": [
-            "waiting",
-            "started",
-            "finished",
-            "failed",
-            "upcoming"
-          ]
         },
         "live": {
           "description": "1 if the video is a live stream",
@@ -284,7 +357,8 @@
         "reposts": {
           "$ref": "../base/objects.json#/definitions/base_reposts_info"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "video_video_album": {
       "type": "object",
@@ -305,6 +379,19 @@
           "type": "string",
           "description": "Album title",
           "required": true
+        },
+        "track_code": {
+          "type": "string",
+          "description": "Album trackcode",
+          "required": false
+        },
+        "response_type": {
+          "type": "string",
+          "default": "min",
+          "enum": [
+            "min",
+            "full"
+          ]
         }
       },
       "additionalProperties": false
@@ -344,6 +431,18 @@
               "description": "Date when the album has been updated last time in Unixtime",
               "minimum": 0,
               "required": true
+            },
+            "can_edit": {
+              "description": "Is user can edit playlist",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_delete": {
+              "description": "Is user can delete playlist",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_upload": {
+              "description": "Is user can upload video to playlist",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
           },
           "additionalProperties": false
@@ -421,6 +520,13 @@
             },
             "trailer": {
               "$ref": "../video/objects.json#/definitions/video_video_files"
+            },
+            "episodes": {
+              "description": "List of video episodes with timecodes",
+              "type": "array",
+              "items": {
+                "$ref": "../video/objects.json#/definitions/video_episode"
+              }
             },
             "live_settings": {
               "description": "Settings for live stream",

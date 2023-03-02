@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "leadForms_answer": {
       "type": "object",
@@ -10,17 +13,7 @@
           "required": true
         },
         "answer": {
-          "oneOf": [
-            {
-              "$ref": "../leadForms/objects.json#/definitions/leadForms_answer_item"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "../leadForms/objects.json#/definitions/leadForms_answer_item"
-              }
-            }
-          ],
+          "$ref": "../leadForms/objects.json#/definitions/leadForms_answer_one_of",
           "required": true
         }
       },
@@ -38,6 +31,20 @@
         }
       },
       "additionalProperties": false
+    },
+    "leadForms_answer_one_of": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "../leadForms/objects.json#/definitions/leadForms_answer_item"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "../leadForms/objects.json#/definitions/leadForms_answer_item"
+          }
+        }
+      ]
     },
     "leadForms_form": {
       "type": "object",

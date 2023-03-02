@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
+  "definitions": {
+    "streaming_stats": {
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "description": "Events type",
+          "required": true,
+          "enum": [
+            "post",
+            "comment",
+            "share"
+          ]
+        },
+        "stats": {
+          "type": "array",
+          "description": "Statistics",
+          "required": true,
+          "items": {
+            "$ref": "../streaming/objects.json#/definitions/streaming_stats_point"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "streaming_stats_point": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "value": {
+          "type": "integer",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

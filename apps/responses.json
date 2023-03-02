@@ -1,7 +1,31 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "apps_created_group_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 25,
+              "entity": "groups",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "apps_getCatalog_response": {
       "type": "object",
       "properties": {
@@ -27,7 +51,8 @@
               "type": "array",
               "items": {
                 "$ref": "../users/objects.json#/definitions/users_user_full"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -53,7 +78,8 @@
                 "type": "integer",
                 "format": "int64",
                 "entity": "owner"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -70,13 +96,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../apps/objects.json#/definitions/apps_leaderboard"
-              }
+              },
+              "required": true
             },
             "profiles": {
               "type": "array",
@@ -99,13 +127,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../apps/objects.json#/definitions/apps_leaderboard"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -173,6 +203,37 @@
       },
       "additionalProperties": false
     },
+    "apps_getTestingGroups_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../apps/objects.json#/definitions/apps_testing_group"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "apps_get_last_uploaded_version_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "description": "Last uploaded version",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "apps_get_response": {
       "type": "object",
       "properties": {
@@ -182,13 +243,29 @@
             "count": {
               "type": "integer",
               "description": "Total number of applications",
-              "minimum": 0
+              "minimum": 0,
+              "required": true
             },
             "items": {
               "type": "array",
               "description": "List of applications",
               "items": {
                 "$ref": "../apps/objects.json#/definitions/apps_app"
+              },
+              "required": true
+            },
+            "profiles": {
+              "type": "array",
+              "description": "List of friends profiles, used only when return_friends=true",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "description": "List of groups, used only when extended=true",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
               }
             }
           },
@@ -211,6 +288,24 @@
             "image": {
               "type": "string",
               "description": "Uploaded photo data"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "apps_isNotificationsAllowed_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "is_allowed": {
+              "description": "Whether notifications are allowed for current user from concrete app or not",
+              "type": "boolean",
+              "required": true
             }
           },
           "additionalProperties": false,

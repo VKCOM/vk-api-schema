@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -89,8 +89,9 @@
         {
           "name": "owner_id",
           "description": "post owner community id. Specify with \"-\" sign.",
-          "type": "string",
-          "required": true
+          "type": "integer",
+          "required": true,
+          "format": "int64"
         },
         {
           "name": "post_ids",
@@ -99,7 +100,8 @@
           "required": true,
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "minimum": 1
           },
           "maxItems": 30
         }

@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -52,7 +52,6 @@
           "name": "country_id",
           "description": "Country ID.",
           "type": "integer",
-          "required": true,
           "minimum": 0
         },
         {
@@ -68,7 +67,7 @@
         },
         {
           "name": "need_all",
-          "description": "'1' — to return all cities in the country, '0' — to return major cities in the country (default),",
+          "description": "'1' - to return all cities in the country, '0' - to return major cities in the country (default),",
           "type": "boolean"
         },
         {
@@ -126,7 +125,7 @@
       "parameters": [
         {
           "name": "need_all",
-          "description": "'1' — to return a full list of all countries, '0' — to return a list of countries near the current user's country (default).",
+          "description": "'1' - to return a full list of all countries, '0' - to return a list of countries near the current user's country (default).",
           "type": "boolean"
         },
         {
@@ -336,7 +335,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../database/responses.json#/definitions/database_getSchoolClasses_response"
+          "$ref": "../database/responses.json#/definitions/database_getSchoolClasses_new_response"
         }
       }
     },

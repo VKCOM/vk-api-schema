@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "ads_access_role": {
       "type": "string",
@@ -87,10 +90,11 @@
             "integer",
             "string"
           ],
+          "required": true,
           "description": "Ad platform"
         },
         "all_limit": {
-          "type": "integer",
+          "type": "string",
           "description": "Total limit",
           "required": true
         },
@@ -116,23 +120,27 @@
           "required": true
         },
         "cpc": {
-          "type": "integer",
+          "type": "string",
           "description": "Cost of a click, kopecks"
         },
         "cpm": {
-          "type": "integer",
+          "type": "string",
           "description": "Cost of 1000 impressions, kopecks"
         },
         "cpa": {
-          "type": "integer",
+          "type": "string",
           "description": "Cost of an action, kopecks"
         },
         "ocpm": {
-          "type": "integer",
+          "type": "string",
           "description": "Cost of 1000 impressions optimized, kopecks"
         },
+        "autobidding": {
+          "description": "Autobidding",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
         "autobidding_max_cost": {
-          "type": "integer",
+          "type": "string",
           "description": "Max cost of target actions for autobidding, kopecks"
         },
         "disclaimer_medical": {
@@ -156,6 +164,10 @@
           "type": "integer",
           "description": "Impressions limit"
         },
+        "impressions_limit_period": {
+          "type": "integer",
+          "description": "Impressions limit period"
+        },
         "impressions_limited": {
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether impressions are limited"
@@ -172,6 +184,117 @@
         "video": {
           "description": "Information whether the ad is a video",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "day_limit": {
+          "type": "string",
+          "description": "Day limit"
+        },
+        "goal_type": {
+          "type": "integer",
+          "description": "Goal type"
+        },
+        "user_goal_type": {
+          "type": "integer",
+          "description": "User goal type"
+        },
+        "age_restriction": {
+          "type": "integer",
+          "description": "Age restriction"
+        },
+        "conversion_pixel_id": {
+          "type": "integer",
+          "description": "Conversion pixel id"
+        },
+        "conversion_event_id": {
+          "type": "integer",
+          "description": "Conversion event id"
+        },
+        "create_time": {
+          "type": "integer",
+          "description": "Create time"
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Update time"
+        },
+        "start_time": {
+          "type": "integer",
+          "description": "Start time"
+        },
+        "stop_time": {
+          "type": "integer",
+          "description": "Stop time"
+        },
+        "publisher_platforms_auto": {
+          "description": "Publisher platform auto",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "publisher_platforms": {
+          "type": "string",
+          "description": "Publisher platforms"
+        },
+        "link_url": {
+          "type": "string",
+          "description": "Link url"
+        },
+        "link_owner_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Link owner id"
+        },
+        "link_id": {
+          "type": "integer",
+          "description": "Link id"
+        },
+        "has_campaign_budget_optimization": {
+          "type": "boolean",
+          "description": "Has campaign budget optimization"
+        },
+        "events_retargeting_groups": {
+          "type": "array",
+          "description": "Events retargeting groups",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_events_retargeting_group"
+          }
+        },
+        "weekly_schedule_hours": {
+          "type": "array",
+          "description": "Weekly schedule hours",
+          "items": {
+            "type": "string"
+          }
+        },
+        "weekly_schedule_use_holidays": {
+          "type": "integer",
+          "description": "Weekly schedule use holidays"
+        },
+        "ad_platform_no_ad_network": {
+          "type": "integer",
+          "description": "Ad platform no ad network"
+        },
+        "ad_platform_no_wall": {
+          "type": "integer",
+          "description": "Ad platform no wall"
+        },
+        "disclaimer_finance": {
+          "type": "integer",
+          "description": "Disclaimer finance"
+        },
+        "disclaimer_finance_name": {
+          "type": "string",
+          "description": "Disclaimer finance name"
+        },
+        "disclaimer_finance_license_no": {
+          "type": "string",
+          "description": "Disclaimer finance license no"
+        },
+        "is_promo": {
+          "type": "boolean",
+          "description": "is promo"
+        },
+        "suggested_criteria": {
+          "type": "integer",
+          "description": "Suggested criteria"
         }
       },
       "additionalProperties": false
@@ -231,7 +354,7 @@
           "required": true
         },
         "id": {
-          "type": "string",
+          "type": "integer",
           "description": "Ad ID",
           "required": true
         },
@@ -256,6 +379,11 @@
           "description": "URL of advertised object",
           "required": true
         },
+        "link_type": {
+          "type": "integer",
+          "description": "Type of advertised object",
+          "required": true
+        },
         "preview_link": {
           "type": "string",
           "description": "link to preview an ad as it is shown on the website"
@@ -268,6 +396,86 @@
         "video": {
           "description": "Information whether the ad is a video",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "social": {
+          "type": "boolean",
+          "description": "Social"
+        },
+        "okved": {
+          "type": "string",
+          "description": "Okved"
+        },
+        "age_restriction": {
+          "type": "integer",
+          "description": "Age restriction"
+        },
+        "goal_type": {
+          "type": "integer",
+          "description": "Goal type"
+        },
+        "link_title": {
+          "type": "string",
+          "description": "Link title"
+        },
+        "link_button": {
+          "type": "string",
+          "description": "Link button"
+        },
+        "repeat_video": {
+          "type": "integer",
+          "description": "Repeat video"
+        },
+        "video_src_240": {
+          "type": "string",
+          "description": "Video source 240p"
+        },
+        "video_src_360": {
+          "type": "string",
+          "description": "Video source 360p"
+        },
+        "video_src_480": {
+          "type": "string",
+          "description": "Video source 480p"
+        },
+        "video_src_720": {
+          "type": "string",
+          "description": "Video source 720p"
+        },
+        "video_src_1080": {
+          "type": "string",
+          "description": "Video source 1080p"
+        },
+        "video_image_src": {
+          "type": "string",
+          "description": "Video image source"
+        },
+        "video_image_src_2x": {
+          "type": "string",
+          "description": "Video image source 2x"
+        },
+        "video_duration": {
+          "type": "integer",
+          "description": "Video duration"
+        },
+        "icon_src": {
+          "type": "string",
+          "description": "Icon source"
+        },
+        "icon_src_2x": {
+          "type": "string",
+          "description": "Icon source 2x"
+        },
+        "post": {
+          "$ref": "../ads/objects.json#/definitions/ads_post"
+        },
+        "stories_data": {
+          "$ref": "../ads/objects.json#/definitions/ads_stories"
+        },
+        "clips_list": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_clip_item"
+          }
         }
       },
       "additionalProperties": false
@@ -429,6 +637,47 @@
           "type": "string",
           "description": "Client name",
           "required": true
+        },
+        "ord_data": {
+          "description": "Ord data",
+          "$ref": "../ads/objects.json#/definitions/ads_ord_data",
+          "required": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_clip_item": {
+      "type": "object",
+      "properties": {
+        "video_id": {
+          "type": "integer",
+          "description": "Video id"
+        },
+        "preview_url": {
+          "type": "string",
+          "description": "Preview url"
+        },
+        "link": {
+          "$ref": "../ads/objects.json#/definitions/ads_clip_item_link"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_clip_item_link": {
+      "type": "object",
+      "description": "Link",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Text"
+        },
+        "key": {
+          "type": "string",
+          "description": "Key"
+        },
+        "url": {
+          "type": "string",
+          "description": "Url"
         }
       },
       "additionalProperties": false
@@ -480,18 +729,37 @@
       },
       "additionalProperties": false
     },
+    "ads_create_clients_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Client ID",
+          "required": true
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
+        }
+      },
+      "additionalProperties": false
+    },
     "ads_criteria": {
       "type": "object",
       "properties": {
         "age_from": {
-          "type": "integer",
-          "description": "Age from",
-          "minimum": 0
+          "type": "string",
+          "description": "Age from"
         },
         "age_to": {
-          "type": "integer",
-          "description": "Age to",
-          "minimum": 0
+          "type": "string",
+          "description": "Age to"
         },
         "apps": {
           "type": "string",
@@ -502,7 +770,7 @@
           "description": "Apps IDs to except"
         },
         "birthday": {
-          "type": "integer",
+          "type": "string",
           "description": "Days to birthday"
         },
         "cities": {
@@ -514,9 +782,8 @@
           "description": "Cities IDs to except"
         },
         "country": {
-          "type": "integer",
-          "description": "Country ID",
-          "minimum": 0
+          "type": "string",
+          "description": "Country ID"
         },
         "districts": {
           "type": "string",
@@ -535,8 +802,8 @@
           "description": "Interests"
         },
         "paying": {
-          "description": "Information whether the user has proceeded VK payments before",
-          "$ref": "../base/objects.json#/definitions/base_bool_int"
+          "type": "string",
+          "description": "Information whether the user has proceeded VK payments before"
         },
         "positions": {
           "type": "string",
@@ -548,18 +815,18 @@
         },
         "retargeting_groups": {
           "type": "string",
-          "description": "Retargeting groups IDs"
+          "description": "Retargeting groups ids"
         },
         "retargeting_groups_not": {
           "type": "string",
-          "description": "Retargeting groups IDs to except"
+          "description": "Retargeting groups NOT ids"
         },
         "school_from": {
-          "type": "integer",
+          "type": "string",
           "description": "School graduation year from"
         },
         "school_to": {
-          "type": "integer",
+          "type": "string",
           "description": "School graduation year to"
         },
         "schools": {
@@ -582,15 +849,19 @@
           "description": "Streets IDs"
         },
         "travellers": {
-          "description": "Travellers only",
-          "$ref": "../base/objects.json#/definitions/base_property_exists"
+          "type": "string",
+          "description": "Travellers"
+        },
+        "ab_test": {
+          "type": "string",
+          "description": "AB test"
         },
         "uni_from": {
-          "type": "integer",
+          "type": "string",
           "description": "University graduation year from"
         },
         "uni_to": {
-          "type": "integer",
+          "type": "string",
           "description": "University graduation year to"
         },
         "user_browsers": {
@@ -604,17 +875,121 @@
         "user_os": {
           "type": "string",
           "description": "Operating systems"
+        },
+        "suggested_criteria": {
+          "type": "string",
+          "description": "Suggested criteria"
+        },
+        "groups_not": {
+          "type": "string",
+          "description": "Group not"
+        },
+        "price_list_audience_type": {
+          "type": "string",
+          "description": "Price list audience type"
+        },
+        "count": {
+          "type": "string",
+          "description": "Count"
+        },
+        "groups_active_formula": {
+          "type": "string",
+          "description": "Group active formula"
+        },
+        "interest_categories_formula": {
+          "type": "string",
+          "description": "Interest categories formula"
+        },
+        "groups_formula": {
+          "type": "string",
+          "description": "Groups formula"
+        },
+        "groups_active": {
+          "type": "string",
+          "description": "Groups active"
+        },
+        "group_types": {
+          "type": "string",
+          "description": "Group types"
+        },
+        "key_phrases": {
+          "type": "string",
+          "description": "Key phrases"
+        },
+        "key_phrases_days": {
+          "type": "string",
+          "description": "Key phrases days"
+        },
+        "geo_near": {
+          "type": "string",
+          "description": "Geo near"
+        },
+        "geo_point_type": {
+          "type": "string",
+          "description": "Geo point type"
+        },
+        "price_list_id": {
+          "type": "string",
+          "description": "Price list id"
+        },
+        "groups_recommended": {
+          "type": "string",
+          "description": "Groups recommended ids"
+        },
+        "groups_active_recommended": {
+          "type": "string",
+          "description": "Groups active recommended ids"
+        },
+        "music_artists_formula": {
+          "type": "string",
+          "description": "Music artists formula"
+        },
+        "price_list_retargeting_formula": {
+          "type": "string",
+          "description": "Price list retargeting formula"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags"
+        },
+        "browsers": {
+          "type": "string",
+          "description": "Browsers"
+        },
+        "mobile_os_min_version": {
+          "type": "string",
+          "description": "Mobile os min version"
+        },
+        "mobile_apps_events_formula": {
+          "type": "string",
+          "description": "Mobile apps events formula"
+        },
+        "mobile_os_max_version": {
+          "type": "string",
+          "description": "Mobile os max version"
+        },
+        "operators": {
+          "type": "string",
+          "description": "operators"
+        },
+        "wifi_only": {
+          "type": "string",
+          "description": "wifi_only"
+        },
+        "mobile_manufacturers": {
+          "type": "string",
+          "description": "mobile_manufacturers"
         }
       },
       "additionalProperties": false
     },
     "ads_criteria_sex": {
-      "type": "integer",
+      "type": "string",
       "description": "Sex",
       "enum": [
-        0,
-        1,
-        2
+        "0",
+        "1",
+        "2"
       ],
       "enumNames": [
         "any",
@@ -630,10 +1005,27 @@
           "description": "Object ID"
         },
         "stats": {
-          "$ref": "../ads/objects.json#/definitions/ads_demostats_format"
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_demostats_format"
+          }
         },
         "type": {
           "$ref": "../ads/objects.json#/definitions/ads_object_type"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_demographic_stats_period_item_base": {
+      "type": "object",
+      "properties": {
+        "clicks_rate": {
+          "type": "number",
+          "description": "Clicks rate"
+        },
+        "impressions_rate": {
+          "type": "number",
+          "description": "Impressions rate"
         }
       },
       "additionalProperties": false
@@ -656,6 +1048,12 @@
         "day": {
           "type": "string",
           "description": "Day as YYYY-MM-DD"
+        },
+        "day_from": {
+          "type": "string"
+        },
+        "day_to": {
+          "type": "string"
         },
         "month": {
           "type": "string",
@@ -680,6 +1078,21 @@
       },
       "additionalProperties": false
     },
+    "ads_events_retargeting_group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "ads_flood_stats": {
       "type": "object",
       "properties": {
@@ -692,6 +1105,32 @@
           "type": "integer",
           "description": "Time to refresh in seconds",
           "required": true
+        },
+        "stats_by_user": {
+          "type": "array",
+          "description": "Used requests per user",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_flood_stats_by_user_item"
+          },
+          "required": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_flood_stats_by_user_item": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "description": "User ID",
+          "required": true,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "requests_count": {
+          "type": "integer",
+          "description": "Used requests",
+          "required": true
         }
       },
       "additionalProperties": false
@@ -701,14 +1140,12 @@
       "properties": {
         "description": {
           "type": "string",
-          "description": "Reject reason",
-          "required": true
+          "description": "Reject reason"
         },
         "redirect_url": {
           "type": "string",
           "format": "uri",
-          "description": "URL",
-          "required": true
+          "description": "URL"
         },
         "status": {
           "type": "string",
@@ -801,6 +1238,18 @@
       },
       "additionalProperties": false
     },
+    "ads_mobile_stat_item": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
     "ads_musician": {
       "type": "object",
       "properties": {
@@ -832,12 +1281,321 @@
         "office"
       ]
     },
-    "ads_paragraphs": {
+    "ads_ord_client_type": {
+      "type": "string",
+      "required": true,
+      "enum": [
+        "person",
+        "individual",
+        "legal",
+        "foreign",
+        "unknown"
+      ]
+    },
+    "ads_ord_data": {
       "type": "object",
       "properties": {
-        "paragraph": {
+        "client_type": {
+          "required": true,
+          "$ref": "../ads/objects.json#/definitions/ads_ord_client_type"
+        },
+        "client_name": {
           "type": "string",
-          "description": "Rules paragraph"
+          "required": true
+        },
+        "inn": {
+          "type": "string",
+          "required": false
+        },
+        "phone": {
+          "type": "string",
+          "required": true
+        },
+        "subagent": {
+          "required": false,
+          "$ref": "../ads/objects.json#/definitions/ads_ord_subagent"
+        },
+        "contract_number": {
+          "type": "string",
+          "required": true
+        },
+        "contract_date": {
+          "type": "string",
+          "required": true
+        },
+        "contract_type": {
+          "type": "string",
+          "required": true
+        },
+        "contract_object": {
+          "type": "string",
+          "required": true
+        },
+        "with_vat": {
+          "type": "boolean",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_ord_subagent": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "required": true,
+          "$ref": "../ads/objects.json#/definitions/ads_ord_client_type"
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "inn": {
+          "type": "string",
+          "required": false
+        },
+        "phone": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Post id"
+        },
+        "from_id": {
+          "type": "integer",
+          "description": "From id"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Owner id",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date"
+        },
+        "edited": {
+          "type": "integer",
+          "description": "Edited date"
+        },
+        "is_pinned": {
+          "type": "integer",
+          "description": "Is pinned"
+        },
+        "marked_as_ads": {
+          "type": "integer",
+          "description": "Marked as ads"
+        },
+        "ads_easy_promote": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_easy_promote"
+        },
+        "donut": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_donut"
+        },
+        "comments": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_comments"
+        },
+        "short_text_rate": {
+          "type": "number",
+          "description": "Short text rate"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type"
+        },
+        "is_favorite": {
+          "type": "boolean",
+          "description": "Is favorite"
+        },
+        "likes": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_likes"
+        },
+        "views": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_views"
+        },
+        "post_type": {
+          "type": "string",
+          "description": "Post type"
+        },
+        "reposts": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_reposts"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text"
+        },
+        "is_promoted_post_stealth": {
+          "type": "boolean",
+          "description": "Is promoted post stealth"
+        },
+        "hash": {
+          "type": "string",
+          "description": "Hash"
+        },
+        "owner": {
+          "$ref": "../ads/objects.json#/definitions/ads_post_owner"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+          }
+        },
+        "created_by": {
+          "type": "integer",
+          "description": "Created by"
+        },
+        "carousel_offset": {
+          "type": "integer",
+          "description": "Carousel offset"
+        },
+        "can_edit": {
+          "type": "integer",
+          "description": "Can edit"
+        },
+        "can_delete": {
+          "type": "integer",
+          "description": "Can delete"
+        },
+        "can_pin": {
+          "type": "integer",
+          "description": "Can pin"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_comments": {
+      "type": "object",
+      "description": "Comments",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Count"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_donut": {
+      "type": "object",
+      "description": "Donut",
+      "properties": {
+        "is_donut": {
+          "type": "boolean",
+          "description": "Is donut"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_easy_promote": {
+      "type": "object",
+      "description": "Ads easy promote",
+      "properties": {
+        "type": {
+          "type": "integer",
+          "description": "Type"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text"
+        },
+        "label_text": {
+          "type": "string",
+          "description": "Label text"
+        },
+        "button_text": {
+          "type": "string",
+          "description": "Button text"
+        },
+        "is_ad_not_easy": {
+          "type": "boolean",
+          "description": "Is ad not easy"
+        },
+        "ad_id": {
+          "type": "integer",
+          "description": "Ad id"
+        },
+        "top_union_id": {
+          "type": "integer",
+          "description": "Top union id"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_likes": {
+      "type": "object",
+      "description": "Likes",
+      "properties": {
+        "can_like": {
+          "type": "integer",
+          "description": "Can like"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Count"
+        },
+        "user_likes": {
+          "type": "integer",
+          "description": "User likes"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_owner": {
+      "type": "object",
+      "description": "Owner",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Owner id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name"
+        },
+        "photo": {
+          "type": "string",
+          "description": "Photo url"
+        },
+        "url": {
+          "type": "string",
+          "description": "Profile url"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_reposts": {
+      "type": "object",
+      "description": "Reposts",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Count"
+        },
+        "wall_count": {
+          "type": "integer",
+          "description": "Wall count"
+        },
+        "mail_count": {
+          "type": "integer",
+          "description": "Mail count"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_post_views": {
+      "type": "object",
+      "description": "Views",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Count"
         }
       },
       "additionalProperties": false
@@ -902,6 +1660,10 @@
           "type": "integer",
           "description": "Video views for 3 seconds"
         },
+        "video_views_10s": {
+          "type": "integer",
+          "description": "Video views for 10 seconds"
+        },
         "video_views_50p": {
           "type": "integer",
           "description": "Video views for 50 percent"
@@ -913,6 +1675,10 @@
         "video_views_start": {
           "type": "integer",
           "description": "Video starts"
+        },
+        "pretty_cards_clicks": {
+          "type": "integer",
+          "description": "Pretty cards clicks"
         }
       },
       "additionalProperties": false
@@ -936,15 +1702,70 @@
     "ads_rules": {
       "type": "object",
       "properties": {
-        "paragraphs": {
-          "type": "array",
-          "items": {
-            "$ref": "../ads/objects.json#/definitions/ads_paragraphs"
-          }
+        "help_url": {
+          "$ref": "../ads/objects.json#/definitions/ads_rules_help_url",
+          "description": "Help url"
         },
-        "title": {
+        "help_label": {
           "type": "string",
-          "description": "Comment"
+          "description": "Label"
+        },
+        "content_html": {
+          "type": "string",
+          "description": "Content Html"
+        },
+        "help_chat": {
+          "type": "boolean",
+          "description": "Help chat"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_rules_help_url": {
+      "type": "object",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "ads_statistic_click_action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "load",
+            "impression",
+            "click_deeplink",
+            "click",
+            "click_post_owner",
+            "click_post_link",
+            "click_pretty_card",
+            "like_post",
+            "share_post",
+            "video_start",
+            "video_pause",
+            "video_resume",
+            "video_play_3s",
+            "video_play_10s",
+            "video_play_25",
+            "video_play_50",
+            "video_play_75",
+            "video_play_95",
+            "video_play_100",
+            "video_volume_on",
+            "video_volume_off",
+            "video_fullscreen_on",
+            "video_fullscreen_off",
+            "hide"
+          ]
+        },
+        "url": {
+          "type": "string"
         }
       },
       "additionalProperties": false
@@ -957,7 +1778,10 @@
           "description": "Object ID"
         },
         "stats": {
-          "$ref": "../ads/objects.json#/definitions/ads_stats_format"
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_stats_format"
+          }
         },
         "type": {
           "$ref": "../ads/objects.json#/definitions/ads_object_type"
@@ -970,42 +1794,43 @@
     },
     "ads_stats_age": {
       "type": "object",
-      "properties": {
-        "clicks_rate": {
-          "type": "number",
-          "description": "Clicks rate"
+      "allOf": [
+        {
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Age interval"
+            }
+          }
         },
-        "impressions_rate": {
-          "type": "number",
-          "description": "Impressions rate"
-        },
-        "value": {
-          "type": "string",
-          "description": "Age interval"
+        {
+          "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      },
+      ],
       "additionalProperties": false
     },
     "ads_stats_cities": {
       "type": "object",
-      "properties": {
-        "clicks_rate": {
-          "type": "number",
-          "description": "Clicks rate"
+      "allOf": [
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "City name"
+            },
+            "value": {
+              "type": [
+                "integer",
+                "string"
+              ],
+              "description": "City ID"
+            }
+          }
         },
-        "impressions_rate": {
-          "type": "number",
-          "description": "Impressions rate"
-        },
-        "name": {
-          "type": "string",
-          "description": "City name"
-        },
-        "value": {
-          "type": "integer",
-          "description": "City ID"
+        {
+          "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      },
+      ],
       "additionalProperties": false
     },
     "ads_stats_format": {
@@ -1035,6 +1860,10 @@
           "type": "string",
           "description": "Month as YYYY-MM"
         },
+        "year": {
+          "type": "integer",
+          "description": "Year as YYYY"
+        },
         "overall": {
           "type": "integer",
           "description": "1 if period=overall"
@@ -1044,61 +1873,130 @@
           "description": "Reach "
         },
         "spent": {
-          "type": "integer",
+          "type": "string",
           "description": "Spent funds"
         },
-        "video_clicks_site": {
+        "video_plays_unique_started": {
           "type": "integer",
-          "description": "Clickthoughs to the advertised site"
+          "description": "Video plays unique started count"
         },
-        "video_views": {
+        "video_plays_unique_3_seconds": {
           "type": "integer",
-          "description": "Video views number"
+          "description": "Video plays unique 3 seconds count"
         },
-        "video_views_full": {
+        "video_plays_unique_10_seconds": {
           "type": "integer",
-          "description": "Video views (full video)"
+          "description": "Video plays unique 10 seconds count"
         },
-        "video_views_half": {
+        "video_plays_unique_25_percents": {
           "type": "integer",
-          "description": "Video views (half of video)"
+          "description": "Video plays unique 25 percents count"
+        },
+        "video_plays_unique_50_percents": {
+          "type": "integer",
+          "description": "Video plays unique 50 percents count"
+        },
+        "video_plays_unique_75_percents": {
+          "type": "integer",
+          "description": "Video plays unique 75 percents count"
+        },
+        "video_plays_unique_100_percents": {
+          "type": "integer",
+          "description": "Video plays unique 100 percents count"
+        },
+        "effective_cost_per_click": {
+          "type": "string",
+          "description": "Effective cost per click"
+        },
+        "effective_cost_per_mille": {
+          "type": "string",
+          "description": "Effective cost per mille"
+        },
+        "effective_cpf": {
+          "type": "string",
+          "description": "Effective cpf"
+        },
+        "effective_cost_per_message": {
+          "type": "string",
+          "description": "Effective cost per message"
+        },
+        "message_sends": {
+          "type": "integer",
+          "description": "Message sends count"
+        },
+        "message_sends_by_any_user": {
+          "type": "integer",
+          "description": "Message sends by anu user"
+        },
+        "conversions_external": {
+          "type": "integer",
+          "description": "Conversions external"
+        },
+        "conversion_count": {
+          "type": "integer",
+          "description": "Conversions count"
+        },
+        "conversion_cr": {
+          "type": "string",
+          "description": "Conversions CR"
+        },
+        "day_from": {
+          "type": "string",
+          "description": "Day from"
+        },
+        "day_to": {
+          "type": "string",
+          "description": "Day to"
+        },
+        "ctr": {
+          "type": "string",
+          "description": "Ctr"
+        },
+        "uniq_views_count": {
+          "type": "integer",
+          "description": "Unique views count"
+        },
+        "mobile_app_stat": {
+          "type": "array",
+          "description": "Mobile app stat",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_mobile_stat_item"
+          }
         }
       },
       "additionalProperties": false
     },
     "ads_stats_sex": {
       "type": "object",
-      "properties": {
-        "clicks_rate": {
-          "type": "number",
-          "description": "Clicks rate"
+      "allOf": [
+        {
+          "properties": {
+            "value": {
+              "$ref": "../ads/objects.json#/definitions/ads_stats_sex_value"
+            }
+          }
         },
-        "impressions_rate": {
-          "type": "number",
-          "description": "Impressions rate"
-        },
-        "value": {
-          "$ref": "../ads/objects.json#/definitions/ads_stats_sex_value"
+        {
+          "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      },
+      ],
       "additionalProperties": false
     },
     "ads_stats_sex_age": {
       "type": "object",
-      "properties": {
-        "clicks_rate": {
-          "type": "number",
-          "description": "Clicks rate"
+      "allOf": [
+        {
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Sex and age interval"
+            }
+          }
         },
-        "impressions_rate": {
-          "type": "number",
-          "description": "Impressions rate"
-        },
-        "value": {
-          "type": "string",
-          "description": "Sex and age interval"
+        {
+          "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      },
+      ],
       "additionalProperties": false
     },
     "ads_stats_sex_value": {
@@ -1152,17 +2050,262 @@
       },
       "additionalProperties": false
     },
+    "ads_stories": {
+      "type": "object",
+      "properties": {
+        "stories": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_story_item"
+          }
+        },
+        "owner": {
+          "$ref": "../ads/objects.json#/definitions/ads_stories_owner"
+        },
+        "stories_disclaimers_text": {
+          "type": "string",
+          "description": "Stories disclaimers text"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_stories_owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "description": "Owner id"
+        },
+        "href": {
+          "type": "string",
+          "description": "Href"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name"
+        },
+        "photo": {
+          "type": "string",
+          "description": "Photo"
+        },
+        "verify": {
+          "type": "string",
+          "description": "Verify"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender"
+        },
+        "name_get": {
+          "type": "string",
+          "description": "Name get"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name"
+        },
+        "first_name_gen": {
+          "type": "string",
+          "description": "First name gen"
+        },
+        "first_name_ins": {
+          "type": "string",
+          "description": "First name ins"
+        },
+        "can_follow": {
+          "type": "boolean",
+          "description": "Can follow"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_story_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Story id"
+        },
+        "owner_id": {
+          "type": "integer",
+          "description": "Owner id",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "raw_id": {
+          "type": "string",
+          "description": "Story raw id"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date"
+        },
+        "time": {
+          "type": "integer",
+          "description": "Time"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type"
+        },
+        "unread": {
+          "type": "boolean",
+          "description": "Is unread"
+        },
+        "canLike": {
+          "type": "boolean",
+          "description": "Can like"
+        },
+        "can_comment": {
+          "type": "boolean",
+          "description": "Can comment"
+        },
+        "can_share": {
+          "type": "boolean",
+          "description": "Can share"
+        },
+        "can_remove": {
+          "type": "boolean",
+          "description": "Can remove"
+        },
+        "can_manage": {
+          "type": "boolean",
+          "description": "Can manage"
+        },
+        "can_ask": {
+          "type": "boolean",
+          "description": "Can ask"
+        },
+        "can_ask_anonymous": {
+          "type": "boolean",
+          "description": "Can ask anonymous"
+        },
+        "isProfileQuestion": {
+          "type": "boolean",
+          "description": "Is profile question"
+        },
+        "stats": {
+          "$ref": "../ads/objects.json#/definitions/ads_story_item_stats"
+        },
+        "link": {
+          "$ref": "../ads/objects.json#/definitions/ads_story_item_link"
+        },
+        "photo_url": {
+          "type": "string",
+          "description": "Photo url"
+        },
+        "preview_url": {
+          "type": "string",
+          "description": "Preview url"
+        },
+        "track_code": {
+          "type": "string",
+          "description": "Track code"
+        },
+        "isPartOfNarrative": {
+          "type": "boolean",
+          "description": "Is part of narrative"
+        },
+        "isAds": {
+          "type": "boolean",
+          "description": "Is ads"
+        },
+        "video_url": {
+          "type": "string",
+          "description": "Video url"
+        },
+        "first_frame": {
+          "type": "string",
+          "description": "First frame"
+        },
+        "small_preview": {
+          "type": "string",
+          "description": "Small preview"
+        },
+        "isLiked": {
+          "type": "boolean",
+          "description": "Is liked"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_story_item_link": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Key"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text"
+        },
+        "url": {
+          "type": "string",
+          "description": "Url"
+        },
+        "raw_url": {
+          "type": "string",
+          "description": "Raw url"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_story_item_stats": {
+      "type": "object",
+      "properties": {
+        "follow": {
+          "$ref": "../ads/objects.json#/definitions/ads_story_item_stats_follow"
+        },
+        "url_view": {
+          "$ref": "../ads/objects.json#/definitions/ads_story_item_stats_url_view"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_story_item_stats_follow": {
+      "type": "object",
+      "description": "Follow event stats",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "description": "Event type"
+        },
+        "rhash": {
+          "type": "string",
+          "description": "Event hash"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_story_item_stats_url_view": {
+      "type": "object",
+      "description": "Url view event stats",
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "description": "Event type"
+        },
+        "rhash": {
+          "type": "string",
+          "description": "Event hash"
+        }
+      },
+      "additionalProperties": false
+    },
     "ads_targ_settings": {
       "type": "object",
       "allOf": [
         {
           "properties": {
             "id": {
-              "type": "integer",
+              "type": "string",
               "description": "Ad ID"
             },
             "campaign_id": {
-              "type": "integer",
+              "type": "string",
               "description": "Campaign ID"
             }
           }
@@ -1182,36 +2325,40 @@
           "required": true
         },
         "recommended_cpc": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPC value for 50% reach (old format)"
         },
         "recommended_cpm": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPM value for 50% reach (old format)"
         },
         "recommended_cpc_50": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPC value for 50% reach"
         },
         "recommended_cpm_50": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPM value for 50% reach"
         },
         "recommended_cpc_70": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPC value for 70% reach"
         },
         "recommended_cpm_70": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPM value for 70% reach"
         },
         "recommended_cpc_90": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPC value for 90% reach"
         },
         "recommended_cpm_90": {
-          "type": "number",
+          "type": "string",
           "description": "Recommended CPM value for 90% reach"
+        },
+        "total_alive_audience": {
+          "type": "integer",
+          "description": "Total alive audience"
         }
       },
       "additionalProperties": false
@@ -1226,6 +2373,14 @@
         "name": {
           "type": "string",
           "description": "Object name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Object type"
+        },
+        "parent": {
+          "type": "string",
+          "description": "Parent"
         }
       },
       "additionalProperties": false
@@ -1304,29 +2459,125 @@
     "ads_target_group": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Group ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Group name"
+        },
+        "is_audience": {
+          "type": "boolean",
+          "description": "Is audience"
+        },
+        "is_shared": {
+          "type": "boolean",
+          "description": "Is shared"
+        },
+        "file_source": {
+          "type": "boolean",
+          "description": "File source"
+        },
+        "api_source": {
+          "type": "boolean",
+          "description": "API source"
+        },
+        "lookalike_source": {
+          "type": "boolean",
+          "description": "File source"
+        },
         "audience_count": {
           "type": "integer",
           "description": "Audience"
         },
         "domain": {
           "type": "string",
-          "description": "Site domain"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Group ID"
+          "description": "Site domain",
+          "default": ""
         },
         "lifetime": {
           "type": "integer",
           "description": "Number of days for user to be in group"
         },
-        "name": {
-          "type": "string",
-          "description": "Group name"
-        },
         "pixel": {
           "type": "string",
           "description": "Pixel code"
+        },
+        "target_pixel_id": {
+          "type": "integer",
+          "description": "Target Pixel id"
+        },
+        "target_pixel_rules": {
+          "type": "array",
+          "description": "Target Pixel rules",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_target_group_target_pixel_rule"
+          }
+        },
+        "last_updated": {
+          "type": "integer",
+          "description": "Last updated"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_target_group_target_pixel_rule": {
+      "type": "object",
+      "properties": {
+        "url_full_match": {
+          "type": "string"
+        },
+        "event_full_match": {
+          "type": "string"
+        },
+        "url_substrings_match": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_substrings_match": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "url_regex_match": {
+          "type": "string"
+        },
+        "event_regex_match": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_target_pixel_info": {
+      "type": "object",
+      "properties": {
+        "target_pixel_id": {
+          "type": "integer",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "domain": {
+          "type": "string",
+          "required": true
+        },
+        "category_id": {
+          "type": "integer",
+          "required": true
+        },
+        "last_updated": {
+          "type": "integer",
+          "required": true
+        },
+        "pixel": {
+          "type": "string",
+          "required": true
         }
       },
       "additionalProperties": false
@@ -1348,6 +2599,48 @@
         },
         "error": {
           "$ref": "../base/objects.json#/definitions/base_error"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_update_ads_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Ad ID",
+          "required": true
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_update_clients_status": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Client ID",
+          "required": true
+        },
+        "error_code": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Error code"
+        },
+        "error_desc": {
+          "type": "string",
+          "description": "Error description"
         }
       },
       "additionalProperties": false
@@ -1378,8 +2671,7 @@
           }
         },
         "view_budget": {
-          "type": "boolean",
-          "default": null
+          "type": "boolean"
         }
       },
       "additionalProperties": false
@@ -1403,8 +2695,7 @@
           "minimum": 0
         },
         "view_budget": {
-          "type": "boolean",
-          "default": null
+          "type": "boolean"
         }
       },
       "additionalProperties": false

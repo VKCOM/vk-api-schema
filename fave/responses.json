@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "fave_addTag_response": {
       "type": "object",
@@ -19,13 +22,15 @@
           "type": "object",
           "properties": {
             "count": {
-              "type": "integer"
+              "type": "integer",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../fave/objects.json#/definitions/fave_page"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -41,13 +46,15 @@
           "type": "object",
           "properties": {
             "count": {
-              "type": "integer"
+              "type": "integer",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../fave/objects.json#/definitions/fave_tag"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -64,13 +71,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../fave/objects.json#/definitions/fave_bookmark"
-              }
+              },
+              "required": true
             },
             "profiles": {
               "type": "array",
@@ -99,13 +108,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../fave/objects.json#/definitions/fave_bookmark"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,

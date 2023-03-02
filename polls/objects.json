@@ -1,12 +1,16 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "polls_answer": {
       "type": "object",
       "properties": {
         "id": {
           "type": "integer",
+          "format": "int64",
           "description": "Answer ID",
           "minimum": 0,
           "required": true
@@ -82,6 +86,24 @@
       },
       "additionalProperties": false
     },
+    "polls_fields_voters": {
+      "type": "object",
+      "properties": {
+        "answer_id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Answer ID"
+        },
+        "users": {
+          "$ref": "../polls/objects.json#/definitions/polls_voters_fields_users"
+        },
+        "answer_offset": {
+          "type": "string",
+          "description": "Answer offset"
+        }
+      },
+      "additionalProperties": false
+    },
     "polls_friend": {
       "type": "object",
       "properties": {
@@ -114,6 +136,7 @@
         },
         "answer_id": {
           "type": "integer",
+          "format": "int64",
           "description": "Current user's answer ID",
           "minimum": 0
         },
@@ -127,6 +150,7 @@
           "description": "Current user's answer IDs",
           "items": {
             "type": "integer",
+            "format": "int64",
             "minimum": 0
           }
         },
@@ -220,10 +244,32 @@
       "properties": {
         "answer_id": {
           "type": "integer",
+          "format": "int64",
           "description": "Answer ID"
         },
         "users": {
           "$ref": "../polls/objects.json#/definitions/polls_voters_users"
+        },
+        "answer_offset": {
+          "type": "string",
+          "description": "Answer offset"
+        }
+      },
+      "additionalProperties": false
+    },
+    "polls_voters_fields_users": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Votes number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "../users/objects.json#/definitions/users_user_full"
+          }
         }
       },
       "additionalProperties": false

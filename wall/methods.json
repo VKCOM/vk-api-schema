@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -97,7 +97,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media ojbect: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. For example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "(Required if 'message' is not set.) List of media objects attached to the comment, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media ojbect: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media owner. '<media_id>' - Media ID. For example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -164,6 +164,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_wall_access_post"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
         }
       ]
     },
@@ -231,7 +234,14 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error is thrown.\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error is thrown.\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "primary_attachments",
           "type": "array",
           "items": {
             "type": "string"
@@ -282,7 +292,9 @@
         },
         {
           "name": "poster_bkg_owner_id",
-          "type": "integer"
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "poster_bkg_access_hash",
@@ -369,7 +381,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -377,7 +389,7 @@
         },
         {
           "name": "signed",
-          "description": "Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)",
+          "description": "Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)",
           "type": "boolean"
         },
         {
@@ -456,7 +468,7 @@
         },
         {
           "name": "attachments",
-          "description": "List of objects attached to the comment, in the following format: , \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media attachment owner. '<media_id>' — Media attachment ID. For example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "List of objects attached to the comment, in the following format: , \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. For example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -508,7 +520,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return 'wall', 'profiles', and 'groups' fields, '0' — to return no additional fields (default)",
+          "description": "'1' - to return 'wall', 'profiles', and 'groups' fields, '0' - to return no additional fields (default)",
           "type": "boolean"
         },
         {
@@ -547,12 +559,28 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "string"
+            "type": "string",
+            "format": "value_object",
+            "properties": {
+              "owner_id": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "owner",
+                "required": true
+              },
+              "post_id": {
+                "type": "integer",
+                "required": true
+              },
+              "hash": {
+                "type": "string"
+              }
+            }
           }
         },
         {
           "name": "extended",
-          "description": "'1' — to return user and community objects needed to display posts, '0' — no additional fields are returned (default)",
+          "description": "'1' - to return user and community objects needed to display posts, '0' - no additional fields are returned (default)",
           "type": "boolean"
         },
         {
@@ -571,7 +599,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../wall/responses.json#/definitions/wall_getById_legacy_response"
+          "$ref": "../wall/responses.json#/definitions/wall_getById_response"
         },
         "extendedResponse": {
           "$ref": "../wall/responses.json#/definitions/wall_getById_extended_response"
@@ -648,7 +676,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return the 'likes' field, '0' — not to return the 'likes' field (default)",
+          "description": "'1' - to return the 'likes' field, '0' - not to return the 'likes' field (default)",
           "type": "boolean"
         },
         {
@@ -669,7 +697,7 @@
         },
         {
           "name": "sort",
-          "description": "Sort order: 'asc' — chronological, 'desc' — reverse chronological",
+          "description": "Sort order: 'asc' - chronological, 'desc' - reverse chronological",
           "type": "string",
           "enum": [
             "asc",
@@ -839,12 +867,12 @@
         },
         {
           "name": "friends_only",
-          "description": "'1' — post will be available to friends only, '0' — post will be available to all users (default)",
+          "description": "'1' - post will be available to friends only, '0' - post will be available to all users (default)",
           "type": "boolean"
         },
         {
           "name": "from_group",
-          "description": "For a community: '1' — post will be published by the community, '0' — post will be published by the user (default)",
+          "description": "For a community: '1' - post will be published by the community, '0' - post will be published by the user (default)",
           "type": "boolean"
         },
         {
@@ -854,7 +882,14 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "primary_attachments",
           "type": "array",
           "items": {
             "type": "string"
@@ -867,7 +902,7 @@
         },
         {
           "name": "signed",
-          "description": "Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)",
+          "description": "Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)",
           "type": "boolean"
         },
         {
@@ -1006,7 +1041,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error will be thrown.\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -1014,7 +1049,7 @@
         },
         {
           "name": "signed",
-          "description": "Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)",
+          "description": "Only for posts in communities with 'from_group' set to '1': '1' - post will be signed with the name of the posting user, '0' - post will not be signed (default)",
           "type": "boolean"
         },
         {
@@ -1113,7 +1148,9 @@
             3,
             4,
             5,
-            6
+            6,
+            8,
+            11
           ],
           "enumNames": [
             "spam",
@@ -1122,7 +1159,9 @@
             "violence",
             "drug propaganda",
             "adult material",
-            "insult abuse"
+            "insult abuse",
+            "suicide calls",
+            "weapons selling"
           ]
         }
       ],
@@ -1166,7 +1205,9 @@
             3,
             4,
             5,
-            6
+            6,
+            8,
+            11
           ],
           "enumNames": [
             "spam",
@@ -1175,7 +1216,9 @@
             "violence",
             "drug propaganda",
             "adult material",
-            "insult abuse"
+            "insult abuse",
+            "suicide calls",
+            "weapons selling"
           ]
         }
       ],

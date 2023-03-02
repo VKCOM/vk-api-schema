@@ -1,13 +1,19 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "ads_addOfficeUsers_response": {
       "type": "object",
       "properties": {
         "response": {
-          "type": "boolean",
-          "description": "true if success",
+          "type": "array",
+          "items": {
+            "type": "boolean",
+            "description": "true if success"
+          },
           "required": true
         }
       },
@@ -55,9 +61,25 @@
         "response": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "description": "Client ID"
+            "$ref": "../ads/objects.json#/definitions/ads_create_clients_status"
           },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_createLookalikeRequest_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "request_id": {
+              "type": "integer",
+              "description": "Request ID"
+            }
+          },
+          "additionalProperties": false,
           "required": true
         }
       },
@@ -72,6 +94,27 @@
             "id": {
               "type": "integer",
               "description": "Group ID"
+            },
+            "pixel": {
+              "type": "string",
+              "description": "Pixel code"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_createTargetPixel_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Pixel ID"
             },
             "pixel": {
               "type": "string",
@@ -182,7 +225,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "integer",
+          "type": "string",
           "description": "Budget",
           "required": true
         }
@@ -427,6 +470,19 @@
       },
       "additionalProperties": false
     },
+    "ads_getTargetPixels_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_target_pixel_info"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "ads_getTargetingStats_response": {
       "type": "object",
       "properties": {
@@ -474,8 +530,76 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "boolean",
-          "description": "true if success",
+          "type": "array",
+          "items": {
+            "type": "boolean",
+            "description": "true if success"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_removeTargetContacts_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "integer",
+              "description": "Operation result",
+              "required": true,
+              "enum": [
+                1
+              ],
+              "enumNames": [
+                "ok"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_saveLookalikeRequestResult_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "retargeting_group_id": {
+              "type": "integer",
+              "description": "Retargeting group ID",
+              "required": true
+            },
+            "audience_count": {
+              "type": "integer",
+              "description": "Audience count",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ads_shareTargetGroup_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Group ID",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
           "required": true
         }
       },
@@ -487,8 +611,7 @@
         "response": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "description": "Ad ID"
+            "$ref": "../ads/objects.json#/definitions/ads_update_ads_status"
           },
           "required": true
         }
@@ -499,8 +622,10 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "integer",
-          "description": "Campaign ID",
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_create_campaign_status"
+          },
           "required": true
         }
       },
@@ -510,8 +635,10 @@
       "type": "object",
       "properties": {
         "response": {
-          "type": "integer",
-          "description": "Client ID",
+          "type": "array",
+          "items": {
+            "$ref": "../ads/objects.json#/definitions/ads_update_clients_status"
+          },
           "required": true
         }
       },

@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "stories_clickable_area": {
       "type": "object",
@@ -49,6 +52,9 @@
           "format": "int64"
         },
         "story_id": {
+          "type": "integer"
+        },
+        "clip_id": {
           "type": "integer"
         },
         "question": {
@@ -100,7 +106,9 @@
             "poll",
             "sticker",
             "app",
-            "situational_theme"
+            "situational_theme",
+            "playlist",
+            "clip"
           ],
           "required": true
         },
@@ -191,17 +199,19 @@
             "stories",
             "live_active",
             "live_finished",
-            "community_grouped_stories",
             "app_grouped_stories",
-            "birthday",
-            "discover",
-            "advices"
+            "discover"
           ],
           "description": "Type of Feed Item",
           "required": true
         },
         "id": {
           "type": "string"
+        },
+        "owner_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
         },
         "stories": {
           "type": "array",
@@ -224,9 +234,6 @@
         "promo_data": {
           "$ref": "../stories/objects.json#/definitions/stories_promo_block",
           "description": "Additional data for promo stories (for type promo_stories)"
-        },
-        "birthday_user_id": {
-          "type": "integer"
         },
         "track_code": {
           "type": "string"
@@ -263,6 +270,11 @@
           "type": "boolean",
           "description": "Hide animation for promo story",
           "required": true
+        },
+        "is_advice": {
+          "type": "boolean",
+          "description": "Promo story from advice",
+          "required": true
         }
       },
       "additionalProperties": false
@@ -279,6 +291,23 @@
         "new": {
           "type": "integer",
           "description": "New replies number."
+        }
+      },
+      "additionalProperties": false
+    },
+    "stories_stat_category": {
+      "type": "object",
+      "properties": {
+        "header": {
+          "type": "string",
+          "required": true
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "../stories/objects.json#/definitions/stories_stat_line"
+          },
+          "required": true
         }
       },
       "additionalProperties": false
@@ -418,9 +447,6 @@
         "first_narrative_title": {
           "type": "string"
         },
-        "birthday_wish_user_id": {
-          "type": "integer"
-        },
         "can_use_in_narrative": {
           "type": "boolean"
         }
@@ -437,7 +463,6 @@
         },
         "url": {
           "type": "string",
-          "format": "uri",
           "description": "Link URL",
           "required": true
         },
@@ -517,8 +542,7 @@
         "photo",
         "video",
         "live_active",
-        "live_finished",
-        "birthday_invite"
+        "live_finished"
       ]
     },
     "stories_upload_link_text": {
@@ -546,6 +570,15 @@
         "read",
         "calendar"
       ]
+    },
+    "stories_upload_result": {
+      "type": "object",
+      "properties": {
+        "upload_result": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "stories_viewers_item": {
       "type": "object",

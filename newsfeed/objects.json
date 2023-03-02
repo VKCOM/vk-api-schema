@@ -1,7 +1,29 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "newsfeed_comments_base": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../base/objects.json#/definitions/base_comments_info"
+        },
+        {
+          "properties": {
+            "list": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
     "newsfeed_comments_filters": {
       "type": "string",
       "enum": [
@@ -11,6 +33,208 @@
         "topic",
         "note"
       ]
+    },
+    "newsfeed_comments_item": {
+      "type": "object",
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "topic": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_topic",
+          "photo": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_photo",
+          "video": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_video",
+          "notes": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_notes",
+          "post": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_post",
+          "market": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_market"
+        }
+      },
+      "oneOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_topic"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_photo"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_video"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_notes"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_post"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_type_market"
+        }
+      ]
+    },
+    "newsfeed_comments_item_base": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_item_type",
+          "required": true
+        },
+        "source_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64"
+        },
+        "date": {
+          "type": "integer"
+        },
+        "post_id": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "newsfeed_comments_item_type_market": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../market/objects.json#/definitions/market_market_item"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_base"
+        },
+        {
+          "properties": {
+            "comments": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_base"
+            },
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_comments_item_type_notes": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_base"
+        },
+        {
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "comments": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_base"
+            },
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_comments_item_type_photo": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_base"
+        },
+        {
+          "properties": {
+            "comments": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_base"
+            },
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_comments_item_type_post": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_base"
+        },
+        {
+          "properties": {
+            "from_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64"
+            },
+            "comments": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_base"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_comments_item_type_topic": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_base"
+        },
+        {
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "comments": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_base"
+            },
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes"
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "newsfeed_comments_item_type_video": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../video/objects.json#/definitions/video_video"
+        },
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_item_base"
+        },
+        {
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "comments": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_comments_base"
+            },
+            "likes": {
+              "$ref": "../base/objects.json#/definitions/base_likes"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "video",
+                "music_video",
+                "movie",
+                "live",
+                "short_video"
+              ]
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
     },
     "newsfeed_ignore_item_type": {
       "type": "string",
@@ -86,6 +310,15 @@
           "type": "integer",
           "description": "Date when item has been added in Unixtime",
           "required": true
+        },
+        "short_text_rate": {
+          "type": "number",
+          "description": "Preview length control parameter",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "feedback": {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback"
         }
       },
       "additionalProperties": false
@@ -128,9 +361,6 @@
             },
             "footer": {
               "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_footer"
-            },
-            "track_code": {
-              "type": "string"
             }
           }
         }
@@ -148,7 +378,8 @@
           "type": "string",
           "enum": [
             "primary"
-          ]
+          ],
+          "default": "primary"
         }
       },
       "additionalProperties": false
@@ -177,32 +408,43 @@
     },
     "newsfeed_item_digest_full_item": {
       "type": "object",
-      "properties": {
-        "text": {
-          "type": "string"
+      "allOf": [
+        {
+          "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_base"
         },
-        "source_name": {
-          "type": "string"
-        },
-        "attachment_index": {
-          "type": "integer"
-        },
-        "attachment": {
-          "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
-        },
-        "style": {
-          "type": "string",
-          "enum": [
-            "default",
-            "inversed",
-            "spotlight"
-          ]
-        },
-        "post": {
-          "$ref": "../wall/objects.json#/definitions/wall_wallpost",
-          "required": true
+        {
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "source_name": {
+              "type": "string"
+            },
+            "attachment_index": {
+              "type": "integer"
+            },
+            "attachment": {
+              "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+            },
+            "style": {
+              "type": "string",
+              "enum": [
+                "default",
+                "inversed",
+                "spotlight"
+              ]
+            },
+            "post": {
+              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost",
+              "required": true
+            },
+            "badge_text": {
+              "type": "string",
+              "description": "Optional red badge for posts in digest block"
+            }
+          }
         }
-      },
+      ],
       "additionalProperties": false
     },
     "newsfeed_item_digest_header": {
@@ -216,6 +458,10 @@
         "subtitle": {
           "type": "string",
           "description": "Subtitle of the header, when title have two strings"
+        },
+        "badge_text": {
+          "type": "string",
+          "description": "Optional field for red badge in Trends feed blocks"
         },
         "style": {
           "type": "string",
@@ -232,7 +478,8 @@
       "additionalProperties": false
     },
     "newsfeed_item_digest_item": {
-      "$ref": "../wall/objects.json#/definitions/wall_wallpost"
+      "type": "object",
+      "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_full_item"
     },
     "newsfeed_item_friend": {
       "type": "object",
@@ -324,7 +571,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_photo"
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
           }
         }
       },
@@ -364,7 +611,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "../newsfeed/objects.json#/definitions/newsfeed_newsfeed_photo"
+            "$ref": "../photos/objects.json#/definitions/photos_photo"
           }
         }
       },
@@ -392,9 +639,6 @@
               "items": {
                 "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_promo_button_image"
               }
-            },
-            "track_code": {
-              "type": "string"
             }
           }
         }
@@ -473,6 +717,10 @@
           "properties": {
             "video": {
               "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_video_video"
+            },
+            "post_id": {
+              "type": "integer",
+              "description": "Post ID"
             }
           }
         }
@@ -490,7 +738,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "../video/objects.json#/definitions/video_video"
+            "$ref": "../video/objects.json#/definitions/video_video_full"
           }
         }
       },
@@ -509,11 +757,7 @@
           "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
         },
         {
-          "properties": {
-            "feedback": {
-              "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback"
-            }
-          }
+          "properties": []
         }
       ],
       "additionalProperties": false
@@ -540,7 +784,18 @@
           "minimum": 2,
           "maximum": 5
         },
+        "descriptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
         "gratitude": {
+          "type": "string"
+        },
+        "track_code": {
           "type": "string"
         }
       },
@@ -611,6 +866,21 @@
     },
     "newsfeed_newsfeed_item": {
       "type": "object",
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "post": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost",
+          "photo": "../newsfeed/objects.json#/definitions/newsfeed_item_photo",
+          "wall_photo": "../newsfeed/objects.json#/definitions/newsfeed_item_photo",
+          "photo_tag": "../newsfeed/objects.json#/definitions/newsfeed_item_photo_tag",
+          "friend": "../newsfeed/objects.json#/definitions/newsfeed_item_friend",
+          "audio": "../newsfeed/objects.json#/definitions/newsfeed_item_audio",
+          "video": "../newsfeed/objects.json#/definitions/newsfeed_item_video",
+          "topic": "../newsfeed/objects.json#/definitions/newsfeed_item_topic",
+          "digest": "../newsfeed/objects.json#/definitions/newsfeed_item_digest",
+          "promo_button": "../newsfeed/objects.json#/definitions/newsfeed_item_promo_button"
+        }
+      },
       "oneOf": [
         {
           "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost"
@@ -659,29 +929,6 @@
         "audio_playlist",
         "clip"
       ]
-    },
-    "newsfeed_newsfeed_photo": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "../photos/objects.json#/definitions/photos_photo"
-        },
-        {
-          "properties": {
-            "likes": {
-              "$ref": "../base/objects.json#/definitions/base_likes"
-            },
-            "comments": {
-              "$ref": "../base/objects.json#/definitions/base_object_count"
-            },
-            "can_repost": {
-              "description": "Information whether current user can repost the photo",
-              "$ref": "../base/objects.json#/definitions/base_bool_int"
-            }
-          }
-        }
-      ],
-      "additionalProperties": false
     }
   }
 }

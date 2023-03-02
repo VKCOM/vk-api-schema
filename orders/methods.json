@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -33,7 +33,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../orders/responses.json#/definitions/orders_cancelSubscription_response"
+          "description": "Result",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       },
       "errors": [
@@ -61,7 +62,7 @@
         },
         {
           "name": "action",
-          "description": "action to be done with the order. Available actions: *cancel — to cancel unconfirmed order. *charge — to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund — to cancel confirmed order.",
+          "description": "action to be done with the order. Available actions: *cancel - to cancel unconfirmed order. *charge - to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund - to cancel confirmed order.",
           "type": "string",
           "required": true,
           "enum": [
@@ -78,7 +79,7 @@
         },
         {
           "name": "test_mode",
-          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.",
+          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.",
           "type": "boolean"
         }
       ],
@@ -119,7 +120,7 @@
         },
         {
           "name": "test_mode",
-          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.",
+          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.",
           "type": "boolean"
         }
       ],
@@ -184,7 +185,7 @@
         },
         {
           "name": "test_mode",
-          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.",
+          "description": "if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.",
           "type": "boolean"
         }
       ],
@@ -276,7 +277,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../orders/responses.json#/definitions/orders_updateSubscription_response"
+          "description": "Result",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       },
       "errors": [

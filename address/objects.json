@@ -1,0 +1,31 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
+  "definitions": {
+    "address_fields": {
+      "type": "string",
+      "enum": [
+        "id",
+        "title",
+        "address",
+        "additional_address",
+        "country_id",
+        "country",
+        "city_id",
+        "city",
+        "metro_station_id",
+        "metro_station",
+        "latitude",
+        "longitude",
+        "distance",
+        "work_info_status",
+        "timetable",
+        "phone",
+        "time_offset"
+      ]
+    }
+  }
+}

@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "stories_getBanned_extended_response": {
       "type": "object",
@@ -136,6 +139,37 @@
       },
       "additionalProperties": false
     },
+    "stories_getStats_V5200_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "preview": {
+              "type": "string"
+            },
+            "achievement": {
+              "type": "string"
+            },
+            "achievement_subtitle": {
+              "type": "string"
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "$ref": "../stories/objects.json#/definitions/stories_stat_category"
+              }
+            },
+            "need_privacy_block": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "stories_getStats_response": {
       "type": "object",
       "properties": {
@@ -204,31 +238,6 @@
       },
       "additionalProperties": false
     },
-    "stories_getViewers_extended_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Viewers count",
-              "required": true
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "../users/objects.json#/definitions/users_user_full"
-              },
-              "required": true
-            }
-          },
-          "additionalProperties": false,
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
     "stories_get_V5113_response": {
       "type": "object",
       "properties": {
@@ -255,57 +264,17 @@
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_group"
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
               }
             },
             "need_upload_screen": {
               "type": "boolean"
-            }
-          },
-          "additionalProperties": false,
-          "required": true
-        }
-      },
-      "additionalProperties": false
-    },
-    "stories_get_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "count": {
-              "type": "integer",
-              "description": "Stories count",
-              "required": true
             },
-            "items": {
-              "type": "array",
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "../stories/objects.json#/definitions/stories_story"
-                }
-              },
-              "required": true
+            "track_code": {
+              "type": "string"
             },
-            "promo_data": {
-              "$ref": "../stories/objects.json#/definitions/stories_promo_block"
-            },
-            "profiles": {
-              "type": "array",
-              "items": {
-                "$ref": "../users/objects.json#/definitions/users_user_full"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_group"
-              }
-            },
-            "need_upload_screen": {
-              "type": "boolean"
+            "next_from": {
+              "type": "string"
             }
           },
           "additionalProperties": false,
@@ -340,7 +309,7 @@
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_group"
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
               }
             }
           },

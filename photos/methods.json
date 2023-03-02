@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -84,7 +84,7 @@
           "description": "Album title.",
           "type": "string",
           "required": true,
-          "minLength": 2
+          "minLength": 1
         },
         {
           "name": "group_id",
@@ -161,7 +161,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - Media attachment owner ID. '<media_id>' - Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -169,7 +169,7 @@
         },
         {
           "name": "from_group",
-          "description": "'1' — to post a comment from the community",
+          "description": "'1' - to post a comment from the community",
           "type": "boolean"
         },
         {
@@ -214,8 +214,15 @@
           "name": "photo_id",
           "description": "Photo ID.",
           "type": "integer",
-          "required": true,
           "minimum": 0
+        },
+        {
+          "name": "photos",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
         }
       ],
       "responses": {
@@ -281,7 +288,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../photos/responses.json#/definitions/photos_deleteComment_response"
+          "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       }
     },
@@ -430,7 +438,7 @@
         },
         {
           "name": "attachments",
-          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
+          "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - Media attachment owner ID. '<media_id>' - Media attachment ID. Example: \"photo100172_166443618,photo66748_265827614\"",
           "type": "array",
           "items": {
             "type": "string"
@@ -473,12 +481,12 @@
         },
         {
           "name": "rev",
-          "description": "Sort order: '1' — reverse chronological, '0' — chronological",
+          "description": "Sort order: '1' - reverse chronological, '0' - chronological",
           "type": "boolean"
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional 'likes', 'comments', and 'tags' fields, '0' — (default)",
+          "description": "'1' - to return additional 'likes', 'comments', and 'tags' fields, '0' - (default)",
           "type": "boolean"
         },
         {
@@ -493,7 +501,7 @@
         },
         {
           "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a [vk.com/dev/photo_sizes|special format]",
+          "description": "'1' - to return photo sizes in a [vk.com/dev/photo_sizes|special format]",
           "type": "boolean"
         },
         {
@@ -553,17 +561,17 @@
         },
         {
           "name": "need_system",
-          "description": "'1' — to return system albums with negative IDs",
+          "description": "'1' - to return system albums with negative IDs",
           "type": "boolean"
         },
         {
           "name": "need_covers",
-          "description": "'1' — to return an additional 'thumb_src' field, '0' — (default)",
+          "description": "'1' - to return an additional 'thumb_src' field, '0' - (default)",
           "type": "boolean"
         },
         {
           "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a",
+          "description": "'1' - to return photo sizes in a",
           "type": "boolean"
         }
       ],
@@ -593,6 +601,10 @@
           "type": "integer",
           "format": "int64",
           "entity": "owner"
+        },
+        {
+          "name": "need_system",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -617,7 +629,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return detailed information about photos",
+          "description": "'1' - to return detailed information about photos",
           "type": "boolean"
         },
         {
@@ -658,9 +670,6 @@
       "responses": {
         "response": {
           "$ref": "../photos/responses.json#/definitions/photos_getAll_response"
-        },
-        "extendedResponse": {
-          "$ref": "../photos/responses.json#/definitions/photos_getAll_extended_response"
         }
       },
       "errors": [
@@ -691,7 +700,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return an additional 'likes' field, '0' — (default)",
+          "description": "'1' - to return an additional 'likes' field, '0' - (default)",
           "type": "boolean"
         },
         {
@@ -732,18 +741,35 @@
           "type": "array",
           "required": true,
           "items": {
-            "type": "string"
+            "type": "string",
+            "format": "value_object",
+            "properties": {
+              "owner_id": {
+                "type": "integer",
+                "format": "int64",
+                "entity": "owner",
+                "required": true
+              },
+              "photo_id": {
+                "type": "integer",
+                "minimum": 0,
+                "required": true
+              },
+              "access_key": {
+                "type": "string"
+              }
+            }
           },
           "maxItems": 500
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional fields, '0' — (default)",
+          "description": "'1' - to return additional fields, '0' - (default)",
           "type": "boolean"
         },
         {
           "name": "photo_sizes",
-          "description": "'1' — to return photo sizes in a",
+          "description": "'1' - to return photo sizes in a",
           "type": "boolean"
         }
       ],
@@ -813,7 +839,7 @@
         },
         {
           "name": "need_likes",
-          "description": "'1' — to return an additional 'likes' field, '0' — (default)",
+          "description": "'1' - to return an additional 'likes' field, '0' - (default)",
           "type": "boolean"
         },
         {
@@ -830,13 +856,13 @@
           "name": "count",
           "description": "Number of comments to return.",
           "type": "integer",
-          "default": "20",
+          "default": 20,
           "minimum": 0,
           "maximum": 100
         },
         {
           "name": "sort",
-          "description": "Sort order: 'asc' — old first, 'desc' — new first",
+          "description": "Sort order: 'asc' - old first, 'desc' - new first",
           "type": "string",
           "enum": [
             "asc",
@@ -1015,7 +1041,6 @@
           "name": "group_id",
           "description": "ID of community that owns the album (if the photo will be uploaded to a community album).",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
@@ -1047,13 +1072,23 @@
           "type": "integer",
           "default": 200,
           "minimum": 0
+        },
+        {
+          "name": "is_video_cover",
+          "type": "boolean",
+          "default": false
         }
       ],
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
+        }
+      ]
     },
     {
       "name": "photos.getOwnerPhotoUploadServer",
@@ -1074,7 +1109,12 @@
         "response": {
           "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
+        }
+      ]
     },
     {
       "name": "photos.getTags",
@@ -1131,7 +1171,12 @@
         "response": {
           "$ref": "../photos/responses.json#/definitions/photos_getUploadServer_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
+        }
+      ]
     },
     {
       "name": "photos.getUserPhotos",
@@ -1164,12 +1209,12 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return an additional 'likes' field, '0' — (default)",
+          "description": "'1' - to return an additional 'likes' field, '0' - (default)",
           "type": "boolean"
         },
         {
           "name": "sort",
-          "description": "Sort order: '1' — by date the tag was added in ascending order, '0' — by date the tag was added in descending order",
+          "description": "Sort order: '1' - by date the tag was added in ascending order, '0' - by date the tag was added in descending order",
           "type": "string"
         }
       ],
@@ -1254,8 +1299,11 @@
         },
         {
           "name": "photo_ids",
-          "type": "integer",
+          "type": "array",
           "required": true,
+          "items": {
+            "type": "integer"
+          },
           "maxItems": 100
         }
       ],
@@ -1457,7 +1505,7 @@
         },
         {
           "name": "reason",
-          "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse",
+          "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse, '8' - suicide calls",
           "type": "integer",
           "minimum": 0,
           "enum": [
@@ -1467,7 +1515,8 @@
             3,
             4,
             5,
-            6
+            6,
+            8
           ],
           "enumNames": [
             "spam",
@@ -1476,7 +1525,8 @@
             "violence",
             "drug propaganda",
             "adult material",
-            "insult abuse"
+            "insult abuse",
+            "suicide calls"
           ]
         }
       ],
@@ -1590,7 +1640,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../photos/responses.json#/definitions/photos_restoreComment_response"
+          "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       }
     },
@@ -1658,6 +1709,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_param_hash"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_upload"
         }
       ]
     },
@@ -1824,16 +1878,47 @@
       ],
       "parameters": [
         {
+          "name": "crop_x",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "crop_height",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "crop_y",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "crop_width",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "response_json",
+          "type": "string"
+        },
+        {
           "name": "hash",
           "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "string",
-          "required": true
+          "type": "string"
         },
         {
           "name": "photo",
           "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "string",
-          "required": true
+          "type": "string"
+        },
+        {
+          "name": "is_video_cover",
+          "type": "boolean",
+          "default": false
         }
       ],
       "responses": {
@@ -1844,6 +1929,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_param_photo"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
         }
       ]
     },
@@ -1878,6 +1966,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_param_photo"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_group_need_2fa"
         }
       ]
     },

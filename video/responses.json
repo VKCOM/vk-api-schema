@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "video_addAlbum_response": {
       "type": "object",
@@ -44,6 +47,27 @@
       },
       "additionalProperties": false
     },
+    "video_edit_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "access_key": {
+              "type": "string",
+              "description": "Access key for access link"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "video_getAlbumById_response": {
       "type": "object",
       "properties": {
@@ -62,13 +86,15 @@
           "properties": {
             "count": {
               "type": "integer",
-              "description": "Total number"
+              "description": "Total number",
+              "required": true
             },
             "items": {
               "type": "array",
               "items": {
                 "$ref": "../video/objects.json#/definitions/video_video_album_full"
-              }
+              },
+              "required": true
             }
           },
           "additionalProperties": false,
@@ -162,14 +188,14 @@
             "profiles": {
               "type": "array",
               "items": {
-                "$ref": "../users/objects.json#/definitions/users_user"
+                "$ref": "../users/objects.json#/definitions/users_user_full"
               },
               "required": true
             },
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_group"
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
               },
               "required": true
             },
@@ -241,6 +267,24 @@
       },
       "additionalProperties": false
     },
+    "video_getLongPollServer_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "video_get_response": {
       "type": "object",
       "properties": {
@@ -278,12 +322,15 @@
       },
       "additionalProperties": false
     },
-    "video_restoreComment_response": {
+    "video_liveGetCategories_response": {
       "type": "object",
       "properties": {
         "response": {
-          "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "type": "array",
+          "items": {
+            "$ref": "../video/objects.json#/definitions/video_live_category"
+          },
+          "additionalProperties": false,
           "required": true
         }
       },
@@ -355,6 +402,72 @@
                 "$ref": "../video/objects.json#/definitions/video_video_full"
               },
               "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "video_startStreaming_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "owner_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64",
+              "description": "Owner ID of created video object",
+              "required": true
+            },
+            "video_id": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Video ID of created video object",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "description": "Video title",
+              "required": true
+            },
+            "description": {
+              "type": "string",
+              "description": "Video description",
+              "required": true
+            },
+            "access_key": {
+              "type": "string",
+              "description": "Video access key",
+              "required": true
+            },
+            "stream": {
+              "$ref": "../video/objects.json#/definitions/video_stream_input_params",
+              "required": true
+            },
+            "post_id": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "video_stopStreaming_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "unique_viewers": {
+              "type": "integer",
+              "minimum": 0
             }
           },
           "additionalProperties": false,

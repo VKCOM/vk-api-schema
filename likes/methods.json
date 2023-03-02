@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -14,7 +14,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
+          "description": "Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
           "$ref": "../likes/objects.json#/definitions/likes_type"
@@ -59,7 +59,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": "Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
+          "description": "Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
           "$ref": "../likes/objects.json#/definitions/likes_type"
@@ -100,7 +100,7 @@
       "parameters": [
         {
           "name": "type",
-          "description": ", Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed",
+          "description": ", Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed",
           "type": "string",
           "required": true,
           "$ref": "../likes/objects.json#/definitions/likes_type"
@@ -124,7 +124,7 @@
         },
         {
           "name": "filter",
-          "description": "Filters to apply: 'likes' — returns information about all users who liked the object (default), 'copies' — returns information only about users who told their friends about the object",
+          "description": "Filters to apply: 'likes' - returns information about all users who liked the object (default), 'copies' - returns information only about users who told their friends about the object",
           "type": "string",
           "enum": [
             "likes",
@@ -133,7 +133,7 @@
         },
         {
           "name": "friends_only",
-          "description": "Specifies which users are returned: '1' — to return only the current user's friends, '0' — to return all users (default)",
+          "description": "Specifies which users are returned: '1' - to return only the current user's friends, '0' - to return all users (default)",
           "type": "integer",
           "default": 0,
           "enum": [
@@ -145,7 +145,7 @@
         },
         {
           "name": "extended",
-          "description": "Specifies whether extended information will be returned. '1' — to return extended information about users and communities from the 'Likes' list, '0' — to return no additional information (default)",
+          "description": "Specifies whether extended information will be returned. '1' - to return extended information about users and communities from the 'Likes' list, '0' - to return no additional information (default)",
           "type": "boolean"
         },
         {
@@ -164,6 +164,13 @@
         {
           "name": "skip_own",
           "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       ],
       "responses": {
@@ -197,7 +204,7 @@
         },
         {
           "name": "type",
-          "description": "Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion",
+          "description": "Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion",
           "type": "string",
           "required": true,
           "$ref": "../likes/objects.json#/definitions/likes_type"

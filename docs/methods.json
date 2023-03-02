@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -87,7 +87,6 @@
           "name": "owner_id",
           "description": "User ID or community ID. Use a negative value to designate a community ID.",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "entity": "owner"
         },
@@ -274,7 +273,6 @@
           "name": "owner_id",
           "description": "ID of the user or community that owns the documents. Use a negative value to designate a community ID.",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "entity": "owner"
         }
@@ -320,8 +318,8 @@
           "description": "Community ID (if the document will be uploaded to the community).",
           "type": "integer",
           "format": "int64",
-          "entity": "owner",
-          "minimum": 0
+          "minimum": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -383,7 +381,6 @@
           "name": "q",
           "description": "Search query string.",
           "type": "string",
-          "required": true,
           "maxLength": 512
         },
         {

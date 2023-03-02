@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "friends_friend_extended_status": {
       "type": "object",
@@ -85,27 +88,12 @@
           "items": {
             "type": "integer",
             "description": "User ID",
-            "minimum": 1
+            "minimum": 1,
+            "entity": "owner",
+            "format": "int64"
           }
         },
         "id": {
-          "type": "integer",
-          "description": "User ID"
-        }
-      },
-      "additionalProperties": false
-    },
-    "friends_requests": {
-      "type": "object",
-      "properties": {
-        "from": {
-          "type": "string",
-          "description": "ID of the user by whom friend has been suggested"
-        },
-        "mutual": {
-          "$ref": "../friends/objects.json#/definitions/friends_requests_mutual"
-        },
-        "user_id": {
           "type": "integer",
           "description": "User ID",
           "minimum": 1,
@@ -127,8 +115,10 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "entity": "owner",
+            "format": "int64",
             "description": "User ID",
-            "minimum": 1
+            "required": true
           }
         }
       },
@@ -136,26 +126,70 @@
     },
     "friends_requests_xtr_message": {
       "type": "object",
-      "properties": {
-        "from": {
-          "type": "string",
-          "description": "ID of the user by whom friend has been suggested"
+      "allOf": [
+        {
+          "$ref": "../friends/objects.json#/definitions/friends_requests_xtr_mutual"
         },
-        "message": {
-          "type": "string",
-          "description": "Message sent with a request"
-        },
-        "mutual": {
-          "$ref": "../friends/objects.json#/definitions/friends_requests_mutual"
-        },
-        "user_id": {
-          "type": "integer",
-          "description": "User ID",
-          "minimum": 1,
-          "entity": "owner",
-          "format": "int64"
+        {
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Message sent with a request"
+            }
+          }
         }
-      },
+      ],
+      "additionalProperties": false
+    },
+    "friends_requests_xtr_mutual": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../users/objects.json#/definitions/users_user_full"
+        },
+        {
+          "properties": {
+            "id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64",
+              "description": "User ID"
+            },
+            "user_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64",
+              "description": "User ID",
+              "required": true
+            },
+            "from": {
+              "type": "string",
+              "description": "ID of the user by whom friend has been suggested"
+            },
+            "mutual": {
+              "$ref": "../friends/objects.json#/definitions/friends_requests_mutual"
+            },
+            "track_code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string",
+              "description": "Message sent with a request"
+            },
+            "timestamp": {
+              "type": "integer",
+              "description": "Request timestamp"
+            },
+            "descriptions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Description"
+              }
+            }
+          }
+        }
+      ],
       "additionalProperties": false
     },
     "friends_user_xtr_phone": {

@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "version": "5.199",
+  "title": "VK API JSON Schema - errors schema",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - errors schema",
+  "termsOfService": "https://dev.vk.com/rules",
+  "$id": "vk-api-errors-schema",
+  "type": "object",
+  "definitions": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Error code",
+          "minimum": 0
+        },
+        "description": {
+          "type": "string",
+          "description": "Error description"
+        },
+        "subcodes": {
+          "type": "array",
+          "description": "Array of error subcodes",
+          "items": {
+            "$ref": "#/definitions/subcode-reference"
+          },
+          "uniqueItems": true
+        },
+        "global": {
+          "type": "boolean",
+          "default": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "code",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "subcode": {
+      "type": "object",
+      "properties": {
+        "subcode": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "view": {
+          "$ref": "#/definitions/view"
+        },
+        "i18n_title": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "subcode-reference": {
+      "type": "object",
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      },
+      "required": [
+        "$ref"
+      ],
+      "additionalProperties": false
+    },
+    "subcodes-dictionary": {
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "$ref": "#/definitions/subcode"
+        }
+      }
+    },
+    "view": {
+      "type": "string",
+      "enum": [
+        "input",
+        "alert",
+        "fullscreen"
+      ]
+    }
+  },
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "definitions": {
+      "type": "object",
+      "properties": {
+        "subcodes": {
+          "$ref": "#/definitions/subcodes-dictionary"
+        }
+      },
+      "additionalProperties": false
+    },
+    "errors": {
+      "type": "object",
+      "patternProperties": {
+        "^api_error_[a-zA-Z0-9_]+$": {
+          "$ref": "#/definitions/error"
+        }
+      },
+      "properties": {
+        "ads_web_site_domain_error_code_group_audio_copyright_restriction": {
+          "$ref": "#/definitions/error"
+        }
+      },
+      "additionalProperties": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "termsOfService": {
+      "type": "string",
+      "format": "uri"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+.[0-9]+$"
+    }
+  },
+  "required": [
+    "$schema",
+    "errors"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,208 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
+  "definitions": {
+    "bugtracker_add_company_groups_members_error": {
+      "type": "object",
+      "properties": {
+        "group_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true,
+          "entity": "groups",
+          "format": "int64"
+        },
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "bugtracker_attachment": {
+      "type": "object",
+      "properties": {
+        "doc": {
+          "$ref": "../docs/objects.json#/definitions/docs_doc"
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "photo",
+            "doc"
+          ],
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "bugtracker_bugreport_subscribe_state": {
+      "type": "object",
+      "properties": {
+        "can_set_subscribe": {
+          "type": "boolean",
+          "required": true
+        },
+        "is_subscribed": {
+          "type": "boolean"
+        },
+        "set_subscribe_hash": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "bugtracker_comment": {
+      "type": "object",
+      "properties": {
+        "bugreport_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "comment_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "created": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "text": {
+          "type": "string",
+          "required": true
+        },
+        "meta_text": {
+          "type": "string"
+        },
+        "from_id": {
+          "type": "integer"
+        },
+        "author_name": {
+          "type": "string"
+        },
+        "author_photo": {
+          "type": "string"
+        },
+        "edit_hash": {
+          "type": "string"
+        },
+        "remove_hash": {
+          "type": "string"
+        },
+        "is_hidden": {
+          "type": "boolean"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../bugtracker/objects.json#/definitions/bugtracker_attachment"
+          }
+        },
+        "is_unread": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "bugtracker_company_member": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "company_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "role": {
+          "type": "integer",
+          "required": true
+        },
+        "role_name": {
+          "type": "string",
+          "required": true
+        },
+        "ts": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "groups_count": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "products_count": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "reporter_url": {
+          "type": "string",
+          "required": true
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "../bugtracker/objects.json#/definitions/bugtracker_company_member_product"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "bugtracker_company_member_product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "photo_url": {
+          "type": "string"
+        },
+        "access": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "licence_status_text": {
+          "type": "string",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

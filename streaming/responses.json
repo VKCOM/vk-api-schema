@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "streaming_getServerUrl_response": {
       "type": "object",
@@ -15,6 +18,62 @@
             "key": {
               "type": "string",
               "description": "Access key"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "streaming_getSettings_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "monthly_limit": {
+              "type": "string",
+              "description": "streaming monthly tier",
+              "enum": [
+                "tier_1",
+                "tier_2",
+                "tier_3",
+                "tier_4",
+                "tier_5",
+                "tier_6",
+                "unlimited"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "streaming_getStats_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../streaming/objects.json#/definitions/streaming_stats"
+          },
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "streaming_getStem_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "stem": {
+              "type": "string",
+              "description": "part of a word responsible for its lexical meaning"
             }
           },
           "additionalProperties": false,

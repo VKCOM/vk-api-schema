@@ -1,0 +1,39 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
+  "definitions": {
+    "calls_start_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "call_id": {
+              "type": "string",
+              "description": "Call id"
+            },
+            "join_link": {
+              "type": "string",
+              "description": "Join link",
+              "required": true
+            },
+            "broadcast_video_id": {
+              "type": "string",
+              "description": "video id for link"
+            },
+            "broadcast_ov_id": {
+              "type": "string",
+              "description": "video id for streaming"
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

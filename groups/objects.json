@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "objects",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - objects",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "groups_address": {
       "type": "object",
@@ -22,6 +25,18 @@
           "type": "integer",
           "description": "Country id of address",
           "minimum": 0
+        },
+        "city": {
+          "description": "City for address",
+          "$ref": "../database/objects.json#/definitions/database_city_by_id"
+        },
+        "metro_station": {
+          "description": "Metro for address",
+          "$ref": "../database/objects.json#/definitions/database_station"
+        },
+        "country": {
+          "description": "Country for address",
+          "$ref": "../base/objects.json#/definitions/base_country"
         },
         "distance": {
           "type": "integer",
@@ -153,6 +168,15 @@
         "main_address_id": {
           "type": "integer",
           "description": "Main address id for group"
+        },
+        "main_address": {
+          "description": "Main address",
+          "$ref": "../groups/objects.json#/definitions/groups_address"
+        },
+        "count": {
+          "type": "integer",
+          "description": "Count of addresses",
+          "minimum": 0
         }
       },
       "additionalProperties": false
@@ -211,6 +235,7 @@
       ]
     },
     "groups_banned_item": {
+      "type": "object",
       "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info"
     },
     "groups_callback_server": {
@@ -263,6 +288,11 @@
         }
       },
       "additionalProperties": false
+    },
+    "groups_classifieds_properties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": []
     },
     "groups_contacts_item": {
       "type": "object",
@@ -327,6 +357,10 @@
           "type": "integer",
           "description": "Videos number"
         },
+        "video_playlists": {
+          "type": "integer",
+          "description": "Playlists number"
+        },
         "market_services": {
           "type": "integer",
           "description": "Market services number"
@@ -345,28 +379,28 @@
         },
         "clips": {
           "type": "integer",
+          "format": "int64",
           "description": "Clips number"
         },
         "clips_followers": {
           "type": "integer",
+          "format": "int64",
           "description": "Clips followers number"
-        }
-      },
-      "additionalProperties": false
-    },
-    "groups_cover": {
-      "type": "object",
-      "properties": {
-        "enabled": {
-          "description": "Information whether cover is enabled",
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
-          "required": true
         },
-        "images": {
-          "type": "array",
-          "items": {
-            "$ref": "../base/objects.json#/definitions/base_image"
-          }
+        "videos_followers": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Videos followers number"
+        },
+        "clips_views": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Clips views number"
+        },
+        "clips_likes": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Clips likes number"
         }
       },
       "additionalProperties": false
@@ -374,19 +408,49 @@
     "groups_fields": {
       "type": "string",
       "enum": [
+        "id",
+        "name",
+        "screen_name",
+        "is_closed",
+        "type",
+        "is_admin",
+        "admin_level",
+        "is_member",
+        "is_advertiser",
+        "start_date",
+        "finish_date",
+        "deactivated",
+        "photo_50",
+        "photo_100",
+        "photo_200",
+        "photo_200_orig",
+        "photo_400",
+        "photo_400_orig",
+        "photo_max",
+        "photo_max_orig",
+        "est_date",
+        "public_date_label",
+        "photo_max_size",
+        "is_video_live_notifications_blocked",
+        "video_live",
         "market",
         "member_status",
+        "is_adult",
+        "is_hidden_from_feed",
         "is_favorite",
         "is_subscribed",
-        "is_subscribed_podcasts",
-        "can_subscribe_podcasts",
         "city",
         "country",
         "verified",
         "description",
         "wiki_page",
         "members_count",
+        "members_count_text",
         "requests_count",
+        "video_live_level",
+        "video_live_count",
+        "clips_count",
+        "textlives_count",
         "counters",
         "cover",
         "can_post",
@@ -397,49 +461,38 @@
         "can_upload_clip",
         "can_see_all_posts",
         "can_create_topic",
-        "crop_photo",
         "activity",
         "fixed_post",
         "has_photo",
+        "crop_photo",
         "status",
+        "status_audio",
         "main_album_id",
         "links",
         "contacts",
+        "wall",
         "site",
         "main_section",
         "secondary_section",
-        "wall",
         "trending",
         "can_message",
-        "is_market_cart_enabled",
         "is_messages_blocked",
         "can_send_notify",
-        "has_group_channel",
-        "group_channel",
         "online_status",
-        "start_date",
-        "finish_date",
+        "invited_by",
         "age_limits",
         "ban_info",
-        "action_button",
-        "author_id",
-        "phone",
         "has_market_app",
+        "using_vkpay_market_app",
+        "has_group_channel",
         "addresses",
-        "live_covers",
-        "is_adult",
-        "is_hidden_from_feed",
+        "is_subscribed_podcasts",
+        "can_subscribe_podcasts",
         "can_subscribe_posts",
-        "warning_notification",
-        "msg_push_allowed",
+        "live_covers",
         "stories_archive_count",
-        "video_live_level",
-        "video_live_count",
-        "clips_count",
         "has_unseen_stories",
-        "is_business",
-        "textlives_count",
-        "members_count_text"
+        "rating"
       ]
     },
     "groups_filter": {
@@ -501,6 +554,10 @@
         "finish_date": {
           "description": "Finish date in Unixtime format",
           "type": "integer"
+        },
+        "verified": {
+          "description": "Information whether community is verified",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
         "deactivated": {
           "type": "string",
@@ -689,7 +746,7 @@
         "subcategories": {
           "type": "array",
           "items": {
-            "$ref": "../base/objects.json#/definitions/base_object_with_name"
+            "$ref": "../groups/objects.json#/definitions/groups_group_subcategory"
           }
         }
       },
@@ -765,10 +822,13 @@
           "$ref": "../groups/objects.json#/definitions/groups_group"
         },
         {
+          "$ref": "../groups/objects.json#/definitions/groups_market_properties"
+        },
+        {
+          "$ref": "../groups/objects.json#/definitions/groups_classifieds_properties"
+        },
+        {
           "properties": {
-            "market": {
-              "$ref": "../groups/objects.json#/definitions/groups_market_info"
-            },
             "member_status": {
               "$ref": "../groups/objects.json#/definitions/groups_group_full_member_status",
               "description": "Current user's member status"
@@ -794,10 +854,6 @@
             },
             "country": {
               "$ref": "../base/objects.json#/definitions/base_country"
-            },
-            "verified": {
-              "description": "Information whether community is verified",
-              "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
             "description": {
               "type": "string",
@@ -839,8 +895,12 @@
             "counters": {
               "$ref": "../groups/objects.json#/definitions/groups_counters_group"
             },
+            "textlives_count": {
+              "type": "integer",
+              "description": "Textlives number"
+            },
             "cover": {
-              "$ref": "../groups/objects.json#/definitions/groups_cover"
+              "$ref": "../base/objects.json#/definitions/base_owner_cover"
             },
             "can_post": {
               "description": "Information whether current user can post on community's wall",
@@ -853,12 +913,20 @@
               "description": "Information whether current user can upload story",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
+            "can_call_to_community": {
+              "description": "Information whether current user can call to community",
+              "type": "boolean"
+            },
             "can_upload_doc": {
               "description": "Information whether current user can upload doc",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
             "can_upload_video": {
               "description": "Information whether current user can upload video",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
+            "can_upload_clip": {
+              "description": "Information whether current user can upload clip",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
             "can_see_all_posts": {
@@ -966,13 +1034,6 @@
             "ban_info": {
               "$ref": "../groups/objects.json#/definitions/groups_group_ban_info",
               "description": "User ban info"
-            },
-            "has_market_app": {
-              "type": "boolean",
-              "description": "Information whether community has installed market app"
-            },
-            "using_vkpay_market_app": {
-              "type": "boolean"
             },
             "has_group_channel": {
               "type": "boolean"
@@ -1088,7 +1149,11 @@
         54,
         55,
         57,
-        58
+        58,
+        59,
+        60,
+        61,
+        62
       ],
       "enumNames": [
         "none",
@@ -1135,7 +1200,11 @@
         "textlives",
         "donut_for_dons",
         "badges",
-        "chats_creation"
+        "chats_creation",
+        "stream_creation",
+        "rating",
+        "service_rating",
+        "recommended_tips_widget"
       ]
     },
     "groups_group_is_closed": {
@@ -1211,8 +1280,30 @@
         "advertiser"
       ]
     },
+    "groups_group_subcategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Object ID",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Object name",
+          "required": true
+        },
+        "genders": {
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_object_with_name"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "groups_group_subject": {
-      "type": "string",
+      "type": "integer",
       "enum": [
         1,
         2,
@@ -1658,6 +1749,10 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         },
+        "message_reaction_event": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
         "wall_post_new": {
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
@@ -1723,6 +1818,7 @@
         },
         "server": {
           "type": "string",
+          "format": "uri",
           "description": "Long Poll server address",
           "required": true
         },
@@ -1771,6 +1867,10 @@
           "type": "string",
           "description": "Currency name"
         },
+        "is_show_header_items_link": {
+          "description": "Shop header items link is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
         "enabled": {
           "description": "Information whether the market is enabled",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
@@ -1793,6 +1893,22 @@
       },
       "additionalProperties": false
     },
+    "groups_market_properties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "market": {
+          "$ref": "../groups/objects.json#/definitions/groups_market_info"
+        },
+        "has_market_app": {
+          "type": "boolean",
+          "description": "Information whether community has installed market app"
+        },
+        "using_vkpay_market_app": {
+          "type": "boolean"
+        }
+      }
+    },
     "groups_market_state": {
       "type": "string",
       "description": "Declares state if market is enabled in group.",
@@ -1809,6 +1925,10 @@
           "type": "integer",
           "description": "User ID",
           "required": true
+        },
+        "is_call_operator": {
+          "type": "boolean",
+          "description": "Allow the manager to accept community calls."
         },
         "permissions": {
           "type": "array",
@@ -1963,6 +2083,34 @@
       },
       "additionalProperties": false
     },
+    "groups_profile_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User id",
+          "required": true
+        },
+        "photo_50": {
+          "type": "string",
+          "format": "uri",
+          "description": "Url for user photo",
+          "required": true
+        },
+        "photo_100": {
+          "type": "string",
+          "format": "uri",
+          "description": "Url for user photo",
+          "required": true
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User first name",
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "groups_role_options": {
       "type": "string",
       "description": "User's credentials as community admin",
@@ -1974,16 +2122,8 @@
       ]
     },
     "groups_sections_list_item": {
-      "type": "array",
-      "maxItems": 2,
-      "minItems": 2,
-      "description": "(index, title) tuples",
-      "items": {
-        "type": [
-          "integer",
-          "string"
-        ]
-      }
+      "type": "object",
+      "$ref": "../base/objects.json#/definitions/base_object"
     },
     "groups_settings_twitter": {
       "type": "object",
@@ -2041,6 +2181,12 @@
         },
         {
           "properties": {
+            "permissions": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_member_role_permission"
+              }
+            },
             "role": {
               "$ref": "../groups/objects.json#/definitions/groups_role_options"
             }

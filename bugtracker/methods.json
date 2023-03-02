@@ -1,0 +1,573 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "bugtracker.addCompanyGroupsMembers",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "company_group_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 1000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_addCompanyGroupsMembers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.addCompanyMembers",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "user_ids",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          },
+          "maxItems": 1000
+        },
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_addCompanyMembers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.changeBugreportStatus",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "bugreport_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "status",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "comment",
+          "type": "string"
+        },
+        {
+          "name": "from_statuses",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 50
+        },
+        {
+          "name": "not_in_statuses",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 50
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_action_failed"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.createComment",
+      "description": "Creates the comment to bugreport",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "bugreport_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "maxLength": 4000
+        },
+        {
+          "name": "hidden",
+          "type": "boolean"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_createComment_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photos"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.getCompanyGroupMembers",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "company_group_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 100
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "filter_name",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_getCompanyGroupMembers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.getCompanyMembers",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 100
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "filter_name",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "filter_role",
+          "type": "integer",
+          "minimum": 0,
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "name": "filter_not_group",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        },
+        {
+          "name": "filter_member_ids",
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner"
+          }
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        },
+        {
+          "name": "extra",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_getCompanyMembers_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.getDownloadVersionUrl",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "product_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "version_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "ttl",
+          "type": "integer",
+          "default": 600,
+          "minimum": 1,
+          "maximum": 31536000
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_getDownloadVersionUrl_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_action_failed"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.getProductBuildUploadServer",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "product_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.removeCompanyGroupMember",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "company_group_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.removeCompanyMember",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.saveProductVersion",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "product_id",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "version_id",
+          "type": "integer",
+          "default": 0
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "release_notes",
+          "type": "string"
+        },
+        {
+          "name": "visible",
+          "type": "boolean"
+        },
+        {
+          "name": "set_rft",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.setCompanyMemberRole",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "user_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "company_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "role",
+          "type": "integer",
+          "required": true,
+          "minimum": 0,
+          "enum": [
+            0,
+            1
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
+      "name": "bugtracker.setProductIsOver",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "product_id",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "is_over",
+          "type": "boolean"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_action_failed"
+        }
+      ]
+    }
+  ]
+}

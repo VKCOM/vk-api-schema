@@ -1,6 +1,9 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "responses",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - responses",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
+  "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
     "database_getChairs_response": {
       "type": "object",
@@ -191,20 +194,13 @@
       },
       "additionalProperties": false
     },
-    "database_getSchoolClasses_response": {
+    "database_getSchoolClasses_new_response": {
       "type": "object",
       "properties": {
         "response": {
           "type": "array",
           "items": {
-            "type": "array",
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ],
-              "description": "Class ID or letter"
-            }
+            "$ref": "../database/objects.json#/definitions/database_school_class"
           },
           "required": true
         }

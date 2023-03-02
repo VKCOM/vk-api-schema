@@ -1,8 +1,8 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "version": "5.131",
-  "title": "VK API JSON Schema",
-  "description": "Contains JSON Schema documents explaining the VK.COM API objects and methods",
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
@@ -36,12 +36,6 @@
           "name": "additional_address",
           "type": "string",
           "maxLength": 400
-        },
-        {
-          "name": "country_id",
-          "type": "integer",
-          "required": true,
-          "minimum": 1
         },
         {
           "name": "city_id",
@@ -317,12 +311,14 @@
           "type": "integer",
           "minimum": 0,
           "enum": [
+            0,
             1,
             2,
             3,
             4
           ],
           "enumNames": [
+            "none",
             "place or business",
             "company or website",
             "person or group",
@@ -509,7 +505,7 @@
         {
           "name": "subject",
           "description": "Community subject. Possible values: , *'1' - auto/moto,, *'2' - activity holidays,, *'3' - business,, *'4' - pets,, *'5' - health,, *'6' - dating and communication, , *'7' - games,, *'8' - IT (computers and software),, *'9' - cinema,, *'10' - beauty and fashion,, *'11' - cooking,, *'12' - art and culture,, *'13' - literature,, *'14' - mobile services and internet,, *'15' - music,, *'16' - science and technology,, *'17' - real estate,, *'18' - news and media,, *'19' - security,, *'20' - education,, *'21' - home and renovations,, *'22' - politics,, *'23' - food,, *'24' - industry,, *'25' - travel,, *'26' - work,, *'27' - entertainment,, *'28' - religion,, *'29' - family,, *'30' - sports,, *'31' - insurance,, *'32' - television,, *'33' - goods and services,, *'34' - hobbies,, *'35' - finance,, *'36' - photo,, *'37' - esoterics,, *'38' - electronics and appliances,, *'39' - erotic,, *'40' - humor,, *'41' - society, humanities,, *'42' - design and graphics.",
-          "type": "string",
+          "type": "integer",
           "$ref": "../groups/objects.json#/definitions/groups_group_subject"
         },
         {
@@ -635,7 +631,7 @@
         },
         {
           "name": "messages",
-          "description": "Community messages. Possible values: *'0' — disabled,, *'1' — enabled.",
+          "description": "Community messages. Possible values: *'0' - disabled,, *'1' - enabled.",
           "type": "boolean"
         },
         {
@@ -648,7 +644,7 @@
         },
         {
           "name": "age_limits",
-          "description": "Community age limits. Possible values: *'1' — no limits,, *'2' — 16+,, *'3' — 18+.",
+          "description": "Community age limits. Possible values: *'1' - no limits,, *'2' - 16+,, *'3' - 18+.",
           "type": "integer",
           "default": 1,
           "minimum": 0,
@@ -663,6 +659,15 @@
           "name": "market",
           "description": "Market settings. Possible values: *'0' - disabled,, *'1' - enabled.",
           "type": "boolean"
+        },
+        {
+          "name": "market_buttons",
+          "description": "Buttons details, see market/objects.json#/definitions/market_custom_button",
+          "type": "string",
+          "format": "json",
+          "items": {
+            "type": "object"
+          }
         },
         {
           "name": "market_comments",
@@ -794,11 +799,6 @@
           "name": "additional_address",
           "type": "string",
           "maxLength": 400
-        },
-        {
-          "name": "country_id",
-          "type": "integer",
-          "minimum": 0
         },
         {
           "name": "city_id",
@@ -980,8 +980,13 @@
           "$ref": "../groups/objects.json#/definitions/groups_group_role"
         },
         {
+          "name": "is_call_operator",
+          "description": "'1' — allow the manager to accept community calls.",
+          "type": "boolean"
+        },
+        {
           "name": "is_contact",
-          "description": "'1' — to show the manager in Contacts block of the community.",
+          "description": "'1' - to show the manager in Contacts block of the community.",
           "type": "boolean"
         },
         {
@@ -1002,7 +1007,8 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../base/responses.json#/definitions/base_ok_response"
+          "$ref": "../base/responses.json#/definitions/base_ok_response",
+          "deprecated_from_version": "5.203"
         }
       },
       "errors": [
@@ -1062,12 +1068,12 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return complete information about a user's communities, '0' — to return a list of community IDs without any additional fields (default),",
+          "description": "'1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),",
           "type": "boolean"
         },
         {
           "name": "filter",
-          "description": "Types of communities to return: 'admin' — to return communities administered by the user , 'editor' — to return communities where the user is an administrator or editor, 'moder' — to return communities where the user is an administrator, editor, or moderator, 'groups' — to return only groups, 'publics' — to return only public pages, 'events' — to return only events",
+          "description": "Types of communities to return: 'admin' - to return communities administered by the user , 'editor' - to return communities where the user is an administrator or editor, 'moder' - to return communities where the user is an administrator, editor, or moderator, 'groups' - to return only groups, 'publics' - to return only public pages, 'events' - to return only events",
           "type": "array",
           "items": {
             "$ref": "../groups/objects.json#/definitions/groups_filter"
@@ -1167,7 +1173,7 @@
           "description": "Address fields",
           "type": "array",
           "items": {
-            "$ref": "../addresses/objects.json#/definitions/addresses_fields"
+            "$ref": "../address/objects.json#/definitions/address_fields"
           }
         }
       ],
@@ -1284,7 +1290,7 @@
       ],
       "responses": {
         "response": {
-          "$ref": "../groups/responses.json#/definitions/groups_getById_object_legacy_response"
+          "$ref": "../groups/responses.json#/definitions/groups_getById_object_response"
         }
       }
     },
@@ -1378,41 +1384,6 @@
       ]
     },
     {
-      "name": "groups.getCatalog",
-      "description": "Returns communities list for a catalog category.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "category_id",
-          "description": "Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "subcategory_id",
-          "description": "Subcategory id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 99
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../groups/responses.json#/definitions/groups_getCatalog_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "../errors.json#/errors/api_error_communities_catalog_disabled"
-        },
-        {
-          "$ref": "../errors.json#/errors/api_error_communities_categories_disabled"
-        }
-      ]
-    },
-    {
       "name": "groups.getCatalogInfo",
       "description": "Returns categories list for communities catalog",
       "access_token_type": [
@@ -1480,24 +1451,9 @@
         },
         {
           "name": "name_case",
-          "description": "Case for declension of user name and surname. Possible values: *'nom' — nominative (default),, *'gen' — genitive,, *'dat' — dative,, *'acc' — accusative, , *'ins' — instrumental,, *'abl' — prepositional.",
+          "description": "Case for declension of user name and surname. Possible values: *'nom' - nominative (default),, *'gen' - genitive,, *'dat' - dative,, *'acc' - accusative, , *'ins' - instrumental,, *'abl' - prepositional.",
           "type": "string",
-          "enum": [
-            "nom",
-            "gen",
-            "dat",
-            "acc",
-            "ins",
-            "abl"
-          ],
-          "enumNames": [
-            "nominative",
-            "genitive",
-            "dative",
-            "accusative",
-            "instrumental",
-            "prepositional"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
@@ -1528,7 +1484,7 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return additional [vk.com/dev/fields_groups|fields] for communities..",
+          "description": "'1' - to return additional [vk.com/dev/fields_groups|fields] for communities..",
           "type": "boolean"
         }
       ],
@@ -1601,7 +1557,12 @@
         {
           "name": "group_id",
           "description": "ID or screen name of the community.",
-          "type": "string"
+          "type": [
+            "integer",
+            "string"
+          ],
+          "format": "int64",
+          "entity": "groups"
         },
         {
           "name": "sort",
@@ -1641,10 +1602,10 @@
           "description": "*'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).",
           "type": "string",
           "enum": [
+            "donut",
             "friends",
-            "unsure",
             "managers",
-            "donut"
+            "unsure"
           ]
         }
       ],
@@ -1664,6 +1625,28 @@
           "$ref": "../errors.json#/errors/api_error_param_group_id"
         }
       ]
+    },
+    {
+      "name": "groups.getOnlineStatus",
+      "access_token_type": [
+        "user",
+        "group"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../groups/responses.json#/definitions/groups_getOnlineStatus_response"
+        }
+      }
     },
     {
       "name": "groups.getRequests",
@@ -1723,11 +1706,13 @@
         {
           "name": "group_id",
           "description": "Community ID.",
-          "type": "integer",
+          "type": [
+            "integer",
+            "string"
+          ],
           "required": true,
           "format": "int64",
-          "minimum": 1,
-          "entity": "owner"
+          "entity": "groups"
         }
       ],
       "responses": {
@@ -1790,15 +1775,28 @@
           "name": "user_id",
           "description": "User ID.",
           "type": "integer",
-          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
+        },
+        {
+          "name": "user_ids_list",
+          "description": "User IDs.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 1
+          }
         }
       ],
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_ok_response"
+        },
+        "userIdsResponse": {
+          "$ref": "../groups/responses.json#/definitions/groups_invite_user_ids_list_response"
         }
       },
       "errors": [
@@ -1819,8 +1817,13 @@
         {
           "name": "group_id",
           "description": "ID or screen name of the community.",
-          "type": "string",
-          "required": true
+          "type": [
+            "integer",
+            "string"
+          ],
+          "required": true,
+          "format": "int64",
+          "entity": "groups"
         },
         {
           "name": "user_id",
@@ -1843,13 +1846,14 @@
         },
         {
           "name": "extended",
-          "description": "'1' — to return an extended response with additional fields. By default: '0'.",
+          "description": "'1' - to return an extended response with additional fields. By default: '0'.",
           "type": "boolean"
         }
       ],
       "responses": {
         "response": {
-          "$ref": "../groups/responses.json#/definitions/groups_isMember_response"
+          "description": "Information whether user is a member of the group",
+          "$ref": "../base/responses.json#/definitions/base_bool_response"
         },
         "userIdsResponse": {
           "$ref": "../groups/responses.json#/definitions/groups_isMember_user_ids_response"
@@ -1879,7 +1883,7 @@
         },
         {
           "name": "not_sure",
-          "description": "Optional parameter which is taken into account when 'gid' belongs to the event: '1' — Perhaps I will attend, '0' — I will be there for sure (default), ,",
+          "description": "Optional parameter which is taken into account when 'gid' belongs to the event: '1' - Perhaps I will attend, '0' - I will be there for sure (default), ,",
           "type": "string"
         }
       ],
@@ -2011,9 +2015,9 @@
           "description": "Community type. Possible values: 'group, page, event.'",
           "type": "string",
           "enum": [
+            "event",
             "group",
-            "page",
-            "event"
+            "page"
           ]
         },
         {
@@ -2030,17 +2034,17 @@
         },
         {
           "name": "future",
-          "description": "'1' — to return only upcoming events. Works with the 'type' = 'event' only.",
+          "description": "'1' - to return only upcoming events. Works with the 'type' = 'event' only.",
           "type": "boolean"
         },
         {
           "name": "market",
-          "description": "'1' — to return communities with enabled market only.",
+          "description": "'1' - to return communities with enabled market only.",
           "type": "boolean"
         },
         {
           "name": "sort",
-          "description": "Sort order. Possible values: *'0' — default sorting (similar the full version of the site),, *'1' — by growth speed,, *'2'— by the \"day attendance/members number\" ratio,, *'3' — by the \"Likes number/members number\" ratio,, *'4' — by the \"comments number/members number\" ratio,, *'5' — by the \"boards entries number/members number\" ratio.",
+          "description": "Sort order. Possible values: *'0' - default sorting (similar the full version of the site),, *'1' - by growth speed,, *'2'- by the \"day attendance/members number\" ratio,, *'3' - by the \"Likes number/members number\" ratio,, *'4' - by the \"comments number/members number\" ratio,, *'5' - by the \"boards entries number/members number\" ratio.",
           "type": "integer",
           "enum": [
             0,
@@ -2048,7 +2052,8 @@
             2,
             3,
             4,
-            5
+            5,
+            6
           ],
           "enumNames": [
             "default",
@@ -2056,7 +2061,8 @@
             "attendance",
             "likes",
             "comments",
-            "entries"
+            "entries",
+            "members"
           ]
         },
         {
@@ -2109,17 +2115,17 @@
         },
         {
           "name": "message_new",
-          "description": "A new incoming message has been received ('0' — disabled, '1' — enabled).",
+          "description": "A new incoming message has been received ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "message_reply",
-          "description": "A new outcoming message has been received ('0' — disabled, '1' — enabled).",
+          "description": "A new outcoming message has been received ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "message_allow",
-          "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "description": "Allowed messages notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2128,7 +2134,7 @@
         },
         {
           "name": "message_deny",
-          "description": "Denied messages notifications ('0' — disabled, '1' — enabled).",
+          "description": "Denied messages notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2136,128 +2142,133 @@
           "type": "boolean"
         },
         {
+          "name": "message_read",
+          "description": "Messages read notifications ('0' - disabled, '1' - enabled).",
+          "type": "boolean"
+        },
+        {
           "name": "photo_new",
-          "description": "New photos notifications ('0' — disabled, '1' — enabled).",
+          "description": "New photos notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "audio_new",
-          "description": "New audios notifications ('0' — disabled, '1' — enabled).",
+          "description": "New audios notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_new",
-          "description": "New videos notifications ('0' — disabled, '1' — enabled).",
+          "description": "New videos notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_new",
-          "description": "New wall replies notifications ('0' — disabled, '1' — enabled).",
+          "description": "New wall replies notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_edit",
-          "description": "Wall replies edited notifications ('0' — disabled, '1' — enabled).",
+          "description": "Wall replies edited notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_delete",
-          "description": "A wall comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A wall comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_restore",
-          "description": "A wall comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A wall comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_post_new",
-          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "description": "New wall posts notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_repost",
-          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "description": "New wall posts notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_new",
-          "description": "New board posts notifications ('0' — disabled, '1' — enabled).",
+          "description": "New board posts notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_edit",
-          "description": "Board posts edited notifications ('0' — disabled, '1' — enabled).",
+          "description": "Board posts edited notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_restore",
-          "description": "Board posts restored notifications ('0' — disabled, '1' — enabled).",
+          "description": "Board posts restored notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_delete",
-          "description": "Board posts deleted notifications ('0' — disabled, '1' — enabled).",
+          "description": "Board posts deleted notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_new",
-          "description": "New comment to photo notifications ('0' — disabled, '1' — enabled).",
+          "description": "New comment to photo notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_edit",
-          "description": "A photo comment has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A photo comment has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_delete",
-          "description": "A photo comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A photo comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_restore",
-          "description": "A photo comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A photo comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_new",
-          "description": "New comment to video notifications ('0' — disabled, '1' — enabled).",
+          "description": "New comment to video notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_edit",
-          "description": "A video comment has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A video comment has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_delete",
-          "description": "A video comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A video comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_restore",
-          "description": "A video comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A video comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_new",
-          "description": "New comment to market item notifications ('0' — disabled, '1' — enabled).",
+          "description": "New comment to market item notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_edit",
-          "description": "A market comment has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A market comment has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_delete",
-          "description": "A market comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A market comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_restore",
-          "description": "A market comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A market comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2270,17 +2281,17 @@
         },
         {
           "name": "poll_vote_new",
-          "description": "A vote in a public poll has been added ('0' — disabled, '1' — enabled).",
+          "description": "A vote in a public poll has been added ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "group_join",
-          "description": "Joined community notifications ('0' — disabled, '1' — enabled).",
+          "description": "Joined community notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "group_leave",
-          "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "description": "Left community notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2320,6 +2331,10 @@
         },
         {
           "name": "message_event",
+          "type": "boolean"
+        },
+        {
+          "name": "message_reaction_event",
           "type": "boolean"
         },
         {
@@ -2381,7 +2396,7 @@
         },
         {
           "name": "enabled",
-          "description": "Sets whether Long Poll is enabled ('0' — disabled, '1' — enabled).",
+          "description": "Sets whether Long Poll is enabled ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2390,27 +2405,27 @@
         },
         {
           "name": "message_new",
-          "description": "A new incoming message has been received ('0' — disabled, '1' — enabled).",
+          "description": "A new incoming message has been received ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "message_reply",
-          "description": "A new outcoming message has been received ('0' — disabled, '1' — enabled).",
+          "description": "A new outcoming message has been received ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "message_allow",
-          "description": "Allowed messages notifications ('0' — disabled, '1' — enabled).",
+          "description": "Allowed messages notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "message_deny",
-          "description": "Denied messages notifications ('0' — disabled, '1' — enabled).",
+          "description": "Denied messages notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "message_edit",
-          "description": "A message has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A message has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2418,143 +2433,148 @@
           "type": "boolean"
         },
         {
+          "name": "message_read",
+          "description": "Messages read notifications ('0' - disabled, '1' - enabled).",
+          "type": "boolean"
+        },
+        {
           "name": "photo_new",
-          "description": "New photos notifications ('0' — disabled, '1' — enabled).",
+          "description": "New photos notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "audio_new",
-          "description": "New audios notifications ('0' — disabled, '1' — enabled).",
+          "description": "New audios notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_new",
-          "description": "New videos notifications ('0' — disabled, '1' — enabled).",
+          "description": "New videos notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_new",
-          "description": "New wall replies notifications ('0' — disabled, '1' — enabled).",
+          "description": "New wall replies notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_edit",
-          "description": "Wall replies edited notifications ('0' — disabled, '1' — enabled).",
+          "description": "Wall replies edited notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_delete",
-          "description": "A wall comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A wall comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_reply_restore",
-          "description": "A wall comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A wall comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_post_new",
-          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "description": "New wall posts notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "wall_repost",
-          "description": "New wall posts notifications ('0' — disabled, '1' — enabled).",
+          "description": "New wall posts notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_new",
-          "description": "New board posts notifications ('0' — disabled, '1' — enabled).",
+          "description": "New board posts notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_edit",
-          "description": "Board posts edited notifications ('0' — disabled, '1' — enabled).",
+          "description": "Board posts edited notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_restore",
-          "description": "Board posts restored notifications ('0' — disabled, '1' — enabled).",
+          "description": "Board posts restored notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "board_post_delete",
-          "description": "Board posts deleted notifications ('0' — disabled, '1' — enabled).",
+          "description": "Board posts deleted notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_new",
-          "description": "New comment to photo notifications ('0' — disabled, '1' — enabled).",
+          "description": "New comment to photo notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_edit",
-          "description": "A photo comment has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A photo comment has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_delete",
-          "description": "A photo comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A photo comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "photo_comment_restore",
-          "description": "A photo comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A photo comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_new",
-          "description": "New comment to video notifications ('0' — disabled, '1' — enabled).",
+          "description": "New comment to video notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_edit",
-          "description": "A video comment has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A video comment has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_delete",
-          "description": "A video comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A video comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "video_comment_restore",
-          "description": "A video comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A video comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_new",
-          "description": "New comment to market item notifications ('0' — disabled, '1' — enabled).",
+          "description": "New comment to market item notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_edit",
-          "description": "A market comment has been edited ('0' — disabled, '1' — enabled).",
+          "description": "A market comment has been edited ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_delete",
-          "description": "A market comment has been deleted ('0' — disabled, '1' — enabled).",
+          "description": "A market comment has been deleted ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "market_comment_restore",
-          "description": "A market comment has been restored ('0' — disabled, '1' — enabled).",
+          "description": "A market comment has been restored ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "poll_vote_new",
-          "description": "A vote in a public poll has been added ('0' — disabled, '1' — enabled).",
+          "description": "A vote in a public poll has been added ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "group_join",
-          "description": "Joined community notifications ('0' — disabled, '1' — enabled).",
+          "description": "Joined community notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
           "name": "group_leave",
-          "description": "Left community notifications ('0' — disabled, '1' — enabled).",
+          "description": "Left community notifications ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {
@@ -2589,6 +2609,10 @@
         },
         {
           "name": "message_event",
+          "type": "boolean"
+        },
+        {
+          "name": "message_reaction_event",
           "type": "boolean"
         },
         {
@@ -2647,14 +2671,17 @@
         },
         {
           "name": "bots_capabilities",
+          "description": "By enabling bot abilities, you can send users messages with a customized keyboard attached as well as use other promotional abilities",
           "type": "boolean"
         },
         {
           "name": "bots_start_button",
+          "description": "If this setting is enabled, users will see a Start button when they start a chat with your community for the first time",
           "type": "boolean"
         },
         {
           "name": "bots_add_to_chat",
+          "description": "If this setting is enabled then users can add your community to a chat",
           "type": "boolean"
         }
       ],
