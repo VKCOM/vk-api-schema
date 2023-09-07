@@ -929,13 +929,22 @@
               "type": "string"
             },
             "photo_rec": {
-              "$ref": "../photos/objects.json#/definitions/photos_photo_falseable"
+              "type": [
+                "string",
+                "boolean"
+              ]
             },
             "photo_medium": {
-              "$ref": "../photos/objects.json#/definitions/photos_photo_falseable"
+              "type": [
+                "string",
+                "boolean"
+              ]
             },
             "photo_medium_rec": {
-              "$ref": "../photos/objects.json#/definitions/photos_photo_falseable"
+              "type": [
+                "string",
+                "boolean"
+              ]
             },
             "photo": {
               "type": "string"

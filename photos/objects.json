@@ -255,6 +255,10 @@
           "type": "boolean",
           "description": "album can be selected to feed"
         },
+        "is_locked": {
+          "type": "boolean",
+          "description": "Need show privacy lock at album"
+        },
         "owner_id": {
           "type": "integer",
           "description": "Album owner's ID",
@@ -304,17 +308,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "photos_photo_falseable": {
-      "type": "object",
-      "oneOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "string"
-        }
-      ]
     },
     "photos_photo_sizes": {
       "type": "object",
@@ -380,7 +373,8 @@
         "max",
         "base",
         "u",
-        "v"
+        "v",
+        "orig"
       ]
     },
     "photos_photo_tag": {

@@ -189,6 +189,10 @@
         }
       },
       "properties": {
+        "nullable": {
+          "type": "boolean",
+          "default": false
+        },
         "prefix": {
           "$ref": "#/definitions/prefix"
         },

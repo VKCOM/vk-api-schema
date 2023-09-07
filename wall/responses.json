@@ -138,6 +138,12 @@
             "groups_can_post": {
               "type": "boolean",
               "description": "Information whether groups can comment the post"
+            },
+            "post_author_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64",
+              "description": "Author id of the comment's post"
             }
           },
           "additionalProperties": false,
@@ -223,6 +229,12 @@
             "groups_can_post": {
               "type": "boolean",
               "description": "Information whether groups can comment the post"
+            },
+            "post_author_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64",
+              "description": "Author id of comments' post"
             }
           },
           "additionalProperties": false,

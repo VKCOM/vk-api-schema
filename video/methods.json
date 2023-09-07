@@ -386,6 +386,10 @@
           "name": "repeat",
           "description": "'1' - to repeat the playback of the video, '0' - to play the video once,",
           "type": "boolean"
+        },
+        {
+          "name": "ord_info",
+          "type": "string"
         }
       ],
       "responses": {
@@ -731,8 +735,7 @@
         },
         {
           "name": "start_comment_id",
-          "type": "integer",
-          "minimum": 0
+          "type": "integer"
         },
         {
           "name": "offset",
@@ -754,11 +757,13 @@
           "default": "asc",
           "enum": [
             "asc",
-            "desc"
+            "desc",
+            "interest"
           ],
           "enumNames": [
             "oldest comment first",
-            "newest comment first"
+            "newest comment first",
+            "most interesting comments first"
           ]
         },
         {
@@ -771,6 +776,17 @@
           "items": {
             "type": "string"
           }
+        },
+        {
+          "name": "comment_id",
+          "type": "integer"
+        },
+        {
+          "name": "thread_items_count",
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 10
         }
       ],
       "responses": {
@@ -1262,6 +1278,10 @@
         {
           "name": "compression",
           "type": "boolean"
+        },
+        {
+          "name": "ord_info",
+          "type": "string"
         }
       ],
       "responses": {

@@ -26,6 +26,42 @@
       },
       "additionalProperties": false
     },
+    "market_addPropertyVariant_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "variant_id": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_addProperty_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "property_id": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "market_add_response": {
       "type": "object",
       "properties": {
@@ -395,6 +431,24 @@
               "items": {
                 "$ref": "../market/objects.json#/definitions/market_market_item"
               }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "market_groupItems_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "item_group_id": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
             }
           },
           "additionalProperties": false,

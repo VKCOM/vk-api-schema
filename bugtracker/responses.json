@@ -69,6 +69,28 @@
       },
       "additionalProperties": false
     },
+    "bugtracker_getBugreportById_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "bugreport": {
+              "$ref": "../bugtracker/objects.json#/definitions/bugtracker_bugreport"
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "bugtracker_getCompanyGroupMembers_response": {
       "type": "object",
       "properties": {
@@ -146,6 +168,9 @@
             },
             "build_id": {
               "type": "integer"
+            },
+            "build_name": {
+              "type": "string"
             },
             "build_title": {
               "type": "string"

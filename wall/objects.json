@@ -444,6 +444,10 @@
         "thread": {
           "$ref": "../comment/objects.json#/definitions/comment_thread"
         },
+        "is_from_post_author": {
+          "type": "boolean",
+          "description": "Whether post is by author of the post or not"
+        },
         "deleted": {
           "type": "boolean"
         },
@@ -644,6 +648,9 @@
         "video": {
           "$ref": "../video/objects.json#/definitions/video_video_full"
         },
+        "clip": {
+          "$ref": "../video/objects.json#/definitions/video_video_full"
+        },
         "video_playlist": {
           "$ref": "../video/objects.json#/definitions/video_video_album_full"
         }
@@ -660,6 +667,7 @@
         "audio",
         "audio_playlist",
         "video",
+        "clip",
         "video_playlist",
         "doc",
         "link",

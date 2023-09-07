@@ -334,6 +334,10 @@
           "description": "Information whether current uer has liked the post",
           "required": true
         },
+        "author_liked": {
+          "type": "boolean",
+          "description": "Information whether author of the post/reply liked it"
+        },
         "repost_disabled": {
           "type": "boolean",
           "description": "Remove repost feature for post"
@@ -866,15 +870,7 @@
     },
     "base_sticker": {
       "type": "object",
-      "oneOf": [
-        {
-          "$ref": "../base/objects.json#/definitions/base_sticker_old",
-          "description": "Deprecated from 5.74, but still used in later versions in queue"
-        },
-        {
-          "$ref": "../base/objects.json#/definitions/base_sticker_new"
-        }
-      ]
+      "$ref": "../base/objects.json#/definitions/base_sticker_new"
     },
     "base_sticker_animation": {
       "type": "object",
@@ -929,57 +925,6 @@
           "items": {
             "$ref": "../base/objects.json#/definitions/base_sticker_animation"
           }
-        },
-        "is_allowed": {
-          "type": "boolean",
-          "description": "Information whether the sticker is allowed"
-        }
-      },
-      "additionalProperties": false
-    },
-    "base_sticker_old": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "description": "Sticker ID"
-        },
-        "product_id": {
-          "type": "integer",
-          "description": "Pack ID"
-        },
-        "width": {
-          "type": "integer",
-          "description": "Width in px"
-        },
-        "height": {
-          "type": "integer",
-          "description": "Height in px"
-        },
-        "photo_128": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the preview image with 128 px in height"
-        },
-        "photo_256": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the preview image with 256 px in height"
-        },
-        "photo_352": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the preview image with 352 px in height"
-        },
-        "photo_512": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the preview image with 512 px in height"
-        },
-        "photo_64": {
-          "type": "string",
-          "format": "uri",
-          "description": "URL of the preview image with 64 px in height"
         },
         "is_allowed": {
           "type": "boolean",

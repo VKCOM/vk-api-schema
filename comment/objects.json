@@ -31,6 +31,10 @@
         "groups_can_post": {
           "type": "boolean",
           "description": "Information whether groups can comment the post"
+        },
+        "author_replied": {
+          "type": "boolean",
+          "description": "Information whether author commented the thread"
         }
       },
       "additionalProperties": false

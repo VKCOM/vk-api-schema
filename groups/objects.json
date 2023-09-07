@@ -1063,6 +1063,16 @@
             },
             "has_unseen_stories": {
               "type": "boolean"
+            },
+            "video_notifications_status": {
+              "type": "string",
+              "enum": [
+                "none",
+                "all",
+                "preferred"
+              ],
+              "description": "Information about the status of video notifications for the current user.",
+              "required": false
             }
           }
         }

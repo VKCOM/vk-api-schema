@@ -45,6 +45,102 @@
       },
       "additionalProperties": false
     },
+    "bugtracker_bugreport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "original_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "clones_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "owner_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "created": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "updated": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "state_actual": {
+          "type": "string"
+        },
+        "state_supposed": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "comments_count": {
+          "type": "integer"
+        },
+        "can_remove": {
+          "type": "boolean"
+        },
+        "can_change_status": {
+          "type": "boolean"
+        },
+        "can_bookmark": {
+          "type": "boolean"
+        },
+        "is_bookmarked": {
+          "type": "boolean"
+        },
+        "can_edit": {
+          "type": "boolean"
+        },
+        "is_deleted": {
+          "type": "boolean"
+        },
+        "can_restore": {
+          "type": "boolean"
+        },
+        "is_vulnerability": {
+          "type": "boolean"
+        },
+        "is_severity_by_moderator": {
+          "type": "boolean"
+        },
+        "hidden_docs": {
+          "type": "boolean"
+        },
+        "private_comment": {
+          "type": "string"
+        },
+        "can_change_product": {
+          "type": "boolean"
+        },
+        "company_id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        }
+      },
+      "additionalProperties": false
+    },
     "bugtracker_bugreport_subscribe_state": {
       "type": "object",
       "properties": {

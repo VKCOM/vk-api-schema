@@ -52,6 +52,16 @@
             "chat_id": {
               "type": "integer",
               "description": "Chat ID"
+            },
+            "peer_ids": {
+              "type": "array",
+              "description": "List of successfully added peer ids",
+              "items": {
+                "type": "integer",
+                "entity": "peer",
+                "format": "int64",
+                "minimum": 0
+              }
             }
           },
           "additionalProperties": false,

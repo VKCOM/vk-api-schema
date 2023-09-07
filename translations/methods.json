@@ -1,0 +1,44 @@
+{
+  "$schema": "../schema.json",
+  "version": "5.199",
+  "title": "VK API JSON Schema - methods",
+  "description": "Contains JSON Schema documents explaining the VK.COM API - methods",
+  "termsOfService": "https://dev.vk.com/rules",
+  "methods": [
+    {
+      "name": "translations.translate",
+      "access_token_type": [
+        "user",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "texts",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "translation_language",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../translations/responses.json#/definitions/translations_translate_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_translations_cant_translate"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_translations_multiple_source_lang"
+        }
+      ]
+    }
+  ]
+}

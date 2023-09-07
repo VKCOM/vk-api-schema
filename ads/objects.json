@@ -295,6 +295,10 @@
         "suggested_criteria": {
           "type": "integer",
           "description": "Suggested criteria"
+        },
+        "link_type": {
+          "type": "integer",
+          "description": "Link type"
         }
       },
       "additionalProperties": false
@@ -1259,6 +1263,13 @@
           "minimum": 1,
           "required": true
         },
+        "original_id": {
+          "type": "integer",
+          "description": "Music artist ID as in VKMusic",
+          "format": "int64",
+          "minimum": 1,
+          "required": true
+        },
         "name": {
           "type": "string",
           "description": "Music artist name",
@@ -1703,7 +1714,10 @@
       "type": "object",
       "properties": {
         "help_url": {
-          "$ref": "../ads/objects.json#/definitions/ads_rules_help_url",
+          "type": [
+            "string",
+            "boolean"
+          ],
           "description": "Help url"
         },
         "help_label": {
@@ -1720,17 +1734,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "ads_rules_help_url": {
-      "type": "object",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "boolean"
-        }
-      ]
     },
     "ads_statistic_click_action": {
       "type": "object",

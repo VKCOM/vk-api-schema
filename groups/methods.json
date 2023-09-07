@@ -723,6 +723,14 @@
           "type": "boolean"
         },
         {
+          "name": "toxic_filter",
+          "type": "boolean"
+        },
+        {
+          "name": "disable_replies_from_groups",
+          "type": "boolean"
+        },
+        {
           "name": "obscene_words",
           "description": "Keywords for stopwords filter.",
           "type": "array",

@@ -743,15 +743,6 @@
       "description": "Anonymous token ip mismatch",
       "global": true
     },
-    "api_error_passkey_registration": {
-      "code": 1119,
-      "description": "Passkey registration error",
-      "global": true
-    },
-    "api_error_passkey_login": {
-      "code": 1120,
-      "description": "Passkey login error"
-    },
     "api_error_param_doc_id": {
       "code": 1150,
       "description": "Invalid document id"
@@ -767,6 +758,14 @@
     "api_error_param_doc_access": {
       "code": 1153,
       "description": "Access to document is denied"
+    },
+    "api_error_param_doc_restore_access": {
+      "code": 1154,
+      "description": "Access to document restoring is denied"
+    },
+    "api_error_param_doc_restore_timeout": {
+      "code": 1155,
+      "description": "Document was deleted too long ago"
     },
     "api_error_photo_changed": {
       "code": 1160,
@@ -832,6 +831,14 @@
       "code": 1409,
       "description": "Extended market not enabled"
     },
+    "api_error_market_variants_not_enabled": {
+      "code": 1410,
+      "description": "Variants not enabled"
+    },
+    "api_error_market_variants_error": {
+      "code": 1411,
+      "description": "Variants error"
+    },
     "api_error_market_grouping_items_with_different_properties": {
       "code": 1412,
       "description": "Grouping items with different properties"
@@ -840,6 +847,14 @@
       "code": 1413,
       "description": "Grouping already has such variant"
     },
+    "api_error_market_grouping_has_other_properties": {
+      "code": 1414,
+      "description": "Grouping has other properties"
+    },
+    "api_error_market_grouping_must_have_variants": {
+      "code": 1415,
+      "description": "Grouping must have variants"
+    },
     "api_error_market_variant_not_found": {
       "code": 1416,
       "description": "Variant not found"
@@ -847,6 +862,26 @@
     "api_error_market_property_not_found": {
       "code": 1417,
       "description": "Property not found"
+    },
+    "api_error_market_max_properties_limit_exceed": {
+      "code": 1418,
+      "description": "Max properties limit exceeded"
+    },
+    "api_error_market_max_variants_limit_exceed": {
+      "code": 1419,
+      "description": "Max variant limit exceeded"
+    },
+    "api_error_market_name_too_long": {
+      "code": 1421,
+      "description": "Name too long"
+    },
+    "api_error_market_variant_value_too_long": {
+      "code": 1423,
+      "description": "Variant value is too long"
+    },
+    "api_error_market_unknown_property_type": {
+      "code": 1424,
+      "description": "Unknown property type"
     },
     "api_error_market_grouping_must_contain_more_than_one_item": {
       "code": 1425,
@@ -1014,6 +1049,14 @@
       "code": 11500,
       "description": "CheckUserAction confirmation required",
       "global": true
+    },
+    "api_error_translations_cant_translate": {
+      "code": 11101,
+      "description": "Can't translate."
+    },
+    "api_error_translations_multiple_source_lang": {
+      "code": 11102,
+      "description": "Multiple source languages. Only one allowed."
     }
   }
 }

@@ -92,6 +92,21 @@
           "maxLength": 320
         },
         {
+          "name": "variant_ids",
+          "description": "IDs of properties variants.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 2
+        },
+        {
+          "name": "is_main_variant",
+          "description": "Is main in their group.",
+          "type": "boolean"
+        },
+        {
           "name": "dimension_width",
           "type": "integer",
           "minimum": 0,
@@ -119,6 +134,12 @@
           "name": "sku",
           "type": "string",
           "maxLength": 50
+        },
+        {
+          "name": "stock_amount",
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 999999
         }
       ],
       "responses": {
@@ -215,6 +236,113 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_market_album_main_hidden"
+        }
+      ]
+    },
+    {
+      "name": "market.addProperty",
+      "description": "Adds property",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "title",
+          "description": "Property name.",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_addProperty_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_name_too_long"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_unknown_property_type"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_max_properties_limit_exceed"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.addPropertyVariant",
+      "description": "Adds property variant",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "property_id",
+          "description": "Property id.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "Variant name.",
+          "type": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 60
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_addPropertyVariant_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variant_value_too_long"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_max_variants_limit_exceed"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_property_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
         }
       ]
     },
@@ -448,6 +576,95 @@
       }
     },
     {
+      "name": "market.deleteProperty",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "property_id",
+          "description": "Property id.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_property_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.deletePropertyVariant",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "variant_id",
+          "description": "Variant id.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_property_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variant_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
       "name": "market.edit",
       "description": "Edits an item.",
       "access_token_type": [
@@ -538,6 +755,21 @@
           "maxLength": 320
         },
         {
+          "name": "variant_ids",
+          "description": "IDs of properties variants.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxItems": 2
+        },
+        {
+          "name": "is_main_variant",
+          "description": "Is main in their group.",
+          "type": "boolean"
+        },
+        {
           "name": "dimension_width",
           "type": "integer",
           "minimum": 0,
@@ -565,6 +797,12 @@
           "name": "sku",
           "type": "string",
           "maxLength": 50
+        },
+        {
+          "name": "stock_amount",
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 999999
         }
       ],
       "responses": {
@@ -810,6 +1048,114 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_market_orders_invalid_status"
+        }
+      ]
+    },
+    {
+      "name": "market.editProperty",
+      "description": "Adds property",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "property_id",
+          "description": "Property id.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "Property name",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_name_too_long"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_unknown_property_type"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.editPropertyVariant",
+      "description": "Edit property variant name",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "variant_id",
+          "description": "Variant id.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        },
+        {
+          "name": "title",
+          "description": "Variant name.",
+          "type": "string",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 60
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_name_too_long"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variant_value_too_long"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variant_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
         }
       ]
     },
@@ -1288,6 +1634,84 @@
           "$ref": "../market/responses.json#/definitions/market_getOrders_extended_response"
         }
       }
+    },
+    {
+      "name": "market.groupItems",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "item_ids",
+          "description": "Item ids.",
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "name": "item_group_id",
+          "description": "Items group id.",
+          "type": "integer",
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_groupItems_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_items_with_different_properties"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_already_has_such_variant"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_has_other_properties"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_must_have_variants"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variant_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_property_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_must_contain_more_than_one_item"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_grouping_items_must_have_distinct_properties"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
     },
     {
       "name": "market.removeFromAlbum",
@@ -1902,6 +2326,46 @@
           "$ref": "../market/responses.json#/definitions/market_search_basic_response"
         }
       }
+    },
+    {
+      "name": "market.ungroupItems",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Group id.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "item_group_id",
+          "description": "Items group id.",
+          "type": "integer",
+          "required": true,
+          "minimum": 0
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
     }
   ]
 }

@@ -179,6 +179,42 @@
       ]
     },
     {
+      "name": "bugtracker.getBugreportById",
+      "description": "Returns extended bugreport data",
+      "access_token_type": [],
+      "parameters": [
+        {
+          "name": "bugreport_id",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "extended",
+          "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../bugtracker/responses.json#/definitions/bugtracker_getBugreportById_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_limits"
+        }
+      ]
+    },
+    {
       "name": "bugtracker.getCompanyGroupMembers",
       "access_token_type": [],
       "parameters": [
@@ -324,10 +360,7 @@
     },
     {
       "name": "bugtracker.getDownloadVersionUrl",
-      "access_token_type": [
-        "user",
-        "service"
-      ],
+      "access_token_type": [],
       "parameters": [
         {
           "name": "product_id",

@@ -640,6 +640,16 @@
               },
               "required": true
             },
+            "toxic_filter": {
+              "description": "Information whether the toxic filter is enabled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
+            "disable_replies_from_groups": {
+              "description": "Information whether the replies from groups is disabled",
+              "$ref": "../base/objects.json#/definitions/base_bool_int",
+              "required": true
+            },
             "event_group_id": {
               "type": "integer"
             },
