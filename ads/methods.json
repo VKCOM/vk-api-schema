@@ -533,18 +533,8 @@
         {
           "name": "account_id",
           "description": "Advertising account ID.",
-          "required": true,
-          "type": "integer"
-        },
-        {
-          "name": "ad_ids",
-          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
-          "type": "string"
-        },
-        {
-          "name": "campaign_ids",
-          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
-          "type": "string"
+          "type": "integer",
+          "required": true
         },
         {
           "name": "client_id",
@@ -560,6 +550,16 @@
           "name": "only_deleted",
           "description": "Flag that specifies whether to show only archived ads: *0 - show all ads,, *1 - show only archived ads. Available when include_deleted flag is *1",
           "type": "boolean"
+        },
+        {
+          "name": "campaign_ids",
+          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "ad_ids",
+          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
+          "type": "string"
         },
         {
           "name": "limit",
@@ -653,18 +653,8 @@
         {
           "name": "account_id",
           "description": "Advertising account ID.",
-          "required": true,
-          "type": "integer"
-        },
-        {
-          "name": "ad_ids",
-          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
-          "type": "string"
-        },
-        {
-          "name": "campaign_ids",
-          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
-          "type": "string"
+          "type": "integer",
+          "required": true
         },
         {
           "name": "client_id",
@@ -675,6 +665,20 @@
           "name": "include_deleted",
           "description": "flag that specifies whether archived ads shall be shown: *0 - show only active ads,, *1 - show all ads.",
           "type": "boolean"
+        },
+        {
+          "name": "only_deleted",
+          "type": "boolean"
+        },
+        {
+          "name": "campaign_ids",
+          "description": "Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.",
+          "type": "string"
+        },
+        {
+          "name": "ad_ids",
+          "description": "Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.",
+          "type": "string"
         },
         {
           "name": "limit",

@@ -933,12 +933,6 @@
       },
       "additionalProperties": false
     },
-    "base_stickers_list": {
-      "type": "array",
-      "items": {
-        "$ref": "../base/objects.json#/definitions/base_sticker_new"
-      }
-    },
     "base_upload_server": {
       "type": "object",
       "properties": {

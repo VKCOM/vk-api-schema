@@ -62,7 +62,10 @@
           "description": "Title of the product"
         },
         "stickers": {
-          "$ref": "../base/objects.json#/definitions/base_stickers_list"
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_sticker_new"
+          }
         },
         "style_sticker_ids": {
           "type": "array",
@@ -125,10 +128,16 @@
           "required": true
         },
         "user_stickers": {
-          "$ref": "../store/objects.json#/definitions/store_stickers_keyword_stickers"
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_sticker_new"
+          }
         },
         "promoted_stickers": {
-          "$ref": "../store/objects.json#/definitions/store_stickers_keyword_stickers"
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_sticker_new"
+          }
         },
         "stickers": {
           "type": "array",
@@ -154,10 +163,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "store_stickers_keyword_stickers": {
-      "type": "object",
-      "$ref": "../base/objects.json#/definitions/base_stickers_list"
     }
   }
 }
