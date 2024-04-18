@@ -20,11 +20,9 @@
               "description": "Albums count"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_addPropertyVariant_response": {
       "type": "object",
@@ -38,11 +36,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_addProperty_response": {
       "type": "object",
@@ -56,11 +52,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_add_response": {
       "type": "object",
@@ -74,11 +68,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_createComment_response": {
       "type": "object",
@@ -88,8 +80,7 @@
           "description": "Comment ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getAlbumById_response": {
       "type": "object",
@@ -110,11 +101,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getAlbums_response": {
       "type": "object",
@@ -135,11 +124,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getById_extended_response": {
       "type": "object",
@@ -160,11 +147,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getById_response": {
       "type": "object",
@@ -185,11 +170,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getCategories_new_response": {
       "type": "object",
@@ -205,11 +188,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getComments_response": {
       "type": "object",
@@ -246,11 +227,9 @@
               "required": false
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getGroupOrders_response": {
       "type": "object",
@@ -272,11 +251,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getOrderById_response": {
       "type": "object",
@@ -288,11 +265,9 @@
               "$ref": "../market/objects.json#/definitions/market_order"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getOrderItems_response": {
       "type": "object",
@@ -313,11 +288,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getOrders_extended_response": {
       "type": "object",
@@ -345,11 +318,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_getOrders_response": {
       "type": "object",
@@ -371,11 +342,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_get_extended_response": {
       "type": "object",
@@ -402,11 +371,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_get_response": {
       "type": "object",
@@ -433,11 +400,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_groupItems_response": {
       "type": "object",
@@ -451,11 +416,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_search_basic_response": {
       "type": "object",
@@ -485,11 +448,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_search_extended_response": {
       "type": "object",
@@ -520,11 +481,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_search_response": {
       "type": "object",
@@ -564,11 +523,9 @@
               "$ref": "../market/objects.json#/definitions/market_global_search_filters"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

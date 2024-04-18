@@ -22,8 +22,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_attachment": {
       "type": "object",
@@ -42,8 +41,7 @@
           ],
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_bugreport": {
       "type": "object",
@@ -138,8 +136,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_bugreport_subscribe_state": {
       "type": "object",
@@ -154,8 +151,7 @@
         "set_subscribe_hash": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_comment": {
       "type": "object",
@@ -209,8 +205,7 @@
         "is_unread": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_company_member": {
       "type": "object",
@@ -266,8 +261,7 @@
             "$ref": "../bugtracker/objects.json#/definitions/bugtracker_company_member_product"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_company_member_product": {
       "type": "object",
@@ -297,8 +291,7 @@
           "type": "string",
           "minimum": 0
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

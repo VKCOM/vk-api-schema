@@ -17,11 +17,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "likes_delete_response": {
       "type": "object",
@@ -35,11 +33,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "likes_getList_extended_response": {
       "type": "object",
@@ -60,11 +56,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "likes_getList_response": {
       "type": "object",
@@ -88,11 +82,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "likes_isLiked_response": {
       "type": "object",
@@ -111,11 +103,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

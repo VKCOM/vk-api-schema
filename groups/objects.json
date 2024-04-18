@@ -83,8 +83,7 @@
         "place_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_address_timetable": {
       "type": "object",
@@ -118,8 +117,7 @@
           "description": "Timetable for wednesday",
           "$ref": "../groups/objects.json#/definitions/groups_address_timetable_day"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_address_timetable_day": {
       "type": "object",
@@ -143,8 +141,7 @@
           "description": "Open time in minutes",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_address_work_info_status": {
       "type": "string",
@@ -178,8 +175,7 @@
           "description": "Count of addresses",
           "minimum": 0
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_ban_info": {
       "type": "object",
@@ -213,8 +209,7 @@
         "reason": {
           "$ref": "../groups/objects.json#/definitions/groups_ban_info_reason"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_ban_info_reason": {
       "type": "integer",
@@ -273,8 +268,7 @@
           ],
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_callback_settings": {
       "type": "object",
@@ -286,12 +280,10 @@
         "events": {
           "$ref": "../groups/objects.json#/definitions/groups_long_poll_events"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_classifieds_properties": {
       "type": "object",
-      "additionalProperties": false,
       "properties": []
     },
     "groups_contacts_item": {
@@ -315,8 +307,7 @@
           "type": "string",
           "description": "Contact email"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_counters_group": {
       "type": "object",
@@ -402,8 +393,7 @@
           "format": "int64",
           "description": "Clips likes number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_fields": {
       "type": "string",
@@ -620,8 +610,7 @@
         "video_live": {
           "$ref": "../video/objects.json#/definitions/video_live_info"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_access": {
       "type": "integer",
@@ -695,8 +684,7 @@
           "description": "is favorite",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_audio": {
       "type": "integer",
@@ -726,8 +714,7 @@
         "reason": {
           "$ref": "../groups/objects.json#/definitions/groups_ban_info_reason"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_category": {
       "type": "object",
@@ -749,8 +736,7 @@
             "$ref": "../groups/objects.json#/definitions/groups_group_subcategory"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_category_full": {
       "type": "object",
@@ -784,8 +770,7 @@
             "$ref": "../groups/objects.json#/definitions/groups_group_category"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_category_type": {
       "type": "object",
@@ -798,8 +783,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_docs": {
       "type": "integer",
@@ -1076,8 +1060,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "groups_group_full_age_limits": {
       "type": "integer",
@@ -1278,8 +1261,7 @@
             "$ref": "../groups/objects.json#/definitions/groups_group_category_type"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_role": {
       "type": "string",
@@ -1309,8 +1291,7 @@
             "$ref": "../base/objects.json#/definitions/base_object_with_name"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_subject": {
       "type": "integer",
@@ -1457,8 +1438,7 @@
         "uses": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_group_topics": {
       "type": "integer",
@@ -1546,8 +1526,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_links_item": {
       "type": "object",
@@ -1587,8 +1566,7 @@
           "description": "Information whether the image on processing",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_live_covers": {
       "type": "object",
@@ -1608,8 +1586,7 @@
             "type": "string"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_long_poll_events": {
       "type": "object",
@@ -1815,8 +1792,7 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_long_poll_server": {
       "type": "object",
@@ -1837,8 +1813,7 @@
           "description": "Number of the last event",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_long_poll_settings": {
       "type": "object",
@@ -1856,8 +1831,7 @@
           "description": "Shows whether Long Poll is enabled",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_market_info": {
       "type": "object",
@@ -1900,12 +1874,10 @@
         "min_order_price": {
           "$ref": "../market/objects.json#/definitions/market_price"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_market_properties": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "market": {
           "$ref": "../groups/objects.json#/definitions/groups_market_info"
@@ -1949,8 +1921,7 @@
         "role": {
           "$ref": "../groups/objects.json#/definitions/groups_member_role_status"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_member_role_permission": {
       "type": "string",
@@ -1985,8 +1956,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_member_status_full": {
       "type": "object",
@@ -2020,8 +1990,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_online_status": {
       "type": "object",
@@ -2035,8 +2004,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_online_status_type",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_online_status_type": {
       "type": "string",
@@ -2064,8 +2032,7 @@
         "type": {
           "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info_type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_owner_xtr_ban_info_type": {
       "type": "string",
@@ -2090,8 +2057,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_profile_item": {
       "type": "object",
@@ -2118,8 +2084,7 @@
           "description": "User first name",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_role_options": {
       "type": "string",
@@ -2149,8 +2114,7 @@
         "name": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_subject_item": {
       "type": "object",
@@ -2165,8 +2129,7 @@
           "description": "Subject title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_token_permission_setting": {
       "type": "object",
@@ -2180,8 +2143,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_user_xtr_role": {
       "type": "object",
@@ -2202,8 +2164,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     }
   }
 }

@@ -13,8 +13,7 @@
           "description": "New state",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_getAmount_response": {
       "type": "object",
@@ -26,8 +25,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_getById_response": {
       "type": "object",
@@ -39,8 +37,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_getUserSubscriptionById_response": {
       "type": "object",
@@ -49,8 +46,7 @@
           "$ref": "../orders/objects.json#/definitions/orders_subscription",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_getUserSubscriptions_response": {
       "type": "object",
@@ -71,11 +67,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_get_response": {
       "type": "object",
@@ -87,8 +81,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

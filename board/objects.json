@@ -72,8 +72,7 @@
           "type": "string",
           "description": "Last comment text"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "board_topic_comment": {
       "type": "object",
@@ -119,8 +118,7 @@
         "likes": {
           "$ref": "../base/objects.json#/definitions/base_likes_info"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

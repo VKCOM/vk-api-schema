@@ -32,8 +32,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_background": {
       "type": "object",
@@ -83,8 +82,7 @@
           "type": "integer",
           "minimum": 0
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_fields_voters": {
       "type": "object",
@@ -101,8 +99,7 @@
           "type": "string",
           "description": "Answer offset"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_friend": {
       "type": "object",
@@ -114,8 +111,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_poll": {
       "type": "object",
@@ -232,8 +228,7 @@
           "type": "boolean",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_poll_anonymous": {
       "type": "boolean",
@@ -254,8 +249,7 @@
           "type": "string",
           "description": "Answer offset"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_voters_fields_users": {
       "type": "object",
@@ -271,8 +265,7 @@
             "$ref": "../users/objects.json#/definitions/users_user_full"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_voters_users": {
       "type": "object",
@@ -291,8 +284,7 @@
             "description": "User ID"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

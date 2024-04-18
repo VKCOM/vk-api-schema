@@ -16,8 +16,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

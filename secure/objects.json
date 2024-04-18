@@ -16,8 +16,7 @@
         "status": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_level": {
       "type": "object",
@@ -30,8 +29,7 @@
           "type": "integer",
           "description": "User ID"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_setCounter_item": {
       "type": "object",
@@ -47,8 +45,7 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_sms_notification": {
       "type": "object",
@@ -73,8 +70,7 @@
           "type": "string",
           "description": "User ID"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_token_checked": {
       "type": "object",
@@ -98,8 +94,7 @@
           "entity": "owner",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_transaction": {
       "type": "object",
@@ -124,8 +119,7 @@
           "type": "integer",
           "description": "Votes number"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

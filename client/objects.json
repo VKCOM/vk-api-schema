@@ -30,8 +30,7 @@
           "type": "integer",
           "description": "client or user language id"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

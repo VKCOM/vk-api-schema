@@ -26,8 +26,7 @@
           "format": "uri",
           "description": "URL of the preview image with 604 px in width"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_attached_note": {
       "type": "object",
@@ -98,8 +97,7 @@
           "description": "URL of the page with note preview",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_carousel_base": {
       "type": "object",
@@ -109,8 +107,7 @@
           "minimum": 0,
           "description": "Index of current carousel element"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_comment_attachment": {
       "type": "object",
@@ -152,8 +149,7 @@
         "graffiti": {
           "$ref": "../wall/objects.json#/definitions/wall_graffiti"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_comment_attachment_type": {
       "type": "string",
@@ -192,8 +188,7 @@
             "point"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_get_filter": {
       "description": "Filter to apply: 'owner' - posts by the wall owner, 'others' - posts by someone else, 'all' - posts by the wall owner and others (default), 'postponed' - timed posts (only available for calls with an 'access_token'), 'suggests' - suggested posts on a community wall",
@@ -250,8 +245,7 @@
           "type": "string",
           "description": "Access key for graffiti"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_post_copyright": {
       "type": "object",
@@ -274,8 +268,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_post_source": {
       "type": "object",
@@ -299,8 +292,7 @@
         "link": {
           "$ref": "../base/objects.json#/definitions/base_link"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_post_source_type": {
       "type": "string",
@@ -351,8 +343,7 @@
           "format": "uri",
           "description": "URL of the preview image with 604 px in width"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_views": {
       "type": "object",
@@ -362,8 +353,7 @@
           "minimum": 0,
           "description": "Count"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wall_comment": {
       "type": "object",
@@ -456,8 +446,7 @@
           "minimum": 0,
           "description": "Photo ID"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wall_comment_donut": {
       "type": "object",
@@ -469,8 +458,7 @@
         "placeholder": {
           "$ref": "../wall/objects.json#/definitions/wall_wall_comment_donut_placeholder"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wall_comment_donut_placeholder": {
       "type": "object",
@@ -479,8 +467,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wall_item": {
       "type": "object",
@@ -586,8 +573,7 @@
           "description": "Count of views",
           "$ref": "../wall/objects.json#/definitions/wall_views"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wallpost_attachment": {
       "type": "object",
@@ -654,8 +640,7 @@
         "video_playlist": {
           "$ref": "../video/objects.json#/definitions/video_video_album_full"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wallpost_attachment_type": {
       "type": "string",
@@ -697,8 +682,7 @@
         "placeholder": {
           "$ref": "../wall/objects.json#/definitions/wall_wallpost_comments_donut_placeholder"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wallpost_comments_donut_placeholder": {
       "description": "Info about paid comments feature",
@@ -708,8 +692,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wallpost_donut": {
       "description": "Info about paid wall post",
@@ -740,8 +723,7 @@
             "duration"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wallpost_donut_placeholder": {
       "type": "object",
@@ -750,8 +732,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_wallpost_full": {
       "type": "object",
@@ -858,8 +839,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     }
   }
 }

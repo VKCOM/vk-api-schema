@@ -30,8 +30,7 @@
           "description": "Recognised text, if task is `finished`.",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

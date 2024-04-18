@@ -29,16 +29,13 @@
               "description": "Information whether the city is included in important cities list",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "database_city_by_id": {
       "type": "object",
-      "$ref": "../base/objects.json#/definitions/base_object",
-      "additionalProperties": false
+      "$ref": "../base/objects.json#/definitions/base_object"
     },
     "database_faculty": {
       "type": "object",
@@ -51,8 +48,7 @@
           "type": "string",
           "description": "Faculty title"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_language_full": {
       "type": "object",
@@ -67,8 +63,7 @@
           "description": "Language native name",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_region": {
       "type": "object",
@@ -81,8 +76,7 @@
           "type": "string",
           "description": "Region title"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_school": {
       "type": "object",
@@ -95,13 +89,11 @@
           "type": "string",
           "description": "School title"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_school_class": {
       "type": "object",
-      "$ref": "../base/objects.json#/definitions/base_object",
-      "additionalProperties": false
+      "$ref": "../base/objects.json#/definitions/base_object"
     },
     "database_station": {
       "type": "object",
@@ -126,8 +118,7 @@
           "description": "Station name",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_university": {
       "type": "object",
@@ -140,8 +131,7 @@
           "type": "string",
           "description": "University title"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -15,8 +15,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_getTitles_response": {
       "type": "object",
@@ -28,8 +27,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_getVersion_response": {
       "type": "object",
@@ -38,8 +36,7 @@
           "$ref": "../pages/objects.json#/definitions/pages_wikipage_full",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_get_response": {
       "type": "object",
@@ -48,8 +45,7 @@
           "$ref": "../pages/objects.json#/definitions/pages_wikipage_full",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_parseWiki_response": {
       "type": "object",
@@ -59,8 +55,7 @@
           "description": "HTML source",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_saveAccess_response": {
       "type": "object",
@@ -70,8 +65,7 @@
           "description": "Page ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_save_response": {
       "type": "object",
@@ -81,8 +75,7 @@
           "description": "Page ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

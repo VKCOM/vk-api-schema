@@ -37,11 +37,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_createChat_withPeerIds_response": {
       "type": "object",
@@ -64,11 +62,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_deleteChatPhoto_response": {
       "type": "object",
@@ -84,11 +80,9 @@
               "$ref": "../messages/objects.json#/definitions/messages_chat"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_deleteConversation_response": {
       "type": "object",
@@ -103,11 +97,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_delete_full_response": {
       "type": "object",
@@ -119,8 +111,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getByConversationMessageId_extended_response": {
       "type": "object",
@@ -153,11 +144,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getByConversationMessageId_response": {
       "type": "object",
@@ -178,11 +167,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getById_extended_response": {
       "type": "object",
@@ -215,11 +202,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getById_response": {
       "type": "object",
@@ -240,11 +225,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getChatPreview_response": {
       "type": "object",
@@ -268,11 +251,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getChat_chat_ids_fields_response": {
       "type": "object",
@@ -284,8 +265,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getChat_chat_ids_response": {
       "type": "object",
@@ -297,8 +277,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getChat_fields_response": {
       "type": "object",
@@ -307,8 +286,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_chat_full",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getChat_response": {
       "type": "object",
@@ -317,8 +295,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_chat",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getConversationMembers_response": {
       "type": "object",
@@ -327,8 +304,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_getConversationMembers",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getConversationsById_extended_response": {
       "type": "object",
@@ -337,8 +313,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_getConversationById_extended",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getConversationsById_response": {
       "type": "object",
@@ -347,8 +322,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_getConversationById",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getConversations_response": {
       "type": "object",
@@ -385,11 +359,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getHistoryAttachments_response": {
       "type": "object",
@@ -420,11 +392,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getHistory_extended_response": {
       "type": "object",
@@ -463,11 +433,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getHistory_response": {
       "type": "object",
@@ -488,11 +456,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getImportantMessages_extended_response": {
       "type": "object",
@@ -523,11 +489,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getImportantMessages_response": {
       "type": "object",
@@ -558,11 +522,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getIntentUsers_response": {
       "type": "object",
@@ -592,11 +554,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getInviteLink_response": {
       "type": "object",
@@ -608,11 +568,9 @@
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getLastActivity_response": {
       "type": "object",
@@ -621,8 +579,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_last_activity",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getLongPollHistory_response": {
       "type": "object",
@@ -685,11 +642,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getLongPollServer_response": {
       "type": "object",
@@ -698,8 +653,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_longpoll_params",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getMessagesReactions_response": {
       "type": "object",
@@ -727,11 +681,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getReactedPeers_response": {
       "type": "object",
@@ -771,11 +723,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getReactionsAssets_response": {
       "type": "object",
@@ -794,7 +744,6 @@
               "items": {
                 "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item"
               },
-              "additionalProperties": false,
               "required": true,
               "description": "Base reactions assets to display by default"
             },
@@ -803,15 +752,12 @@
               "items": {
                 "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item"
               },
-              "additionalProperties": false,
               "description": "Extended reactions assets for special occasions, user allowed to switch to the base version"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_isMessagesFromGroupAllowed_response": {
       "type": "object",
@@ -823,11 +769,9 @@
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_joinChatByInviteLink_response": {
       "type": "object",
@@ -839,11 +783,9 @@
               "type": "integer"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_markAsImportant_deprecated_response": {
       "type": "object",
@@ -856,8 +798,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_pin_response": {
       "type": "object",
@@ -866,8 +807,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_pinned_message",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_searchConversations_extended_response": {
       "type": "object",
@@ -900,11 +840,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_searchConversations_response": {
       "type": "object",
@@ -925,11 +863,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_search_extended_response": {
       "type": "object",
@@ -968,11 +904,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_search_response": {
       "type": "object",
@@ -993,11 +927,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_send_deprecated_response": {
       "type": "object",
@@ -1007,8 +939,7 @@
           "description": "Message ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_send_user_ids_response": {
       "type": "object",
@@ -1020,8 +951,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_setChatPhoto_response": {
       "type": "object",
@@ -1037,11 +967,9 @@
               "$ref": "../messages/objects.json#/definitions/messages_chat"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -20,8 +20,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_photos": {
       "type": "object",
@@ -36,8 +35,7 @@
             "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

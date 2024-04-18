@@ -17,11 +17,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_changeVideoAlbums_response": {
       "type": "object",
@@ -33,8 +31,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_createComment_response": {
       "type": "object",
@@ -44,8 +41,7 @@
           "description": "Created comment ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_edit_response": {
       "type": "object",
@@ -62,11 +58,9 @@
               "description": "Access key for access link"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getAlbumById_response": {
       "type": "object",
@@ -75,8 +69,7 @@
           "$ref": "../video/objects.json#/definitions/video_video_album_full",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getAlbumsByVideo_extended_response": {
       "type": "object",
@@ -97,11 +90,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getAlbumsByVideo_response": {
       "type": "object",
@@ -114,8 +105,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getAlbums_extended_response": {
       "type": "object",
@@ -136,11 +126,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getAlbums_response": {
       "type": "object",
@@ -161,11 +149,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getComments_extended_response": {
       "type": "object",
@@ -218,11 +204,9 @@
               "type": "integer"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getComments_response": {
       "type": "object",
@@ -261,11 +245,9 @@
               "type": "integer"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_getLongPollServer_response": {
       "type": "object",
@@ -279,11 +261,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_get_response": {
       "type": "object",
@@ -316,11 +296,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_liveGetCategories_response": {
       "type": "object",
@@ -330,11 +308,9 @@
           "items": {
             "$ref": "../video/objects.json#/definitions/video_live_category"
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_save_response": {
       "type": "object",
@@ -343,8 +319,7 @@
           "$ref": "../video/objects.json#/definitions/video_save_result",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_search_extended_response": {
       "type": "object",
@@ -379,11 +354,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_search_response": {
       "type": "object",
@@ -404,11 +377,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_startStreaming_response": {
       "type": "object",
@@ -453,11 +424,9 @@
               "minimum": 1
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_stopStreaming_response": {
       "type": "object",
@@ -470,11 +439,9 @@
               "minimum": 0
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_upload_response": {
       "type": "object",
@@ -491,11 +458,9 @@
               "description": "Video ID"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

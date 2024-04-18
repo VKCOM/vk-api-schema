@@ -30,8 +30,7 @@
           "description": "City title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_comments_info": {
       "type": "object",
@@ -68,8 +67,7 @@
             "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_country": {
       "type": "object",
@@ -85,8 +83,7 @@
           "description": "Country title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_crop_photo": {
       "type": "object",
@@ -103,8 +100,7 @@
           "$ref": "../base/objects.json#/definitions/base_crop_photo_rect",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_crop_photo_crop": {
       "type": "object",
@@ -129,8 +125,7 @@
           "description": "Coordinate Y of the right lower corner",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_crop_photo_rect": {
       "type": "object",
@@ -155,8 +150,7 @@
           "description": "Coordinate Y of the right lower corner",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_error": {
       "type": "object",
@@ -184,8 +178,7 @@
             "$ref": "../base/objects.json#/definitions/base_request_param"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_geo": {
       "type": "object",
@@ -204,8 +197,7 @@
           "type": "string",
           "description": "Place type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_geo_coordinates": {
       "type": "object",
@@ -218,8 +210,7 @@
           "type": "number",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_gradient_point": {
       "type": "object",
@@ -236,8 +227,7 @@
           "description": "Point position",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_image": {
       "type": "object",
@@ -270,8 +260,7 @@
             "dark"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_lang": {
       "type": "string",
@@ -308,8 +297,7 @@
           "description": "Information whether current user likes the photo",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_likes_info": {
       "type": "object",
@@ -342,8 +330,7 @@
           "type": "boolean",
           "description": "Remove repost feature for post"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link": {
       "type": "object",
@@ -362,8 +349,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "base_link_application": {
       "type": "object",
@@ -375,8 +361,7 @@
         "store": {
           "$ref": "../base/objects.json#/definitions/base_link_application_store"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link_application_store": {
       "type": "object",
@@ -389,8 +374,7 @@
           "type": "string",
           "description": "Store name"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link_button": {
       "type": "object",
@@ -443,8 +427,7 @@
         "hashtag": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link_button_action": {
       "type": "object",
@@ -460,8 +443,7 @@
         "consume_reason": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link_button_action_type": {
       "type": "string",
@@ -547,8 +529,7 @@
           "$ref": "../video/objects.json#/definitions/video_video_full",
           "description": "Video from link"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link_product": {
       "type": "object",
@@ -585,8 +566,7 @@
           ],
           "default": "product"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_link_product_category": {
       "type": "object",
@@ -628,8 +608,7 @@
           ],
           "default": "rating"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_message_error": {
       "type": "object",
@@ -642,8 +621,7 @@
           "type": "string",
           "description": "Error message"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_name_case": {
       "type": "string",
@@ -678,8 +656,7 @@
           "description": "Object title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_object_count": {
       "type": "object",
@@ -689,8 +666,7 @@
           "minimum": 0,
           "description": "Items count"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_object_with_name": {
       "type": "object",
@@ -705,8 +681,7 @@
           "description": "Object name",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_owner_cover": {
       "type": "object",
@@ -731,8 +706,7 @@
         "photo_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_owner_cover_crop_params": {
       "type": "object",
@@ -749,8 +723,7 @@
         "height": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_place": {
       "type": "object",
@@ -800,8 +773,7 @@
           "type": "string",
           "description": "Place type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_property_exists": {
       "type": "integer",
@@ -836,8 +808,7 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether current user has reposted the post"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_request_param": {
       "type": "object",
@@ -852,8 +823,7 @@
           "description": "Parameter value",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_sex": {
       "type": "integer",
@@ -888,8 +858,7 @@
           "format": "uri",
           "description": "URL of animation script"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_sticker_new": {
       "type": "object",
@@ -930,8 +899,7 @@
           "type": "boolean",
           "description": "Information whether the sticker is allowed"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_upload_server": {
       "type": "object",
@@ -942,8 +910,7 @@
           "description": "Upload URL",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_user_group_fields": {
       "type": "string",
@@ -1077,8 +1044,7 @@
           "entity": "owner",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

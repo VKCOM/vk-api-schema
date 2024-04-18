@@ -30,11 +30,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

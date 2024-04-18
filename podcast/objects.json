@@ -14,8 +14,7 @@
             "$ref": "../photos/objects.json#/definitions/photos_photo_sizes"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "podcast_external_data": {
       "type": "object",
@@ -40,8 +39,7 @@
           "$ref": "../podcast/objects.json#/definitions/podcast_cover",
           "description": "Podcast cover"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -43,8 +43,7 @@
         "video": {
           "$ref": "../video/objects.json#/definitions/video_video_full"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "fave_bookmark_type": {
       "type": "string",
@@ -88,8 +87,7 @@
         "user": {
           "$ref": "../users/objects.json#/definitions/users_user_full"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "fave_page_type": {
       "type": "string",
@@ -111,8 +109,7 @@
           "type": "string",
           "description": "Tag name"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

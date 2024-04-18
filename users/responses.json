@@ -29,11 +29,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_getFollowers_response": {
       "type": "object",
@@ -59,11 +57,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_getSubscriptions_extended_response": {
       "type": "object",
@@ -85,11 +81,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_getSubscriptions_response": {
       "type": "object",
@@ -106,11 +100,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_get_response": {
       "type": "object",
@@ -122,8 +114,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_search_response": {
       "type": "object",
@@ -144,11 +135,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

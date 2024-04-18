@@ -12,8 +12,7 @@
           "$ref": "../polls/objects.json#/definitions/polls_poll",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_getBackgrounds_response": {
       "type": "object",
@@ -25,8 +24,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_getById_response": {
       "type": "object",
@@ -35,8 +33,7 @@
           "$ref": "../polls/objects.json#/definitions/polls_poll",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_getVoters_fields_response": {
       "type": "object",
@@ -48,8 +45,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_getVoters_response": {
       "type": "object",
@@ -61,8 +57,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "polls_savePhoto_response": {
       "type": "object",
@@ -71,8 +66,7 @@
           "$ref": "../polls/objects.json#/definitions/polls_background",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

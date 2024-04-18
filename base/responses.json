@@ -12,8 +12,7 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_getUploadServer_response": {
       "type": "object",
@@ -22,8 +21,7 @@
           "$ref": "../base/objects.json#/definitions/base_upload_server",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_ok_response": {
       "type": "object",
@@ -39,8 +37,7 @@
           ],
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "base_undefined_response": {
       "type": "object",
@@ -48,11 +45,9 @@
       "properties": {
         "response": {
           "type": "object",
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

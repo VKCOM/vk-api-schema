@@ -14,8 +14,7 @@
           "minimum": 1,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_createAlbum_response": {
       "type": "object",
@@ -24,8 +23,7 @@
           "$ref": "../photos/objects.json#/definitions/photos_photo_album_full",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_createComment_response": {
       "type": "object",
@@ -35,8 +33,7 @@
           "description": "Created comment ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getAlbumsCount_response": {
       "type": "object",
@@ -47,8 +44,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getAlbums_response": {
       "type": "object",
@@ -69,11 +65,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getAllComments_response": {
       "type": "object",
@@ -94,11 +88,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getAll_response": {
       "type": "object",
@@ -123,11 +115,9 @@
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getById_response": {
       "type": "object",
@@ -139,8 +129,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getComments_extended_response": {
       "type": "object",
@@ -180,11 +169,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getComments_response": {
       "type": "object",
@@ -210,11 +197,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getMarketUploadServer_response": {
       "type": "object",
@@ -223,8 +208,7 @@
           "$ref": "../base/objects.json#/definitions/base_upload_server",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getMessagesUploadServer_response": {
       "type": "object",
@@ -233,8 +217,7 @@
           "$ref": "../photos/objects.json#/definitions/photos_photo_upload",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getNewTags_response": {
       "type": "object",
@@ -255,11 +238,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getTags_response": {
       "type": "object",
@@ -271,8 +252,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getUploadServer_response": {
       "type": "object",
@@ -281,8 +261,7 @@
           "$ref": "../photos/objects.json#/definitions/photos_photo_upload",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getUserPhotos_response": {
       "type": "object",
@@ -303,11 +282,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_getWallUploadServer_response": {
       "type": "object",
@@ -316,8 +293,7 @@
           "$ref": "../photos/objects.json#/definitions/photos_photo_upload",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_get_response": {
       "type": "object",
@@ -338,11 +314,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_market_album_upload_response": {
       "type": "object",
@@ -367,11 +341,9 @@
               "description": "Upload server number"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_market_upload_response": {
       "type": "object",
@@ -406,11 +378,9 @@
               "description": "Upload server number"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_message_upload_response": {
       "type": "object",
@@ -431,11 +401,9 @@
               "description": "Upload server number"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_owner_cover_upload_response": {
       "type": "object",
@@ -452,11 +420,9 @@
               "description": "Uploaded photo data"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_owner_upload_response": {
       "type": "object",
@@ -477,11 +443,9 @@
               "description": "Upload server number"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_upload_response": {
       "type": "object",
@@ -510,11 +474,9 @@
               "description": "Upload server number"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_putTag_response": {
       "type": "object",
@@ -524,8 +486,7 @@
           "description": "Created tag ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_saveMarketAlbumPhoto_response": {
       "type": "object",
@@ -537,8 +498,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_saveMarketPhoto_response": {
       "type": "object",
@@ -550,8 +510,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_saveMessagesPhoto_response": {
       "type": "object",
@@ -563,8 +522,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_saveOwnerCoverPhoto_response": {
       "type": "object",
@@ -579,11 +537,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_saveOwnerPhoto_response": {
       "type": "object",
@@ -618,11 +574,9 @@
               "description": "Created post ID"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_saveWallPhoto_response": {
       "type": "object",
@@ -634,8 +588,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_save_response": {
       "type": "object",
@@ -647,8 +600,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_search_response": {
       "type": "object",
@@ -669,11 +621,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_wall_upload_response": {
       "type": "object",
@@ -694,11 +644,9 @@
               "description": "Upload server number"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

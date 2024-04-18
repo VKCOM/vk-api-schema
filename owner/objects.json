@@ -29,8 +29,7 @@
           "type": "string",
           "description": "wiki text to describe user state"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

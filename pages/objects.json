@@ -71,8 +71,7 @@
           "$ref": "../pages/objects.json#/definitions/pages_privacy_settings",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_wikipage_full": {
       "type": "object",
@@ -174,8 +173,7 @@
           "entity": "owner",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "pages_wikipage_history": {
       "type": "object",
@@ -208,8 +206,7 @@
           "description": "Last editor name",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

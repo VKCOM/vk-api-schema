@@ -21,8 +21,7 @@
         "type": {
           "$ref": "../utils/objects.json#/definitions/utils_domain_resolved_type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_domain_resolved_type": {
       "type": "string",
@@ -65,8 +64,7 @@
           "type": "integer",
           "description": "Total views number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_link_checked": {
       "type": "object",
@@ -79,8 +77,7 @@
         "status": {
           "$ref": "../utils/objects.json#/definitions/utils_link_checked_status"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_link_checked_status": {
       "type": "string",
@@ -104,8 +101,7 @@
             "$ref": "../utils/objects.json#/definitions/utils_stats"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_link_stats_extended": {
       "type": "object",
@@ -120,8 +116,7 @@
             "$ref": "../utils/objects.json#/definitions/utils_stats_extended"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_short_link": {
       "type": "object",
@@ -144,8 +139,7 @@
           "format": "uri",
           "description": "Full URL"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_stats": {
       "type": "object",
@@ -158,8 +152,7 @@
           "type": "integer",
           "description": "Total views number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_stats_city": {
       "type": "object",
@@ -172,8 +165,7 @@
           "type": "integer",
           "description": "Views number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_stats_country": {
       "type": "object",
@@ -186,8 +178,7 @@
           "type": "integer",
           "description": "Views number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_stats_extended": {
       "type": "object",
@@ -218,8 +209,7 @@
           "type": "integer",
           "description": "Total views number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "utils_stats_sex_age": {
       "type": "object",
@@ -236,8 +226,7 @@
           "type": "integer",
           "description": " Views by male users"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

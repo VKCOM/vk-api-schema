@@ -46,8 +46,7 @@
           "type": "integer",
           "description": "Till year"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_exports": {
       "type": "object",
@@ -61,8 +60,7 @@
         "twitter": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_fields": {
       "type": "string",
@@ -202,8 +200,7 @@
           "type": "integer",
           "description": "Last visit date (in Unix time)"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_military": {
       "type": "object",
@@ -235,8 +232,7 @@
           "type": "integer",
           "description": "Till year"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_occupation": {
       "type": "object",
@@ -268,8 +264,7 @@
         "city_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_online_info": {
       "type": "object",
@@ -308,8 +303,7 @@
             "not_show"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_personal": {
       "type": "object",
@@ -360,8 +354,7 @@
           "type": "integer",
           "description": "User's views on smoking"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_relative": {
       "type": "object",
@@ -392,8 +385,7 @@
           ],
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_school": {
       "type": "object",
@@ -445,8 +437,7 @@
         "speciality": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_subscriptions_item": {
       "type": "object",
@@ -527,8 +518,7 @@
         "university_group_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_user": {
       "type": "object",
@@ -587,8 +577,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "users_user_connections": {
       "type": "object",
@@ -621,8 +610,7 @@
           "description": "User's Instagram account",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_user_counters": {
       "type": "object",
@@ -736,8 +724,7 @@
           "type": "integer",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_user_full": {
       "type": "object",
@@ -1235,11 +1222,9 @@
                 "description": "IDs of friend lists with user"
               }
             }
-          },
-          "additionalProperties": false
+          }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "users_user_min": {
       "type": "object",
@@ -1273,8 +1258,7 @@
         "is_closed": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_user_relation": {
       "type": "integer",
@@ -1391,8 +1375,7 @@
             "type": "string"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "users_user_type": {
       "type": "string",
@@ -1414,8 +1397,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "users_users_array": {
       "type": "object",
@@ -1436,8 +1418,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

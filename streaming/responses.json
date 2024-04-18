@@ -20,11 +20,9 @@
               "description": "Access key"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "streaming_getSettings_response": {
       "type": "object",
@@ -46,11 +44,9 @@
               ]
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "streaming_getStats_response": {
       "type": "object",
@@ -62,8 +58,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "streaming_getStem_response": {
       "type": "object",
@@ -76,11 +71,9 @@
               "description": "part of a word responsible for its lexical meaning"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

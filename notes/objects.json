@@ -73,8 +73,7 @@
             "type": "string"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "notes_note_comment": {
       "type": "object",
@@ -113,8 +112,7 @@
           "description": "Comment author's ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

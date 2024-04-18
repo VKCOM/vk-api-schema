@@ -53,8 +53,7 @@
           "type": "integer",
           "description": "event start time"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

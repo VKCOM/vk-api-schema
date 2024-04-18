@@ -26,11 +26,9 @@
               "description": "Parameter needed to grant access by code"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

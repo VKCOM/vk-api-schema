@@ -21,11 +21,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_delete_response": {
       "type": "object",
@@ -38,11 +36,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_getLeads_response": {
       "type": "object",
@@ -61,11 +57,9 @@
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_get_response": {
       "type": "object",
@@ -74,8 +68,7 @@
           "$ref": "../leadForms/objects.json#/definitions/leadForms_form",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_list_response": {
       "type": "object",
@@ -87,8 +80,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_uploadUrl_response": {
       "type": "object",
@@ -98,8 +90,7 @@
           "format": "uri",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

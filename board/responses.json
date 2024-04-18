@@ -13,8 +13,7 @@
           "description": "Topic ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "board_createComment_response": {
       "type": "object",
@@ -24,8 +23,7 @@
           "description": "Comment ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "board_getComments_extended_response": {
       "type": "object",
@@ -68,11 +66,9 @@
               "description": "Offset of comment"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "board_getComments_response": {
       "type": "object",
@@ -101,11 +97,9 @@
               "description": "Offset of comment"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "board_getTopics_extended_response": {
       "type": "object",
@@ -149,11 +143,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "board_getTopics_response": {
       "type": "object",
@@ -183,11 +175,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

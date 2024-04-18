@@ -26,8 +26,7 @@
         "type": {
           "$ref": "../widgets/objects.json#/definitions/widgets_comment_media_type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "widgets_comment_media_type": {
       "type": "string",
@@ -64,8 +63,7 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether current user can view the comments"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "widgets_comment_replies_item": {
       "type": "object",
@@ -92,8 +90,7 @@
         "user": {
           "$ref": "../users/objects.json#/definitions/users_user_full"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "widgets_widget_comment": {
       "type": "object",
@@ -172,8 +169,7 @@
           "minimum": 0,
           "maximum": 1
         }
-      },
-      "additionalProperties": false
+      }
     },
     "widgets_widget_likes": {
       "type": "object",
@@ -183,8 +179,7 @@
           "minimum": 0,
           "description": "Likes number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "widgets_widget_page": {
       "type": "object",
@@ -225,8 +220,7 @@
           "format": "uri",
           "description": "Page absolute URL"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -61,8 +61,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat": {
       "type": "object",
@@ -137,8 +136,7 @@
           "type": "boolean",
           "description": "If chat is group channel"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_full": {
       "type": "object",
@@ -210,8 +208,7 @@
           "type": "boolean",
           "description": "If chat is group channel"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_preview": {
       "type": "object",
@@ -261,8 +258,7 @@
         "button": {
           "$ref": "../base/objects.json#/definitions/base_link_button"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_push_settings": {
       "type": "object",
@@ -275,8 +271,7 @@
           "description": "Information whether the sound is on",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_restrictions": {
       "type": "object",
@@ -301,8 +296,7 @@
           "type": "boolean",
           "description": "Only admins can kick users from this chat"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_settings": {
       "type": "object",
@@ -375,8 +369,7 @@
         "is_service": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_settings_acl": {
       "type": "object",
@@ -435,8 +428,7 @@
           "type": "boolean",
           "description": "Can you change chat service type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_settings_permissions": {
       "type": "object",
@@ -503,8 +495,7 @@
             "owner_and_admins"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_settings_photo": {
       "type": "object",
@@ -532,8 +523,7 @@
           "type": "boolean",
           "description": "If provided photo is default call photo"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_chat_settings_state": {
       "type": "string",
@@ -625,8 +615,7 @@
         "chat_settings": {
           "$ref": "../messages/objects.json#/definitions/messages_chat_settings"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_conversation_can_write": {
       "type": "object",
@@ -638,8 +627,7 @@
         "reason": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_conversation_member": {
       "type": "object",
@@ -677,8 +665,7 @@
           "entity": "owner",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_conversation_peer": {
       "type": "object",
@@ -696,8 +683,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_conversation_peer_type",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_conversation_peer_type": {
       "type": "string",
@@ -724,8 +710,7 @@
           "description": "Minor id for sorting conversations",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_conversation_with_message": {
       "type": "object",
@@ -737,8 +722,7 @@
         "last_message": {
           "$ref": "../messages/objects.json#/definitions/messages_message"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_delete_full_response_item": {
       "type": "object",
@@ -762,8 +746,7 @@
         "error": {
           "$ref": "../base/objects.json#/definitions/base_message_error"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_foreign_message": {
       "type": "object",
@@ -829,8 +812,7 @@
           "type": "string",
           "description": "Additional data sent along with message for developer convenience"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_forward": {
       "type": "object",
@@ -865,8 +847,7 @@
           "type": "boolean",
           "description": "If you need to reply to a message"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_fwd_messages": {
       "type": "array",
@@ -891,8 +872,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_getConversationById_extended": {
       "type": "object",
@@ -917,8 +897,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "messages_getConversationMembers": {
       "type": "object",
@@ -951,8 +930,7 @@
             "$ref": "../groups/objects.json#/definitions/groups_group_full"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_graffiti": {
       "type": "object",
@@ -992,8 +970,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_history_attachment": {
       "type": "object",
@@ -1038,8 +1015,7 @@
           "type": "integer",
           "description": "Attachment position in the Message"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_history_message_attachment": {
       "type": "object",
@@ -1066,8 +1042,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_history_message_attachment_type",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_history_message_attachment_type": {
       "type": "string",
@@ -1113,8 +1088,7 @@
         "inline": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button": {
       "type": "object",
@@ -1133,8 +1107,7 @@
           ],
           "description": "Button color"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_callback": {
       "type": "object",
@@ -1157,8 +1130,7 @@
           ],
           "default": "callback"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_location": {
       "type": "object",
@@ -1176,8 +1148,7 @@
           ],
           "default": "location"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_open_app": {
       "type": "object",
@@ -1216,8 +1187,7 @@
           ],
           "default": "open_app"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_open_link": {
       "type": "object",
@@ -1245,8 +1215,7 @@
           ],
           "default": "open_link"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_open_photo": {
       "type": "object",
@@ -1260,8 +1229,7 @@
           ],
           "default": "open_photo"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_text": {
       "type": "object",
@@ -1284,8 +1252,7 @@
           ],
           "default": "text"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_action_vkpay": {
       "type": "object",
@@ -1308,8 +1275,7 @@
           ],
           "default": "vkpay"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_keyboard_button_property_action": {
       "type": "object",
@@ -1362,8 +1328,7 @@
           "description": "Time when user was online in Unixtime",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_longpoll_messages": {
       "type": "object",
@@ -1379,8 +1344,7 @@
             "$ref": "../messages/objects.json#/definitions/messages_message"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_longpoll_params": {
       "type": "object",
@@ -1404,8 +1368,7 @@
           "type": "integer",
           "description": "Persistent timestamp"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_message": {
       "type": "object",
@@ -1538,8 +1501,7 @@
           "type": "boolean",
           "description": "Is silent message, push without sound"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_message_action": {
       "type": "object",
@@ -1573,8 +1535,7 @@
           "$ref": "../messages/objects.json#/definitions/messages_message_action_status",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_message_action_photo": {
       "type": "object",
@@ -1597,8 +1558,7 @@
           "description": "URL of the preview image with 200px in width",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_message_action_status": {
       "type": "string",
@@ -1663,8 +1623,7 @@
         "poll": {
           "$ref": "../polls/objects.json#/definitions/polls_poll"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_message_attachment_type": {
       "type": "string",
@@ -1706,8 +1665,7 @@
           "type": "integer",
           "description": "Message request date"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_messages_array": {
       "type": "object",
@@ -1722,8 +1680,7 @@
             "$ref": "../messages/objects.json#/definitions/messages_message"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_out_read_by": {
       "type": "object",
@@ -1741,8 +1698,7 @@
             "description": "Member IDs"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_pinned_message": {
       "type": "object",
@@ -1802,8 +1758,7 @@
         "keyboard": {
           "$ref": "../messages/objects.json#/definitions/messages_keyboard"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_push_settings": {
       "type": "object",
@@ -1830,8 +1785,7 @@
           "type": "boolean",
           "description": "Information whether the mass mentions (like '@all', '@online') are disabled"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_reaction_asset_item": {
       "type": "object",
@@ -1845,8 +1799,7 @@
           "required": true,
           "description": "Liks to reactions assets for each asset type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_reaction_asset_item_links": {
       "type": "object",
@@ -1866,8 +1819,7 @@
           "required": true,
           "description": "Reaction image file"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_reaction_counter_response_item": {
       "type": "object",
@@ -1890,8 +1842,7 @@
           "maxItems": 3,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_reaction_counters_response_item": {
       "type": "object",
@@ -1907,8 +1858,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_reaction_response_item": {
       "type": "object",
@@ -1923,8 +1873,7 @@
           "type": "integer",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_send_user_ids_response_item": {
       "type": "object",
@@ -1947,8 +1896,7 @@
         "error": {
           "$ref": "../base/objects.json#/definitions/base_message_error"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "messages_template_action_type_names": {
       "type": "string",
@@ -1998,8 +1946,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     }
   }
 }

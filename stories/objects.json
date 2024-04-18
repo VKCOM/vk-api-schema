@@ -16,8 +16,7 @@
           "type": "integer",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_clickable_sticker": {
       "type": "object",
@@ -163,8 +162,7 @@
         "situational_app_url": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_clickable_stickers": {
       "type": "object",
@@ -186,8 +184,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_feed_item": {
       "type": "object",
@@ -244,8 +241,7 @@
         "name": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_promo_block": {
       "type": "object",
@@ -276,8 +272,7 @@
           "description": "Promo story from advice",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_replies": {
       "type": "object",
@@ -292,8 +287,7 @@
           "type": "integer",
           "description": "New replies number."
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_stat_category": {
       "type": "object",
@@ -309,8 +303,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_stat_line": {
       "type": "object",
@@ -326,8 +319,7 @@
         "is_unavailable": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_story": {
       "type": "object",
@@ -450,8 +442,7 @@
         "can_use_in_narrative": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_story_link": {
       "type": "object",
@@ -470,8 +461,7 @@
           "type": "string",
           "description": "How to open url"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_story_stats": {
       "type": "object",
@@ -508,8 +498,7 @@
           "$ref": "../stories/objects.json#/definitions/stories_story_stats_stat",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_story_stats_stat": {
       "type": "object",
@@ -523,8 +512,7 @@
           "$ref": "../stories/objects.json#/definitions/stories_story_stats_state",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_story_stats_state": {
       "type": "string",
@@ -577,8 +565,7 @@
         "upload_result": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_viewers_item": {
       "type": "object",
@@ -598,8 +585,7 @@
         "user": {
           "$ref": "../users/objects.json#/definitions/users_user_full"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

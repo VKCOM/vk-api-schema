@@ -26,11 +26,9 @@
               "required": true
             }
           },
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "store_getProducts_response": {
       "type": "object",
@@ -50,11 +48,9 @@
               "required": true
             }
           },
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "store_getStickersKeywords_response": {
       "type": "object",
@@ -85,11 +81,9 @@
               "description": "Chunks version hash"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

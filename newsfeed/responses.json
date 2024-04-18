@@ -39,11 +39,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getBanned_extended_response": {
       "type": "object",
@@ -64,11 +62,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getBanned_response": {
       "type": "object",
@@ -95,11 +91,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getComments_response": {
       "type": "object",
@@ -133,11 +127,9 @@
               "description": "Next from value"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getLists_extended_response": {
       "type": "object",
@@ -158,11 +150,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getLists_response": {
       "type": "object",
@@ -183,11 +173,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getMentions_response": {
       "type": "object",
@@ -208,11 +196,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_getSuggestedSources_response": {
       "type": "object",
@@ -233,11 +219,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_ignore_item_response": {
       "type": "object",
@@ -251,11 +235,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_saveList_response": {
       "type": "object",
@@ -265,8 +247,7 @@
           "description": "List ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_search_extended_response": {
       "type": "object",
@@ -314,11 +295,9 @@
               "minimum": 0
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_search_extended_strict_response": {
       "type": "object",
@@ -366,11 +345,9 @@
               "minimum": 0
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_search_response": {
       "type": "object",
@@ -406,11 +383,9 @@
               "minimum": 0
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_search_strict_response": {
       "type": "object",
@@ -446,11 +421,9 @@
               "minimum": 0
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

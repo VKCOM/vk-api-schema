@@ -17,8 +17,7 @@
           "type": "string",
           "description": "Description of episode"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_live_category": {
       "type": "object",
@@ -37,8 +36,7 @@
             "$ref": "../video/objects.json#/definitions/video_live_category"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_live_info": {
       "type": "object",
@@ -50,8 +48,7 @@
         "is_notifications_blocked": {
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_live_settings": {
       "description": "Video live settings",
@@ -73,8 +70,7 @@
           "description": "If live in clips apps",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_save_result": {
       "type": "object",
@@ -106,8 +102,7 @@
           "type": "integer",
           "description": "Video ID"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_stream_input_params": {
       "type": "object",
@@ -127,8 +122,7 @@
           "type": "string",
           "format": "uri"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_video": {
       "type": "object",
@@ -357,8 +351,7 @@
         "reposts": {
           "$ref": "../base/objects.json#/definitions/base_reposts_info"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_video_album": {
       "type": "object",
@@ -393,8 +386,7 @@
             "full"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "video_video_album_full": {
       "type": "object",
@@ -444,11 +436,9 @@
               "description": "Is user can upload video to playlist",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
-          },
-          "additionalProperties": false
+          }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "video_video_files": {
       "type": "object",
@@ -504,8 +494,7 @@
           "description": "URL of the flv file with 320p quality"
         }
       },
-      "minProperties": 1,
-      "additionalProperties": false
+      "minProperties": 1
     },
     "video_video_full": {
       "type": "object",
@@ -534,8 +523,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "video_video_image": {
       "type": "object",
@@ -550,8 +538,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     }
   }
 }

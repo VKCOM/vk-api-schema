@@ -16,15 +16,12 @@
               "items": {
                 "$ref": "../bugtracker/objects.json#/definitions/bugtracker_add_company_groups_members_error"
               },
-              "additionalProperties": false,
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_addCompanyMembers_response": {
       "type": "object",
@@ -40,11 +37,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_createComment_response": {
       "type": "object",
@@ -63,11 +58,9 @@
               "$ref": "../bugtracker/objects.json#/definitions/bugtracker_bugreport_subscribe_state"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_getBugreportById_response": {
       "type": "object",
@@ -85,11 +78,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_getCompanyGroupMembers_response": {
       "type": "object",
@@ -114,11 +105,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_getCompanyMembers_response": {
       "type": "object",
@@ -144,11 +133,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "bugtracker_getDownloadVersionUrl_response": {
       "type": "object",
@@ -176,11 +163,9 @@
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

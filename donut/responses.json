@@ -12,8 +12,7 @@
           "$ref": "../donut/objects.json#/definitions/donut_donator_subscription_info",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "donut_getSubscriptions_response": {
       "type": "object",
@@ -45,11 +44,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

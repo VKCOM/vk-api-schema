@@ -24,8 +24,7 @@
           "description": "Currency title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_global_search_filters": {
       "type": "object",
@@ -36,8 +35,7 @@
         "country": {
           "$ref": "../base/objects.json#/definitions/base_country"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_item_owner_info": {
       "description": "Information about the group where the item is placed",
@@ -70,8 +68,7 @@
           "description": "Type of the market group",
           "$ref": "../market/objects.json#/definitions/market_owner_type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_item_promotion_info": {
       "description": "Information about promotion of the market item",
@@ -81,8 +78,7 @@
           "description": "Can the item be promoted?",
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_album": {
       "type": "object",
@@ -144,8 +140,7 @@
           "type": "boolean",
           "description": "Is album needed to be blurred (18+) or not"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_category": {
       "type": "object",
@@ -172,8 +167,7 @@
         "parent": {
           "$ref": "../market/objects.json#/definitions/market_market_category_nested"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_category_tree": {
       "type": "object",
@@ -205,8 +199,7 @@
           "type": "string",
           "description": "SEO-friendly URL to page with category's items"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_category_tree_view": {
       "type": "object",
@@ -229,8 +222,7 @@
             "description": "Category names from current category up to root category"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_item": {
       "type": "object",
@@ -333,8 +325,7 @@
           "format": "int64",
           "description": "Attach for post owner id"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_item_availability": {
       "type": "integer",
@@ -383,8 +374,7 @@
         "is_favorite": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_market_item_basic_with_group": {
       "type": "object",
@@ -411,8 +401,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "market_market_item_full": {
       "type": "object",
@@ -505,8 +494,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "market_order": {
       "type": "object",
@@ -600,8 +588,7 @@
           "type": "boolean",
           "description": "Extended field. Can current viewer add review for at least one item in this order"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_order_item": {
       "type": "object",
@@ -645,8 +632,7 @@
           "type": "boolean",
           "description": "Extended field. Can current viewer add review for this ordered item"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_owner_type": {
       "description": "Type of the market group",
@@ -716,8 +702,7 @@
           "type": "string",
           "description": "Textual representation of old price"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "market_services_view_type": {
       "type": "integer",

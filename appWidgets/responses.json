@@ -16,11 +16,9 @@
               "description": "To upload an image, generate POST-request to upload_url with a file in photo field. Then call appWidgets.saveAppImage method"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_getAppImages_response": {
       "type": "object",
@@ -29,8 +27,7 @@
           "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photos",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_getGroupImageUploadServer_response": {
       "type": "object",
@@ -43,11 +40,9 @@
               "description": "To upload an image, generate POST-request to upload_url with a file in photo field. Then call appWidgets.saveAppImage method"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_getGroupImages_response": {
       "type": "object",
@@ -56,8 +51,7 @@
           "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photos",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_getImagesById_response": {
       "type": "object",
@@ -69,8 +63,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_saveAppImage_response": {
       "type": "object",
@@ -79,8 +72,7 @@
           "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "appWidgets_saveGroupImage_response": {
       "type": "object",
@@ -89,8 +81,7 @@
           "$ref": "../appWidgets/objects.json#/definitions/appWidgets_photo",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -16,8 +16,7 @@
         "audio": {
           "$ref": "../audio/objects.json#/definitions/audio_audio"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -12,8 +12,7 @@
           "$ref": "../fave/objects.json#/definitions/fave_tag",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "fave_getPages_response": {
       "type": "object",
@@ -33,11 +32,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "fave_getTags_response": {
       "type": "object",
@@ -57,11 +54,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "fave_get_extended_response": {
       "type": "object",
@@ -94,11 +89,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "fave_get_response": {
       "type": "object",
@@ -119,11 +112,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

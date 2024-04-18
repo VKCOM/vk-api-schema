@@ -24,11 +24,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getCitiesById_response": {
       "type": "object",
@@ -40,8 +38,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getCities_response": {
       "type": "object",
@@ -62,11 +59,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getCountriesById_response": {
       "type": "object",
@@ -78,8 +73,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getCountries_response": {
       "type": "object",
@@ -100,11 +94,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getFaculties_response": {
       "type": "object",
@@ -125,11 +117,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getMetroStationsById_response": {
       "type": "object",
@@ -141,8 +131,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getMetroStations_response": {
       "type": "object",
@@ -163,11 +152,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getRegions_response": {
       "type": "object",
@@ -188,11 +175,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getSchoolClasses_new_response": {
       "type": "object",
@@ -204,8 +189,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getSchools_response": {
       "type": "object",
@@ -226,11 +210,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "database_getUniversities_response": {
       "type": "object",
@@ -251,11 +233,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

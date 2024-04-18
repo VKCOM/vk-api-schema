@@ -36,8 +36,7 @@
           "type": "boolean",
           "description": "Information whether author commented the thread"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

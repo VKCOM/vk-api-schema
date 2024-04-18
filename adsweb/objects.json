@@ -13,8 +13,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getAdUnits_response_ad_units_ad_unit": {
       "type": "object",
@@ -30,8 +29,7 @@
         "name": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getFraudHistory_response_entries_entry": {
       "type": "object",
@@ -44,8 +42,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getSites_response_sites_site": {
       "type": "object",
@@ -63,8 +60,7 @@
         "domains": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getStatistics_response_items_item": {
       "type": "object",
@@ -105,8 +101,7 @@
         "hour_max": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

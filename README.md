@@ -104,8 +104,7 @@ Repository contains several .json files.
         "title",
         "count",
         "updated_time"
-      ],
-      "additionalProperties": false
+      ]
     }
 ```
 

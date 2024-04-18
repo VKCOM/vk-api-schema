@@ -12,8 +12,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_address",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_addCallbackServer_response": {
       "type": "object",
@@ -27,11 +26,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_addLink_response": {
       "type": "object",
@@ -40,8 +37,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_links_item",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_create_response": {
       "type": "object",
@@ -50,8 +46,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_group_full",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_editAddress_response": {
       "type": "object",
@@ -61,8 +56,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_address",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getAddresses_response": {
       "type": "object",
@@ -84,11 +78,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getBanned_response": {
       "type": "object",
@@ -110,11 +102,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getById_object_response": {
       "type": "object",
@@ -135,11 +125,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getCallbackConfirmationCode_response": {
       "type": "object",
@@ -153,11 +141,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getCallbackServers_response": {
       "type": "object",
@@ -178,11 +164,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getCallbackSettings_response": {
       "type": "object",
@@ -191,8 +175,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_callback_settings",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getCatalogInfo_extended_response": {
       "type": "object",
@@ -212,11 +195,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getCatalogInfo_response": {
       "type": "object",
@@ -236,11 +217,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getInvitedUsers_response": {
       "type": "object",
@@ -262,11 +241,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getInvites_extended_response": {
       "type": "object",
@@ -302,11 +279,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getInvites_response": {
       "type": "object",
@@ -328,11 +303,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getLongPollServer_response": {
       "type": "object",
@@ -341,8 +314,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_long_poll_server",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getLongPollSettings_response": {
       "type": "object",
@@ -351,8 +323,7 @@
           "$ref": "../groups/objects.json#/definitions/groups_long_poll_settings",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getMembers_fields_response": {
       "type": "object",
@@ -378,11 +349,9 @@
               "description": "Encoded string for a next page"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getMembers_filter_response": {
       "type": "object",
@@ -408,11 +377,9 @@
               "description": "Encoded string for a next page"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getMembers_response": {
       "type": "object",
@@ -442,11 +409,9 @@
               "description": "Encoded string for a next page"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getOnlineStatus_response": {
       "type": "object",
@@ -463,11 +428,9 @@
               "required": true
             }
           },
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getRequests_fields_response": {
       "type": "object",
@@ -489,11 +452,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getRequests_response": {
       "type": "object",
@@ -519,11 +480,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getSettings_response": {
       "type": "object",
@@ -746,11 +705,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getTagList_response": {
       "type": "object",
@@ -762,8 +719,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_getTokenPermissions_response": {
       "type": "object",
@@ -784,11 +740,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_get_object_extended_response": {
       "type": "object",
@@ -810,11 +764,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_get_response": {
       "type": "object",
@@ -839,11 +791,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_invite_user_ids_list_response": {
       "type": "object",
@@ -858,11 +808,9 @@
               "required": true
             }
           },
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_isMember_extended_response": {
       "type": "object",
@@ -892,11 +840,9 @@
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_isMember_user_ids_extended_response": {
       "type": "object",
@@ -908,8 +854,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_isMember_user_ids_response": {
       "type": "object",
@@ -921,8 +866,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "groups_search_response": {
       "type": "object",
@@ -944,11 +888,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

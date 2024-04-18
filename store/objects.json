@@ -110,8 +110,7 @@
           "type": "string",
           "format": "uri"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "store_product_icon": {
       "type": "object",
@@ -145,8 +144,7 @@
             "$ref": "../store/objects.json#/definitions/store_stickers_keyword_sticker"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "store_stickers_keyword_sticker": {
       "type": "object",
@@ -161,8 +159,7 @@
           "description": "Sticker id",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

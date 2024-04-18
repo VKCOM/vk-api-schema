@@ -24,8 +24,7 @@
             "$ref": "../base/objects.json#/definitions/base_image"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -68,8 +68,7 @@
           "description": "New photo tags number",
           "minimum": 1
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_counters_filter": {
       "type": "string",
@@ -119,8 +118,7 @@
           "description": "Information whether only owners posts should be shown",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_name_request": {
       "type": "object",
@@ -152,8 +150,7 @@
           "type": "string",
           "description": "label to display for link in lang field"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_name_request_status": {
       "type": "string",
@@ -226,8 +223,7 @@
             "app"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_push_conversations": {
       "type": "object",
@@ -243,8 +239,7 @@
             "$ref": "../account/objects.json#/definitions/account_push_conversations_item"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_push_conversations_item": {
       "type": "object",
@@ -272,8 +267,7 @@
           "description": "Information whether the mass mentions (like '@all', '@online') are disabled. Can be affected by 'disabled_mentions'",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_push_params": {
       "type": "object",
@@ -392,8 +386,7 @@
             "$ref": "../account/objects.json#/definitions/account_push_params_onoff"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_push_params_mode": {
       "type": "string",
@@ -439,8 +432,7 @@
         "conversations": {
           "$ref": "../account/objects.json#/definitions/account_push_conversations"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_user_settings": {
       "type": "object",
@@ -464,8 +456,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "account_user_settings_interest": {
       "type": "object",
@@ -478,8 +469,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_user_settings_interests": {
       "type": "object",
@@ -511,8 +501,7 @@
         "about": {
           "$ref": "../account/objects.json#/definitions/account_user_settings_interest"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

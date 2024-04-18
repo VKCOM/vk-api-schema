@@ -23,8 +23,7 @@
           "type": "string",
           "description": "Надпись на кнопке"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_buttonSubmitFields": {
       "type": "object",
@@ -51,8 +50,7 @@
           "type": "string",
           "description": "Индекс экрана для перехода"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_buttonSupportFields": {
       "type": "object",
@@ -71,8 +69,7 @@
         "text": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_buttonUnblockFields": {
       "type": "object",
@@ -92,8 +89,7 @@
           "type": "string",
           "description": "Надпись на кнопке"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_contentBlockFields": {
       "type": "object",
@@ -114,8 +110,7 @@
             "message"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_eventsListFields": {
       "type": "object",
@@ -138,8 +133,7 @@
             "$ref": "#/definitions/support_unblock_screen_eventsListFields_item"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_eventsListFields_item": {
       "type": "object",
@@ -152,8 +146,7 @@
           "type": "string",
           "description": "Причина блокировки"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_headerFields": {
       "type": "object",
@@ -186,8 +179,7 @@
           "type": "boolean",
           "description": "Нужна ли кнопка выхода"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_item": {
       "type": "object",
@@ -273,8 +265,7 @@
         "modal": {
           "$ref": "#/definitions/support_unblock_screen_modalButton_modalContent"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_modalButton_modalContent": {
       "type": "object",
@@ -285,8 +276,7 @@
         "text": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_slidersFields": {
       "type": "object",
@@ -305,8 +295,7 @@
             "$ref": "#/definitions/support_unblock_screen_slidersFields_item"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_slidersFields_item": {
       "type": "object",
@@ -322,8 +311,7 @@
           "type": "string",
           "description": "Экран, на который происходит переход; обычно содержимое другого экрана - просто заголовок с текстом и кнопкой"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_stepperFields": {
       "type": "object",
@@ -346,8 +334,7 @@
             "$ref": "#/definitions/support_unblock_screen_stepperQuestions"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_stepperQuestions": {
       "type": "object",
@@ -379,8 +366,7 @@
         "step": {
           "type": "number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_textBackgroundFields": {
       "type": "object",
@@ -401,8 +387,7 @@
           "type": "string",
           "description": "Полный URL фонового изображения"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_textBorderedFields": {
       "type": "object",
@@ -423,8 +408,7 @@
           "type": "boolean",
           "description": "Нужна ли кнопка 'Получить уведомление'"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_tutorialAnswers": {
       "type": "object",
@@ -444,8 +428,7 @@
           "type": "string",
           "description": "Текст, который отображается при выборе этого варианта"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_tutorialFields": {
       "type": "object",
@@ -468,8 +451,7 @@
             "$ref": "#/definitions/support_unblock_screen_tutorialQuestions"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "support_unblock_screen_tutorialQuestions": {
       "type": "object",
@@ -487,8 +469,7 @@
             "$ref": "#/definitions/support_unblock_screen_tutorialAnswers"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

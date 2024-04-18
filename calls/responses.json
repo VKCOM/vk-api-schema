@@ -29,11 +29,9 @@
               "description": "video id for streaming"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

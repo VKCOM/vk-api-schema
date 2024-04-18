@@ -39,11 +39,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getBanned_response": {
       "type": "object",
@@ -67,11 +65,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getById_extended_response": {
       "type": "object",
@@ -106,11 +102,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getPhotoUploadServer_response": {
       "type": "object",
@@ -133,11 +127,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getStats_V5200_response": {
       "type": "object",
@@ -164,11 +156,9 @@
               "type": "boolean"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getStats_response": {
       "type": "object",
@@ -177,8 +167,7 @@
           "$ref": "../stories/objects.json#/definitions/stories_story_stats",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getVideoUploadServer_response": {
       "type": "object",
@@ -201,11 +190,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_getViewers_extended_V5115_response": {
       "type": "object",
@@ -232,11 +219,9 @@
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_get_V5113_response": {
       "type": "object",
@@ -277,11 +262,9 @@
               "type": "string"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_save_response": {
       "type": "object",
@@ -313,11 +296,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stories_upload_response": {
       "type": "object",
@@ -330,11 +311,9 @@
               "description": "A string hash that is used in the stories.save method"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

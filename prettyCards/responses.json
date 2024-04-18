@@ -24,11 +24,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "prettyCards_delete_response": {
       "type": "object",
@@ -53,11 +51,9 @@
               "description": "Error reason if error happened"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "prettyCards_edit_response": {
       "type": "object",
@@ -78,11 +74,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "prettyCards_getById_response": {
       "type": "object",
@@ -94,8 +88,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "prettyCards_getUploadURL_response": {
       "type": "object",
@@ -105,8 +98,7 @@
           "description": "Upload URL",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "prettyCards_get_response": {
       "type": "object",
@@ -127,11 +119,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

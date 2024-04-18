@@ -24,8 +24,7 @@
           "type": "integer",
           "description": "Width of the photo in px."
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_image_type": {
       "type": "string",
@@ -171,8 +170,7 @@
             "bottom"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_album": {
       "type": "object",
@@ -219,8 +217,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_album_full": {
       "type": "object",
@@ -306,8 +303,7 @@
           "description": "Information whether only community administrators can upload photos",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_sizes": {
       "type": "object",
@@ -338,8 +334,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_sizes_type": {
       "type": "string",
@@ -437,8 +432,7 @@
           "description": "Coordinate Y of the right lower corner",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_upload": {
       "type": "object",
@@ -472,8 +466,7 @@
           "entity": "groups",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_photo_xtr_tag_info": {
       "type": "object",
@@ -593,8 +586,7 @@
           "type": "boolean",
           "description": "Whether photo has attached tag links"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_tags_suggestion_item": {
       "type": "object",
@@ -626,8 +618,7 @@
         "track_code": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "photos_tags_suggestion_item_button": {
       "type": "object",
@@ -650,8 +641,7 @@
             "secondary"
           ]
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

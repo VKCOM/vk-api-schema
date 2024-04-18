@@ -41,8 +41,7 @@
         "participants": {
           "$ref": "../calls/objects.json#/definitions/calls_participants"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "calls_end_state": {
       "type": "string",
@@ -68,8 +67,7 @@
           "minimum": 0,
           "description": "Participants count"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

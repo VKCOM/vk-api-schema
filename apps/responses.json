@@ -20,11 +20,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getCatalog_response": {
       "type": "object",
@@ -33,8 +31,7 @@
           "$ref": "../apps/objects.json#/definitions/apps_catalog_list",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getFriendsList_extended_response": {
       "type": "object",
@@ -55,11 +52,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getFriendsList_response": {
       "type": "object",
@@ -82,11 +77,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getLeaderboard_extended_response": {
       "type": "object",
@@ -113,11 +106,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getLeaderboard_response": {
       "type": "object",
@@ -138,11 +129,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getMiniAppPolicies_response": {
       "type": "object",
@@ -161,11 +150,9 @@
               "description": "URL of the app's terms"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getScopes_response": {
       "type": "object",
@@ -186,11 +173,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getScore_response": {
       "type": "object",
@@ -200,8 +185,7 @@
           "description": "Score number",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_getTestingGroups_response": {
       "type": "object",
@@ -213,8 +197,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_get_last_uploaded_version_response": {
       "type": "object",
@@ -228,11 +211,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_get_response": {
       "type": "object",
@@ -269,11 +250,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_image_upload_response": {
       "type": "object",
@@ -290,11 +269,9 @@
               "description": "Uploaded photo data"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_isNotificationsAllowed_response": {
       "type": "object",
@@ -308,11 +285,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_sendRequest_response": {
       "type": "object",
@@ -322,8 +297,7 @@
           "description": "Request ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

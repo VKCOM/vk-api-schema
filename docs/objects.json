@@ -70,8 +70,7 @@
             "type": "string"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_attachment_type": {
       "type": "string",
@@ -97,8 +96,7 @@
         "video": {
           "$ref": "../docs/objects.json#/definitions/docs_doc_preview_video"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_preview_audio_msg": {
       "type": "object",
@@ -130,8 +128,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_preview_graffiti": {
       "type": "object",
@@ -154,8 +151,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_preview_photo": {
       "type": "object",
@@ -166,8 +162,7 @@
             "$ref": "../docs/objects.json#/definitions/docs_doc_preview_photo_sizes"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_preview_photo_sizes": {
       "type": "object",
@@ -194,8 +189,7 @@
           "$ref": "../photos/objects.json#/definitions/photos_photo_sizes_type",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_preview_video": {
       "type": "object",
@@ -224,8 +218,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "docs_doc_types": {
       "type": "object",
@@ -246,8 +239,7 @@
           "description": "Number of docs",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

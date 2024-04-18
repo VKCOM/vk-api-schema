@@ -23,11 +23,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_edit_response": {
       "type": "object",
@@ -42,11 +40,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getById_extended_response": {
       "type": "object",
@@ -76,11 +72,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getById_response": {
       "type": "object",
@@ -95,11 +89,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getComment_extended_response": {
       "type": "object",
@@ -146,11 +138,9 @@
               "description": "Author id of the comment's post"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getComment_response": {
       "type": "object",
@@ -177,11 +167,9 @@
               "description": "Information whether groups can comment the post"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getComments_extended_response": {
       "type": "object",
@@ -237,11 +225,9 @@
               "description": "Author id of comments' post"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getComments_response": {
       "type": "object",
@@ -277,11 +263,9 @@
               "description": "Information whether groups can comment the post"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_getReposts_response": {
       "type": "object",
@@ -311,11 +295,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_get_extended_response": {
       "type": "object",
@@ -350,11 +332,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_get_response": {
       "type": "object",
@@ -375,11 +355,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_postAdsStealth_response": {
       "type": "object",
@@ -393,11 +371,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_post_response": {
       "type": "object",
@@ -411,11 +387,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_repost_response": {
       "type": "object",
@@ -456,11 +430,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_search_extended_response": {
       "type": "object",
@@ -495,11 +467,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "wall_search_response": {
       "type": "object",
@@ -520,11 +490,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

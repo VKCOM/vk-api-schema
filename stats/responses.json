@@ -15,8 +15,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_get_response": {
       "type": "object",
@@ -28,8 +27,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

@@ -32,8 +32,7 @@
         "secret": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_board_post_delete": {
       "type": "object",
@@ -53,8 +52,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_confirmation": {
       "type": "object",
@@ -72,8 +70,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "callback_donut_money_withdraw": {
       "type": "object",
@@ -88,8 +85,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_donut_money_withdraw_error": {
       "type": "object",
@@ -99,8 +95,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_donut_subscription_cancelled": {
       "type": "object",
@@ -111,8 +106,7 @@
           "entity": "owner",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_donut_subscription_create": {
       "type": "object",
@@ -133,8 +127,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_donut_subscription_expired": {
       "type": "object",
@@ -145,8 +138,7 @@
           "entity": "owner",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_donut_subscription_price_changed": {
       "type": "object",
@@ -175,8 +167,7 @@
           "type": "number",
           "minimum": 0
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_donut_subscription_prolonged": {
       "type": "object",
@@ -197,8 +188,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_group_change_photo": {
       "type": "object",
@@ -214,8 +204,7 @@
           "$ref": "../photos/objects.json#/definitions/photos_photo",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_group_change_settings": {
       "type": "object",
@@ -231,8 +220,7 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_group_join": {
       "type": "object",
@@ -247,8 +235,7 @@
           "$ref": "../callback/objects.json#/definitions/callback_group_join_type",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_group_join_type": {
       "type": "string",
@@ -272,8 +259,7 @@
         "self": {
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_group_market": {
       "type": "integer",
@@ -324,8 +310,7 @@
           "$ref": "../callback/objects.json#/definitions/callback_group_officer_role",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_group_settings_changes": {
       "type": "object",
@@ -369,8 +354,7 @@
         "enable_market": {
           "$ref": "../callback/objects.json#/definitions/callback_group_market"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_like_add_remove": {
       "type": "object",
@@ -412,8 +396,7 @@
           "type": "integer",
           "minimum": 0
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_market_comment": {
       "type": "object",
@@ -441,8 +424,7 @@
         "photo_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_market_comment_delete": {
       "type": "object",
@@ -469,8 +451,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_message_allow": {
       "type": "object",
@@ -492,8 +473,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "callback_message_allow_object": {
       "type": "object",
@@ -509,8 +489,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_message_deny": {
       "type": "object",
@@ -522,8 +501,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_message_edit": {
       "type": "object",
@@ -545,8 +523,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "callback_message_new": {
       "type": "object",
@@ -569,8 +546,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "callback_message_object": {
       "type": "object",
@@ -581,8 +557,7 @@
         "message": {
           "$ref": "../messages/objects.json#/definitions/messages_message"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_message_reply": {
       "type": "object",
@@ -604,8 +579,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "callback_photo_comment": {
       "type": "object",
@@ -633,8 +607,7 @@
           "type": "integer",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_photo_comment_delete": {
       "type": "object",
@@ -663,8 +636,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_poll_vote_new": {
       "type": "object",
@@ -692,8 +664,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_type": {
       "type": "string",
@@ -774,8 +745,7 @@
         "comment": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_user_unblock": {
       "type": "object",
@@ -797,8 +767,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_video_comment": {
       "type": "object",
@@ -825,8 +794,7 @@
           "type": "integer",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_video_comment_delete": {
       "type": "object",
@@ -854,8 +822,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "callback_wall_comment_delete": {
       "type": "object",
@@ -883,8 +850,7 @@
           "minimum": 0,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

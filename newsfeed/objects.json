@@ -21,8 +21,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_comments_filters": {
       "type": "string",
@@ -86,8 +85,7 @@
         "post_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_comments_item_type_market": {
       "type": "object",
@@ -108,8 +106,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_comments_item_type_notes": {
       "type": "object",
@@ -130,8 +127,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_comments_item_type_photo": {
       "type": "object",
@@ -152,8 +148,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_comments_item_type_post": {
       "type": "object",
@@ -176,8 +171,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_comments_item_type_topic": {
       "type": "object",
@@ -198,8 +192,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_comments_item_type_video": {
       "type": "object",
@@ -233,8 +226,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_ignore_item_type": {
       "type": "string",
@@ -272,8 +264,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_audio_audio": {
       "type": "object",
@@ -289,8 +280,7 @@
             "$ref": "../audio/objects.json#/definitions/audio_audio"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_base": {
       "type": "object",
@@ -320,8 +310,7 @@
         "feedback": {
           "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_wallpost_feedback"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_digest": {
       "type": "object",
@@ -364,8 +353,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_digest_button": {
       "type": "object",
@@ -381,8 +369,7 @@
           ],
           "default": "primary"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_digest_footer": {
       "type": "object",
@@ -403,8 +390,7 @@
         "button": {
           "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_button"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_digest_full_item": {
       "type": "object",
@@ -444,8 +430,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_digest_header": {
       "type": "object",
@@ -474,8 +459,7 @@
         "button": {
           "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_button"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_digest_item": {
       "type": "object",
@@ -494,8 +478,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_friend_friends": {
       "type": "object",
@@ -511,8 +494,7 @@
             "$ref": "../base/objects.json#/definitions/base_user_id"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_holiday_recommendations_block_header": {
       "type": "object",
@@ -534,8 +516,7 @@
         "action": {
           "$ref": "../base/objects.json#/definitions/base_link_button_action"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_photo": {
       "type": "object",
@@ -557,8 +538,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_photo_photos": {
       "type": "object",
@@ -574,8 +554,7 @@
             "$ref": "../photos/objects.json#/definitions/photos_photo"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_photo_tag": {
       "type": "object",
@@ -597,8 +576,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_photo_tag_photo_tags": {
       "type": "object",
@@ -614,8 +592,7 @@
             "$ref": "../photos/objects.json#/definitions/photos_photo"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_promo_button": {
       "type": "object",
@@ -642,8 +619,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_promo_button_action": {
       "type": "object",
@@ -657,8 +633,7 @@
         "target": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_promo_button_image": {
       "type": "object",
@@ -672,8 +647,7 @@
         "url": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_topic": {
       "type": "object",
@@ -701,8 +675,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_video": {
       "type": "object",
@@ -724,8 +697,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_video_video": {
       "type": "object",
@@ -741,8 +713,7 @@
             "$ref": "../video/objects.json#/definitions/video_video_full"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_wallpost": {
       "type": "object",
@@ -759,8 +730,7 @@
         {
           "properties": []
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_item_wallpost_feedback": {
       "type": "object",
@@ -798,8 +768,7 @@
         "track_code": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_wallpost_feedback_answer": {
       "type": "object",
@@ -812,8 +781,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_item_wallpost_feedback_type": {
       "type": "string",
@@ -835,8 +803,7 @@
           "description": "List title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "newsfeed_list_full": {
       "type": "object",
@@ -861,8 +828,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "newsfeed_newsfeed_item": {
       "type": "object",

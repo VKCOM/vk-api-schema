@@ -36,8 +36,7 @@
         "link": {
           "$ref": "../base/objects.json#/definitions/base_link"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "search_hint_section": {
       "type": "string",

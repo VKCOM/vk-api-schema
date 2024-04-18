@@ -16,8 +16,7 @@
           "$ref": "../leadForms/objects.json#/definitions/leadForms_answer_one_of",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_answer_item": {
       "type": "object",
@@ -29,8 +28,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_answer_one_of": {
       "type": "object",
@@ -112,8 +110,7 @@
           "format": "uri",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_lead": {
       "type": "object",
@@ -142,8 +139,7 @@
         "ad_id": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_question_item": {
       "type": "object",
@@ -173,8 +169,7 @@
             "$ref": "../leadForms/objects.json#/definitions/leadForms_question_item_option"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "leadForms_question_item_option": {
       "type": "object",
@@ -186,8 +181,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

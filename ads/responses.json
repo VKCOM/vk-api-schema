@@ -16,8 +16,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_checkLink_response": {
       "type": "object",
@@ -26,8 +25,7 @@
           "$ref": "../ads/objects.json#/definitions/ads_link_status",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_createAds_response": {
       "type": "object",
@@ -39,8 +37,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_createCampaigns_response": {
       "type": "object",
@@ -52,8 +49,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_createClients_response": {
       "type": "object",
@@ -65,8 +61,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_createLookalikeRequest_response": {
       "type": "object",
@@ -79,11 +74,9 @@
               "description": "Request ID"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_createTargetGroup_response": {
       "type": "object",
@@ -100,11 +93,9 @@
               "description": "Pixel code"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_createTargetPixel_response": {
       "type": "object",
@@ -121,11 +112,9 @@
               "description": "Pixel code"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_deleteAds_response": {
       "type": "object",
@@ -138,8 +127,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_deleteCampaigns_response": {
       "type": "object",
@@ -152,8 +140,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_deleteClients_response": {
       "type": "object",
@@ -166,8 +153,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getAccounts_response": {
       "type": "object",
@@ -179,8 +165,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getAdsLayout_response": {
       "type": "object",
@@ -192,8 +177,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getAdsTargeting_response": {
       "type": "object",
@@ -205,8 +189,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getAds_response": {
       "type": "object",
@@ -218,8 +201,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getBudget_response": {
       "type": "object",
@@ -229,8 +211,7 @@
           "description": "Budget",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getCampaigns_response": {
       "type": "object",
@@ -242,8 +223,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getCategories_response": {
       "type": "object",
@@ -266,11 +246,9 @@
               "description": "Actual categories"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getClients_response": {
       "type": "object",
@@ -282,8 +260,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getDemographics_response": {
       "type": "object",
@@ -295,8 +272,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getFloodStats_response": {
       "type": "object",
@@ -305,8 +281,7 @@
           "$ref": "../ads/objects.json#/definitions/ads_flood_stats",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getLookalikeRequests_response": {
       "type": "object",
@@ -329,11 +304,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getMusicians_response": {
       "type": "object",
@@ -350,11 +323,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getOfficeUsers_response": {
       "type": "object",
@@ -366,8 +337,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getPostsReach_response": {
       "type": "object",
@@ -379,8 +349,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getRejectionReason_response": {
       "type": "object",
@@ -389,8 +358,7 @@
           "$ref": "../ads/objects.json#/definitions/ads_reject_reason",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getStatistics_response": {
       "type": "object",
@@ -402,8 +370,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getSuggestions_cities_response": {
       "type": "object",
@@ -415,8 +382,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getSuggestions_regions_response": {
       "type": "object",
@@ -428,8 +394,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getSuggestions_response": {
       "type": "object",
@@ -441,8 +406,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getSuggestions_schools_response": {
       "type": "object",
@@ -454,8 +418,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getTargetGroups_response": {
       "type": "object",
@@ -467,8 +430,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getTargetPixels_response": {
       "type": "object",
@@ -480,8 +442,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getTargetingStats_response": {
       "type": "object",
@@ -490,8 +451,7 @@
           "$ref": "../ads/objects.json#/definitions/ads_targ_stats",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getUploadURL_response": {
       "type": "object",
@@ -501,8 +461,7 @@
           "description": "Photo upload URL",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_getVideoUploadURL_response": {
       "type": "object",
@@ -512,8 +471,7 @@
           "description": "Video upload URL",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_importTargetContacts_response": {
       "type": "object",
@@ -523,8 +481,7 @@
           "description": "Imported contacts number",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_removeOfficeUsers_response": {
       "type": "object",
@@ -537,8 +494,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_removeTargetContacts_response": {
       "type": "object",
@@ -558,11 +514,9 @@
               ]
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_saveLookalikeRequestResult_response": {
       "type": "object",
@@ -581,11 +535,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_shareTargetGroup_response": {
       "type": "object",
@@ -599,11 +551,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_updateAds_response": {
       "type": "object",
@@ -615,8 +565,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_updateCampaigns_response": {
       "type": "object",
@@ -628,8 +577,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_updateClients_response": {
       "type": "object",
@@ -641,8 +589,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_updateOfficeUsers_response": {
       "type": "object",
@@ -654,8 +601,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

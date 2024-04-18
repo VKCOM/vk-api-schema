@@ -21,11 +21,9 @@
               "description": "New secret"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getActiveOffers_response": {
       "type": "object",
@@ -46,11 +44,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getAppPermissions_response": {
       "type": "object",
@@ -60,8 +56,7 @@
           "description": "Permissions mask",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getBanned_response": {
       "type": "object",
@@ -96,11 +91,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getCounters_response": {
       "type": "object",
@@ -109,8 +102,7 @@
           "$ref": "../account/objects.json#/definitions/account_account_counters",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getInfo_response": {
       "type": "object",
@@ -119,8 +111,7 @@
           "$ref": "../account/objects.json#/definitions/account_info",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getProfileInfo_response": {
       "type": "object",
@@ -129,8 +120,7 @@
           "$ref": "../account/objects.json#/definitions/account_user_settings",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_getPushSettings_response": {
       "type": "object",
@@ -139,8 +129,7 @@
           "$ref": "../account/objects.json#/definitions/account_push_settings",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "account_saveProfileInfo_response": {
       "type": "object",
@@ -157,11 +146,9 @@
               "$ref": "../account/objects.json#/definitions/account_name_request"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

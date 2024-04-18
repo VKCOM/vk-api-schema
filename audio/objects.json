@@ -60,8 +60,7 @@
           "type": "string",
           "description": "Performer name"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

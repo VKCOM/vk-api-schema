@@ -36,8 +36,7 @@
         "privacy": {
           "$ref": "../gifts/objects.json#/definitions/gifts_gift_privacy"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "gifts_gift_privacy": {
       "type": "integer",
@@ -97,8 +96,7 @@
           "type": "string",
           "description": "Keywords used for search"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

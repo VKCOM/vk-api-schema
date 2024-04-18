@@ -26,8 +26,7 @@
             "$ref": "../streaming/objects.json#/definitions/streaming_stats_point"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "streaming_stats_point": {
       "type": "object",
@@ -41,8 +40,7 @@
           "type": "integer",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

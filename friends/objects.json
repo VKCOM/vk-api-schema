@@ -19,8 +19,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "friends_friend_status": {
       "type": "object",
@@ -41,8 +40,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_friend_status_status": {
       "type": "integer",
@@ -73,8 +71,7 @@
           "description": "List title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_mutual_friend": {
       "type": "object",
@@ -100,8 +97,7 @@
           "entity": "owner",
           "format": "int64"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_requests_mutual": {
       "type": "object",
@@ -121,8 +117,7 @@
             "required": true
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_requests_xtr_message": {
       "type": "object",
@@ -138,8 +133,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "friends_requests_xtr_mutual": {
       "type": "object",
@@ -189,8 +183,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "friends_user_xtr_phone": {
       "type": "object",
@@ -206,8 +199,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     }
   }
 }

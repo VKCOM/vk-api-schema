@@ -32,8 +32,7 @@
         "role": {
           "$ref": "../ads/objects.json#/definitions/ads_access_role"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_account": {
       "type": "object",
@@ -66,8 +65,7 @@
           "description": "Can user view account budget",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_account_type": {
       "type": "string",
@@ -300,8 +298,7 @@
           "type": "integer",
           "description": "Link type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_ad_approved": {
       "type": "integer",
@@ -481,8 +478,7 @@
             "$ref": "../ads/objects.json#/definitions/ads_clip_item"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_ad_status": {
       "type": "integer",
@@ -567,8 +563,7 @@
           "type": "integer",
           "description": "Limit of views per user per campaign"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_campaign_status": {
       "type": "integer",
@@ -616,8 +611,7 @@
             "$ref": "../ads/objects.json#/definitions/ads_category"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_client": {
       "type": "object",
@@ -647,8 +641,7 @@
           "$ref": "../ads/objects.json#/definitions/ads_ord_data",
           "required": false
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_clip_item": {
       "type": "object",
@@ -664,8 +657,7 @@
         "link": {
           "$ref": "../ads/objects.json#/definitions/ads_clip_item_link"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_clip_item_link": {
       "type": "object",
@@ -683,8 +675,7 @@
           "type": "string",
           "description": "Url"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_create_ad_status": {
       "type": "object",
@@ -709,8 +700,7 @@
           "type": "string",
           "description": "Error description"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_create_campaign_status": {
       "type": "object",
@@ -730,8 +720,7 @@
           "type": "string",
           "description": "Error description"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_create_clients_status": {
       "type": "object",
@@ -751,8 +740,7 @@
           "type": "string",
           "description": "Error description"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_criteria": {
       "type": "object",
@@ -984,8 +972,7 @@
           "type": "string",
           "description": "mobile_manufacturers"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_criteria_sex": {
       "type": "string",
@@ -1017,8 +1004,7 @@
         "type": {
           "$ref": "../ads/objects.json#/definitions/ads_object_type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_demographic_stats_period_item_base": {
       "type": "object",
@@ -1031,8 +1017,7 @@
           "type": "number",
           "description": "Impressions rate"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_demostats_format": {
       "type": "object",
@@ -1079,8 +1064,7 @@
             "$ref": "../ads/objects.json#/definitions/ads_stats_sex_age"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_events_retargeting_group": {
       "type": "object",
@@ -1094,8 +1078,7 @@
             "type": "integer"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_flood_stats": {
       "type": "object",
@@ -1118,8 +1101,7 @@
           },
           "required": false
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_flood_stats_by_user_item": {
       "type": "object",
@@ -1136,8 +1118,7 @@
           "description": "Used requests",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_link_status": {
       "type": "object",
@@ -1156,8 +1137,7 @@
           "description": "Link status",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_lookalike_request": {
       "type": "object",
@@ -1223,8 +1203,7 @@
             "$ref": "../ads/objects.json#/definitions/ads_lookalike_request_save_audience_level"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_lookalike_request_save_audience_level": {
       "type": "object",
@@ -1239,8 +1218,7 @@
           "minimum": 0,
           "description": "Saved audience audience size for according level"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_mobile_stat_item": {
       "type": "object",
@@ -1251,8 +1229,7 @@
         "value": {
           "type": "number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_musician": {
       "type": "object",
@@ -1279,8 +1256,7 @@
           "type": "string",
           "description": "Music artist photo"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_object_type": {
       "type": "string",
@@ -1346,8 +1322,7 @@
           "type": "boolean",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_ord_subagent": {
       "type": "object",
@@ -1368,8 +1343,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post": {
       "type": "object",
@@ -1479,8 +1453,7 @@
           "type": "integer",
           "description": "Can pin"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_comments": {
       "type": "object",
@@ -1490,8 +1463,7 @@
           "type": "integer",
           "description": "Count"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_donut": {
       "type": "object",
@@ -1501,8 +1473,7 @@
           "type": "boolean",
           "description": "Is donut"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_easy_promote": {
       "type": "object",
@@ -1536,8 +1507,7 @@
           "type": "integer",
           "description": "Top union id"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_likes": {
       "type": "object",
@@ -1555,8 +1525,7 @@
           "type": "integer",
           "description": "User likes"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_owner": {
       "type": "object",
@@ -1578,8 +1547,7 @@
           "type": "string",
           "description": "Profile url"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_reposts": {
       "type": "object",
@@ -1597,8 +1565,7 @@
           "type": "integer",
           "description": "Mail count"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_post_views": {
       "type": "object",
@@ -1608,8 +1575,7 @@
           "type": "integer",
           "description": "Count"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_promoted_post_reach": {
       "type": "object",
@@ -1691,8 +1657,7 @@
           "type": "integer",
           "description": "Pretty cards clicks"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_reject_reason": {
       "type": "object",
@@ -1707,8 +1672,7 @@
             "$ref": "../ads/objects.json#/definitions/ads_rules"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_rules": {
       "type": "object",
@@ -1732,8 +1696,7 @@
           "type": "boolean",
           "description": "Help chat"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_statistic_click_action": {
       "type": "object",
@@ -1770,8 +1733,7 @@
         "url": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_stats": {
       "type": "object",
@@ -1792,8 +1754,7 @@
         "views_times": {
           "$ref": "../ads/objects.json#/definitions/ads_stats_views_times"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_stats_age": {
       "type": "object",
@@ -1809,8 +1770,7 @@
         {
           "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "ads_stats_cities": {
       "type": "object",
@@ -1833,8 +1793,7 @@
         {
           "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "ads_stats_format": {
       "type": "object",
@@ -1966,8 +1925,7 @@
             "$ref": "../ads/objects.json#/definitions/ads_mobile_stat_item"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_stats_sex": {
       "type": "object",
@@ -1982,8 +1940,7 @@
         {
           "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "ads_stats_sex_age": {
       "type": "object",
@@ -1999,8 +1956,7 @@
         {
           "$ref": "../ads/objects.json#/definitions/ads_demographic_stats_period_item_base"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "ads_stats_sex_value": {
       "type": "string",
@@ -2050,8 +2006,7 @@
         "views_ads_times_11_plus": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_stories": {
       "type": "object",
@@ -2069,8 +2024,7 @@
           "type": "string",
           "description": "Stories disclaimers text"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_stories_owner": {
       "type": "object",
@@ -2121,8 +2075,7 @@
           "type": "boolean",
           "description": "Can follow"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_story_item": {
       "type": "object",
@@ -2231,8 +2184,7 @@
           "type": "boolean",
           "description": "Is liked"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_story_item_link": {
       "type": "object",
@@ -2253,8 +2205,7 @@
           "type": "string",
           "description": "Raw url"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_story_item_stats": {
       "type": "object",
@@ -2265,8 +2216,7 @@
         "url_view": {
           "$ref": "../ads/objects.json#/definitions/ads_story_item_stats_url_view"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_story_item_stats_follow": {
       "type": "object",
@@ -2280,8 +2230,7 @@
           "type": "string",
           "description": "Event hash"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_story_item_stats_url_view": {
       "type": "object",
@@ -2295,8 +2244,7 @@
           "type": "string",
           "description": "Event hash"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_targ_settings": {
       "type": "object",
@@ -2316,8 +2264,7 @@
         {
           "$ref": "../ads/objects.json#/definitions/ads_criteria"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "ads_targ_stats": {
       "type": "object",
@@ -2363,8 +2310,7 @@
           "type": "integer",
           "description": "Total alive audience"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_targ_suggestions": {
       "type": "object",
@@ -2385,8 +2331,7 @@
           "type": "string",
           "description": "Parent"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_targ_suggestions_cities": {
       "type": "object",
@@ -2403,8 +2348,7 @@
           "type": "string",
           "description": "Parent object"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_targ_suggestions_regions": {
       "type": "object",
@@ -2421,8 +2365,7 @@
           "type": "string",
           "description": "Object type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_targ_suggestions_schools": {
       "type": "object",
@@ -2446,8 +2389,7 @@
         "type": {
           "$ref": "../ads/objects.json#/definitions/ads_targ_suggestions_schools_type"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_targ_suggestions_schools_type": {
       "type": "string",
@@ -2522,8 +2464,7 @@
           "type": "integer",
           "description": "Last updated"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_target_group_target_pixel_rule": {
       "type": "object",
@@ -2552,8 +2493,7 @@
         "event_regex_match": {
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_target_pixel_info": {
       "type": "object",
@@ -2582,8 +2522,7 @@
           "type": "string",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_updateOfficeUsers_result": {
       "type": "object",
@@ -2603,8 +2542,7 @@
         "error": {
           "$ref": "../base/objects.json#/definitions/base_error"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_update_ads_status": {
       "type": "object",
@@ -2624,8 +2562,7 @@
           "type": "string",
           "description": "Error description"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_update_clients_status": {
       "type": "object",
@@ -2645,8 +2582,7 @@
           "type": "string",
           "description": "Error description"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_user_specification": {
       "type": "object",
@@ -2676,8 +2612,7 @@
         "view_budget": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_user_specification_cutted": {
       "type": "object",
@@ -2700,8 +2635,7 @@
         "view_budget": {
           "type": "boolean"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "ads_users": {
       "type": "object",
@@ -2720,8 +2654,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

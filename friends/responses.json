@@ -18,11 +18,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_add_response": {
       "type": "object",
@@ -42,8 +40,7 @@
           ],
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_areFriends_extended_response": {
       "type": "object",
@@ -55,8 +52,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_areFriends_response": {
       "type": "object",
@@ -68,8 +64,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_delete_response": {
       "type": "object",
@@ -124,11 +119,9 @@
             }
           },
           "maxProperties": 2,
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getAppUsers_response": {
       "type": "object",
@@ -144,8 +137,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getByPhones_response": {
       "type": "object",
@@ -157,8 +149,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getLists_response": {
       "type": "object",
@@ -180,11 +171,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getMutual_response": {
       "type": "object",
@@ -200,8 +189,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getMutual_target_uids_response": {
       "type": "object",
@@ -213,8 +201,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getOnline_online_mobile_response": {
       "type": "object",
@@ -245,11 +232,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getOnline_response": {
       "type": "object",
@@ -265,8 +250,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getRecent_response": {
       "type": "object",
@@ -281,8 +265,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getRequests_extended_response": {
       "type": "object",
@@ -312,11 +295,9 @@
               "description": "Friend requests last viewed timestamp"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getRequests_need_mutual_response": {
       "type": "object",
@@ -346,11 +327,9 @@
               "description": "Friend requests last viewed timestamp"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getRequests_response": {
       "type": "object",
@@ -384,11 +363,9 @@
               "description": "Friend requests last viewed timestamp"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_getSuggestions_response": {
       "type": "object",
@@ -410,11 +387,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_get_fields_response": {
       "type": "object",
@@ -442,11 +417,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_get_response": {
       "type": "object",
@@ -472,11 +445,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "friends_search_response": {
       "type": "object",
@@ -498,11 +469,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

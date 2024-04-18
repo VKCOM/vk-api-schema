@@ -12,8 +12,7 @@
           "$ref": "../secure/objects.json#/definitions/secure_token_checked",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_getAppBalance_response": {
       "type": "object",
@@ -23,8 +22,7 @@
           "description": "App balance",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_getSMSHistory_response": {
       "type": "object",
@@ -36,8 +34,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_getTransactionsHistory_response": {
       "type": "object",
@@ -49,8 +46,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_getUserLevel_response": {
       "type": "object",
@@ -62,8 +58,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_giveEventSticker_response": {
       "type": "object",
@@ -75,8 +70,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_sendNotification_response": {
       "type": "object",
@@ -91,8 +85,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "secure_setCounter_array_response": {
       "type": "object",
@@ -104,8 +97,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

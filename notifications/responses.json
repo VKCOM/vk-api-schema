@@ -64,11 +64,9 @@
               "type": "integer"
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "notifications_sendMessage_response": {
       "type": "object",
@@ -80,8 +78,7 @@
           },
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

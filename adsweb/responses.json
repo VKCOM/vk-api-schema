@@ -16,11 +16,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getAdUnitCode_response": {
       "type": "object",
@@ -33,11 +31,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getAdUnits_response": {
       "type": "object",
@@ -56,11 +52,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getFraudHistory_response": {
       "type": "object",
@@ -79,11 +73,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getSites_response": {
       "type": "object",
@@ -102,11 +94,9 @@
               }
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "adsweb_getStatistics_response": {
       "type": "object",
@@ -125,11 +115,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

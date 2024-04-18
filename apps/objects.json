@@ -97,8 +97,7 @@
             }
           }
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "apps_app_fields": {
       "type": "string",
@@ -231,8 +230,7 @@
           "type": "integer",
           "description": "Screen orientation"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_app_type": {
       "type": "string",
@@ -270,8 +268,7 @@
             "$ref": "../users/objects.json#/definitions/users_user_min"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_leaderboard": {
       "type": "object",
@@ -295,8 +292,7 @@
           "format": "int64",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_scope": {
       "type": "object",
@@ -342,8 +338,7 @@
           "type": "string",
           "description": "Scope title"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "apps_testing_group": {
       "type": "object",
@@ -383,8 +378,7 @@
             ]
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

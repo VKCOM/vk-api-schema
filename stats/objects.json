@@ -39,8 +39,7 @@
           "minimum": 0,
           "description": "Unsubscribed count"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_city": {
       "type": "object",
@@ -58,8 +57,7 @@
           "type": "integer",
           "description": "City ID"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_country": {
       "type": "object",
@@ -81,8 +79,7 @@
           "type": "integer",
           "description": "Country ID"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_period": {
       "type": "object",
@@ -102,8 +99,7 @@
         "visitors": {
           "$ref": "../stats/objects.json#/definitions/stats_visitors_one_of"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_period_from_one_of": {
       "type": "integer",
@@ -162,8 +158,7 @@
             "$ref": "../stats/objects.json#/definitions/stats_sex_age"
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_reach_one_of": {
       "type": "object",
@@ -191,8 +186,7 @@
         "count_subscribers": {
           "type": "integer"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_views": {
       "type": "object",
@@ -243,8 +237,7 @@
           "minimum": 0,
           "description": "Visitors number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "stats_visitors_one_of": {
       "type": "object",
@@ -306,8 +299,7 @@
             "$ref": "../stats/objects.json#/definitions/stats_sex_age"
           }
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

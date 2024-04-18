@@ -62,8 +62,7 @@
           "description": "Title",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "prettyCards_prettyCardOrError": {
       "type": "object",

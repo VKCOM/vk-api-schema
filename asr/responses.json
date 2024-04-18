@@ -10,11 +10,9 @@
       "properties": {
         "response": {
           "$ref": "../asr/objects.json#/definitions/asr_task",
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "asr_process_response": {
       "type": "object",
@@ -28,11 +26,9 @@
               "description": "ID of created task in UUID format."
             }
           },
-          "required": true,
-          "additionalProperties": false
+          "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

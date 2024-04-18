@@ -18,8 +18,7 @@
           "type": "string",
           "description": "Currency name"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_amount_item": {
       "type": "object",
@@ -36,8 +35,7 @@
           "type": "string",
           "description": "Votes number"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_order": {
       "type": "object",
@@ -98,8 +96,7 @@
           "description": "User ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "orders_subscription": {
       "type": "object",
@@ -188,8 +185,7 @@
           "type": "boolean",
           "description": "Is game (not miniapp) subscription"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

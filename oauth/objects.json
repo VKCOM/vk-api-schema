@@ -22,8 +22,7 @@
           "type": "string",
           "description": "URI for validation"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

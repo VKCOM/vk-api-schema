@@ -22,8 +22,7 @@
           "type": "integer",
           "description": "Item ID"
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }

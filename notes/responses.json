@@ -13,8 +13,7 @@
           "description": "Note ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "notes_createComment_response": {
       "type": "object",
@@ -24,8 +23,7 @@
           "description": "Comment ID",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "notes_getById_response": {
       "type": "object",
@@ -34,8 +32,7 @@
           "$ref": "../notes/objects.json#/definitions/notes_note",
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "notes_getComments_response": {
       "type": "object",
@@ -56,11 +53,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     },
     "notes_get_response": {
       "type": "object",
@@ -81,11 +76,9 @@
               "required": true
             }
           },
-          "additionalProperties": false,
           "required": true
         }
-      },
-      "additionalProperties": false
+      }
     }
   }
 }
