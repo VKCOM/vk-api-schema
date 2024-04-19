@@ -13,7 +13,6 @@
         "address",
         "additional_address",
         "country_id",
-        "country",
         "city_id",
         "city",
         "metro_station_id",

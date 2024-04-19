@@ -32,6 +32,12 @@
     },
     "enum": {
       "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "integer"
+        ]
+      },
       "minItems": 1,
       "uniqueItems": true
     },

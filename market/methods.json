@@ -46,12 +46,14 @@
           "name": "price",
           "description": "Item price.",
           "type": "number",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 999999999999
         },
         {
           "name": "old_price",
           "type": "number",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 999999999999
         },
         {
           "name": "deleted",
@@ -180,6 +182,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_too_many_items_in_album"
         }
       ]
     },
@@ -466,7 +471,8 @@
         "response": {
           "$ref": "../market/responses.json#/definitions/market_createComment_response"
         }
-      }
+      },
+      "errors": []
     },
     {
       "name": "market.delete",
@@ -709,12 +715,14 @@
           "name": "price",
           "description": "Item price.",
           "type": "number",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 999999999999
         },
         {
           "name": "old_price",
           "type": "number",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 999999999999
         },
         {
           "name": "deleted",
@@ -900,6 +908,12 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_market_album_main_hidden"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_failed_to_set_album_as_main"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_failed_to_unset_album_as_main"
         }
       ]
     },
@@ -1251,6 +1265,13 @@
           "name": "with_disabled",
           "description": "Add disabled items to response",
           "type": "boolean"
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       ],
       "responses": {
@@ -1636,6 +1657,70 @@
       }
     },
     {
+      "name": "market.getProductPhotoUploadServer",
+      "description": "Returns the server address for market photo upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "description": "Community ID.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_getUploadServer_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.getProperties",
+      "description": "Get properties",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getProperties_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_error"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_variants_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_extended_not_enabled"
+        }
+      ]
+    },
+    {
       "name": "market.groupItems",
       "access_token_type": [
         "user"
@@ -2019,6 +2104,12 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_item_is_not_deleted"
         }
       ]
     },
@@ -2051,6 +2142,31 @@
           "$ref": "../base/responses.json#/definitions/base_bool_response"
         }
       }
+    },
+    {
+      "name": "market.saveProductPhoto",
+      "description": "Save market photo after upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "upload_response",
+          "description": "Upload response",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_photo_id_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
     },
     {
       "name": "market.search",

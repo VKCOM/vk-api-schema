@@ -20,6 +20,14 @@
     "prettyCards_prettyCard": {
       "type": "object",
       "properties": {
+        "inner_type": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "prettyCards_prettyCard"
+          ],
+          "default": "prettyCards_prettyCard"
+        },
         "button": {
           "description": "Button key",
           "$ref": "../prettyCards/objects.json#/definitions/prettyCards_button_one_of"
@@ -66,6 +74,13 @@
     },
     "prettyCards_prettyCardOrError": {
       "type": "object",
+      "discriminator": {
+        "propertyName": "inner_type",
+        "mapping": {
+          "prettyCards_prettyCard": "../prettyCards/objects.json#/definitions/prettyCards_prettyCard",
+          "base_error": "../base/objects.json#/definitions/base_error"
+        }
+      },
       "oneOf": [
         {
           "$ref": "../prettyCards/objects.json#/definitions/prettyCards_prettyCard"

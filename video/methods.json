@@ -289,6 +289,12 @@
           "required": true,
           "format": "int32",
           "minimum": 0
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -445,6 +451,12 @@
               "only me"
             ]
           }
+        },
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -1350,7 +1362,7 @@
         },
         {
           "name": "filters",
-          "description": "Filters to apply: 'youtube' - return YouTube videos only, 'vimeo' - return Vimeo videos only, 'short' - return short videos only, 'long' - return long videos only",
+          "description": "Filters to apply: 'youtube' - return YouTube videos only, 'vimeo' - return Vimeo videos only, 'vk' - return VK videos only, 'short' - return short videos only, 'long' - return long videos only",
           "type": "array",
           "items": {
             "type": "string",
@@ -1358,6 +1370,7 @@
               "long",
               "short",
               "vimeo",
+              "vk",
               "youtube"
             ]
           }

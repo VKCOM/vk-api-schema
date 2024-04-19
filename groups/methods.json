@@ -1595,7 +1595,8 @@
           "description": "Number of community members to return.",
           "type": "integer",
           "default": 1000,
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 1000
         },
         {
           "name": "fields",
@@ -1885,6 +1886,7 @@
           "name": "group_id",
           "description": "ID or screen name of the community.",
           "type": "integer",
+          "required": true,
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
@@ -2197,6 +2199,16 @@
         {
           "name": "wall_repost",
           "description": "New wall posts notifications ('0' - disabled, '1' - enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_schedule_post_new",
+          "description": "Scheduled post added to time slot ('0' - disabled, '1' - enabled).",
+          "type": "boolean"
+        },
+        {
+          "name": "wall_schedule_post_delete",
+          "description": "Scheduled post removed from time slot ('0' - disabled, '1' - enabled).",
           "type": "boolean"
         },
         {

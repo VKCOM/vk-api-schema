@@ -45,7 +45,7 @@
         },
         "messages": {
           "type": "integer",
-          "description": "New messages number",
+          "description": "New messages number. Will be removed when messages.getCounters is released.",
           "minimum": 1
         },
         "memories": {
@@ -77,6 +77,7 @@
         "events",
         "friends",
         "friends_recommendations",
+        "games",
         "gifts",
         "groups",
         "messages",
@@ -94,17 +95,13 @@
           "description": "Two factor authentication is enabled",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
-        "country": {
-          "type": "string",
-          "description": "Country code"
-        },
         "https_required": {
           "description": "Information whether HTTPS-only is enabled",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
         "intro": {
           "description": "Information whether user has been processed intro",
-          "$ref": "../base/objects.json#/definitions/base_bool_int"
+          "type": "integer"
         },
         "lang": {
           "type": "integer",

@@ -389,6 +389,9 @@
         },
         "button": {
           "$ref": "../newsfeed/objects.json#/definitions/newsfeed_item_digest_button"
+        },
+        "feed_id": {
+          "type": "string"
         }
       }
     },
@@ -400,6 +403,14 @@
         },
         {
           "properties": {
+            "inner_type": {
+              "type": "string",
+              "required": true,
+              "enum": [
+                "newsfeed_item_digest_full_item"
+              ],
+              "default": "newsfeed_item_digest_full_item"
+            },
             "text": {
               "type": "string"
             },
@@ -726,9 +737,6 @@
         },
         {
           "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
-        },
-        {
-          "properties": []
         }
       ]
     },
@@ -893,7 +901,8 @@
         "stories",
         "note",
         "audio_playlist",
-        "clip"
+        "clip",
+        "clips_retention"
       ]
     }
   }

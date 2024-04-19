@@ -48,7 +48,7 @@
             "videos": {
               "type": "array",
               "items": {
-                "$ref": "../video/objects.json#/definitions/video_video"
+                "$ref": "../video/objects.json#/definitions/video_video_full"
               }
             },
             "apps": {

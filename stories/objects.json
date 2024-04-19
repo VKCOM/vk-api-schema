@@ -86,7 +86,22 @@
             "white",
             "question_reply",
             "light",
-            "impressive"
+            "impressive",
+            "dark",
+            "accent_background",
+            "accent_text",
+            "dark_unique",
+            "light_unique",
+            "light_text",
+            "dark_text",
+            "black",
+            "dark_without_bg",
+            "light_without_bg",
+            "rectangle",
+            "circle",
+            "poop",
+            "heart",
+            "star"
           ]
         },
         "type": {
@@ -107,7 +122,8 @@
             "app",
             "situational_theme",
             "playlist",
-            "clip"
+            "clip",
+            "situational_template"
           ],
           "required": true
         },

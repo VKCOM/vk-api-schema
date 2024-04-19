@@ -318,6 +318,9 @@
           "description": "Chat title",
           "required": true
         },
+        "pinned_messages_count": {
+          "type": "integer"
+        },
         "pinned_message": {
           "$ref": "../messages/objects.json#/definitions/messages_pinned_message"
         },
@@ -553,7 +556,8 @@
         "last_conversation_message_id": {
           "type": "integer",
           "minimum": 0,
-          "description": "Conversation message ID of the last message in conversation"
+          "description": "Conversation message ID of the last message in conversation",
+          "required": true
         },
         "in_read": {
           "type": "integer",
@@ -574,7 +578,7 @@
         },
         "is_marked_unread": {
           "type": "boolean",
-          "description": "Is this conversation uread"
+          "description": "Is this conversation unread"
         },
         "out_read_by": {
           "$ref": "../messages/objects.json#/definitions/messages_out_read_by"
@@ -614,6 +618,11 @@
         },
         "chat_settings": {
           "$ref": "../messages/objects.json#/definitions/messages_chat_settings"
+        },
+        "version": {
+          "type": "integer",
+          "required": true,
+          "format": "int64"
         }
       }
     },
@@ -626,6 +635,9 @@
         },
         "reason": {
           "type": "integer"
+        },
+        "until": {
+          "type": "integer"
         }
       }
     },
@@ -635,6 +647,10 @@
         "can_kick": {
           "type": "boolean",
           "description": "Is it possible for user to kick this member"
+        },
+        "is_restricted_to_write": {
+          "type": "boolean",
+          "description": "Does this member have write permission"
         },
         "invited_by": {
           "type": "integer",
@@ -759,7 +775,9 @@
         },
         "conversation_message_id": {
           "type": "integer",
-          "description": "Conversation message ID"
+          "description": "Conversation message ID",
+          "minimum": 0,
+          "required": true
         },
         "date": {
           "type": "integer",
@@ -834,6 +852,13 @@
           "items": {
             "type": "integer",
             "description": "Message conversation_message_id"
+          }
+        },
+        "cmids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "description": "Message cmid"
           }
         },
         "message_ids": {
@@ -932,6 +957,23 @@
         }
       }
     },
+    "messages_getInviteLink_by_owner_response_item": {
+      "type": "object",
+      "properties": {
+        "owner_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "required": true
+        },
+        "link": {
+          "type": "string"
+        },
+        "error": {
+          "$ref": "../base/objects.json#/definitions/base_message_error"
+        }
+      }
+    },
     "messages_graffiti": {
       "type": "object",
       "properties": {
@@ -981,6 +1023,7 @@
         },
         "date": {
           "type": "integer",
+          "format": "int64",
           "description": "Message sending time",
           "required": true
         },
@@ -995,7 +1038,8 @@
         },
         "cmid": {
           "type": "integer",
-          "description": "Conversation Message ID"
+          "description": "Conversation Message ID",
+          "required": true
         },
         "from_id": {
           "type": "integer",
@@ -1048,15 +1092,14 @@
       "type": "string",
       "description": "Attachments type",
       "enum": [
-        "photo",
-        "video",
+        "app_action",
         "audio",
         "doc",
         "link",
         "market",
+        "photo",
+        "video",
         "wall",
-        "share",
-        "app_action",
         "graffiti",
         "audio_message"
       ]
@@ -1390,7 +1433,9 @@
         },
         "conversation_message_id": {
           "type": "integer",
-          "description": "Unique auto-incremented number for all messages with this peer"
+          "description": "Unique auto-incremented number for all messages with this peer",
+          "minimum": 0,
+          "required": true
         },
         "date": {
           "type": "integer",
@@ -1480,6 +1525,10 @@
           "type": "integer",
           "description": "Last reaction id set on this message"
         },
+        "is_pinned": {
+          "type": "boolean",
+          "description": "Is message pinned in its conversation"
+        },
         "text": {
           "type": "string",
           "description": "Message text",
@@ -1500,6 +1549,15 @@
         "is_silent": {
           "type": "boolean",
           "description": "Is silent message, push without sound"
+        },
+        "is_unavailable": {
+          "type": "boolean",
+          "description": "Is message unavailable for some reason, including its id equals 0"
+        },
+        "version": {
+          "type": "integer",
+          "required": true,
+          "format": "int64"
         }
       }
     },
@@ -1636,7 +1694,6 @@
         "doc",
         "link",
         "market",
-        "market_album",
         "gift",
         "sticker",
         "wall",
@@ -1711,7 +1768,9 @@
         },
         "conversation_message_id": {
           "type": "integer",
-          "description": "Unique auto-incremented number for all messages with this peer"
+          "description": "Unique auto-incremented number for all messages with this peer",
+          "minimum": 0,
+          "required": true
         },
         "id": {
           "type": "integer",
@@ -1757,6 +1816,14 @@
         },
         "keyboard": {
           "$ref": "../messages/objects.json#/definitions/messages_keyboard"
+        },
+        "out": {
+          "description": "Information whether the message is outcoming",
+          "type": "boolean"
+        },
+        "important": {
+          "type": "boolean",
+          "description": "Is it an important message"
         }
       }
     },
@@ -1891,7 +1958,8 @@
         },
         "conversation_message_id": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "required": true
         },
         "error": {
           "$ref": "../base/objects.json#/definitions/base_message_error"

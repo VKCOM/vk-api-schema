@@ -54,6 +54,16 @@
                 "$ref": "../users/objects.json#/definitions/users_subscriptions_item"
               },
               "required": true
+            },
+            "liked_by_author": {
+              "type": "object",
+              "$ref": "../users/objects.json#/definitions/users_subscriptions_item",
+              "description": "Author of post if he liked the comment"
+            },
+            "liked_by_group": {
+              "type": "object",
+              "$ref": "../users/objects.json#/definitions/users_subscriptions_item",
+              "description": "Group where post is present if they liked the comment"
             }
           },
           "required": true

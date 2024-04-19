@@ -317,7 +317,8 @@
         "suggest",
         "post_ads",
         "photo",
-        "video"
+        "video",
+        "clip"
       ]
     },
     "wall_posted_photo": {
@@ -476,6 +477,14 @@
     "wall_wallpost": {
       "type": "object",
       "properties": {
+        "inner_type": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "wall_wallpost"
+          ],
+          "default": "wall_wallpost"
+        },
         "access_key": {
           "type": "string",
           "description": "Access key to private object"
@@ -488,6 +497,10 @@
         },
         "deleted_details": {
           "type": "string"
+        },
+        "donut_miniapp_url": {
+          "type": "string",
+          "format": "uri"
         },
         "attachments": {
           "type": "array",

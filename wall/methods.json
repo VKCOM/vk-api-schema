@@ -167,6 +167,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_group_need_2fa"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
         }
       ]
     },
@@ -200,6 +203,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_wall_access_comment"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
         }
       ]
     },
@@ -235,13 +241,6 @@
         {
           "name": "attachments",
           "description": "(Required if 'message' is not set.) List of objects attached to the post, in the following format: \"<owner_id>_<media_id>,<owner_id>_<media_id>\", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: \"photo100172_166443618,photo66748_265827614\", May contain a link to an external page to include in the post. Example: \"photo66748_265827614,http://habrahabr.ru\", \"NOTE: If more than one link is being attached, an error is thrown.\"",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "primary_attachments",
           "type": "array",
           "items": {
             "type": "string"
@@ -490,16 +489,14 @@
       ],
       "parameters": [
         {
-          "name": "owner_id",
-          "description": "ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.",
-          "type": "integer",
-          "format": "int64",
-          "entity": "owner"
-        },
-        {
           "name": "domain",
           "description": "User or community short address.",
-          "type": "string"
+          "type": [
+            "integer",
+            "string"
+          ],
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "offset",
@@ -701,11 +698,13 @@
           "type": "string",
           "enum": [
             "asc",
-            "desc"
+            "desc",
+            "smart"
           ],
           "enumNames": [
             "chronological",
-            "reverse chronological"
+            "reverse chronological",
+            "most interesting"
           ]
         },
         {
@@ -824,6 +823,45 @@
       }
     },
     {
+      "name": "wall.parseAttachedLink",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "links",
+          "type": "string",
+          "required": true,
+          "format": "json",
+          "items": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "extended",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "fields",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "name_case",
+          "type": "string",
+          "$ref": "../base/objects.json#/definitions/base_name_case"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../wall/responses.json#/definitions/wall_parseAttachedLink_response"
+        }
+      }
+    },
+    {
       "name": "wall.pin",
       "description": "Pins the post on wall.",
       "access_token_type": [
@@ -889,13 +927,6 @@
           }
         },
         {
-          "name": "primary_attachments",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        {
           "name": "services",
           "description": "List of services or websites the update will be exported to, if the user has so requested. Sample values: 'twitter', 'facebook'.",
           "type": "string"
@@ -943,6 +974,14 @@
           "default": false
         },
         {
+          "name": "link_title",
+          "type": "string"
+        },
+        {
+          "name": "link_photo_id",
+          "type": "string"
+        },
+        {
           "name": "close_comments",
           "type": "boolean"
         },
@@ -957,40 +996,6 @@
         {
           "name": "copyright",
           "type": "string"
-        },
-        {
-          "name": "topic_id",
-          "description": "Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method",
-          "type": "integer",
-          "minimum": 0,
-          "enum": [
-            0,
-            1,
-            7,
-            12,
-            16,
-            19,
-            21,
-            23,
-            25,
-            26,
-            32,
-            43
-          ],
-          "enumNames": [
-            "empty_topic",
-            "art",
-            "it",
-            "games",
-            "music",
-            "photo",
-            "science_and_tech",
-            "sport",
-            "travel",
-            "tv_and_cinema",
-            "humor",
-            "fashion"
-          ]
         }
       ],
       "responses": {
@@ -1140,6 +1145,7 @@
           "name": "reason",
           "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse",
           "type": "integer",
+          "required": true,
           "minimum": 0,
           "enum": [
             0,
@@ -1197,6 +1203,7 @@
           "name": "reason",
           "description": "Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse",
           "type": "integer",
+          "required": true,
           "minimum": 0,
           "enum": [
             0,
@@ -1357,16 +1364,14 @@
       ],
       "parameters": [
         {
-          "name": "owner_id",
-          "description": "user or community id. \"Remember that for a community 'owner_id' must be negative.\"",
-          "type": "integer",
-          "format": "int64",
-          "entity": "owner"
-        },
-        {
           "name": "domain",
           "description": "user or community screen name.",
-          "type": "string"
+          "type": [
+            "integer",
+            "string"
+          ],
+          "format": "int64",
+          "entity": "owner"
         },
         {
           "name": "query",

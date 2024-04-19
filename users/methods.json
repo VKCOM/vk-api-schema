@@ -41,6 +41,13 @@
           "description": "Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional",
           "type": "string",
           "$ref": "../base/objects.json#/definitions/base_name_case"
+        },
+        {
+          "name": "from_group_id",
+          "type": "integer",
+          "format": "int64",
+          "default": 0,
+          "entity": "owner"
         }
       ],
       "responses": {
@@ -450,6 +457,13 @@
         {
           "name": "screen_ref",
           "type": "string"
+        },
+        {
+          "name": "from_group_id",
+          "type": "integer",
+          "format": "int64",
+          "default": 0,
+          "entity": "owner"
         }
       ],
       "responses": {

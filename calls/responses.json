@@ -20,6 +20,11 @@
               "description": "Join link",
               "required": true
             },
+            "ok_join_link": {
+              "type": "string",
+              "description": "OK join link",
+              "required": true
+            },
             "broadcast_video_id": {
               "type": "string",
               "description": "video id for link"

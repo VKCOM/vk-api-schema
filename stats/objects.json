@@ -94,10 +94,10 @@
           "$ref": "../stats/objects.json#/definitions/stats_period_to_one_of"
         },
         "reach": {
-          "$ref": "../stats/objects.json#/definitions/stats_reach_one_of"
+          "$ref": "../stats/objects.json#/definitions/stats_reach"
         },
         "visitors": {
-          "$ref": "../stats/objects.json#/definitions/stats_visitors_one_of"
+          "$ref": "../stats/objects.json#/definitions/stats_views"
         }
       }
     },
@@ -159,10 +159,6 @@
           }
         }
       }
-    },
-    "stats_reach_one_of": {
-      "type": "object",
-      "$ref": "../stats/objects.json#/definitions/stats_reach"
     },
     "stats_sex_age": {
       "type": "object",
@@ -238,10 +234,6 @@
           "description": "Visitors number"
         }
       }
-    },
-    "stats_visitors_one_of": {
-      "type": "object",
-      "$ref": "../stats/objects.json#/definitions/stats_views"
     },
     "stats_wallpost_stat": {
       "type": "object",

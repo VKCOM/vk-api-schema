@@ -48,6 +48,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_friends_add_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_friends_too_many_friends"
         }
       ]
     },
@@ -366,36 +369,6 @@
       }
     },
     {
-      "name": "friends.getByPhones",
-      "description": "Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "phones",
-          "description": "List of phone numbers in MSISDN format (maximum 1000). Example: \"+79219876543,+79111234567\"",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "fields",
-          "description": "Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online, counters'.",
-          "type": "array",
-          "items": {
-            "$ref": "../users/objects.json#/definitions/users_fields"
-          }
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../friends/responses.json#/definitions/friends_getByPhones_response"
-        }
-      }
-    },
-    {
       "name": "friends.getLists",
       "description": "Returns a list of the user's friend lists.",
       "access_token_type": [
@@ -473,6 +446,11 @@
           "description": "Offset needed to return a specific subset of mutual friends.",
           "type": "integer",
           "minimum": 0
+        },
+        {
+          "name": "need_common_count",
+          "description": "Return mutual friends total count",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -481,6 +459,9 @@
         },
         "targetUidsResponse": {
           "$ref": "../friends/responses.json#/definitions/friends_getMutual_target_uids_response"
+        },
+        "totalCountResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getMutual_total_count_response"
         }
       }
     },
@@ -534,8 +515,15 @@
         },
         "onlineMobileResponse": {
           "$ref": "../friends/responses.json#/definitions/friends_getOnline_online_mobile_response"
+        },
+        "extendedResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getOnline_extended_response"
+        },
+        "onlineMobileExtendedResponse": {
+          "$ref": "../friends/responses.json#/definitions/friends_getOnline_online_mobile_extended_response"
         }
-      }
+      },
+      "errors": []
     },
     {
       "name": "friends.getRecent",
@@ -669,9 +657,9 @@
           "name": "count",
           "description": "Number of suggestions to return.",
           "type": "integer",
-          "default": 500,
+          "default": 100,
           "minimum": 0,
-          "maximum": 500
+          "maximum": 100
         },
         {
           "name": "offset",

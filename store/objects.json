@@ -109,6 +109,10 @@
         "url": {
           "type": "string",
           "format": "uri"
+        },
+        "is_popup": {
+          "type": "boolean",
+          "description": "Information whether the product is a sticker pack with popup stickers (for stickers product type)"
         }
       }
     },

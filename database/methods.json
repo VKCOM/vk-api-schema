@@ -49,12 +49,6 @@
       ],
       "parameters": [
         {
-          "name": "country_id",
-          "description": "Country ID.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
           "name": "region_id",
           "description": "Region ID.",
           "type": "integer",
@@ -286,13 +280,6 @@
       ],
       "parameters": [
         {
-          "name": "country_id",
-          "description": "Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.",
-          "type": "integer",
-          "required": true,
-          "minimum": 0
-        },
-        {
           "name": "q",
           "description": "Search query.",
           "type": "string"
@@ -392,12 +379,6 @@
           "name": "q",
           "description": "Search query.",
           "type": "string"
-        },
-        {
-          "name": "country_id",
-          "description": "Country ID.",
-          "type": "integer",
-          "minimum": 0
         },
         {
           "name": "city_id",

@@ -99,6 +99,57 @@
         }
       }
     },
+    "friends_online_users": {
+      "type": "object",
+      "properties": {
+        "online": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
+          }
+        },
+        "total_count": {
+          "type": "integer",
+          "description": "Total online friends number"
+        }
+      }
+    },
+    "friends_online_users_with_mobile": {
+      "type": "object",
+      "properties": {
+        "online": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
+          }
+        },
+        "online_mobile": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer",
+            "description": "User ID",
+            "minimum": 1,
+            "format": "int64",
+            "entity": "owner"
+          }
+        },
+        "total_count": {
+          "type": "integer",
+          "description": "Total online friends number"
+        }
+      }
+    },
     "friends_requests_mutual": {
       "type": "object",
       "properties": {
@@ -180,22 +231,6 @@
                 "type": "string",
                 "description": "Description"
               }
-            }
-          }
-        }
-      ]
-    },
-    "friends_user_xtr_phone": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "../users/objects.json#/definitions/users_user_full"
-        },
-        {
-          "properties": {
-            "phone": {
-              "type": "string",
-              "description": "User phone"
             }
           }
         }

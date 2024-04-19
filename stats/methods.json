@@ -122,7 +122,18 @@
       "access_token_type": [
         "user"
       ],
-      "parameters": [],
+      "parameters": [
+        {
+          "name": "type",
+          "type": "string",
+          "default": "open",
+          "enum": [
+            "activity",
+            "close",
+            "open"
+          ]
+        }
+      ],
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_ok_response"

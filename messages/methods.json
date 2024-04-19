@@ -197,6 +197,12 @@
           "type": "boolean"
         },
         {
+          "name": "reason",
+          "description": "Reason for spam",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "group_id",
           "description": "Group ID (for group messages with user access token)",
           "type": "integer",
@@ -815,6 +821,13 @@
           "format": "int64",
           "minimum": 0,
           "entity": "owner"
+        },
+        {
+          "name": "member_ids",
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
         }
       ],
       "responses": {
@@ -825,6 +838,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_user_no_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ]
     },
@@ -1081,6 +1097,7 @@
               "app_action_mini_apps",
               "audio",
               "audio_message",
+              "clip",
               "doc",
               "graffiti",
               "link",
@@ -1156,6 +1173,11 @@
           "maximum": 45
         },
         {
+          "name": "message_video",
+          "type": "boolean",
+          "default": false
+        },
+        {
           "name": "media_type",
           "description": "Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'",
           "type": "string",
@@ -1165,6 +1187,7 @@
             "app_action_mini_apps",
             "audio",
             "audio_message",
+            "clip",
             "doc",
             "graffiti",
             "link",
@@ -1300,10 +1323,8 @@
         },
         {
           "name": "name_case",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string",
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         },
         {
           "name": "fields",
@@ -1356,6 +1377,9 @@
       "responses": {
         "response": {
           "$ref": "../messages/responses.json#/definitions/messages_getInviteLink_response"
+        },
+        "responseByOwner": {
+          "$ref": "../messages/responses.json#/definitions/messages_getInviteLink_by_owner_response"
         }
       },
       "errors": [
@@ -1923,6 +1947,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_cant_pin_expiring_message"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ]
     },
@@ -2384,6 +2411,12 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_user_left"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_group_for_notifications_only"
         }
       ]
     },
@@ -2526,6 +2559,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ]
     },
@@ -2590,6 +2626,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ]
     }

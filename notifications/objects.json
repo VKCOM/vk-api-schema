@@ -41,6 +41,14 @@
     "notifications_notification": {
       "type": "object",
       "properties": {
+        "inner_type": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "notifications_notification"
+          ],
+          "default": "notifications_notification"
+        },
         "date": {
           "type": "integer",
           "description": "Date when the event has been occurred"

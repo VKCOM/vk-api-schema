@@ -5,6 +5,21 @@
   "description": "Contains JSON Schema documents explaining the VK.COM API - responses",
   "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "apps_addSnippet_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "snippet_id": {
+              "type": "integer",
+              "required": true
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "apps_created_group_response": {
       "type": "object",
       "properties": {
@@ -187,6 +202,23 @@
         }
       }
     },
+    "apps_getSnippets_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../apps/objects.json#/definitions/apps_custom_snippet"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "apps_getTestingGroups_response": {
       "type": "object",
       "properties": {
@@ -194,22 +226,6 @@
           "type": "array",
           "items": {
             "$ref": "../apps/objects.json#/definitions/apps_testing_group"
-          },
-          "required": true
-        }
-      }
-    },
-    "apps_get_last_uploaded_version_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "version": {
-              "type": "string",
-              "description": "Last uploaded version",
-              "required": true
-            }
           },
           "required": true
         }

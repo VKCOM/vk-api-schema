@@ -234,6 +234,24 @@
       "type": "boolean",
       "description": "Information whether the field is anonymous"
     },
+    "polls_poll_extended": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../polls/objects.json#/definitions/polls_poll"
+        },
+        {
+          "properties": {
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user_full"
+              }
+            }
+          }
+        }
+      ]
+    },
     "polls_voters": {
       "type": "object",
       "properties": {

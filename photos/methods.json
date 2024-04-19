@@ -194,7 +194,8 @@
         "response": {
           "$ref": "../photos/responses.json#/definitions/photos_createComment_response"
         }
-      }
+      },
+      "errors": []
     },
     {
       "name": "photos.delete",
@@ -2039,6 +2040,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_param_hash"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_upload"
         }
       ]
     },
@@ -2067,12 +2071,12 @@
         },
         {
           "name": "start_time",
-          "type": "integer",
+          "type": "number",
           "minimum": 0
         },
         {
           "name": "end_time",
-          "type": "integer",
+          "type": "number",
           "minimum": 0
         },
         {

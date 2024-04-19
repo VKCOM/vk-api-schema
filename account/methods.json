@@ -130,6 +130,14 @@
           "default": 20,
           "minimum": 0,
           "maximum": 200
+        },
+        {
+          "name": "fields",
+          "description": "Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.",
+          "type": "array",
+          "items": {
+            "$ref": "../base/objects.json#/definitions/base_user_group_fields"
+          }
         }
       ],
       "responses": {

@@ -149,6 +149,14 @@
     "market_market_category_nested": {
       "type": "object",
       "properties": {
+        "inner_type": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "market_market_category_nested"
+          ],
+          "default": "market_market_category_nested"
+        },
         "id": {
           "type": "integer",
           "description": "Category ID",
@@ -198,6 +206,18 @@
         "url": {
           "type": "string",
           "description": "SEO-friendly URL to page with category's items"
+        },
+        "seo_name": {
+          "type": "string",
+          "description": "SEO-friendly variant of category's name"
+        },
+        "page_title": {
+          "type": "string",
+          "description": "Title for category's page. Used for SEO"
+        },
+        "page_description": {
+          "type": "string",
+          "description": "Description for category's page. Used for SEO"
         }
       }
     },
@@ -480,6 +500,10 @@
               "description": "Can item be deleted by current user?",
               "type": "boolean"
             },
+            "can_recover": {
+              "description": "Can item be restored by current user?",
+              "type": "boolean"
+            },
             "can_show_convert_to_service": {
               "description": "Can the item be converted from a product into a service?",
               "type": "boolean"
@@ -701,6 +725,55 @@
         "old_amount_text": {
           "type": "string",
           "description": "Textual representation of old price"
+        }
+      }
+    },
+    "market_property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Property name",
+          "required": true
+        },
+        "type": {
+          "type": "string",
+          "description": "Property type",
+          "enum": [
+            "text",
+            "color"
+          ]
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "$ref": "../market/objects.json#/definitions/market_property_variant"
+          },
+          "required": true
+        }
+      }
+    },
+    "market_property_variant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "title": {
+          "type": "string",
+          "description": "Property name",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "description": "Property value corresponding to property type"
         }
       }
     },

@@ -303,15 +303,7 @@
         {
           "name": "name_case",
           "type": "string",
-          "default": "nom",
-          "enum": [
-            "abl",
-            "acc",
-            "dat",
-            "gen",
-            "ins",
-            "nom"
-          ]
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         }
       ],
       "responses": {
@@ -442,13 +434,11 @@
       "parameters": [
         {
           "name": "photo",
-          "type": "string",
-          "required": true
+          "type": "string"
         },
         {
           "name": "hash",
-          "type": "string",
-          "required": true
+          "type": "string"
         }
       ],
       "responses": {

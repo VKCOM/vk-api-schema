@@ -21,11 +21,6 @@
           "description": "City id of address",
           "minimum": 0
         },
-        "country_id": {
-          "type": "integer",
-          "description": "Country id of address",
-          "minimum": 0
-        },
         "city": {
           "description": "City for address",
           "$ref": "../database/objects.json#/definitions/database_city_by_id"
@@ -229,10 +224,6 @@
         "flood"
       ]
     },
-    "groups_banned_item": {
-      "type": "object",
-      "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info"
-    },
     "groups_callback_server": {
       "type": "object",
       "properties": {
@@ -281,10 +272,6 @@
           "$ref": "../groups/objects.json#/definitions/groups_long_poll_events"
         }
       }
-    },
-    "groups_classifieds_properties": {
-      "type": "object",
-      "properties": []
     },
     "groups_contacts_item": {
       "type": "object",
@@ -430,7 +417,6 @@
         "is_favorite",
         "is_subscribed",
         "city",
-        "country",
         "verified",
         "description",
         "wiki_page",
@@ -610,7 +596,8 @@
         "video_live": {
           "$ref": "../video/objects.json#/definitions/video_live_info"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "groups_group_access": {
       "type": "integer",
@@ -809,9 +796,6 @@
           "$ref": "../groups/objects.json#/definitions/groups_market_properties"
         },
         {
-          "$ref": "../groups/objects.json#/definitions/groups_classifieds_properties"
-        },
-        {
           "properties": {
             "member_status": {
               "$ref": "../groups/objects.json#/definitions/groups_group_full_member_status",
@@ -835,9 +819,6 @@
             },
             "city": {
               "$ref": "../base/objects.json#/definitions/base_object"
-            },
-            "country": {
-              "$ref": "../base/objects.json#/definitions/base_country"
             },
             "description": {
               "type": "string",
@@ -884,6 +865,9 @@
               "description": "Textlives number"
             },
             "cover": {
+              "$ref": "../base/objects.json#/definitions/base_owner_cover"
+            },
+            "video_cover": {
               "$ref": "../base/objects.json#/definitions/base_owner_cover"
             },
             "can_post": {
@@ -1764,6 +1748,14 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
         },
+        "wall_schedule_post_new": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "wall_schedule_post_delete": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
         "donut_subscription_create": {
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "required": true
@@ -2030,17 +2022,13 @@
           "description": "Information about group if type = profile"
         },
         "type": {
-          "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info_type"
+          "type": "string",
+          "enum": [
+            "group",
+            "profile"
+          ]
         }
       }
-    },
-    "groups_owner_xtr_ban_info_type": {
-      "type": "string",
-      "description": "Owner type",
-      "enum": [
-        "group",
-        "profile"
-      ]
     },
     "groups_photo_size": {
       "type": "object",

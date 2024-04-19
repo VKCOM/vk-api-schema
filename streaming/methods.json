@@ -18,17 +18,6 @@
       }
     },
     {
-      "name": "streaming.getSettings",
-      "access_token_type": [
-        "service"
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../streaming/responses.json#/definitions/streaming_getSettings_response"
-        }
-      }
-    },
-    {
       "name": "streaming.getStats",
       "access_token_type": [
         "service"
@@ -86,32 +75,6 @@
       "responses": {
         "response": {
           "$ref": "../streaming/responses.json#/definitions/streaming_getStem_response"
-        }
-      }
-    },
-    {
-      "name": "streaming.setSettings",
-      "access_token_type": [
-        "service"
-      ],
-      "parameters": [
-        {
-          "name": "monthly_tier",
-          "type": "string",
-          "enum": [
-            "tier_1",
-            "tier_2",
-            "tier_3",
-            "tier_4",
-            "tier_5",
-            "tier_6",
-            "unlimited"
-          ]
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../base/responses.json#/definitions/base_ok_response"
         }
       }
     }

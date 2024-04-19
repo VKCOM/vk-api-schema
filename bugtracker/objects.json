@@ -135,6 +135,19 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        "tournament_score": {
+          "type": "integer"
+        },
+        "moderator_user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
+        },
+        "moderated": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -187,11 +200,11 @@
         "author_photo": {
           "type": "string"
         },
-        "edit_hash": {
-          "type": "string"
+        "can_edit": {
+          "type": "boolean"
         },
-        "remove_hash": {
-          "type": "string"
+        "can_remove": {
+          "type": "boolean"
         },
         "is_hidden": {
           "type": "boolean"

@@ -37,6 +37,11 @@
           "name": "access_key",
           "description": "Access key required for an object owned by a private entity.",
           "type": "string"
+        },
+        {
+          "name": "from_group",
+          "description": "Impersonate group",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -82,6 +87,11 @@
           "name": "access_key",
           "description": "Access key required for an object owned by a private entity.",
           "type": "string"
+        },
+        {
+          "name": "from_group",
+          "description": "Impersonate group",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -127,8 +137,8 @@
           "description": "Filters to apply: 'likes' - returns information about all users who liked the object (default), 'copies' - returns information only about users who told their friends about the object",
           "type": "string",
           "enum": [
-            "likes",
-            "copies"
+            "copies",
+            "likes"
           ]
         },
         {

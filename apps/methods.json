@@ -6,6 +6,99 @@
   "termsOfService": "https://dev.vk.com/rules",
   "methods": [
     {
+      "name": "apps.addSnippet",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "vk_ref",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "snippet_im",
+              "snippet_post"
+            ]
+          }
+        },
+        {
+          "name": "group_id",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "entity": "owner",
+            "minimum": 0
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "hash",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        },
+        {
+          "name": "snippet_id",
+          "type": "integer"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "image_url",
+          "type": "string"
+        },
+        {
+          "name": "small_image_url",
+          "type": "string"
+        },
+        {
+          "name": "button",
+          "type": "string",
+          "enum": [
+            "buy",
+            "buy_ticket",
+            "contact",
+            "create",
+            "enroll",
+            "fill",
+            "go",
+            "help",
+            "open",
+            "play"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../apps/responses.json#/definitions/apps_addSnippet_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_empty_filter_params"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_empty_snippet_data"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_too_many_snippets"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_not_found_snippet"
+        }
+      ]
+    },
+    {
       "name": "apps.addUsersToTestingGroup",
       "access_token_type": [
         "service"
@@ -44,11 +137,34 @@
       "access_token_type": [
         "user"
       ],
+      "parameters": [],
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_ok_response"
         }
       }
+    },
+    {
+      "name": "apps.deleteSnippet",
+      "access_token_type": [
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "type": "integer"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_apps_not_found_snippet"
+        }
+      ]
     },
     {
       "name": "apps.get",
@@ -181,7 +297,8 @@
         },
         {
           "name": "name_case",
-          "type": "string"
+          "type": "string",
+          "$ref": "../base/objects.json#/definitions/base_name_case"
         },
         {
           "name": "q",
@@ -273,22 +390,6 @@
           "$ref": "../apps/responses.json#/definitions/apps_getFriendsList_extended_response"
         }
       }
-    },
-    {
-      "name": "apps.getLastUploadedVersion",
-      "access_token_type": [
-        "service"
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../apps/responses.json#/definitions/apps_get_last_uploaded_version_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "../errors.json#/errors/api_error_not_found"
-        }
-      ]
     },
     {
       "name": "apps.getLeaderboard",
@@ -392,6 +493,17 @@
       "responses": {
         "response": {
           "$ref": "../apps/responses.json#/definitions/apps_getScore_response"
+        }
+      }
+    },
+    {
+      "name": "apps.getSnippets",
+      "access_token_type": [
+        "service"
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../apps/responses.json#/definitions/apps_getSnippets_response"
         }
       }
     },

@@ -209,7 +209,12 @@
         "response": {
           "$ref": "../utils/responses.json#/definitions/utils_resolveScreenName_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
     }
   ]
 }

@@ -5,6 +5,32 @@
   "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
   "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "callback_app_payload": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "app_id": {
+          "type": "integer",
+          "minimum": 0,
+          "format": "int64",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "callback_audio_new": {
+      "type": "object",
+      "$ref": "../audio/objects.json#/definitions/audio_audio"
+    },
     "callback_base": {
       "type": "object",
       "properties": {
@@ -39,8 +65,10 @@
       "properties": {
         "topic_owner_id": {
           "type": "integer",
+          "entity": "owner",
           "minimum": 0,
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         "topic_id": {
           "type": "integer",
@@ -51,8 +79,26 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        "deleter_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64"
         }
       }
+    },
+    "callback_board_post_edit": {
+      "type": "object",
+      "$ref": "../board/objects.json#/definitions/board_topic_comment"
+    },
+    "callback_board_post_new": {
+      "type": "object",
+      "$ref": "../board/objects.json#/definitions/board_topic_comment"
+    },
+    "callback_board_post_restore": {
+      "type": "object",
+      "$ref": "../board/objects.json#/definitions/board_topic_comment"
     },
     "callback_confirmation": {
       "type": "object",
@@ -216,9 +262,8 @@
           "format": "int64",
           "required": true
         },
-        "self": {
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
-          "required": true
+        "changes": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes"
         }
       }
     },
@@ -292,8 +337,10 @@
       "properties": {
         "admin_id": {
           "type": "integer",
+          "entity": "owner",
           "minimum": 0,
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         "user_id": {
           "type": "integer",
@@ -316,43 +363,158 @@
       "type": "object",
       "properties": {
         "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "access": {
-          "$ref": "../groups/objects.json#/definitions/groups_group_is_closed"
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
         },
         "screen_name": {
-          "type": "string"
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
         },
-        "public_category": {
-          "type": "integer"
+        "event_start_date": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
         },
-        "public_subcategory": {
-          "type": "integer"
+        "event_finish_date": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
         },
-        "age_limits": {
-          "$ref": "../groups/objects.json#/definitions/groups_group_full_age_limits"
+        "event_group_id": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "donations": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "wall": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "replies": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "topics": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "photos": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "docs": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "messages": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "market": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "market_wiki": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "board": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "links": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "audio": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "video": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "can_post_topics": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "can_post_albums": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "can_post_video": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "disable_market_comments": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "status_default": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "access": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "email": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
+        },
+        "country_id": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "city_id": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "address": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
+        },
+        "description": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
         },
         "website": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
+        },
+        "phone": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_string_values"
+        },
+        "age_limits": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "category_v2": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "public_category": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        },
+        "public_subcategory": {
+          "$ref": "../callback/objects.json#/definitions/callback_group_settings_changes_integer_values"
+        }
+      }
+    },
+    "callback_group_settings_changes_integer_values": {
+      "type": "object",
+      "properties": {
+        "old_value": {
+          "type": "integer"
+        },
+        "new_value": {
+          "type": "integer"
+        }
+      }
+    },
+    "callback_group_settings_changes_string_values": {
+      "type": "object",
+      "properties": {
+        "old_value": {
           "type": "string"
         },
-        "enable_status_default": {
-          "$ref": "../groups/objects.json#/definitions/groups_group_wall"
+        "new_value": {
+          "type": "string"
+        }
+      }
+    },
+    "callback_info_for_bots": {
+      "type": "object",
+      "properties": {
+        "button_actions": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_template_action_type_names"
+          }
         },
-        "enable_audio": {
-          "$ref": "../groups/objects.json#/definitions/groups_group_audio"
+        "keyboard": {
+          "type": "boolean",
+          "description": "client has support keyboard"
         },
-        "enable_video": {
-          "$ref": "../groups/objects.json#/definitions/groups_group_video"
+        "inline_keyboard": {
+          "type": "boolean",
+          "description": "client has support inline keyboard"
         },
-        "enable_photo": {
-          "$ref": "../groups/objects.json#/definitions/groups_group_photos"
+        "carousel": {
+          "type": "boolean",
+          "description": "client has support carousel"
         },
-        "enable_market": {
-          "$ref": "../callback/objects.json#/definitions/callback_group_market"
+        "lang_id": {
+          "type": "integer",
+          "description": "client or user language id"
         }
       }
     },
@@ -360,8 +522,10 @@
       "type": "object",
       "properties": {
         "liker_id": {
+          "entity": "owner",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         "object_type": {
           "type": "string",
@@ -381,7 +545,9 @@
         },
         "object_owner_id": {
           "type": "integer",
-          "required": true
+          "entity": "owner",
+          "required": true,
+          "format": "int64"
         },
         "object_id": {
           "type": "integer",
@@ -407,8 +573,10 @@
           "required": true
         },
         "from_id": {
+          "entity": "owner",
           "type": "integer",
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         "date": {
           "type": "integer",
@@ -419,7 +587,9 @@
           "type": "string"
         },
         "market_owner_id": {
-          "type": "integer"
+          "entity": "owner",
+          "type": "integer",
+          "format": "int64"
         },
         "photo_id": {
           "type": "integer"
@@ -552,7 +722,7 @@
       "type": "object",
       "properties": {
         "client_info": {
-          "$ref": "../client/objects.json#/definitions/client_info_for_bots"
+          "$ref": "../callback/objects.json#/definitions/callback_info_for_bots"
         },
         "message": {
           "$ref": "../messages/objects.json#/definitions/messages_message"
@@ -583,31 +753,22 @@
     },
     "callback_photo_comment": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "minimum": 0,
-          "required": true
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
         },
-        "from_id": {
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        "date": {
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        "text": {
-          "type": "string",
-          "required": true
-        },
-        "photo_owner_id": {
-          "type": "integer",
-          "required": true
+        {
+          "properties": {
+            "photo_owner_id": {
+              "type": "integer",
+              "entity": "owner",
+              "minimum": 0,
+              "required": true,
+              "format": "int64"
+            }
+          }
         }
-      }
+      ]
     },
     "callback_photo_comment_delete": {
       "type": "object",
@@ -635,8 +796,19 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        },
+        "deleter_id": {
+          "type": "integer",
+          "minimum": 0,
+          "entity": "owner",
+          "format": "int64",
+          "required": true
         }
       }
+    },
+    "callback_photo_new": {
+      "type": "object",
+      "$ref": "../photos/objects.json#/definitions/photos_photo"
     },
     "callback_poll_vote_new": {
       "type": "object",
@@ -714,7 +886,9 @@
         "wall_reply_edit",
         "wall_reply_delete",
         "wall_reply_restore",
-        "wall_repost"
+        "wall_repost",
+        "wall_schedule_post_new",
+        "wall_schedule_post_delete"
       ]
     },
     "callback_user_block": {
@@ -722,8 +896,10 @@
       "properties": {
         "admin_id": {
           "type": "integer",
+          "entity": "owner",
           "minimum": 0,
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         "user_id": {
           "type": "integer",
@@ -752,8 +928,10 @@
       "properties": {
         "admin_id": {
           "type": "integer",
+          "entity": "owner",
           "minimum": 0,
-          "required": true
+          "required": true,
+          "format": "int64"
         },
         "user_id": {
           "type": "integer",
@@ -771,30 +949,20 @@
     },
     "callback_video_comment": {
       "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "minimum": 0,
-          "required": true
+      "allOf": [
+        {
+          "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
         },
-        "from_id": {
-          "type": "integer",
-          "required": true
-        },
-        "date": {
-          "type": "integer",
-          "minimum": 0,
-          "required": true
-        },
-        "text": {
-          "type": "string",
-          "required": true
-        },
-        "video_owner_id": {
-          "type": "integer",
-          "required": true
+        {
+          "properties": {
+            "video_owner_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64"
+            }
+          }
         }
-      }
+      ]
     },
     "callback_video_comment_delete": {
       "type": "object",
@@ -810,7 +978,7 @@
           "format": "int64",
           "required": true
         },
-        "user_id": {
+        "deleter_id": {
           "type": "integer",
           "minimum": 0,
           "entity": "owner",
@@ -821,6 +989,38 @@
           "type": "integer",
           "minimum": 0,
           "required": true
+        }
+      }
+    },
+    "callback_video_new": {
+      "type": "object",
+      "$ref": "../audio/objects.json#/definitions/audio_audio"
+    },
+    "callback_vkpay_transaction": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "from_id": {
+          "type": "integer",
+          "entity": "owner",
+          "required": true,
+          "format": "int64"
+        },
+        "description": {
+          "type": "string",
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "minimum": 0,
+          "required": true
+        },
+        "payload": {
+          "type": "string"
         }
       }
     },
@@ -851,6 +1051,26 @@
           "required": true
         }
       }
+    },
+    "callback_wall_post_new": {
+      "type": "object",
+      "$ref": "../wall/objects.json#/definitions/wall_wallpost"
+    },
+    "callback_wall_reply_edit": {
+      "type": "object",
+      "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+    },
+    "callback_wall_reply_new": {
+      "type": "object",
+      "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+    },
+    "callback_wall_reply_restore": {
+      "type": "object",
+      "$ref": "../wall/objects.json#/definitions/wall_wall_comment"
+    },
+    "callback_wall_repost": {
+      "type": "object",
+      "$ref": "../wall/objects.json#/definitions/wall_wallpost"
     }
   }
 }

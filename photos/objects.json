@@ -99,6 +99,10 @@
           "format": "uri",
           "description": "URL of image with 2560 px width"
         },
+        "thumb_hash": {
+          "type": "string",
+          "description": "Thumb Hash"
+        },
         "can_comment": {
           "description": "Information whether current user can comment the photo",
           "$ref": "../base/objects.json#/definitions/base_bool_int"

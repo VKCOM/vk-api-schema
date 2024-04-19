@@ -68,17 +68,17 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 1,
           "required": true,
           "format": "int64",
+          "minimum": 1,
           "entity": "owner"
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -144,7 +144,8 @@
         "response": {
           "$ref": "../board/responses.json#/definitions/board_createComment_response"
         }
-      }
+      },
+      "errors": []
     },
     {
       "name": "board.deleteComment",
@@ -311,17 +312,17 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 1,
           "required": true,
           "format": "int64",
+          "minimum": 1,
           "entity": "owner"
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -511,17 +512,17 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 1,
           "required": true,
           "format": "int64",
+          "minimum": 1,
           "entity": "owner"
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {
@@ -579,17 +580,17 @@
           "name": "group_id",
           "description": "ID of the community that owns the discussion board.",
           "type": "integer",
-          "minimum": 1,
           "required": true,
           "format": "int64",
+          "minimum": 1,
           "entity": "owner"
         },
         {
           "name": "topic_id",
           "description": "Topic ID.",
           "type": "integer",
-          "minimum": 0,
-          "required": true
+          "required": true,
+          "minimum": 0
         }
       ],
       "responses": {

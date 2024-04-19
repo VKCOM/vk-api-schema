@@ -446,6 +446,14 @@
           "type": "string",
           "description": "Video source 1080p"
         },
+        "video_src_1440": {
+          "type": "string",
+          "description": "Video source 1440p"
+        },
+        "video_src_2160": {
+          "type": "string",
+          "description": "Video source 2160p"
+        },
         "video_image_src": {
           "type": "string",
           "description": "Video image source"
@@ -772,10 +780,6 @@
         "cities_not": {
           "type": "string",
           "description": "Cities IDs to except"
-        },
-        "country": {
-          "type": "string",
-          "description": "Country ID"
         },
         "districts": {
           "type": "string",
@@ -1241,10 +1245,8 @@
           "required": true
         },
         "original_id": {
-          "type": "integer",
+          "type": "string",
           "description": "Music artist ID as in VKMusic",
-          "format": "int64",
-          "minimum": 1,
           "required": true
         },
         "name": {
@@ -1386,6 +1388,9 @@
         },
         "comments": {
           "$ref": "../ads/objects.json#/definitions/ads_post_comments"
+        },
+        "copyright": {
+          "$ref": "../wall/objects.json#/definitions/wall_post_copyright"
         },
         "short_text_rate": {
           "type": "number",
@@ -2030,8 +2035,10 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer",
-          "entity": "owner",
+          "type": [
+            "integer",
+            "boolean"
+          ],
           "format": "int64",
           "description": "Owner id"
         },

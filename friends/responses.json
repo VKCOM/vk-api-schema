@@ -139,18 +139,6 @@
         }
       }
     },
-    "friends_getByPhones_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "../friends/objects.json#/definitions/friends_user_xtr_phone"
-          },
-          "required": true
-        }
-      }
-    },
     "friends_getLists_response": {
       "type": "object",
       "properties": {
@@ -199,6 +187,33 @@
           "items": {
             "$ref": "../friends/objects.json#/definitions/friends_mutual_friend"
           },
+          "required": true
+        }
+      }
+    },
+    "friends_getMutual_total_count_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../friends/objects.json#/definitions/friends_mutual_friend",
+          "required": true
+        }
+      }
+    },
+    "friends_getOnline_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../friends/objects.json#/definitions/friends_online_users",
+          "required": true
+        }
+      }
+    },
+    "friends_getOnline_online_mobile_extended_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "../friends/objects.json#/definitions/friends_online_users_with_mobile",
           "required": true
         }
       }

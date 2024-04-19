@@ -436,7 +436,8 @@
               "description": "Is user can upload video to playlist",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             }
-          }
+          },
+          "additionalProperties": false
         }
       ]
     },
@@ -535,6 +536,10 @@
           "properties": {
             "with_padding": {
               "$ref": "../base/objects.json#/definitions/base_property_exists"
+            },
+            "size": {
+              "type": "string",
+              "required": false
             }
           }
         }

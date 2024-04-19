@@ -280,6 +280,10 @@
                 "$ref": "../photos/objects.json#/definitions/photos_photo"
               },
               "required": true
+            },
+            "next_from": {
+              "type": "string",
+              "description": "next from pagination cursor"
             }
           },
           "required": true
@@ -312,6 +316,10 @@
                 "$ref": "../photos/objects.json#/definitions/photos_photo"
               },
               "required": true
+            },
+            "next_from": {
+              "type": "string",
+              "description": "next from pagination cursor"
             }
           },
           "required": true

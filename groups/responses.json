@@ -97,7 +97,7 @@
             "items": {
               "type": "array",
               "items": {
-                "$ref": "../groups/objects.json#/definitions/groups_banned_item"
+                "$ref": "../groups/objects.json#/definitions/groups_owner_xtr_ban_info"
               },
               "required": true
             }
@@ -542,16 +542,6 @@
             },
             "age_limits": {
               "$ref": "../groups/objects.json#/definitions/groups_group_age_limits"
-            },
-            "country_id": {
-              "type": "integer",
-              "description": "Country id of group",
-              "required": true
-            },
-            "country_name": {
-              "type": "string",
-              "description": "Country name of group",
-              "required": true
             },
             "description": {
               "type": "string",

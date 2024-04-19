@@ -346,6 +346,29 @@
         }
       }
     },
+    "market_getProperties_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_property"
+              },
+              "required": true
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "required": true
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "market_get_extended_response": {
       "type": "object",
       "properties": {
@@ -414,6 +437,25 @@
               "type": "integer",
               "minimum": 0,
               "required": true
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "market_photo_id_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "photo_id": {
+              "type": "integer",
+              "description": "Photo ID",
+              "required": true
+            },
+            "photo": {
+              "$ref": "../photos/objects.json#/definitions/photos_photo"
             }
           },
           "required": true

@@ -69,6 +69,9 @@
         },
         {
           "$ref": "#/definitions/subcodes/service_uuid_link_with_another_user"
+        },
+        {
+          "$ref": "#/definitions/subcodes/error_request_try_again"
         }
       ]
     },
@@ -111,6 +114,9 @@
         },
         {
           "$ref": "#/definitions/subcodes/app_type_permission_denied"
+        },
+        {
+          "$ref": "#/definitions/subcodes/error_access_try_again"
         }
       ]
     },
@@ -439,6 +445,10 @@
       "code": 232,
       "description": "Reaction can not be applied to the object"
     },
+    "api_error_friends_too_many_friends": {
+      "code": 242,
+      "description": "Too many friends"
+    },
     "api_error_polls_access": {
       "code": 250,
       "description": "Access to poll denied"
@@ -707,6 +717,10 @@
       "code": 970,
       "description": "Cannot pin an expiring message"
     },
+    "api_error_messages_group_for_notifications_only": {
+      "code": 985,
+      "description": "Cannot write to notifications only groups"
+    },
     "api_error_messages_invalid_reaction_id": {
       "code": 1009,
       "description": "Unknown reaction passed"
@@ -718,6 +732,10 @@
     "api_error_messages_reactions_limit_reached": {
       "code": 1011,
       "description": "Reactions limit for this message has been reached"
+    },
+    "api_error_messages_writing_disabled_for_chat": {
+      "code": 1012,
+      "description": "Writing is disabled for this chat"
     },
     "api_error_auth_flood_error": {
       "code": 1105,
@@ -935,6 +953,18 @@
       "code": 1456,
       "description": "Order status is invalid"
     },
+    "api_error_market_failed_to_set_album_as_main": {
+      "code": 1457,
+      "description": "Failed to set album as main"
+    },
+    "api_error_market_failed_to_unset_album_as_main": {
+      "code": 1458,
+      "description": "Failed to unset album as main"
+    },
+    "api_error_market_item_is_not_deleted": {
+      "code": 1518,
+      "description": "Item is not deleted"
+    },
     "api_error_story_expired": {
       "code": 1600,
       "description": "Story has already expired"
@@ -1049,6 +1079,22 @@
       "code": 11500,
       "description": "CheckUserAction confirmation required",
       "global": true
+    },
+    "api_error_apps_empty_filter_params": {
+      "code": 11003,
+      "description": "Empty filter params"
+    },
+    "api_error_apps_empty_snippet_data": {
+      "code": 11004,
+      "description": "Empty snippet data"
+    },
+    "api_error_apps_too_many_snippets": {
+      "code": 11005,
+      "description": "Too many snippets"
+    },
+    "api_error_apps_not_found_snippet": {
+      "code": 11006,
+      "description": "Not found snippet"
     },
     "api_error_translations_cant_translate": {
       "code": 11101,

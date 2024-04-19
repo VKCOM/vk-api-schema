@@ -359,6 +359,36 @@
         }
       }
     },
+    "wall_parseAttachedLink_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "../wall/objects.json#/definitions/wall_wallpost_attachment"
+              },
+              "required": true
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "../groups/objects.json#/definitions/groups_group_full"
+              }
+            },
+            "profiles": {
+              "type": "array",
+              "items": {
+                "$ref": "../users/objects.json#/definitions/users_user"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "wall_postAdsStealth_response": {
       "type": "object",
       "properties": {

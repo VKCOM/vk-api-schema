@@ -20,10 +20,6 @@
           "type": "string",
           "description": "Company name"
         },
-        "country_id": {
-          "type": "integer",
-          "description": "Country ID"
-        },
         "from": {
           "type": "integer",
           "description": "From year"
@@ -83,7 +79,6 @@
         "bdate",
         "bdate_visibility",
         "city",
-        "country",
         "home_town",
         "has_photo",
         "photo",
@@ -184,6 +179,7 @@
         "is_tinkoff_linked",
         "is_tinkoff_verified",
         "is_sber_verified",
+        "is_verified",
         "oauth_linked",
         "oauth_verification",
         "is_sber_linked"
@@ -205,11 +201,6 @@
     "users_military": {
       "type": "object",
       "properties": {
-        "country_id": {
-          "type": "integer",
-          "description": "Country ID",
-          "required": true
-        },
         "from": {
           "type": "integer",
           "description": "From year"
@@ -256,9 +247,6 @@
           "description": "Type of occupation"
         },
         "graduate_year": {
-          "type": "integer"
-        },
-        "country_id": {
           "type": "integer"
         },
         "city_id": {
@@ -402,10 +390,6 @@
           "type": "integer",
           "description": "School class id"
         },
-        "country": {
-          "type": "integer",
-          "description": "Country ID"
-        },
         "id": {
           "type": "string",
           "description": "School ID"
@@ -474,10 +458,6 @@
         "city": {
           "type": "integer",
           "description": "City ID"
-        },
-        "country": {
-          "type": "integer",
-          "description": "Country ID"
         },
         "education_form": {
           "type": "string",
@@ -805,9 +785,6 @@
             "city": {
               "$ref": "../base/objects.json#/definitions/base_city"
             },
-            "country": {
-              "$ref": "../base/objects.json#/definitions/base_country"
-            },
             "timezone": {
               "type": "number",
               "description": "User's timezone"
@@ -969,6 +946,10 @@
               "description": "Information whether group can call user",
               "type": "boolean"
             },
+            "can_invite_as_voicerooms_speaker": {
+              "description": "Information whether user/group can invite user as voicerooms speakr",
+              "type": "boolean"
+            },
             "can_see_wishes": {
               "description": "Information whether current user can see the user's wishes",
               "type": "boolean"
@@ -1053,7 +1034,7 @@
             },
             "followers_count": {
               "type": "integer",
-              "description": "Number of user's followers",
+              "description": "Number of user's followers and friends",
               "minimum": 0
             },
             "video_live_level": {
@@ -1302,9 +1283,6 @@
         },
         "city": {
           "$ref": "../base/objects.json#/definitions/base_city"
-        },
-        "country": {
-          "$ref": "../base/objects.json#/definitions/base_country"
         },
         "first_name": {
           "type": "string",

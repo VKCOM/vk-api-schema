@@ -498,6 +498,7 @@
           "name": "source_ids",
           "description": "users and communities identifiers to be added to the list. Community identifiers must be negative numbers.",
           "type": "array",
+          "required": true,
           "items": {
             "type": "integer",
             "format": "int64",
@@ -615,15 +616,15 @@
           "name": "owner_id",
           "description": "Item owner's identifier (user or community), \"Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community \"",
           "type": "integer",
-          "required": true,
           "format": "int64",
+          "default": 0,
           "entity": "owner"
         },
         {
           "name": "item_id",
           "description": "Item identifier",
           "type": "integer",
-          "required": true,
+          "default": 0,
           "minimum": 0
         },
         {
@@ -651,6 +652,8 @@
           "type": "string",
           "required": true,
           "enum": [
+            "clip",
+            "market",
             "note",
             "photo",
             "post",

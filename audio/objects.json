@@ -46,6 +46,11 @@
           "minimum": 0,
           "required": true
         },
+        "stream_duration": {
+          "type": "integer",
+          "description": "Stream duration in seconds",
+          "minimum": 0
+        },
         "date": {
           "type": "integer",
           "description": "Date when uploaded",

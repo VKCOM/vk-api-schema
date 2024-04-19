@@ -155,6 +155,14 @@
     "base_error": {
       "type": "object",
       "properties": {
+        "inner_type": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "base_error"
+          ],
+          "default": "base_error"
+        },
         "error_code": {
           "type": "integer",
           "description": "Error code",
@@ -311,6 +319,14 @@
           "$ref": "../base/objects.json#/definitions/base_bool_int",
           "description": "Information whether current user can repost"
         },
+        "can_like_as_author": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Whether user can like comment as author"
+        },
+        "can_like_by_group": {
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "description": "Whether current owner of the group can like the reply"
+        },
         "count": {
           "type": "integer",
           "minimum": 0,
@@ -324,7 +340,11 @@
         },
         "author_liked": {
           "type": "boolean",
-          "description": "Information whether author of the post/reply liked it"
+          "description": "Information whether post author liked the reply"
+        },
+        "group_liked": {
+          "type": "boolean",
+          "description": "Information whether group liked the reply"
         },
         "repost_disabled": {
           "type": "boolean",
@@ -455,7 +475,8 @@
         "open_search_tab",
         "import_contacts",
         "add_friends",
-        "onboarding"
+        "onboarding",
+        "show_filters"
       ]
     },
     "base_link_button_style": {
@@ -736,10 +757,6 @@
           "type": "integer",
           "description": "Checkins number"
         },
-        "city": {
-          "type": "string",
-          "description": "City name"
-        },
         "country": {
           "type": "string",
           "description": "Country name"
@@ -863,6 +880,14 @@
     "base_sticker_new": {
       "type": "object",
       "properties": {
+        "inner_type": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "base_sticker_new"
+          ],
+          "default": "base_sticker_new"
+        },
         "sticker_id": {
           "type": "integer",
           "description": "Sticker ID"
@@ -943,7 +968,6 @@
         "connections",
         "contacts",
         "counters",
-        "country",
         "cover",
         "crop_photo",
         "deactivated",
@@ -1032,7 +1056,8 @@
         "clips_count",
         "image_status",
         "is_nft",
-        "is_nft_photo"
+        "is_nft_photo",
+        "is_verified"
       ]
     },
     "base_user_id": {

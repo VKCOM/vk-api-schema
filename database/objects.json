@@ -21,10 +21,6 @@
               "type": "string",
               "description": "Region title"
             },
-            "country": {
-              "type": "string",
-              "description": "Country title"
-            },
             "important": {
               "description": "Information whether the city is included in important cities list",
               "$ref": "../base/objects.json#/definitions/base_bool_int"

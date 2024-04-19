@@ -371,6 +371,7 @@
           "properties": {
             "items": {
               "type": "array",
+              "required": true,
               "items": {
                 "$ref": "../messages/objects.json#/definitions/messages_history_attachment"
               }
@@ -552,6 +553,24 @@
               "items": {
                 "$ref": "../users/objects.json#/definitions/users_user_full"
               }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "messages_getInviteLink_by_owner_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_getInviteLink_by_owner_response_item"
+              },
+              "required": true
             }
           },
           "required": true
@@ -744,6 +763,7 @@
               "items": {
                 "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item"
               },
+              "additionalProperties": false,
               "required": true,
               "description": "Base reactions assets to display by default"
             },
@@ -752,6 +772,7 @@
               "items": {
                 "$ref": "../messages/objects.json#/definitions/messages_reaction_asset_item"
               },
+              "additionalProperties": false,
               "description": "Extended reactions assets for special occasions, user allowed to switch to the base version"
             }
           },

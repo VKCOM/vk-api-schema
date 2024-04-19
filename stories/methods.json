@@ -221,6 +221,8 @@
           "type": "array",
           "items": {
             "type": "integer",
+            "format": "int64",
+            "entity": "owner",
             "minimum": 0
           }
         },
@@ -369,7 +371,8 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "minimum": 0
+            "format": "int64",
+            "entity": "owner"
           }
         },
         {

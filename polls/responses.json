@@ -30,7 +30,7 @@
       "type": "object",
       "properties": {
         "response": {
-          "$ref": "../polls/objects.json#/definitions/polls_poll",
+          "$ref": "../polls/objects.json#/definitions/polls_poll_extended",
           "required": true
         }
       }

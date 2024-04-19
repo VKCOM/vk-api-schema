@@ -270,6 +270,70 @@
         }
       }
     },
+    "apps_custom_snippet": {
+      "type": "object",
+      "properties": {
+        "vk_ref": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "snippet_im",
+              "snippet_post"
+            ]
+          }
+        },
+        "group_id": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "entity": "groups",
+            "format": "int64"
+          },
+          "maxItems": 100
+        },
+        "hash": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        },
+        "snippet_id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "expired_at": {
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "small_image_url": {
+          "type": "string"
+        },
+        "button": {
+          "type": "string",
+          "enum": [
+            "buy",
+            "buy_ticket",
+            "contact",
+            "create",
+            "enroll",
+            "fill",
+            "go",
+            "open",
+            "play"
+          ]
+        }
+      }
+    },
     "apps_leaderboard": {
       "type": "object",
       "properties": {

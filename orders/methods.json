@@ -247,48 +247,6 @@
           "$ref": "../orders/responses.json#/definitions/orders_getUserSubscriptions_response"
         }
       }
-    },
-    {
-      "name": "orders.updateSubscription",
-      "access_token_type": [
-        "service"
-      ],
-      "parameters": [
-        {
-          "name": "user_id",
-          "type": "integer",
-          "required": true,
-          "format": "int64",
-          "minimum": 1,
-          "entity": "owner"
-        },
-        {
-          "name": "subscription_id",
-          "type": "integer",
-          "required": true,
-          "minimum": 0
-        },
-        {
-          "name": "price",
-          "type": "integer",
-          "required": true,
-          "minimum": 0
-        }
-      ],
-      "responses": {
-        "response": {
-          "description": "Result",
-          "$ref": "../base/responses.json#/definitions/base_bool_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "../errors.json#/errors/api_error_apps_subscription_not_found"
-        },
-        {
-          "$ref": "../errors.json#/errors/api_error_apps_subscription_invalid_status"
-        }
-      ]
     }
   ]
 }

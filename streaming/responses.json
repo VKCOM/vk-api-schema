@@ -24,30 +24,6 @@
         }
       }
     },
-    "streaming_getSettings_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "monthly_limit": {
-              "type": "string",
-              "description": "streaming monthly tier",
-              "enum": [
-                "tier_1",
-                "tier_2",
-                "tier_3",
-                "tier_4",
-                "tier_5",
-                "tier_6",
-                "unlimited"
-              ]
-            }
-          },
-          "required": true
-        }
-      }
-    },
     "streaming_getStats_response": {
       "type": "object",
       "properties": {
