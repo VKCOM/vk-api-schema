@@ -571,6 +571,9 @@
               "description": "If this setting is enabled then users can add your community to a chat",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
+            "bot_online_booking_enabled": {
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
             "obscene_filter": {
               "description": "Information whether the obscene filter is enabled",
               "$ref": "../base/objects.json#/definitions/base_bool_int",

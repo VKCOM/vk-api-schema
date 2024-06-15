@@ -265,6 +265,23 @@
         }
       }
     },
+    "video_getThumbUploadUrl_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "upload_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Url for thumb upload",
+              "required": true
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "video_get_response": {
       "type": "object",
       "properties": {
@@ -307,6 +324,40 @@
           "type": "array",
           "items": {
             "$ref": "../video/objects.json#/definitions/video_live_category"
+          },
+          "required": true
+        }
+      }
+    },
+    "video_saveUploadedThumb_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "type": "array",
+              "items": {
+                "$ref": "../video/objects.json#/definitions/video_video_image"
+              }
+            },
+            "photo_id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "ID of uploaded thumb",
+              "required": true
+            },
+            "photo_owner_id": {
+              "type": "integer",
+              "entity": "owner",
+              "format": "int64",
+              "description": "Owner ID of uploaded thumb"
+            },
+            "photo_hash": {
+              "type": "string",
+              "description": "Hash of uploaded thumb",
+              "required": true
+            }
           },
           "required": true
         }

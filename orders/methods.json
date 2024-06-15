@@ -164,6 +164,7 @@
       "name": "orders.getById",
       "description": "Returns information about orders by their IDs.",
       "access_token_type": [
+        "user",
         "service"
       ],
       "parameters": [

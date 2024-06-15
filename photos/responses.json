@@ -201,15 +201,6 @@
         }
       }
     },
-    "photos_getMarketUploadServer_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "$ref": "../base/objects.json#/definitions/base_upload_server",
-          "required": true
-        }
-      }
-    },
     "photos_getMessagesUploadServer_response": {
       "type": "object",
       "properties": {
@@ -497,18 +488,6 @@
       }
     },
     "photos_saveMarketAlbumPhoto_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "array",
-          "items": {
-            "$ref": "../photos/objects.json#/definitions/photos_photo"
-          },
-          "required": true
-        }
-      }
-    },
-    "photos_saveMarketPhoto_response": {
       "type": "object",
       "properties": {
         "response": {

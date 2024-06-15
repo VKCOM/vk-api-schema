@@ -928,57 +928,6 @@
       ]
     },
     {
-      "name": "photos.getMarketUploadServer",
-      "description": "Returns the server address for market photo upload.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "required": true,
-          "format": "int64",
-          "minimum": 1,
-          "entity": "owner"
-        },
-        {
-          "name": "main_photo",
-          "description": "'1' if you want to upload the main item photo.",
-          "type": "boolean"
-        },
-        {
-          "name": "crop_x",
-          "description": "X coordinate of the crop left upper corner.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "crop_y",
-          "description": "Y coordinate of the crop left upper corner.",
-          "type": "integer",
-          "minimum": 0
-        },
-        {
-          "name": "crop_width",
-          "description": "Width of the cropped photo in px.",
-          "type": "integer",
-          "minimum": 400
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../photos/responses.json#/definitions/photos_getMarketUploadServer_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
-        }
-      ]
-    },
-    {
       "name": "photos.getMessagesUploadServer",
       "description": "Returns the server address for photo upload in a private message for a user.",
       "access_token_type": [
@@ -1755,67 +1704,6 @@
       "responses": {
         "response": {
           "$ref": "../photos/responses.json#/definitions/photos_saveMarketAlbumPhoto_response"
-        }
-      },
-      "errors": [
-        {
-          "$ref": "../errors.json#/errors/api_error_param_hash"
-        },
-        {
-          "$ref": "../errors.json#/errors/api_error_param_photo"
-        },
-        {
-          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
-        }
-      ]
-    },
-    {
-      "name": "photos.saveMarketPhoto",
-      "description": "Saves market photos after successful uploading.",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "group_id",
-          "description": "Community ID.",
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "entity": "owner"
-        },
-        {
-          "name": "photo",
-          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "server",
-          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "integer",
-          "required": true
-        },
-        {
-          "name": "hash",
-          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "crop_data",
-          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "string"
-        },
-        {
-          "name": "crop_hash",
-          "description": "Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].",
-          "type": "string"
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../photos/responses.json#/definitions/photos_saveMarketPhoto_response"
         }
       },
       "errors": [

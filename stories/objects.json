@@ -101,7 +101,11 @@
             "circle",
             "poop",
             "heart",
-            "star"
+            "star",
+            "album",
+            "horizontal",
+            "equalizer",
+            "header_meta"
           ]
         },
         "type": {
@@ -123,7 +127,8 @@
             "situational_theme",
             "playlist",
             "clip",
-            "situational_template"
+            "situational_template",
+            "spoiler"
           ],
           "required": true
         },

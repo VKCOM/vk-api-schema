@@ -32,6 +32,9 @@
             "broadcast_ov_id": {
               "type": "string",
               "description": "video id for streaming"
+            },
+            "short_credentials": {
+              "$ref": "../calls/objects.json#/definitions/calls_short_credentials"
             }
           },
           "required": true

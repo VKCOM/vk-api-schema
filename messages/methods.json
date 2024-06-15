@@ -730,6 +730,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
         }
       ]
     },

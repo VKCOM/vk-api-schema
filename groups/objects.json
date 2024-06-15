@@ -468,7 +468,8 @@
         "live_covers",
         "stories_archive_count",
         "has_unseen_stories",
-        "rating"
+        "rating",
+        "unread_count"
       ]
     },
     "groups_filter": {
@@ -1842,10 +1843,6 @@
         "currency_text": {
           "type": "string",
           "description": "Currency name"
-        },
-        "is_show_header_items_link": {
-          "description": "Shop header items link is enabled",
-          "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
         "enabled": {
           "description": "Information whether the market is enabled",

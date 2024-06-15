@@ -774,6 +774,15 @@
               },
               "additionalProperties": false,
               "description": "Extended reactions assets for special occasions, user allowed to switch to the base version"
+            },
+            "reaction_ids": {
+              "type": "array",
+              "required": true,
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "description": "Enabled reactions for current account. You can use reactions only from this array or already present on target message"
             }
           },
           "required": true

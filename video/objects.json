@@ -170,6 +170,10 @@
           "description": "Information whether current user can subscribe to author of the video",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
+        "can_be_promoted": {
+          "description": "Information whether current user can promote the video",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
         "can_add_to_faves": {
           "description": "Information whether current user can add the video to favourites",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
@@ -288,6 +292,7 @@
         "type": {
           "type": "string",
           "enum": [
+            "interactive",
             "video",
             "music_video",
             "movie",

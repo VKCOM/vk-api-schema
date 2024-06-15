@@ -204,7 +204,8 @@
     },
     "api_error_client_update_needed": {
       "code": 35,
-      "description": "Client update needed"
+      "description": "Client update needed",
+      "global": true
     },
     "api_error_timeout": {
       "code": 36,
@@ -940,6 +941,10 @@
     "api_error_market_photos_crop_size_too_low": {
       "code": 1435,
       "description": "Crop size is less than the minimum"
+    },
+    "api_error_market_orders_order_not_found": {
+      "code": 1436,
+      "description": "Order not found"
     },
     "api_error_market_not_enabled": {
       "code": 1438,

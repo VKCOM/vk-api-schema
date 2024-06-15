@@ -188,6 +188,12 @@
           "entity": "owner"
         },
         {
+          "name": "post_id",
+          "description": "Post ID.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
           "name": "comment_id",
           "description": "Comment ID.",
           "type": "integer",
@@ -452,6 +458,12 @@
           "type": "integer",
           "format": "int64",
           "entity": "owner"
+        },
+        {
+          "name": "post_id",
+          "description": "Post ID.",
+          "type": "integer",
+          "minimum": 0
         },
         {
           "name": "comment_id",

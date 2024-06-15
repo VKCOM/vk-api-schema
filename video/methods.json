@@ -847,6 +847,26 @@
       ]
     },
     {
+      "name": "video.getThumbUploadUrl",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getThumbUploadUrl_response"
+        }
+      }
+    },
+    {
       "name": "video.liveGetCategories",
       "access_token_type": [
         "user"
@@ -1316,6 +1336,51 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_group_host_need_2fa"
+        }
+      ]
+    },
+    {
+      "name": "video.saveUploadedThumb",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "thumb_json",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "thumb_size",
+          "type": "string"
+        },
+        {
+          "name": "random_tag",
+          "type": "string"
+        },
+        {
+          "name": "video_id",
+          "description": "Video ID.",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_saveUploadedThumb_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_param_photo"
         }
       ]
     },

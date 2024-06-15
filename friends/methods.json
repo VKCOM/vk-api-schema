@@ -522,8 +522,7 @@
         "onlineMobileExtendedResponse": {
           "$ref": "../friends/responses.json#/definitions/friends_getOnline_online_mobile_extended_response"
         }
-      },
-      "errors": []
+      }
     },
     {
       "name": "friends.getRecent",
@@ -647,8 +646,8 @@
           "items": {
             "type": "string",
             "enum": [
-              "mutual",
               "contacts",
+              "mutual",
               "mutual_contacts"
             ]
           }

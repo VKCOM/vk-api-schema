@@ -1572,7 +1572,12 @@
         "response": {
           "$ref": "../market/responses.json#/definitions/market_getOrderById_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_orders_order_not_found"
+        }
+      ]
     },
     {
       "name": "market.getOrderItems",

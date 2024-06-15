@@ -110,6 +110,21 @@
         "can_edit": {
           "type": "boolean"
         },
+        "can_export_to_trackers": {
+          "type": "boolean"
+        },
+        "can_export_to_csv": {
+          "type": "boolean"
+        },
+        "can_add_moder_comment": {
+          "type": "boolean"
+        },
+        "can_add_hidden_comment": {
+          "type": "boolean"
+        },
+        "can_view_history": {
+          "type": "boolean"
+        },
         "is_deleted": {
           "type": "boolean"
         },
@@ -217,6 +232,29 @@
         },
         "is_unread": {
           "type": "boolean"
+        },
+        "author": {
+          "$ref": "../bugtracker/objects.json#/definitions/bugtracker_comment_author"
+        }
+      }
+    },
+    "bugtracker_comment_author": {
+      "type": "object",
+      "properties": {
+        "author_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "moder_name": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
         }
       }
     },

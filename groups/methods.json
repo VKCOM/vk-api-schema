@@ -646,7 +646,6 @@
           "name": "age_limits",
           "description": "Community age limits. Possible values: *'1' - no limits,, *'2' - 16+,, *'3' - 18+.",
           "type": "integer",
-          "default": 1,
           "minimum": 0,
           "enum": [
             1,
@@ -1932,12 +1931,7 @@
         "response": {
           "$ref": "../base/responses.json#/definitions/base_ok_response"
         }
-      },
-      "errors": [
-        {
-          "$ref": "../errors.json#/errors/api_error_client_update_needed"
-        }
-      ]
+      }
     },
     {
       "name": "groups.removeUser",
@@ -2702,6 +2696,11 @@
         {
           "name": "bots_add_to_chat",
           "description": "If this setting is enabled then users can add your community to a chat",
+          "type": "boolean"
+        },
+        {
+          "name": "bot_online_booking_enabled",
+          "description": "If this setting is enabled then online booking chatbot add in your community chats",
           "type": "boolean"
         }
       ],

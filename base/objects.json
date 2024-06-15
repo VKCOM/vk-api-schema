@@ -483,12 +483,22 @@
       "type": "string",
       "description": "Button style",
       "enum": [
+        "updates",
+        "default",
         "primary",
-        "secondary"
+        "secondary",
+        "tertiary",
+        "float_bottom",
+        "outline_with_chevron"
       ],
       "enumNames": [
+        "updates",
+        "default",
         "primary",
-        "secondary"
+        "secondary",
+        "tertiary",
+        "float_bottom",
+        "outline_with_chevron"
       ]
     },
     "base_link_no_product": {
@@ -757,9 +767,9 @@
           "type": "integer",
           "description": "Checkins number"
         },
-        "country": {
+        "city": {
           "type": "string",
-          "description": "Country name"
+          "description": "City name"
         },
         "created": {
           "type": "integer",

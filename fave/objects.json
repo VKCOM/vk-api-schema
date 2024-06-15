@@ -21,7 +21,7 @@
           "$ref": "../wall/objects.json#/definitions/wall_wallpost_full"
         },
         "product": {
-          "$ref": "../market/objects.json#/definitions/market_market_item"
+          "$ref": "../market/objects.json#/definitions/market_market_item_full"
         },
         "seen": {
           "type": "boolean",
@@ -53,7 +53,9 @@
         "product",
         "article",
         "link",
-        "clip"
+        "clip",
+        "game",
+        "mini_app"
       ]
     },
     "fave_page": {

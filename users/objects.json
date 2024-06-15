@@ -174,15 +174,10 @@
         "can_subscribe_podcasts",
         "animated_avatar",
         "owner_state",
-        "is_esia_verified",
-        "is_esia_linked",
-        "is_tinkoff_linked",
-        "is_tinkoff_verified",
-        "is_sber_verified",
         "is_verified",
         "oauth_linked",
         "oauth_verification",
-        "is_sber_linked"
+        "promotion_allowance"
       ]
     },
     "users_last_seen": {
