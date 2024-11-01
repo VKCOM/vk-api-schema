@@ -82,6 +82,18 @@
           "type": "string",
           "description": "Password that can be used to join a call by short numeric ID",
           "required": true
+        },
+        "link_without_password": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link without a password",
+          "required": true
+        },
+        "link_with_password": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link with a password",
+          "required": true
         }
       }
     }

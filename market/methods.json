@@ -1381,7 +1381,15 @@
         "extendedResponse": {
           "$ref": "../market/responses.json#/definitions/market_getById_extended_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_disabled"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_services_disabled"
+        }
+      ]
     },
     {
       "name": "market.getCategories",

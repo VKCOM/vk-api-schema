@@ -311,6 +311,10 @@
               "items": {
                 "$ref": "../groups/objects.json#/definitions/groups_group_full"
               }
+            },
+            "max_attached_short_videos": {
+              "type": "integer",
+              "description": "Max attached short videos"
             }
           },
           "required": true

@@ -1,0 +1,73 @@
+name: php-sdk-generate
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Prepare generate
+        run:
+          echo SCHEMA_COMMENT=\"${{ github.event.head_commit.message }}\" >> $GITHUB_ENV
+
+      - name: Checkout generator
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: ${{ vars.SDK_GENERATOR_REPO }}
+          token: ${{ secrets.PHP_SDK_TOKEN }}
+
+      - name: Checkout json schema
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          path: schema/
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ vars.PHP_VERSION }}
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, max_execution_time=180
+          tools: composer:v2
+        env:
+          fail-fast: true
+
+      - name: Run generator
+        run: |
+          touch .env
+          echo NAME=\"${{ vars.NAME }}\" >> .env
+          echo DESCRIPTION=\"${{ vars.DESCRIPTION }}\" >> .env
+          echo LICENSE=\"${{ vars.LICENSE }}\" >> .env
+          echo PHP_VERSION=\"${{ vars.PHP_VERSION }}\" >> .env
+          echo USER_AGENT=\"${{ vars.USER_AGENT }}\" >> .env
+          echo SCHEMA_DIRECTORY=\"schema/\" >> .env
+          echo SDK_REPO=\"${{ vars.SDK_REPO }}\" >> .env
+          echo HOMEPAGE=\"${{ vars.HOMEPAGE }}\" >> .env
+          cat .env
+          composer install
+          composer sdk:build
+
+      - name: Prepare php-sdk
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: ${{ vars.SDK_REPO }}
+          path: php-sdk
+          token: ${{ secrets.PHP_SDK_TOKEN }}
+
+      - name: Run generator
+        shell: bash {0}
+        run: |
+          cd php-sdk
+          find . -path ./.git -prune -o -exec rm -rfv {} \; 2> /dev/null
+          cp -r ../generated/* .
+          git add .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Autogenerate sdk on $SCHEMA_COMMENT"
+          git push

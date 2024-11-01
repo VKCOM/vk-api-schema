@@ -70,6 +70,14 @@
           "description": "View settings of the page",
           "$ref": "../pages/objects.json#/definitions/pages_privacy_settings",
           "required": true
+        },
+        "created": {
+          "type": "integer",
+          "required": true
+        },
+        "edited": {
+          "type": "integer",
+          "required": true
         }
       }
     },

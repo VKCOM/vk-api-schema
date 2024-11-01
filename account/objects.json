@@ -400,7 +400,8 @@
       "description": "Settings parameters",
       "enum": [
         "on",
-        "off"
+        "off",
+        "no_sound"
       ]
     },
     "account_push_params_settings": {
@@ -409,7 +410,8 @@
       "enum": [
         "on",
         "off",
-        "fr_of_fr"
+        "fr_of_fr",
+        "no_sound"
       ]
     },
     "account_push_settings": {

@@ -729,10 +729,16 @@
       },
       "errors": [
         {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
+        },
+        {
           "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
         }
       ]
     },
@@ -1523,6 +1529,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_drop_device_cache"
         }
       ],
       "timeout": 5
@@ -1902,6 +1911,36 @@
       "responses": {
         "response": {
           "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "messages.muteChatMentions",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "peer_id",
+          "description": "Chat id",
+          "type": "integer",
+          "required": true,
+          "format": "int64"
+        },
+        {
+          "name": "mention_status",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "all",
+            "allOnline",
+            "none"
+          ]
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
         }
       }
     },
@@ -2420,6 +2459,12 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_group_for_notifications_only"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_need_message_request"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_pending_message_request"
         }
       ]
     },

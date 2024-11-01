@@ -766,7 +766,6 @@
           "name": "sort",
           "description": "Sort order: 'asc' - oldest comment first, 'desc' - newest comment first",
           "type": "string",
-          "default": "asc",
           "enum": [
             "asc",
             "desc",
@@ -1314,6 +1313,10 @@
         {
           "name": "ord_info",
           "type": "string"
+        },
+        {
+          "name": "auto_publish",
+          "type": "boolean"
         }
       ],
       "responses": {
@@ -1371,6 +1374,11 @@
           "type": "integer",
           "format": "int32",
           "minimum": 1
+        },
+        {
+          "name": "set_thumb",
+          "description": "If flag passed uploaded thumb will automatically set to passed video. Work only with video_id.",
+          "type": "boolean"
         }
       ],
       "responses": {

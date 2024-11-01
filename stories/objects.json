@@ -317,6 +317,10 @@
           "type": "string",
           "required": true
         },
+        "type": {
+          "type": "string",
+          "required": true
+        },
         "lines": {
           "type": "array",
           "items": {
@@ -330,6 +334,10 @@
       "type": "object",
       "properties": {
         "name": {
+          "type": "string",
+          "required": true
+        },
+        "type": {
           "type": "string",
           "required": true
         },
@@ -424,6 +432,10 @@
         "photo": {
           "$ref": "../photos/objects.json#/definitions/photos_photo"
         },
+        "blurred_preview": {
+          "type": "string",
+          "description": "url with blured preview image."
+        },
         "replies": {
           "description": "Replies counters to current story.",
           "$ref": "../stories/objects.json#/definitions/stories_replies"
@@ -459,6 +471,9 @@
         },
         "first_narrative_title": {
           "type": "string"
+        },
+        "first_narrative_id": {
+          "type": "integer"
         },
         "can_use_in_narrative": {
           "type": "boolean"

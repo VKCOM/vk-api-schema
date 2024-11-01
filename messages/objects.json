@@ -63,6 +63,113 @@
         }
       }
     },
+    "messages_base_message": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "../messages/objects.json#/definitions/messages_action_one_of"
+        },
+        "admin_author_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Only for messages from community. Contains user ID of community admin, who sent this message."
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "../messages/objects.json#/definitions/messages_message_attachment"
+          }
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "description": "Unique auto-incremented number for all messages with this peer",
+          "minimum": 0,
+          "required": true
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date when the message has been sent in Unixtime",
+          "required": true
+        },
+        "deleted": {
+          "description": "Is it an deleted message",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
+        "from_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "owner",
+          "description": "Message author's ID",
+          "required": true
+        },
+        "fwd_messages": {
+          "$ref": "../messages/objects.json#/definitions/messages_fwd_messages"
+        },
+        "geo": {
+          "$ref": "../base/objects.json#/definitions/base_geo"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Message ID",
+          "required": true
+        },
+        "is_cropped": {
+          "type": "boolean",
+          "description": "this message is cropped for bot"
+        },
+        "keyboard": {
+          "$ref": "../messages/objects.json#/definitions/messages_keyboard"
+        },
+        "payload": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "description": "Message text",
+          "required": true
+        },
+        "update_time": {
+          "type": "integer",
+          "description": "Date when the message has been updated in Unixtime"
+        },
+        "is_silent": {
+          "type": "boolean",
+          "description": "Is silent message, push without sound"
+        },
+        "is_unavailable": {
+          "type": "boolean",
+          "description": "Is message unavailable for some reason, including its id equals 0"
+        },
+        "version": {
+          "type": "integer",
+          "required": true,
+          "format": "int64"
+        },
+        "out": {
+          "description": "Information whether the message is outcoming",
+          "$ref": "../base/objects.json#/definitions/base_bool_int",
+          "required": true
+        },
+        "peer_id": {
+          "type": "integer",
+          "format": "int64",
+          "entity": "peer",
+          "description": "Peer ID",
+          "required": true
+        },
+        "random_id": {
+          "type": "integer",
+          "description": "ID used for sending messages. It returned only for outgoing messages"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "ref_source": {
+          "type": "string"
+        }
+      }
+    },
     "messages_chat": {
       "type": "object",
       "properties": {
@@ -217,7 +324,8 @@
           "type": "integer",
           "format": "int64",
           "entity": "owner",
-          "minimum": 0
+          "minimum": 0,
+          "required": true
         },
         "joined": {
           "type": "boolean"
@@ -227,6 +335,7 @@
         },
         "members": {
           "type": "array",
+          "required": true,
           "items": {
             "type": "integer",
             "format": "int64",
@@ -238,7 +347,8 @@
           "minimum": 0
         },
         "title": {
-          "type": "string"
+          "type": "string",
+          "required": true
         },
         "is_member": {
           "type": "boolean"
@@ -1415,151 +1525,56 @@
     },
     "messages_message": {
       "type": "object",
-      "properties": {
-        "action": {
-          "$ref": "../messages/objects.json#/definitions/messages_action_one_of"
+      "allOf": [
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_base_message"
         },
-        "admin_author_id": {
-          "type": "integer",
-          "format": "int64",
-          "entity": "owner",
-          "description": "Only for messages from community. Contains user ID of community admin, who sent this message."
-        },
-        "attachments": {
-          "type": "array",
-          "items": {
-            "$ref": "../messages/objects.json#/definitions/messages_message_attachment"
+        {
+          "properties": {
+            "important": {
+              "type": "boolean",
+              "description": "Is it an important message"
+            },
+            "is_hidden": {
+              "type": "boolean"
+            },
+            "members_count": {
+              "type": "integer",
+              "description": "Members number"
+            },
+            "reply_message": {
+              "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+            },
+            "reaction_id": {
+              "type": "integer",
+              "description": "Reaction id set on message"
+            },
+            "reactions": {
+              "type": "array",
+              "description": "Actual reactions counters on this message",
+              "items": {
+                "$ref": "../messages/objects.json#/definitions/messages_reaction_counter_response_item"
+              }
+            },
+            "last_reaction_id": {
+              "type": "integer",
+              "description": "Last reaction id set on this message"
+            },
+            "is_pinned": {
+              "type": "boolean",
+              "description": "Is message pinned in its conversation"
+            },
+            "was_listened": {
+              "type": "boolean",
+              "description": "Was the audio message inside already listened by you"
+            },
+            "pinned_at": {
+              "type": "integer",
+              "description": "Date when the message has been pinned in Unixtime"
+            }
           }
-        },
-        "conversation_message_id": {
-          "type": "integer",
-          "description": "Unique auto-incremented number for all messages with this peer",
-          "minimum": 0,
-          "required": true
-        },
-        "date": {
-          "type": "integer",
-          "description": "Date when the message has been sent in Unixtime",
-          "required": true
-        },
-        "deleted": {
-          "description": "Is it an deleted message",
-          "$ref": "../base/objects.json#/definitions/base_bool_int"
-        },
-        "from_id": {
-          "type": "integer",
-          "format": "int64",
-          "entity": "owner",
-          "description": "Message author's ID",
-          "required": true
-        },
-        "fwd_messages": {
-          "$ref": "../messages/objects.json#/definitions/messages_fwd_messages"
-        },
-        "geo": {
-          "$ref": "../base/objects.json#/definitions/base_geo"
-        },
-        "id": {
-          "type": "integer",
-          "description": "Message ID",
-          "required": true
-        },
-        "important": {
-          "type": "boolean",
-          "description": "Is it an important message"
-        },
-        "is_hidden": {
-          "type": "boolean"
-        },
-        "is_cropped": {
-          "type": "boolean",
-          "description": "this message is cropped for bot"
-        },
-        "keyboard": {
-          "$ref": "../messages/objects.json#/definitions/messages_keyboard"
-        },
-        "members_count": {
-          "type": "integer",
-          "description": "Members number"
-        },
-        "out": {
-          "description": "Information whether the message is outcoming",
-          "$ref": "../base/objects.json#/definitions/base_bool_int",
-          "required": true
-        },
-        "payload": {
-          "type": "string"
-        },
-        "peer_id": {
-          "type": "integer",
-          "format": "int64",
-          "entity": "peer",
-          "description": "Peer ID",
-          "required": true
-        },
-        "random_id": {
-          "type": "integer",
-          "description": "ID used for sending messages. It returned only for outgoing messages"
-        },
-        "ref": {
-          "type": "string"
-        },
-        "ref_source": {
-          "type": "string"
-        },
-        "reply_message": {
-          "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
-        },
-        "reaction_id": {
-          "type": "integer",
-          "description": "Reaction id set on message"
-        },
-        "reactions": {
-          "type": "array",
-          "description": "Actual reactions counters on this message",
-          "items": {
-            "$ref": "../messages/objects.json#/definitions/messages_reaction_counter_response_item"
-          }
-        },
-        "last_reaction_id": {
-          "type": "integer",
-          "description": "Last reaction id set on this message"
-        },
-        "is_pinned": {
-          "type": "boolean",
-          "description": "Is message pinned in its conversation"
-        },
-        "text": {
-          "type": "string",
-          "description": "Message text",
-          "required": true
-        },
-        "update_time": {
-          "type": "integer",
-          "description": "Date when the message has been updated in Unixtime"
-        },
-        "was_listened": {
-          "type": "boolean",
-          "description": "Was the audio message inside already listened by you"
-        },
-        "pinned_at": {
-          "type": "integer",
-          "description": "Date when the message has been pinned in Unixtime"
-        },
-        "is_silent": {
-          "type": "boolean",
-          "description": "Is silent message, push without sound"
-        },
-        "is_unavailable": {
-          "type": "boolean",
-          "description": "Is message unavailable for some reason, including its id equals 0"
-        },
-        "version": {
-          "type": "integer",
-          "required": true,
-          "format": "int64"
         }
-      }
+      ]
     },
     "messages_message_action": {
       "type": "object",
@@ -1700,6 +1715,7 @@
         "wall_reply",
         "article",
         "poll",
+        "podcasts",
         "call",
         "graffiti",
         "audio_message"

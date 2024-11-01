@@ -722,6 +722,18 @@
       "code": 985,
       "description": "Cannot write to notifications only groups"
     },
+    "api_error_messages_need_message_request": {
+      "code": 987,
+      "description": "Need message request"
+    },
+    "api_error_messages_pending_message_request": {
+      "code": 988,
+      "description": "Pending message request"
+    },
+    "api_error_messages_drop_device_cache": {
+      "code": 990,
+      "description": "Drop device cache"
+    },
     "api_error_messages_invalid_reaction_id": {
       "code": 1009,
       "description": "Unknown reaction passed"
@@ -969,6 +981,14 @@
     "api_error_market_item_is_not_deleted": {
       "code": 1518,
       "description": "Item is not deleted"
+    },
+    "api_error_market_disabled": {
+      "code": 1525,
+      "description": "Market is disabled"
+    },
+    "api_error_market_services_disabled": {
+      "code": 1526,
+      "description": "Market services are disabled"
     },
     "api_error_story_expired": {
       "code": 1600,

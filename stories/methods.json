@@ -475,9 +475,6 @@
       "responses": {
         "response": {
           "$ref": "../stories/responses.json#/definitions/stories_getViewers_extended_V5115_response"
-        },
-        "extendedResponse": {
-          "$ref": "../stories/responses.json#/definitions/stories_getViewers_extended_V5115_response"
         }
       },
       "errors": [

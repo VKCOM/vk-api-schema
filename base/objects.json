@@ -473,6 +473,7 @@
         "market_clear_recent_queries",
         "close_web_app",
         "open_search_tab",
+        "open_search_filters",
         "import_contacts",
         "add_friends",
         "onboarding",
@@ -489,7 +490,13 @@
         "secondary",
         "tertiary",
         "float_bottom",
-        "outline_with_chevron"
+        "cell_button_centered_icon",
+        "borderless_with_icon",
+        "gray",
+        "flat",
+        "outline_with_chevron",
+        "inline",
+        "modal"
       ],
       "enumNames": [
         "updates",
@@ -498,7 +505,13 @@
         "secondary",
         "tertiary",
         "float_bottom",
-        "outline_with_chevron"
+        "cell_button_centered_icon",
+        "borderless_with_icon",
+        "gray",
+        "flat",
+        "outline_with_chevron",
+        "inline",
+        "modal"
       ]
     },
     "base_link_no_product": {

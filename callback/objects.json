@@ -236,6 +236,38 @@
         }
       }
     },
+    "callback_foreign_message": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "../messages/objects.json#/definitions/messages_foreign_message"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "is_cropped": {
+              "type": "boolean"
+            },
+            "fwd_messages": {
+              "type": "array",
+              "items": {
+                "$ref": "../callback/objects.json#/definitions/callback_foreign_message"
+              }
+            },
+            "reply_message": {
+              "$ref": "../callback/objects.json#/definitions/callback_foreign_message"
+            }
+          }
+        }
+      ]
+    },
+    "callback_fwd_messages": {
+      "type": "array",
+      "description": "Forwarded messages",
+      "items": {
+        "$ref": "../callback/objects.json#/definitions/callback_foreign_message"
+      }
+    },
     "callback_group_change_photo": {
       "type": "object",
       "properties": {
@@ -623,29 +655,29 @@
         }
       }
     },
-    "callback_message_allow": {
+    "callback_message": {
       "type": "object",
       "allOf": [
         {
-          "$ref": "../callback/objects.json#/definitions/callback_base"
+          "$ref": "../messages/objects.json#/definitions/messages_message"
         },
         {
           "type": "object",
           "properties": {
-            "type": {
-              "type": "string",
-              "$ref": "../callback/objects.json#/definitions/callback_type",
-              "default": "message_allow"
+            "influence_score": {
+              "type": "number"
             },
-            "object": {
-              "$ref": "../callback/objects.json#/definitions/callback_message_allow_object",
-              "required": true
+            "reply_message": {
+              "$ref": "../callback/objects.json#/definitions/callback_foreign_message"
+            },
+            "fwd_messages": {
+              "$ref": "../callback/objects.json#/definitions/callback_fwd_messages"
             }
           }
         }
       ]
     },
-    "callback_message_allow_object": {
+    "callback_message_allow": {
       "type": "object",
       "properties": {
         "user_id": {
@@ -673,50 +705,38 @@
         }
       }
     },
-    "callback_message_edit": {
+    "callback_message_event": {
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "../callback/objects.json#/definitions/callback_base"
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
         },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "$ref": "../callback/objects.json#/definitions/callback_type",
-              "default": "message_edit"
-            },
-            "object": {
-              "$ref": "../messages/objects.json#/definitions/messages_message",
-              "required": true
-            }
-          }
+        "peer_id": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "event_id": {
+          "type": "string",
+          "required": true
+        },
+        "payload": {
+          "type": "string",
+          "required": true
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1
         }
-      ]
+      }
     },
     "callback_message_new": {
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "../callback/objects.json#/definitions/callback_base"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "$ref": "../callback/objects.json#/definitions/callback_type",
-              "default": "message_new"
-            },
-            "object": {
-              "type": "object",
-              "$ref": "../callback/objects.json#/definitions/callback_message_object",
-              "required": true
-            }
-          }
-        }
-      ]
+      "$ref": "../callback/objects.json#/definitions/callback_message_object"
     },
     "callback_message_object": {
       "type": "object",
@@ -725,31 +745,90 @@
           "$ref": "../callback/objects.json#/definitions/callback_info_for_bots"
         },
         "message": {
-          "$ref": "../messages/objects.json#/definitions/messages_message"
+          "$ref": "../callback/objects.json#/definitions/callback_message"
         }
       }
     },
-    "callback_message_reply": {
+    "callback_message_reaction_event": {
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "../callback/objects.json#/definitions/callback_base"
+      "properties": {
+        "reacted_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
         },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "$ref": "../callback/objects.json#/definitions/callback_type",
-              "default": "message_reply"
-            },
-            "object": {
-              "$ref": "../messages/objects.json#/definitions/messages_message",
-              "required": true
-            }
-          }
+        "peer_id": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "cmid": {
+          "type": "integer",
+          "minimum": 1,
+          "required": true
+        },
+        "reaction_id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
         }
-      ]
+      }
+    },
+    "callback_message_read": {
+      "type": "object",
+      "properties": {
+        "from_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "peer_id": {
+          "type": "integer",
+          "format": "int64",
+          "required": true
+        },
+        "read_message_id": {
+          "type": "integer",
+          "required": true
+        },
+        "conversation_message_id": {
+          "type": "integer",
+          "minimum": 1,
+          "required": true
+        }
+      }
+    },
+    "callback_message_typing_state": {
+      "type": "object",
+      "properties": {
+        "from_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "to_id": {
+          "type": "integer",
+          "entity": "owner",
+          "format": "int64",
+          "required": true
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "message_typing_state",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "required": true
+        }
+      }
     },
     "callback_photo_comment": {
       "type": "object",

@@ -140,6 +140,9 @@
         "hidden_docs": {
           "type": "boolean"
         },
+        "is_confidential": {
+          "type": "boolean"
+        },
         "private_comment": {
           "type": "string"
         },
@@ -163,6 +166,25 @@
         "moderated": {
           "type": "integer",
           "minimum": 0
+        },
+        "screen_reader": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status_auto_update_ts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status_auto_update_reason": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ],
+          "enumNames": [
+            "need_correction_long_time",
+            "ready_for_testing_long_time"
+          ]
         }
       }
     },
@@ -235,6 +257,9 @@
         },
         "author": {
           "$ref": "../bugtracker/objects.json#/definitions/bugtracker_comment_author"
+        },
+        "is_attachments_hidden": {
+          "type": "boolean"
         }
       }
     },

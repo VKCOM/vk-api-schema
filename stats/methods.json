@@ -28,12 +28,12 @@
         },
         {
           "name": "timestamp_from",
-          "type": "integer",
+          "type": "number",
           "minimum": 0
         },
         {
           "name": "timestamp_to",
-          "type": "integer",
+          "type": "number",
           "minimum": 0
         },
         {

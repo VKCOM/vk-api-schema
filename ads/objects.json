@@ -646,8 +646,7 @@
         },
         "ord_data": {
           "description": "Ord data",
-          "$ref": "../ads/objects.json#/definitions/ads_ord_data",
-          "required": false
+          "$ref": "../ads/objects.json#/definitions/ads_ord_data"
         }
       }
     },
@@ -1102,8 +1101,7 @@
           "description": "Used requests per user",
           "items": {
             "$ref": "../ads/objects.json#/definitions/ads_flood_stats_by_user_item"
-          },
-          "required": false
+          }
         }
       }
     },
@@ -1293,15 +1291,17 @@
           "required": true
         },
         "inn": {
-          "type": "string",
-          "required": false
+          "type": "string"
         },
         "phone": {
           "type": "string",
           "required": true
         },
+        "agency_phone": {
+          "type": "string",
+          "required": false
+        },
         "subagent": {
-          "required": false,
           "$ref": "../ads/objects.json#/definitions/ads_ord_subagent"
         },
         "contract_number": {
@@ -1338,8 +1338,7 @@
           "required": true
         },
         "inn": {
-          "type": "string",
-          "required": false
+          "type": "string"
         },
         "phone": {
           "type": "string",

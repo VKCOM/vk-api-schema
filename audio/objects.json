@@ -64,6 +64,12 @@
         "performer": {
           "type": "string",
           "description": "Performer name"
+        },
+        "file_size": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0,
+          "description": "Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов"
         }
       }
     }

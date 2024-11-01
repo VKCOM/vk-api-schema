@@ -236,7 +236,8 @@
           "type": "object",
           "properties": {
             "preview": {
-              "$ref": "../messages/objects.json#/definitions/messages_chat_preview"
+              "$ref": "../messages/objects.json#/definitions/messages_chat_preview",
+              "required": true
             },
             "profiles": {
               "type": "array",

@@ -275,6 +275,10 @@
           "name": "sandbox",
           "type": "boolean",
           "default": 0
+        },
+        {
+          "name": "pushes_granted",
+          "type": "boolean"
         }
       ],
       "responses": {

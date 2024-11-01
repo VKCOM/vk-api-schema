@@ -215,16 +215,14 @@
               "description": "List of users, available only if extended=true exists in query params",
               "items": {
                 "$ref": "../users/objects.json#/definitions/users_user_full"
-              },
-              "required": false
+              }
             },
             "groups": {
               "type": "array",
               "description": "List of groups, available only if extended=true exists in query params",
               "items": {
                 "$ref": "../groups/objects.json#/definitions/groups_group_full"
-              },
-              "required": false
+              }
             }
           },
           "required": true
