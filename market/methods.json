@@ -1684,6 +1684,11 @@
           "format": "int64",
           "minimum": 1,
           "entity": "owner"
+        },
+        {
+          "name": "bulk",
+          "type": "boolean",
+          "default": false
         }
       ],
       "responses": {
@@ -2173,6 +2178,31 @@
       "responses": {
         "response": {
           "$ref": "../market/responses.json#/definitions/market_photo_id_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_market_not_enabled"
+        }
+      ]
+    },
+    {
+      "name": "market.saveProductPhotoBulk",
+      "description": "Bulk save market photo after upload.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "upload_response",
+          "description": "Upload response",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_photo_id_bulk_response"
         }
       },
       "errors": [

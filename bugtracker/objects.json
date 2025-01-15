@@ -185,6 +185,9 @@
             "need_correction_long_time",
             "ready_for_testing_long_time"
           ]
+        },
+        "product_has_wishes": {
+          "type": "boolean"
         }
       }
     },
@@ -277,6 +280,9 @@
         },
         "moder_name": {
           "type": "string"
+        },
+        "moder_number": {
+          "type": "integer"
         },
         "link": {
           "type": "string"

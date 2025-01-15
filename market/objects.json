@@ -788,6 +788,20 @@
         "cards",
         "rows"
       ]
+    },
+    "market_upload_photo_data": {
+      "type": "object",
+      "properties": {
+        "photo_id": {
+          "type": "integer",
+          "description": "Photo ID",
+          "required": true
+        },
+        "photo": {
+          "$ref": "../photos/objects.json#/definitions/photos_photo"
+        }
+      },
+      "required": true
     }
   }
 }

@@ -318,7 +318,8 @@
             "favorite",
             "featured",
             "installed",
-            "new"
+            "new",
+            "recommended"
           ]
         }
       ],

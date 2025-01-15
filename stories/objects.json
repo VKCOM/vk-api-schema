@@ -56,6 +56,9 @@
         "clip_id": {
           "type": "integer"
         },
+        "video_id": {
+          "type": "integer"
+        },
         "question": {
           "type": "string"
         },
@@ -105,7 +108,10 @@
             "album",
             "horizontal",
             "equalizer",
-            "header_meta"
+            "header_meta",
+            "preview",
+            "miniature",
+            "fullview"
           ]
         },
         "type": {
@@ -127,6 +133,7 @@
             "situational_theme",
             "playlist",
             "clip",
+            "vk_video",
             "situational_template",
             "spoiler"
           ],

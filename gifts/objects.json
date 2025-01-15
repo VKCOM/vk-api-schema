@@ -57,7 +57,8 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "Gift ID"
+          "description": "Gift ID",
+          "required": true
         },
         "thumb_512": {
           "type": "string",

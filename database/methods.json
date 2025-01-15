@@ -77,6 +77,14 @@
           "default": 100,
           "minimum": 0,
           "maximum": 1000
+        },
+        {
+          "name": "fields",
+          "description": "Cities fields to return. Sample values: 'fias_guid'",
+          "type": "array",
+          "items": {
+            "$ref": "../database/objects.json#/definitions/database_cities_fields"
+          }
         }
       ],
       "responses": {
@@ -102,6 +110,14 @@
             "minimum": 0
           },
           "maxItems": 1000
+        },
+        {
+          "name": "fields",
+          "description": "Cities fields to return. Sample values: 'fias_guid'",
+          "type": "array",
+          "items": {
+            "$ref": "../database/objects.json#/definitions/database_cities_fields"
+          }
         }
       ],
       "responses": {

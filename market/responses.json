@@ -441,6 +441,18 @@
         }
       }
     },
+    "market_photo_id_bulk_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "$ref": "../market/objects.json#/definitions/market_upload_photo_data"
+          },
+          "required": true
+        }
+      }
+    },
     "market_photo_id_response": {
       "type": "object",
       "properties": {

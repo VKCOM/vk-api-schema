@@ -450,6 +450,10 @@
       "code": 242,
       "description": "Too many friends"
     },
+    "api_error_wall_comment_not_deleted": {
+      "code": 243,
+      "description": "Comment has not been deleted"
+    },
     "api_error_polls_access": {
       "code": 250,
       "description": "Access to poll denied"
@@ -1078,22 +1082,6 @@
     "api_error_fave_aliexpress_tag": {
       "code": 3800,
       "description": "Can't set AliExpress tag to this type of object"
-    },
-    "api_error_asr_audio_duration_flooded": {
-      "code": 7701,
-      "description": "Total audio duration limit reached"
-    },
-    "api_error_asr_file_is_too_big": {
-      "code": 7702,
-      "description": "Audio file is too big"
-    },
-    "api_error_asr_invalid_hash": {
-      "code": 7703,
-      "description": "Invalid hash"
-    },
-    "api_error_asr_not_found": {
-      "code": 7704,
-      "description": "Task not found"
     },
     "api_error_not_supported_http_method": {
       "code": 9999,

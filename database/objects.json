@@ -5,6 +5,9 @@
   "description": "Contains JSON Schema documents explaining the VK.COM API - objects",
   "termsOfService": "https://dev.vk.com/rules",
   "definitions": {
+    "database_cities_fields": {
+      "type": "string"
+    },
     "database_city": {
       "type": "object",
       "allOf": [

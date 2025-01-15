@@ -1364,6 +1364,12 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_wall_access_comment"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_wall_comment_not_deleted"
         }
       ]
     },

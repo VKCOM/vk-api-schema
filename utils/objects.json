@@ -30,6 +30,7 @@
         "user",
         "group",
         "application",
+        "event",
         "page",
         "vk_app",
         "community_application"

@@ -1062,7 +1062,8 @@
       "name": "groups.get",
       "description": "Returns a list of the communities to which a user belongs.",
       "access_token_type": [
-        "user"
+        "user",
+        "service"
       ],
       "parameters": [
         {

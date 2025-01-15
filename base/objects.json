@@ -472,6 +472,7 @@
         "open_url",
         "market_clear_recent_queries",
         "close_web_app",
+        "add_playlist",
         "open_search_tab",
         "open_search_filters",
         "import_contacts",
@@ -496,7 +497,8 @@
         "flat",
         "outline_with_chevron",
         "inline",
-        "modal"
+        "modal",
+        "right_button"
       ],
       "enumNames": [
         "updates",
@@ -511,7 +513,8 @@
         "flat",
         "outline_with_chevron",
         "inline",
-        "modal"
+        "modal",
+        "right_button"
       ]
     },
     "base_link_no_product": {

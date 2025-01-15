@@ -599,7 +599,8 @@
         "extendedResponse": {
           "$ref": "../messages/responses.json#/definitions/messages_getByConversationMessageId_extended_response"
         }
-      }
+      },
+      "errors": []
     },
     {
       "name": "messages.getById",
@@ -2642,6 +2643,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_not_admin"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_disabled"
         }
       ]
     },

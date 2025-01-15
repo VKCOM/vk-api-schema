@@ -522,6 +522,7 @@
           "description": "ID of the user or community that owns the video(s).",
           "type": "integer",
           "format": "int64",
+          "default": 0,
           "entity": "owner"
         },
         {
