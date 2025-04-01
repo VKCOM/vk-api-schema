@@ -66,6 +66,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_group_peer_access"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
         }
       ]
     },
@@ -242,6 +245,9 @@
       "errors": [
         {
           "$ref": "../errors.json#/errors/api_error_messages_cant_delete_for_all"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
         }
       ]
     },
@@ -540,6 +546,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_unsupported"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
         }
       ]
     },
@@ -1227,7 +1236,12 @@
         "response": {
           "$ref": "../messages/responses.json#/definitions/messages_getHistoryAttachments_response"
         }
-      }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        }
+      ]
     },
     {
       "name": "messages.getImportantMessages",
@@ -1530,6 +1544,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_contact_not_found"
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_drop_device_cache"
@@ -1993,6 +2010,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
         }
       ]
     },
@@ -2681,6 +2701,9 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_messages_chat_not_exist"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_messages_writing_disabled_for_chat"
         }
       ]
     }

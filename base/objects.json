@@ -475,6 +475,7 @@
         "add_playlist",
         "open_search_tab",
         "open_search_filters",
+        "reset_search_filters",
         "import_contacts",
         "add_friends",
         "onboarding",
@@ -489,6 +490,7 @@
         "default",
         "primary",
         "secondary",
+        "negative",
         "tertiary",
         "float_bottom",
         "cell_button_centered_icon",
@@ -498,13 +500,15 @@
         "outline_with_chevron",
         "inline",
         "modal",
-        "right_button"
+        "right_button",
+        "after_toolbar"
       ],
       "enumNames": [
         "updates",
         "default",
         "primary",
         "secondary",
+        "negative",
         "tertiary",
         "float_bottom",
         "cell_button_centered_icon",
@@ -514,7 +518,8 @@
         "outline_with_chevron",
         "inline",
         "modal",
-        "right_button"
+        "right_button",
+        "after_toolbar"
       ]
     },
     "base_link_no_product": {
@@ -1083,7 +1088,8 @@
         "image_status",
         "is_nft",
         "is_nft_photo",
-        "is_verified"
+        "is_verified",
+        "url"
       ]
     },
     "base_user_id": {

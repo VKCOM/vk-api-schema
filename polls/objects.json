@@ -74,7 +74,8 @@
           "type": "string",
           "enum": [
             "gradient",
-            "tile"
+            "tile",
+            "color"
           ]
         },
         "width": {
@@ -208,7 +209,9 @@
         },
         "author_id": {
           "type": "integer",
-          "description": "Poll author's ID"
+          "entity": "owner",
+          "description": "Poll author's ID",
+          "format": "int64"
         },
         "question": {
           "type": "string",

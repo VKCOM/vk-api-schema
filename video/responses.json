@@ -265,6 +265,68 @@
         }
       }
     },
+    "video_getOembed_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "description": "Version of oEmbed (always 1.0)",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of embed content (always video)",
+              "required": true
+            },
+            "title": {
+              "type": "string",
+              "description": "Title of video"
+            },
+            "author_name": {
+              "type": "string",
+              "description": "Author of video"
+            },
+            "html": {
+              "type": "string",
+              "description": "HTML of player",
+              "required": true
+            },
+            "width": {
+              "type": "integer",
+              "description": "Width of player"
+            },
+            "height": {
+              "type": "integer",
+              "description": "Height of player"
+            },
+            "provider_name": {
+              "type": "string",
+              "description": "Name of video provider"
+            },
+            "provider_url": {
+              "type": "string",
+              "description": "Video provider url"
+            },
+            "thumbnail_url": {
+              "type": "string",
+              "description": "Video thumbnail url"
+            },
+            "thumbnail_width": {
+              "type": "integer",
+              "description": "Video thumbnail width"
+            },
+            "thumbnail_height": {
+              "type": "integer",
+              "description": "Video thumbnail height"
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "video_getThumbUploadUrl_response": {
       "type": "object",
       "properties": {

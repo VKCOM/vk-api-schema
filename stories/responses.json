@@ -131,35 +131,6 @@
         }
       }
     },
-    "stories_getStats_V5200_response": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "type": "object",
-          "properties": {
-            "preview": {
-              "type": "string"
-            },
-            "achievement": {
-              "type": "string"
-            },
-            "achievement_subtitle": {
-              "type": "string"
-            },
-            "categories": {
-              "type": "array",
-              "items": {
-                "$ref": "../stories/objects.json#/definitions/stories_stat_category"
-              }
-            },
-            "need_privacy_block": {
-              "type": "boolean"
-            }
-          },
-          "required": true
-        }
-      }
-    },
     "stories_getStats_response": {
       "type": "object",
       "properties": {

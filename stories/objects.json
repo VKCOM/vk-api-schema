@@ -111,7 +111,11 @@
             "header_meta",
             "preview",
             "miniature",
-            "fullview"
+            "fullview",
+            "cta",
+            "sticker",
+            "sticker_and_cta",
+            "accent"
           ]
         },
         "type": {
@@ -135,7 +139,8 @@
             "clip",
             "vk_video",
             "situational_template",
-            "spoiler"
+            "spoiler",
+            "service_yc_item"
           ],
           "required": true
         },
@@ -314,46 +319,6 @@
         "new": {
           "type": "integer",
           "description": "New replies number."
-        }
-      }
-    },
-    "stories_stat_category": {
-      "type": "object",
-      "properties": {
-        "header": {
-          "type": "string",
-          "required": true
-        },
-        "type": {
-          "type": "string",
-          "required": true
-        },
-        "lines": {
-          "type": "array",
-          "items": {
-            "$ref": "../stories/objects.json#/definitions/stories_stat_line"
-          },
-          "required": true
-        }
-      }
-    },
-    "stories_stat_line": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "required": true
-        },
-        "type": {
-          "type": "string",
-          "required": true
-        },
-        "counter": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "is_unavailable": {
-          "type": "boolean"
         }
       }
     },
@@ -599,7 +564,10 @@
         "play",
         "install",
         "read",
-        "calendar"
+        "calendar",
+        "market_online_booking",
+        "market_link",
+        "message_to_bc"
       ]
     },
     "stories_upload_result": {

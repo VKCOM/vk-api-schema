@@ -994,6 +994,14 @@
       "code": 1526,
       "description": "Market services are disabled"
     },
+    "api_error_market_add_to_service_album": {
+      "code": 1531,
+      "description": "Add item to service album"
+    },
+    "api_error_market_add_to_market_album": {
+      "code": 1532,
+      "description": "Add service to market album"
+    },
     "api_error_story_expired": {
       "code": 1600,
       "description": "Story has already expired"

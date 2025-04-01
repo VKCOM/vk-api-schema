@@ -177,32 +177,6 @@
       ]
     },
     {
-      "name": "stories.getDetailedStats",
-      "access_token_type": [
-        "user"
-      ],
-      "parameters": [
-        {
-          "name": "owner_id",
-          "type": "integer",
-          "required": true,
-          "format": "int64",
-          "entity": "owner"
-        },
-        {
-          "name": "story_id",
-          "type": "integer",
-          "required": true,
-          "minimum": 0
-        }
-      ],
-      "responses": {
-        "response": {
-          "$ref": "../stories/responses.json#/definitions/stories_getStats_V5200_response"
-        }
-      }
-    },
-    {
       "name": "stories.getPhotoUploadServer",
       "description": "Returns URL for uploading a story with photo.",
       "access_token_type": [

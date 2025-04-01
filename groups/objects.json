@@ -2081,6 +2081,14 @@
           "type": "string",
           "description": "User first name",
           "required": true
+        },
+        "last_name": {
+          "type": "string",
+          "description": "User last name"
+        },
+        "screen_name": {
+          "type": "string",
+          "description": "Domain of the user page"
         }
       }
     },

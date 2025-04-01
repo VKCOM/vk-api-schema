@@ -229,6 +229,28 @@
         }
       }
     },
+    "market_getFavesForAttach_response": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "market_items": {
+              "type": "array",
+              "items": {
+                "$ref": "../market/objects.json#/definitions/market_market_item"
+              },
+              "required": true
+            },
+            "next_from": {
+              "type": "integer",
+              "description": "Offset for using in next query"
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "market_getGroupOrders_response": {
       "type": "object",
       "properties": {

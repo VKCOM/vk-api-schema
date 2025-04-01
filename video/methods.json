@@ -75,19 +75,7 @@
           "description": "new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - \"only me\".",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "0",
-              "1",
-              "2",
-              "3"
-            ],
-            "enumNames": [
-              "all",
-              "friends",
-              "friends of friends",
-              "only me"
-            ]
+            "$ref": "../video/objects.json#/definitions/video_playlist_privacy_category"
           }
         }
       ],
@@ -336,6 +324,35 @@
       }
     },
     {
+      "name": "video.deleteThread",
+      "description": "Deletes a thread on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "thread_id",
+          "description": "ID of the main comment to be deleted as thread.",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
+        }
+      }
+    },
+    {
       "name": "video.edit",
       "description": "Edits information about a video on a user or community page.",
       "access_token_type": [
@@ -437,19 +454,7 @@
           "description": "new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - \"only me\".",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "0",
-              "1",
-              "2",
-              "3"
-            ],
-            "enumNames": [
-              "all",
-              "friends",
-              "friends of friends",
-              "only me"
-            ]
+            "$ref": "../video/objects.json#/definitions/video_playlist_privacy_category"
           }
         },
         {
@@ -847,6 +852,50 @@
       ]
     },
     {
+      "name": "video.getOembed",
+      "description": "Returns oEmbed player to video",
+      "access_token_type": [
+        "user",
+        "open",
+        "service"
+      ],
+      "parameters": [
+        {
+          "name": "url",
+          "description": "Link to video",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "maxwidth",
+          "description": "Maximum width of player",
+          "type": "integer",
+          "minimum": 426,
+          "maximum": 15360
+        },
+        {
+          "name": "maxheight",
+          "description": "Maximum width of player",
+          "type": "integer",
+          "minimum": 240,
+          "maximum": 8640
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../video/responses.json#/definitions/video_getOembed_response"
+        }
+      },
+      "errors": [
+        {
+          "$ref": "../errors.json#/errors/api_error_access_video"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_not_found"
+        }
+      ]
+    },
+    {
       "name": "video.getThumbUploadUrl",
       "access_token_type": [
         "user"
@@ -1234,6 +1283,35 @@
         "response": {
           "description": "Returns 1 if request has been processed successfully, 0 if the comment is not found",
           "$ref": "../base/responses.json#/definitions/base_bool_response"
+        }
+      }
+    },
+    {
+      "name": "video.restoreThread",
+      "description": "Restores a deleted thread on a video.",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "owner_id",
+          "description": "ID of the user or community that owns the video.",
+          "type": "integer",
+          "required": true,
+          "format": "int64",
+          "entity": "owner"
+        },
+        {
+          "name": "thread_id",
+          "description": "ID of the main comment to be deleted as thread.",
+          "type": "integer",
+          "required": true,
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../base/responses.json#/definitions/base_ok_response"
         }
       }
     },

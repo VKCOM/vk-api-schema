@@ -1484,20 +1484,7 @@
       }
     },
     "messages_longpoll_messages": {
-      "type": "object",
-      "properties": {
-        "count": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Total number"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "../messages/objects.json#/definitions/messages_message"
-          }
-        }
-      }
+      "type": "object"
     },
     "messages_longpoll_params": {
       "type": "object",

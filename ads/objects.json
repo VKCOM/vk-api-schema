@@ -153,6 +153,10 @@
           "description": "Information whether disclaimer is enabled",
           "$ref": "../base/objects.json#/definitions/base_bool_int"
         },
+        "disclaimer_credits": {
+          "description": "Information whether disclaimer is enabled",
+          "$ref": "../base/objects.json#/definitions/base_bool_int"
+        },
         "id": {
           "type": "integer",
           "description": "Ad ID",

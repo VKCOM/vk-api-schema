@@ -406,6 +406,12 @@
         },
         {
           "$ref": "../errors.json#/errors/api_error_market_item_already_added"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_add_to_service_album"
+        },
+        {
+          "$ref": "../errors.json#/errors/api_error_market_add_to_market_album"
         }
       ]
     },
@@ -1503,6 +1509,46 @@
           "$ref": "../errors.json#/errors/api_error_market_comments_closed"
         }
       ]
+    },
+    {
+      "name": "market.getFavesForAttach",
+      "access_token_type": [
+        "user"
+      ],
+      "parameters": [
+        {
+          "name": "current_group_id",
+          "description": "Group which represents content",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "entity": "owner"
+        },
+        {
+          "name": "public_only",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "offset",
+          "description": "Offset needed to return a specific subset of users.",
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "name": "count",
+          "description": "Number of users to return.",
+          "type": "integer",
+          "default": 50,
+          "minimum": 1,
+          "maximum": 100
+        }
+      ],
+      "responses": {
+        "response": {
+          "$ref": "../market/responses.json#/definitions/market_getFavesForAttach_response"
+        }
+      }
     },
     {
       "name": "market.getGroupOrders",

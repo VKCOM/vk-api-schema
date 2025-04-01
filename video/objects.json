@@ -72,6 +72,23 @@
         }
       }
     },
+    "video_playlist_privacy_category": {
+      "type": "string",
+      "enum": [
+        "all",
+        "friends",
+        "friends_of_friends",
+        "friends_of_friends_only",
+        "only_me"
+      ],
+      "enumNames": [
+        "all",
+        "friends",
+        "friends of friends",
+        "friends of friends only",
+        "only me"
+      ]
+    },
     "video_save_result": {
       "type": "object",
       "properties": {

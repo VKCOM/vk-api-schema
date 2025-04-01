@@ -447,6 +447,10 @@
               "description": "Information whether current use can comment the item",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
             },
+            "show_comments": {
+              "description": "Information about whether to show the comments tab",
+              "$ref": "../base/objects.json#/definitions/base_bool_int"
+            },
             "can_repost": {
               "description": "Information whether current use can repost the item",
               "$ref": "../base/objects.json#/definitions/base_bool_int"
